@@ -78,34 +78,40 @@
   were first seen in the 4.0 beta releases.</p>
 
   <p>Several third-party interfaces and other tools that work with
-  GNATS are <a href="#otherinfo">available</a>.  Miscellaneous and
+  GNATS are <a href="#otherinfo">available</a>. Miscellaneous and
   unmaintained interfaces, can be found in the
   <strong>contrib</strong> subdirectory of the GNATS distribution.
-  Releases of these tools aren't necessarily synchronized with GNATS
-  releases, see the section on <a href= "#downloading">downloading</a>
-  below for details on how to get the newest version.</p>
+  Releases of these tools aren't necessarily synchronized with
+  GNATS releases, see the section on <a href=
+  "#downloading">downloading</a> below for details on how to get
+  the newest version.</p>
 
-  <p><a href="http://savannah.gnu.org/projects/gnatsweb">Gnatsweb</a>,
-  a web-based interface, has become a sister project to GNATS.  This
-  site remains its homepage, but it now has its own project <a
-  href="#downloading">download</a> directory and CVS trees.</p>
+  <p><a href=
+  "http://savannah.gnu.org/projects/gnatsweb">Gnatsweb</a>, a
+  web-based interface, has become a sister project to GNATS. This
+  site remains its homepage, but it now has its own project
+  <a href="#downloading">download</a> directory and CVS trees.</p>
 
-  <p>If you'd like to hear about GNATS announcements, subscribe to the
-  <a href=
-  "http://mail.gnu.org/mailman/listinfo/info-gnats">info-gnats mailing
-  list</a>.</p><!-- *** -->
-
+  <p>If you'd like to hear about GNATS announcements, subscribe to
+  the <a href=
+  "http://mail.gnu.org/mailman/listinfo/info-gnats">info-gnats
+  mailing list</a>.</p><!-- *** -->
   <a href="#TOC" name="news" id="news">(ToC)</a>
+
   <h2>GNATS News</h2>
 
-  <p><b>November 10, 2004:</b> GNATS 4.0.1 has been released to <b>fix a
-  potential security vulnerability</b>. Please <a href=
+  <p><b>March 6, 2005:</b> GNATS 4.1.0 has been released! (<a href=
+  "#downloading">Download</a>) This is considered the new stable
+  branch of GNATS.</p>
+
+  <p><b>November 10, 2004:</b> GNATS 4.0.1 has been released to
+  <b>fix a potential security vulnerability</b>. Please <a href=
   "#downloading">download</a> this release.</p>
 
   <p><b>June 8, 2004:</b> Andrew Gray has stepped down as
-  maintainer of GNATS and Chad Walstrom has been appointed in his
-  stead. Plans are being made for a 4.1 release to incorporate some
-  of the bugfixes and changes in the CVS repository.</p>
+  maintainer of GNATS and <a href="mailto:chewie@gnu.org">Chad Walstrom</a> has
+  been appointed in his stead. Plans are being made for a 4.1 release to
+  incorporate some of the bugfixes and changes in the CVS repository.</p>
 
   <p><b>March 1, 2004:</b> GNATS 4.0 is again available for
   download from <a href=
@@ -136,81 +142,130 @@
   <p><b>January 27, 2002:</b> Hans-Albert Schneider has compiled an
   <a href="http://www.ha-schneider.de/software/gnats/faq.html">FAQ
   for GNATS</a>.</p><!-- *** -->
-
   <a href="#TOC" name="security" id="security">(ToC)</a>
+
   <h2>Security Announcements</h2>
-  <p class="dashbox">The following table is a compilation of security
-  announcements and potential vulnerabilities to released versions of GNATS.
-  The general recommendation is to upgrade to the latest
+
+  <p>The following table is a compilation of security announcements
+  and potential vulnerabilities to released versions of GNATS. The
+  general recommendation is to upgrade to the latest
   <strong>stable</strong> released version of GNATS.</p>
 
-  <table border=1>
-  <tr><th>Version(s)</th><th>Severity</th><th>Scope</th><th>Exploitable</th>
-  <th>Details</th></tr>
-  <tr>
-    <td>4.0</td><td>Low</td><td>Remote</td><td>Unlikely</td>
-    <td>Note, that although these announcements indicate a possible buffer
-    overflow in passing user-supplied data to a call to<em>syslog()</em>.
-    However, such a path has not been found that would pass user-supplied data
-    to the errant call.
-      <ul>
-      <li><a href="http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html">
-http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html</a>
-      <li><a href="http://www.zone-h.org/advisories/read/id=4889">
-http://www.zone-h.org/advisories/read/id=4889</a>
-      <li><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623">
-http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623</a>
-      <li><a href="http://www.debian.org/security/2004/dsa-590">
-http://www.debian.org/security/2004/dsa-590</a></ul>
-    </td>
-  </tr>
-  <tr>
-    <td>3.002, 3.113.1, 3.2</td><td>High</td><td>Local</td><td>100%</td>
-    <td>There are multiple vulnerabilities in these versions that result in
-    local root exploits.
-    <ul>
-      <li><a href= "http://www.securityfocus.com/archive/1/326337">Multiple buffer overflow vulnerabilities</a>
-      <li><a href= "patches/index.html">Patches</a>
-    </td>
-  </tr>
-  </table>
+  <table border="1" summary="Security Announcements for GNATS and GnatsWeb">
+    <caption>Security Announcements for GNATS and Gnatsweb</caption>
+    <tr>
+      <th>Version(s)</th>
 
-  <a href="#TOC" name="downloading" id="downloading">(ToC)</a>
+      <th>Severity</th>
+
+      <th>Scope</th>
+
+      <th>Exploitable</th>
+
+      <th>Details</th>
+    </tr>
+
+    <tr>
+      <td>GNATS &lt;= 4.0</td>
+
+      <td>Low</td>
+
+      <td>Remote</td>
+
+      <td>Unlikely</td>
+
+      <td>
+        Note, that although these announcements indicate a possible
+        buffer overflow in passing user-supplied data to a call
+        to<em>syslog()</em>. However, such a path has not been
+        found that would pass user-supplied data to the errant
+        call.
+
+        <ul>
+          <li><a href=
+          "http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html">
+          http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html</a></li>
+
+          <li><a href=
+          "http://www.zone-h.org/advisories/read/id=4889">http://www.zone-h.org/advisories/read/id=4889</a></li>
+
+          <li><a href=
+          "http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623">
+          http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623</a></li>
+
+          <li><a href=
+          "http://www.debian.org/security/2004/dsa-590">http://www.debian.org/security/2004/dsa-590</a></li>
+        </ul>
+      </td>
+    </tr>
+
+    <tr>
+      <td>GNATS 3.002, 3.113.1, 3.2</td>
+
+      <td>High</td>
+
+      <td>Local</td>
+
+      <td>100%</td>
+
+      <td>
+        There are multiple vulnerabilities in these versions that
+        result in local root exploits. Note: these versions are no
+        longer maintained.
+
+        <ul>
+          <li><a href=
+          "http://www.securityfocus.com/archive/1/326337">Multiple
+          buffer overflow vulnerabilities</a></li>
+
+          <li><a href="patches/index.html">Patches</a></li>
+        </ul>
+      </td>
+    </tr>
+  </table><a href="#TOC" name="downloading" id=
+  "downloading">(ToC)</a>
+
   <h2>Downloading GNATS and Gnatsweb</h2>
-  <h3>GNATS Stable Branch: 4.0</h3>
-  <p>GNATS versioning follows the a simple <strong>MAJOR.MINOR.PATCH</strong>
-  numbering scheme.  The latest stable branch of GNATS is <strong>4.0</strong>
-  with <strong>4.0.1</strong> being the latest version available.  All version
-  of GNATS are available for download on the <strong>Official GNU FTP
-  Mirror</strong>: <a
-  href="http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</a>.</p>
 
-  <p>The stable branch is also available in the <a
-  href="https://savannah.gnu.org/cvs/?group=gnats">CVS Repository</a> under the
-  branch <strong>gnats-4_0-patches</strong>.  The 4.0.1 release is tagged
-  <strong>gnats-4_0_1</strong>.
+  <h3>GNATS Stable Branch: 4.1</h3>
 
-  <p>Binary packages are generally available on various Linux and BSD
-  platforms.  For example, <a href="http://www.debian.org">Debian GNU/Linux</a>
-  carries the latest stable version of GNATS as binary and source <a
-  href="http://packages.debian.org/gnats">packages</a>.</p>
+  <p>GNATS versioning follows the a simple
+  <strong>MAJOR.MINOR.PATCH</strong> numbering scheme. The latest
+  stable branch of GNATS is <strong>4.1</strong> with
+  <strong>4.1.0</strong> being the latest version available. All
+  version of GNATS are available for download on the
+  <strong>Official GNU FTP Mirror</strong>: <a href=
+  "http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</a>.</p>
+
+  <p>The stable branch is also available in the <a href=
+  "https://savannah.gnu.org/cvs/?group=gnats">CVS Repository</a>
+  under the branch <strong>gnats-4_1-branch</strong>. The 4.1.0
+  release is tagged <strong>gnats-4_1_0-release</strong>.</p>
+
+  <p>Binary packages are generally available on various Linux and
+  BSD platforms. For example, <a href=
+  "http://www.debian.org">Debian GNU/Linux</a> carries the latest
+  stable version of GNATS as binary and source <a href=
+  "http://packages.debian.org/gnats">packages</a>.</p>
 
   <h3>GNATS Development Branch: CVS only</h3>
-  <p>The current development version of GNATS is available via CVS only, which
-  is hosted on the <a href="http://savannah.gnu.org">Savannah</a> web site.
-  See the <a href="https://savannah.gnu.org/cvs/?group=gnats">GNU Savannah
-  GNATS Project Page</a> for the instructions how to use the CVS
+
+  <p>The current development version of GNATS is available via CVS
+  only, which is hosted on the <a href=
+  "http://savannah.gnu.org">Savannah</a> web site. See the <a href=
+  "https://savannah.gnu.org/cvs/?group=gnats">GNU Savannah GNATS
+  Project Page</a> for the instructions how to use the CVS
   repository.</p>
 
   <p>See <a href="#otherinfo">information about other GNATS
-  resources</a> for the location of development code.
+  resources</a> for the location of development code.</p>
 
   <h3>Gnatsweb</h3>
 
-  <p>Gnatsweb, a Perl-based GNATS web interface, development is hosted in a
-  separate CVS repository at gnu.org. Gnatsweb has two development branches,
-  one for version 2 (which works with GNATS 3.x) and one
-  for version 4 (which works with GNATS 4).</p>
+  <p>Gnatsweb, a Perl-based GNATS web interface, development is
+  hosted in a separate CVS repository at gnu.org. Gnatsweb has two
+  development branches, one for version 2 (which works with GNATS
+  3.x) and one for version 4 (which works with GNATS 4).</p>
 
   <p>Released versions of Gnatsweb can be downloaded from <a href=
   "http://ftp.gnu.org/pub/gnu/gnatsweb/">http://ftp.gnu.org/pub/gnu/gnatsweb/</a>.</p>
@@ -229,8 +284,8 @@ http://www.debian.org/security/2004/dsa-590</a></ul>
   <pre>
         cvs -z3 -d:pserver:anoncvs@savannah.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-v2-branch gnatsweb
 </pre><!-- *** -->
-
   <a href="#TOC" name="documentation" id="documentation">(ToC)</a>
+
   <h2>GNATS Documentation</h2>
 
   <p>Online documentation is available from the <a href=
@@ -246,22 +301,27 @@ http://www.debian.org/security/2004/dsa-590</a></ul>
   <p>Please report GNATS bugs to the e-mail address <a href=
   "mailto:bug-gnats@gnu.org">&lt;bug-gnats@gnu.org&gt;</a>.</p>
 
-  <p>GNATS uses (gasp) GNATS to track problem reports. A temporary home for the
-  GNATS bug database is available to <a href=
-  "https://skuld.wookimus.net/cgi-bin/gnatsweb.pl?database=gnats">browse or
-  submit new problem reports</a> there. Use "<strong>guest</strong>" as both
-  the <em>login</em> name and the <em>password</em>. You can also try out the
-  Gnatsweb interface if you want to see how things look, but please do not
-  submit reports that aren't real. This database is being used by GNATS
+  <p>GNATS uses (gasp) GNATS to track problem reports. A temporary
+  home for the GNATS bug database is available to <a href=
+  "https://skuld.wookimus.net/cgi-bin/gnatsweb.pl?database=gnats">browse
+  or submit new problem reports</a> there. Use
+  "<strong>guest</strong>" as both the <em>login</em> name and the
+  <em>password</em>. You can also try out the Gnatsweb interface if
+  you want to see how things look, but please do not submit reports
+  that aren't real. This database is being used by GNATS
   developers, and is <em>not meant for testing purposes</em>.</p>
 
-  <p>When you report problems related GNATS itself, <em>please don't forget to
-  provide the following information</em>:</p>
+  <p>When you report problems related GNATS itself, <em>please
+  don't forget to provide the following information</em>:</p>
 
   <ul>
     <li>The GNATS version you are using.</li>
-    <li>The <em>exact</em> steps involved to reproduce the bug.</li>
+
+    <li>The <em>exact</em> steps involved to reproduce the
+    bug.</li>
+
     <li>Your configuration.</li>
+
     <li>If you encounter a compilation or build problem, it is
     especially important to mention the operating system, compiler
     and possibly other build utilities you use.</li>
@@ -305,8 +365,9 @@ http://www.debian.org/security/2004/dsa-590</a></ul>
 
   <h3>GNATS</h3>
 
-  <p>The current maintainer of GNATS itself is Chad Walstrom. The
-  current focus is integrating submitted patches and resolving
+  <p>The current maintainer of GNATS itself is <a
+  href="mailto:chewie@gnu.org">Chad Walstrom</a>. The current focus is
+  integrating submitted patches and resolving
   outstanding bugs.</p>
 
   <h3>Gnatsweb</h3>
@@ -368,41 +429,42 @@ cvs diff -up file1 file2 ... &gt; patchfile.out
     resources.</li>
 
     <li><a href="http://savannah.gnu.org/projects/gnatsweb">GNU
-    Savannah Gnatsweb project page</a> contains links to the Gnatsweb
-    news, CVS and FTP archives.</li>
+    Savannah Gnatsweb project page</a> contains links to the
+    Gnatsweb news, CVS and FTP archives.</li>
 
     <li><a href="http://gnatsperl.sourceforge.net">gnatsperl</a>, a
     collection of perl modules proving an interface to the GNATS
     daemon written by Mike Hoolehan.</li>
 
-    <li><a
-    href="http://www.zeesource.net/downloads/GnatsVw-1.0.tar.gz">GnatsVw</a>
+    <li><a href=
+    "http://www.zeesource.net/downloads/GnatsVw-1.0.tar.gz">GnatsVw</a>
     is a <a href="http://www.python.org">Python</a> rewrite of
-    Gnatsweb by Pankaj K Garg of Zee Source (<a
-    href="http://www.zeesource.net">link</a>).
+    Gnatsweb by Pankaj K Garg of Zee Source (<a href=
+    "http://www.zeesource.net">link</a>).</li>
 
-    <li><a href="http://www.energyhq.es.eu.org/gtk-send-pr.html">GTK+
-    send-pr</a> is a GTK+ rewrite of the send-pr shell script.
+    <li><a href=
+    "http://www.energyhq.es.eu.org/gtk-send-pr.html">GTK+
+    send-pr</a> is a GTK+ rewrite of the send-pr shell script.</li>
 
-    <li><a href= "http://www.timshel.ca/tkgnats/">TkGNATS</a> is a
-    real nifty front-end to GNATS which is written in Tcl/Tk.  The
-    <strong>contrib</strong> directory in the GNATS tarball contains
-    the older, unmaintained version 3.0.14.</li>
+    <li><a href="http://www.timshel.ca/tkgnats/">TkGNATS</a> is a
+    real nifty front-end to GNATS which is written in Tcl/Tk. The
+    <strong>contrib</strong> directory in the GNATS tarball
+    contains the older, unmaintained version 3.0.14.</li>
 
     <li><a href="http://www.daveeaton.com/scm/PMTools.html">Problem
     Management Tools Survey entry for GNATS</a>. This page has a
     lot of information about other bug tracking systems that are
     available. It is a good resource.</li>
 
-    <li>Search <a href="http://www.freshmeat.net">Freshmeat</a> for <a
-    href="http://freshmeat.net/search/?q=GNATS&section=projects">GNATS-related</a>
-    projects.
+    <li>Search <a href="http://www.freshmeat.net">Freshmeat</a> for
+    <a href=
+    "http://freshmeat.net/search/?q=GNATS&section=projects">GNATS-related</a>
+    projects.</li>
 
-    <li>Search <a href="http://www.sourceforge.net">SourceForge</a> for <a
-    href="http://sourceforge.net/search/?words=GNATS">GNATS-related</a>
-    projects.
-
-
+    <li>Search <a href="http://www.sourceforge.net">SourceForge</a>
+    for <a href=
+    "http://sourceforge.net/search/?words=GNATS">GNATS-related</a>
+    projects.</li>
   </ul><!-- footer -->
   <hr>
 
@@ -418,8 +480,8 @@ cvs diff -up file1 file2 ... &gt; patchfile.out
   other questions to <a href=
   "mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.</p>
 
-  <p>Copyright (C) 2003, 2004, 2005 Andrew Gray, Yngve Svendsen, Milan
-  Zamazal, and Chad Walstrom</p>
+  <p>Copyright (C) 2003, 2004, 2005 Andrew Gray, Yngve Svendsen,
+  Milan Zamazal, and Chad Walstrom</p>
 
   <p>Verbatim copying and distribution of this entire article is
   permitted in any medium, provided this notice is preserved.</p>
@@ -429,7 +491,7 @@ cvs diff -up file1 file2 ... &gt; patchfile.out
   Boston, MA 02111, USA</p>
 
   <p>Updated: <!-- timestamp start -->
-   $Date: 2005/03/06 18:48:13 $ $Author: chewie $ 
+   $Date: 2005/03/06 21:16:09 $ $Author: chewie $ 
   <!-- timestamp end --></p>
   <hr>
 </body>
