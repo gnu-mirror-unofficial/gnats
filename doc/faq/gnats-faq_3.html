@@ -1,0 +1,659 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on February, 20  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNATS Frequently Asked Questions: Configuration</TITLE>
+
+<META NAME="description" CONTENT="GNATS Frequently Asked Questions: Configuration">
+<META NAME="keywords" CONTENT="GNATS Frequently Asked Questions: Configuration">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC10"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_2.html#SEC9"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC11"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 3. Configuration Issues </H1>
+<!--docid::SEC10::-->
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC11">3.1 General Configuration Questions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">General questions about GNATS configuration</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC13">3.2 Gnatsd, the GNATS Daemon</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Configuration of the GNATS daemon</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC21">3.3 E-Mail Issues</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Problems with the e-mail interface</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC23">3.4 Miscellaneous Configuration Issues</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Other configuration problems</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="General configuration"></A>
+<HR SIZE="6">
+<A NAME="SEC11"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC13"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.1 General Configuration Questions </H2>
+<!--docid::SEC11::-->
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC12">How do I add a new database?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to create a new database</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Add a database"></A>
+<A NAME="SEC12"></A>
+<H4> How do I add a new database? </H4>
+<!--docid::SEC12::-->
+<P>
+
+<B>A: (GNATS 3.1xx)</B> 
+<OL>
+<LI>
+Create the base directory for the new database, say
+`<TT>/usr/local/gnats/db2</TT>', and make sure it is owned by the
+GNATS user.
+<P>
+
+<LI>
+In there, create subdirectories `<TT>gnats-adm</TT>',
+`<TT>gnats-adm/locks</TT>', and `<TT>gnats-queue</TT>',
+and make sure they is owned by the GNATS user.
+<P>
+
+<LI>
+Now you need to populate the new `<TT>gnats-adm</TT>' directory.  The
+easiest way is to copy all files from `<TT>gnats-db/gnats-adm</TT>' to
+`<TT>/usr/local/gnats/db2/gnats-adm</TT>', and edit them to reflect the
+needs of your new database.  Again, make sure they are owned by the
+gnats user.
+<P>
+
+Note that there <EM>must</EM> be a category named <CODE>pending</CODE>.  It is
+used when no category is given in a report, and when a report names an
+invalid category.
+</P><P>
+
+<LI>
+As the GNATS user, 
+run `<SAMP>mkcat --directory=/usr/local/gnats/db2</SAMP>' to create the
+directories for the categories, and maybe
+`<SAMP>gen-index --directory=/usr/local/gnats/db2</SAMP>' to create an
+(empty) index file.
+<P>
+
+<LI>
+Now add a line for the new database to `<TT>gnats-db.conf</TT>', like
+this:
+<P>
+
+	<CODE>/usr/local/gnats/db2:GreatNewDB</CODE>
+</P><P>
+
+Gnatsd reads it on startup (and as it is started by inetd, this
+means it becomes effective with the next connection to gnatsd).
+<A HREF="gnats-faq_4.html#SEC27">4.1 Gnatsweb</A> learns the database list from gnatsd, so it will offer
+you the new database "GreatNewDB" when it is invoked next time.
+</P><P>
+
+If you do not know where `<TT>gnats-db.conf</TT>' lives, run:
+</P><P>
+
+`<SAMP>strings /where/ever/gnatsd | grep gnats-db.conf</SAMP>'
+</P><P>
+
+<LI>
+Don't forget to setup a cron job to run through the additional
+`<TT>gnats-queue</TT>'.
+<P>
+
+<LI>
+Don't forget to create mail aliases for your new database
+(see section `Setting up mail aliases' in <CITE>Keeping Track</CITE>).
+Take care that the aliases have the right database, e.g.,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>GreatNewDB-bugs:  "|/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -q"
+GreatNewDB-query: "|/usr/local/lib/gnats/mail-query -d /usr/local/gnats/db2"
+</FONT></pre></td></tr></table></OL>
+<P>
+
+<B>A: (GNATS 4.x)</B> With version 4, this has become much easier
+(see section `Adding another database' in <CITE>Keeping Track</CITE>):
+<OL>
+<LI>
+Add a line for the new database to `<TT>databases</TT>', like this:
+<P>
+
+	<CODE>GreatNewDB:Our great tools:/usr/local/gnats/db2</CODE>
+</P><P>
+
+Then, as the GNATS user, run `<SAMP>mkdb GreatNewDB</SAMP>' to create the
+database.  Make sure that the directory (in our example,
+`<TT>/usr/local/gnats/db2</TT>') can be created by the GNATS user.
+</P><P>
+
+Gnatsd reads the file `<TT>databases</TT>' on startup (and as it is
+started by inetd, this means it becomes effective with the next
+connection to gnatsd).  <A HREF="gnats-faq_4.html#SEC27">4.1 Gnatsweb</A> learns the database list from
+gnatsd, so it will offer you the new database "GreatNewDB" when it is
+invoked next time.
+</P><P>
+
+If you do not know where `<TT>databases</TT>' lives, run:
+</P><P>
+
+`<SAMP>strings /where/ever/gnatsd | grep databases</SAMP>'
+</P><P>
+
+<LI>
+Now, as the GNATS user, edit the files in directory
+`<TT>/usr/local/gnats/db2/gnats-adm</TT>' to reflect the needs of
+your new database.
+<P>
+
+<LI>
+Depending on the settings in the `<TT>dbconfig</TT>' file of the new
+database, you need not run <CODE>mkcat</CODE> anymore in order to
+create new category directories in your database---GNATS 4
+creates them automatically when they are missing.  See section `The <CODE>dbconfig</CODE> file' in <CITE>Keeping Track</CITE>, for details.
+<P>
+
+<LI>
+Don't forget to create mail aliases for your new database
+(see section `Setting up mail aliases' in <CITE>Keeping Track</CITE>).
+Take care that the aliases have the right database, e.g.,
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>GreatNewDB-bugs:  "|/usr/local/libexec/gnats/queue-pr -d GreatNewDB -q"
+GreatNewDB-query: "|/usr/local/libexec/gnats/mail-query -d GreatNewDB"
+</FONT></pre></td></tr></table></P><P>
+
+If you are updating from GNATS 3.1xx, note that the `<SAMP>-d</SAMP>'
+option has changed its meaning: it does not give the directory of the
+database, but its name.  (In case you prefer the long form of the
+option, it is now `<SAMP>--database</SAMP>' instead of `<SAMP>--directory</SAMP>'.)
+</P><P>
+
+</OL>
+<P>
+
+<A NAME="Gnatsd"></A>
+<HR SIZE="6">
+<A NAME="SEC13"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC11"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC14"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.2 Gnatsd, the GNATS Daemon </H2>
+<!--docid::SEC13::-->
+<P>
+
+<A NAME="IDX3"></A>
+<A NAME="IDX4"></A>
+<A NAME="IDX5"></A>
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC14">3.2.1 Gnatsd Port Number</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to connect to gnatsd</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC15">3.2.2 How to Start Gnatsd</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to make gnatsd accept connections</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC18">3.2.3 Gnatsd Messages</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Some error messages and what they mean</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Port Number"></A>
+<HR SIZE="6">
+<A NAME="SEC14"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC13"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC15"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC13"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.1 Gnatsd Port Number </H3>
+<!--docid::SEC14::-->
+<P>
+
+<A NAME="IDX6"></A>
+<A NAME="IDX7"></A>
+</P><P>
+
+In 3.xxx versions, gnatsd uses port 1529 by default; as this port is
+officially assigned to another application (see the
+<A HREF="http://www.iana.org/assignments/port-numbers">list of port numbers</A>
+maintained by the <A HREF="http://www.iana.org/">Internet Assigned Numbers
+Authority</A>)
+it will probably change in 4.x.
+</P><P>
+
+If you want/need to run gnatsd on another port, you can change the
+default port at compile time (call <CODE>configure --help</CODE> to learn
+about compile time configuration options).  Most clients also accept
+an option or configuration variable to change the port.  Don't forget
+to tell inetd (or xinetd, or whatever super-server you use) to start
+gnatsd on the other port.
+</P><P>
+
+<A NAME="Starting gnatsd"></A>
+<HR SIZE="6">
+<A NAME="SEC15"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC14"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC18"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC18"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC13"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.2 How to Start Gnatsd </H3>
+<!--docid::SEC15::-->
+<P>
+
+Gnatsd is intended to be started by some "super server", like
+<CODE>inetd</CODE> or <CODE>xinetd</CODE>.  ("Super servers" are sometimes also
+called "super daemons".)
+</P><P>
+
+This is also described in the GNATS manual; see section `Installing the daemon' in <CITE>Keeping Track</CITE>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC16">How to configure inetd to start gnatsd</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">The traditional super server</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC17">How to configure xinetd to start gnatsd</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Another widespread super server</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="inetd configuration"></A>
+<A NAME="SEC16"></A>
+<H4> How to configure inetd to start gnatsd </H4>
+<!--docid::SEC16::-->
+<P>
+
+<A NAME="IDX8"></A>
+</P><P>
+
+If your gnatsd will be started by inetd (the "internet daemon"),
+add the following entry to your `<TT>/etc/inetd.conf</TT>':
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre># port                    userid program
+support stream tcp nowait gnats /usr/local/libexec/gnats/gnatsd gnatsd
+</FONT></pre></td></tr></table></P><P>
+
+and to `<TT>/etc/services</TT>':
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>support		1529/tcp		# GNATS
+</FONT></pre></td></tr></table></P><P>
+
+(You may need to use tabulator characters to separate the fields of
+`<TT>/etc/services</TT>'.)  Then send inetd a hangup signal
+(<CODE>kill -HUP <EM>pid-of-inetd</EM></CODE>).
+</P><P>
+
+You may want to use another port instead of 1529 (see section <A HREF="gnats-faq_3.html#SEC14">3.2.1 Gnatsd Port Number</A>).
+</P><P>
+
+<A NAME="xinetd configuration"></A>
+<A NAME="SEC17"></A>
+<H4> How to configure xinetd to start gnatsd </H4>
+<!--docid::SEC17::-->
+<P>
+
+<A NAME="IDX9"></A>
+</P><P>
+
+If your gnatsd will be started by xinetd (the "extended internet
+daemon"), create a file `<TT>/etc/xinetd.d/support</TT>' with the
+following lines (see section `Installing the daemon' in <CITE>Keeping Track</CITE>):
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>service support
+{
+        disable     = no
+        socket_type = stream
+        protocol    = tcp
+        wait        = no
+        user        = gnats
+        server      = /usr/local/lib/gnats/gnatsd
+        server_args = gnatsd
+}
+</pre></td></tr></table></P><P>
+
+or add theses lines to your `<TT>xinetd.conf</TT>' file, whatever is
+appropriate.  The equal signs seem to need spaces around them with
+some versions of xinetd.
+</P><P>
+
+You need to add
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>support		1529/tcp		# GNATS
+</FONT></pre></td></tr></table></P><P>
+
+to `<TT>/etc/services</TT>' (it may be necessary to use tabulator
+characters to separate the fields), and to tell xinetd to reread its
+configuration (<CODE>kill -HUP <EM>pid-of-xinetd</EM></CODE>).
+</P><P>
+
+<A NAME="Gnatsd messages"></A>
+<HR SIZE="6">
+<A NAME="SEC18"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC15"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC13"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.3 Gnatsd Messages </H3>
+<!--docid::SEC18::-->
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC19">You are not on the host access list: stdin (stdin)</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC20">You are not on the host access list</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="No host access for stdin"></A>
+<A NAME="SEC19"></A>
+<H4> You are not on the host access list: stdin (stdin) </H4>
+<!--docid::SEC19::-->
+<P>
+
+<B>Q:</B> When starting gnatsd manually (on the command line), I get
+`<SAMP>520 You are not on the host access list: stdin (stdin)</SAMP>'.
+</P><P>
+
+<B>A: (GNATS 3.1xx)</B>
+Gnatsd is not intended to be started manually, but via inetd,
+xinetd, or a similar "super server".  When gnatsd is started this way,
+its stdin and stdout (standard input and standard output streams) are
+connected to a so called "TCP socket" (one end of the network
+connection), and from this socket gnatsd learns the IP address of the
+remote end (and from this it derives the remote host name).  When you
+start gnatsd from the command line, its stdin and stdout are connected
+to the terminal, and thus gnatsd gets a nonsense value.
+</P><P>
+
+You usually need `<SAMP>root</SAMP>' privileges in order to change the
+configuration of your "super server".  If you don't have them, contact
+your system administrator.
+</P><P>
+
+See <A HREF="gnats-faq_3.html#SEC15">3.2.2 How to Start Gnatsd</A> for inetd and xinetd configuration.
+</P><P>
+
+<B>A: (GNATS 4.0)</B>
+This error message should not occur with gnatsd 4.0 anymore, because
+gnatsd can be started from the command line.
+However, this probably only makes sense for debugging and diagnosing
+problems.  Furthermore, you need to play the part of the client
+program yourself (i.e., you must "speak" the gnatsd client protocol).
+</P><P>
+
+<A NAME="No host access for remote"></A>
+<A NAME="SEC20"></A>
+<H4> You are not on the host access list </H4>
+<!--docid::SEC20::-->
+<P>
+
+<B>Q:</B> Gnatsd rejects connections from a remote host with the error
+message `<SAMP>520 You are not on the host access list</SAMP>'.
+</P><P>
+
+<B>A:</B> Check the file `<TT>gnatsd.conf</TT>' (GNATS 3.xxx) or
+`<TT>gnatsd.host_access</TT>' (GNATS 4.x).  With GNATS 3,
+this is usually `<TT>/usr/local/etc/gnatsd.host_access</TT>'; with
+GNATS 4, it is usually
+`<TT>/usr/local/etc/gnats/gnatsd.host_access</TT>'.
+</P><P>
+
+Each line of the file names a host and its access level, separated by
+colons.  Gnatsd tries the lines in turn to match the remote host, and
+the first line that matches wins.
+</P><P>
+
+The first field specifies the host(s); it may be a host name (like
+`<SAMP>goedel.example.com</SAMP>'), a partial domain (like
+`<SAMP>*.example.com</SAMP>'), an IP address (like `<SAMP>192.168.1.5</SAMP>'), or a
+partial IP address (like `<SAMP>192.168.*</SAMP>').  If it is only `<SAMP>*</SAMP>', it
+matches all hosts.
+</P><P>
+
+Depending on how IP addresses are mapped to hostnames on your gnatsd
+machine, you may be able to omit the domain (like in `<SAMP>goedel</SAMP>').
+You may even <EM>need</EM> to omit the domain for some hosts.
+</P><P>
+
+The second field is the access level granted to the remote host.  This
+is usually increased by the access level granted to the user as soon
+as (s)he logs in.
+</P><P>
+
+The third field is currently not used; just leave it empty (but supply
+the colon between the second and the third field).
+</P><P>
+
+Example:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>#
+# This is a comment
+#
+# Grant view access to all hosts with IP adresses
+# ranging from 192.168.0.0 to 192.168.255.255:
+192.168.*:view:
+# Users on host goedel.example.com get (at least) edit access:
+goedel.example.com:edit:
+# Users from escher.example.com may view all reports, even
+# confidential ones:
+escher.example.com:viewconf:
+# Users from bach.example.com may only view all non-confidential
+# reports:
+bach.example.com:view:
+# Users from other example.com hosts
+# only get the access specified for them in gnatsd.access:
+*.example.com:none:
+# Same for domain our-users.example:
+*.our-users.example:none:
+# All other hosts are rejected
+# without even asking for username and password:
+*:deny:
+</pre></td></tr></table></P><P>
+
+The format is described in detail in the comments at the beginning of
+the file.
+</P><P>
+
+<A NAME="E-Mail"></A>
+<HR SIZE="6">
+<A NAME="SEC21"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC18"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC23"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.3 E-Mail Issues </H2>
+<!--docid::SEC21::-->
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC22">queue-pr not available for sendmail programs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="queue-pr not available"></A>
+<A NAME="SEC22"></A>
+<H4> queue-pr not available for sendmail programs </H4>
+<!--docid::SEC22::-->
+<P>
+
+Your sendmail installation uses `<SAMP>smrsh</SAMP>' to check programs that are
+invoked from a mail alias.  `<SAMP>smrsh</SAMP>' only allows the execution of
+programs of which it is told that they are save.  To tell it that
+`<TT>queue-pr</TT>' is save, create a symbolic link in the directory
+`<TT>/etc/smrsh</TT>' to `<TT>queue-pr</TT>', like this:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>mkdir /etc/smrsh	# if it does not yet exist
+cd /etc/smrsh
+ln -s /usr/local/libexec/gnats/queue-pr queue-pr
+</FONT></pre></td></tr></table></P><P>
+
+Replace `<TT>/usr/local/libexec/gnats/queue-pr</TT>' by the real path to
+`<TT>queue-pr</TT>'.
+</P><P>
+
+<A NAME="Miscellaneous"></A>
+<HR SIZE="6">
+<A NAME="SEC23"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC21"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.4 Miscellaneous Configuration Issues </H2>
+<!--docid::SEC23::-->
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC24">New reports do not show up in the database</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC25">Assigning responsible etc. when entering a report</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">If you want to set additional fields when
+                                   entering a report</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="No New Reports"></A>
+<A NAME="SEC24"></A>
+<H4> New reports do not show up in the database </H4>
+<!--docid::SEC24::-->
+<P>
+
+<OL>
+<LI>
+Make sure you have set up the mail aliases for your database(s).  (See
+<A HREF="gnats-faq_3.html#SEC12">How do I add a new database?</A> and section `Adding another database' in <CITE>Keeping Track</CITE>.)
+<P>
+
+<LI>
+Try to send a PR using `<SAMP>send-pr</SAMP>'.  If you get error replies,
+investigate the causes.  See <A HREF="gnats-faq_3.html#SEC21">3.3 E-Mail Issues</A>.
+<P>
+
+<LI>
+Does a new file show up in the `<TT>gnats-queue</TT>' directory of your
+database, with the report as its contents?
+If it does, make sure you have created the cron job for this database.
+<P>
+
+<LI>
+If the report does not show up in the `<TT>gnats-queue</TT>' of the desired
+database, does it show up in the `<TT>gnats-queue</TT>' directory of another
+database?
+In this case, make sure your mail aliases are set up correctly;
+especially, make sure that you have specified the correct
+`<SAMP>--directory</SAMP>' option (`<SAMP>--database</SAMP>' for GNATS 4.x)
+for each `<TT>queue-pr</TT>'.
+<P>
+
+</OL>
+<P>
+
+<A NAME="Initially Assign Field Values"></A>
+<A NAME="SEC25"></A>
+<H4> Assigning responsible etc. when entering a report </H4>
+<!--docid::SEC25::-->
+<P>
+
+<B>Q:</B> When entering a new PR, I want to assign a value to some field
+(e.g., <CODE>Responsible</CODE>) which is normally assigned by GNATS.
+</P><P>
+
+<B>A: (GNATS 3.1xx)</B>
+This is not possible in GNATS 3.1xx.
+</P><P>
+
+<B>A: (GNATS 4.x)</B> This is done by adding the field name (in this
+example, <CODE>Responsible</CODE>) to the <CODE>initial-entry</CODE> item at
+the very end of the `<TT>dbconfig</TT>' file.  Gnatsweb will pick this up
+and add a <CODE>Responsible</CODE> field to the Create PR form.
+</P><P>
+
+<A NAME="Clients"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Hans-Albert Schneider</I> on <I>February, 20  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

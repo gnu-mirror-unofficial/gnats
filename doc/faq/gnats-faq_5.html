@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on February, 20  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNATS Frequently Asked Questions: Glossary</TITLE>
+
+<META NAME="description" CONTENT="GNATS Frequently Asked Questions: Glossary">
+<META NAME="keywords" CONTENT="GNATS Frequently Asked Questions: Glossary">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC36"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC35"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> A. Glossary </H1>
+<!--docid::SEC36::-->
+<P>
+
+<DL COMPACT>
+<DT><EM>cookie</EM>
+<DD>A junk of data that a www server stores in your browser.  It is sent
+back to the server when you contact it again.  Gnatsweb (see
+<A HREF="gnats-faq_4.html#SEC27">4.1 Gnatsweb</A>) uses cookies to store your login information,
+preferences, and named queries.
+<P>
+
+<DT><EM>gnats.el</EM>
+<DD>GNATS mode for (X)Emacs.
+<P>
+
+<DT><EM>gnatsd</EM>
+<DD>The GNATS daemon (server program).
+<P>
+
+<DT><EM>Gnatsweb</EM>
+<DD>A WWW interface to GNATS.
+<P>
+
+<DT><EM>port</EM>
+<DD>A communication endpoint of various IP based protocols, notably TCP and
+UDP.  A server program waits for connections ("listens") on a port, and
+a client program connects to this port.
+<A HREF="http://www.iana.org/">IANA</A> (the Internet Assigned Numbers
+Authority) maintains a
+<A HREF="http://www.iana.org/assignments/port-numbers">list of port numbers</A>
+registered for certain purposes.
+<P>
+
+<DT><EM>PR</EM>
+<DD>Short for "Problem Report".  An entry in a GNATS database.
+<P>
+
+<DT><EM>send-pr</EM>
+<DD>A command line tool that sends a new report by e-mail.
+<P>
+
+<DT><EM>super server</EM>
+<DD>A super server (sometimes also called "super daemon") is a daemon (=
+UNIX server process) that waits for connections on the ports of various
+server programs and starts the corresponding server when a connection is
+made.  This way, there is only one server process for a set of services
+(instead of one for each service), but each service in the set is
+available to its clients.
+<P>
+
+The most common super servers are <CODE>inetd</CODE> (the "InterNET Daemon"
+that comes with many UNIX installations) and
+<A HREF="http://www.xinetd.org">xinetd</A> (the "eXtended InterNET Daemon").
+</P><P>
+
+<DT><EM>TkGnats</EM>
+<DD>A Tcl/Tk based interface to GNATS.
+</DL>
+<P>
+
+<A NAME="Index"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC26"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[ &gt;&gt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Hans-Albert Schneider</I> on <I>February, 20  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>

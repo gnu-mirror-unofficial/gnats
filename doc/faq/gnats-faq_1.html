@@ -1,0 +1,368 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<!-- Created on February, 20  2002 by texi2html 1.65 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>GNATS Frequently Asked Questions: General</TITLE>
+
+<META NAME="description" CONTENT="GNATS Frequently Asked Questions: General">
+<META NAME="keywords" CONTENT="GNATS Frequently Asked Questions: General">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.65">
+
+</HEAD>
+
+<BODY LANG="en" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC1"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC2"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_2.html#SEC9"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<A NAME="General"></A>
+<H1> 1. General Questions </H1>
+<!--docid::SEC1::-->
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_1.html#SEC2">1.1 What is GNATS?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">A very short overview</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_1.html#SEC5">1.2 Where do I get it?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Where to get GNATS</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_1.html#SEC6">1.3 What is the latest version?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Which versions are available?</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_1.html#SEC7">1.4 Is there a Mailing List?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">E-mail discussion lists</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_1.html#SEC8">1.5 How do I Report a Bug?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to report a bug</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="What is GNATS"></A>
+<HR SIZE="6">
+<A NAME="SEC2"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC1"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC3"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC5"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.1 What is GNATS? </H2>
+<!--docid::SEC2::-->
+<P>
+
+GNATS is the GNU problem report management system.  Problem
+report management systems are also known as "bug-tracking systems",
+though the entries need not be bugs (e.g., think of change requests).
+</P><P>
+
+GNATS stores all information about the problem reports at a central
+site, and enables users to access this site by various means, including
+e-mail, WWW, and a network daemon.  New problem reports can be created,
+and existing reports can be queried and updated, by most of these means.
+</P><P>
+
+GNATS is widely customizable: Of course you can define report
+categories (is the report about tool A or service B?), responsibles
+(who takes care of this report?), and submitters (is it from customer1
+or from the sales department?).  You can also define possible states
+of a report (open, analyzed, closed, etc.) and classes (software bug,
+documentation bug, change request, <small>...</small>).
+</P><P>
+
+Starting with GNATS 4.0, you can define your own custom fields, and
+customize many of the built-in fields; you can have fields automatically
+set to a certain value when another field changes its contents (e.g.,
+set a "Closed-Date" field to the current date when the report goes to
+state "closed", and unset it when it goes back from "closed" to
+something else), or when the report is changed at all (e.g., to maintain
+a "Last-Modified" field).
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_1.html#SEC3">1.1.1 How it Works--User's View</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Short overview for users</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_1.html#SEC4">1.1.2 How it Works--Administrator's View</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Short overview for system administrators</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="User view"></A>
+<HR SIZE="6">
+<A NAME="SEC3"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC2"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC4"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC2"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC5"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 1.1.1 How it Works--User's View </H3>
+<!--docid::SEC3::-->
+<P>
+
+Users enter their problem reports (PRs) via some front-end.  This
+front-end either directly contacts the GNATS server, or sends the
+report via e-mail.  (The server is available since about version 3.90
+of GNATS).  For an incomplete list of front-ends see <A HREF="gnats-faq_4.html#SEC26">4. Client Software</A>.
+</P><P>
+
+Some front-ends (like TkGnats, see <A HREF="gnats-faq_4.html#SEC33">4.2 TkGnats</A>) are capable of
+contacting several GNATS servers, or several problem report
+databases managed by the same GNATS server.
+</P><P>
+
+<A NAME="Administrator View"></A>
+<HR SIZE="6">
+<A NAME="SEC4"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC3"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC5"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC2"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC5"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 1.1.2 How it Works--Administrator's View </H3>
+<!--docid::SEC4::-->
+<P>
+
+<A NAME="IDX1"></A>
+<A NAME="IDX2"></A>
+</P><P>
+
+The server is started by a super-server like inetd or xinetd.  It has
+a built-in access control mechanism based on IP addresses and
+username/password.
+</P><P>
+
+For users sending their PRs via e-mail, some mail addresses must be
+configured.
+</P><P>
+
+<A NAME="Get it"></A>
+<HR SIZE="6">
+<A NAME="SEC5"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC4"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC6"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC6"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_2.html#SEC9"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.2 Where do I get it? </H2>
+<!--docid::SEC5::-->
+<P>
+
+See the GNATS home page at <A HREF="http://www.gnu.org/software/gnats/">http://www.gnu.org/software/gnats/</A>.
+</P><P>
+
+The current development version is available via CVS only, see the
+<A HREF="http://savannah.gnu.org/projects/gnats">GNU savannah
+GNATS project page</A> for the instructions how to get it.
+</P><P>
+
+<A NAME="Versions"></A>
+<HR SIZE="6">
+<A NAME="SEC6"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC5"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC7"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC7"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_2.html#SEC9"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.3 What is the latest version? </H2>
+<!--docid::SEC6::-->
+<P>
+
+The version numbers of GNATS 3.x is somewhat confusing, because
+3.1xx is newer than 3.2.
+</P><P>
+
+Version 3.2 was released in 1993 (I never tried it, but it is said to be
+"really broken").  A lot of new features have been added since 3.2,
+including multiple database support and customized fields.  Among the
+contributed software are comprehensive WWW and Tk based front-ends.
+</P><P>
+
+The latest 3.x release is 3.113.1.
+</P><P>
+
+A first beta of version 4.0 is available since January 10, 2002 (as
+<A HREF="ftp://ftp.gnu.org/gnu/gnats/gnats-3.999.1.tar.gz">ftp://ftp.gnu.org/gnu/gnats/gnats-3.999.1.tar.gz</A>), and an
+official release is expected very soon now.
+</P><P>
+
+<A NAME="Mailing Lists"></A>
+<HR SIZE="6">
+<A NAME="SEC7"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC6"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC8"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC8"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_2.html#SEC9"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.4 Is there a Mailing List? </H2>
+<!--docid::SEC7::-->
+<P>
+
+Currently, the following GNATS mailing lists exist:
+</P><P>
+
+<UL>
+<LI><A HREF="mailto:info-gnats@gnu.org">info-gnats@gnu.org</A>
+(formerly gnats-announce@sources.redhat.com)
+This is a low volume moderated mailing lists for GNATS related
+announcements, like new releases or important information.
+<P>
+
+<LI><A HREF="mailto:help-gnats@gnu.org">help-gnats@gnu.org</A>
+(formerly gnats-devel@sources.redhat.com)
+A low-to-middle volume mailing list where anything related to GNATS
+can be discussed (development, help, questions, suggestions, etc.).
+<P>
+
+<LI><A HREF="mailto:bug-gnats@gnu.org">bug-gnats@gnu.org</A>
+Bug reports can be sent there.  Please note that it's preferred to
+submit bug reports via the bug tracking system (see section <A HREF="gnats-faq_1.html#SEC8">1.5 How do I Report a Bug?</A>),
+which automatically mirrors them to this list.
+</UL>
+<P>
+
+Lists only interesting for the GNATS developers:
+</P><P>
+
+<UL>
+<LI><A HREF="mailto:gnats-prs@gnu.org">gnats-prs@gnu.org</A>
+(formerly gnats-prs@sources.redhat.com)
+Copies of the bug tracking system messages are sent there.  Contrast to
+bug-gnats@gnu.org which only gets new bug reports, this list also gets
+the follow-ups (Whatever goes into GNATS' <CODE>&#62;Audit-Trail:</CODE> field).
+<P>
+
+<LI><A HREF="mailto:gnats-commit@gnu.org">gnats-commit@gnu.org</A>
+(formerly gnats-cvs@sources.redhat.com)
+CVS commit messages are sent there.
+<P>
+
+<LI><A HREF="mailto:gnats-diffs@gnu.org">gnats-diffs@gnu.org</A>
+Diffs of committed files are sent automatically to this address.
+</UL>
+<P>
+
+<A NAME="Bug Reporting"></A>
+<HR SIZE="6">
+<A NAME="SEC8"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC7"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_2.html#SEC9"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_2.html#SEC9"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.5 How do I Report a Bug? </H2>
+<!--docid::SEC8::-->
+<P>
+
+Before reporting a bug, make sure it really is a bug, not a simple
+misunderstanding or a misconfiguration.  Please check the manual and
+this FAQ.  You may also ask for help on the <A HREF="mailto:help-gnats@gnu.org">help-gnats@gnu.org</A>
+mailing list.
+</P><P>
+
+If it is a bug, please report it via the bug tracking system.  It
+resides at
+<A HREF="http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats">http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats</A>.
+This is a common bug database for GNATS, Gnatsweb and TkGnats.
+(And, yes, of course: It uses GNATS and Gnatsweb.)
+</P><P>
+
+When you report problems concerning GNATS itself, please do not
+forget to provide especially the following information:
+</P><P>
+
+<UL>
+<LI>
+The GNATS version you are using.  If your problem involves
+Gnatsweb or TkGnats, please also report their versions.
+<P>
+
+<LI>
+The <EM>exact</EM> way how to reproduce the bug.
+<P>
+
+<LI>
+Your configuration.
+<P>
+
+<LI>
+If you encounter a compilation or build problem, it is especially
+important to mention the operating system, compiler and possibly other
+build utilities you use.
+</UL>
+<P>
+
+Providing this information in the initial report avoids further
+unnecessary communication, saves our limited development resources and
+helps to track down and fix the problem soon.
+</P><P>
+
+<A NAME="Installation"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_2.html#SEC9"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC37">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Hans-Albert Schneider</I> on <I>February, 20  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+</FONT>
+
+</BODY>
+</HTML>
