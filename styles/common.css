@@ -3,8 +3,13 @@ BODY {
   font-size: 10pt;
 }
 
-P,LI,TD,TH,DT,DD {
+P,LI,TH,DT,DD {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+TD {
+  font-family: Arial, Helvetica, sans-serif;
+  vertical-align: text-top;
 }
 
 .ps {
