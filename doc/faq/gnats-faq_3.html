@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
-<!-- Created on March, 8  2002 by texi2html 1.65 -->
+<!-- Created on April, 6  2002 by texi2html 1.65 -->
 <!-- 
 Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -52,10 +52,10 @@ Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
 <A NAME="SEC11"></A>
 <TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
 <TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> &lt; </A>]</TD>
-<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC14"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC12"> &gt; </A>]</TD>
 <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> &lt;&lt; </A>]</TD>
 <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> Up </A>]</TD>
-<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_4.html#SEC27"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC14"> &gt;&gt; </A>]</TD>
 <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
 <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
 <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC39">Index</A>]</TD>
@@ -66,15 +66,26 @@ Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
 <P>
 
 <BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
-<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC12">How do I add a new database?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to create a new database</TD></TR>
-<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC13">How do I rename a category?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC12">3.1.1 How do I add a new database?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">How to create a new database</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats-faq_3.html#SEC13">3.1.2 How do I rename a category?</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
 </TABLE></BLOCKQUOTE>
 <P>
 
 <A NAME="Add a database"></A>
-configuration 
+<HR SIZE="6">
 <A NAME="SEC12"></A>
-<H4> How do I add a new database? </H4>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC11"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC13"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC11"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC14"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC39">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.1.1 How do I add a new database? </H3>
 <!--docid::SEC12::-->
 <P>
 
@@ -121,7 +132,7 @@ directories for the categories.  Remove the files `<TT>current</TT>' and
 If the new database is split off of another one, move or copy the
 existing reports to their new location.  This is easiest if the
 categories have the same names as in the original database.  (See
-<A HREF="gnats-faq_3.html#SEC13">How do I rename a category?</A> if some of them changed names.)
+<A HREF="gnats-faq_3.html#SEC13">3.1.2 How do I rename a category?</A> if some of them changed names.)
 <P>
 
 Run the program <CODE>gen-index</CODE> to create the index file
@@ -247,8 +258,20 @@ option, it is now `<SAMP>--database</SAMP>' instead of `<SAMP>--directory</SAMP>
 <P>
 
 <A NAME="Renaming a Category"></A>
+<HR SIZE="6">
 <A NAME="SEC13"></A>
-<H4> How do I rename a category? </H4>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC12"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC14"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC11"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC14"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_6.html#SEC39">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.1.2 How do I rename a category? </H3>
 <!--docid::SEC13::-->
 <P>
 
@@ -296,7 +319,7 @@ something like `<SAMP>obsolete, use category <CODE>B</CODE> instead</SAMP>'.
 <HR SIZE="6">
 <A NAME="SEC14"></A>
 <TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
-<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC11"> &lt; </A>]</TD>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC13"> &lt; </A>]</TD>
 <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC15"> &gt; </A>]</TD>
 <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC22"> &lt;&lt; </A>]</TD>
 <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats-faq_3.html#SEC10"> Up </A>]</TD>
@@ -675,7 +698,7 @@ Replace `<TT>/usr/local/libexec/gnats/queue-pr</TT>' by the real path to
 <OL>
 <LI>
 Make sure you have set up the mail aliases for your database(s).  (See
-<A HREF="gnats-faq_3.html#SEC12">How do I add a new database?</A> and section `Adding another database' in <CITE>Keeping Track</CITE>.)
+<A HREF="gnats-faq_3.html#SEC12">3.1.1 How do I add a new database?</A> and section `Adding another database' in <CITE>Keeping Track</CITE>.)
 <P>
 
 <LI>
@@ -735,7 +758,7 @@ and add a <CODE>Responsible</CODE> field to the Create PR form.
 <BR>  
 <FONT SIZE="-1">
 This document was generated
-by <I>Hans-Albert Schneider</I> on <I>March, 8  2002</I>
+by <I>Hans-Albert Schneider</I> on <I>April, 6  2002</I>
 using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
 "><I>texi2html</I></A>
 </FONT>
