@@ -1,0 +1,1799 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on January, 19  2001 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Keeping Track: Invoking the tools</TITLE>
+
+<META NAME="description" CONTENT="Keeping Track: Invoking the tools">
+<META NAME="keywords" CONTENT="Keeping Track: Invoking the tools">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="STYLESHEET" HREF="../styles/common.css"></HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC10"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC8"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC14"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 2. Invoking the GNATS tools </H1>
+<!--docid::SEC10::-->
+<P>
+
+The following programs comprise GNATS:
+</P><P>
+
+<A NAME="IDX105"></A>
+<A NAME="SEC11"></A>
+<H3> User Utilities </H3>
+<!--docid::SEC11::-->
+<P>
+
+These tools are used by the maintainers of a body of work
+(<CODE>send-pr</CODE> is also used by the end users of the product).
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>send-pr</CODE>
+<DD>Used by anyone who has a problem with a body of work to submit a report
+of the problem to the maintainers of that work
+(see section <A HREF="gnats_2.html#SEC14">Submitting Problem Reports</A>).
+<P>
+
+<DT><CODE>query-pr</CODE>
+<DD>Used by software maintainers to query the GNATS database
+(see section <A HREF="gnats_2.html#SEC23">Querying the database</A>).
+<P>
+
+<DT><CODE>edit-pr</CODE>
+<DD>Used by software maintainers to edit Problem Reports (to record new
+data, to change the responsible party, etc.) (see section <A HREF="gnats_2.html#SEC20">Editing existing Problem Reports</A>).
+<P>
+
+<DT><CODE>view-pr</CODE>
+<DD>Used by software maintainers to view individual Problem Reports using
+Emacs (see section <A HREF="gnats_2.html#SEC30">Viewing individual Problem Reports</A>).
+</DL>
+<P>
+
+<A NAME="IDX106"></A>
+<A NAME="SEC12"></A>
+<H3> Administrative Utilities </H3>
+<!--docid::SEC12::-->
+<P>
+
+These tools are used by the GNATS administrator; see also
+<A HREF="gnats_3.html#SEC31">GNATS Administration</A>.  For complete explanations
+of these utilities, see <A HREF="gnats_3.html#SEC44">Administrative utilities</A>.
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>mkcat</CODE>
+<DD>Creates new categories (see section <A HREF="gnats_3.html#SEC45">Adding a problem category</A>).
+<P>
+
+<DT><CODE>rmcat</CODE>
+<DD>Removes existing categories (see section <A HREF="gnats_3.html#SEC46">Removing a problem category</A>).
+<P>
+
+<DT><CODE>gen-index</CODE>
+<DD>Generates an up-to-date copy of the index used by <CODE>query-pr</CODE> and
+<CODE>edit-pr</CODE> (see section <A HREF="gnats_3.html#SEC42">The <CODE>index</CODE> file</A>).  Use
+<CODE>gen-index</CODE> to rebuild the index if it becomes corrupted, or if you
+need a copy of the current index for some reason
+(see section <A HREF="gnats_3.html#SEC47">Regenerating the index</A>).
+<P>
+
+<DT><CODE>mkdist</CODE>
+<DD>Creates a distribution of the program <CODE>send-pr</CODE> for offsite
+submitters of PRs (see section <A HREF="gnats_3.html#SEC48">Configuring <CODE>send-pr</CODE> for the outside world</A>).
+</DL>
+<P>
+
+<A NAME="IDX107"></A>
+<A NAME="SEC13"></A>
+<H3> Internal Utilities </H3>
+<!--docid::SEC13::-->
+<P>
+
+These tools are used internally by GNATS.  You should not need to
+run these by hand.  For complete explanations of these utilities, see
+<A HREF="gnats_3.html#SEC49">Internal utilities</A>.
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>queue-pr</CODE>
+<DD>Handles incoming bugs, first through a mail alias by queueing incoming
+PRs as they arrive, and second as a periodic transfer agent between the
+queue and the database.
+<P>
+
+<DT><CODE>file-pr</CODE>
+<DD>Files Problem Reports as they come in.
+<P>
+
+<DT><CODE>at-pr</CODE>
+<DD>Sends reminders to maintainers based on quoted response times.
+<P>
+
+<DT><CODE>pr-edit</CODE>
+<DD>Used by <CODE>edit-pr</CODE> to error-check and submit edited Problem Reports
+(also see section <A HREF="gnats_2.html#SEC20">Editing existing Problem Reports</A>).
+<P>
+
+<DT><CODE>pr-addr</CODE>
+<DD>Used by <CODE>edit-pr</CODE> to retrieve correct addresses from the
+<TT>`responsible'</TT> file.
+</DL>
+<P>
+
+See section <A HREF="gnats_5.html#SEC62">Where GNATS lives</A>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC14">2.1 Submitting Problem Reports</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC20">2.2 Editing existing Problem Reports</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC23">2.3 Querying the database</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC30">2.4 Viewing individual Problem Reports</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="send-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC14"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC15"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.1 Submitting Problem Reports </H2>
+<!--docid::SEC14::-->
+<P>
+
+Use <CODE>send-pr</CODE> to submit Problem Reports to the database.
+<CODE>send-pr</CODE> is both a shell script and a Lisp program for GNU
+Emacs; both implementations provide a template for submitters to
+complete.  In most cases, <CODE>send-pr</CODE> can determine intelligent
+default values for several fields, partially automating the
+bug-reporting process.
+</P><P>
+
+See section <A HREF="gnats_3.html#SEC48">Configuring <CODE>send-pr</CODE> for the outside world</A>, for
+information on distributing a version of <CODE>send-pr</CODE> customized with
+your site's configuration.
+</P><P>
+
+You can invoke <CODE>send-pr</CODE> from a shell prompt, or from within
+GNU Emacs using <SAMP>`M-x send-pr'</SAMP>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC15">2.1.1 Creating new Problem Reports</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC16">2.1.2 Using <CODE>send-pr</CODE> from within Emacs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Using send-pr from within Emacs</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC17">2.1.3 Invoking <CODE>send-pr</CODE> from the shell</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Invoking send-pr from the shell</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC18">2.1.4 Submitting a Problem Report via direct e-mail</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC19">2.1.5 Helpful hints</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="using send-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC15"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC14"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC16"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC14"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.1.1 Creating new Problem Reports </H3>
+<!--docid::SEC15::-->
+<P>
+
+Invoking <CODE>send-pr</CODE> presents a PR <EM>template</EM> with a number of
+fields already filled in.  Complete the template as thoroughly as
+possible to make a useful bug report.  Submit only one bug with each PR.
+</P><P>
+
+<A NAME="IDX108"></A>
+A template consists of three sections:
+</P><P>
+
+<DL COMPACT>
+<DT><EM>Comments</EM>
+<DD>The top several lines of a blank template consist of a series of
+comments that provide some basic instructions for completing the Problem
+Report, as well as a list of valid entries for the <SAMP>`&#62;Category:'</SAMP>
+field.  These comments are all preceded by the string <SAMP>`SEND-PR:'</SAMP>
+and are erased automatically when the PR is submitted.  The
+instructional comments within <SAMP>`&#60;'</SAMP> and <SAMP>`&#62;'</SAMP> are also removed.
+(Only these comments are removed; lines you provide that happen to have
+those characters in them, such as examples of shell-level redirection,
+are not affected.)
+<P>
+
+<DT><EM>Mail Header</EM>
+<DD><CODE>send-pr</CODE> creates a standard mail header.  <CODE>send-pr</CODE> completes
+all fields except the <SAMP>`Subject:'</SAMP> line with default values.
+(See section <A HREF="gnats_1.html#SEC5">Problem Report format</A>.)
+<P>
+
+<DT><EM>GNATS fields</EM>
+<DD>These are the informational fields that GNATS uses to route your
+Problem Report to the responsible party for further action.  They should
+be filled out as completely as possible.  (See section <A HREF="gnats_1.html#SEC5">Problem Report format</A>.  Also see <A HREF="gnats_2.html#SEC19">Helpful hints</A>.)
+</DL>
+<P>
+
+The default template contains your preconfigured <SAMP>`&#62;Submitter-Id:'</SAMP>.
+<CODE>send-pr</CODE> attempts to determine values for the <SAMP>`&#62;Originator:'</SAMP>
+and <SAMP>`&#62;Organization:'</SAMP> fields (see section <A HREF="gnats_1.html#SEC5">Problem Report format</A>).  <CODE>send-pr</CODE> will set the <SAMP>`&#62;Originator:'</SAMP> field to
+the value of the <CODE>NAME</CODE> environment variable if it has been set;
+similarly, <SAMP>`&#62;Organization:'</SAMP> will be set to the value of <CODE>ORGANIZATION</CODE>.
+<CODE>send-pr</CODE> also attempts to find out some information
+about your system and architecture, and places this information in the
+<SAMP>`&#62;Environment:'</SAMP> field if it finds any.
+</P><P>
+
+You may submit problem reports to different Support Sites from the
+default site by specifying the alternate site when you invoke
+<CODE>send-pr</CODE>.  See section <A HREF="gnats_2.html#SEC17">2.1.3 Invoking <CODE>send-pr</CODE> from the shell</A>.
+Each <CODE>site</CODE> has its own list of categories for
+which it accepts Problem Reports.
+</P><P>
+
+<CODE>send-pr</CODE> also provides the mail header section of the template
+with default values in the <SAMP>`To:'</SAMP>, <SAMP>`From:'</SAMP>, and
+<SAMP>`Reply-To:'</SAMP> fields.  The <SAMP>`Subject:'</SAMP> field is empty.
+</P><P>
+
+The template begins with a comment section:
+</P><P>
+
+<A NAME="IDX109"></A>
+<A NAME="IDX110"></A>
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>SEND-PR: -*- send-pr  -*-
+SEND-PR: Lines starting with `SEND-PR' will be removed
+SEND-PR: automatically as well as all comments (the text 
+SEND-PR: below enclosed in `&#60;' and `&#62;').
+SEND-PR: 
+SEND-PR: Please consult the document `Reporting Problems 
+SEND-PR: Using send-pr' if you are not sure how to fill out
+SEND-PR: a problem report.
+SEND-PR:
+SEND-PR: Choose from the following categories:
+</FONT></pre></td></tr></table></P><P>
+
+and also contains a list of valid <CODE>&#62;Category:</CODE> values for the
+Support Site to whom you are submitting this Problem Report.  One (and
+only one) of these values should be placed in the <CODE>&#62;Category:</CODE>
+field.
+</P><P>
+
+The mail header is just below the comment section.  Fill out the
+<SAMP>`Subject:'</SAMP> field, if it is not already completed using the value of
+<SAMP>`&#62;Synopsis:'</SAMP>.  The other mail header fields contain default values.
+</P><P>
+
+<A NAME="IDX111"></A>
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>To: <VAR>support-site</VAR>
+Subject: <EM>complete this field</EM>
+From: <VAR>your-login</VAR>@<VAR>your-site</VAR>
+Reply-To: <VAR>your-login</VAR>@<VAR>your-site</VAR>
+X-send-pr-version: send-pr 3.113
+</FONT></pre></td></tr></table></P><P>
+
+where <VAR>support-site</VAR> is an alias on your local machine for the
+Support Site you wish to submit this PR to.
+</P><P>
+
+The rest of the template contains GNATS fields.  Each field is
+either automatically completed with valid information (such as your
+<SAMP>`&#62;Submitter-Id:'</SAMP>) or contains a one-line instruction specifying the
+information that field requires in order to be correct.  For example,
+the <SAMP>`&#62;Confidential:'</SAMP> field expects a value of <SAMP>`yes'</SAMP> or
+<SAMP>`no'</SAMP>, and the answer must fit on one line; similarly, the
+<SAMP>`&#62;Synopsis:'</SAMP> field expects a short synopsis of the problem, which
+must also fit on one line.  Fill out the fields as completely as
+possible.  See section <A HREF="gnats_2.html#SEC19">Helpful hints</A>, for suggestions as to
+what kinds of information to include.
+</P><P>
+
+In this example, words in <EM>italics</EM> are filled in with
+pre-configured information:
+</P><P>
+
+<A NAME="IDX112"></A>
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>&#62;Submitter-Id: <EM>your submitter-id</EM>
+&#62;Originator:   <EM>your name here</EM>
+&#62;Organization:  
+    <EM>your organization</EM>
+&#62;Confidential:&#60;[ yes | no ] (one line)&#62;
+&#62;Synopsis:    &#60;synopsis of the problem (one line)&#62;
+&#62;Severity:    &#60;[non-critical | serious | critical](one line)&#62;
+&#62;Priority:    &#60;[ low | medium | high ] (one line)&#62;
+&#62;Category:    &#60;name of the product (one line)&#62;
+&#62;Class:       &#60;[sw-bug | doc-bug | change-request | support]&#62;
+&#62;Release:     &#60;release number (one line)&#62;
+&#62;Environment:
+         &#60;machine, os, target, libraries (multiple lines)&#62;
+
+&#62;Description:
+       &#60;precise description of the problem (multiple lines)&#62;
+&#62;How-To-Repeat:
+       &#60;code/input/activities to reproduce (multiple lines)&#62;
+&#62;Fix:
+       &#60;how to correct or work around the problem, if known 
+        (multiple lines)&#62;
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="IDX113"></A>
+<A NAME="IDX114"></A>
+When you finish editing the Problem Report, <CODE>send-pr</CODE> mails it to
+the address named in the <SAMP>`To:'</SAMP> field in the mail header.
+<CODE>send-pr</CODE> checks that the complete form contains a valid
+<SAMP>`&#62;Category:'</SAMP>.
+</P><P>
+
+<A NAME="IDX115"></A>
+<A NAME="IDX116"></A>
+<A NAME="IDX117"></A>
+If your PR has an invalid value in one of the ENUMERATED fields
+(see section <A HREF="gnats_1.html#SEC5">Problem Report format</A>), <CODE>send-pr</CODE> places the PR in
+a temporary file named <SAMP>`/tmp/pbad<VAR>nnnn</VAR>'</SAMP> on your machine.
+<VAR>nnnn</VAR> is the process identification number given to your current
+<CODE>send-pr</CODE> session.  If you are running <CODE>send-pr</CODE> from the
+shell, you are prompted as to whether or not you wish to try editing the
+same Problem Report again.  If you are running <CODE>send-pr</CODE> from
+Emacs, the Problem Report is placed in the buffer
+<SAMP>`*send-pr-error*'</SAMP>; you can edit this file and then submit it
+with
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>M-x gnats-submit-pr
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="IDX118"></A>
+<A NAME="IDX119"></A>
+<A NAME="IDX120"></A>
+<A NAME="IDX121"></A>
+<A NAME="IDX122"></A>
+Any further mail concerning this Problem Report should be carbon-copied
+to the GNATS mailing address as well, with the category and
+identification number in the <SAMP>`Subject:'</SAMP> line of the message.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>Subject: Re: PR <VAR>category</VAR>/<VAR>gnats-id</VAR>: <VAR>original message subject</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+Messages which arrive with <SAMP>`Subject:'</SAMP> lines of this form are
+automatically appended to the Problem Report in the <SAMP>`&#62;Audit-Trail:'</SAMP>
+field in the order received.
+</P><P>
+
+<A NAME="send-pr in Emacs"></A>
+<HR SIZE="6">
+<A NAME="SEC16"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC15"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC17"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC17"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC14"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.1.2 Using <CODE>send-pr</CODE> from within Emacs </H3>
+<!--docid::SEC16::-->
+<P>
+
+You can use an interactive <CODE>send-pr</CODE> interface from within GNU
+Emacs to fill out your Problem Report.  We recommend that you
+familiarize yourself with Emacs before using this feature
+(see section `Introduction' in <CITE>GNU Emacs</CITE>).
+</P><P>
+
+Call <CODE>send-pr</CODE> with <SAMP>`M-x send-pr'</SAMP>.<A NAME="DOCF1" HREF="gnats_fot.html#FOOT1">(1)</A>  <CODE>send-pr</CODE> responds with a
+Problem Report template preconfigured for the Support Site from which
+you received <CODE>send-pr</CODE>.  (If you use <CODE>send-pr</CODE> locally, the
+default Support Site is probably your local site.)
+</P><P>
+
+You may also submit problem reports to different Support Sites from the
+default site.  To use this feature, invoke <CODE>send-pr</CODE> with
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>C-u M-x send-pr
+</FONT></pre></td></tr></table></P><P>
+
+<CODE>send-pr</CODE> prompts you for the name of a <VAR>site</VAR>.  <VAR>site</VAR> is
+an alias on your local machine which points to an alternate Support
+Site.
+</P><P>
+
+<A NAME="IDX123"></A>
+<CODE>send-pr</CODE> displays the template and prompts you in the minibuffer
+with the line:
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>&#62;Category: other
+</FONT></pre></td></tr></table></P><P>
+
+Delete the default value <SAMP>`other'</SAMP> <EM>in the minibuffer</EM> and
+replace it with the keyword corresponding to your problem (the list of
+valid categories is in the topmost section of the PR template).  For
+example, if the problem you wish to report has to do with the GNU C
+compiler, and your support organization accepts bugs submitted for this
+program under the category <SAMP>`gcc'</SAMP>, delete <SAMP>`other'</SAMP> and then type
+<SAMP>`gcc[<KBD>RET</KBD>]'</SAMP>.  <CODE>send-pr</CODE> replaces the line
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>&#62;Category:       &#60;name of the product (one line)&#62;
+</FONT></pre></td></tr></table></P><P>
+
+in the template with
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>&#62;Category:       gcc
+</FONT></pre></td></tr></table></P><P>
+
+and moves on to another field.  
+</P><P>
+
+<A NAME="IDX124"></A>
+<A NAME="IDX125"></A>
+<CODE>send-pr</CODE> provides name completion in the minibuffer.  For
+instance, you can also type <SAMP>`gc[<KBD>TAB</KBD>]'</SAMP>, and <CODE>send-pr</CODE>
+attempts to complete the entry for you.  Typing <SAMP>`g[<KBD>TAB</KBD>]'</SAMP>
+may not have the same effect if several possible entries begin with
+<SAMP>`g'</SAMP>.  In that case <CODE>send-pr</CODE> cannot complete the entry because
+it cannot determine whether you mean <SAMP>`gcc'</SAMP> or, for example,
+<SAMP>`gdb'</SAMP>, if both of those are possible categories.
+<CODE>send-pr</CODE> continues to prompt you for a valid entry until you
+enter one.
+</P><P>
+
+<CODE>send-pr</CODE> prompts you interactively to enter each field for
+which there is a range of specific choices.  If you attempt to enter a
+value which is not in the range of acceptable entries, <CODE>send-pr</CODE>
+responds with <SAMP>`[No match]'</SAMP> and allows you to change the entry
+until it contains an acceptable value.  This avoids unusable information
+(at least in these fields) and also avoids typographical errors which
+could cause problems later.
+</P><P>
+
+<CODE>send-pr</CODE> prompts you for the following fields:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>&#62;Category:
+&#62;Confidential: (<EM>default</EM>:  no)
+&#62;Severity:     (<EM>default</EM>:  serious)
+&#62;Priority:     (<EM>default</EM>:  medium)
+&#62;Class:        (<EM>default</EM>:  sw-bug)
+&#62;Release:
+&#62;Synopsis:     (<EM>this value is copied to <CODE>Subject:</CODE></EM>)
+</pre></td></tr></table></P><P>
+
+After you complete these fields, <CODE>send-pr</CODE> places the cursor in
+the <SAMP>`&#62;Description:'</SAMP> field and displays the message
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>To send the problem report use: C-c C-c
+</FONT></pre></td></tr></table></P><P>
+
+in the minibuffer.  At this point, edit the file in the main buffer to
+reflect your specific problem, putting relevant information in the
+proper fields.
+</P><P>
+
+<SAMP>`send-pr'</SAMP> provides a few key bindings to make moving
+around in a template buffer more simple:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>C-c C-f</CODE>
+<DD><DT><CODE>M-x change-field</CODE>
+<DD>Changes the field under the cursor.  <CODE>edit-pr</CODE> prompts you for a
+new value.
+<P>
+
+<DT><CODE>M-C-b</CODE>
+<DD><DT><CODE>M-x gnats-backward-field</CODE>
+<DD>Moves the cursor to the beginning of the value of the current field.
+<P>
+
+<DT><CODE>M-C-f</CODE>
+<DD><DT><CODE>M-x gnats-forward-field</CODE>
+<DD>Moves the cursor to the end of the value of the current field.
+<P>
+
+<DT><CODE>M-p</CODE>
+<DD><DT><CODE>M-x gnats-previous-field</CODE>
+<DD>Moves the cursor back one field to the beginning of the value of the
+previous field.
+<P>
+
+<DT><CODE>M-n</CODE>
+<DD><DT><CODE>M-x gnats-next-field</CODE>
+<DD>Moves the cursor forward one field to the beginning of the value of the
+next field.
+</DL>
+<P>
+
+<CODE>send-pr</CODE> takes over again when you type <SAMP>`C-c C-c'</SAMP> to send the
+message.  <CODE>send-pr</CODE> reports any errors in a separate buffer, which
+remains in existence until you send the PR properly (or, of course,
+until you explicitly kill the buffer).
+</P><P>
+
+For detailed instructions on using Emacs, see
+section `Introduction' in <CITE>GNU Emacs</CITE>.
+</P><P>
+
+<A NAME="send-pr from the shell"></A>
+<HR SIZE="6">
+<A NAME="SEC17"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC16"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC18"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC18"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC14"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.1.3 Invoking <CODE>send-pr</CODE> from the shell </H3>
+<!--docid::SEC17::-->
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>send-pr [ <VAR>site</VAR> ]
+        [ -f <VAR>problem-report</VAR> | --file <VAR>problem-report</VAR> ]
+        [ -t <VAR>mail-address</VAR> | --to <VAR>mail-address</VAR> ]
+        [ --request-id ]
+        [ -L | --list ] [ -P | --print ]
+        [ -V | --version] [ -h | --help ]
+</FONT></pre></td></tr></table></P><P>
+
+<VAR>site</VAR> is an alias on your local machine which points to an address
+used by a Support Site.  If this argument is not present, the default
+<VAR>site</VAR> is usually the site which you received <CODE>send-pr</CODE> from,
+or your local site if you use GNATS locally.
+</P><P>
+
+Invoking <CODE>send-pr</CODE> with no options calls the editor named in your
+environment variable <CODE>EDITOR</CODE> on a default PR template.  If the
+environment variable <CODE>PR_FORM</CODE> is set, its value is used as a file
+name which contains a valid template.  If <CODE>PR_FORM</CODE> points to a
+missing or unreadable file, or if the file is empty, <CODE>send-pr</CODE>
+generates an error message and opens the editor on a default template.
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>-f <VAR>problem-report</VAR></CODE>
+<DD><DT><CODE>--file <VAR>problem-report</VAR></CODE>
+<DD>Specifies a file, <VAR>problem-report</VAR>, where a completed Problem Report
+already exists.  <CODE>send-pr</CODE> sends the contents of the file without
+invoking an editor.  If <VAR>problem-report</VAR> is <SAMP>`-'</SAMP>,
+<CODE>send-pr</CODE> reads from standard input.
+<P>
+
+<DT><CODE>-t <VAR>mail-address</VAR></CODE>
+<DD><DT><CODE>--to <VAR>mail-address</VAR></CODE>
+<DD>Sends the PR to <VAR>mail-address</VAR>. The default is preset when
+<CODE>send-pr</CODE> is configured.  <EM>This option is not recommended</EM>;
+instead, use the argument <VAR>site</VAR> on the command line.
+<P>
+
+<DT><CODE>-c <VAR>mail-address</VAR></CODE>
+<DD><DT><CODE>--cc <VAR>mail-address</VAR></CODE>
+<DD>Places <VAR>mail-address</VAR> in the <CODE>Cc:</CODE> header field of the message
+to be sent.
+<P>
+
+<DT><CODE>--request-id</CODE>
+<DD>Sends a request for a <CODE>&#62;Submitter-Id:</CODE> to the Support Site.
+<P>
+
+<A NAME="IDX126"></A>
+<DT><CODE>-L</CODE>
+<DD><DT><CODE>--list</CODE>
+<DD>Prints the list of valid <CODE>&#62;Category:</CODE> values on standard output.
+No mail is sent.
+<P>
+
+<DT><CODE>-s <VAR>severity</VAR></CODE>
+<DD><DT><CODE>--severity <VAR>severity</VAR></CODE>
+<DD><A NAME="IDX127"></A>
+Sets the initial value of the <CODE>&#62;Severity:</CODE> field to <VAR>severity</VAR>.
+<P>
+
+<DT><CODE>-P</CODE>
+<DD><DT><CODE>--print</CODE>
+<DD>Displays the PR template.  If the variable <CODE>PR_FORM</CODE> is set in your
+environment, the file it specifies is printed.  If <CODE>PR_FORM</CODE> is not
+set, <CODE>send-pr</CODE> prints the standard blank form.  If the file
+specified by <CODE>PR_FORM</CODE> doesn't exist, <CODE>send-pr</CODE> displays an
+error message.  No mail is sent.
+<P>
+
+<DT><CODE>-V</CODE>
+<DD><DT><CODE>--version</CODE>
+<DD>Displays the <CODE>send-pr</CODE> version number and a usage summary.  No mail
+is sent.
+<P>
+
+<DT><CODE>-h</CODE>
+<DD><DT><CODE>--help</CODE>
+<DD>Displays a usage summary for <CODE>send-pr</CODE>.  No mail is sent.
+</DL>
+<P>
+
+<A NAME="Submitting via e-mail"></A>
+<HR SIZE="6">
+<A NAME="SEC18"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC17"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC19"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC19"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC14"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.1.4 Submitting a Problem Report via direct e-mail </H3>
+<!--docid::SEC18::-->
+In addition to using <CODE>send-pr</CODE>, there is another way to submit a problem
+report.  You can simply send an e-mail message to the support site.
+<P>
+
+To do this, look at the address in the <SAMP>`To:'</SAMP> field of the <CODE>send-pr</CODE>
+template.  When you send unformatted e-mail to this address, GNATS
+processes the message as a new problem report, filling in as many fields from 
+defaults as it can:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>Synopsis</CODE>
+<DD>The <SAMP>`&#62;Synopsis'</SAMP> field is filled in by the <SAMP>`Subject:'</SAMP> header.
+<P>
+
+<DT><CODE>Submitter ID</CODE>
+<DD>GNATS will try to derive the <SAMP>`&#62;Submitter'</SAMP> field from the address
+in the <SAMP>`From:'</SAMP> header.
+<P>
+
+<DT><CODE>Description</CODE>
+<DD>All of the text in the body of the e-mail message is put into the 
+<SAMP>`&#62;Description'</SAMP> field.  Each line of the text is indented by one space,
+indicating that it is "quoted text" from the sender.
+</DL>
+<P>
+
+Other fields, such as category, version, severity, etc. are set to default
+values (if the GNATS administrator has set them).
+</P><P>
+
+<A NAME="Helpful hints"></A>
+<HR SIZE="6">
+<A NAME="SEC19"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC18"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC14"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.1.5 Helpful hints </H3>
+<!--docid::SEC19::-->
+<P>
+
+There is no orthodox standard for submitting effective bug reports,
+though you might do well to consult the section on submitting bugs for
+GNU <CODE>gcc</CODE> in section `Reporting Bugs' in <CITE>Using and Porting GNU CC</CITE>, by Richard Stallman.  This section contains
+instructions on what kinds of information to include and what kinds of
+mistakes to avoid.
+</P><P>
+
+In general, common sense (assuming such an animal exists) dictates the
+kind of information that would be most helpful in tracking down and
+resolving problems in software.  
+<UL>
+<LI>
+Include anything <EM>you</EM> would want to know if you were looking at
+the report from the other end.  There's no need to include every minute
+detail about your environment, although anything that might be different
+from someone else's environment should be included (your path, for
+instance).
+<P>
+
+<LI>
+Narratives are often useful, given a certain degree of restraint.  If a
+person responsible for a bug can see that A was executed, and then B and
+then C, knowing that sequence of events might trigger the realization of
+an intermediate step that was missing, or an extra step that might have
+changed the environment enough to cause a visible problem.  Again,
+restraint is always in order ("I set the build running, went to get a
+cup of coffee (Columbian, cream but no sugar), talked to Sheila on the
+phone, and then THIS happened<small>...</small>") but be sure to include anything
+relevant.
+<P>
+
+<LI>
+Richard Stallman writes, "The fundamental principle of reporting bugs
+usefully is this: <STRONG>report all the facts</STRONG>.  If you are not sure
+whether to state a fact or leave it out, state it!"  This holds true
+across all problem reporting systems, for computer software or social
+injustice or motorcycle maintenance.  It is especially important in the
+software field due to the major differences seemingly insignificant
+changes can make (a changed variable, a missing semicolon, etc.).
+<P>
+
+<LI>
+Submit only <EM>one</EM> problem with each Problem Report.  If you have
+multiple problems, use multiple PRs.  This aids in tracking each problem
+and also in analyzing the problems associated with a given program.
+<P>
+
+<LI>
+It never hurts to do a little research to find out if the bug you've
+found has already been reported.  Most software releases contain lists
+of known bugs in the Release Notes which come with the software; see
+your system administrator if you don't have a copy of these.
+<P>
+
+<LI>
+The more closely a PR adheres to the standard format, the less
+interaction is required by a database administrator to route the
+information to the proper place.  Keep in mind that anything that
+requires human interaction also requires time that might be better spent
+in actually fixing the problem.  It is therefore in everyone's best
+interest that the information contained in a PR be as correct as
+possible (in both format and content) at the time of submission.
+</UL>
+<P>
+
+<A NAME="edit-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC20"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC19"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC21"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.2 Editing existing Problem Reports </H2>
+<!--docid::SEC20::-->
+<P>
+
+Use <CODE>edit-pr</CODE> to make changes to existing PRs in the database.
+<CODE>edit-pr</CODE> is both a shell script and a Lisp program for GNU
+Emacs.  Both implementations are essentially identical, though the Emacs
+interface provides interactive prompting for some of the fields.
+</P><P>
+
+<CODE>edit-pr</CODE> first examines the PR you wish to edit and locks it if it
+is not already locked.  This is to prevent you from editing a PR at the
+same time as another user.  If the PR you wish to edit is already in the
+process of being edited, <CODE>edit-pr</CODE> tells you the name of the person
+who owns the lock.
+</P><P>
+
+You may edit any field in the database that you wish.  We recommend that
+you avoid deleting any information in the TEXT and MULTITEXT
+fields (such as <SAMP>`&#62;Description:'</SAMP> and <SAMP>`&#62;How-To-Repeat:'</SAMP>
+(see section <A HREF="gnats_1.html#SEC5">Problem Report format</A>).  We also recommend that you
+record the final solution to the problem in the <SAMP>`&#62;Fix:'</SAMP> field for
+future reference.
+</P><P>
+
+If you change the <SAMP>`&#62;Responsible:'</SAMP> field, <CODE>edit-pr</CODE> prompts you
+to supply a reason for the change.  <CODE>edit-pr</CODE> then mails copies of
+the change message to the previous responsible party, and to the new
+responsible party.  The change is then recorded in the
+<SAMP>`&#62;Audit-Trail:'</SAMP> section of the PR as follows:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>Responsible-Changed-&#60;From&#62;-&#60;To&#62;</CODE>: The value change, supplied
+<DD>automatically by <CODE>edit-pr</CODE>.
+<P>
+
+<DT><CODE>Responsible-Changed-By</CODE>: Your name here, supplied
+<DD>automatically by <CODE>edit-pr</CODE>.
+<P>
+
+<DT><CODE>Responsible-Changed-When</CODE>: The current date, supplied
+<DD>automatically by <CODE>edit-pr</CODE>.
+<P>
+
+<DT><CODE>Responsible-Changed-Why</CODE>: Your reason for the change; you
+<DD>are prompted for this.
+</DL>
+<P>
+
+If you change the <SAMP>`&#62;State:'</SAMP> field, you are prompted to supply a
+reason for the change.  Copies of the change message are then mailed to
+the responsible party, and to the original submitter of the Problem
+Report.  The change is then recorded in the <SAMP>`Audit-Trail'</SAMP> section
+of the PR as follows:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>State-Changed-&#60;From&#62;-&#60;To&#62;</CODE>: The value change, supplied
+<DD>automatically by <CODE>edit-pr</CODE>.
+<P>
+
+<DT><CODE>State-Changed-By</CODE>: Your name here, supplied
+<DD>automatically by <CODE>edit-pr</CODE>.
+<P>
+
+<DT><CODE>State-Changed-When</CODE>: The current date, supplied
+<DD>automatically by <CODE>edit-pr</CODE>.
+<P>
+
+<DT><CODE>State-Changed-Why</CODE>: Your reason for the change; you are
+<DD>prompted for this.
+</DL>
+<P>
+
+The PR is then resubmitted to the database, and the index is updated
+(see section <A HREF="gnats_3.html#SEC42">The <CODE>index</CODE> file</A>).  For information on
+<CODE>pr-edit</CODE>, the main driver for <CODE>edit-pr</CODE>, see <A HREF="gnats_3.html#SEC49">Internal utilities</A>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC21">2.2.1 Using <CODE>edit-pr</CODE> from within Emacs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC22">2.2.2 Invoking <CODE>edit-pr</CODE> from the shell</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="edit-pr in Emacs"></A>
+<HR SIZE="6">
+<A NAME="SEC21"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC22"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.2.1 Using <CODE>edit-pr</CODE> from within Emacs </H3>
+<!--docid::SEC21::-->
+<P>
+
+Call <CODE>edit-pr</CODE> from within Emacs with <CODE>M-x
+edit-pr</CODE><A NAME="DOCF2" HREF="gnats_fot.html#FOOT2">(2)</A>.
+When <CODE>edit-pr</CODE> prompts you for a PR identification number, type the
+number of the PR you wish to edit.
+</P><P>
+
+If the PR is locked, Emacs announces the login name of the person who
+has locked the file.  If not, <CODE>M-x edit-pr</CODE> locks the PR, loads
+it into a buffer named <SAMP>`*edit-pr*'</SAMP>, and places the cursor in the
+<SAMP>`&#62;Number:'</SAMP> field.  (<EM>Do not change this field</EM>.)
+</P><P>
+
+Edit the PR to reflect correct information.  Resubmit the PR to the
+database using <SAMP>`C-c C-c'</SAMP> (see below).
+</P><P>
+
+The easiest way to edit a PR from Emacs is to use the special key
+bindings provided.  These are:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>C-c C-c</CODE>
+<DD><DT><CODE>M-x gnats-submit-pr</CODE>
+<DD>Saves and resubmits the PR currently being edited.  Do this when you
+finish editing the PR; if you simply kill the buffer, your changes are
+lost.
+<P>
+
+<DT><CODE>C-x C-s</CODE>
+<DD><DT><CODE>M-x save-buffer</CODE>
+<DD>Saves the current buffer to a file.  You are prompted for a file name.
+This is not a special key binding, but at one point in the history of
+GNATS it was used to resubmit the PR (i.e., it was bound to
+<SAMP>`M-x gnats-submit-pr'</SAMP>).  <SAMP>`C-x C-s'</SAMP> now simply saves a
+copy of the PR.  This command <EM>does not</EM> resubmit the PR to the
+database.  Use <SAMP>`C-c C-c'</SAMP> to resubmit the PR.
+<P>
+
+<DT><CODE>C-x k</CODE>
+<DD><DT><CODE>M-x gnats:kill-buffer (<EM>use this only with Emacs 18</EM>)</CODE>
+<DD><DT><CODE>M-x kill-buffer</CODE>
+<DD>Kills the current buffer (destroying all changes) and unlocks the
+current PR.  Use this to back out of a change without affecting the
+database.
+<P>
+
+<DT><CODE>C-c C-u</CODE>
+<DD><DT><CODE>M-x unlock-pr</CODE>
+<DD>Unlocks a PR that you have locked.  Use this if you have a locked PR
+from a failed editing session.  You are prompted for the <VAR>gnats-id</VAR>
+of a PR to unlock.
+<P>
+
+<DT><CODE>C-c C-q</CODE>
+<DD><DT><CODE>M-x unlock-buffer</CODE>
+<DD>Removes the lock on the current PR, allowing others to edit it.  The
+buffer remains active and non-writable.  To relock a PR, simply type
+<SAMP>`e'</SAMP> in the buffer containing the Problem Report.
+<P>
+
+<DT><CODE>C-c C-e</CODE>
+<DD><DT><CODE>M-x edit-pr</CODE>
+<DD>Runs <CODE>edit-pr</CODE> in a new buffer.
+<P>
+
+<DT><CODE>C-c C-a</CODE>
+<DD><DT><CODE>M-x gnats-mail-reply</CODE>
+<DD>Sends mail to the originator of this PR, using the address in the
+<SAMP>`From:'</SAMP> field of the mail header.  The <SAMP>`Subject'</SAMP>, <SAMP>`To:'</SAMP>,
+and <SAMP>`Cc:'</SAMP> fields are constructed from the Problem Report currently
+being edited.  Edit the message, and use <SAMP>`C-c C-c'</SAMP> to send it.
+<P>
+
+<DT><CODE>C-c RET</CODE>
+<DD><DT><CODE>C-c C-m</CODE>
+<DD><DT><CODE>M-x gnats:mail-other-window</CODE>
+<DD>Splits the current window, and starts a mail message.  The
+<SAMP>`Subject:'</SAMP> field is constructed from the Problem Report currently
+being edited.  Edit the message, and use <SAMP>`C-c C-c'</SAMP> to send it.
+<P>
+
+<DT><CODE>C-c C-r</CODE>
+<DD><DT><CODE>M-x gnats:responsible-change-from-to</CODE>
+<DD>Changes the <SAMP>`&#62;Responsible:'</SAMP> field.  <CODE>edit-pr</CODE> prompts you for
+the new responsible person, and for a message describing the reason for
+the change.  When you type <SAMP>`C-c C-c'</SAMP> to resubmit the PR, the
+cursor is placed in a mail buffer containing a copy of the change.  You
+can then edit this buffer and type <SAMP>`C-c C-c'</SAMP> again to send the
+mail.
+<P>
+
+<DT><CODE>C-c C-s</CODE>
+<DD><DT><CODE>M-x gnats:state-change-from-to</CODE>
+<DD>Changes the <SAMP>`&#62;State:'</SAMP> field.  <CODE>edit-pr</CODE> prompts you for the
+new state, and for a message describing the reason for the change.  When
+you type <SAMP>`C-c C-c'</SAMP> to resubmit the PR, the cursor is placed in
+a mail buffer containing a copy of the change.  You can then edit this
+buffer and type <SAMP>`C-c C-c'</SAMP> again to send the mail.
+<P>
+
+<DT><CODE>C-c C-t</CODE>
+<DD><DT><CODE>M-x gnats:category-change-from-to</CODE>
+<DD>Changes the <SAMP>`&#62;Category:'</SAMP> field of the PR.  <CODE>edit-pr</CODE> prompts
+you for the new category.  <CODE>edit-pr</CODE> also prompts you with the
+question
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>Update the &#62;Responsible field?
+</FONT></pre></td></tr></table></P><P>
+
+Type <SAMP>`y'</SAMP> to change the value of the <SAMP>`&#62;Responsible:'</SAMP> field to
+the name of the party responsible for the new category.  Type <SAMP>`n'</SAMP> to
+keep the current value of <SAMP>`&#62;Responsible:'</SAMP>.
+</P><P>
+
+<DT><CODE>C-c C-y</CODE>
+<DD><DT><CODE>M-x gnats:severity-change-from-to</CODE>
+<DD>Changes the <SAMP>`&#62;Severity:'</SAMP> field.  <CODE>edit-pr</CODE> prompts you for the
+new severity, and for a message describing the reason for the change.  When
+you type <SAMP>`C-c C-c'</SAMP> to resubmit the PR, the cursor is placed in
+a mail buffer containing a copy of the change.  You can then edit this
+buffer and type <SAMP>`C-c C-c'</SAMP> again to send the mail.
+<P>
+
+<DT><CODE>C-c C-p</CODE>
+<DD><DT><CODE>M-x gnats:priority-change-from-to</CODE>
+<DD>Changes the <SAMP>`&#62;Priority:'</SAMP> field.  <CODE>edit-pr</CODE> prompts you for the
+new priority, and for a message describing the reason for the change.  When
+you type <SAMP>`C-c C-c'</SAMP> to resubmit the PR, the cursor is placed in
+a mail buffer containing a copy of the change.  You can then edit this
+buffer and type <SAMP>`C-c C-c'</SAMP> again to send the mail.
+<P>
+
+<DT><CODE>C-c C-f</CODE>
+<DD><DT><CODE>M-x gnats:change-field</CODE>
+<DD>Changes the field under the cursor.  <CODE>edit-pr</CODE> prompts you for a
+new value.  If you use
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>C-u C-c C-f  <EM>or</EM>
+C-u M-x change-field
+</FONT></pre></td></tr></table></P><P>
+
+you are prompted for a field to change.
+</P><P>
+
+<DT><CODE>M-C-b</CODE>
+<DD><DT><CODE>M-x gnats-backward-field</CODE>
+<DD>Moves the cursor to the beginning of the value of the current field.
+<P>
+
+<DT><CODE>M-C-f</CODE>
+<DD><DT><CODE>M-x gnats-forward-field</CODE>
+<DD>Moves the cursor to the end of the value of the current field.
+<P>
+
+<DT><CODE>M-p</CODE>
+<DD><DT><CODE>M-x gnats-previous-field</CODE>
+<DD>Moves the cursor back one field to the beginning of the value of the
+previous field.
+<P>
+
+<DT><CODE>M-n</CODE>
+<DD><DT><CODE>M-x gnats-next-field</CODE>
+<DD>Moves the cursor forward one field to the beginning of the value of the
+next field.
+</DL>
+<P>
+
+<A NAME="edit-pr from the shell"></A>
+<HR SIZE="6">
+<A NAME="SEC22"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC21"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC20"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.2.2 Invoking <CODE>edit-pr</CODE> from the shell </H3>
+<!--docid::SEC22::-->
+<P>
+
+The usage for the <CODE>edit-pr</CODE> shell script is:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>edit-pr <VAR>gnats-id</VAR> [ -V | --version ] [ -h | --help ]
+</FONT></pre></td></tr></table></P><P>
+
+You must first determine which PR you want to edit.  The options are:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>-V <EM>or</EM> --version</CODE>
+<DD>Prints the version number for <CODE>edit-pr</CODE>.
+<P>
+
+<DT><CODE>-h <EM>or</EM> --help</CODE>
+<DD>Prints the usage for <CODE>edit-pr</CODE>.
+</DL>
+<P>
+
+<CODE>edit-pr</CODE> calls the editor specified in your environment
+variable <CODE>EDITOR</CODE> on a temporary copy of that PR.  (If you don't
+have the variable <CODE>EDITOR</CODE> defined in your environment, the default
+editor <CODE>vi</CODE> is used.)
+</P><P>
+
+Edit the PR, changing any relevant fields or adding to existing
+information.  When you exit the editor, <CODE>edit-pr</CODE> prompts you on
+standard input for a reason if you've changed either the
+<SAMP>`&#62;Responsible:'</SAMP> field or the <SAMP>`&#62;State:'</SAMP> field.  <CODE>edit-pr</CODE>
+tracks the information you provide when changing either of these two
+fields, along with the change that occurred, your name, and the time of
+change in the <SAMP>`&#62;Audit-Trail:'</SAMP> field.
+</P><P>
+
+<A NAME="query-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC23"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC22"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC24"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.3 Querying the database </H2>
+<!--docid::SEC23::-->
+<P>
+
+Obtain information from the database by using the program
+<CODE>query-pr</CODE>. <CODE>query-pr</CODE> uses search parameters you provide
+to find matching Problem Reports in the database.  You can invoke
+<CODE>query-pr</CODE> from the shell or from within Emacs.  <CODE>query-pr</CODE>
+uses the same arguments whether it is invoked from the shell or from
+Emacs.
+</P><P>
+
+All arguments and options to <CODE>query-pr</CODE> are optional.  If you do
+not specify a PR identification number and do not give any search
+parameters, <CODE>query-pr</CODE> displays the entire database.  All arguments
+are considered identification numbers of Problem Reports to display.
+Any number of options can be given (though some make no sense when
+specified on the same command line); all are connected with a logical
+<CODE>AND</CODE>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC24">2.3.1 Invoking <CODE>query-pr</CODE></A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC28">2.3.2 Example queries</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_2.html#SEC29">2.3.3 Reporting on groups of Problem Reports</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Invoking query-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC24"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC28"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.3.1 Invoking <CODE>query-pr</CODE> </H3>
+<!--docid::SEC24::-->
+<P>
+
+From the shell, simply type <KBD>query-pr</KBD>, followed by any search
+parameters you wish to exercise.  From Emacs, type <KBD>M-x
+query-pr</KBD>.  <CODE>query-pr</CODE> prompts you for search parameters in the
+minibuffer.
+</P><P>
+
+<A NAME="IDX128"></A>
+<CODE>query-pr</CODE> can also be accessed by electronic mail, if your version
+of GNATS is configured for this.  To use this feature, simply send
+mail to the address <SAMP>`query-pr@<VAR>your-site</VAR>'</SAMP> with command
+line arguments or options in the <SAMP>`Subject:'</SAMP> line of the mail
+header.  GNATS replies to your mail with the results of your query.
+The default settings for the <CODE>query-pr</CODE> mail server are
+</P><P>
+
+<A NAME="IDX129"></A>
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>--restricted --state="open|analyzed|feedback|suspended"
+</FONT></pre></td></tr></table></P><P>
+
+To override the <SAMP>`--state'</SAMP> parameter, specify
+<SAMP>`--state=<VAR>state</VAR>'</SAMP> in the <CODE>Subject:</CODE> line of the mail
+header.  You can not query on confidential Problem Reports by mail.
+</P><P>
+
+The usage for <CODE>query-pr</CODE> is:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr [ <VAR>gnats-id</VAR> ]
+         [ -c <VAR>category</VAR> | --category=<VAR>category</VAR> ]
+         [ -y <VAR>synopsis</VAR> | --synopsis=<VAR>synopsis</VAR> ]
+         [ -s <VAR>state</VAR> | --state=<VAR>state</VAR> ]
+         [ -r <VAR>responsible</VAR> | --responsible=<VAR>responsible</VAR> ]
+         [ -S <VAR>submitter</VAR> | --submitter=<VAR>submitter</VAR> ]
+         [ -C [ <VAR>yes</VAR> | <VAR>no</VAR> ] | --confidential=[ <VAR>yes</VAR> | <VAR>no</VAR> ] ]
+         [ -e <VAR>severity</VAR> | --severity=<VAR>severity</VAR> ]
+         [ -p <VAR>priority</VAR> | --priority=<VAR>priority</VAR> ]
+         [ -A <VAR>release</VAR> | --release=<VAR>release</VAR> ]
+         [ -o <VAR>outfile</VAR> | --outfile=<VAR>outfile</VAR> ]
+         [ -O <VAR>originator</VAR> | --originator=<VAR>originator</VAR> ]
+         [ -L <VAR>class</VAR> | --class=<VAR>class</VAR> ]
+         [ -b <VAR>date</VAR> | --arrived-before=<VAR>date</VAR> ]
+         [ -a <VAR>date</VAR> | --arrived-after=<VAR>date</VAR> ]
+         [ -B <VAR>date</VAR> | --modified-before=<VAR>date</VAR> ]
+         [ -M <VAR>date</VAR> | --modified-after=<VAR>date</VAR> ]
+         [ -z <VAR>date</VAR> | --closed-before=<VAR>date</VAR> ]
+         [ -Z <VAR>date</VAR> | --closed-after=<VAR>date</VAR> ]
+         [ -t <VAR>text</VAR> | --text=<VAR>text</VAR> ]
+         [ -m <VAR>text</VAR> | --multitext=<VAR>text</VAR> ]
+         [ -R | --restricted ] [-x | --skip-closed ]
+         [ -F | --full ] [ -q | --summary ] [ -i | --sql ]
+         [ -P | --print-path ]
+         [ -d <VAR>directory</VAR> | --directory=<VAR>directory</VAR> ]
+         [ -G | --list-config ]
+         [ -j | --list-categories ]
+         [ -k | --list-responsible ]
+         [ -l | --list-submitters ]
+         [ -J | --list-classes ]
+         [ -T | --list-states ]
+         [ -V | --version ] [ -h | --help ]
+</FONT></pre></td></tr></table></P><P>
+
+If you run <CODE>query-pr</CODE> from within Emacs, you can use
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>C-x `     <EM>or</EM>       M-x next-error
+</FONT></pre></td></tr></table></P><P>
+
+to scroll through Problem Reports one by one after the search is
+finished.
+</P><P>
+
+<A NAME="SEC25"></A>
+<H3> Search criteria </H3>
+<!--docid::SEC25::-->
+<P>
+
+The following arguments and options specify search criteria.  The lack
+of a criterion indicates that all values for the corresponding field are
+valid for the search.  Regular expressions may be used as arguments to
+search criteria options; see <A HREF="gnats_8.html#SEC69">Querying using regular expressions</A>.
+</P><P>
+
+Using an argument to <CODE>query-pr</CODE> specifies the most stringent search
+criteria, that of a single PR.
+</P><P>
+
+<DL COMPACT>
+<DT><CODE><VAR>gnats-id</VAR></CODE>
+<DD>The identification number of the PR you wish to view, as shown in the
+<SAMP>`&#62;Number:'</SAMP> field.  Any number of <VAR>gnats-id</VAR> arguments may be
+given.
+<P>
+
+<DT><CODE>-c <VAR>category</VAR></CODE>
+<DD><DT><CODE>--category=<VAR>category</VAR></CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;Category:'</SAMP> value of <VAR>category</VAR>.
+For a list of valid categories, type <SAMP>`send-pr -L'</SAMP> from the
+shell.
+<P>
+
+<DT><CODE>-y <VAR>synopsis</VAR></CODE>
+<DD><DT><CODE>--synopsis=<VAR>synopsis</VAR></CODE>
+<DD>Search the &#62;SYNOPSIS: fields in the database for the regular expression
+<VAR>synopsis</VAR>.
+<P>
+
+<DT><CODE>-s <VAR>state</VAR></CODE>
+<DD><DT><CODE>--state=<VAR>state</VAR></CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;State:'</SAMP> value of <VAR>state</VAR>.
+<VAR>state</VAR> must be one of: <SAMP>`open'</SAMP>, <SAMP>`analyzed'</SAMP>,
+<SAMP>`feedback'</SAMP>, <SAMP>`closed'</SAMP>, or <SAMP>`suspended'</SAMP>.
+<P>
+
+This field may be searched using regular expressions.  See section <A HREF="gnats_8.html#SEC69">Querying using regular expressions</A>.  Also see <A HREF="gnats_2.html#SEC28">Example queries</A>.
+</P><P>
+
+<DT><CODE>-r <VAR>responsible</VAR></CODE>
+<DD><DT><CODE>--responsible=<VAR>responsible</VAR></CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;Responsible:'</SAMP> value of <VAR>responsible</VAR>.
+<P>
+
+<DT><CODE>-S <VAR>submitter</VAR></CODE>
+<DD><DT><CODE>--submitter=<VAR>submitter</VAR></CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;Submitter:'</SAMP> value of <VAR>submitter</VAR>.
+<P>
+
+<DT><CODE>-C [<VAR>yes</VAR> | <VAR>no</VAR>]</CODE>
+<DD><DT><CODE>--confidential=[<VAR>yes</VAR> | <VAR>no</VAR>]</CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;Confidential:'</SAMP> value of either
+<VAR>yes</VAR> or <VAR>no</VAR>.  If this option is not given, all PRs are
+eligible for the search regardless of their confidentiality.
+<P>
+
+<DT><CODE>-e <VAR>severity</VAR></CODE>
+<DD><DT><CODE>--severity=<VAR>severity</VAR></CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;Severity:'</SAMP> value of <VAR>severity</VAR>.
+<VAR>severity</VAR> must be one of: <SAMP>`critical'</SAMP>, <SAMP>`serious'</SAMP>, or
+<SAMP>`non-critical'</SAMP>.
+<P>
+
+<DT><CODE>-p <VAR>priority</VAR></CODE>
+<DD><DT><CODE>--priority=<VAR>priority</VAR></CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;Priority:'</SAMP> value of <VAR>priority</VAR>.
+<VAR>priority</VAR> must be one of: <SAMP>`high'</SAMP>, <SAMP>`medium'</SAMP>, or
+<SAMP>`low'</SAMP>.
+<P>
+
+<DT><CODE>-O <VAR>originator</VAR></CODE>
+<DD><DT><CODE>--originator=<VAR>originator</VAR></CODE>
+<DD>Search only for PRs with an <SAMP>`&#62;Originator:'</SAMP> value of <VAR>originator</VAR>.
+<P>
+
+<DT><CODE>-A <VAR>release</VAR></CODE>
+<DD><DT><CODE>--release=<VAR>release</VAR></CODE>
+<DD>Search the &#62;RELEASE: fields in the database for the regular expression
+<VAR>release</VAR>.
+<P>
+
+<DT><CODE>-L <VAR>class</VAR></CODE>
+<DD><DT><CODE>--class=<VAR>class</VAR></CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;Class:'</SAMP> value of <VAR>class</VAR>.
+<P>
+
+<DT><CODE>-b <VAR>date</VAR></CODE>
+<DD><DT><CODE>--arrived-before=<VAR>date</VAR></CODE>
+<DD>Search only for PRs which arrived before <VAR>date</VAR>. These are PRs with an 
+<SAMP>`&#62;Arrival-Date:'</SAMP> value greater than <VAR>date</VAR>.  Dates can be of
+several formats,  such as <SAMP>`12-Oct-1997'</SAMP>, <SAMP>`10/12/97'</SAMP>, 
+<SAMP>`19971012'</SAMP>, yesterday, "10 days ago", etc.
+<P>
+
+<DT><CODE>-a <VAR>date</VAR></CODE>
+<DD><DT><CODE>--arrived-after=<VAR>date</VAR></CODE>
+<DD>Search only for PRs which arrived after <VAR>date</VAR>. These are PRs with an 
+<SAMP>`&#62;Arrival-Date:'</SAMP> value less than <VAR>date</VAR>.  
+<P>
+
+<DT><CODE>-B <VAR>date</VAR></CODE>
+<DD><DT><CODE>--modified-before=<VAR>date</VAR></CODE>
+<DD>Search only for PRs which were last modified before <VAR>date</VAR>. These are PRs 
+with a <SAMP>`&#62;Last-Modified:'</SAMP> value less than <VAR>date</VAR>.  PRs which have 
+not been modified (where the <SAMP>`&#62;Last-Modified:'</SAMP> field is blank), are 
+not listed.
+<P>
+
+<DT><CODE>-M <VAR>date</VAR></CODE>
+<DD><DT><CODE>--modified-after <VAR>date</VAR></CODE>
+<DD>Search only for PRs which were last modified after <VAR>date</VAR>. These are PRs 
+with a <SAMP>`&#62;Last-Modified:'</SAMP> value greater than <VAR>date</VAR>.  PRs which have 
+not been modified (where the <SAMP>`&#62;Last-Modified:'</SAMP> field is blank), are 
+not listed.
+<P>
+
+<DT><CODE>-z <VAR>date</VAR></CODE>
+<DD><DT><CODE>--closed-before=<VAR>date</VAR></CODE>
+<DD>Search only for PRs which were closed before <VAR>date</VAR>. These are PRs 
+with a <SAMP>`&#62;Closed-Date:'</SAMP> value less than <VAR>date</VAR>.  PRs which have 
+not been closed (where the <SAMP>`&#62;Closed-Date:'</SAMP> field is blank), are 
+not listed.
+<P>
+
+<DT><CODE>-Z <VAR>date</VAR></CODE>
+<DD><DT><CODE>--closed-after <VAR>date</VAR></CODE>
+<DD>Search only for PRs which were last closed after <VAR>date</VAR>. These are PRs 
+with a <SAMP>`&#62;Closed-Date:'</SAMP> value greater than <VAR>date</VAR>.  PRs which have 
+not been closed (where the <SAMP>`&#62;Closed-Date:'</SAMP> field is blank), are 
+not listed.
+<P>
+
+<DT><CODE>-k <VAR>class</VAR></CODE>
+<DD><DT><CODE>--class=<VAR>class</VAR></CODE>
+<DD>Search only for PRs with a <SAMP>`&#62;Class:'</SAMP> value of <VAR>class</VAR>.  <VAR>class</VAR>
+must be one of: <SAMP>`sw-bug'</SAMP>, <SAMP>`doc-bug'</SAMP>, <SAMP>`change-request'</SAMP>,
+<SAMP>`support'</SAMP>, <SAMP>`duplicate'</SAMP>, or <SAMP>`mistaken'</SAMP>.
+<P>
+
+<DT><CODE>-t <VAR>text</VAR></CODE>
+<DD><DT><CODE>--text=<VAR>text</VAR></CODE>
+<DD>Search the TEXT fields in the database for the regular expression
+<VAR>text</VAR>.  TEXT fields include the following (the
+<SAMP>`&#62;'</SAMP> and <SAMP>`:'</SAMP> Problem Report fieldname delimiters have been
+removed for the sake of brevity and readability):
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>Submitter-Id   Originator     Synopsis
+Category       Release        Responsible
+Arrival-Date   Last-Modified  Closed-Date
+</FONT></pre></td></tr></table></P><P>
+
+See section <A HREF="gnats_8.html#SEC69">Querying using regular expressions</A>.
+</P><P>
+
+<DT><CODE>-m <VAR>text</VAR></CODE>
+<DD><DT><CODE>--multitext=<VAR>text</VAR></CODE>
+<DD>Search the MULTITEXT fields in the database for the regular
+expression <VAR>text</VAR>.  MULTITEXT fields include the following
+(again, the fieldname delimiters <SAMP>`&#62;'</SAMP> and <SAMP>`:'</SAMP> have been
+omitted):
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>Organization   Environment    Description
+How-To-Repeat  Fix            Audit-Trail
+Unformatted    Release-Note
+</FONT></pre></td></tr></table></P><P>
+
+See section <A HREF="gnats_8.html#SEC69">Querying using regular expressions</A>.  
+</P><P>
+
+Queries using this option can be very slow.  This is the only option
+that does not reference the index, so queries using it finish much
+faster if you also use another search criterion that <EM>is</EM> part of
+the index (see section <A HREF="gnats_3.html#SEC42">The <CODE>index</CODE> file</A>).
+</P><P>
+
+<DT><CODE>-R</CODE>
+<DD><DT><CODE>--restricted</CODE>
+<DD>Omit from the search path PRs whose <SAMP>`&#62;Confidential:'</SAMP> fields contain
+the value <SAMP>`yes'</SAMP>.  This is equivalent to 
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --confidential=no
+</FONT></pre></td></tr></table></P><P>
+
+and also disallows the use of the options
+<SAMP>`--outfile=<VAR>outfile</VAR>'</SAMP> and
+<SAMP>`--directory=<VAR>directory</VAR>'</SAMP>.  This option is used with the
+<CODE>mail-query</CODE> tool.
+</P><P>
+
+<DT><CODE>-x</CODE>
+<DD><DT><CODE>--skip-closed</CODE>
+<DD>Omit closed PRs from the search path.  This option is ignored if you
+also use <SAMP>`-s <VAR>state</VAR>'</SAMP> or <SAMP>`--state=<VAR>state</VAR>'</SAMP>.
+</DL>
+<P>
+
+<A NAME="SEC26"></A>
+<H3> Output format </H3>
+<!--docid::SEC26::-->
+<P>
+
+Use the following options to select the format in which the Problem
+Report is printed.  Use only one of these options for a given search.
+If you do not specify one of these options, a header<A NAME="DOCF3" HREF="gnats_fot.html#FOOT3">(3)</A> for the Problem Reports meeting the
+search criteria is printed.
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>-F</CODE>
+<DD><DT><CODE>--full</CODE>
+<DD>Prints all fields in the Problem Report rather than just summary
+information.
+<P>
+
+<DT><CODE>-q</CODE>
+<DD><DT><CODE>--summary</CODE>
+<DD>Print a short single-line summary of PR information, delimited by
+whitespace, including the following fields in order (the <SAMP>`&#62;'</SAMP> and
+<SAMP>`:'</SAMP> Problem Report fieldname delimiters have been removed for the
+sake of brevity and readability):
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>Number         Responsible    Category
+State          Severity       Priority
+Submitter-Id   Synopsis
+</FONT></pre></td></tr></table></P><P>
+
+<DT><CODE>-i</CODE>
+<DD><DT><CODE>--sql</CODE>
+<DD>Prints information on a single line with fields delimited by pipes
+(<SAMP>`|'</SAMP>), which can be uploaded into a relational database.
+<P>
+
+<SAMP>`query-pr -i'</SAMP> outputs the following fields, in order (again, the
+fieldname delimiters <SAMP>`&#62;'</SAMP> and <SAMP>`:'</SAMP> have been omitted):
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>Number         Category       Synopsis
+Confidential   Severity       Priority
+Responsible    State          Class
+Submitter-Id   Arrival-Date   Originator
+Release        Last-Modified  Closed-Date
+</FONT></pre></td></tr></table></P><P>
+
+When you use the <SAMP>`-i'</SAMP> option, <SAMP>`query-pr'</SAMP> outputs the
+ENUMERATED fields in the database, namely <SAMP>`&#62;Severity:'</SAMP>,
+<SAMP>`&#62;Priority:'</SAMP>, <SAMP>`&#62;State:'</SAMP>, and <SAMP>`&#62;Class:'</SAMP>, as numbers rather
+than text.  See section <A HREF="gnats_2.html#SEC29">Reporting on groups of Problem Reports</A>,
+for details.
+</P><P>
+
+<DT><CODE>-I</CODE>
+<DD><DT><CODE>--sql2</CODE>
+<DD>Prints information identical to the <SAMP>`-i'</SAMP> option, except leading and
+trailing blanks are squished out of the print for each field.
+<P>
+
+</DL>
+<P>
+
+<A NAME="SEC27"></A>
+<H3> Other options </H3>
+<!--docid::SEC27::-->
+<P>
+
+<CODE>query-pr</CODE> also accepts the following options:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>-P</CODE>
+<DD><DT><CODE>--print-path</CODE>
+<DD>Prints the path which <CODE>query-pr</CODE> used to find the current PR.  A
+line of the form <SAMP>`<VAR>directory</VAR>/<VAR>number</VAR>:<VAR>number</VAR>'</SAMP> is
+printed before each PR.  This option is automatically used from within
+Emacs to facilitate scrolling through groups of PRs with <KBD>C-x `</KBD>.
+<P>
+
+<DT><CODE>-d <VAR>directory</VAR></CODE>
+<DD><DT><CODE>--directory=<VAR>directory</VAR></CODE>
+<DD>Changes the search directory to <VAR>directory</VAR> from <VAR>GNATS_ROOT</VAR>.
+<P>
+
+<DT><CODE>-o <VAR>outfile</VAR></CODE>
+<DD><DT><CODE>--output=<VAR>outfile</VAR></CODE>
+<DD>Prints all output to <VAR>outfile</VAR> rather than to the standard output.
+<P>
+
+<DT><CODE>-V</CODE>
+<DD><DT><CODE>--version</CODE>
+<DD>Prints the version number for <CODE>query-pr</CODE>.
+<P>
+
+<DT><CODE>-h</CODE>
+<DD><DT><CODE>--help</CODE>
+<DD>Prints the usage for <CODE>query-pr</CODE>.
+</DL>
+<P>
+
+<A NAME="Example queries"></A>
+<HR SIZE="6">
+<A NAME="SEC28"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC24"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC29"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC29"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.3.2 Example queries </H3>
+<!--docid::SEC28::-->
+<P>
+
+The following simple query:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --category=rats --responsible=fred --state=analyzed
+</FONT></pre></td></tr></table></P><P>
+
+yields all PRs in the database which contain the field values:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>&#62;Category:     rats         <EM>and</EM>
+&#62;Responsible:  fred         <EM>and</EM>
+&#62;State:        analyzed
+</FONT></pre></td></tr></table></P><P>
+
+The following query:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --state="o|a"
+</FONT></pre></td></tr></table></P><P>
+
+yields all PRs in the database whose <SAMP>`&#62;State:'</SAMP> values match either
+<SAMP>`open'</SAMP> or <SAMP>`analyzed'</SAMP> (see section <A HREF="gnats_8.html#SEC69">Querying using regular expressions</A>.  This search is useful as a daily report that lists all
+Problem Reports which require attention.
+</P><P>
+
+The report can be further altered using an alternate output format for
+<CODE>query-pr</CODE>; see <A HREF="gnats_2.html#SEC29">Reporting on groups of Problem Reports</A>.  A more fine-grained report may be obtained by specifying more
+search parameters, e.g. narrowing the search down by
+<SAMP>`&#62;Submitter:'</SAMP> or by <SAMP>`&#62;Responsible:'</SAMP>.
+</P><P>
+
+The following query:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --text="The quick.*brown fox"
+</FONT></pre></td></tr></table></P><P>
+
+yields all PRs whose TEXT fields contain the text <SAMP>`The quick'</SAMP>
+followed by <SAMP>`brown fox'</SAMP> within the same field.
+See section <A HREF="gnats_8.html#SEC69">Querying using regular expressions</A>.
+</P><P>
+
+<A NAME="Reporting"></A>
+<HR SIZE="6">
+<A NAME="SEC29"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC28"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC23"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 2.3.3 Reporting on groups of Problem Reports </H3>
+<!--docid::SEC29::-->
+<P>
+
+Currently, <CODE>query-pr</CODE> is the only reporting mechanism in GNATS.
+However, the <SAMP>`-q'</SAMP> and <SAMP>`-i'</SAMP> options to
+<CODE>query-pr</CODE> allow for easy reporting.
+</P><P>
+
+For example, a report on the current open Problem Reports in the
+database can be obtained using <CODE>awk</CODE> with
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr -q | awk '{print $3 "/" $1 ": " $4}'
+</FONT></pre></td></tr></table></P><P>
+
+which yields a list of the form
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>category</VAR>/<VAR>gnats-id</VAR>: <VAR>state</VAR>
+<EM>etc<small>...</small></EM>
+</FONT></pre></td></tr></table></P><P>
+
+For example:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>sprockets/123: open
+widgets/456: analyzed
+<EM>etc<small>...</small></EM>
+</FONT></pre></td></tr></table></P><P>
+
+The <SAMP>`-i'</SAMP> option to <CODE>query-pr</CODE> yields output delimited by pipes
+(<SAMP>`|'</SAMP>).  This results in the following:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>gnats-id</VAR>|<VAR>category</VAR>|<VAR>synopsis</VAR>|<VAR>confidential</VAR>|\
+<VAR>severity</VAR>|<VAR>priority</VAR>|<VAR>responsible</VAR>|<VAR>state</VAR>|<VAR>class</VAR>|\
+<VAR>submitter-id</VAR>|<VAR>arrival-date</VAR>|<VAR>originator</VAR>|<VAR>release</VAR>|\
+<VAR>last-modified</VAR>|<VAR>closed-date</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+A report on Problem Reports in the database that are currently
+<SAMP>`open'</SAMP> or <SAMP>`analyzed'</SAMP> might resemble the following (the example
+is split into two lines in order to fit onto the page; it is intended to
+be typed on one command line):
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr -i -s "o|a" | \
+  awk -F\| '{print $1 "  " $2 "  " $8 "  " $3}'
+</FONT></pre></td></tr></table></P><P>
+
+which yields
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>gnats-id</VAR>  <VAR>category</VAR>  <VAR>state</VAR>  <VAR>responsible</VAR> <VAR>synopsis</VAR>
+<EM>etc<small>...</small></EM>
+</FONT></pre></td></tr></table></P><P>
+
+For example:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>123  sprockets  1  fred    The sprockets program gives bad output
+456  widgets    2  barney  The foo widget doesn't work with 'bar'
+789  widgets    1  wilma   The 'baz' widget is broken
+</FONT></pre></td></tr></table></P><P>
+
+When you use the <SAMP>`-i'</SAMP> option, <SAMP>`query-pr'</SAMP> outputs the
+ENUMERATED fields in the database, namely <SAMP>`&#62;Severity:'</SAMP>,
+<SAMP>`&#62;Priority:'</SAMP>, <SAMP>`&#62;State:'</SAMP>, and <SAMP>`&#62;Class:'</SAMP>, as numbers rather
+than text.  In the example above, a <SAMP>`&#62;State:'</SAMP> value of <SAMP>`1'</SAMP>
+means <SAMP>`open'</SAMP>, <SAMP>`2'</SAMP> means <SAMP>`analyzed'</SAMP>, and so forth.
+ENUMERATED fields are output according to the following translations:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>    &#62;Severity:                   &#62;Priority:
+critical        1             high            1
+serious         2             medium          2 
+non-critical    3             low             3
+
+     &#62;State:                      &#62;Class:
+(unknown)       0             sw-bug          1
+open            1             doc-bug         2
+analyzed        2             support         3
+suspended       3             change-request  4
+feedback        4             mistaken        5
+closed          5             duplicate       6
+</FONT></pre></td></tr></table></P><P>
+
+This makes sorting on these values easy, when combined with <CODE>sort</CODE>.
+It is left as an exercise for the reader to figure out how to do this.
+</P><P>
+
+Note that the mapping of states to numbers could be different at your
+site, if the GNATS administrator has changed the list of possible
+states (see see section <A HREF="gnats_3.html#SEC39">The <TT>`states'</TT> file</A>).  The state
+"0" simply means GNATS does not recognize this PR's state.  This
+situation can arise when a PR is assigned a state which is later removed
+from the list of possible states -- the PR retains the state, but
+GNATS no longer knows what that state means.
+</P><P>
+
+<A NAME="view-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC30"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC29"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 2.4 Viewing individual Problem Reports </H2>
+<!--docid::SEC30::-->
+<P>
+
+Use <CODE>view-pr</CODE> from within Emacs to view individual Problem Reports.
+Invoke <CODE>view-pr</CODE> with
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>M-x view-pr
+</FONT></pre></td></tr></table></P><P>
+
+You are prompted to enter a Problem Report identification number
+(<VAR>gnats-id</VAR>).  You can also invoke <CODE>view-pr</CODE> with
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>C-u <VAR>gnats-id</VAR> M-x view-pr
+</FONT></pre></td></tr></table></P><P>
+
+<CODE>view-pr</CODE> allows you to view <VAR>gnats-id</VAR>.  This is identical to
+using
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>C-u <VAR>gnats-id</VAR> M-x query-pr
+</FONT></pre></td></tr></table></P><P>
+
+except that you may choose to edit the PR at any time by pressing
+<SAMP>`e'</SAMP>.
+</P><P>
+
+<A NAME="Management"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

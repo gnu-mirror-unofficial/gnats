@@ -1,0 +1,919 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on January, 19  2001 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Keeping Track: Introduction</TITLE>
+
+<META NAME="description" CONTENT="Keeping Track: Introduction">
+<META NAME="keywords" CONTENT="Keeping Track: Introduction">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="STYLESHEET" HREF="../styles/common.css"></HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC1"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC2"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<A NAME="Introduction"></A>
+<H1> 1. Introducing GNATS </H1>
+<!--docid::SEC1::-->
+<P>
+
+Any support organization realizes that a large amount of data flows back
+and forth between the maintainers and the users of their products.  This
+data often takes the form of problem reports and communication via
+electronic mail.  GNATS addresses the problem of organizing this
+communication by defining a database made up of archived and indexed
+electronic mail messages.
+</P><P>
+
+GNATS was designed as a tool for software maintainers.  It consists
+of several utilities which, when used in concert, formulate and
+administer a database of Problem Reports grouped by site-defined
+<EM>problem categories</EM>.  It allows a support organization to keep
+track of problems (hence the term <EM>Problem Report</EM>) in an organized
+fashion.  Essentially, GNATS acts as an active archive for
+field-separated textual data submitted through electronic mail.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_1.html#SEC2">1.1 The database paradigm</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_1.html#SEC3">1.2 Flowchart of GNATS activities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_1.html#SEC4">1.3 States of Problem Reports</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_1.html#SEC5">1.4 Problem Report format</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Paradigm"></A>
+<HR SIZE="6">
+<A NAME="SEC2"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC1"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC3"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.1 The database paradigm </H2>
+<!--docid::SEC2::-->
+<P>
+
+It is in your best interest as the maintainer of a body of work to
+organize the feedback you receive on that work, and to make it easy for
+users of your work to report problems and suggestions.
+</P><P>
+
+GNATS makes this easy by automatically filing incoming problem
+reports into appropriate places, by notifying responsible parties of the
+existence of the problem and (optionally) sending an acknowledgment to
+the submitter that the report was received, and by making these Problem
+Reports accessible to queries and easily editable.  GNATS is a
+database specialized for a specific task.
+</P><P>
+
+GNATS was designed for use at a Support Site that handles a high
+level of problem-related traffic though electronic mail.  It maintains
+Problem Reports in the form of text files with defined <EM>fields</EM>
+(see section <A HREF="gnats_1.html#SEC5">GNATS data fields</A>).  The location of the database,
+as well as the categories it accepts as valid, the maintainers for whom
+it provides service, and the submitters from whom it accepts Problem
+Reports, are all definable by the <EM>Support Site</EM>.
+See section <A HREF="gnats_3.html#SEC31">GNATS administration</A>.
+</P><P>
+
+<A NAME="IDX3"></A>
+Each PR is a separate file within a main repository
+(see section <A HREF="gnats_5.html#SEC62">Where GNATS lives</A>).  Editing access to the
+database is regulated to maintain consistency, but anyone with
+electronic mail access may submit Problem Reports.  To make queries on
+the database faster, an index is kept automatically (see section <A HREF="gnats_3.html#SEC42">The <CODE>index</CODE> file</A>).
+</P><P>
+
+We provide several software tools so that users may submit new Problem
+Reports, edit existing Problem Reports, and query the database.
+</P><P>
+
+<UL>
+<LI>
+<CODE>send-pr</CODE> is used by both product maintainers and the end users
+of the products they support to submit PRs to the database.
+<P>
+
+<LI>
+<CODE>edit-pr</CODE> is used by maintainers when editing problem
+reports in the database.
+<P>
+
+<LI>
+Maintainers, managers and administrators can use <CODE>query-pr</CODE> to
+make inquiries about individual PRs or groups of PRs.  
+<P>
+
+</UL>
+<P>
+
+<CODE>send-pr</CODE> can also be packaged by itself and distributed to anyone
+you wish to receive Problem  Reports  from; see <A HREF="gnats_3.html#SEC48">Configuring <CODE>send-pr</CODE> for the outside world</A>.
+</P><P>
+
+<A NAME="IDX4"></A>
+At the Support Site, a GNATS <EM>administrator</EM> is charged with the
+duty of maintaining GNATS.  These duties are discussed in detail in
+<A HREF="gnats_3.html#SEC31">GNATS Administration</A>, and generally include
+configuring GNATS for the Support Site, editing PRs that GNATS
+cannot process, pruning log files, setting up new problem categories,
+backing up the database, and distributing <CODE>send-pr</CODE> so that others
+may submit Problem Reports.
+</P><P>
+
+Responsibility for a given Problem Report depends on the category of the
+problem.  Optionally, an automated reminder can be sent to the
+responsible person if a problem report is neglected for a requisite time
+period.  See section <A HREF="gnats_3.html#SEC33">Changing your local configuration</A>.
+</P><P>
+
+<A NAME="IDX5"></A>
+<A NAME="IDX6"></A>
+<A NAME="IDX7"></A>
+GNATS does not have the ability to decipher random text.
+If there is no default category set, any
+problem reports which arrive in a format GNATS does not recognize
+are placed in a separate directory pending investigation by the
+GNATS administrator (see section <A HREF="gnats_3.html#SEC31">GNATS Administration</A>).
+</P><P>
+
+Once a problem is recorded in the database, work can begin toward a
+solution.  A problem's initial <EM>state</EM> is <EM>open</EM>
+(see section <A HREF="gnats_1.html#SEC4">States of Problem Reports</A>).  An acknowledgment is sent
+to the originator of the bug report (if that feature of GNATS is
+activated).  GNATS forwards copies of the report to the party
+responsible for that problem category and to the person responsible for
+problems arriving from that <EM>Submitter Site</EM>.
+</P><P>
+
+When a problem has been identified, the maintainer can change its state
+to <EM>analyzed</EM>, and then to <EM>feedback</EM> when a solution is
+found.  Each time the state of a PR changes, the submitter of the
+problem report is notified of the reason for the change.  If the party
+responsible for the PR changes, the previous responsible party and the
+new responsible party receive notice of the change.  The change and
+reason are also recorded in the <SAMP>`&#62;Audit-Trail:'</SAMP> field of the
+Problem Report.  (See section <A HREF="gnats_2.html#SEC20">Editing existing Problem Reports</A>.  For
+information on the <SAMP>`&#62;Audit-Trail:'</SAMP> field, see <A HREF="gnats_1.html#SEC5">Problem Report format</A>.)
+</P><P>
+
+When the originator of the Problem Report confirms that the solution
+works, the maintainer can change the state to <EM>closed</EM>.  If the PR
+cannot be closed, the maintainer can change its state to <EM>suspended</EM>
+as a last resort.  (For a more detailed description of these states, see
+<A HREF="gnats_1.html#SEC4">States of Problem Reports</A>.)
+</P><P>
+
+<A NAME="Flowchart"></A>
+<HR SIZE="6">
+<A NAME="SEC3"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC2"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC4"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC4"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.2 Flowchart of GNATS activities </H2>
+<!--docid::SEC3::-->
+<P>
+
+This informal flowchart shows the relationships of the GNATS tools
+to each other and to the files with which they interoperate.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>+===========+    +===========+    +===========+
+# USER SITE #    # USER SITE #    # USER SITE #
+#           #    #           #    #           #
+# *send-pr* #    # *send-pr* #    # *send-pr* #
++=====|=====+    +=====|=====+    +=====|=====+
+      |                V                |
+      `---------&#62;    Email....  &#60;-------'
+                ,---&#62;     |
++===============|=========|===================+
+# SUPPORT SITE  |         `---&#62; /etc/aliases  #
+#          *send-pr*                |         #
+#     +-----------------------------V--------+#
+#     | GNATS         GNATS_ROOT/gnats-queue/|#
+#     |                             |        |#
+#     |        _________            V        |#
+#     |       |*file-pr*|&#60;--- *queue-pr -r*  |#
+#     |       |         |                    |#
+#  _  |       |  valid  |                    |#
+# |M| |       |Category?|N--.                |#
+# |A| |       |_________|   |      GNATS     |#
+# |I| |              Y|     |  ADMINISTRATOR |#
+# |N| |               |     |                |#
+# |T|&#60;----------------|     |                |#
+# |A| |               |     |  .-&#62; *edit-pr* |#
+# |I|---&#62;*edit-pr*-.  |     V  |           | |#
+# |N| |            |  |GNATS_ROOT/pending  | |#
+# |E|&#60;--*query-pr* |  |                    | |#
+# |R| |       |    |  |                    | |#
+# |S| |       |    V  V                    V |#
+# |_| |+------------------------------------+|#
+#     ||         GNATS Database             ||#
+#     ||   GNATS_ROOT/CATEGORY/GNATS-ID     ||#
+#     |+------------------------------------+|#
+#     +--------------------------------------+#
++=============================================+
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="States"></A>
+<HR SIZE="6">
+<A NAME="SEC4"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC3"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC5"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC5"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.3 States of Problem Reports </H2>
+<!--docid::SEC4::-->
+<P>
+
+<A NAME="IDX8"></A>
+<A NAME="IDX9"></A>
+<A NAME="IDX10"></A>
+<A NAME="IDX11"></A>
+</P><P>
+
+Each PR goes through a defined series of states between origination and
+closure.  The originator of a PR receives notification automatically of
+any state changes.
+</P><P>
+
+Unless your site has customized states (see see section <A HREF="gnats_3.html#SEC39">3.2.6 The <CODE>states</CODE> file</A>), GNATS uses these states:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX12"></A>
+<A NAME="IDX13"></A>
+<A NAME="IDX14"></A>
+<DT><EM>open</EM>
+<DD>The initial state of a Problem Report.  This means the PR has been filed
+and the responsible person(s) notified.
+<P>
+
+<A NAME="IDX15"></A>
+<A NAME="IDX16"></A>
+<DT><EM>analyzed</EM>
+<DD>The responsible person has analyzed the problem.  The analysis should
+contain a preliminary evaluation of the problem and an estimate of the
+amount of time and resources necessary to solve the problem.  It should
+also suggest possible workarounds.
+<P>
+
+<A NAME="IDX17"></A>
+<A NAME="IDX18"></A>
+<DT><EM>feedback</EM>
+<DD>The problem has been solved, and the originator has been given a patch
+or other fix.  The PR remains in this state until the originator
+acknowledges that the solution works.
+<P>
+
+<A NAME="IDX19"></A>
+<A NAME="IDX20"></A>
+<A NAME="IDX21"></A>
+<DT><EM>closed</EM>
+<DD>A Problem Report is closed ("the bug stops here") only when any
+changes have been integrated, documented, and tested, and the submitter
+has confirmed the solution.
+<P>
+
+<A NAME="IDX22"></A>
+<A NAME="IDX23"></A>
+<DT><EM>suspended</EM>
+<DD>Work on the problem has been postponed.  This happens if a timely
+solution is not possible or is not cost-effective at the present time.
+The PR continues to exist, though a solution is not being actively
+sought.  If the problem cannot be solved at all, it should be closed
+rather than suspended.
+</DL>
+<P>
+
+<A NAME="Fields"></A>
+<HR SIZE="6">
+<A NAME="SEC5"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC4"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC7"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC1"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 1.4 Problem Report format </H2>
+<!--docid::SEC5::-->
+<P>
+
+The format of a PR is designed to reflect the nature of GNATS as a
+database.  Information is arranged into <EM>fields</EM>, and kept in
+individual records (Problem Reports).
+</P><P>
+
+A Problem Report contains two different types of fields: <EM>Mail
+Header</EM> fields, which are used by the mail handler for delivery, and
+<EM>Problem Report</EM> fields, which contain information relevant to the
+Problem Report and its submitter.  A Problem Report is essentially a
+specially formatted electronic mail message.
+</P><P>
+
+Problem Report fields are denoted by a keyword which begins with
+<SAMP>`&#62;'</SAMP> and ends with <SAMP>`:'</SAMP>, as in <SAMP>`&#62;Confidential:'</SAMP>.  Fields
+belong to one of three data types:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX24"></A>
+<A NAME="IDX25"></A>
+<DT>ENUMERATED
+<DD>One of a specific set of values, which vary according to the field.  The
+value for each keyword must be on the same line as the keyword.  These
+values are not configurable (yet).
+<P>
+
+The following fields are ENUMERATED format; see the descriptions of
+fields below for explanations of each field in detail:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>&#62;Confidential:   &#62;Severity:       &#62;Priority:
+&#62;Class:          &#62;State:          &#62;Number:
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="IDX26"></A>
+<DT>TEXT
+<DD>One single line of text which must begin and end on the same line (i.e.,
+before a newline) as the keyword.  See the descriptions of fields below
+for explanations of each field in detail.  The following fields are
+TEXT format:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>&#62;Submitter-Id:   &#62;Originator:     &#62;Synopsis:
+&#62;Category:       &#62;Release:        &#62;Responsible:
+&#62;Arrival-Date:
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="IDX27"></A>
+<DT>MULTITEXT
+<DD>Text of any length may occur in this field.  MULTITEXT may span
+multiple lines and may also include blank lines.  A MULTITEXT field
+ends only when another keyword appears.  See the descriptions of fields
+below for explanations of each field in detail.  
+<P>
+
+The following fields are MULTITEXT format:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>&#62;Organization:   &#62;Environment:    &#62;Description:
+&#62;How-To-Repeat:  &#62;Fix:            &#62;Audit-Trail:
+&#62;Unformatted:
+</FONT></pre></td></tr></table></P><P>
+
+</DL>
+<P>
+
+<A NAME="SEC6"></A>
+<H3> Example Problem Report </H3>
+<!--docid::SEC6::-->
+<P>
+
+The following is an example Problem Report.  Mail headers are at the
+top, followed by GNATS fields, which begin with <SAMP>`&#62;'</SAMP> and end
+with <SAMP>`:'</SAMP>.  The <SAMP>`Subject:'</SAMP> line in the mail header and the
+<SAMP>`&#62;Synopsis:'</SAMP> field are usually duplicates of each other.
+</P><P>
+
+<A NAME="IDX28"></A>
+<A NAME="IDX29"></A>
+<A NAME="IDX30"></A>
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>Message-Id:  <VAR>message-id</VAR>
+Date:        <VAR>date</VAR>
+From:        <VAR>address</VAR>
+Reply-To:    <VAR>address</VAR>
+To:          <VAR>bug-address</VAR>
+Subject:     <VAR>subject</VAR>
+
+&#62;Number:       <VAR>gnats-id</VAR>
+&#62;Category:     <VAR>category</VAR>
+&#62;Synopsis:     <VAR>synopsis</VAR>
+&#62;Confidential: yes <EM>or</EM> no
+&#62;Severity:     critical, serious, <EM>or</EM> non-critical
+&#62;Priority:     high, medium <EM>or</EM> low
+&#62;Responsible:  <VAR>responsible</VAR>
+&#62;State:        open, analyzed, suspended, feedback, <EM>or</EM> closed
+&#62;Class:        sw-bug, doc-bug, change-request, support, 
+duplicate, <EM>or</EM> mistaken
+&#62;Submitter-Id: <VAR>submitter-id</VAR>
+&#62;Arrival-Date: <VAR>date</VAR>
+&#62;Originator:   <VAR>name</VAR>
+&#62;Organization: <VAR>organization</VAR>
+&#62;Release:      <VAR>release</VAR>
+&#62;Environment:
+   <VAR>environment</VAR>
+&#62;Description:
+   <VAR>description</VAR>
+&#62;How-To-Repeat:
+   <VAR>how-to-repeat</VAR>
+&#62;Fix:
+   <VAR>fix</VAR>
+&#62;Audit-Trail:
+<VAR>appended-messages<small>...</small></VAR>
+State-Changed-From-To: <VAR>from</VAR>-<VAR>to</VAR>
+State-Changed-When: <VAR>date</VAR>
+State-Changed-Why:
+   <VAR>reason</VAR>
+Responsible-Changed-From-To: <VAR>from</VAR>-<VAR>to</VAR>
+Responsible-Changed-When: <VAR>date</VAR>
+Responsible-Changed-Why:
+   <VAR>reason</VAR>
+&#62;Unformatted:
+   <VAR>miscellaneous</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_1.html#SEC7">1.4.1 Mail header fields</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_1.html#SEC8">1.4.2 Problem Report fields</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Mail header fields"></A>
+<HR SIZE="6">
+<A NAME="SEC7"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC5"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC8"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC5"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 1.4.1 Mail header fields </H3>
+<!--docid::SEC7::-->
+<P>
+
+A Problem Report may contain any mail header field described in the
+Internet standard RFC-822.  However, only the fields which identify the
+sender and the subject are required by <CODE>send-pr</CODE>:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX31"></A>
+<DT><CODE>To:</CODE>
+<DD>The preconfigured mail address for the Support Site where the PR is to
+be sent, automatically supplied by <CODE>send-pr</CODE>.
+<P>
+
+<A NAME="IDX32"></A>
+<DT><CODE>Subject:</CODE>
+<DD>A terse description of the problem.  This field normally contains the
+same information as the <SAMP>`&#62;Synopsis:'</SAMP> field.
+<P>
+
+<A NAME="IDX33"></A>
+<DT><CODE>From:</CODE>
+<DD>Usually supplied automatically by the originator's mailer; should
+contain the originator's electronic mail address.
+<P>
+
+<A NAME="IDX34"></A>
+<DT><CODE>Reply-To:</CODE>
+<DD>A return address to which electronic replies can be sent; in most cases,
+the same address as the <CODE>From:</CODE> field.
+</DL>
+<P>
+
+<A NAME="IDX35"></A>
+One of the configurable options for GNATS is whether or not to
+retain <SAMP>`Received-By:'</SAMP> headers, which often consume a lot of
+space and are not often used.  See section <A HREF="gnats_3.html#SEC33">Changing your local configuration</A>.
+</P><P>
+
+<A NAME="Problem Report fields"></A>
+<HR SIZE="6">
+<A NAME="SEC8"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC7"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_1.html#SEC5"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 1.4.2 Problem Report fields </H3>
+<!--docid::SEC8::-->
+<P>
+
+<A NAME="SEC9"></A>
+<H3> Field descriptions </H3>
+<!--docid::SEC9::-->
+<P>
+
+The following fields are present whenever a PR is submitted via the
+program <CODE>send-pr</CODE>.  GNATS adds additional fields when the PR
+arrives at the Support Site; explanations of them follow this list.
+</P><P>
+
+<A NAME="IDX36"></A>
+<A NAME="IDX37"></A>
+<DL COMPACT>
+<A NAME="IDX38"></A>
+<A NAME="IDX39"></A>
+<DT><CODE>&#62;Submitter-Id:</CODE>
+<DD>(TEXT) A unique identification code assigned by the Support Site.
+It is used to identify all Problem Reports coming from a particular
+site.  (Submitters without a value for this field can invoke
+<CODE>send-pr</CODE> with the <SAMP>`--request-id'</SAMP> option to apply for one from
+the support organization.  Problem Reports from those not affiliated
+with the support organization should use the default value of <SAMP>`net'</SAMP>
+for this field.)
+<P>
+
+<A NAME="IDX40"></A>
+<A NAME="IDX41"></A>
+<DT><CODE>&#62;Originator:</CODE>
+<DD>(TEXT) Originator's real name.  The default is the value of the
+originator's environment variable <CODE>NAME</CODE>.
+<P>
+
+<A NAME="IDX42"></A>
+<A NAME="IDX43"></A>
+<DT><CODE>&#62;Organization:</CODE>
+<DD>(MULTITEXT) The originator's organization.  The default value is 
+set with the variable <CODE>DEFAULT_ORGANIZATION</CODE> in the
+<TT>`config'</TT> file (see section <A HREF="gnats_3.html#SEC35">The <CODE>config</CODE> file</A>).
+<P>
+
+<A NAME="IDX44"></A>
+<A NAME="IDX45"></A>
+<A NAME="IDX46"></A>
+<A NAME="IDX47"></A>
+<DT><CODE>&#62;Confidential:</CODE>
+<DD>(ENUMERATED) Use of this field depends on the originator's
+relationship with the support organization; contractual agreements often
+have provisions for preserving confidentiality.  Conversely, a lack of a
+contract often means that any data provided will not be considered
+confidential.  Submitters should be advised to contact the support
+organization directly if this is an issue.
+<P>
+
+If the originator's relationship to the support organization provides
+for confidentiality, then if the value of this field is <SAMP>`yes'</SAMP> the
+support organization treats the PR as confidential; any code samples
+provided are not made publicly available (e.g., in regression test
+suites).  The default value is <SAMP>`yes'</SAMP>.
+</P><P>
+
+<A NAME="IDX48"></A>
+<A NAME="IDX49"></A>
+<DT><CODE>&#62;Synopsis:</CODE>
+<DD>(TEXT) One-line summary of the problem.  <CODE>send-pr</CODE> copies
+this information to the <SAMP>`Subject:'</SAMP> line when you submit a Problem
+Report.
+<P>
+
+<A NAME="IDX50"></A>
+<A NAME="IDX51"></A>
+<DT><CODE>&#62;Severity:</CODE>
+<DD>(ENUMERATED) The severity of the problem.  Accepted values include:
+<P>
+
+<DL COMPACT>
+<A NAME="IDX52"></A>
+<DT><CODE>critical</CODE>
+<DD>The product, component or concept is completely non-operational or some
+essential functionality is missing.  No workaround is known.
+<P>
+
+<A NAME="IDX53"></A>
+<DT><CODE>serious</CODE>
+<DD>The product, component or concept is not working properly or significant
+functionality is missing.  Problems that would otherwise be considered
+<SAMP>`critical'</SAMP> are rated <SAMP>`serious'</SAMP> when a workaround is known.
+<P>
+
+<A NAME="IDX54"></A>
+<DT><CODE>non-critical</CODE>
+<DD>The product, component or concept is working in general, but lacks
+features, has irritating behavior, does something wrong, or doesn't
+match its documentation.
+</DL>
+The default value is <SAMP>`serious'</SAMP>.
+<P>
+
+<A NAME="IDX55"></A>
+<A NAME="IDX56"></A>
+<DT><CODE>&#62;Priority:</CODE>
+<DD>(ENUMERATED) How soon the originator requires a solution.  Accepted
+values include:
+<P>
+
+<DL COMPACT>
+<A NAME="IDX57"></A>
+<DT><CODE>high</CODE>
+<DD>A solution is needed as soon as possible.
+<P>
+
+<A NAME="IDX58"></A>
+<DT><CODE>medium</CODE>
+<DD>The problem should be solved in the next release.
+<P>
+
+<A NAME="IDX59"></A>
+<DT><CODE>low</CODE>
+<DD>The problem should be solved in a future release.
+</DL>
+The default value is <SAMP>`medium'</SAMP>.
+<P>
+
+<A NAME="IDX60"></A>
+<A NAME="IDX61"></A>
+<DT><CODE>&#62;Category:</CODE>
+<DD>(TEXT) The name of the product, component or concept where
+the problem lies.  The values for this field are defined by the Support
+Site. 
+See section <A HREF="gnats_3.html#SEC36">The <CODE>categories</CODE> file</A>, for details.
+<P>
+
+<A NAME="IDX62"></A>
+<A NAME="IDX63"></A>
+<DT><CODE>&#62;Class:</CODE>
+<DD>(ENUMERATED) The class of a problem can be one of the following:
+<P>
+
+<DL COMPACT>
+<A NAME="IDX64"></A>
+<DT><CODE>sw-bug</CODE>
+<DD>A general product problem.  (<SAMP>`sw'</SAMP> stands for "software".)
+<P>
+
+<A NAME="IDX65"></A>
+<DT><CODE>doc-bug</CODE>
+<DD>A problem with the documentation.
+<P>
+
+<A NAME="IDX66"></A>
+<DT><CODE>change-request</CODE>
+<DD>A request for a change in behavior, etc.
+<P>
+
+<A NAME="IDX67"></A>
+<DT><CODE>support</CODE>
+<DD>A support problem or question.
+<P>
+
+<A NAME="IDX68"></A>
+<DT><CODE>duplicate (<VAR>pr-number</VAR>)</CODE>
+<DD>Duplicate PR.  <VAR>pr-number</VAR> should be the number of the original PR.
+<P>
+
+<A NAME="IDX69"></A>
+<DT><CODE>mistaken</CODE>
+<DD>No problem, user error or misunderstanding.  This value is valid only at
+the Support Site.
+</DL>
+<P>
+
+The default is <SAMP>`sw-bug'</SAMP>.
+</P><P>
+
+<A NAME="IDX70"></A>
+<A NAME="IDX71"></A>
+<DT><CODE>&#62;Release:</CODE>
+<DD>(TEXT) Release or version number of the product, component or
+concept.
+<P>
+
+<A NAME="IDX72"></A>
+<A NAME="IDX73"></A>
+<DT><CODE>&#62;Environment:</CODE>
+<DD>(MULTITEXT) Description of the environment where the problem occured:
+machine architecture, operating system, host and target types,
+libraries, pathnames, etc.
+<P>
+
+<A NAME="IDX74"></A>
+<A NAME="IDX75"></A>
+<DT><CODE>&#62;Description:</CODE>
+<DD>(MULTITEXT) Precise description of the problem.
+<P>
+
+<A NAME="IDX76"></A>
+<A NAME="IDX77"></A>
+<DT><CODE>&#62;How-To-Repeat:</CODE>
+<DD>(MULTITEXT) Example code, input, or activities to reproduce the
+problem.  The support organization uses example code both to reproduce
+the problem and to test whether the problem is fixed.  Include all
+preconditions, inputs, outputs, conditions after the problem, and
+symptoms.  Any additional important information should be included.
+Include all the details that would be necessary for someone else to
+recreate the problem reported, however obvious.  Sometimes seemingly
+arbitrary or obvious information can point the way toward a solution.
+See also <A HREF="gnats_2.html#SEC19">Helpful hints</A>.
+<P>
+
+<A NAME="IDX78"></A>
+<A NAME="IDX79"></A>
+<DT><CODE>&#62;Fix:</CODE>
+<DD>(MULTITEXT) A description of a solution to the problem, or a patch
+which solves the problem.  (This field is most often filled in at the
+Support Site; we provide it to the submitter in case she has solved the
+problem.)
+<P>
+
+</DL>
+<P>
+
+GNATS adds the following fields when the PR arrives at the Support
+Site:
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX80"></A>
+<A NAME="IDX81"></A>
+<DT><CODE>&#62;Number:</CODE>
+<DD>(ENUMERATED) The incremental identification number for this PR.
+This is included in the automated reply to the submitter (if that
+feature of GNATS is activated; see section <A HREF="gnats_3.html#SEC33">Changing your local configuration</A>).  It is also included in the copy of the PR
+that is sent to the maintainer.
+<P>
+
+The <SAMP>`&#62;Number:'</SAMP> field is often paired with the <SAMP>`&#62;Category:'</SAMP>
+field as
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>category</VAR>/<VAR>number</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+in subsequent email messages.  This is for historical reasons, as well
+as because Problem Reports are stored in subdirectories which are named
+by category.
+</P><P>
+
+<A NAME="IDX82"></A>
+<A NAME="IDX83"></A>
+<DT><CODE>&#62;State:</CODE>
+<DD>(ENUMERATED) The current state of the PR.  Accepted values are:
+<P>
+
+<DL COMPACT>
+<DT><CODE>open</CODE>
+<DD>The PR has been filed and the responsible person notified.
+<P>
+
+<DT><CODE>analyzed</CODE>
+<DD>The responsible person has analyzed the problem.
+<P>
+
+<DT><CODE>feedback</CODE>
+<DD>The problem has been solved, and the originator has been given a patch
+or other fix.
+<P>
+
+<DT><CODE>closed</CODE>
+<DD>The changes have been integrated, documented, and tested, and the
+originator has confirmed that the solution works.
+<P>
+
+<DT><CODE>suspended</CODE>
+<DD>Work on the problem has been postponed.
+</DL>
+<P>
+
+The initial state of a PR is <SAMP>`open'</SAMP>.  See section <A HREF="gnats_1.html#SEC4">States of Problem Reports</A>.
+</P><P>
+
+<A NAME="IDX84"></A>
+<A NAME="IDX85"></A>
+<DT><CODE>&#62;Responsible:</CODE>
+<DD>(TEXT) The person responsible for this category.
+GNATS retrieves this information from the <TT>`categories'</TT> file
+(see section <A HREF="gnats_3.html#SEC36">The <CODE>categories</CODE> file</A>).
+<P>
+
+<A NAME="IDX86"></A>
+<A NAME="IDX87"></A>
+<DT><CODE>&#62;Arrival-Date:</CODE>
+<DD>(TEXT) The time that this PR was received by GNATS.  The date
+is provided automatically by GNATS.
+<P>
+
+<A NAME="IDX88"></A>
+<A NAME="IDX89"></A>
+<DT><CODE>&#62;Audit-Trail:</CODE>
+<DD>(MULTITEXT) Tracks related electronic mail as well as changes in
+the <SAMP>`&#62;State:'</SAMP> and <SAMP>`&#62;Responsible:'</SAMP> fields with the sub-fields:
+<P>
+
+<DL COMPACT>
+<A NAME="IDX90"></A>
+<DT><CODE>State-Changed-&#60;From&#62;-&#60;To&#62;: <VAR>oldstate</VAR>&#62;-&#60;<VAR>newstate</VAR></CODE>
+<DD>The old and new <SAMP>`&#62;State:'</SAMP> field values.
+<P>
+
+<A NAME="IDX91"></A>
+<DT><CODE>Responsible-Changed-&#60;From&#62;-&#60;To&#62;: <VAR>oldresp</VAR>&#62;-&#60;<VAR>newresp</VAR></CODE>
+<DD>The old and new <SAMP>`&#62;Responsible:'</SAMP> field values.
+<P>
+
+<A NAME="IDX92"></A>
+<A NAME="IDX93"></A>
+<DT><CODE>State-Changed-By: <VAR>name</VAR></CODE>
+<DD><DT><CODE>Responsible-Changed-By: <VAR>name</VAR></CODE>
+<DD>The name of the maintainer who effected the change.
+<P>
+
+<A NAME="IDX94"></A>
+<A NAME="IDX95"></A>
+<DT><CODE>State-Changed-When: <VAR>timestamp</VAR></CODE>
+<DD><DT><CODE>Responsible-Changed-When: <VAR>timestamp</VAR></CODE>
+<DD>The time the change was made.
+<P>
+
+<A NAME="IDX96"></A>
+<A NAME="IDX97"></A>
+<DT><CODE>State-Changed-Why: <VAR>reason<small>...</small></VAR></CODE>
+<DD><DT><CODE>Responsible-Changed-Why: <VAR>reason<small>...</small></VAR></CODE>
+<DD>The reason for the change.
+</DL>
+<P>
+
+<A NAME="IDX98"></A>
+<A NAME="IDX99"></A>
+<A NAME="IDX100"></A>
+<A NAME="IDX101"></A>
+<A NAME="IDX102"></A>
+The <SAMP>`&#62;Audit-Trail:'</SAMP> field also contains any mail messages received
+by GNATS related to this PR, in the order received.
+</P><P>
+
+<A NAME="IDX103"></A>
+<A NAME="IDX104"></A>
+<DT><CODE></CODE>
+<DD> &#62;Unformatted:
+(MULTITEXT) Any random text found outside the fields in the
+original Problem Report.
+</DL>
+<P>
+
+<A NAME="Invoking the tools"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC10"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>
