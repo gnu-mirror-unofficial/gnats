@@ -102,6 +102,11 @@ TT {
         border-color: silver;
 }
 
-
+.dashbox {
+	border: 1pt;
+	border-style: dashed;
+	border-color: #FF0000;
+	background-color: #CCCCCC;
+}
 
 

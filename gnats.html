@@ -1,287 +1,375 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN" "hmpro6.dtd">
-<HTML> 
-  <HEAD> 
-	 <TITLE>GNATS - GNU Project - Free Software Foundation (FSF)</TITLE>
-	 <LINK REV="made" HREF="mailto:webmasters@gnu.org">
-	 <LINK REL="stylesheet" HREF="styles/common.css">
-	 <META NAME="keywords" CONTENT="gnats"> 
-  </HEAD> 
-  <BODY> 
-	 <H1>GNATS</H1> 
-	 <P><A HREF="/graphics/agnuhead.html"><IMG SRC="/graphics/gnu-head-sm.jpg"
-		ALT=" [image of the Head of a GNU] " WIDTH="129" HEIGHT="122"></A> </P> 
-	 <H2>Table of Contents</H2> 
-	 <MENU> 
-		<LI><A HREF="#introduction" NAME="TOCintroduction">Introduction to
-		  GNATS</A></LI> 
-		<LI><A HREF="#news" NAME="TOCnews">GNATS news</A></LI> 
-		<LI><A HREF="#downloading" NAME="TOCdownloading">Downloading
-		  GNATS</A></LI> 
-		<LI><A HREF="#documentation"
-		  NAME="TOCdocumentation">Documentation</A></LI> 
-		<LI><A HREF="#bugreporting" NAME="TOCbugreporting">Reporting GNATS
-		  Bugs</A></LI> 
-		<LI><A HREF="#mailinglists" NAME="TOCmailinglists">GNATS mailing
-		  lists</A></LI> 
-		<LI><A HREF="#gettinginvolved" NAME="TOCgettinginvolved">Getting involved
-		  in GNATS development</A></LI> 
-		<LI><A HREF="#tipsntricks" NAME="TOCtipsntricks">Tips &amp;
-		  tricks</A></LI> 
-		<LI><A HREF="#otherinfo" NAME="TOCotherinfo">Other GNATS
-		  Resources</A></LI> 
-	 </MENU>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN"
+"hmpro6.dtd">
 
-    
-    <!-- contents -->
-	 <H2><A HREF="#TOCintroduction" NAME="introduction">Introduction to
-		GNATS</A></H2> 
-	 <P> GNU GNATS is a set of tools for tracking bugs reported by users to a
-		central site. It allows problem report management and communication with users
-		via various means. GNATS stores all the information about problem reports in
-		its databases and provides tools for querying, editing, and maintenance of the
-		databases. </P> 
-	 <P> Thanks to its architecture, GNATS is not bound to a single user
-		interface &#150; it can be used via command line, e-mail, Emacs, or a network
-		daemon, usually used with a Web interface. Together with the fact that all
-		GNATS databases and configuration can be stored in plain text files, it allows
-		easy use and provides good flexibility. Basically, if the GNATS tools do not
-		provide everything you need, you can add your own additional utilities using
-		standard GNU tools. </P> 
-	 <P> The newest GNATS release is 4.0. This is the first official release to
-		incorporate major advances including multiple database support, customized
-		fields and comprehensive WWW and Tk based front-ends. These features were first
-		seen in the 4.0 beta releases</P> 
-	 <P> Before 4.0 the latest official release was 3.113.1. A security
-		<A HREF="http://www.securityfocus.com/archive/1/326337">vulnerability</A> has
-		been found in the 3.113.1 release. There are no plans to fix this problem, all
-		GNATS users should upgrade to 4.0. </P>
-	 <P> Several third-party interfaces and other tools that work with GNATS
-		have been contributed, the most actively developed are
-		<A HREF="http://savannah.gnu.org/projects/gnatsweb">Gnatsweb</A>, a web-based
-		interface, and TkGnats, a Tcl/Tk-based interface for UNIX/Linux and Windows,
-		which can be found in the <TT>contrib</TT> subdirectory of the GNATS
-		distribution. Releases of these tools aren't necessarily synchronized with
-		GNATS releases, see the section on <A HREF="#downloading">downloading</A> below
-		for details on how to get the newest version. </P> 
-	 <P> If you'd like to hear about GNATS announcements, subscribe to the
-		<A HREF="http://mail.gnu.org/mailman/listinfo/info-gnats">info-gnats mailing
-		list</A>.</P>
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux/x86 (vers 1st August 2004), see www.w3.org">
 
-    <!-- *** -->
-	 <H2><A HREF="#TOCnews" NAME="news">GNATS news</A></H2> 
-	 <P><b>June 8, 2004: </b> Andrew Gray has stepped down as maintainer of GNATS and
-	 Chad Walstrom has been appointed in his stead.  Plans are being made
-	 for a 4.1 release to incorporate some of the bugfixes and changes in
-	 the CVS repository.</p>
-	 <P><B>March 1, 2004:</B> GNATS 4.0 is again available for download
-	 from <A HREF="http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz">
-	 http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz</A>.</P> 
-	 <P><B>September 14, 2003:</B> Pending the restoration of
-	 GNATS 4.0 to ftp.gnu.org, it is available for download from
-	 <A
-	 HREF="http://home.pacific.net.au/~meganandaj/gnats-4.0.tar.gz">http://home.pacific.net.au/~meganandaj/gnats-4.0.tar.gz</A>
-		http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz</A>.</P> 
-	 <P><B>August 1, 2003:</B> GNATS 4.0 is available for download from
-		<A HREF="http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz">
-		http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz</A>.</P> 
-	 <P><B>December 2, 2002:</B> The second beta release of GNATS 4.0 is
-		available for download from
-		<A HREF="http://ftp.gnu.org/pub/gnu/gnats/gnats-3.999.2.tar.gz">
-		http://ftp.gnu.org/pub/gnu/gnats/gnats-3.999.2.tar.gz</A>. This version
-		shouldn't be considered ready for production use. Download, install and test it
-		and <A HREF="#bugreporting">report any problems you may encounter</A>.</P> 
-	 <P><B>October 2002:</B> Following Milan Zamazal's resignation as GNATS
-		maintainer, Andrew Gray has taken over.</P> 
-	 <P><B>February 21, 2002:</B> The FAQ has moved to
-		<A HREF="doc/faq/gnats-faq.html">
-		http://www.gnu.org/software/gnats/doc/faq/gnats-faq.html</A>.</P> 
-	 <P><B>January 27, 2002:</B> Hans-Albert Schneider has compiled an
-		<A HREF="http://www.ha-schneider.de/software/gnats/faq.html">FAQ for
-		GNATS</A>.</P>
+  <title>GNATS - GNU Project - Free Software Foundation
+  (FSF)</title>
+  <link rev="made" href="mailto:webmasters@gnu.org">
+  <link rel="stylesheet" href="styles/common.css" type="text/css">
+  <meta name="keywords" content="gnats">
+</head>
 
-     <!-- *** -->
-	 <H2><A HREF="#TOCdownloading" NAME="downloading">Downloading GNATS</A></H2>
-	 
-	 <H3>GNATS</H3> 
-	 <P> The most recent released versions of GNATS are available from
-		 <A
-		 HREF="http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</A>.
-		</P> 
-	 <P> The latest version is 4.0. If you are using an older version we
-		recommend upgrading to 4.0.</P> 
-	 <P> The current development version is available via CVS only, see the
-		<A HREF="http://savannah.gnu.org/projects/gnats">GNU savannah GNATS project
-		page</A> for the instructions how to get it. </P> 
-	 <P> See <A HREF="#otherinfo">information about other GNATS resources</A>
-		for the location of development code. There are also available
-		<A HREF="http://packages.debian.org/gnats">Debian packages</A> of both released
-		and development versions of GNATS. </P> 
-	 <H3>Gnatsweb</H3> 
-	 <P>Gnatsweb, a GNATS web interface, development is hosted in a separate CVS
-		repository at gnu.org. Gnatsweb has two development branches, one for version 2
-		(which works with GNATS 3.x) and one for version 4 (which works with GNATS 4).
-		</P> 
-	 <P> Released versions of Gnatsweb can be downloaded from
-		<A
-		 HREF="http://ftp.gnu.org/pub/gnu/gnatsweb/">http://ftp.gnu.org/pub/gnu/gnatsweb/</A>.
-		</P> 
-	 <P> The current <B>Gnatsweb 4</B> development version is available via
-		CVS only, see the <A
-		HREF="http://savannah.gnu.org/projects/gnatsweb">GNU savannah
-		GNATSWEB project page</A> for the instructions how to get it.
-<pre>
-	cvs -z3 -d:pserver:anoncvs@savannah.gnu.org:/cvsroot/gnatsweb co gnatsweb
-</PRE> 
-		</P> 
-	 <P> Get the current <B>Gnatsweb 2</B> development code using the same
-		 login setup as the <B>Gnatsweb 4</b> branch.  Use this
-		 checkout line instead:</P> 
-<PRE>
-	cvs -z3 -d:pserver:anoncvs@savannah.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-v2-branch gnatsweb
-</PRE>
+<body>
+  <h1>GNATS</h1>
 
-    <!-- *** -->
-	 <H2><A HREF="#TOCdocumentation" NAME="documentation">GNATS
-		documentation</A></H2> 
-	 <P> Online documentation is available from the <A
-		HREF="gnats_toc.html">GNATS documentation page</A>. </P> 
-	 <P> There is also an FAQ compiled by Hans-Albert Schneider, available at
-		<A HREF="doc/faq/gnats-faq.html">
-		http://www.gnu.org/software/gnats/doc/faq/gnats-faq.html</A>.</P>
+  <p><a href="/graphics/agnuhead.html"><img src=
+  "/graphics/gnu-head-sm.jpg" alt=" [image of the Head of a GNU] "
+  width="129" height="122"></a></p>
 
-    <!-- *** -->
-	 <H2><A HREF="#TOCbugreporting" NAME="bugreporting">Reporting GNATS
-		Bugs</A></H2> 
-	 <P> Please report GNATS bugs to the
-	 e-mail address <A
-	 HREF="mailto:bug-gnats@gnu.org">&lt;bug-gnats@gnu.org&gt;</A>.
-	 <P> GNATS uses (gasp) GNATS to track problem
-	 reports. However, the web interface is currently unavailable.
-	 Normally, we've got the
-	Gnatsweb web interface set up so you can
-		<A HREF="http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats">browse the
-		database or submit new problem reports</A> there. Use <TT>guest</TT> as both
-		the login name and the password. You can also try out the Gnatsweb interface if
-		you want to see how things look, but please do not submit reports that aren't
-		real. This database is being used by GNATS developers, and is <EM>not meant for
-		testing purposes</EM>. </P> 
-	 <P> When you report problems related GNATS itself, <EM>please don't forget
-		to provide especially the following information</EM>: </P> 
-	 <UL> 
-		<LI>The GNATS version you are using.</LI> 
-		<LI>The <EM>exact</EM> way how to reproduce the bug.</LI> 
-		<LI>Your configuration.</LI> 
-		<LI>If you encounter a compilation or build problem, it is especially
-		  important to mention the operating system, compiler and possibly other build
-		  utilities you use.</LI> 
-	 </UL> 
-	 <P> Providing this information in the initial report avoids further
-		unnecessary communication, saves our limited development resources and helps to
-		track down and fix the problem soon. </P> 
-	 <P> All PR transactions/additions/changes are recorded on the
-		<A HREF="http://mail.gnu.org/mailman/listinfo/gnats-prs">gnats-prs mailing
-		list</A>. </P>
+  <h2>Table of Contents</h2>
 
-    <!-- *** -->
-	 <H2><A HREF="#TOCmailinglists" NAME="mailinglists">GNATS mailing
-		lists</A></H2> 
-	 <P> Archives and instructions for subscribing to the the different
-		GNATS-related mailing lists are available at the
-		<A HREF="http://savannah.gnu.org/mail/?group_id=65">Savannah GNATS site</A>.
-		</P>
+  <ul>
+    <li><a href="#introduction" name="TOCintroduction" id=
+    "TOCintroduction">Introduction to GNATS</a></li>
 
-    <!-- *** -->
-	 <H2><A HREF="#TOCgettinginvolved" NAME="gettinginvolved">Getting involved
-		in GNATS development</A></H2> 
-	 <P> We are always on the lookout for people willing to contribute to the
-		project. We need more active developers. Besides, patches for existing
-		problems, contributions to documentation, answers to frequently asked questions
-		or ideas for future development are all very welcome. And, if you aren't a
-		developer or feel able to write good documentation, there is still something
-		you can do: Simply <EM>use GNATS</EM> and <A HREF="#bugreporting">report any
-		bugs and quirks you may find</A>. </P> 
-	 <P><EM> Please don't send user questions directly to particular
-		maintainers. This wastes time that could be otherwise spent on the GNATS
-		development and your questions are likely to be ignored. Use the
-		<A HREF="#mailinglists"><SAMP>help-gnats</SAMP> mailing list</A> instead. </EM>
-		</P>
-	 <H3>GNATS</H3> 
-	 <P> The current maintainer of GNATS itself is Andrew Gray. The current
-		focus is integrating submitted patches and resolving outstanding bugs.</P> 
-	 <H3>Gnatsweb</H3> 
-	 <P> The current maintainer of Gnatsweb is <A
-		HREF="http://www.yngve.com">Yngve Svendsen</A>. The 2.x branch of Gnatsweb is
-		purely in maintenance mode now, and no further releases are planned unless bugs
-		of earth-shattering importance surface. Version 4.00 of Gnatsweb ships as part
-		of the GNATS 4.0 distribution. Anyone interested in participating in Gnatsweb
-		development either by submitting patches or taking directly part in planning
-		and development should post to the
-		<A HREF="http://mail.gnu.org/mailman/listinfo/help-gnats">help-gnats mailing
-		list</A>. </P> 
-	 <H3>How to produce patches</H3> 
-	 <P> Even though people may have good coding skills, they may never have
-		submitted patches to projects such as this before. Following is a quick how-to
-		on producing a patch file. </P> 
-	 <P> Check out the GNATS version you intend to modify <A
-		HREF="#downloading">from the CVS repository</A>, then make the changes you
-		intend to. To produce the patchfile, use the following command: </P> 
-	 <PRE>cvs diff -up file1 file2 ... &gt; patchfile.out</PRE> 
-	 <P> where <SAMP>file1</SAMP>, <SAMP>file2</SAMP> etc. are the paths to the
-		files that you changed in the source tree. This creates a patch file
-		<SAMP>patchfile.out</SAMP> which contains the differences between the source
-		files in the CVS repository and the checked out files you edited. Since current
-		development efforts are directed at getting version 4 out of the door, patches
-		against the latest development version will be most useful. Patches should go
-		to the <A HREF="http://mail.gnu.org/mailman/listinfo/help-gnats">help-gnats
-		mailing list</A>. </P> 
-	 <P> Full CVS documentation is available at
-		<A
-		HREF="http://www.loria.fr/~molli/cvs/doc/cvs_toc.html">http://www.loria.fr/~molli/cvs/doc/cvs_toc.html</A>.
-		</P>
-    
-    <!-- *** -->
-	 <H2><A HREF="#TOCtipsntricks" NAME="tipsntricks">Tips &amp; Tricks</A></H2>
-	 
-	 <UL> 
-		<LI> <A HREF="mimedecode.html">Handling MIME e-mail messages in GNATS</A>
-		  </LI> 
-	 </UL>
-    
-    <!-- *** -->
-	 <H2><A HREF="#TOCotherinfo" NAME="otherinfo">Other GNATS Resources</A></H2>
-	 
-	 <UL> 
-		<LI> <A HREF="http://savannah.gnu.org/projects/gnats">GNU savannah GNATS
-		  project page</A> contains links to the GNATS news, CVS and FTP archives,
-		  mailing lists and other development resources. </LI> 
-		<LI> Patches against the old 3.113 release are collected on a
-		  <A HREF="patches/index.html">separate patch page</A>. </LI> 
-		<LI> <A HREF="http://www.cuug.ab.ca/~macdonal/tkgnats/">TkGNATS</A> is a
-		  real nifty front-end to GNATS which is written in Tcl/Tk. </LI> 
-		<LI> <A HREF="http://www.daveeaton.com/scm/PMTools.html">Problem
-		  Management Tools Survey entry for GNATS</A>. This page has a lot of information
-		  about other bug tracking systems that are available. It is a good resource.
-		  </LI> 
-	 </UL>
+    <li><a href="#news" name="TOCnews" id="TOCnews">GNATS
+    news</a></li>
 
-    
-    <!-- footer -->
-	 <HR> 
-	 <P> Return to <A HREF="/home.html">GNU's home page</A>. </P> 
-	 <P> Please send FSF &amp; GNU inquiries &amp; questions to
-		<A HREF="mailto:gnu@gnu.org"><EM>gnu@gnu.org</EM></A>. There are also
-		<A HREF="/home.html#ContactInfo">other ways to contact</A> the FSF. </P> 
-	 <P> Please send comments on these web pages to
-		<A HREF="mailto:webmasters@gnu.org"><EM>webmasters@gnu.org</EM></A>, send other
-		questions to <A HREF="mailto:gnu@gnu.org"><EM>gnu@gnu.org</EM></A>. </P> 
-	 <P> Copyright (C) 2003 Andrew Gray, Yngve Svendsen and Milan Zamazal</P> 
-	 <P> Verbatim copying and distribution of this entire article is permitted
-		in any medium, provided this notice is preserved. </P> 
-	 <P> Copyright notice above.<BR> Free Software Foundation, Inc., 59 Temple
-		Place - Suite 330, Boston, MA 02111, USA </P> 
-	 <P> Updated:
-      <!-- timestamp start -->
-		$Date: 2004/08/23 17:59:46 $ $Author: chewie $
-      <!-- timestamp end -->
-	 </P> <HR> </BODY>
-</HTML>
+    <li><a href="#downloading" name="TOCdownloading" id=
+    "TOCdownloading">Downloading GNATS</a></li>
+
+    <li><a href="#documentation" name="TOCdocumentation" id=
+    "TOCdocumentation">Documentation</a></li>
+
+    <li><a href="#bugreporting" name="TOCbugreporting" id=
+    "TOCbugreporting">Reporting GNATS Bugs</a></li>
+
+    <li><a href="#mailinglists" name="TOCmailinglists" id=
+    "TOCmailinglists">GNATS mailing lists</a></li>
+
+    <li><a href="#gettinginvolved" name="TOCgettinginvolved" id=
+    "TOCgettinginvolved">Getting involved in GNATS
+    development</a></li>
+
+    <li><a href="#tipsntricks" name="TOCtipsntricks" id=
+    "TOCtipsntricks">Tips &amp; tricks</a></li>
+
+    <li><a href="#otherinfo" name="TOCotherinfo" id=
+    "TOCotherinfo">Other GNATS Resources</a></li>
+  </ul><!-- contents -->
+
+  <h2><a href="#TOCintroduction" name="introduction" id=
+  "introduction">Introduction to GNATS</a></h2>
+
+  <p>GNU GNATS is a set of tools for tracking bugs reported by
+  users to a central site. It allows problem report management and
+  communication with users via various means. GNATS stores all the
+  information about problem reports in its databases and provides
+  tools for querying, editing, and maintenance of the
+  databases.</p>
+
+  <p>Thanks to its architecture, GNATS is not bound to a single
+  user interface &#8211; it can be used via command line, e-mail,
+  Emacs, or a network daemon, usually used with a Web interface.
+  Together with the fact that all GNATS databases and configuration
+  can be stored in plain text files, it allows easy use and
+  provides good flexibility. Basically, if the GNATS tools do not
+  provide everything you need, you can add your own additional
+  utilities using standard GNU tools.</p>
+
+  <p>The newest GNATS release is 4.0. This is the first official
+  release to incorporate major advances including multiple database
+  support, customized fields and comprehensive WWW and Tk based
+  front-ends. These features were first seen in the 4.0 beta
+  releases</p>
+
+  <p>Several third-party interfaces and other tools that work with
+  GNATS have been contributed, the most actively developed are
+  <a href="http://savannah.gnu.org/projects/gnatsweb">Gnatsweb</a>,
+  a web-based interface, and TkGnats, a Tcl/Tk-based interface for
+  UNIX/Linux and Windows, which can be found in the
+  <tt>contrib</tt> subdirectory of the GNATS distribution. Releases
+  of these tools aren't necessarily synchronized with GNATS
+  releases, see the section on <a href=
+  "#downloading">downloading</a> below for details on how to get
+  the newest version.</p>
+
+  <p>If you'd like to hear about GNATS announcements, subscribe to
+  the <a href=
+  "http://mail.gnu.org/mailman/listinfo/info-gnats">info-gnats
+  mailing list</a>.</p><!-- *** -->
+
+  <h2><a href="#TOCnews" name="news" id="news">GNATS news</a></h2>
+
+  <p><b>June 8, 2004:</b> Andrew Gray has stepped down as
+  maintainer of GNATS and Chad Walstrom has been appointed in his
+  stead. Plans are being made for a 4.1 release to incorporate some
+  of the bugfixes and changes in the CVS repository.</p>
+
+  <p><b>March 1, 2004:</b> GNATS 4.0 is again available for
+  download from <a href=
+  "http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz">http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz</a>.</p>
+
+  <p><b>September 14, 2003:</b> Pending the restoration of GNATS
+  4.0 to ftp.gnu.org, it is available for download from <a href=
+  "http://home.pacific.net.au/~meganandaj/gnats-4.0.tar.gz">http://home.pacific.net.au/~meganandaj/gnats-4.0.tar.gz</a>
+  http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz.</p>
+
+  <p><b>August 1, 2003:</b> GNATS 4.0 is available for download
+  from <a href=
+  "http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz">http://ftp.gnu.org/pub/gnu/gnats/gnats-4.0.tar.gz</a>.</p>
+
+  <p><b>December 2, 2002:</b> The second beta release of GNATS 4.0
+  is available for download from <a href=
+  "http://ftp.gnu.org/pub/gnu/gnats/gnats-3.999.2.tar.gz">http://ftp.gnu.org/pub/gnu/gnats/gnats-3.999.2.tar.gz</a>.
+  This version shouldn't be considered ready for production use.
+  Download, install and test it and <a href="#bugreporting">report
+  any problems you may encounter</a>.</p>
+
+  <p><b>October 2002:</b> Following Milan Zamazal's resignation as
+  GNATS maintainer, Andrew Gray has taken over.</p>
+
+  <p><b>February 21, 2002:</b> The FAQ has moved to <a href=
+  "doc/faq/gnats-faq.html">http://www.gnu.org/software/gnats/doc/faq/gnats-faq.html</a>.</p>
+
+  <p><b>January 27, 2002:</b> Hans-Albert Schneider has compiled an
+  <a href="http://www.ha-schneider.de/software/gnats/faq.html">FAQ
+  for GNATS</a>.</p><!-- *** -->
+
+  <h2><a href="#TOCdownloading" name="downloading" id=
+  "downloading">Downloading GNATS</a></h2>
+
+  <h3>GNATS</h3>
+
+  <p>The most recent released versions of GNATS are available from
+  <a href=
+  "http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</a>.</p>
+
+  <p>The latest version is 4.0. If you are using an older version
+  we recommend upgrading to 4.0.</p>
+
+  <p class="dashbox">Before 4.0 the latest official release was
+  3.113.1. A security <a href=
+  "http://www.securityfocus.com/archive/1/326337">vulnerability</a>
+  has been found in the 3.113.1 release. There are no plans to fix
+  this problem, all GNATS users should upgrade to 4.0.  Patches
+  against the old 3.113 release are collected on a <a
+  href="patches/index.html">separate patch page</a>.</p>
+
+  <p>The current development version is available via CVS only, see
+  the <a href="http://savannah.gnu.org/projects/gnats">GNU savannah
+  GNATS project page</a> for the instructions how to get it.</p>
+
+  <p>See <a href="#otherinfo">information about other GNATS
+  resources</a> for the location of development code. There are
+  also available <a href="http://packages.debian.org/gnats">Debian
+  packages</a> of both released and development versions of
+  GNATS.</p>
+
+  <h3>Gnatsweb</h3>
+
+  <p>Gnatsweb, a GNATS web interface, development is hosted in a
+  separate CVS repository at gnu.org. Gnatsweb has two development
+  branches, one for version 2 (which works with GNATS 3.x) and one
+  for version 4 (which works with GNATS 4).</p>
+
+  <p>Released versions of Gnatsweb can be downloaded from <a href=
+  "http://ftp.gnu.org/pub/gnu/gnatsweb/">http://ftp.gnu.org/pub/gnu/gnatsweb/</a>.</p>
+
+  <p>The current <b>Gnatsweb 4</b> development version is available
+  via CVS only, see the <a href=
+  "http://savannah.gnu.org/projects/gnatsweb">GNU savannah GNATSWEB
+  project page</a> for the instructions how to get it.</p>
+  <pre>
+        cvs -z3 -d:pserver:anoncvs@savannah.gnu.org:/cvsroot/gnatsweb co gnatsweb
+</pre>
+
+  <p>Get the current <b>Gnatsweb 2</b> development code using the
+  same login setup as the <b>Gnatsweb 4</b> branch. Use this
+  checkout line instead:</p>
+  <pre>
+        cvs -z3 -d:pserver:anoncvs@savannah.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-v2-branch gnatsweb
+</pre><!-- *** -->
+
+  <h2><a href="#TOCdocumentation" name="documentation" id=
+  "documentation">GNATS documentation</a></h2>
+
+  <p>Online documentation is available from the <a href=
+  "gnats_toc.html">GNATS documentation page</a>.</p>
+
+  <p>There is also an FAQ compiled by Hans-Albert Schneider,
+  available at <a href=
+  "doc/faq/gnats-faq.html">http://www.gnu.org/software/gnats/doc/faq/gnats-faq.html</a>.</p><!-- *** -->
+
+  <h2><a href="#TOCbugreporting" name="bugreporting" id=
+  "bugreporting">Reporting GNATS Bugs</a></h2>
+
+  <p>Please report GNATS bugs to the e-mail address <a href=
+  "mailto:bug-gnats@gnu.org">&lt;bug-gnats@gnu.org&gt;</a>.</p>
+
+  <p>GNATS uses (gasp) GNATS to track problem reports. However, the
+  web interface is currently unavailable. Normally, we've got the
+  Gnatsweb web interface set up so you can <a href=
+  "http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats">browse
+  the database or submit new problem reports</a> there. Use
+  <tt>guest</tt> as both the login name and the password. You can
+  also try out the Gnatsweb interface if you want to see how things
+  look, but please do not submit reports that aren't real. This
+  database is being used by GNATS developers, and is <em>not meant
+  for testing purposes</em>.</p>
+
+  <p>When you report problems related GNATS itself, <em>please
+  don't forget to provide especially the following
+  information</em>:</p>
+
+  <ul>
+    <li>The GNATS version you are using.</li>
+
+    <li>The <em>exact</em> way how to reproduce the bug.</li>
+
+    <li>Your configuration.</li>
+
+    <li>If you encounter a compilation or build problem, it is
+    especially important to mention the operating system, compiler
+    and possibly other build utilities you use.</li>
+  </ul>
+
+  <p>Providing this information in the initial report avoids
+  further unnecessary communication, saves our limited development
+  resources and helps to track down and fix the problem soon.</p>
+
+  <p>All PR transactions/additions/changes are recorded on the
+  <a href=
+  "http://mail.gnu.org/mailman/listinfo/gnats-prs">gnats-prs
+  mailing list</a>.</p><!-- *** -->
+
+  <h2><a href="#TOCmailinglists" name="mailinglists" id=
+  "mailinglists">GNATS mailing lists</a></h2>
+
+  <p>Archives and instructions for subscribing to the the different
+  GNATS-related mailing lists are available at the <a href=
+  "http://savannah.gnu.org/mail/?group_id=65">Savannah GNATS
+  site</a>.</p><!-- *** -->
+
+  <h2><a href="#TOCgettinginvolved" name="gettinginvolved" id=
+  "gettinginvolved">Getting involved in GNATS development</a></h2>
+
+  <p>We are always on the lookout for people willing to contribute
+  to the project. We need more active developers. Besides, patches
+  for existing problems, contributions to documentation, answers to
+  frequently asked questions or ideas for future development are
+  all very welcome. And, if you aren't a developer or feel able to
+  write good documentation, there is still something you can do:
+  Simply <em>use GNATS</em> and <a href="#bugreporting">report any
+  bugs and quirks you may find</a>.</p>
+
+  <p><em>Please don't send user questions directly to particular
+  maintainers. This wastes time that could be otherwise spent on
+  the GNATS development and your questions are likely to be
+  ignored. Use the <a href="#mailinglists"><samp>help-gnats</samp>
+  mailing list</a> instead.</em></p>
+
+  <h3>GNATS</h3>
+
+  <p>The current maintainer of GNATS itself is Chad Walstrom. The
+  current focus is integrating submitted patches and resolving
+  outstanding bugs.</p>
+
+  <h3>Gnatsweb</h3>
+
+  <p>The current maintainer of Gnatsweb is <a href=
+  "http://www.yngve.com">Yngve Svendsen</a>. The 2.x branch of
+  Gnatsweb is purely in maintenance mode now, and no further
+  releases are planned unless bugs of earth-shattering importance
+  surface. Version 4.00 of Gnatsweb ships as part of the GNATS 4.0
+  distribution. Anyone interested in participating in Gnatsweb
+  development either by submitting patches or taking directly part
+  in planning and development should post to the <a href=
+  "http://mail.gnu.org/mailman/listinfo/help-gnats">help-gnats
+  mailing list</a>.</p>
+
+  <h3>How to produce patches</h3>
+
+  <p>Even though people may have good coding skills, they may never
+  have submitted patches to projects such as this before. Following
+  is a quick how-to on producing a patch file.</p>
+
+  <p>Check out the GNATS version you intend to modify <a href=
+  "#downloading">from the CVS repository</a>, then make the changes
+  you intend to. To produce the patchfile, use the following
+  command:</p>
+  <pre>
+cvs diff -up file1 file2 ... &gt; patchfile.out
+</pre>
+
+  <p>where <samp>file1</samp>, <samp>file2</samp> etc. are the
+  paths to the files that you changed in the source tree. This
+  creates a patch file <samp>patchfile.out</samp> which contains
+  the differences between the source files in the CVS repository
+  and the checked out files you edited. Since current development
+  efforts are directed at getting version 4 out of the door,
+  patches against the latest development version will be most
+  useful. Patches should go to the <a href=
+  "http://mail.gnu.org/mailman/listinfo/help-gnats">help-gnats
+  mailing list</a>.</p>
+
+  <p>Full CVS documentation is available at <a href=
+  "http://www.loria.fr/~molli/cvs/doc/cvs_toc.html">http://www.loria.fr/~molli/cvs/doc/cvs_toc.html</a>.</p><!-- *** -->
+
+  <h2><a href="#TOCtipsntricks" name="tipsntricks" id=
+  "tipsntricks">Tips &amp; Tricks</a></h2>
+
+  <ul>
+    <li><a href="mimedecode.html">Handling MIME e-mail messages in
+    GNATS</a></li>
+  </ul><!-- *** -->
+
+  <h2><a href="#TOCotherinfo" name="otherinfo" id="otherinfo">Other
+  GNATS Resources</a></h2>
+
+  <ul>
+    <li><a href="http://gnatsperl.sourceforge.net">gnatsperl</a>, a
+    collection of perl modules proving an interface to the GNATS
+    daemon</li>
+
+    <li><a href="http://savannah.gnu.org/projects/gnats">GNU
+    savannah GNATS project page</a> contains links to the GNATS
+    news, CVS and FTP archives, mailing lists and other development
+    resources.</li>
+
+    <li>Patches against the old 3.113 release are collected on a
+    <a href="patches/index.html">separate patch page</a>.</li>
+
+    <li><a href=
+    "http://www.cuug.ab.ca/~macdonal/tkgnats/">TkGNATS</a> is a
+    real nifty front-end to GNATS which is written in Tcl/Tk.</li>
+
+    <li><a href="http://www.daveeaton.com/scm/PMTools.html">Problem
+    Management Tools Survey entry for GNATS</a>. This page has a
+    lot of information about other bug tracking systems that are
+    available. It is a good resource.</li>
+  </ul><!-- footer -->
+  <hr>
+
+  <p>Return to <a href="/home.html">GNU's home page</a>.</p>
+
+  <p>Please send FSF &amp; GNU inquiries &amp; questions to
+  <a href="mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>. There are
+  also <a href="/home.html#ContactInfo">other ways to contact</a>
+  the FSF.</p>
+
+  <p>Please send comments on these web pages to <a href=
+  "mailto:webmasters@gnu.org"><em>webmasters@gnu.org</em></a>, send
+  other questions to <a href=
+  "mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.</p>
+
+  <p>Copyright (C) 2003, 2004 Andrew Gray, Yngve Svendsen, Milan
+  Zamazal, and Chad Walstrom</p>
+
+  <p>Verbatim copying and distribution of this entire article is
+  permitted in any medium, provided this notice is preserved.</p>
+
+  <p>Copyright notice above.<br>
+  Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+  Boston, MA 02111, USA</p>
+
+  <p>Updated: <!-- timestamp start -->
+   $Date: 2004/09/20 15:09:14 $ $Author: chewie $ 
+  <!-- timestamp end --></p>
+  <hr>
+</body>
+</html>
