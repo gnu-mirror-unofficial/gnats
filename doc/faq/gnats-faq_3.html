@@ -1,6 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <HTML>
-<!-- Created on October, 6  2002 by texi2html 1.65 -->
+<!-- Created on January, 27  2003 by texi2html 1.65 -->
 <!-- 
 Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
             Karl Berry  <karl@freefriends.org>
@@ -173,8 +173,18 @@ If you do not know where `<TT>gnats-db.conf</TT>' lives, run:
 
 <LI>
 Don't forget to setup a cron job to run through the additional
-`<TT>gnats-queue</TT>'.
+`<TT>gnats-queue</TT>'.  Note that you need to specify the database
+directory to `<TT>queue-pr</TT>', i.e.,
 <P>
+
+`<SAMP>/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -r</SAMP>'
+</P><P>
+
+or, if you prefer the long options,
+</P><P>
+
+`<SAMP>/usr/local/lib/gnats/queue-pr --directory=/usr/local/gnats/db2 --run</SAMP>'
+</P><P>
 
 <LI>
 Don't forget to create mail aliases for your new database
@@ -248,6 +258,21 @@ database, you need not run <CODE>mkcat</CODE> anymore in order to
 create new category directories in your database---GNATS 4
 creates them automatically when they are missing.  See section `The <CODE>dbconfig</CODE> file' in <CITE>Keeping Track</CITE>, for details.
 <P>
+
+<LI>
+Don't forget to setup a cron job to run through the additional
+`<TT>gnats-queue</TT>'.  Note that you need to specify the database to
+`<TT>queue-pr</TT>', i.e.,
+<P>
+
+`<SAMP>/usr/local/lib/gnats/queue-pr -d GreatNewDB -r</SAMP>'
+</P><P>
+
+or, if you prefer the long options,
+</P><P>
+
+`<SAMP>/usr/local/lib/gnats/queue-pr --database=GreatNewDB --run</SAMP>'
+</P><P>
 
 <LI>
 Don't forget to create mail aliases for your new database
@@ -891,7 +916,7 @@ and add a <CODE>Responsible</CODE> field to the Create PR form.
 <BR>  
 <FONT SIZE="-1">
 This document was generated
-by <I>Hans-Albert Schneider</I> on <I>October, 6  2002</I>
+by <I>Hans-Albert Schneider</I> on <I>January, 27  2003</I>
 using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
 "><I>texi2html</I></A>
 </FONT>
