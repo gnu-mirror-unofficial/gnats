@@ -1,0 +1,123 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Errors from running make test as stated in install document -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 10 May 2001 10:02:23 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010510115542.00b7fd78@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: F235p6fiPcQVjriLdEl00001f25@hotmail.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Errors from running make test as stated in install document</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00080">Date&nbsp;Index</A>] [<a href="subjects.html#00080">Subject&nbsp;Index</a>] [<a href="authors.html#00080">Author&nbsp;Index</a>] [<A HREF="threads.html#00080">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00079.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00079.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Errors from running make test as stated in install document</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Graham Lillico&quot; &lt;graham_lillico at hotmail dot com&gt;,gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Re: Errors from running make test as stated in install document</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 10 May 2001 12:00:51 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+At 10:52 10.05.2001 +0100, Graham Lillico wrote:
+&gt;However when i run the &quot;make test&quot; as directed to in the install doc I
+&gt;receive the following error.
+&gt;
+&gt;make test USERNAME=anon PASSWORD=pw DATABASE=gnats-db
+&gt;perl test.pl
+&gt;Content-type: text/html
+&gt;
+&gt;&lt;H1&gt;Software error:&lt;/H1&gt;
+&gt;&lt;CODE&gt;Can't call method &quot;header&quot; on an undefined value at gnatsweb.pl line
+&gt;2199.
+&gt;&lt;/CODE&gt;
+&gt;&lt;P&gt;
+&gt;Please send mail to this site's webmaster for help.
+&gt;[Thu May 10 10:44:24 2001] test.pl: Can't call method &quot;header&quot; on an
+&gt;undefined value at gnatsweb.pl line 2199.
+&gt;connect...........................................FAIL
+&gt;*** Error code 61
+&gt;
+&gt;Stop in /root/gnatsweb-2.8.0.
+
+We need some more information to resolve this:
+- Is your GNATS setup working properly?
+- Is your database called gnats-db?
+- Have you created the /etc/gnats-db.conf file with the proper contents 
+(See point 5 of the Gnatsweb INSTALL doc) ?
+- Are the access permissions in gnatsd.conf and gnatsd.access set so that 
+the web server can talk to gnatsd (See the INSTALL doc) ?
+
+- Yngve
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00079" href="msg00079.html">Errors from running make test as stated in install document</a></strong>
+<ul><li><em>From:</em> Graham Lillico</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00080">Date&nbsp;Index</A>] [<a href="subjects.html#00080">Subject&nbsp;Index</a>] [<a href="authors.html#00080">Author&nbsp;Index</a>] [<A HREF="threads.html#00080">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00079.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00079.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

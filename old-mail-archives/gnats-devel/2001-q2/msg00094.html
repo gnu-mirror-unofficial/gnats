@@ -1,0 +1,152 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: Makefile.in support for new send&#45;pr man pages -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 16 May 2001 15:43:50 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010516173445.050abc20@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: Makefile.in support for new send-pr man pages</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00094">Date&nbsp;Index</A>] [<a href="subjects.html#00094">Subject&nbsp;Index</a>] [<a href="authors.html#00094">Author&nbsp;Index</a>] [<A HREF="threads.html#00094">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00093.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00095.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00093.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00093.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: Makefile.in support for new send-pr man pages</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: Makefile.in support for new send-pr man pages</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Wed, 16 May 2001 17:42:17 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The following patch is for the send-pr/Makefile.in file of GNATS 4. It 
+accommodates the new send-pr.conf and the updated send-pr man pages. As 
+always, when patching makefiles, notice that the indentation from the left 
+margin must consist of TABs, not spaces.
+
+
+Index: Makefile.in
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/Makefile.in,v
+retrieving revision 1.6
+diff -u -p -r1.6 Makefile.in
+--- Makefile.in	2001/01/24 22:51:16	1.6
++++ Makefile.in	2001/05/16 15:21:00
+@@ -118,7 +118,7 @@ states.texi s-usage.texi categ.texi send
+
+  # Gordon took out send-pr.elc, instead installing send-pr.el.
+  # all: send-pr install-sid send-pr.elc send-pr.1
+-all: send-pr install-sid send-pr.el send-pr.1 version.texi
++all: send-pr install-sid send-pr.el send-pr.1 send-pr.conf.5 version.texi
+
+  send-pr: send-pr.sh Makefile
+  	sed -e 's,xVERSIONx,$(VERSION),' \
+@@ -174,6 +174,7 @@ install-norm-arch-dep:
+  	$(INSTALL_SCRIPT) send-pr $(bindir)/send-pr
+  	$(INSTALL_SCRIPT) install-sid $(bindir)/install-sid
+  	$(INSTALL_DATA) send-pr.1 $(man1dir)/send-pr.1
++    $(INSTALL_DATA) send-pr.conf.5 $(man5dir)/send-pr.conf.5
+
+  install-info: send-pr.info
+  	for i in send-pr.info* ; do \
+@@ -184,6 +185,7 @@ uninstall:
+  	-rm -f $(bindir)/send-pr $(bindir)/install-sid
+  	-rmdir $(datadir)/gnats
+  	-rm -f $(man1dir)/send-pr.1
++    -rm -f $(man5dir)/send-pr.conf.5
+  	-rm -f $(lispdir)/send-pr.el $(lispdir)/send-pr.elc
+  	-rm -f $(infodir)/send-pr.info*
+
+@@ -197,9 +199,13 @@ version.texi: Makefile
+  	mv $@-t $@
+
+  send-pr.1: Makefile
+-	sed -e 's,xVERSIONx,$(VERSION),g' $(srcdir)/send-pr.man &gt; $@-t
++	sed -e 's,xVERSIONx,$(VERSION),g' -e 's,xSYSCONFDIRx,$(sysconfdir),g' 
+$(srcdir)/send-pr.man &gt; $@-t
+  	mv $@-t $@
+
++send-pr.conf.5: Makefile
++    sed -e 's,xVERSIONx,$(VERSION),g' -e 's,xSYSCONFDIRx,$(sysconfdir),g' 
+$(srcdir)/send-pr.conf.man &gt; $@-t
++    mv $@-t $@
++
+  send-pr.info: send-pr.texi version.texi fields.texi s-usage.texi categ.texi
+  	$(MAKEINFO) -I $(srcdir) -o send-pr.info $(srcdir)/send-pr.texi
+
+@@ -225,7 +231,7 @@ stamp-gnats: Makefile
+  # Clean things up.
+
+  clean: mostlyclean
+-	-rm -f send-pr install-sid send-pr.1 send-pr.el send-pr.elc stamp-gnats
++	-rm -f send-pr install-sid send-pr.1 send-pr.conf.5 send-pr.el 
+send-pr.elc stamp-gnats
+  	-rm -f *.dvi
+
+  mostlyclean:
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00094">Date&nbsp;Index</A>] [<a href="subjects.html#00094">Subject&nbsp;Index</a>] [<a href="authors.html#00094">Author&nbsp;Index</a>] [<A HREF="threads.html#00094">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00093.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00095.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00093.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00093.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

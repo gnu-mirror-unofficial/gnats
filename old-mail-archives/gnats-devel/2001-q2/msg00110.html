@@ -1,0 +1,144 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: PATCH: v4 send&#45;pr &#45;&#45;request&#45;id is broken -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 27 May 2001 15:43:58 &#45;0000 -->
+<!--X-Message-Id: 87itimhllr.fsf@zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.0.0.25.2.20010515162348.00b68248@mail.trd.clustra.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: PATCH: v4 send-pr --request-id is broken</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00110">Date&nbsp;Index</A>] [<a href="subjects.html#00110">Subject&nbsp;Index</a>] [<a href="authors.html#00110">Author&nbsp;Index</a>] [<A HREF="threads.html#00110">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00109.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00111.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00109.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00089.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: PATCH: v4 send-pr --request-id is broken</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Re: PATCH: v4 send-pr --request-id is broken</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 27 May 2001 17:12:32 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00090.html">5.0.0.25.2.20010515162348.00b68248@mail.trd.clustra.com</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;YS&quot; == Yngve Svendsen &lt;yngve.svendsen@clustra.com&gt; writes:
+
+    YS&gt; send-pr --request-id is not working in the current v4
+    YS&gt; CVS. Instead of the intended PR, the default template would be
+    YS&gt; sent. The following patch fixes this.
+
+I don't understand the patch, could you elaborate, please?
+
+    YS&gt; Index: send-pr.sh
+    YS&gt; ===================================================================
+    YS&gt; RCS file: /cvs/gnats/gnats/send-pr/send-pr.sh,v
+    YS&gt; retrieving revision 1.16
+    YS&gt; diff -u -p -r1.16 send-pr.sh
+    YS&gt; --- send-pr.sh	2001/04/08 18:28:25	1.16
+    YS&gt; +++ send-pr.sh	2001/05/15 14:29:29
+    YS&gt; @@ -432,16 +432,16 @@ fi
+    YS&gt;   # TEMP is the PR that we are editing.  When we're done, REF will contain
+    YS&gt;   # the final PR to be sent.
+
+    YS&gt; -while [ -z &quot;$REQUEST_ID&quot; ]; do
+    YS&gt; -  CNT=0
+    YS&gt; +#
+    YS&gt; +# Remove comments.
+    YS&gt; +#
+    YS&gt; +echo '/^SEND-PR:/d' &gt;&gt; $FIXFIL
+    YS&gt; +sed -f $FIXFIL $TEMP &gt; $REF
+
+    YS&gt; -  #
+    YS&gt; -  #	Remove comments.
+    YS&gt; -  #
+    YS&gt; -  echo '/^SEND-PR:/d' &gt;&gt; $FIXFIL
+    YS&gt; -  sed -f $FIXFIL $TEMP &gt; $REF
+    YS&gt; +# REF now has the actual PR that we want to send.
+
+    YS&gt; -  # REF now has the actual PR that we want to send.
+    YS&gt; +while [ -z &quot;$REQUEST_ID&quot; ]; do
+    YS&gt; +  CNT=0
+
+    YS&gt;     #
+    YS&gt;     # Check that synopsis is not empty.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+  _/_\_/_  o     _\_/_\_  o     _/_\_/_  o     _\_/_\_  o    BEWARE!
+-&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--   *Bugs* are
+   / \ /   o      \ / \   o      / \ /   o      \ / \   o     approaching!
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00090" href="msg00090.html">PATCH: v4 send-pr --request-id is broken</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00110">Date&nbsp;Index</A>] [<a href="subjects.html#00110">Subject&nbsp;Index</a>] [<a href="authors.html#00110">Author&nbsp;Index</a>] [<A HREF="threads.html#00110">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00109.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00111.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00109.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00089.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

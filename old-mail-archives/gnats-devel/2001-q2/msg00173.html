@@ -1,0 +1,156 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: access control -->
+<!--X-From-R13: Vnaf&#45;Oyoreg Epuarvqre <Vnaf&#45;Oyoreg.EpuarvqreNzpuc.fvrzraf.qr> -->
+<!--X-Date: 13 Jun 2001 12:20:22 &#45;0000 -->
+<!--X-Message-Id: 15143.23160.854080.589552@mail&#45;g.mchp.siemens.de -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 7xr8xaac5q.fsf@lambda.novdv.ru -->
+<!--X-Reference: 87n17fysfn.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hans-Albert Schneide - Re: access control</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00173">Date&nbsp;Index</A>] [<a href="subjects.html#00173">Subject&nbsp;Index</a>] [<a href="authors.html#00173">Author&nbsp;Index</a>] [<A HREF="threads.html#00173">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00172.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00174.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00172.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00180.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: access control</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: access control</li>
+<li><em>From</em>: Hans-Albert Schneider &lt;Hans-Albert dot Schneider at mchp dot siemens dot de&gt;</li>
+<li><em>Date</em>: Wed, 13 Jun 2001 14:20:08 +0200 (MET DST)</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00114.html">7xr8xaac5q.fsf@lambda.novdv.ru</a>&gt;&lt;<a href="msg00162.html">87n17fysfn.fsf@blackbird.zamazal.org</a>&gt;</li>
+<li><em>Reply-To</em>: Hans-Albert dot Schneider at mchp dot siemens dot de</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;MZ&quot; == Milan Zamazal &lt;pdm@zamazal.org&gt; writes:
+
+&gt;&gt;&gt;&gt;&gt; &quot;PN&quot; == Peter Novodvorsky &lt;nidd@altlinux.ru&gt; writes:
+
+    PN&gt; Is it enough? ;-)
+
+    MZ&gt; Pardon my ignorance. :-) Generally, I'd be curious
+    MZ&gt; whether your problems come from a real experience or you
+    MZ&gt; just think only on a theoretical level.
+
+I cannot speak for Peter, of course.  However, we are currently
+using GNATS internally.  Opening it to our customers would
+require some method to restrict access such that customers are
+unable to see the reports submitted by other customers, because
+the reports sometimes include real-life data of the customer.  Of
+course, each customer should be able to see all their own
+reports.  (So the granularity of the &quot;confidential&quot; flag is too
+coarse.)
+
+As our customers do not have accounts on our machines, and there
+is no query-pr mail alias they could use, it is OK for us if this
+is implemented in gnatsd.
+
+A first idea that comes into my mind is to have a mapping of
+usernames
+- to submitter id(s) the user is allowed to use in submitting
+  reports, and
+- to the submitter ids whose reports this user may see (both in
+  listings and in full).  [BTW, this would interfere with the
+  &quot;merging duplicates&quot; feature discussed recently on the list.]
+
+The mapping could be done by two optional fields to gnatsd.access.
+
+This feature could be combined with the &quot;confidential&quot; flag:
+Reports marked confidential are only visible to the same
+submitter id, others are visible to everyone.
+
+Of course, the developers must be able to see all reports, as
+should those of us who do consulting for the customers.
+
+
+Hans-Albert
+
+PS: If somebody wants to discuss this with me: I will not be able
+to access this mailbox from June 14 to June 24, inclusive.
+
+-- 
+Hans-Albert Schneider		&lt;Hans-Albert.Schneider@mchp.siemens.de&gt;
+Siemens AG			phone:	(+49) 89 636 45445
+Corporate Technology		fax:	(+49) 89 636 42284
+Munich, Germany
+ -- To get my public PGP key, send me a mail with subject &quot;send key&quot; --
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00180" href="msg00180.html">Re: access control</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00114" href="msg00114.html">modular database backends</a></strong>
+<ul><li><em>From:</em> Peter Novodvorsky</li></ul></li>
+<li><strong><a name="00162" href="msg00162.html">Re: access control (was Re: modular database backends)</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00173">Date&nbsp;Index</A>] [<a href="subjects.html#00173">Subject&nbsp;Index</a>] [<a href="authors.html#00173">Author&nbsp;Index</a>] [<A HREF="threads.html#00173">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00172.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00174.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00172.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00180.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: patches for PR 218, index corruption -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 8 Nov 2001 18:23:28 &#45;0000 -->
+<!--X-Message-Id: 87snbpa2jo.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5B1CAAC2F0818444BF07B7AD8845E53C0D80D4@ELECTRON.jnpr.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: patches for PR 218, index corruption</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00109">Date&nbsp;Index</A>] [<a href="subjects.html#00109">Subject&nbsp;Index</a>] [<a href="authors.html#00109">Author&nbsp;Index</a>] [<A HREF="threads.html#00109">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00108.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00110.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00108.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00087.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: patches for PR 218, index corruption</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Subject</em>: Re: patches for PR 218, index corruption</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 08 Nov 2001 13:07:55 +0100</li>
+<li><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00075.html">5B1CAAC2F0818444BF07B7AD8845E53C0D80D4@ELECTRON.jnpr.net</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt;&gt;&gt;&gt;&gt; &quot;DB&quot; == Dirk Bergstrom &lt;dirk@juniper.net&gt; writes:
+
+    DB&gt; the patches themselves, along with a copy of this message and
+    DB&gt; appropriate changelog entries, are available at this URL:
+
+    DB&gt; <A  HREF="http://www.otisbean.com/gnats/race-patch.txt">http://www.otisbean.com/gnats/race-patch.txt</A>
+
+Applied, thanks.  (I'll commit it as soon as GNATS CVS is working
+again.)
+
+However, I don't think the problem is completely gone:
+
+    DB&gt; *) gnats read in the index before locking the database, but didn't
+    DB&gt;  check to see if the index had been modified before writing out it's
+    DB&gt;  cached copy.  the race went like this: 
+
+    DB&gt;  0) gnatsd A is finishing up an edit on PR 123...
+    DB&gt;  1) gnatsd B reads index
+    DB&gt;  2) A writes new index, &amp; unlocks DB
+    DB&gt;  3) B locks DB
+    DB&gt;  3) B edits PR 456, modifying index in memory
+    DB&gt;  4) B writes out index from memory
+
+    DB&gt;  thus A's changes to the index entry for PR 123 would be lost,
+    DB&gt;  overwritten by B's copy of the index.  i modified getFirstPr() so
+    DB&gt;  that it always calls checkPRChain() to check mtime of the index on
+    DB&gt;  disk before using data in memory; if cached data is stale, the index
+    DB&gt;  is re-read.  also added a final check in the writeIndex routine to
+    DB&gt;  catch problems and alert the administrator.  this adds a few stat()
+    DB&gt;  calls to an edit transaction, which is a small cost.  it has no
+    DB&gt;  effect on queries.
+
+The granularity of time_t on GNU systems is one second, so the mtime
+test is better than nothing, but it doesn't ensure the index data isn't
+stale when writing the index.  Wouldn't it be better to always reread
+the index before altering it?
+
+Regards,
+
+Milan Zamazal
+
+-- 
+The world is not something you can wrap your head around without needing years
+of experience.                              -- Kent M. Pitman in comp.lang.lisp
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00075" href="msg00075.html">patches for PR 218, index corruption</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00109">Date&nbsp;Index</A>] [<a href="subjects.html#00109">Subject&nbsp;Index</a>] [<a href="authors.html#00109">Author&nbsp;Index</a>] [<A HREF="threads.html#00109">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00108.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00110.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00108.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00087.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

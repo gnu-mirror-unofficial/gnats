@@ -1,0 +1,192 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: access control (was Re: modular database backends) -->
+<!--X-From-R13: Brgre @bibqibefxl <avqqNnygyvahk.eh> -->
+<!--X-Date: 13 Jun 2001 17:44:54 &#45;0000 -->
+<!--X-Message-Id: 3B27A73D.1010304@altlinux.ru -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 7xr8xaac5q.fsf@lambda.novdv.ru -->
+<!--X-Reference: 87n17fysfn.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Peter Novodvorsky - Re: access control (was Re: modular database backends)</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00178">Date&nbsp;Index</A>] [<a href="subjects.html#00178">Subject&nbsp;Index</a>] [<a href="authors.html#00178">Author&nbsp;Index</a>] [<A HREF="threads.html#00178">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00177.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00179.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00177.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00115.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: access control (was Re: modular database backends)</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: access control (was Re: modular database backends)</li>
+<li><em>From</em>: Peter Novodvorsky &lt;nidd at altlinux dot ru&gt;</li>
+<li><em>Date</em>: Wed, 13 Jun 2001 21:47:41 +0400</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Organization</em>: Terrapin Station</li>
+<li><em>References</em>: &lt;<a href="msg00114.html">7xr8xaac5q.fsf@lambda.novdv.ru</a>&gt; &lt;<a href="msg00162.html">87n17fysfn.fsf@blackbird.zamazal.org</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Milan Zamazal wrote:
+
+&gt;&gt;&gt;&gt;&gt;&gt; &quot;PN&quot; == Peter Novodvorsky &lt;nidd@altlinux.ru&gt; writes:
+&gt;&gt;&gt;&gt;&gt; 
+&gt; 
+&gt;     PN&gt; 1). i don't like that client can pass without authentication
+&gt;     PN&gt; phase.  If he want to login as anonymous, he has to do it. IE,
+&gt; 
+&gt;     PN&gt; USER anonymous nidd@altlinux.ru
+&gt; 
+&gt; Hm, are there any *real* benefits of this except it's annoying during
+&gt; debugging?:-)
+
+Yes, I want to devide everything in several stages. One of them is 
+authentification
+stage (Like in ftp/pop3).
+
+&gt; 
+&gt; 
+&gt;     PN&gt; 2). I don't like that check of user/password is made by gnatsd
+&gt;     PN&gt; and not by &quot;database driver&quot;. I mean that function that
+&gt;     PN&gt; authentificates user isn't called by init_gnats that actually
+&gt;     PN&gt; connects to database, but after it.  Access control is done by
+&gt;     PN&gt; gnatsd, and not by database driver.
+&gt; 
+&gt; IMO this is implied by the fact that there are actually several
+&gt; authentication methods in GNATS.  The &quot;built-in&quot; methods are file system
+&gt; permissions and the gnatsd mechanism.  Since gnatsd is supposed to be
+&gt; the only method of accessing GNATS through network, I can't see anything
+&gt; much wrong in that gnatsd performs *the* authentication
+
+Yes, this is ok for current version.
+
+&gt; 
+&gt; 
+&gt;     PN&gt; 3). There is no access control for query-pr, send-pr and
+&gt;     PN&gt; edit-pr. This is close to the subject of 2)., because
+&gt;     PN&gt; authentification is made on the side of client, not on the side
+&gt;     PN&gt; of database.
+&gt; 
+&gt; I'd consider this a feature.  It's sometimes useful to be able to access
+&gt; GNATS data based on the file system permissions.  If you don't like
+&gt; that, simply chmod go-rwx the database directory and force users to
+&gt; access the database via query-pr etc. connections to localhost, thus
+&gt; moving the authentication to gnatsd (single place).
+
+OK.
+
+&gt; 
+&gt; 
+&gt;     PN&gt; 4). I want that some bugs can be edited only by group of
+&gt;     PN&gt; developers.  It can't be done in current version.
+&gt; 
+&gt; I think this complaint is legitimate.
+&gt; 
+&gt;     PN&gt; Is it enough? ;-)
+&gt; 
+&gt; Pardon my ignorance. :-) Generally, I'd be curious whether your problems
+&gt; come from a real experience or you just think only on a theoretical
+&gt; level.  
+
+Some of them come for theoretical level, and some of them have real-life 
+reasons.
+Company I work for makes a distribution. It is maintained by my 
+coworkers and some
+people who volounteer. I want them to have rights to edit only their bug 
+reports while
+office people to edit any bug report.
+
+&gt; My experience with running BTS is that the more access control
+&gt; the more problems (the first one being users don't bother to use the
+&gt; BTS).  There is no access control in the Debian BTS and it works well.
+
+Remember two things:
+1). Debian is open project, it doesn't have competitives that want to 
+spoil it's
+buisiness.
+2). Debian isn't commercial project and if BTS gets spammed and is down for
+1 day, it is not critical while in company you loose one buisness day.
+
+This is one of reasons why I decided not to use debbugs (another were that
+it is very ugly perl with pieces of source code put in aj's home dir, 
+and you
+cannot find them in CVS :).
+
+&gt; I don't say some things shouldn't be improved but it's a low priority
+&gt; issue for me.  For instance, I consider the modular database backends
+&gt; problem much more important and useful than the access control features.
+
+OK. In this case I was talking about non-existing GNATS5. ;-)
+
+                                                                         
+                              Nidd.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00114" href="msg00114.html">modular database backends</a></strong>
+<ul><li><em>From:</em> Peter Novodvorsky</li></ul></li>
+<li><strong><a name="00162" href="msg00162.html">Re: access control (was Re: modular database backends)</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00178">Date&nbsp;Index</A>] [<a href="subjects.html#00178">Subject&nbsp;Index</a>] [<a href="authors.html#00178">Author&nbsp;Index</a>] [<A HREF="threads.html#00178">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00177.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00179.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00177.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00115.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

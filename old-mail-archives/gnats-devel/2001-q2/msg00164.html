@@ -1,0 +1,119 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: gnats file placement -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 11 Jun 2001 18:53:40 &#45;0000 -->
+<!--X-Message-Id: 87g0d7x8lq.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20010606215249.00a25650@maestro.clustra.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: gnats file placement</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00164">Date&nbsp;Index</A>] [<a href="subjects.html#00164">Subject&nbsp;Index</a>] [<a href="authors.html#00164">Author&nbsp;Index</a>] [<A HREF="threads.html#00164">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00161.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00166.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00161.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00165.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats file placement</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Re: gnats file placement</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 11 Jun 2001 18:52:01 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00148.html">5.1.0.14.2.20010606215249.00a25650@maestro.clustra.com</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;YS&quot; == Yngve Svendsen &lt;yngve.svendsen@clustra.com&gt; writes:
+
+    YS&gt; I do suspect that these things won't happen for 4.0, but one
+    YS&gt; thing that I think is fairly pressing is the placement of the
+    YS&gt; global gnatsd.host_access and gnatsd.access files. They are
+    YS&gt; currently located in the rather illogical location of
+    YS&gt; /PREFIX/share/gnats. They should be located together with the
+    YS&gt; other global files, namely the databases and send-pr.conf files,
+    YS&gt; currently in /usr/local/etc/gnats.
+
+You're right, fixed.
+
+    YS&gt; Preferably, all these files should then be moved to /etc/gnats.
+
+This is in the hands of autoconf, that sets ${sysconfdir} to
+${prefix}/etc unconditionally.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+SomeProgrammersLikeWritingLikeThis.However,IDontThinkThisFormOfCommunicationIs\
+AGoodIdea.IApologizeToAllWhoCantReadMyTextsWrittenInAClassicStyle.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00148" href="msg00148.html">Re: gnats file placement</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00164">Date&nbsp;Index</A>] [<a href="subjects.html#00164">Subject&nbsp;Index</a>] [<a href="authors.html#00164">Author&nbsp;Index</a>] [<A HREF="threads.html#00164">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00161.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00166.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00161.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00165.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

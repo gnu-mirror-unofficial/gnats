@@ -1,0 +1,211 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: FW: gnats devel FW: New time zones -->
+<!--X-From-R13: Rvex Pretfgebz <qvexNwhavcre.arg> -->
+<!--X-Date: 21 May 2001 23:09:23 &#45;0000 -->
+<!--X-Message-Id: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AA03@postal.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - FW: gnats devel FW: New time zones</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00101">Date&nbsp;Index</A>] [<a href="subjects.html#00101">Subject&nbsp;Index</a>] [<a href="authors.html#00101">Author&nbsp;Index</a>] [<A HREF="threads.html#00101">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00100.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00102.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00100.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00104.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>FW: gnats devel FW: New time zones</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;'gnats-devel at sources dot redhat dot com'&quot; &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: FW: gnats devel FW: New time zones </li>
+<li><em>From</em>: Dirk Bergstrom &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Mon, 21 May 2001 16:09:17 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+i passed the last message on to a guy in my group who has a lot of clue
+about timezone processing.  his reply is below.
+
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,   Engineering Web Guru
+Tel: 408.745.3182           Fax: 408.745.8095
+ 
+
+-----Original Message-----
+From: Mark Baushke 
+Sent: Monday, May 21, 2001 2:51 PM
+To: Dirk Bergstrom
+Subject: Re: gnats devel FW: New time zones 
+
+Using time always in UTC (aka GMT) with a parenthetical comment of the
+local time (using a numeric offset) would be best.
+
+RFC 822 has been superceeded by RFC 2822.
+
+As has been noted, %z is a non-standard format for strftime().
+
+I typically build-my-own %z equivalent out of using the same reference
+time and passing it to both localtime() and gmtime() converting back
+to seconds and then doing the subtraction to get the offset in seconds
+and dividing by 36 to get 'hours' in hundreds.
+
+Carl E. Lindberg [<A  HREF="mailto:lindberg@clindberg.org">mailto:lindberg@clindberg.org</A>] writes:
+&gt;     I have code (portable I think) that generates the numeric offset 
+&gt;string if anyone is interested in that.
+
+I suggest someone take Carl up on his offer.
+
+For what it is worth, the %z format was introduced to FreeBSD 4.0 in
+that lib/libc/stdtime/strftime.c in version 1.25 of the file which was
+in FreeBSD 4.0 and subsequent releases contains the patch to support it.
+
+My recommendation would be to use a configure test for the %z format
+and then use strftime() if it works or use a compatibility package if
+it does not.
+
+	-- Mark
+
+&gt; -----Original Message-----
+&gt; From: Carl E. Lindberg [<A  HREF="mailto:lindberg@clindberg.org">mailto:lindberg@clindberg.org</A>]
+&gt; Sent: Monday, May 21, 2001 2:21 PM
+&gt; To: Milan Zamazal
+&gt; Cc: gnats-devel@sources.redhat.com
+&gt; Subject: Re: New time zones
+&gt; 
+&gt; 
+&gt; 
+&gt;  &gt; I've looked into `tar' sources, where GNATS' getdate.y apparently
+&gt;  &gt; originates.
+&gt; 
+&gt;      Actually I think the original ancestor is parsedate.y in the INN 
+&gt; package, but whatever.  I'm sure GNU has had their own development fork 
+&gt; for a long time now.
+&gt; 
+&gt;  &gt; I think we should give up on adding new time zones and update
+&gt;  &gt; getdate.y to a newer version instead.  getdate.y seems to be shared &gt; 
+&gt; by more GNU programs (similarly as e.g. regexp.c) and I can't see
+&gt;  &gt; any reason to divert from it.
+&gt; 
+&gt;      Probably a good idea.  As a side note, the code that does parsing of 
+&gt; the military time zones should be removed (not sure if tar's version 
+&gt; still has it or not).  getdate.y implements them per RFC822, but the RFC 
+&gt; got all the offsets backwards, so it's not much use.  The military zones 
+&gt; were deprecated in a later mail RFC, and the code can actually lead to 
+&gt; accepting some very weird strings as valid dates.
+&gt; 
+&gt; 
+&gt;  &gt; I also plan to replace %Z occurrences in strftime calls by %z.
+&gt;  &gt; This has already been applied in the Debian GNATS package long time
+&gt;  &gt; ago and there were no problems reported about it.
+&gt; 
+&gt;      GNATS absolutely should switch to using numeric time zone offsets.  
+&gt; Trying to read the time zone abbreviations is not really feasible (as 
+&gt; the tar source indicated).  The abbreviations were officially eliminated 
+&gt; in the recent mail RFC 2822, I think, because of their inherent 
+&gt; problems.  [They had been deprecated even earlier.]
+&gt;      There have been fairly constant bug reports over the past few years 
+&gt; from people in certain locales not being able to use GNATS until they 
+&gt; modified getdate.y and recompiled, and switching to numeric offsets is 
+&gt; really the only way to solve that.  getdate.y parses the numeric offsets 
+&gt; just fine, so there should be no problems there.
+&gt; 
+&gt;  &gt; Any objections?
+&gt; 
+&gt;      Unfortunately, %z is a non-standard strftime() format.  Linux has 
+&gt; it, which is why Debian could get away with their change.  My Solaris 
+&gt; 2.5 box supports it too, though it's undocumented.  NEXTSTEP, MacOS X, 
+&gt; and FreeBSD 3.x don't have it, so I'd guess most/all of the BSD Unices 
+&gt; don't have it.  Thus, making this change would unfortunately break GNATS 
+&gt; on a lot of platforms.
+&gt;
+&gt;      I'm not sure what the best way to fix this is.
+&gt; 
+&gt;      One solution would be to always use UTC/GMT everywhere, but this is 
+&gt; really annoying when reading PRs (since you have to mentally convert 
+&gt; back to local time if the time is important).
+&gt; 
+&gt;      Another would be to use GMT and have local time in parentheses, 
+&gt; which is effectively a comment as far as  getdate.y is concerned.
+&gt; 
+&gt;      Or, the code could be changed to use a custom gnats_strftime() 
+&gt; function, which could replace the %z itself then call strftime() to do 
+&gt; the rest.  [Or similarly, just have a getcurrenttimestring() function to 
+&gt; create a time string using a consistent format.]
+&gt; 
+&gt;      The last option is probably preferable, but the most work.  It is 
+&gt; somewhat problematic if shell scripts need to create a date string -- 
+&gt; they can't use the 'date' command anymore.  At least one of the scripts 
+&gt; in gnats 3.x did, but I'm not sure about gnats 4.  If it's still needed, 
+&gt; the only way around this would be to use the -u option of 'date' to 
+&gt; force GMT, which would always be parsed correctly at least.  Or, create 
+&gt; a special gnatsdate program and put it in xxx/libexec, and scripts could 
+&gt; use that.
+&gt; 
+&gt;      I have code (portable I think) that generates the numeric offset 
+&gt; string if anyone is interested in that.
+&gt; 
+&gt; 	-Carl Lindberg
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00101">Date&nbsp;Index</A>] [<a href="subjects.html#00101">Subject&nbsp;Index</a>] [<a href="authors.html#00101">Author&nbsp;Index</a>] [<A HREF="threads.html#00101">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00100.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00102.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00100.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00104.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

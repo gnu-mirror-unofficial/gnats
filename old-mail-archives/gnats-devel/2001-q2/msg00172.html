@@ -1,0 +1,151 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Current Gnats 4 CVS broken on Solaris -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 12 Jun 2001 20:23:30 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010612221913.00ba0828@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 87g0d85psm.fsf@blackbird.zamazal.org -->
+<!--X-Reference: 5.0.0.25.2.20010530174652.00b23a10@mail.trd.clustra.com -->
+<!--X-Reference: 5.1.0.14.2.20010511013313.00ba72d8@iwww.clustra.com -->
+<!--X-Reference: 5.0.0.25.2.20010612171703.04c66ec0@mail.trd.clustra.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Current Gnats 4 CVS broken on Solaris</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00172">Date&nbsp;Index</A>] [<a href="subjects.html#00172">Subject&nbsp;Index</a>] [<a href="authors.html#00172">Author&nbsp;Index</a>] [<A HREF="threads.html#00172">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00171.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00173.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00171.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00177.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Current Gnats 4 CVS broken on Solaris</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: Current Gnats 4 CVS broken on Solaris</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 12 Jun 2001 22:25:02 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00157.html">87g0d85psm.fsf@blackbird.zamazal.org</a>&gt;&lt;<a href="msg00130.html">5.0.0.25.2.20010530174652.00b23a10@mail.trd.clustra.com</a>&gt;&lt;<a href="msg00085.html">5.1.0.14.2.20010511013313.00ba72d8@iwww.clustra.com</a>&gt;&lt;<a href="msg00085.html">5.1.0.14.2.20010511013313.00ba72d8@iwww.clustra.com</a>&gt;&lt;<a href="msg00130.html">5.0.0.25.2.20010530174652.00b23a10@mail.trd.clustra.com</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+At 17:19 12.06.2001 +0200, Yngve Svendsen wrote:
+&gt;At 17:15 10.06.2001 +0200, Milan Zamazal wrote:
+&gt;&gt; &gt;&gt;&gt;&gt;&gt; &quot;YS&quot; == Yngve Svendsen &lt;yngve.svendsen@clustra.com&gt; writes:
+&gt;&gt;
+&gt;&gt;     YS&gt; Sorry, but it seems the configure check for %z support isn't
+&gt;&gt;     YS&gt; working right.
+&gt;&gt;
+&gt;&gt;You're right.  strftime is going to become my nightmare. :-|  I tried to
+&gt;&gt;fix it and also added a patch by Carl enabling numeric time zones also
+&gt;&gt;on systems not supporting `%z'.  Please try whether it works or not.
+&gt;
+&gt;Unfortunately, the nightmare continues. &quot;make all&quot; results in the 
+&gt;following on a Solaris 7 system:
+
+[snip]
+
+On some systems, Solaris among them, isdigit() requires an explicit cast to 
+int. The very simple patch below fixes the problem and makes the current 
+GNATS 4 compile on both Solaris and Linux.
+
+I have compiled and done some testing, and as far as I can tell, all is now 
+well on systems that don't support %z.
+
+- Yngve
+
+
+Index: misc.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/misc.c,v
+retrieving revision 1.28
+diff -u -p -r1.28 misc.c
+--- misc.c      2001/06/10 17:15:47     1.28
++++ misc.c      2001/06/12 20:21:01
+@@ -567,7 +567,7 @@ gnats_strftime (char *s, size_t size, co
+      {
+        char buf[16];
+        strftime (buf, 16, &quot;%z&quot;, brokentime);
+-      have_strftime_with_z = isdigit (buf[1]);
++      have_strftime_with_z = isdigit ((int) (buf[1]));
+      }
+
+    if (have_strftime_with_z)
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00177" href="msg00177.html">Re: Current Gnats 4 CVS broken on Solaris</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00157" href="msg00157.html">Re: Current Gnats 4 CVS broken on Solaris</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+<li><strong><a name="00130" href="msg00130.html">Re: Current Gnats 4 CVS broken on Solaris</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00085" href="msg00085.html">Current Gnats 4 CVS broken on Solaris</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00170" href="msg00170.html">Re: Current Gnats 4 CVS broken on Solaris</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00172">Date&nbsp;Index</A>] [<a href="subjects.html#00172">Subject&nbsp;Index</a>] [<a href="authors.html#00172">Author&nbsp;Index</a>] [<A HREF="threads.html#00172">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00171.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00173.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00171.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00177.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

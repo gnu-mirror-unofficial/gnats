@@ -1,0 +1,129 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Unable to submit PR -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 17 May 2001 08:18:59 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010517101020.00b3f750@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 004601c0de72$0e5b5b00$a918a8c0@srm67e.greatsimplex.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Unable to submit PR</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00097">Date&nbsp;Index</A>] [<a href="subjects.html#00097">Subject&nbsp;Index</a>] [<a href="authors.html#00097">Author&nbsp;Index</a>] [<A HREF="threads.html#00097">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00096.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00098.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00096.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00098.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Unable to submit PR</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Lakshmi Narayanan&quot; &lt;narayanan at simplex-tech dot co dot jp&gt;,&lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: Re: Unable to submit PR</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 17 May 2001 10:20:34 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+At 10:38 17.05.2001 +0900, Lakshmi Narayanan wrote:
+&gt;Hi,
+&gt;
+&gt;    Recently I have installed Gnats 3.113 in Red Hat Linux release 6.2.
+&gt;And I face the following problems:
+&gt;
+&gt;    1. Running gnatsd says '520 You are not in the host access list' error.
+&gt;    2. I could not submit PR.  The PR is stored as a mail with the following
+&gt;error msg.
+&gt;    ----- The following addresses had permanent fatal errors -----
+&gt;&quot;| /usr/local/gnats/libexec/gnats/queue-pr -q&quot;
+&gt;     (expanded from: bug-q)
+&gt;
+&gt;    ----- Transcript of session follows -----
+&gt;sh: queue-pr not available for sendmail programs
+&gt;554 &quot;| /usr/local/gnats/libexec/gnats/queue-pr -q&quot;... Service unavailable
+
+You have a secured sendmail installation, and in order for sendmail to 
+invoke a program from a mail alias, you need to tell sendmail that the 
+program is safe. This is done by symbolically linking from the directory 
+/etc/smrsh to the program you want to have sendmail start. Do as follows if 
+your sendmail and GNATS installations are fairly standard:
+
+cd /etc
+mkdir smrsh (if the smrsh dir isn't already there)
+cd smrsh
+Then make a symbolic link &quot;queue-pr&quot; from the smrsh dir to the queue-pr 
+program:
+ln -s /path to/queue-pr queue-pr
+
+That should do it.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00095" href="msg00095.html">Unable to submit PR</a></strong>
+<ul><li><em>From:</em> Lakshmi Narayanan</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00097">Date&nbsp;Index</A>] [<a href="subjects.html#00097">Subject&nbsp;Index</a>] [<a href="authors.html#00097">Author&nbsp;Index</a>] [<A HREF="threads.html#00097">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00096.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00098.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00096.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00098.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: disallowing intial high&#45;priority PRs -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 24 Jun 2001 18:26:46 &#45;0000 -->
+<!--X-Message-Id: 87zoaxyjsd.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20010620130144.A2177@disaster.jaj.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: disallowing intial high-priority PRs</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00193">Date&nbsp;Index</A>] [<a href="subjects.html#00193">Subject&nbsp;Index</a>] [<a href="authors.html#00193">Author&nbsp;Index</a>] [<A HREF="threads.html#00193">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00192.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00194.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00192.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00201.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: disallowing intial high-priority PRs</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Phil Edwards &lt;pedwards at disaster dot jaj dot com&gt;</li>
+<li><em>Subject</em>: Re: disallowing intial high-priority PRs</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 24 Jun 2001 17:33:38 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00186.html">20010620130144.A2177@disaster.jaj.com</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;PE&quot; == Phil Edwards &lt;pedwards@disaster.jaj.com&gt; writes:
+
+    PE&gt; I've been informally requested to look into disallowing random
+    PE&gt; anonymous submitters from sending in PRs with the priority set
+    PE&gt; to 'high'.  There's a local policy that only the project
+    PE&gt; maintainers have authority to set 'high' priority (and thus
+    PE&gt; steering the actions of a lot of people), and an annoying number
+    PE&gt; of the PRs showing up are from well-meaning people who feel
+    PE&gt; their specific problem is really really important.  (It is to
+    PE&gt; /them/ but...)
+
+    PE&gt; Anyhow, I spewed out this hack.  Am I headed in the right
+    PE&gt; direction?  (The problem with testing it is that the only gnatsd
+    PE&gt; server available to me is the one I'd eventually be modifying,
+    PE&gt; i.e., no spare servers.)
+
+Thanks, Phil, for your suggestion.  However so that the patch was really
+useful, the following things must be ensured:
+
+- It's not worth to bother with GNATS 3.113, it's not developed anymore.
+  The current development tree is GNATS 4 in CVS.  It's a major rewrite
+  so it's usually not possible to apply GNATS 3.113 patches into GNATS 4.
+  See <A  HREF="http://sources.redhat.com/gnats/">http://sources.redhat.com/gnats/</A> for information how to access
+  GNATS' CVS.
+
+- The feature mustn't be hard-wired.  Your improvement is useful to you
+  and I'm sure it would be useful to other people as well, but not to
+  everyone.  If you think about such an improvement, I'd start with
+  thinking about an appropriate configuration option in `dbconfig'
+  (present only in GNATS 4).
+
+BTW, if you need to test your changes on a running server, you can
+configure GNATS for installation in a totally different directory and
+test it there.  You can also configure it to connect to a gnatsd on a
+different port than the default one or you can run gnatsd manually from
+a command line.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+The world is not something you can wrap your head around without needing years
+of experience.                              -- Kent M. Pitman in comp.lang.lisp
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00201" href="msg00201.html">Re: disallowing intial high-priority PRs</a></strong>
+<ul><li><em>From:</em> Phil Edwards</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00186" href="msg00186.html">disallowing intial high-priority PRs</a></strong>
+<ul><li><em>From:</em> Phil Edwards</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00193">Date&nbsp;Index</A>] [<a href="subjects.html#00193">Subject&nbsp;Index</a>] [<a href="authors.html#00193">Author&nbsp;Index</a>] [<A HREF="threads.html#00193">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00192.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00194.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00192.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00201.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Gnatsweb 2.8.0 -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 10 May 2001 08:41:01 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010510103321.00b5bd48@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: F221XsL1c00goZolmRB0000204f@hotmail.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Gnatsweb 2.8.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00078">Date&nbsp;Index</A>] [<a href="subjects.html#00078">Subject&nbsp;Index</a>] [<a href="authors.html#00078">Author&nbsp;Index</a>] [<A HREF="threads.html#00078">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00077.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00079.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00077.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00076.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnatsweb 2.8.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Graham Lillico&quot; &lt;graham_lillico at hotmail dot com&gt;,gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Re: Gnatsweb 2.8.0</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 10 May 2001 10:39:32 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+At 09:29 10.05.2001 +0100, Graham Lillico wrote:
+&gt;Hi,
+&gt;
+&gt;I am currently running on FreeBSD-4.3-20010429-STABLE and trying to 
+&gt;install gnatsweb 2.8.0 but I have hit a problem, it seems that gnatsweb 
+&gt;requires CGI version 2.56 or greater and I only have 2.46 installed, I 
+&gt;think (but could quite easily be wrong) that gnatsweb gets its version 
+&gt;from CGI.pm but the newer version does not use CGI.pm as far as I can tell.
+&gt;
+&gt;My question is how do I upgrade my version of CGI? I have tried compiling 
+&gt;p5-CGI-2.76 from the ports collection but this doesn't seems to have 
+&gt;changed anything.
+&gt;
+&gt;Is this a bug?  If so let me know and I will raise a PR about it.
+
+If you have the CPAN perl module installed, do the following:
+perl -MCPAN -e 'install CGI'
+
+If you don't have the CPAN module installed, get CGI.pm manually from 
+<A  HREF="http://www.cpan.org/authors/id/L/LD/LDS/CGI.pm-2.753.tar.gz">http://www.cpan.org/authors/id/L/LD/LDS/CGI.pm-2.753.tar.gz</A>
+
+Then unpack and follow the instructions in the Readme file.
+
+This is of course all assuming you have the permissions to install things 
+on your machine.
+
+Hope this helps,
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00077" href="msg00077.html">Gnatsweb 2.8.0</a></strong>
+<ul><li><em>From:</em> Graham Lillico</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00078">Date&nbsp;Index</A>] [<a href="subjects.html#00078">Subject&nbsp;Index</a>] [<a href="authors.html#00078">Author&nbsp;Index</a>] [<A HREF="threads.html#00078">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00077.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00079.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00077.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00076.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: gnatsweb 2.7beta ignoring some server errors + fix -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 1 May 2001 21:20:10 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010501225555.00b8a010@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20010321172744.A7530@tango.mayannetworks.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: gnatsweb 2.7beta ignoring some server errors + fix</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00062">Date&nbsp;Index</A>] [<a href="subjects.html#00062">Subject&nbsp;Index</a>] [<a href="authors.html#00062">Author&nbsp;Index</a>] [<A HREF="threads.html#00062">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00061.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00063.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00061.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00061.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnatsweb 2.7beta ignoring some server errors + fix</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;G. Paul Ziemba&quot; &lt;paul at mayannetworks dot com&gt;,gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Re: gnatsweb 2.7beta ignoring some server errors + fix</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 01 May 2001 23:06:10 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+At 17:27 21.03.2001 -0800, G. Paul Ziemba wrote:
+&gt;When I submit an edit (sub submitedit), sometimes the gnats
+&gt;server returns an error to the lock command (e.g., &quot;490 ...&quot;).
+&gt;Gnatsweb did not catch that error, and eventually generated a
+&gt;misleading error message to the effect that:
+&gt;
+&gt;     &amp;$err_sub(&quot;PR $pr has been modified since you started editing it.&quot;,
+&gt;         &quot;Please return to the edit form, press the Reload button, &quot;
+&gt;         . &quot;then make your edits again.\n&quot;
+&gt;         . &quot;&lt;pre&gt;Last-Modified was    '$fields{'Last-Modified'}'\n&quot;
+&gt;         . &quot;Last-Modified is now '$oldfields{'Last-Modified'}'&lt;/pre&gt;\n&quot;);
+&gt;
+&gt;because %oldfields did not have any significant values in it.
+&gt;
+&gt;My fix was to modify lockpr to look for an undef returned by
+&gt;client_cmd(&quot;lock $pr $user&quot;) and to then return undef itself
+&gt;in that case. Further, to modify submitedit to detect an &quot;undef&quot;
+&gt;return from lockpr and then to call &amp;$err_sub with $gnats::FULL_ERRSTR
+&gt;to print the server error to the user.
+&gt;
+&gt;I am sure my quick hack is not the best approach to this problem,
+&gt;so I am sending merely this explanation in hopes that Gerald or
+&gt;someone else can generate a better fix.
+
+Thanks for reporting this. This seems to happen only when the locking of 
+the PR just before the LOCKED block in submitedit fails. The error handling 
+routine was simply missing, and this is a consequence of the somewhat 
+unfinished move of all gnatsd-related code to the gnats.pm module.
+
+I added error handling for this in 2.8.0,  returning the proper &quot;PR locked&quot; 
+error message. The Gnatsweb from the Gnats 4 CVS does not seem to suffer 
+from these problems.
+
+Now, I'll just have to find out how the lock file got there in the first 
+place...
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00062">Date&nbsp;Index</A>] [<a href="subjects.html#00062">Subject&nbsp;Index</a>] [<a href="authors.html#00062">Author&nbsp;Index</a>] [<A HREF="threads.html#00062">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00061.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00063.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00061.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00061.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

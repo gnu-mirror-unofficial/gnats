@@ -1,0 +1,140 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: persistent DB connections (was: RE: modular database backends) -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 11 Jun 2001 18:53:49 &#45;0000 -->
+<!--X-Message-Id: 873d97ypvy.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AA6A@postal.jnpr.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: persistent DB connections (was: RE: modular database backends)</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00163">Date&nbsp;Index</A>] [<a href="subjects.html#00163">Subject&nbsp;Index</a>] [<a href="authors.html#00163">Author&nbsp;Index</a>] [<A HREF="threads.html#00163">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00167.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00165.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00167.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00132.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: persistent DB connections (was: RE: modular database backends)</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Dirk Bergstrom &lt;dirk at juniper dot net&gt;</li>
+<li><em>Subject</em>: Re: persistent DB connections (was: RE: modular database backends)</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 11 Jun 2001 17:53:21 +0200</li>
+<li><em>Cc</em>: &quot;'gnats-devel at sources dot redhat dot com'&quot; &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00127.html">C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AA6A@postal.jnpr.net</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;DB&quot; == Dirk Bergstrom &lt;dirk@juniper.net&gt; writes:
+
+    DB&gt; 1) keep the current model, adding a separate, persistent,
+    DB&gt; &quot;database daemon&quot;.  each connection would spawn a new instance
+    DB&gt; of gnatsd, which would connect to the database-daemon as needed.
+    DB&gt; i happened across sqlrelay
+    DB&gt; (<A  HREF="http://www.firstworks.com/sqlrelay.html">http://www.firstworks.com/sqlrelay.html</A>), a GPLed package which
+    DB&gt; appears to do just what's needed for the database daemon.
+
+Since the addition the modular database backends feature would allow
+this automatically, there'll be nothing to stop you doing this once it
+is implemented.
+
+    DB&gt; 2) a persistent daemon that handles setting up the connection to
+    DB&gt; the client, and holds open a connection (or several connections)
+    DB&gt; to the database.  as new requests come in, the daemon would fork
+    DB&gt; off a child to handle each one, up to some preset limit.
+
+I can imagine a very busy BTS where performance problems can arise.  If
+you can *prove* that the overhead of reading configuration is a
+significant part of the performance problem, I'll consider the
+possibility of making a persistent daemon.
+
+    DB&gt; 3) something like apache -- a master process forks several
+    DB&gt; persistent daemons, which take turns handling connections.  each
+    DB&gt; child daemon holds a database connection, and services many
+    DB&gt; requests before shutting down.
+
+IMHO unnecessarily complicated:
+
+&gt;&gt;&gt;&gt;&gt; &quot;PN&quot; == Peter Novodvorsky &lt;nidd@altlinux.ru&gt; writes:
+
+    PN&gt; Other approaches are good, but hey, do some BTS's handle more
+    PN&gt; then 10 connections at time? Really?
+
+AOL!
+
+Regards,
+
+Milan Zamazal
+
+-- 
+  _/_\_/_  o     _\_/_\_  o     _/_\_/_  o     _\_/_\_  o    BEWARE!
+-&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--   *Bugs* are
+   / \ /   o      \ / \   o      / \ /   o      \ / \   o     approaching!
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00127" href="msg00127.html">persistent DB connections (was: RE: modular database backends)</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00163">Date&nbsp;Index</A>] [<a href="subjects.html#00163">Subject&nbsp;Index</a>] [<a href="authors.html#00163">Author&nbsp;Index</a>] [<A HREF="threads.html#00163">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00167.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00165.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00167.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00132.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Should we add a &#45;d option to send&#45;pr? -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 13 May 2001 18:43:06 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010513203652.00b3f7a8@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Should we add a -d option to send-pr?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00088">Date&nbsp;Index</A>] [<a href="subjects.html#00088">Subject&nbsp;Index</a>] [<a href="authors.html#00088">Author&nbsp;Index</a>] [<A HREF="threads.html#00088">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00087.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00089.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00087.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00087.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Should we add a -d option to send-pr?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Should we add a -d option to send-pr?</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Sun, 13 May 2001 20:44:33 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The current version 4 send-pr script does not support the -d or --database 
+option, instead requiring that the user set the GNATSDB environment 
+variable to the correct database name before running send-pr.
+
+The -d option is very convenient, and the lack of this option in send-pr 
+makes it inconsistent with the other GNATS utilities. And since the site 
+functionality, with the associated mkdir utility is gone, send-pr is mainly 
+intended for local use, where a -d option makes a whole lot more sense than 
+for remote use.
+
+Adding it seems to be easy, but I'd appreciate to hear any relevant points 
+of view on this from the people on this mailing list before I make the 
+changes and submit a patch.
+
+Anyone?
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00088">Date&nbsp;Index</A>] [<a href="subjects.html#00088">Subject&nbsp;Index</a>] [<a href="authors.html#00088">Author&nbsp;Index</a>] [<A HREF="threads.html#00088">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00087.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00089.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00087.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00087.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Encrypted password patch -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 24 Jun 2001 22:19:20 &#45;0000 -->
+<!--X-Message-Id: 87sngptte4.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.GSO.4.10.10106241329460.21688&#45;100000@sys4 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: Encrypted password patch</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00199">Date&nbsp;Index</A>] [<a href="subjects.html#00199">Subject&nbsp;Index</a>] [<a href="authors.html#00199">Author&nbsp;Index</a>] [<A HREF="threads.html#00199">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00198.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00200.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00198.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00198.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Encrypted password patch</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Subject</em>: Re: Encrypted password patch</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 25 Jun 2001 00:17:23 +0200</li>
+<li><em>Cc</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;,       gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00197.html">Pine.GSO.4.10.10106241329460.21688-100000@sys4</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; "RM" == Rick Macdonald &lt;rickm@vsl.com&gt; writes:
+
+    RM&gt; Would TkGnats just send the plain text password to gnatsd, and
+    RM&gt; gnatsd would do the encryption/validation?
+
+Yes, nothing changes in the (gnatsd) interface.
+
+    RM&gt; Does gnatsweb send clear text passwords to gnatsd or does it do
+    RM&gt; something better?
+
+I think it sends clear text passwords.
+
+    RM&gt; I recall people complaining (a few years ago) not only of plain
+    RM&gt; text passwords in the gnatsd config but also the transfer of
+    RM&gt; plain text passwords to gnatsd as well.
+
+Yes, that might be a reason to complain.  However sending encrypted
+passwords over network is not much better.  I think a good solution
+might be a system level solution -- making a secured channel (through
+some port redirection or so) between Gnatsweb and gnatsd.  A&nbsp;less
+my-servers-and-clients-only oriented solution might be to let gnatsd sit
+behind a simple ssh script on some port and to add the support to
+Gnatsweb, TkGnats and the Emacs interface to communicate via ssh with
+the server.
+
+Another solution is to use Kerberos (GNATS has got support for it though
+I've no idea whether it works or not), but the Kerberos support might be
+difficult to implement in non-C clients which talk to gnatsd directly.
+
+But I'm not a security expert nor I seriously work as a sysadmin last
+years, so I'd better let speak someone more competent in this area.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+SomeProgrammersLikeWritingLikeThis.However,IDontThinkThisFormOfCommunicationIs\
+AGoodIdea.IApologizeToAllWhoCantReadMyTextsWrittenInAClassicStyle.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00197" href="msg00197.html">Re: Encrypted password patch</a></strong>
+<ul><li><em>From:</em> Rick Macdonald</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00199">Date&nbsp;Index</A>] [<a href="subjects.html#00199">Subject&nbsp;Index</a>] [<a href="authors.html#00199">Author&nbsp;Index</a>] [<A HREF="threads.html#00199">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00198.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00200.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00198.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00198.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

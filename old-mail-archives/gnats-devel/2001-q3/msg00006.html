@@ -1,0 +1,131 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: mail adresses concatenated without commas in between -->
+<!--X-From-R13: Vnaf Rerkyre <qerkyreNtrbgnk.ay> -->
+<!--X-Date: 4 Jul 2001 12:38:02 &#45;0000 -->
+<!--X-Message-Id: 20010704143751.A20232@mail.geotax.nl -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hans Drexler - mail adresses concatenated without commas in between</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00006">Date&nbsp;Index</A>] [<a href="subjects.html#00006">Subject&nbsp;Index</a>] [<a href="authors.html#00006">Author&nbsp;Index</a>] [<A HREF="threads.html#00006">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00005.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00007.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00005.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>mail adresses concatenated without commas in between</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: mail adresses concatenated without commas in between</li>
+<li><em>From</em>: Hans Drexler &lt;drexler at geotax dot nl&gt;</li>
+<li><em>Date</em>: Wed, 4 Jul 2001 14:37:53 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+When people create new PR's I get the problem that GNATS produces
+garbled mail addresses. It seems that these addresses are the
+concatenation of:
+- the principal contact mentioned in the submitters file
+- the responsible person from the PR's category
+- any mail adresses appearing in the notify fields
+
+for example:
+from &quot;submitters&quot;
+drexler:Hans Drexler:none:1:drexler:tvngeo:
+
+from the file &quot;categories&quot;
+WOZteam:GeoTax WOZ team client:bbmgr:tvngeo,maxim,helpdesk
+
+Then a PR filed for category WOZteam send by committer &quot;drexler&quot; causes
+an e-mail to be sent to:
+
+drexlertvngeotvngeo (invalid e-mail address)
+tvngeotvngeo (invalid e-mail address)
+
+(below is an exerpt from the mail log file).
+
+Does somebody have a clue what is happening here?
+
+We use gnats 3.113 on FreeBSD and sendmail. All names have local mail
+accounts.
+
+Hans Drexler
+drexler@geotax.nl
+
+Jul  4 14:29:56 mail sendmail[27842]: f64CTum27840: to=&quot;|/usr/local/libexec/gnats/queue-pr --queue&quot;, ctladdr=geotax-bugs-submit (65533/0), delay=00:00:00, xdelay=00:00:00, mailer=prog, pri=31102, dsn=2.0.0, stat=Sent
+Jul  4 14:30:00 mail sendmail[27857]: f64CU0327857: from=gnats, size=534, class=0, nrcpts=1, msgid=&lt;200107041230.f64CU0327857@mail.geotax.nl&gt;, relay=gnats@localhost
+Jul  4 14:30:01 mail sendmail[27867]: f64CU1f27867: from=gnats, size=537, class=0, nrcpts=1, msgid=&lt;200107041230.f64CU1f27867@mail.geotax.nl&gt;, relay=gnats@localhost
+Jul  4 14:30:03 mail sendmail[27882]: f64CU3Y27882: from=&lt;gnats&gt;, size=874, class=0, nrcpts=1, msgid=&lt;200107041230.f64CU0327857@mail.geotax.nl&gt;, relay=root@localhost
+Jul  4 14:30:03 mail sendmail[27859]: f64CU0327857: to=drexler@geotax.nl, ctladdr=gnats (61/1), delay=00:00:03,
+xdelay=00:00:03, mailer=amavis, pri=30534, dsn=2.0.0, stat=Sent
+Jul  4 14:30:03 mail sendmail[27890]: f64CU3t27890: to=drexlertvngeotvngeo, delay=00:00:00, mailer=local, pri=0, dsn=5.1.1, stat=User unknown
+Jul  4 14:30:04 mail sendmail[27909]: f64CU4i27909: to=tvngeotvngeo,delay=00:00:00, mailer=local, pri=0, dsn=5.1.1, stat=User unknown
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00010" href="msg00010.html">Re: mail adresses concatenated without commas in between</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00006">Date&nbsp;Index</A>] [<a href="subjects.html#00006">Subject&nbsp;Index</a>] [<a href="authors.html#00006">Author&nbsp;Index</a>] [<A HREF="threads.html#00006">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00005.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00007.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00005.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

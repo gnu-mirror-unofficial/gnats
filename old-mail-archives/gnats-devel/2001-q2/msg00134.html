@@ -1,0 +1,106 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Current Gnats 4 CVS broken on Solaris -->
+<!--X-From-R13: Qney S. Zvaqoret <yvaqoretNpyvaqoret.bet> -->
+<!--X-Date: 2 Jun 2001 16:33:11 &#45;0000 -->
+<!--X-Message-Id: 0d71e4932160261FE8@mail8.mgfairfax.rr.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 991303419.19767.ezmlm@sources.redhat.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Carl E. Lindberg - Re: Current Gnats 4 CVS broken on Solaris</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00134">Date&nbsp;Index</A>] [<a href="subjects.html#00134">Subject&nbsp;Index</a>] [<a href="authors.html#00134">Author&nbsp;Index</a>] [<A HREF="threads.html#00134">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00133.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00135.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00133.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00079.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Current Gnats 4 CVS broken on Solaris</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Re: Current Gnats 4 CVS broken on Solaris</li>
+<li><em>From</em>: Carl E. Lindberg &lt;lindberg at clindberg dot org&gt;</li>
+<li><em>Date</em>: Sat, 2 Jun 2001 12:32:16 -0400</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+&gt; At 16:37 27.05.2001 +0200, Milan Zamazal wrote:
+&gt;&gt; Well, it should be fixed now, with respect to the recent time zone
+&gt;&gt; discussion.  Please let me know whether it works now.
+&gt;
+&gt; Sorry, but it seems the configure check for %z support isn't working 
+&gt; right. From the configure output, I can see that it detects support for 
+&gt; %z on my Solaris 7 system, even though Solaris 7 doesn't support it. If 
+&gt; I go on to build and install GNATS, I see exactly the same problems 
+&gt; that I reported in my original message.
+
+	Yes, the configure check is broken -- it fails to detect missing %z 
+support on MacOS X as well.  I'm not sure what the check is currently 
+doing, but it should probably check that a strftime() with a format of 
+&quot;%z&quot; results in the first character being '-' or '+'.
+
+	-Carl Lindberg
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00134">Date&nbsp;Index</A>] [<a href="subjects.html#00134">Subject&nbsp;Index</a>] [<a href="authors.html#00134">Author&nbsp;Index</a>] [<A HREF="threads.html#00134">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00133.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00135.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00133.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00079.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

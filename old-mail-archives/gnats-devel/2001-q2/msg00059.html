@@ -1,0 +1,224 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: ChangeLog for Gnatsweb 2.8.0&#45;dev -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 30 Apr 2001 23:53:48 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010501013923.00b3d7f0@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - ChangeLog for Gnatsweb 2.8.0-dev</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00059">Date&nbsp;Index</A>] [<a href="subjects.html#00059">Subject&nbsp;Index</a>] [<a href="authors.html#00059">Author&nbsp;Index</a>] [<A HREF="threads.html#00059">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00058.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00060.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00058.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00058.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>ChangeLog for Gnatsweb 2.8.0-dev</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: ChangeLog for Gnatsweb 2.8.0-dev</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 01 May 2001 01:51:14 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The following is a current snapshot of the detailed ChangeLog for the 
+upcoming Gnatsweb 2.8.0 release. The focus has been almost exclusively on 
+bugfixing, since 2.8.0 is meant as a more or less &quot;final&quot; version on the 
+2.x branch. The 2.x versions will not work with Gnats 4.
+
+This takes care of almost all relevant patches that have been submitted to 
+gnats-devel, almost all outstanding PRs in 
+<A  HREF="http://sources.redhat.com/cgi-bin/gnatsweb.pl">http://sources.redhat.com/cgi-bin/gnatsweb.pl</A> (with only one or two 
+exceptions that seemed rather marginal) and almost all the bugs that have 
+been encountered during our own production use of Gnatsweb.
+
+The only thing left is to revise the README, INSTALL and TODO files.
+
+Unless further patches are submitted within the next couple of days, I plan 
+on a release later this week.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+
+
+2001-05-01  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (query_page, display_query_results, sendpr,
+           print_attachments, edit, login_page): Systematic cleaning of
+           HTML. Tons of table tags terminated.
+
+         * gnatsweb.pl (advanced_query_page): Add a line below the Closed
+           After and Closed Before reminding users to uncheck Ignore
+           Closed. Lots of HTML fixes. Added a little bit of vertical space
+           between tables.
+
+2001-04-30  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (error_page): Enclose $err_text in paragraph tags.
+
+         * gnatsweb.pl (view, edit): Add a check for non-digit characters
+           in PR numbers. If such characters are found, an appropriate
+           error message is issued. gnatsd will actually accept PR numbers
+           on the format string/xxxx, where xxxx is a number, and return
+           the appropriate PR. However, when edits are submitted to such a PR,
+           a new PR with the &quot;number&quot; 'string/xxxx' would be created, with
+           the same category as the original PR. This isa workaround for
+           that problem.
+
+2001-04-30  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl: Add some missing paragraph tags in order to make
+           stylesheet formatting work properly.
+
+2001-04-30  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl: (page_heading): Set the width of the table
+           containing the page heading and database, username and access
+           level to 100%. Opera would display a too narrow table when the
+           width wasn't explicitly set.
+
+         * gnatsweb.pl: (page_start_html): Make the banner a bit smaller,
+           and use a different typeface. Should work well in all browsers.
+
+2001-04-30  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl: (display_query_results): Corrected a couple of
+           typos in the escapeHTML calls.
+
+2001-04-30  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnats.pm (get_reply): gerror() was not being called when server
+           returned $CODE_NO_PRS, as this was not being considered an
+           error. This made Gnatsweb attempt to &quot;edit&quot; or &quot;view&quot; PRs with
+           any number typed into the main page edit or view textfields,
+           whether the PR with that number actually existed or not. Editing
+           caused a new PR to be created, with the erroneous number. It
+           basically accepted any input from these textfields, making it
+           possible to create PRs with &quot;numbers&quot; made out of arbitrary
+           string.
+
+         * gnatsweb.pl (readpr): Added an if clause to trigger on errors
+           from the gnats.pm client_cmd subroutine. This fixed the problem
+           mentioned above.
+
+2001-04-30  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.html: Clean up HTML, fix spelling, remove some &lt;I&gt;'s
+           and &lt;B&gt;'s that made the text less readable. Some slight
+           rephrasing in order to clarify things.
+
+         * gnatsweb.pl (main): Add an explicit link to the automatic
+           redirection page. Fix due to Mark Kuchel.
+
+         * gnatsweb.pl (main): Generate proper cookie paths. Fix
+           due to Mark Kuchel.
+
+2001-04-30  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (submitedit): Issue a HTTP-EQUIV Refresh META tag in
+           HEAD, in addition to the standard Refresh HTTP header. This
+           makes the post-edit redirect work in MS Internet Explorer.
+
+         * gnatsweb.pl (login_page_javascript): Use correct &lt;SCRIPT
+           LANGUAGE&gt;.
+
+2001-04-29  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (download_attachment): MS Internet Explorer 5.5
+           would attempt to save downloaded attachments under the same name
+           as the Gnatsweb script file, typically gnatsweb.pl. This is
+           because MSIE handles the HTTP header &quot;Content-Disposition:
+           attachment&quot; wrongly. It needs &quot;file&quot; instead of &quot;attachment&quot;.
+           Inserted a conditional to send the header based on
+           HTTP_USER_AGENT.
+
+         * gnatsweb.pl (decode_attachment): Editing bugs with attached
+           files used to bomb out trying to chomp a constant string. Fix
+           due to Tommi Virtanen.
+
+2001-04-29  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (mark_urls): New function.
+           (view): Use it.
+           (edit): Likewise.
+           This is basically Tom Tromey's patch for Gnats 4 Gnatsweb
+           backported to 2.7beta.
+
+         * gnatsweb.pl: Remove the original authors' e-mail addresses,
+           they are no longer valid.
+
+         * gnatsweb.pl: New configuration variable $site_stylesheet.
+           (page_start_html): Use it.
+
+         * gnatsweb.pl: Bump version number to 2.8.0-dev.
+
+         * gnatsweb.pl: (display_query_results): Apply CGI.pm's escapeHTML
+           to field contents when printing the query results. Allow the
+           Synopsis field to wrap.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00059">Date&nbsp;Index</A>] [<a href="subjects.html#00059">Subject&nbsp;Index</a>] [<a href="authors.html#00059">Author&nbsp;Index</a>] [<A HREF="threads.html#00059">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00058.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00060.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00058.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00058.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: Minor redirect fix for Gnatsweb 2.8.0 -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 8 May 2001 13:15:58 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010508151227.00b8b338@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: Minor redirect fix for Gnatsweb 2.8.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00073">Date&nbsp;Index</A>] [<a href="subjects.html#00073">Subject&nbsp;Index</a>] [<a href="authors.html#00073">Author&nbsp;Index</a>] [<A HREF="threads.html#00073">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00072.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00074.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00072.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00075.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: Minor redirect fix for Gnatsweb 2.8.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: Minor redirect fix for Gnatsweb 2.8.0</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 08 May 2001 15:17:17 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The following patch fixes a problem caused by a change of behaviour in all 
+versions of CGI.pm from 2.64 onwards (2.753 is current right now). It now 
+by default returns URLs with parameters separated by semicolons instead of 
+ampersands, subtly breaking the redirect functionality of Gnatsweb versions 
+2.7 beta and 2.8.0. Redirects still happen, but the browser is redirected 
+to the main Gnatsweb page instead of to the page which the user came from.
+
+The following patch fixes this, by instructing CGI.pm to use &quot;old-style&quot; URLs:
+
+Index: gnatsweb.pl
+===================================================================
+RCS file: /clustra/cvs/gnatsweb2/gnatsweb.pl,v
+retrieving revision 1.25
+diff -u -p -r1.25 gnatsweb.pl
+--- gnatsweb.pl 2001/05/04 13:44:12     1.25
++++ gnatsweb.pl 2001/05/08 13:09:11
+@@ -97,9 +97,7 @@ else
+  use CGI::Carp qw/fatalsToBrowser/;
+  # 8/22/99 kenstir: CGI.pm-2.50's file upload is broken.
+  # 9/19/99 kenstir: CGI.pm-2.55's file upload is broken.
+-use CGI 2.56 qw/:standard/;
+-#use CGI 2.56 ();
+-#use CGI::Pretty qw/:standard/;
++use CGI 2.56 qw(-oldstyle_urls :all);
+  use gnats qw/client_init client_exit client_cmd/;
+
+  # Debugging fresh code.
+
+
+
+
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00073">Date&nbsp;Index</A>] [<a href="subjects.html#00073">Subject&nbsp;Index</a>] [<a href="authors.html#00073">Author&nbsp;Index</a>] [<A HREF="threads.html#00073">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00072.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00074.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00072.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00075.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

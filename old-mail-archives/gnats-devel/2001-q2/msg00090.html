@@ -1,0 +1,131 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: v4 send&#45;pr &#45;&#45;request&#45;id is broken -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 15 May 2001 14:31:54 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010515162348.00b68248@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: v4 send-pr --request-id is broken</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00090">Date&nbsp;Index</A>] [<a href="subjects.html#00090">Subject&nbsp;Index</a>] [<a href="authors.html#00090">Author&nbsp;Index</a>] [<A HREF="threads.html#00090">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00089.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00091.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00089.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00110.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: v4 send-pr --request-id is broken</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: v4 send-pr --request-id is broken</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 15 May 2001 16:30:06 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+send-pr --request-id is not working in the current v4 CVS. Instead of the 
+intended PR, the default template would be sent. The following patch fixes 
+this.
+
+Yngve Svendsen
+
+
+Index: send-pr.sh
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/send-pr.sh,v
+retrieving revision 1.16
+diff -u -p -r1.16 send-pr.sh
+--- send-pr.sh	2001/04/08 18:28:25	1.16
++++ send-pr.sh	2001/05/15 14:29:29
+@@ -432,16 +432,16 @@ fi
+  # TEMP is the PR that we are editing.  When we're done, REF will contain
+  # the final PR to be sent.
+
+-while [ -z &quot;$REQUEST_ID&quot; ]; do
+-  CNT=0
++#
++# Remove comments.
++#
++echo '/^SEND-PR:/d' &gt;&gt; $FIXFIL
++sed -f $FIXFIL $TEMP &gt; $REF
+
+-  #
+-  #	Remove comments.
+-  #
+-  echo '/^SEND-PR:/d' &gt;&gt; $FIXFIL
+-  sed -f $FIXFIL $TEMP &gt; $REF
++# REF now has the actual PR that we want to send.
+
+-  # REF now has the actual PR that we want to send.
++while [ -z &quot;$REQUEST_ID&quot; ]; do
++  CNT=0
+
+    #
+    # Check that synopsis is not empty.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00110" href="msg00110.html">Re: PATCH: v4 send-pr --request-id is broken</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00090">Date&nbsp;Index</A>] [<a href="subjects.html#00090">Subject&nbsp;Index</a>] [<a href="authors.html#00090">Author&nbsp;Index</a>] [<A HREF="threads.html#00090">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00089.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00091.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00089.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00110.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

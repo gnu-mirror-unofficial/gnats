@@ -1,0 +1,136 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: cgi_error -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 26 Jun 2001 08:06:39 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010626100207.00bcfae0@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20010621001542.00b41338@10.10.1.1 -->
+<!--X-Reference: 5.1.0.14.2.20010625000541.00b3fe88@10.10.1.1 -->
+<!--X-Reference: 87n16xtt5b.fsf@blackbird.zamazal.org -->
+<!--X-Reference: 3B382B1A.1587AADE@retriever.com.au -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: cgi_error</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00203">Date&nbsp;Index</A>] [<a href="subjects.html#00203">Subject&nbsp;Index</a>] [<a href="authors.html#00203">Author&nbsp;Index</a>] [<A HREF="threads.html#00203">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00202.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00204.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00202.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00204.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: cgi_error</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Margaret BRIERTON &lt;margaret at retriever dot com dot au&gt;,gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Re: cgi_error</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 26 Jun 2001 10:08:48 +0200</li>
+<li><em>References</em>: &lt;<a href="msg00188.html">5.1.0.14.2.20010621001542.00b41338@10.10.1.1</a>&gt;&lt;<a href="msg00188.html">5.1.0.14.2.20010621001542.00b41338@10.10.1.1</a>&gt;&lt;<a href="msg00198.html">5.1.0.14.2.20010625000541.00b3fe88@10.10.1.1</a>&gt;&lt;<a href="msg00200.html">87n16xtt5b.fsf@blackbird.zamazal.org</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+At 16:26 26.06.2001 +1000, Margaret BRIERTON wrote:
+&gt;Hi
+&gt;
+&gt;I'm trying to use gnatsweb but am having problems!
+&gt;
+&gt;When i try and access the script &quot;gnatsweb.pl&quot; from our server i get the
+&gt;following problem:
+&gt;
+&gt;Software error:
+&gt;
+&gt;Undefined subroutine CGI::cgi_error
+&gt;
+&gt;For help, please send mail to the webmaster (root@localhost), giving this
+&gt;error message and
+&gt;the time and date of the error.
+&gt;
+&gt;
+&gt;I've looked up the Apache web page but am completely lost.
+&gt;
+&gt;Has anyone seen this problem before?
+
+You need to update the version of the CGI.pm Perl module on your system.
+
+If you have the CPAN module installed on your system, the following command 
+line, run as &quot;root&quot;, should update CGI.pm:
+
+perl -MCPAN -e 'install CGI'
+
+If you don't have the CPAN module, go to <A  HREF="http://www.cpan.org/">http://www.cpan.org/</A> and find the 
+CGI module manually.
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00188" href="msg00188.html">Encrypted password patch</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00198" href="msg00198.html">Re: Encrypted password patch</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00200" href="msg00200.html">Re: Encrypted password patch</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+<li><strong><a name="00202" href="msg00202.html">cgi_error</a></strong>
+<ul><li><em>From:</em> Margaret BRIERTON</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00203">Date&nbsp;Index</A>] [<a href="subjects.html#00203">Subject&nbsp;Index</a>] [<a href="authors.html#00203">Author&nbsp;Index</a>] [<A HREF="threads.html#00203">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00202.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00204.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00202.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00204.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

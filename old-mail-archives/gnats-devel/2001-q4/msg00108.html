@@ -1,0 +1,125 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: enhancements for queue&#45;pr -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 8 Nov 2001 18:23:26 &#45;0000 -->
+<!--X-Message-Id: 87wv11a5y6.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5B1CAAC2F0818444BF07B7AD8845E53C010E22B0@ELECTRON.jnpr.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: enhancements for queue-pr</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00108">Date&nbsp;Index</A>] [<a href="subjects.html#00108">Subject&nbsp;Index</a>] [<a href="authors.html#00108">Author&nbsp;Index</a>] [<A HREF="threads.html#00108">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00107.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00109.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00107.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00075.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: enhancements for queue-pr</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Subject</em>: Re: enhancements for queue-pr</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 08 Nov 2001 11:54:25 +0100</li>
+<li><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00076.html">5B1CAAC2F0818444BF07B7AD8845E53C010E22B0@ELECTRON.jnpr.net</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt;&gt;&gt;&gt;&gt; &quot;DB&quot; == Dirk Bergstrom &lt;dirk@juniper.net&gt; writes:
+
+    DB&gt; two changes to queue-pr: *) call pr-edit directly, instead of
+    DB&gt; file-pr.  file-pr is just a thin shell wrapper around &quot;pr-edit
+    DB&gt; --submit&quot;.  i could see no reason we shouldn't just call pr-edit
+    DB&gt; directly, and simplify the process.
+
+    DB&gt; *) add a new option, max-size.  we have discovered that PRs
+    DB&gt; larger than ~100 Kbytes give gnats indigestion.  edit-pr &amp;
+    DB&gt; gnatsweb tend to choke on these bulky PRs.  we have also found
+    DB&gt; that most of the large PRs got that way because a person or
+    DB&gt; process emailed a very large amount of data (giant config files,
+    DB&gt; crashdumps, etc.).  the max-size option allows us to filter
+    DB&gt; large messages manually.
+
+    DB&gt; the actual patch, and suitable changelog entries, are at this
+    DB&gt; URL:
+
+    DB&gt; <A  HREF="http://www.otisbean.com/gnats/qpr-diff.txt">http://www.otisbean.com/gnats/qpr-diff.txt</A>
+
+Applied, thanks.  (I'll commit it as soon as GNATS CVS is working
+again.)
+
+Regards,
+
+Milan Zamazal
+
+-- 
+Omigod, it's a flame war about a flame war.  You know, a meta-flame war!
+                                                 Kenny Tilton in comp.lang.lisp
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00076" href="msg00076.html">enhancements for queue-pr</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00108">Date&nbsp;Index</A>] [<a href="subjects.html#00108">Subject&nbsp;Index</a>] [<a href="authors.html#00108">Author&nbsp;Index</a>] [<A HREF="threads.html#00108">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00107.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00109.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00107.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00075.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

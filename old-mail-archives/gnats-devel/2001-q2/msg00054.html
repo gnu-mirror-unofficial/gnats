@@ -1,0 +1,149 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Renaming a category? -->
+<!--X-From-R13: Vnaf&#45;Oyoreg Epuarvqre <Vnaf&#45;Oyoreg.EpuarvqreNzpuc.fvrzraf.qr> -->
+<!--X-Date: 27 Apr 2001 12:13:58 &#45;0000 -->
+<!--X-Message-Id: 15081.25213.691672.838325@mail&#45;g.mchp.siemens.de -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 15076.11639.109588.446279@mail&#45;g.mchp.siemens.de -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hans-Albert Schneide - Re: Renaming a category?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00054">Date&nbsp;Index</A>] [<a href="subjects.html#00054">Subject&nbsp;Index</a>] [<a href="authors.html#00054">Author&nbsp;Index</a>] [<A HREF="threads.html#00054">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00053.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00055.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00053.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00046.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Renaming a category?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Re: Renaming a category?</li>
+<li><em>From</em>: Hans-Albert Schneider &lt;Hans-Albert dot Schneider at mchp dot siemens dot de&gt;</li>
+<li><em>Date</em>: Fri, 27 Apr 2001 14:13:49 +0200 (MET DST)</li>
+<li><em>References</em>: &lt;<a href="msg00043.html">15076.11639.109588.446279@mail-g.mchp.siemens.de</a>&gt;</li>
+<li><em>Reply-To</em>: Hans-Albert dot Schneider at mchp dot siemens dot de</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+It's time for a summary:
+
+&gt;&gt;&gt;&gt;&gt; &quot;HAS&quot; == Hans-Albert Schneider &lt;Hans-Albert.Schneider@mchp.siemens.de&gt; writes:
+
+    HAS&gt; What is the preferred way to rename a category?  For
+    HAS&gt; GNATS 3.113, I am currently aware of the following
+    HAS&gt; procedure (assume renaming from &quot;A&quot; to &quot;B&quot;):
+
+    HAS&gt; 1) Create a new category &quot;B&quot;.
+    HAS&gt; 2) Edit each report in &quot;A&quot;, changing the category to &quot;B&quot;.
+    HAS&gt; 3) Remove category &quot;A&quot;.
+    HAS&gt; 4) Run gen-index.
+[...]
+
+    HAS&gt; Is there an easier way?  Maybe with version 4?
+
+Summary:
+	There is currently no other way, neither in version 3.x
+	nor in version 4.
+
+    HAS&gt; In step 2), do I need to invoke edit-pr and manually
+    HAS&gt; edit all reports, or can I just run something like
+
+    [simple minded for-loop with sed removed]
+
+Summary:
+	To take care of locking, edit-pr or pr-edit --lock should
+	be used.  Otherwise, automating is OK.
+
+I already had the idea to use edit-pr with the EDITOR variable
+set to something like the sed command.  I meanwhile have written
+a shell script to do this.  (This also was an exercise for me to
+write a script that tries to be a bit security conscious, so its
+purpose was not just to re-invent the wheel.)
+
+Tools:
+	There is a PERL script by Sherry Wasserman.
+	There is also my script now. :-)
+
+
+Thanks for replying to:
+       Yngve Svendsen
+       Sherry Wasserman
+       Rick Macdonald
+
+
+Hans-Albert
+
+-- 
+Hans-Albert Schneider		&lt;Hans-Albert.Schneider@mchp.siemens.de&gt;
+Siemens AG			phone:	(+49) 89 636 45445
+Corporate Technology		fax:	(+49) 89 636 42284
+Munich, Germany
+ -- To get my public PGP key, send me a mail with subject &quot;send key&quot; --
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00043" href="msg00043.html">Renaming a category?</a></strong>
+<ul><li><em>From:</em> Hans-Albert Schneider</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00054">Date&nbsp;Index</A>] [<a href="subjects.html#00054">Subject&nbsp;Index</a>] [<a href="authors.html#00054">Author&nbsp;Index</a>] [<A HREF="threads.html#00054">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00053.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00055.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00053.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00046.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Need "usertool" target for make -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 13 Jun 2001 14:54:11 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010613163931.00bcae20@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Need &quot;usertool&quot; target for make</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00175">Date&nbsp;Index</A>] [<a href="subjects.html#00175">Subject&nbsp;Index</a>] [<a href="authors.html#00175">Author&nbsp;Index</a>] [<A HREF="threads.html#00175">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00174.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00176.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00174.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00182.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Need &quot;usertool&quot; target for make</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;,gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Need &quot;usertool&quot; target for make</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Wed, 13 Jun 2001 16:51:57 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I am currently sweating over the documentation for installing GNATS user 
+tools on remote machines, so that the tools can access gnatsd directly over 
+the network.
+
+In my opinion, the logical strategy for this looks something like this:
+
+- On the client machine, download and untar GNATS. Run &quot;./configure&quot;
+- Run &quot;make usertools&quot;. This would build all the tools required on client 
+machines, roughly corresponding to the tools currently built by the targets 
+send-pr in send-pr/Makefile and tools-all in gnats/Makefile.
+- Run &quot;make install-usertools&quot;. This would install the tools built by the 
+make above and copy a default send-pr.conf file to /usr/local/etc/gnats.
+- Edit send-pr.conf to fit local needs and add a proper GNATSDB variable 
+setting to user's environments.
+
+I am unable to find anything resembling the targets &quot;usertools&quot; and 
+&quot;install-usertools&quot; outlined above in the current master Makefile, but I 
+don't think adding this would be a lot of work. However, I am not 
+sufficiently experienced with makefiles to do this myself.
+
+An alternative would be to add a --tools-only option to configure. I don't 
+know what solution would be the best, but we really need to have a way to 
+install the user tools on client machines before GNATS 4 can be said to be 
+complete.
+
+- Yngve
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00182" href="msg00182.html">Re: Need &quot;usertool&quot; target for make</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00175">Date&nbsp;Index</A>] [<a href="subjects.html#00175">Subject&nbsp;Index</a>] [<a href="authors.html#00175">Author&nbsp;Index</a>] [<A HREF="threads.html#00175">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00174.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00176.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00174.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00182.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

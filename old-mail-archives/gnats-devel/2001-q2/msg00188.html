@@ -1,0 +1,152 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Encrypted password patch -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 20 Jun 2001 22:24:46 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010621001542.00b41338@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Encrypted password patch</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00188">Date&nbsp;Index</A>] [<a href="subjects.html#00188">Subject&nbsp;Index</a>] [<a href="authors.html#00188">Author&nbsp;Index</a>] [<A HREF="threads.html#00188">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00187.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00189.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00187.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00189.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Encrypted password patch</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Encrypted password patch</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 21 Jun 2001 00:26:53 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The following patch against current version 4 CVS implements the following 
+password system:
+
+- If the password in gnatsd.access is prefixed with $0$, the password is 
+assumed to be explicit plaintext.
+- If it is prefixed with $1$, it is assumed to be in MD5 format.
+- If it has no prefix, it is assumed to be in standard DES crypt format.
+
+I have tested this both on Linux and Solaris, and it works just as expected.
+
+I'll amend the manual tomorrow (I won't commit the changes to the manual 
+until the pending move of the manual in the directory tree is done) and 
+then write a Perl script to convert old password files.
+
+Yngve Svendsen
+
+
+Index: gnatsd.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/gnatsd.c,v
+retrieving revision 1.41
+diff -u -p -r1.41 gnatsd.c
+--- gnatsd.c	2001/06/10 17:17:19	1.41
++++ gnatsd.c	2001/06/20 22:11:50
+@@ -276,28 +276,18 @@ match (const char *line, const char *pat
+  static int
+  password_match (const char *password, const char *hash)
+  {
+-  /* TODO: document the facility in the manual */
+-
+    if (! strncmp (hash, &quot;$0$&quot;, 3))
+      {
+        /* explicit plain-text password */
+        return ! strcmp (password, hash+3);
+      }
+-  else if (! strncmp (hash, &quot;$1$&quot;, 3))
++  else
+      {
+-      /* MD5 hash of the password */
+-#ifdef HAVE_LIBCRYPT
++	  /* DES or MD5 password. If crypt supports MD5, it uses MD5 when
++         the salt starts with $1$. If there's no prefix standard DES
++         is assumed */
+        char *encrypted = crypt (password, hash);
+        return encrypted &amp;&amp; ! strcmp (encrypted, hash);
+-#else
+-      /* TODO: log some warning */
+-      return FALSE;
+-#endif
+-    }
+-  else
+-    {
+-      /* default password type is plain-text */
+-      return match (password, hash, TRUE);
+      }
+  }
+  
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00189" href="msg00189.html">/etc/qnats-db.conf</a></strong>
+<ul><li><em>From:</em> Margaret BRIERTON</li></ul></li>
+<li><strong><a name="00194" href="msg00194.html">Re: Encrypted password patch</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00188">Date&nbsp;Index</A>] [<a href="subjects.html#00188">Subject&nbsp;Index</a>] [<a href="authors.html#00188">Author&nbsp;Index</a>] [<A HREF="threads.html#00188">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00187.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00189.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00187.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00189.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

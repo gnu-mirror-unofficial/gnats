@@ -1,0 +1,143 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Unable to submit PR -->
+<!--X-From-R13: Vnaf&#45;Oyoreg Epuarvqre <Vnaf&#45;Oyoreg.EpuarvqreNzpuc.fvrzraf.qr> -->
+<!--X-Date: 17 May 2001 09:14:16 &#45;0000 -->
+<!--X-Message-Id: 15107.38475.866789.879625@mail&#45;g.mchp.siemens.de -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 004601c0de72$0e5b5b00$a918a8c0@srm67e.greatsimplex.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hans-Albert Schneide - Re: Unable to submit PR</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00098">Date&nbsp;Index</A>] [<a href="subjects.html#00098">Subject&nbsp;Index</a>] [<a href="authors.html#00098">Author&nbsp;Index</a>] [<A HREF="threads.html#00098">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00097.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00099.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00097.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00094.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Unable to submit PR</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Lakshmi Narayanan&quot; &lt;narayanan at simplex-tech dot co dot jp&gt;</li>
+<li><em>Subject</em>: Re: Unable to submit PR</li>
+<li><em>From</em>: Hans-Albert Schneider &lt;Hans-Albert dot Schneider at mchp dot siemens dot de&gt;</li>
+<li><em>Date</em>: Thu, 17 May 2001 11:13:47 +0200 (MET DST)</li>
+<li><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00095.html">004601c0de72$0e5b5b00$a918a8c0@srm67e.greatsimplex.com</a>&gt;</li>
+<li><em>Reply-To</em>: Hans-Albert dot Schneider at mchp dot siemens dot de</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;LN&quot; == Lakshmi Narayanan &lt;narayanan@simplex-tech.co.jp&gt; writes:
+
+    LN&gt; Hi, Recently I have installed Gnats 3.113 in Red Hat
+    LN&gt; Linux release 6.2.  And I face the following problems:
+
+    LN&gt;    1. Running gnatsd says '520 You are not in the host
+    LN&gt; access list' error.
+
+gnatsd looks in a file named gnatsd.access to check which hosts
+are allowed access.  As your gnats installation seems to be in
+/usr/local/gnats/..., it must be somewhere below that directory
+(my first guess is /usr/local/gnats/etc/gnatsd.access).  The
+format is explained in the file.
+
+If the message appears when starting gnatsd from the command
+line, this probably means that localhost (IP 127.0.0.1) is not
+listed in that file.  Unless you explicitely use localhost as
+your gnats server, you can ignore that message.  Explicitely
+having localhost as the gnats server is, in general, not what you
+want, as then no other host can access the gnatsd.
+
+I am starting gnatsd with an entry like this in /etc/inetd.conf:
+
+support    stream  tcp     nowait  gnats   /usr/local/gnats/libexec/gnats/gnatsd gnatsd
+
+Make sure that the first field (in this example: &quot;support&quot;) is a
+known port, i.e., /etc/services (or the corresponding NIS map)
+should map it to a port number.  the fifth field (&quot;gnats&quot;) is the
+user id under which the gnatsd should be running.
+
+Note that this is not under the protection of TCP wrapper or
+something similar, as gnatsd has got its own access control
+mechanism (namely the gnatsd.access file).
+
+
+Your second problem has already been competently answered, I
+think (at least, smrsh is what I would think of, too).
+
+
+Hans-Albert
+
+-- 
+Hans-Albert Schneider		&lt;Hans-Albert.Schneider@mchp.siemens.de&gt;
+Siemens AG			phone:	(+49) 89 636 45445
+Corporate Technology		fax:	(+49) 89 636 42284
+Munich, Germany
+ -- To get my public PGP key, send me a mail with subject &quot;send key&quot; --
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00095" href="msg00095.html">Unable to submit PR</a></strong>
+<ul><li><em>From:</em> Lakshmi Narayanan</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00098">Date&nbsp;Index</A>] [<a href="subjects.html#00098">Subject&nbsp;Index</a>] [<a href="authors.html#00098">Author&nbsp;Index</a>] [<A HREF="threads.html#00098">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00097.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00099.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00097.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00094.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,301 @@
+*** gnatsweb.pl	Mon Sep 10 05:11:04 2001
+--- /u/WWW/SDSS/cgi-bin/gnatsweb-2.9.0.pl	Mon Sep 10 15:06:28 2001
+***************
+*** 1342,1347 ****
+--- 1342,1349 ----
+  
+  sub advanced_query_page
+  {
++   my($values_hash) = @_;
++ 
+    my $page = 'Advanced Query';
+    page_start_html($page);
+    page_heading($page, 'Query Problem Reports', 1);
+***************
+*** 1368,1377 ****
+          "<th nowrap>using regular expression</th>\n",
+          "</tr>\n";
+    print "<tr>\n<td>Single-line text fields:</td>\n<td>",
+!         $q->textfield(-name=>'text', -size=>$width),
+          "</td>\n</tr>\n",
+          "<tr>\n<td>Multi-line text fields:</td>\n<td>",
+!         $q->textfield(-name=>'multitext', -size=>$width),
+          "</td>\n</tr>\n",
+          "</table>\n";
+  
+--- 1370,1381 ----
+          "<th nowrap>using regular expression</th>\n",
+          "</tr>\n";
+    print "<tr>\n<td>Single-line text fields:</td>\n<td>",
+!         $q->textfield(-name=>'text', -size=>$width,
+! 		      -value=>$$values_hash{Text}),
+          "</td>\n</tr>\n",
+          "<tr>\n<td>Multi-line text fields:</td>\n<td>",
+!         $q->textfield(-name=>'multitext', -size=>$width,
+! 		      -value=>$$values_hash{Multitext}),
+          "</td>\n</tr>\n",
+          "</table>\n";
+  
+***************
+*** 1395,1401 ****
+      my $param_name = lc($_);
+      $param_name =~ s/ //;
+      print "<tr>\n<td>$_:</td>\n<td>",
+!           $q->textfield(-name=>$param_name, -size=>$width),
+            "</td>\n</tr>\n";
+    }
+    print $q->Tr( $q->td({-colspan=>2},
+--- 1399,1406 ----
+      my $param_name = lc($_);
+      $param_name =~ s/ //;
+      print "<tr>\n<td>$_:</td>\n<td>",
+!           $q->textfield(-name=>$param_name, -size=>$width,
+! 			-value=>$$values_hash{$_}),			
+            "</td>\n</tr>\n";
+    }
+    print $q->Tr( $q->td({-colspan=>2},
+***************
+*** 1427,1433 ****
+      # 2nd column is regexp search field
+      print "<td>",
+            $q->textfield(-name=>$lc_fieldname,
+!                         -size=>$width);
+      if ($_ eq 'State')
+      {
+        print "<br>",
+--- 1432,1438 ----
+      # 2nd column is regexp search field
+      print "<td>",
+            $q->textfield(-name=>$lc_fieldname,
+!                         -size=>$width, -value=>$$values_hash{$_});
+      if ($_ eq 'State')
+      {
+        print "<br>",
+***************
+*** 1884,1892 ****
+      print "<table cellspacing=0 cellpadding=0 border=0>",
+            "<tr valign=top>",
+            $q->start_form(),
+            "<td>",
+            hidden_db(),
+!           $q->submit('cmd', 'submit stored query'),
+            "<td>&nbsp;<td>",
+            $q->popup_menu(-name=>'queryname',
+                           -values=>[ sort(keys %stored_queries) ]),
+--- 1889,1899 ----
+      print "<table cellspacing=0 cellpadding=0 border=0>",
+            "<tr valign=top>",
+            $q->start_form(),
++           "Stored Queries:<td>",
+            "<td>",
+            hidden_db(),
+!           hidden(-name=>'full_cmd', -value=>'submit stored query'),
+!           $q->submit('cmd', 'submit'),
+            "<td>&nbsp;<td>",
+            $q->popup_menu(-name=>'queryname',
+                           -values=>[ sort(keys %stored_queries) ]),
+***************
+*** 1895,1901 ****
+            "<td>",
+            $q->hidden('return_url', $q->self_url()),
+            hidden_db(),
+!           $q->submit('cmd', 'delete stored query'),
+            "<td>&nbsp;<td>",
+            $q->popup_menu(-name=>'queryname',
+                           -values=>[ sort(keys %stored_queries) ]),
+--- 1902,1918 ----
+            "<td>",
+            $q->hidden('return_url', $q->self_url()),
+            hidden_db(),
+!           hidden(-name=>'full_cmd', -value=>'delete stored query'),
+!           $q->submit('cmd', 'delete'),
+!           "<td>&nbsp;<td>",
+!           $q->popup_menu(-name=>'queryname',
+!                          -values=>[ sort(keys %stored_queries) ]),
+!           $q->end_form(),
+!           $q->start_form(),
+!           "<td>",
+!           hidden_db(),
+!           hidden(-name=>'full_cmd', -value=>'load stored query'),
+!           $q->submit('cmd', 'load'),
+            "<td>&nbsp;<td>",
+            $q->popup_menu(-name=>'queryname',
+                           -values=>[ sort(keys %stored_queries) ]),
+***************
+*** 2008,2013 ****
+--- 2025,2104 ----
+    }
+  }
+  
++ 
++ # load_stored_query -
++ #     Set the current query from a cookie
++ #
++ #     Queries are stored as individual cookies named
++ #     'gnatsweb-query-$queryname'.
++ #
++ sub load_stored_query
++ {
++   my $debug = 0;
++   my $queryname = $q->param('queryname');
++   my $query_string;
++   my $err = '';
++   if (!$queryname)
++   {
++     $err = "Internal error: no 'queryname' parameter";
++   }
++   elsif (!($query_string = $q->cookie("gnatsweb-query-$queryname")))
++   {
++     $err = "No such named query: $queryname";
++   }
++   if ($err)
++   {
++     print $q->header(),
++           $q->start_html('Error'),
++           $q->h3($err),
++           $q->end_html();
++   }
++   else
++   {
++     #
++     # Save values into a hash
++     #
++     my %values;
++     my($key, $val);
++     foreach (split("&", $query_string))
++     {
++       ($key, $val) = split("=");
++       if($key =~ /(before|after)$/)
++       {
++ 	$key = ucfirst($`) . " " . ucfirst($1);
++       } else {
++ 	$key = ucfirst($key);
++       }
++       if($key eq "Submitter_id") {
++ 	$key = "Submitter-Id";
++       }
++       # I'm guessing here... (RHL)
++       $val =~ s/%2A/*/g;
++       $val =~ s/%20/ /g;
++       $val =~ s/%5B/[/g;
++       $val =~ s/%5D/]/g;
++       $val =~ s/%5E/^/g;
++       $val =~ s/%7C/|/g;
++       
++       if($values{$key}) {
++ 	$values{$key} .= "|";
++       }
++       $values{$key} .= $val;
++     }
++ 
++ 
++     print $q->header();
++     initialize();
++     if($debug) {
++       foreach (keys %values)
++       {
++ 	print "$_:$values{$_}<BR>";
++       }
++     }
++     advanced_query_page(\%values);
++   }
++ }
++ 
+  # send_html -
+  #     Send HTML help file, after first trimming out everything but
+  #     <body>..</body>.  This is done in this way for convenience of
+***************
+*** 2300,2307 ****
+          if $global_prefs{'database'};
+    $row .= qq(<SPAN STYLE="$bannerstyle $banner_fontsize2">User: $db_prefs{'user'}&nbsp;&nbsp;</SPAN>)
+          if $db_prefs{'user'};
+!   $row .= qq(<SPAN STYLE="$bannerstyle $banner_fontsize2">Access: $access_level</SPAN>)
+          if $access_level;
+    $row .= qq(\n</TD>\n<TD ALIGN="RIGHT">
+             <A HREF="$url" STYLE="$bannerstyle $banner_fontsize1">$site_banner_text</A>
+               </TD>\n</TR>\n</TABLE></TD></TR>\n);
+--- 2391,2406 ----
+          if $global_prefs{'database'};
+    $row .= qq(<SPAN STYLE="$bannerstyle $banner_fontsize2">User: $db_prefs{'user'}&nbsp;&nbsp;</SPAN>)
+          if $db_prefs{'user'};
+!   $row .= qq(<SPAN STYLE="$bannerstyle $banner_fontsize2">Access: $access_level&nbsp;&nbsp;</SPAN>)
+          if $access_level;
++   if($global_prefs{'show date'})
++   {
++     my($date);
++     $date = localtime;
++     $date =~ s/:[0-9]+\s/ /;
++     $row .= qq(<SPAN STYLE="$bannerstyle $banner_fontsize2">Date: $date &nbsp;&nbsp;</SPAN>);
++   }
++ 
+    $row .= qq(\n</TD>\n<TD ALIGN="RIGHT">
+             <A HREF="$url" STYLE="$bannerstyle $banner_fontsize1">$site_banner_text</A>
+               </TD>\n</TR>\n</TABLE></TD></TR>\n);
+***************
+*** 2345,2351 ****
+  #
+  sub page_heading
+  {
+!   my($title, $heading, $display_user_info, $display_date) = @_;
+  
+    # Protect against multiple calls.
+    return if $page_heading_done;
+--- 2444,2450 ----
+  #
+  sub page_heading
+  {
+!   my($title, $heading, $display_user_info) = @_;
+  
+    # Protect against multiple calls.
+    return if $page_heading_done;
+***************
+*** 3165,3170 ****
+--- 3264,3270 ----
+    set_pref('email', \%global_prefs, \%cvals);
+    set_pref('Originator', \%global_prefs, \%cvals);
+    set_pref('Submitter-Id', \%global_prefs, \%cvals);
++   set_pref('show date', \%global_prefs, \%cvals);
+  
+    # columns is treated differently because it's an array which is stored
+    # in the cookie as a joined string.
+***************
+*** 3231,3237 ****
+    }
+  
+    $sn = $q->script_name;
+!   my $cmd = $q->param('cmd') || ''; # avoid perl -w warning
+  
+    ### Cookie-related code must happen before we print the HTML header.
+  
+--- 3331,3337 ----
+    }
+  
+    $sn = $q->script_name;
+!   my $cmd = $q->param('full_cmd') || $q->param('cmd') || ''; # avoid perl -w warning
+  
+    ### Cookie-related code must happen before we print the HTML header.
+  
+***************
+*** 3242,3247 ****
+--- 3342,3348 ----
+    $global_cookie_path = '/';
+    $global_cookie_expires = '+30d';
+    init_prefs();
++   cb('init_prefs', '');
+  
+    # Big old switch to handle commands.
+    if($cmd eq 'store query')
+***************
+*** 3257,3262 ****
+--- 3358,3368 ----
+    elsif($cmd eq 'submit stored query')
+    {
+      submit_stored_query();
++     exit();
++   }
++   elsif($cmd eq 'load stored query')
++   {
++     load_stored_query();
+      exit();
+    }
+    elsif($cmd eq 'login')

@@ -1,0 +1,111 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: gnats devel FW: New time zones -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 26 May 2001 20:36:18 &#45;0000 -->
+<!--X-Message-Id: 87eltcm221.fsf@zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 01ef32006211851FE6@Mail6.mgfairfax.rr.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: gnats devel FW: New time zones</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00105">Date&nbsp;Index</A>] [<a href="subjects.html#00105">Subject&nbsp;Index</a>] [<a href="authors.html#00105">Author&nbsp;Index</a>] [<A HREF="threads.html#00105">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00104.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00106.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00104.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00095.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats devel FW: New time zones</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Carl E. Lindberg&quot; &lt;lindberg at clindberg dot org&gt;</li>
+<li><em>Subject</em>: Re: gnats devel FW: New time zones</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 26 May 2001 19:51:18 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00104.html">01ef32006211851FE6@Mail6.mgfairfax.rr.com</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Thanks, Carl and Dirk, for the clarification regarding the time zones,
+it was really needed.
+
+As for %z in strftime, GNU libc says it's part of ISO C99.  I don't know
+what ISO C99 is, but I expect it means %z becomes a generally available
+feature.  So I added an autoconf test for it, and if the feature is
+unavailable I simply replace all %z's by %Z.  I think this is a fair
+approach -- it's not worse than the current situation at least.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+Wasting somebody else's time strikes me as the height of rudeness.
+						      Bill Gates
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00104" href="msg00104.html">Re: gnats devel FW: New time zones</a></strong>
+<ul><li><em>From:</em> Carl E. Lindberg</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00105">Date&nbsp;Index</A>] [<a href="subjects.html#00105">Subject&nbsp;Index</a>] [<a href="authors.html#00105">Author&nbsp;Index</a>] [<A HREF="threads.html#00105">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00104.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00106.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00104.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00095.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,364 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: patch for gnatsweb -->
+<!--X-From-R13: Rvex Pretfgebz <qvexNwhavcre.arg> -->
+<!--X-Date: 17 Apr 2001 03:09:30 &#45;0000 -->
+<!--X-Message-Id: C0D6C1C24CDBE1449BFEF1B72AFBF3A703DE6B17@postal.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - patch for gnatsweb</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>patch for gnatsweb</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;'gnats-devel at sources dot redhat dot com'&quot; &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: patch for gnatsweb</li>
+<li><em>From</em>: Dirk Bergstrom &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Mon, 16 Apr 2001 20:09:18 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+howdy.  i've been hacking on gnatsweb for the last year here at
+juniper networks, and i've made a lot of changes and bugfixes.  i
+finally found the time to merge my changes with the current
+development tree, and i'd like to get them rolled into the main line,
+so that i can take advantage of further work, and so that others can
+benefit from my work.
+
+juniper has been using gnats 4.0a in production for almost a year (bob
+manson did much of the development when he worked here, so we had a
+secret weapon), so this code all works with 4.0.  well, with 4.0 as of
+january of this year, plus mdb's patch to have gnatsd report user
+access level.  i haven't tried the latest sources, but looking over
+the changelog, it looks like most of the changes would be transparent
+to gnatsweb.  i've tested this version, and it's stable (it's now our
+production gnatsweb).
+
+executive summary of my changes:
+
+*) use strict, and all that it implies.
+
+*) field and category descriptions (from dbconfig and categories
+ files) now displayed
+
+*) better gnatsd exception handling, no longer leaves stale locks when
+ edits fail.
+
+*) login code substantially rewritten; it's more stable, and it now
+ reads user access level from gnatsd
+
+*) two new modes, supporting webserver-based authentication, or
+ password-less login.
+
+*) all hardcoded values now set in a block at the top.
+
+*) unused subs and values removed.  it's amazing, the cruft that you
+ find when you use strict...
+
+*) numerous small and not so small bugfixes.
+
+let me know what you think.
+
+since the diffs are rather large (92K total), i've put them on my
+personal website, rather than dumping them in your mailbox.  the
+diffs, clean copies of my modified versions of gnatsweb.pl and
+gnatsweb-site-sente.pl, and my ChangeLog additions, are all available
+here:
+
+<A  HREF="http://otisbean.com/gnats/">http://otisbean.com/gnats/</A>
+
+2001-04-16  Dirk Bergstrom  &lt;dirk@juniper.net&gt;
+
+	* gnatsweb.pl: now runs with &quot;use strict;&quot;. while combing though
+	the code to properly declare and scope variables, i found several
+	flags and routines that were unused; they were removed.  some
+	routines were massaged to accomodate lexical scoping:
+	- the sortby_field(_num) subs were inlined.
+	- can_do_mime is wrapped in a do{} block to capture the cached
+value.
+	- $default was removed from date_menu.
+
+	* gnatsweb.pl: configuration switches gathered together at the top
+	of the file, keeping all the hardcoded global values in one place.
+ 
+	* gnatsweb.pl (popup_or_scrolling_menu): category
+	dropdown/scrolling list now includes descriptions.  the
+	descriptions from the categories file are now displayed, instead
+	of just the (sometimes cryptic) codes.
+ 
+	* gnatsweb.pl: uses warn() to write errors to the server logfile
+	whenever an error is generated, a message is emitted to STDERR,
+	containing a diagnostic message, the username, the database, and a
+	stacktrace.
+ 
+	* gnatsweb.pl (send_pr, edit): the create and edit PR pages now
+	keep track of field number, so that javascript hooks can be
+	applied.  forms are also named.  gnats field names customarily
+	include dashes, and javascript names cannot include dashes, so it
+	was impossible to write a javascript routine that could examine or
+	change a field value.  to get around this, the code keeps track of
+	the field number (starting at zero), and passes this value to the
+	cb() callback.  this way, the callback can generate javascript on
+	the fly, for things like client-side validitity checking.
+ 
+	* gnatsweb.pl (send_pr, edit): field descriptions are printed in
+	the create and edit pages (and optionally on the view PR page,
+	though that tends to look overly cluttered), using the field
+	descriptions from the dbconfig file.  this necessitated setting
+	the column width of the left column to 20%, so that the
+	descriptions would wrap.
+
+	* gnatsweb.pl (view): tidied up logic for
+	   [edit] or [view audit-trail] or send email to interested parties
+	so that the last 'or' doesn't show up when users w/o edit access
+	are viewing the audit trail.
+	
+	* gnatsweb.pl (page_start_html): database name now displayed in
+	header.
+ 
+	* gnatsweb.pl (mark_urls): replaced with a more rigorous
+	version. now does email addresses, and turns references to PRs
+	into view_pr_urls.  this is used on just about every field in
+	the view-pr page, and on many fields in the query-results
+	page.
+ 
+	* gnatsweb.pl (client_exit): improved handling of errors and
+	exceptions from gnatsd.  $suppress_client_exit is now actually
+	honored, so that submitedit() and initialize() can recover
+	gracefully from problems.  this is particularly important in
+	submitedit() -- if we shut down the connection to gnatsd on an
+	edit error, the lock on the PR will not be properly cleared.  this
+	fixes a problem with stale PR lockfiles.
+  
+	* gnatsweb.pl (submitquery): dates are returned from queries as
+	ISO-8601-like dates (yyyy-mm-dd hh:mm:ss tz), using the query
+	format %{%Y-%m-%d %H:%M:%S %Z}D.  This makes sorting query results
+	by date actually work.
+  
+	* gnatsweb.pl (submitquery): empty parameters are stripped from
+	the query-string on the query-results page.  in a gnats db with
+	many fields, the query-string will become very long, filled up
+	with ...&amp;field_name=&amp;other_field=&amp;third_field=&amp;....  this is a
+	problem, since IE5 truncates query-strings at ~2048 characters.
+
+	* gnatsweb.pl (advanced_query_page): applied yngve's fix of v2.33
+	to the advanced query page.
+	
+	* gnatsweb.pl: added explicit return statements to several subs
+	for readability.
+ 
+	* gnatsweb.pl (param2field): now looks thru @fieldnames for a
+	matching field.  the old, algorithmic, behavior would fail on
+	fields with multiple consecutive capitalized letters (ie: ID-Num
+	would come back as Id-Num) and fields containing underscores
+	(ie: Project_Number would come back as Project-Number).  if there
+	is no matching gnats fieldname, it falls back to the old behavior.
+ 
+	* gnatsweb.pl ($sn): global variable $sn renamed $script_name for
+	clarity.
+ 
+	* gnatsweb.pl: Responsible field always displayed as a mailto:
+	link
+ 
+	* gnatsweb.pl (send_html): removed the die() on file open failure.
+	it seemed better to simply return, and let the caller decide what
+	to do, especially since help_page already had error handling coded
+	in...
+ 
+	* gnatsweb.pl (can_edit, can_create): now use the access levels
+	defined in gnatsd.h
+ 
+	* gnatsweb.pl: added $no_create_without_access flag.  useful
+	primarily for web-only sites which wish to limit PR creation to
+	users with a minimum access level.  allows for view-without-create
+	access.
+ 
+	* gnatsweb.pl: gnatsd/gnatsweb can be set up for web-only access.
+	if you want to set up a more tightly secured installation, you can
+	allow only localhost connections to gnatsd, restrict logins to the
+	host, and require all users to go thru gnatsweb.  this option
+	assumes that the web server is doing authentication, and that the
+	REMOTE_USER environment variable is correctly set.  with this
+	switch set, the &quot;login again&quot; button is replaced by a &quot;change
+	database&quot; button.
+
+	* gnatsweb.pl (change_database): added to support web-only access
+ 
+	* gnatsweb.pl: gnatsweb can be set up to ignore the gnats
+	password.  the gnats network mode is quite cavalier about
+	passwords, and some sites may elect not to use gnats passwords.
+	if so, there's no point in gnatsweb asking for them.  if this
+	switch is set, the &quot;login again&quot; page does not prompt for a
+	password.
+ 
+	* gnatsweb.pl (parse_config): removed this sub, since it is
+	unused, and the %config hash is unused.  i have no clue why it's
+	here -- it may be a relic from gnats 3.113, which, iirc, has a
+	&quot;config&quot; file...
+ 
+	* gnatsweb.pl ($site_mailer): removed, as it was unused
+ 
+	* gnatsweb.pl (submitedit): removed $ok flag, since it was
+	superfluous.  the &quot;last LOCKED;&quot; statements in the error handling
+	blocks serve the same purpose
+ 
+	* gnatsweb.pl (%db_pref): changed db_pref hash element 'email' to
+	'email_addr'.  otherwise, whatever value user entered into the
+	&quot;Reporter's Email&quot; field on the &quot;Create PR&quot; page would get stuck
+	as their email address (because set_pref overrides %cvals{'foo'}
+	with $q-&gt;param('foo')...)
+ 
+	* gnatsweb.pl (initialize): substantially rewritten.  the old
+	version issued a CHDB first, then attempted to set the user name
+	(and thus get access) with USER.  this could lead to a deadlock
+	situation where the user was &quot;in&quot; a database they didn't have
+	access to, and thus login_page() couldn't display a list of
+	databases so the user could change to one they *did* have access
+	to.  access level defaulted to 'edit'.  the new version starts off
+	by caching the results of DBLS, so that any failures down the line
+	won't leave us in a deadlock.  then it does a CHDB, using the
+	three-argument form (db-name, user-name, password), which will
+	fail if the user does not have access to the selected database.
+	from the response to the CHDB command, it extracts the
+	access-level the user is granted in that database, and sets the
+	global $access_level variable
+	(access_level defaults to view, instead of edit).  finally, if the
+	access_level is less than view (ie, submit, none or deny), the
+	user is given the login page.
+ 
+	* gnatsweb.pl (main, cmd_login): moved login code from command
+	switch in main() to it's own sub.  this makes main() much cleaner.
+	since i added a bunch of code to the login, it seemed best to move
+	it to it's own sub.  cmd_login() also does some sanity-checking on
+	the user name -- i discovered that users were entering PR numbers
+	in the login field, because they were so used to just typing away
+	in the first field they saw...
+ 
+	* gnatsweb.pl (login_page): now displays an optional message,
+	given as second parameter, useful for passing authentication
+	errors to the user. only displays the necessary fields, depending
+	on $site_gnats_browser_auth and $site_no_gnats_passwords.
+ 
+	* gnatsweb.pl: debug flags allow for browser viewing of
+	communications with gnatsd.  if the $site_allow_remote_debug flag
+	is set, setting the 'debug' param will allow you to see the
+	conversation between gnatsweb and gnatsd.  setting it to 'cmd'
+	will show just gnatsweb's commands, 'reply' will show just
+	gnatsd's replies, and 'all' will show both.  this is useful mostly
+	for developers and gnats admins.  unfortunately, there's no good
+	way to limit use of debug params to users with admin privileges,
+	since much of what you might want to snoop happens *before* access
+	level is determined.
+ 
+	* gnatsweb.pl (hidden_debug): added to forms to preserve state of
+	debug params.  this allows debugging during queries and
+	create/edit submits.
+ 
+	* gnatsweb.pl (main_page): now exit()s when finished.  so that we
+	can call it from the big switch in main() when users try to do
+	something they aren't allowed to do.
+ 
+	* gnatsweb.pl (main): if access level is less than 'edit', users
+	cannot submit edits to PRs.  previously, users w/o edit privileges
+	did not see the &quot;edit&quot; button on the main page, but gnatsweb did
+	not explicitly prevent them from submitting an edit
+	(ie, with a manually created form).  this loophole is now closed.
+
+	* gnatsweb.pl (main): $gnatsweb_site_file is read and eval'd,
+	rather than pulled in using do(), to facilitate using strict
+	(using do(), the included file is not in the including file's
+	lexical scope).  errors generate a warn()ing to the server log as
+	well as a die (which will go to the browser, via
+	CGI::Carp::FatalsToBrowser).
+	
+	* gnatsweb-site-sente.pl: configuration switches from gnatsweb.pl
+	duplicated at the top of the file, since this is the recommended
+	place for them...
+
+	* gnatsweb-site-sente.pl (site_callback): cleaned up the if
+	blocks, removed unsupported callbacks.  added documentation for
+	the suported callbacks.
+
+
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,   Engineering Web Guru
+Tel: 408.745.3182           Fax: 408.745.8095
+ 
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00028" href="msg00028.html">Re: patch for gnatsweb</a></strong>
+<ul><li><em>From:</em> Gerald Pfeifer</li></ul></li>
+<li><strong><a name="00032" href="msg00032.html">Re: patch for gnatsweb</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00039" href="msg00039.html">Re: patch for gnatsweb</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: New feature: Encrypted gnatsd passwords -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 13 Jun 2001 13:14:38 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010613145100.00b23a48@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: New feature: Encrypted gnatsd passwords</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00174">Date&nbsp;Index</A>] [<a href="subjects.html#00174">Subject&nbsp;Index</a>] [<a href="authors.html#00174">Author&nbsp;Index</a>] [<A HREF="threads.html#00174">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00173.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00175.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00173.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00183.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: New feature: Encrypted gnatsd passwords</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;,gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Re: New feature: Encrypted gnatsd passwords</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Wed, 13 Jun 2001 15:12:25 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+&gt;[I'm generally not going to add any new features before GNATS 4 is 
+&gt;released. However some missing features can be considered being bugs which 
+&gt;should be fixed.]
+&gt;
+&gt;I added support for MD5 encrypted passwords in gnatsd.access, based on a 
+&gt;patch by Tommi Virtanen. Now you can use passwords prefixed with `$1$' 
+&gt;there, see the documentation of `crypt' in the GNU libc manual for more 
+&gt;details about the form of such passwords. Passwords prefixed with $0$ are 
+&gt;exact match passwords. Other passwords remain the same as before, i.e. 
+&gt;case sensitive wild card match passwords.
+&gt;
+&gt;Milan Zamazal
+
+
+As part of updating the GNATS documentation, I have been experimenting with 
+this feature. I got it working on Linux, after figuring out the correct 
+format for the MD5 password string (which I have documented thoroughly in 
+the latest version of the manual).
+
+However, on Solaris, which lacks glibc, MD5 crypt() is not supported. Now, 
+the configuration checks indicate that crypt() is available on Solaris, 
+resulting in the MD5-supporting code being compiled into gnatsd but without 
+working. The password checking routine in gnatsd.c actually ends up 
+comparing an MD5 hash with a DES hash.
+
+By removing a couple of ifs in gnatsd.c, I got things working on Solaris 
+with DES-encrypted passwords in gnatsd.access. This leads me to ask the 
+following question: Should we implement support for DES-encrypted 
+passwords? This should be very easy, except for one thing -- we need a way 
+to distinguish DES hashes in gnatsd.access from plaintext passwords.
+
+The ordinary way is of course to prefix MD5 hashes with '$1$' and treat 
+everything without this prefix as a DES hash, but in the gnatsd.access 
+file, we have a third possibility, namely a plaintext password. Is there a 
+standard prefix for DES hashes, or could we simply invent our own?
+
+If we decide not to sypport DES encrypted passwords, the configure checks 
+should be tightened so that we can inform the user if he has a crypt() 
+without MD5 support.
+
+Yngve Svendsen
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00183" href="msg00183.html">Re: New feature: Encrypted gnatsd passwords</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00174">Date&nbsp;Index</A>] [<a href="subjects.html#00174">Subject&nbsp;Index</a>] [<a href="authors.html#00174">Author&nbsp;Index</a>] [<A HREF="threads.html#00174">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00173.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00175.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00173.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00183.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: RE: Renaming a category? -->
+<!--X-From-R13: "Inffrezna, Eureel" <Eureel.InffreznaNpbzirefr.pbz> -->
+<!--X-Date: 23 Apr 2001 15:39:07 &#45;0000 -->
+<!--X-Message-Id: 6B1DF6EEBA51D31182F2009027404368026FFDD8@mail&#45;in.comverse&#45;in.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Wasserman, Sherry - RE: Renaming a category?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00046">Date&nbsp;Index</A>] [<a href="subjects.html#00046">Subject&nbsp;Index</a>] [<a href="authors.html#00046">Author&nbsp;Index</a>] [<A HREF="threads.html#00046">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00045.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00045.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: Renaming a category?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;'Yngve Svendsen'&quot; &lt;yngve dot svendsen at clustra dot com&gt;,       Hans-Albert dot Schneider at mchp dot siemens dot de, gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: RE: Renaming a category?</li>
+<li><em>From</em>: &quot;Wasserman, Sherry&quot; &lt;Sherry dot Wasserman at comverse dot com&gt;</li>
+<li><em>Date</em>: Mon, 23 Apr 2001 11:38:20 -0400</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hello,
+
+If others have access to the gnats database while you are changing the
+category, you should probably be concerned about locking the PRs.
+
+If you change the category field manually (by using gnatsweb or edit-pr), 
+the normal PR locking mechanism will prevent changes (yours or theirs) from 
+being overwritten.  The PR will also be moved to the new category location 
+and the index entry will be created by the software.  You won't have to do
+gen-index.
+
+If you use sed,  you should either lock the PRs that are going 
+to be changed (pr-edit --lock), or lock gnats by creating the gnats.lock
+file 
+in the gnats-admin directory.  (Don't forget  to remove the locks it when
+you're done.)
+
+I recently created a tool to move all PRs from one category to another 
+with the following command:
+	perl catmove  [-d gnats_root]  &lt;old category&gt; &lt;new category&gt; ...
+
+I'll be happy to send this, if you are interested.
+
+Sherry Wasserman
+Comverse 
+1025 Briggs Rd., Suite 100
+Mt. Laurel, NJ 08054
+Voice (856) 608-2858 Fax (856) 866-8850
+
+	
+
+
+
+
+
+&gt; -----Original Message-----
+&gt; From: Yngve Svendsen [<A  HREF="mailto:yngve.svendsen@clustra.com">mailto:yngve.svendsen@clustra.com</A>]
+&gt; Sent: Monday, April 23, 2001 9:35 AM
+&gt; To: Hans-Albert.Schneider@mchp.siemens.de;
+&gt; gnats-devel@sources.redhat.com
+&gt; Subject: Re: Renaming a category?
+&gt; 
+&gt; 
+&gt; At 15:26 23.04.2001 +0200, Hans-Albert Schneider wrote:
+&gt; &gt;What is the preferred way to rename a category?
+&gt; &gt;
+&gt; &gt;For GNATS 3.113, I am currently aware of the following procedure
+&gt; &gt;(assume renaming from &quot;A&quot; to &quot;B&quot;):
+&gt; &gt;
+&gt; &gt;1) Create a new category &quot;B&quot;.
+&gt; &gt;2) Edit each report in &quot;A&quot;, changing the category to &quot;B&quot;.
+&gt; &gt;3) Remove category &quot;A&quot;.
+&gt; &gt;4) Run gen-index.
+&gt; &gt;
+&gt; &gt;(I once tried to just rename the directory from &quot;A&quot; to &quot;B&quot; (and
+&gt; &gt;the entry in gnats-adm/categories, of course), and found that
+&gt; &gt;gen-index produced A/17 instead of B/17, because the Category
+&gt; &gt;field had not been changed.  This was probably with an earlier
+&gt; &gt;version than 3.113; is gen-index now more clever about this?)
+&gt; &gt;
+&gt; &gt;
+&gt; &gt;Is there an easier way?  Maybe with version 4?
+&gt; &gt;
+&gt; &gt;In step 2), do I need to invoke edit-pr and manually edit all
+&gt; &gt;reports, or can I just run something like
+&gt; &gt;
+&gt; &gt;     for each report $n in category A,
+&gt; &gt;         sed -e &quot;/^&gt;Category:/ s/A/B/&quot;  &lt; A/$n  &gt; B/$n
+&gt; &gt;         rm A/$n
+&gt; 
+&gt; I don't think there is a better way. I have had to do the 
+&gt; same thing myself 
+&gt; on a few occasions. Automating step 2 should be OK, though. 
+&gt; Gnats4 has no 
+&gt; improvements with regards to this. This might be an idea for 
+&gt; a new admin 
+&gt; tool in a future version.
+&gt; 
+&gt; 
+&gt; 
+&gt; Yngve Svendsen
+&gt; IS Engineer
+&gt; Clustra AS, Trondheim, Norway
+&gt; yngve.svendsen@clustra.com
+&gt; Cell.: +47 913 915 02
+&gt; 
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00047" href="msg00047.html">RE: Renaming a category?</a></strong>
+<ul><li><em>From:</em> Rick Macdonald</li></ul></li>
+<li><strong><a name="00099" href="msg00099.html">Re: Renaming a category?</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00046">Date&nbsp;Index</A>] [<a href="subjects.html#00046">Subject&nbsp;Index</a>] [<a href="authors.html#00046">Author&nbsp;Index</a>] [<A HREF="threads.html#00046">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00045.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00045.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

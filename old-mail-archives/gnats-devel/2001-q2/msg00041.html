@@ -1,0 +1,138 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Patch: Fix to require Reason Changed in Gnatsweb -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 22 Apr 2001 20:51:03 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010422224312.00bc5df0@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Patch: Fix to require Reason Changed in Gnatsweb</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00041">Date&nbsp;Index</A>] [<a href="subjects.html#00041">Subject&nbsp;Index</a>] [<a href="authors.html#00041">Author&nbsp;Index</a>] [<A HREF="threads.html#00041">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00040.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00042.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00040.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00037.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Patch: Fix to require Reason Changed in Gnatsweb</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Patch: Fix to require Reason Changed in Gnatsweb</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Sun, 22 Apr 2001 22:49:09 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The current Gnatsweb (rev 2.33 plus the patch from Dirk) does not check 
+that the required Reason Changed fields are filled in when a PR is edited. 
+The following patch fixes this. It will be committed once things calm down 
+after the patch from Dirk has been applied.
+
+Dirk: Do you have any ETA on when the copyright paperwork will be finished?
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+
+
+
+
+*** gnatsweb.pl	Sun Apr 22 22:40:55 2001
+--- gnatsweb_changed.pl	Sun Apr 22 22:37:51 2001
+***************
+*** 1503,1508 ****
+--- 1503,1529 ----
+         }
+       }
+
++ 	# Check whether fields that are specified in dbconfig as requiring a
++ 	# 'Reason Changed' have the reason specified:
++ 	foreach my $fieldname (keys %fields)
++ 	{
++ 	  if ( ($fields{$fieldname} ne $oldfields{$fieldname}) &amp;&amp; 
+(fieldinfo($fieldname, 'flags') &amp; $REASONCHANGE) )
++ 	  {
++ 		if($fields{$fieldname.&quot;-Changed-Why&quot;} =~ /^\s*$/)
++ 		{
++ 		  page_heading($page, 'Error');
++ 		  print &quot;&lt;h3&gt;Field '$fieldname' must have a reason for change&lt;/h3&gt;&quot;,
++ 		  &quot;&lt;p&gt;Please press the 'Back' button of you browser, correct the 
+problem and resubmit.&lt;/p&gt;\n&quot;;
++ 		  last LOCKED;
++ 		}
++ 	  }
++ 	  if ($fields{$fieldname} eq $oldfields{$fieldname} &amp;&amp; exists 
+$fields{$fieldname.&quot;-Changed-Why&quot;} )
++ 	  {
++ 		delete $fields{$fieldname.&quot;-Changed-Why&quot;};
++ 	  }
++ 	}
++
++
+       my($newpr) = unparsepr('gnatsd', %fields);
+       $newpr =~ s/\r//g;
+   
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00041">Date&nbsp;Index</A>] [<a href="subjects.html#00041">Subject&nbsp;Index</a>] [<a href="authors.html#00041">Author&nbsp;Index</a>] [<A HREF="threads.html#00041">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00040.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00042.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00040.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00037.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,193 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: RE: modular database backends -->
+<!--X-From-R13: Rvex Pretfgebz <qvexNwhavcre.arg> -->
+<!--X-Date: 29 May 2001 07:11:50 &#45;0000 -->
+<!--X-Message-Id: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AA5E@postal.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - RE: modular database backends</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00119">Date&nbsp;Index</A>] [<a href="subjects.html#00119">Subject&nbsp;Index</a>] [<a href="authors.html#00119">Author&nbsp;Index</a>] [<A HREF="threads.html#00119">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00118.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00118.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: modular database backends</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: 'Peter Novodvorsky' &lt;nidd at altlinux dot ru&gt;, gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: RE: modular database backends</li>
+<li><em>From</em>: Dirk Bergstrom &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Tue, 29 May 2001 00:11:44 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+a database backend for gnats, huh?  i've been thinking about this myself.
+in fact, it's quite likely to be a major project for me this year.  i
+haven't gotten too far along, but i will soon have a lot more time to devote
+to thinking about it.  i wouldn't describe myself as a high powered C
+programmer (cough cough...), but i've got clue, time, and energy.
+
+we should gather together interested parties, and kick some ideas around.
+
+--
+Dirk Bergstrom              dirk@juniper.net
+____________________________________________
+Juniper Networks Inc.,  Engineering Web Guru
+Tel: 408.745.3182          Fax: 408.745.8905
+
+
+&gt; -----Original Message-----
+&gt; From: Peter Novodvorsky [<A  HREF="mailto:nidd@altlinux.ru">mailto:nidd@altlinux.ru</A>]
+&gt; Sent: Sunday, May 27, 2001 11:18 AM
+&gt; To: gnats-devel@sources.redhat.com
+&gt; Subject: modular database backends
+&gt; 
+&gt; 
+&gt; 
+&gt; Hello!
+&gt; 
+&gt;         I always thought about BTS as database and tools to work with
+&gt; it. And these things are different. In gnats I see opposite 
+&gt; thing: database,
+&gt; tools and servers share one source and tools sometimes do too much.
+&gt; 
+&gt;         So I've began work on making database backends to 
+&gt; gnats modular. 
+&gt; Just now, gnats has two &quot;backends&quot;, network (gnatsd) and filsystem. If
+&gt; we make system of backends modular we could have SQL backend, 
+&gt; etc., etc.
+&gt; 
+&gt;         Second thing I don't like in  GNATS, it doesn't has ACLs. This
+&gt; modular framework should support them.  Here is the header file that
+&gt; will briefly describe what I mean:
+&gt; 
+&gt; struct _gnats_database {
+&gt;   URI *U;
+&gt;   
+&gt;   FILE *serv_read;
+&gt;   FILE *serv_write;
+&gt; 
+&gt;   void *module_handle;
+&gt; 
+&gt;   int (* init) (ErrorDesc *err, gnats_database);
+&gt;   int (* add_pr) (ErrorDesc *err, gnats_database, PR);
+&gt;   int (* update_pr) (ErrorDesc *err, gnats_database, PR);
+&gt;   int (* query_pr) (ErrorDesc *err, gnats_database, QueryExpr);
+&gt;   int (* disconnect) (ErrorDesc *err, gnats_database);
+&gt; };
+&gt; 
+&gt; typedef struct _gnats_database *gnats_database;
+&gt; 
+&gt; gnats_database gnats_new_database (ErrorDesc *err, URI *U);
+&gt; int gnats_destroy_database (gnats_database db);
+&gt; 
+&gt;         module_handle is object handle that is returned by dlopen.
+&gt; URI is:
+&gt; 
+&gt; struct _URI
+&gt; {
+&gt;   char *scheme;
+&gt;   char *host;
+&gt;   char *user;
+&gt;   char *pwd;
+&gt;   char *path;
+&gt;   unsigned int port;
+&gt; };
+&gt; 
+&gt; typedef struct _URI URI;
+&gt; 
+&gt;         And there is a function
+&gt; 
+&gt; URI *gnats_parse_uri (const char *gnats_uri, int length);
+&gt; 
+&gt; that takes URI (for example 
+&gt; gnatsd4x://nidd:pwd@nidd.debian.net:1529/database_name) and converts
+&gt; it in such structure (gnatsd4x is 4.0 gnatsd protocol).
+&gt; 
+&gt;         I'm currently implementing gnatsd4x backend. After this I'll
+&gt; make query-pr, pr-edit, gnatsd and other tools to work with 
+&gt; this model.
+&gt; And then I'll begin to make SQL backend.
+&gt; 
+&gt;         If everything will be OK in the end following will be 
+&gt; possible:
+&gt; 
+&gt;            user -&gt; client -&gt; gnatsd -&gt; SQL server (MySQL, Postgres)
+&gt; 
+&gt;         What do you think of this crazy idea?
+&gt; 
+&gt;                                                 Thanks,
+&gt; -- 
+&gt; Peter Novodvorsky     <A  HREF="http://www.altlinux.ru/">http://www.altlinux.ru/</A>    AltLinux Team, Russia
+&gt; Debian.Org                                       
+<A  HREF="http://debian.org/~nidd">http://debian.org/~nidd</A>
+            Debian  ---  no need to  wait for tomorrow.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00120" href="msg00120.html">Re: modular database backends</a></strong>
+<ul><li><em>From:</em> Bob Kaehms</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00119">Date&nbsp;Index</A>] [<a href="subjects.html#00119">Subject&nbsp;Index</a>] [<a href="authors.html#00119">Author&nbsp;Index</a>] [<A HREF="threads.html#00119">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00118.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00118.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: send&#45;pr.conf man page -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 16 May 2001 15:25:38 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010516171953.00bb43b0@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - send-pr.conf man page</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00093">Date&nbsp;Index</A>] [<a href="subjects.html#00093">Subject&nbsp;Index</a>] [<a href="authors.html#00093">Author&nbsp;Index</a>] [<A HREF="threads.html#00093">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00092.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00094.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00092.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00092.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>send-pr.conf man page</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: send-pr.conf man page</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Wed, 16 May 2001 17:24:04 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The following manpage documents the send-pr.conf file of GNATS v4. The 
+associated makefile patch will be sent in a separate mail.
+
+Yngve Svendsen
+
+------------------------------- CUT HERE ------------------------------
+.\&quot; -*- nroff -*-
+.\&quot; ---------------------------------------------------------------------------
+.\&quot;    man page for send-pr.conf
+.\&quot;    (by Yngve Svendsen, yngve.svendsen@clustra.com)
+.\&quot;
+.\&quot;    This file is part of GNATS
+.\&quot;
+.\&quot;    GNATS is free software; you can redistribute it and/or modify it
+.\&quot;    under the terms of the GNU General Public License as published by
+.\&quot;    the Free Software Foundation; either version 2, or (at your
+.\&quot;    option) any later version.
+.\&quot;
+.\&quot;    GNATS is distributed in the hope that it will be useful, but
+.\&quot;    WITHOUT ANY WARRANTY; without even the implied warranty of
+.\&quot;    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+.\&quot;    GNU General Public License for more details.
+.\&quot;
+.\&quot;    You should have received a copy of the GNU General Public
+.\&quot;    License along with PROGRAM; see the file COPYING.  If not,
+.\&quot;    write to the Free Software Foundation, Inc., 59 Temple Place -
+.\&quot;    Suite 330, Boston, MA 02111-1307, USA.
+.\&quot; ---------------------------------------------------------------------------
+.nh
+.TH send-pr.conf 5 &quot;May 2001&quot; &quot;GNATS 4.0-alpha&quot; &quot;GNATS User Utilities&quot;
+.SH NAME
+send-pr.conf \- send-pr configuration file
+.SH SYNOPSIS
+.B xSYSCONFDIRx/gnats/send-pr.conf
+.SH DESCRIPTION
+The
+.B send-pr.conf
+file contains the configuration information for the GNATS
+.BR send-pr(1)
+tool. Each line in the file specifies a configuration
+\fIparameter\fR, together with an associated \fIvalue\fR. Parameters
+defined in the send-pr.conf file override the defaults specified in the
+.B send-pr(1)
+program file.
+.PP
+The file uses ordinary Bourne shell syntax, where '=' denotes
+assignment of a value to a parameter.
+.PP
+The supported parameters, together with allowed values, are:
+.TP
+.B SUBMITTER =\ &quot;string&quot;
+Sets the default value of the GNATS field \fIsubmitter\fR which is
+used in the standard template for new PRs.
+.TP
+.B DEFAULT_ORGANIZATION =\ &quot;organization&quot;
+Sets the default value of the GNATS field \fIorganization\fR which is
+used in the standard template for new PRs.
+.TP
+.B MAILPROG =\ &quot;command-string&quot;
+By default,
+.B send-pr(1)
+will submit Problem Reports by connecting directly
+to the GNATS database server. However, when the MAILPROG parameter
+points to a mailer, send will use e-mail to submit the PR to the GNATS
+database. If the mailer needs to have the address that the mail is
+being sent to specified on the command line, it should be specified in
+MAILPROG as well. If sendmail or a sendmail-compatible mailer is being
+used, the setting MAILPROG = &quot;/usr/lib/sendmail\ \-oi\ \-t&quot; should
+work for most installations.
+.TP
+.B MAILADDR =\ &quot;address&quot;
+When e-mail is to be used for submission of new Problem Reports, the
+MAILADDR should be set to point to the address where PRs should be
+sent.
+.TP
+.B TEMPLATE =\ &quot;file&quot;
+GNATS administrators may want to provide a template for Problem
+Reports. Templates are created by invoking
+.B send-pr(1)
+with the
+\fB-P\fR option. When the TEMPLATE parameter is set to point to a
+file created this way, the template will be loaded into the editor
+when users invoke
+.B send-pr(1).
+.SH &quot;SEE ALSO&quot;
+.I Keeping Track: Managing Messages With GNATS
+(also installed as the GNU Info file
+.BR gnats.info )
+and
+.I Reporting Problems Using send-pr
+(also installed as the GNU Info file
+.BR send-pr.info ).
+.LP
+.BR gnats (7),
+.BR send-pr (1),
+.BR edit-pr (1),
+.BR file-pr (8),
+.BR queue-pr (8),
+.BR nquery-pr (1),
+.BR mkcat (8),
+.BR rmcat (8),
+.BR gen-index (8),
+.BR mkdb (8).
+.SH AUTHOR
+Yngve Svendsen
+.SH COPYING
+Copyright (c) 2001 Free Software Foundation, Inc.
+.PP
+Permission is granted to make and distribute verbatim copies of
+this manual provided the copyright notice and this permission notice
+are preserved on all copies.
+.PP
+Permission is granted to copy and distribute modified versions of this
+manual under the conditions for verbatim copying, provided that the
+entire resulting derived work is distributed under the terms of a
+permission notice identical to this one.
+.PP
+Permission is granted to copy and distribute translations of this
+manual into another language, under the above conditions for modified
+versions, except that this permission notice may be included in
+translations approved by the Free Software Foundation instead of in
+the original English.
+------------------------------- CUT HERE ------------------------------
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00093">Date&nbsp;Index</A>] [<a href="subjects.html#00093">Subject&nbsp;Index</a>] [<a href="authors.html#00093">Author&nbsp;Index</a>] [<A HREF="threads.html#00093">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00092.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00094.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00092.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00092.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

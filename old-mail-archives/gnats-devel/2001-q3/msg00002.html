@@ -1,0 +1,115 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Gnatsweb / passwords -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 2 Jul 2001 09:07:53 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010702104610.00bd8bf8@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20010702001658.00b412e8@10.10.1.1 -->
+<!--X-Reference: 3B40365E.EE56B812@brainstorm.co.uk -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Gnatsweb / passwords</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date&nbsp;Index</A>] [<a href="subjects.html#00002">Subject&nbsp;Index</a>] [<a href="authors.html#00002">Author&nbsp;Index</a>] [<A HREF="threads.html#00002">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00001.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00004.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnatsweb / passwords</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: nick at brainstorm dot co dot uk,gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Re: Gnatsweb / passwords</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Mon, 02 Jul 2001 10:52:16 +0200</li>
+<li><em>References</em>: &lt;<a href="msg00000.html">5.1.0.14.2.20010702001658.00b412e8@10.10.1.1</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+At 09:52 02.07.2001 +0100, nick@brainstorm.co.uk wrote:
+&gt;While we're still talking about passwords, will it be possible for those
+&gt;of us using apache+ssl to bypass the gnatsweb login process completely?
+&gt;(Since they would have already done an apache login).  I feel lame about
+&gt;asking for what could be such a trivial mod, but then I'm a Python &amp;
+&gt;Java person and lack any Perl ability. &lt;:)
+
+Yes. We have a monster patch ready for Gnatsweb 4.x which will be applied 
+by the end of this week, and this version will be able to use the &quot;remote 
+user&quot; parameter set at browser login. You'll just need to set a single 
+config parameter at the start of the Gnatsweb script. However, I am not 
+planning to backport this to version 2 of Gnatsweb, so you'll need to jump 
+up to GNATS 4 in order to use the new Gantsweb. Backporting would probably 
+not be hard (I don't quite remember exactly what the patch does wrt. this), 
+but I try to use the spare cycles I have to help getting GNATS 4 out of the 
+door.
+
+- Yngve
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00000" href="msg00000.html">New Gnatsweb CVS repository</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00001" href="msg00001.html">Gnatsweb / passwords</a></strong>
+<ul><li><em>From:</em> nick</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date&nbsp;Index</A>] [<a href="subjects.html#00002">Subject&nbsp;Index</a>] [<a href="authors.html#00002">Author&nbsp;Index</a>] [<A HREF="threads.html#00002">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00001.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00004.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

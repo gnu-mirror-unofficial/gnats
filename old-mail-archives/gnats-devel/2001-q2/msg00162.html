@@ -1,0 +1,163 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: access control (was Re: modular database backends) -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 11 Jun 2001 18:53:38 &#45;0000 -->
+<!--X-Message-Id: 87n17fysfn.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 7xr8xaac5q.fsf@lambda.novdv.ru -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: access control (was Re: modular database backends)</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00162">Date&nbsp;Index</A>] [<a href="subjects.html#00162">Subject&nbsp;Index</a>] [<a href="authors.html#00162">Author&nbsp;Index</a>] [<A HREF="threads.html#00162">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00160.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00161.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00160.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00173.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: access control (was Re: modular database backends)</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Peter Novodvorsky &lt;nidd at altlinux dot ru&gt;</li>
+<li><em>Subject</em>: Re: access control (was Re: modular database backends)</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 11 Jun 2001 16:58:20 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00114.html">7xr8xaac5q.fsf@lambda.novdv.ru</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;PN&quot; == Peter Novodvorsky &lt;nidd@altlinux.ru&gt; writes:
+
+    PN&gt; 1). i don't like that client can pass without authentication
+    PN&gt; phase.  If he want to login as anonymous, he has to do it. IE,
+
+    PN&gt; USER anonymous nidd@altlinux.ru
+
+Hm, are there any *real* benefits of this except it's annoying during
+debugging? :-)
+
+    PN&gt; 2). I don't like that check of user/password is made by gnatsd
+    PN&gt; and not by &quot;database driver&quot;. I mean that function that
+    PN&gt; authentificates user isn't called by init_gnats that actually
+    PN&gt; connects to database, but after it.  Access control is done by
+    PN&gt; gnatsd, and not by database driver.
+
+IMO this is implied by the fact that there are actually several
+authentication methods in GNATS.  The &quot;built-in&quot; methods are file system
+permissions and the gnatsd mechanism.  Since gnatsd is supposed to be
+the only method of accessing GNATS through network, I can't see anything
+much wrong in that gnatsd performs *the* authentication.
+
+    PN&gt; 3). There is no access control for query-pr, send-pr and
+    PN&gt; edit-pr. This is close to the subject of 2)., because
+    PN&gt; authentification is made on the side of client, not on the side
+    PN&gt; of database.
+
+I'd consider this a feature.  It's sometimes useful to be able to access
+GNATS data based on the file system permissions.  If you don't like
+that, simply chmod go-rwx the database directory and force users to
+access the database via query-pr etc. connections to localhost, thus
+moving the authentication to gnatsd (single place).
+
+    PN&gt; 4). I want that some bugs can be edited only by group of
+    PN&gt; developers.  It can't be done in current version.
+
+I think this complaint is legitimate.
+
+    PN&gt; Is it enough? ;-)
+
+Pardon my ignorance. :-) Generally, I'd be curious whether your problems
+come from a real experience or you just think only on a theoretical
+level.  My experience with running BTS is that the more access control
+the more problems (the first one being users don't bother to use the
+BTS).  There is no access control in the Debian BTS and it works well.
+In one company I used GNATS we had simply full intranet access and in
+another one we had to introduce more regulations to protect the system
+from incompetent people (but the incompetence was a problem itself and I
+had to leave the company because it annoyed me too much).
+
+I don't say some things shouldn't be improved but it's a low priority
+issue for me.  For instance, I consider the modular database backends
+problem much more important and useful than the access control features.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+It's amazing how much better you feel once you've given up hope.
+                                                (unknown source)
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00173" href="msg00173.html">Re: access control</a></strong>
+<ul><li><em>From:</em> Hans-Albert Schneider</li></ul></li>
+<li><strong><a name="00178" href="msg00178.html">Re: access control (was Re: modular database backends)</a></strong>
+<ul><li><em>From:</em> Peter Novodvorsky</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00114" href="msg00114.html">modular database backends</a></strong>
+<ul><li><em>From:</em> Peter Novodvorsky</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00162">Date&nbsp;Index</A>] [<a href="subjects.html#00162">Subject&nbsp;Index</a>] [<a href="authors.html#00162">Author&nbsp;Index</a>] [<A HREF="threads.html#00162">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00160.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00161.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00160.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00173.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

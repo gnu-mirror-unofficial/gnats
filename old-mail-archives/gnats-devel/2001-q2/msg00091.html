@@ -1,0 +1,378 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: send&#45;pr v4 manpage -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 15 May 2001 20:54:08 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010515225209.00b8b250@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: send-pr v4 manpage</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00091">Date&nbsp;Index</A>] [<a href="subjects.html#00091">Subject&nbsp;Index</a>] [<a href="authors.html#00091">Author&nbsp;Index</a>] [<A HREF="threads.html#00091">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00090.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00092.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00090.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00090.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: send-pr v4 manpage</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: send-pr v4 manpage</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 15 May 2001 22:55:39 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+This patch changes the send-pr manpage to reflect the way that send-pr 
+works in Gnats 4.
+
+Yngve Svendsen
+
+
+
+Index: send-pr.man
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/send-pr.man,v
+retrieving revision 1.1.1.1
+diff -u -p -r1.1.1.1 send-pr.man
+--- send-pr.man	1998/11/05 19:54:07	1.1.1.1
++++ send-pr.man	2001/05/15 20:49:49
+@@ -2,6 +2,8 @@
+  .\&quot; 
+---------------------------------------------------------------------------
+  .\&quot;    man page for send-pr (by Heinz G. Seidl, hgs@cygnus.com)
+  .\&quot;    updated Feb 1993 for GNATS 3.00 by Jeffrey Osier, jeffrey@cygnus.com
++.\&quot;    updated May 2000 for GNATS 4.00 by Yngve Svendsen,
++.\&quot;    yngve.svendsen@clustra.com
+  .\&quot;
+  .\&quot;    This file is part of the Problem Report Management System (GNATS)
+  .\&quot;    Copyright 1992 Cygnus Support
+@@ -22,58 +24,60 @@
+  .\&quot;
+  .\&quot; 
+---------------------------------------------------------------------------
+  .nh
+-.TH SEND-PR 1 xVERSIONx &quot;February 1993&quot;
++.TH SEND-PR 1 xVERSIONx &quot;May 2001&quot;
+  .SH NAME
+  send-pr \- send problem report (PR) to a central support site
+  .SH SYNOPSIS
+  .B send-pr
+  [
+-.I site
++.BI -d \ databasename
++|
++.BI --database= databasename
+  ]
+  [
+-.B \-f
+-.I problem-report
++.B -b
++|
++.B --batch
+  ]
+  [
+-.B \-t
+-.I mail-address
++.BI -c \ address
++|
++.BI --cc= address
+  ]
+-.br
+-.in +0.8i
+  [
+-.B \-P
++.BI -f \ file
++|
++.BI --file= file
+  ]
+  [
+-.B \-L
++.B -p
++|
++.B --print
+  ]
+  [
+-.B \-s
+-.I severity
++.B --request-id
+  ]
+  [
+-.B \-c
+-.I address
++.BI -s \ severity
++|
++.BI --severity= severity
+  ]
+-.br
+  [
+-.B \-\-request-id
++.B -h
++|
++.B --help
+  ]
+  [
+-.B \-V
++.B -V
++|
++.B --version
+  ]
+  .SH DESCRIPTION
+  .B send-pr
+  is a tool used to submit
+  .I problem reports
+  .\&quot; SITE ADMINISTRATORS - change this if you use a local default
+-(PRs) to a central support site.  In most cases the correct
+-.I site
+-will be the default.  This argument indicates the support site which
+-is responsible for the category of problem involved.  Some sites may
+-use a local address as a default.
+-.I site
+-values are defined by using the
+-.BR aliases (5).
++(PRs) to a central support site.
+  .LP
+  .B send-pr
+  invokes an editor on a problem report template (after trying to fill
+@@ -84,20 +88,20 @@ sends the completed form to the
+  .I Problem Report Management System
+  (\fBGNATS\fR) at a central support site.  At the support site, the PR
+  is assigned a unique number and is stored in the \fBGNATS\fR database
+-according to its category and submitter-id.  \fBGNATS\fR automatically
+-replies with an acknowledgement, citing the category and the PR
++according to its category and submitter-id.  Depending on how the
++database has been set up \fBGNATS\fR may then automatically
++reply with an acknowledgment, citing the category and the PR
+  number.
+  .LP
+  To ensure that a PR is handled promptly, it should contain your (unique)
+  \fIsubmitter-id\fR and one of the available \fIcategories\fR to identify the
+-problem area.  (Use
+-.B `send-pr -L'
+-to see a list of categories.)
++problem area.
+  .LP
+  The
+  .B send-pr
+  template at your site should already be customized with your
+-submitter-id (running `\|\fBinstall-sid\fP \fIsubmitter-id\fP\|' to
++submitter-id (either running `\|\fBinstall-sid\fP
++\fIsubmitter-id\fP\|' or editing the \fBsend-pr.conf\fR file to
+  accomplish this is part of the installation procedures for
+  .BR send-pr ).
+  If this hasn't been done, see your system administrator for your
+@@ -111,8 +115,24 @@ for this field.
+  The more precise your problem description and the more complete your
+  information, the faster your support team can solve your problems.
+  .SH OPTIONS
++.TP
++.BI \-d,\ \-\-database
++Specifies the database which the PR is to be submitted to; if no
++database is specified, the database named default is assumed. This
++option overrides the database specified in the GNATSDB environment
++variable.
++.TP
++.BI \-b,\ \-\-batch
++Run quietly.
+  .TP
+-.BI \-f &quot; problem-report&quot;
++.BI \-c,\ \-\-cc
++Put
++.I address
++in the
++.B Cc:
++header of the message.
++.TP
++.BI \-f,\ \-\-file
+  specify a file (\fIproblem-report\fR) which already contains a
+  complete problem report.
+  .B send-pr
+@@ -125,42 +145,22 @@ then
+  .B send-pr
+  reads from standard input.
+  .TP
+-.BI \-s &quot; severity&quot;
++.BI \-s,\ \-\-severity
+  Give the problem report the severity
+  .IR severity .
+-.TP
+-.BI \-t &quot; mail-address&quot;
+-Change mail address at the support site for problem reports.  The
+-default
+-.I mail-address
+-is the address used for the default
+-.IR site .
+-Use the
+-.I site
+-argument rather than this option in nearly all cases.
+  .TP
+-.BI \-c &quot; address&quot;
+-Put
+-.I address
+-in the
+-.B Cc:
+-header of the message.
+-.TP
+-.B \-P
+-print the form specified by the environment variable
+-.B PR_FORM
+-on standard output.  If
+-.B PR_FORM
+-is not set, print the standard blank PR template.  No mail is sent.
+-.TP
+-.B -L
+-print the list of available categories.  No mail is sent.
++.BI \-P,\ \-\-print
++print the form specified by the variable TEMPLATE which is set either
++in the send-pr script itself or in the send-pr.conf configuration file.
++If
++.B TEMPLATE
++is not set, print the standard blank PR template of the PR
++database. The PR is not submitted.
+  .TP
+  .B \-\-request\-id
+-sends mail to the default support site, or
+-.I site
+-if specified, with a request for your
+-.IR submitter-id .
++sends a request for your
++.IR submitter-id
++to the support site.
+  If you are
+  not affiliated with
+  .IR site ,
+@@ -169,7 +169,7 @@ use a
+  of
+  .BR net \|'.
+  .TP
+-.B \-V
++.BI \-V,\ \-\-version
+  Display the
+  .B send-pr
+  version number.
+@@ -190,11 +190,8 @@ default:
+  .B vi
+  .sp
+  If the environment variable
+-.B PR_FORM
+-is set, then its value is used as the file name of the template for
+-your problem-report editing session.  You can use this to start with a
+-partially completed form (for example, a form with the identification
+-fields already completed).
++.B GNATSDB
++is set, then its value is used as the database to submit the PR to.
+  .SH &quot;HOW TO FILL OUT A PROBLEM REPORT&quot;
+  Problem reports have to be in a particular form so that a program can
+  easily manage them.  Please remember the following guidelines:
+@@ -204,7 +201,7 @@ describe only
+  with each problem report.
+  .IP \(bu 3m
+  For follow-up mail, use the same subject line as the one in the automatic
+-acknowledgent. It consists of category, PR number and the original synopsis
++acknowledgment. It consists of category, PR number and the original synopsis
+  line.  This allows the support site to relate several mail messages to a
+  particular PR and to record them automatically.
+  .IP \(bu 3m
+@@ -225,12 +222,19 @@ Submit small code samples with the PR.
+  instructions on submitting larger test cases and problematic source
+  code.
+  .SH FILES
+-.ta \w'/tmp/pbad$$  'u
+-/tmp/p$$	copy of PR used in editing session
+-.br
+-/tmp/pf$$	copy of empty PR form, for testing purposes
+-.br
+-/tmp/pbad$$	file for rejected PRs
++.TP
++.B xSYSCONFDIRx/gnats/send-pr.conf
++The send-pr configuration file. Allows the redefinition of all the
++default parameters specified in the send-pr script itself.
++.TP
++.B /tmp/p$$
++Copy of PR used in editing session
++.TP
++.B /tmp/pf$$
++Copy of empty PR form, for testing purposes
++.TP
++.B /tmp/pbad$$
++File for rejected PRs
+  .SH EMACS USER INTERFACE
+  An Emacs user interface for
+  .B send-pr
+@@ -264,13 +268,11 @@ for installation instructions.
+  .BR gnats (8),
+  .BR queue-pr (8),
+  .BR at-pr (8),
+-.BR mkcat (8),
+-.BR mkdist (8).
+  .SH AUTHORS
+  Jeffrey Osier, Brendan Kehoe, Jason Merrill, Heinz G. Seidl (Cygnus
+  Support)
+  .SH COPYING
+-Copyright (c) 1992, 1993 Free Software Foundation, Inc.
++Copyright (c) 1992, 1993, 2001 Free Software Foundation, Inc.
+  .PP
+  Permission is granted to make and distribute verbatim copies of
+  this manual provided the copyright notice and this permission notice
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00091">Date&nbsp;Index</A>] [<a href="subjects.html#00091">Subject&nbsp;Index</a>] [<a href="authors.html#00091">Author&nbsp;Index</a>] [<A HREF="threads.html#00091">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00090.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00092.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00090.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00090.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

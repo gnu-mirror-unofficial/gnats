@@ -1,0 +1,177 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: HTML&#45;escape patch for Gnatsweb 2.7 beta -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 20 Apr 2001 09:01:13 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010420105357.00b3dec8@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - HTML-escape patch for Gnatsweb 2.7 beta</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00034">Date&nbsp;Index</A>] [<a href="subjects.html#00034">Subject&nbsp;Index</a>] [<a href="authors.html#00034">Author&nbsp;Index</a>] [<A HREF="threads.html#00034">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00033.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00035.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00033.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00029.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>HTML-escape patch for Gnatsweb 2.7 beta</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: HTML-escape patch for Gnatsweb 2.7 beta</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Fri, 20 Apr 2001 10:59:21 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The following patch for Gnatsweb 2.7 beta ensures that everything displayed 
+on the query results page is properly HTML escaped. Previously, the query 
+results display could become badly messed up if HTML tags, or indeed 
+anything containing the symbols &lt; and &gt;, were included in the 
+subject/synopsis or in other PR fields. This patch ensures that everything 
+printed on the query results page has been passed through the escapeHTML 
+method of CGI.pm.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+
+
+
+
+*** gnatsweb-2.7beta/gnatsweb.pl	Fri Apr 20 10:40:32 2001
+--- gnatsweb.pl	Fri Apr 20 10:34:40 2001
+***************
+*** 1658,1683 ****
+             &quot;\&quot;&gt;&lt;font size=-1&gt;edit&lt;/font&gt;&lt;/a&gt;&quot;
+             if can_edit();
+       print &quot;&lt;/td&gt;&quot;;
+!     print &quot;&lt;td nowrap&gt;$cat&lt;/td&gt;&quot;                     if $vis{'category'};
+!     print &quot;&lt;td nowrap&gt;$conf&lt;/td&gt;&quot;                    if $vis{'confidential'};
+!     print &quot;&lt;td nowrap&gt;$state[$state]&lt;/td&gt;&quot;           if $vis{'state'};
+!     print &quot;&lt;td nowrap&gt;$class[$class]&lt;/td&gt;&quot;           if $vis{'class'};
+!     print &quot;&lt;td nowrap&gt;$severity[$sev]&lt;/td&gt;&quot;          if $vis{'severity'};
+!     print &quot;&lt;td nowrap&gt;$priority[$pri]&lt;/td&gt;&quot;          if $vis{'priority'};
+!     print &quot;&lt;td nowrap&gt;&quot;, nonempty($release), &quot;&lt;/td&gt;&quot; if $vis{'release'};
+!     print &quot;&lt;td nowrap&gt;&quot;, nonempty($quarter), &quot;&lt;/td&gt;&quot; if($site_release_based
+!                                                         &amp;&amp; $vis{'quarter'});
+!     print &quot;&lt;td&gt;&quot;, nonempty($keywords), &quot;&lt;/td&gt;&quot;       if($site_release_based
+!                                                         &amp;&amp; $vis{'keywords'});
+!     print &quot;&lt;td nowrap&gt;$resp&lt;/td&gt;&quot;                    if $vis{'responsible'};
+!     print &quot;&lt;td nowrap&gt;&quot;, nonempty($sub), &quot;&lt;/td&gt;&quot;     if $vis{'submitter_id'};
+!     print &quot;&lt;td nowrap&gt;&quot;, nonempty($orig), &quot;&lt;/td&gt;&quot;    if $vis{'originator'};
+!     print &quot;&lt;td nowrap&gt;$arrival&lt;/td&gt;&quot;                 if $vis{'arrival_date'};
+!     print &quot;&lt;td nowrap&gt;&quot;, nonempty($daterequired), &quot;&lt;/td&gt;&quot;
+!           if($site_release_based &amp;&amp; $vis{'date_required'});
+!     print &quot;&lt;td nowrap&gt;&quot;,nonempty($lastmoddate),&quot;&lt;/td&gt;&quot; if 
+$vis{'last_modified'};
+!     print &quot;&lt;td nowrap&gt;&quot;,nonempty($closeddate),&quot;&lt;/td&gt;&quot; if $vis{'closed_date'};
+!     print &quot;&lt;td&gt;$syn&lt;/td&gt;&quot;                             if $vis{'synopsis'};
+       print &quot;&lt;/tr&gt;\n&quot;;
+     }
+     print &quot;&lt;/table&gt;\n&quot;;
+--- 1658,1685 ----
+             &quot;\&quot;&gt;&lt;font size=-1&gt;edit&lt;/font&gt;&lt;/a&gt;&quot;
+             if can_edit();
+       print &quot;&lt;/td&gt;&quot;;
+!
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($cat)) if $vis{'category'};
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($conf)) if $vis{'confidential'};
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($state[$state])) if $vis{'state'};
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($class[$class])) if $vis{'class'};
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($severity[$sev])) if 
+$vis{'severity'};
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($priority[$pri])) if 
+$vis{'priority'};
+!     print $q-&gt;td({nowrap}, nonempty($q-&gt;escapeHTML($release))) if 
+$vis{'release'};
+!     print $q-&gt;td({nowrap}, nonempty($q-&gt;escapeHTML($quarter))) 
+if($site_release_based
+!                                                                   &amp;&amp; 
+$vis{'quarter'});
+!     print $q-&gt;td({nowrap}, nonempty($q-&gt;escapeHTML($keywords))) 
+if($site_release_based
+!                                                                    &amp;&amp; 
+$vis{'keywords'});
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($resp)) if $vis{'responsible'};
+!     print $q-&gt;td({nowrap}, nonempty($q-&gt;escapeHTML($sub))) if 
+$vis{'submitter_id'};
+!     print $q-&gt;td({nowrap}, nonempty($q-&gt;escapeHTML($orig))) if 
+$vis{'originator'};
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($arrival)) if $vis{'arrival_date'};
+!     print $q-&gt;td({nowrap}, nonempty($q-&gt;escapeHTML($daterequired))) 
+if($site_release_based
+!                                                                        &amp;&amp; 
+$vis{'date_required'});
+!     print $q-&gt;td({nowrap}, $q-&gt;nonempty(escapeHTML($lastmoddate))) if 
+$vis{'last_modified'};
+!     print $q-&gt;td({nowrap}, $q-&gt;nonempty(escapeHTML($closeddate))) if 
+$vis{'closed_date'};
+!     print $q-&gt;td({nowrap}, $q-&gt;escapeHTML($syn)) if $vis{'synopsis'};
+!
+       print &quot;&lt;/tr&gt;\n&quot;;
+     }
+     print &quot;&lt;/table&gt;\n&quot;;
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00034">Date&nbsp;Index</A>] [<a href="subjects.html#00034">Subject&nbsp;Index</a>] [<a href="authors.html#00034">Author&nbsp;Index</a>] [<A HREF="threads.html#00034">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00033.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00035.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00033.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00029.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

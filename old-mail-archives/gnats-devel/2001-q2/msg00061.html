@@ -1,0 +1,121 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: gnats&#45;adm directory -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 1 May 2001 19:08:08 &#45;0000 -->
+<!--X-Message-Id: 87wv80gaoj.fsf@zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 3AC18BED.1637F56B@alcatel.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: gnats-adm directory</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00061">Date&nbsp;Index</A>] [<a href="subjects.html#00061">Subject&nbsp;Index</a>] [<a href="authors.html#00061">Author&nbsp;Index</a>] [<A HREF="threads.html#00061">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00060.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00062.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00060.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00060.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats-adm directory</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Luca Manai &lt;luca dot manai at alcatel dot com&gt;</li>
+<li><em>Subject</em>: Re: gnats-adm directory</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 01 May 2001 20:56:44 +0200</li>
+<li><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com</li>
+<li><em>References</em>: &lt;3AC18BED.1637F56B@alcatel.com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+[Sorry for the long delay in answer.]
+
+&gt;&gt;&gt;&gt;&gt; &quot;LM&quot; == Luca Manai &lt;luca.manai@alcatel.com&gt; writes:
+
+    LM&gt; Sorry if this is not the most appropriated mailing list...
+
+bug-gnats@gnu.org could be a bit better.
+
+    LM&gt; 4] as root
+    LM&gt;    make -k install
+    LM&gt;    (some errors about emacs and gnats.el...
+    LM&gt;     ...not so important, I guess!)
+
+This is important and causes the problem you described:
+
+    LM&gt; The problem is: the installation procedure doesn't create the
+    LM&gt; directory gnats-adm under /usr/local/share/gnats/gnats-db with
+    LM&gt; the template files: categories, config, responsible...  and the
+    LM&gt; file: gnatsd.conf
+
+This is a bug -- GNATS installation shouldn't depend on Emacs being
+available more than the *.el files are concerned.  The bug seems to be
+already fixed in GNATS 4 alpha.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+SomeProgrammersLikeWritingLikeThis.However,IDontThinkThisFormOfCommunicationIs\
+AGoodIdea.IApologizeToAllWhoCantReadMyTextsWrittenInAClassicStyle.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00061">Date&nbsp;Index</A>] [<a href="subjects.html#00061">Subject&nbsp;Index</a>] [<a href="authors.html#00061">Author&nbsp;Index</a>] [<A HREF="threads.html#00061">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00060.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00062.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00060.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00060.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

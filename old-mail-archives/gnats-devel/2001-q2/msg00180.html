@@ -1,0 +1,182 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: access control -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 17 Jun 2001 19:26:03 &#45;0000 -->
+<!--X-Message-Id: 871yojw70i.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 7xr8xaac5q.fsf@lambda.novdv.ru -->
+<!--X-Reference: 87n17fysfn.fsf@blackbird.zamazal.org -->
+<!--X-Reference: 15143.23160.854080.589552@mail&#45;g.mchp.siemens.de -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: access control</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00180">Date&nbsp;Index</A>] [<a href="subjects.html#00180">Subject&nbsp;Index</a>] [<a href="authors.html#00180">Author&nbsp;Index</a>] [<A HREF="threads.html#00180">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00179.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00181.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00179.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00178.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: access control</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Hans-Albert dot Schneider at mchp dot siemens dot de,       Peter Novodvorsky &lt;nidd at altlinux dot ru&gt;</li>
+<li><em>Subject</em>: Re: access control</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 17 Jun 2001 15:49:49 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00114.html">7xr8xaac5q.fsf@lambda.novdv.ru</a>&gt;&lt;<a href="msg00162.html">87n17fysfn.fsf@blackbird.zamazal.org</a>&gt;&lt;<a href="msg00173.html">15143.23160.854080.589552@mail-g.mchp.siemens.de</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;HS&quot; == Hans-Albert Schneider &lt;Hans-Albert.Schneider@mchp.siemens.de&gt; writes:
+
+    HS&gt; I cannot speak for Peter, of course.  However, we are currently
+    HS&gt; using GNATS internally.  Opening it to our customers would
+    HS&gt; require some method to restrict access such that customers are
+    HS&gt; unable to see the reports submitted by other customers, because
+    HS&gt; the reports sometimes include real-life data of the customer.
+    HS&gt; Of course, each customer should be able to see all their own
+    HS&gt; reports.  (So the granularity of the &quot;confidential&quot; flag is too
+    HS&gt; coarse.)
+
+I agree this is a real and important problem.  I used to have a similar
+problem.  I solved it by using gnats2w authentication and authorization
+mechanism, but it should actually be handled in gnatsd.
+
+    HS&gt; A first idea that comes into my mind is to have a mapping of
+    HS&gt; usernames - to submitter id(s) the user is allowed to use in
+    HS&gt; submitting reports, and - to the submitter ids whose reports
+    HS&gt; this user may see (both in listings and in full).  [BTW, this
+    HS&gt; would interfere with the &quot;merging duplicates&quot; feature discussed
+    HS&gt; recently on the list.]
+
+    HS&gt; The mapping could be done by two optional fields to
+    HS&gt; gnatsd.access.
+
+Well, maybe.
+
+    HS&gt; This feature could be combined with the &quot;confidential&quot; flag:
+    HS&gt; Reports marked confidential are only visible to the same
+    HS&gt; submitter id, others are visible to everyone.
+
+This sounds very reasonable.
+
+    HS&gt; Of course, the developers must be able to see all reports, as
+    HS&gt; should those of us who do consulting for the customers.
+
+Yes, that could be done with a wildcard in the configuration.
+
+&gt;&gt;&gt;&gt;&gt; &quot;PN&quot; == Peter Novodvorsky &lt;nidd@altlinux.ru&gt; writes:
+
+    PN&gt; Milan Zamazal wrote:
+
+    &gt;&gt;&gt;&gt;&gt;&gt;&gt; &quot;PN&quot; == Peter Novodvorsky &lt;nidd@altlinux.ru&gt; writes:
+    &gt;&gt;&gt;&gt;&gt;&gt;
+    PN&gt; 1). i don't like that client can pass without authentication
+    PN&gt; phase.  If he want to login as anonymous, he has to do it. IE,
+    PN&gt; USER anonymous nidd@altlinux.ru
+    &gt;&gt; Hm, are there any *real* benefits of this except it's annoying
+    &gt;&gt; during debugging?:-)
+
+    PN&gt; Yes, I want to devide everything in several stages. One of them
+    PN&gt; is authentification stage (Like in ftp/pop3).
+
+Do you talk about your application or about gnatsd protocol
+elegance? :-)  If the first, creating an anonymous user should be
+sufficient, and if the latter, frankly, I don't care much.
+
+    PN&gt; Some of them come for theoretical level, and some of them have
+    PN&gt; real-life reasons.  Company I work for makes a distribution. It
+    PN&gt; is maintained by my coworkers and some people who volounteer. I
+    PN&gt; want them to have rights to edit only their bug reports while
+    PN&gt; office people to edit any bug report.
+
+OK, this should be solved in foreseeable future.
+
+    PN&gt; OK. In this case I was talking about non-existing GNATS5. ;-)
+
+Well, let's say 4.1. :-)
+
+I know there are important features that should be included in GNATS,
+but we should really release GNATS 4 sometimes and let the most
+important new features be solved in the first non bug fix release after
+it.  Thanks to all the contributors, especially Yngve, we got much
+closer to the GNATS 4 release now, so let's not delay it again. :-)
+
+Milan Zamazal
+
+-- 
+  _/_\_/_  o     _\_/_\_  o     _/_\_/_  o     _\_/_\_  o    BEWARE!
+-&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--   *Bugs* are
+   / \ /   o      \ / \   o      / \ /   o      \ / \   o     approaching!
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00114" href="msg00114.html">modular database backends</a></strong>
+<ul><li><em>From:</em> Peter Novodvorsky</li></ul></li>
+<li><strong><a name="00162" href="msg00162.html">Re: access control (was Re: modular database backends)</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+<li><strong><a name="00173" href="msg00173.html">Re: access control</a></strong>
+<ul><li><em>From:</em> Hans-Albert Schneider</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00180">Date&nbsp;Index</A>] [<a href="subjects.html#00180">Subject&nbsp;Index</a>] [<a href="authors.html#00180">Author&nbsp;Index</a>] [<A HREF="threads.html#00180">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00179.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00181.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00179.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00178.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

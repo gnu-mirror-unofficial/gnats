@@ -1,0 +1,166 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: RE: PATCH: Minor redirect fix for Gnatsweb 2.8.0 -->
+<!--X-From-R13: Rvex Pretfgebz <qvexNwhavcre.arg> -->
+<!--X-Date: 8 May 2001 15:47:12 &#45;0000 -->
+<!--X-Message-Id: C0D6C1C24CDBE1449BFEF1B72AFBF3A703DE6C71@postal.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - RE: PATCH: Minor redirect fix for Gnatsweb 2.8.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00075">Date&nbsp;Index</A>] [<a href="subjects.html#00075">Subject&nbsp;Index</a>] [<a href="authors.html#00075">Author&nbsp;Index</a>] [<A HREF="threads.html#00075">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00074.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00076.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00074.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00071.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: PATCH: Minor redirect fix for Gnatsweb 2.8.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: 'Yngve Svendsen' &lt;yngve dot svendsen at clustra dot com&gt;, gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: RE: PATCH: Minor redirect fix for Gnatsweb 2.8.0</li>
+<li><em>From</em>: Dirk Bergstrom &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Tue, 8 May 2001 08:47:08 -0700 </li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+hmmm...  i fixed this in my local copy of gnatsweb 4, but i did it by
+s/;/&amp;/g in the code just before the redirect was sent.  i wasn't comfortable
+globally setting -oldstyle_urls for such a localized problem.  however, i'm
+not sure my fix is better -- anyone care to weigh in on the issue?
+
+@@ -3355,12 +3336,6 @@
+     #print $q-&gt;redirect(-location =&gt; $url,
+     #                   -cookie =&gt; [$global_cookie, $db_cookie]);
+     # So, this is sort of a lame replacement; a zero-delay refresh.
++
++    # the refresh header chokes on the query-string if the
++    # params are separated by semicolons...
++    $url =~ s/\;/&amp;/g;
++    #
++
+     print $q-&gt;header(-Refresh =&gt; &quot;0; URL=$url&quot;,
+                      -cookie =&gt; [$global_cookie, $db_cookie,
+$expire_old_cookie
+]),
+           $q-&gt;start_html();
+
+--
+Dirk Bergstrom              dirk@juniper.net
+____________________________________________
+Juniper Networks Inc.,  Engineering Web Guru
+Tel: 408.745.3182          Fax: 408.745.8905
+
+
+&gt; -----Original Message-----
+&gt; From: Yngve Svendsen [<A  HREF="mailto:yngve.svendsen@clustra.com">mailto:yngve.svendsen@clustra.com</A>]
+&gt; Sent: Tuesday, May 08, 2001 6:17 AM
+&gt; To: gnats-devel@sources.redhat.com
+&gt; Subject: PATCH: Minor redirect fix for Gnatsweb 2.8.0
+&gt; 
+&gt; 
+&gt; The following patch fixes a problem caused by a change of 
+&gt; behaviour in all 
+&gt; versions of CGI.pm from 2.64 onwards (2.753 is current right 
+&gt; now). It now 
+&gt; by default returns URLs with parameters separated by 
+&gt; semicolons instead of 
+&gt; ampersands, subtly breaking the redirect functionality of 
+&gt; Gnatsweb versions 
+&gt; 2.7 beta and 2.8.0. Redirects still happen, but the browser 
+&gt; is redirected 
+&gt; to the main Gnatsweb page instead of to the page which the 
+&gt; user came from.
+&gt; 
+&gt; The following patch fixes this, by instructing CGI.pm to use 
+&gt; &quot;old-style&quot; URLs:
+&gt; 
+&gt; Index: gnatsweb.pl
+&gt; ===================================================================
+&gt; RCS file: /clustra/cvs/gnatsweb2/gnatsweb.pl,v
+&gt; retrieving revision 1.25
+&gt; diff -u -p -r1.25 gnatsweb.pl
+&gt; --- gnatsweb.pl 2001/05/04 13:44:12     1.25
+&gt; +++ gnatsweb.pl 2001/05/08 13:09:11
+&gt; @@ -97,9 +97,7 @@ else
+&gt;   use CGI::Carp qw/fatalsToBrowser/;
+&gt;   # 8/22/99 kenstir: CGI.pm-2.50's file upload is broken.
+&gt;   # 9/19/99 kenstir: CGI.pm-2.55's file upload is broken.
+&gt; -use CGI 2.56 qw/:standard/;
+&gt; -#use CGI 2.56 ();
+&gt; -#use CGI::Pretty qw/:standard/;
+&gt; +use CGI 2.56 qw(-oldstyle_urls :all);
+&gt;   use gnats qw/client_init client_exit client_cmd/;
+&gt; 
+&gt;   # Debugging fresh code.
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; Yngve Svendsen
+&gt; IS Engineer
+&gt; Clustra AS, Trondheim, Norway
+&gt; yngve.svendsen@clustra.com
+&gt; 
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00075">Date&nbsp;Index</A>] [<a href="subjects.html#00075">Subject&nbsp;Index</a>] [<a href="authors.html#00075">Author&nbsp;Index</a>] [<A HREF="threads.html#00075">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00074.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00076.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00074.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00071.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

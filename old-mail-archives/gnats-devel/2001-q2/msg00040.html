@@ -1,0 +1,126 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Gnatsweb attachment handling broken by gnatsd -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 22 Apr 2001 18:36:10 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010422202822.00b3ca58@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.12.2.20010322224005.00b9d970@iwww.clustra.com -->
+<!--X-Reference: 87d7a4q4qs.fsf@zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Gnatsweb attachment handling broken by gnatsd</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00040">Date&nbsp;Index</A>] [<a href="subjects.html#00040">Subject&nbsp;Index</a>] [<a href="authors.html#00040">Author&nbsp;Index</a>] [<A HREF="threads.html#00040">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00039.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00041.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00039.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00034.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnatsweb attachment handling broken by gnatsd</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: Gnatsweb attachment handling broken by gnatsd</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Sun, 22 Apr 2001 20:34:11 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;5.1.0.12.2.20010322224005.00b9d970@iwww.clustra.com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+At 18:27 22.04.2001 +0200, Milan Zamazal wrote:
+&gt;I think it's there because unknown fields are added there and they
+&gt;should be prevented looking like real fields, they should be a clear
+&gt;part of the `Unformatted' field.
+&gt;
+&gt;     YS&gt; By doing the following to addLineToPR in pr.c (basically
+&gt;     YS&gt; commenting out the space-adding code) and rebuilding gnatsd,
+&gt;     YS&gt; attachment handling worked again:
+&gt;
+&gt;I don't think doing this is a good idea.
+&gt;
+&gt;     YS&gt; The easiest way to fix Gnatsweb would be to remove this code
+&gt;     YS&gt; from pr.c. Working around it in Gnatsweb would take a bit of
+&gt;     YS&gt; coding and very likely affect performance a lot.
+&gt;
+&gt;As it was already suggested, it's likely that attachements will be
+&gt;handled in a special way in GNATS 4.x.  As for GNATS 4.0, I think
+&gt;Gnatsweb should be fixed.  I don't know anything about the attachement
+&gt;handling in Gnatsweb, but I think it's not a good ideat to store them in
+&gt;the `Unformatted' field.  I'd suggest considering to require having the
+&gt;`Attachement' field in `dbconfig' (I might add it to the default
+&gt;`dbconfig' if it proves useful).
+
+I agree. It is not a good idea to store them in the Unformatted field. 
+However, rewriting the attachment handling to use a special &quot;Attachment&quot; 
+field would require a fair bit of work. Since it is likely that attachment 
+handling will be implemented in Gnats itself at some point, I'll look into 
+a quick fix, by having Gnatsweb strip off the leading spaces during parsing.
+
+- Yngve
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00036" href="msg00036.html">Re: Gnatsweb attachment handling broken by gnatsd</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00040">Date&nbsp;Index</A>] [<a href="subjects.html#00040">Subject&nbsp;Index</a>] [<a href="authors.html#00040">Author&nbsp;Index</a>] [<A HREF="threads.html#00040">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00039.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00041.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00039.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00034.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

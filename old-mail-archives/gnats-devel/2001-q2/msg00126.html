@@ -1,0 +1,159 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: modular database backends -->
+<!--X-From-R13: Brgre @bibqibefxl <avqqNnygyvahk.eh> -->
+<!--X-Date: 29 May 2001 19:43:40 &#45;0000 -->
+<!--X-Message-Id: 7x4ru4kl9y.fsf@lambda.novdv.ru -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 7xr8xaac5q.fsf@lambda.novdv.ru -->
+<!--X-Reference: 878zjhdvwu.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Peter Novodvorsky - Re: modular database backends</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00126">Date&nbsp;Index</A>] [<a href="subjects.html#00126">Subject&nbsp;Index</a>] [<a href="authors.html#00126">Author&nbsp;Index</a>] [<A HREF="threads.html#00126">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00125.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00127.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00125.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00166.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: modular database backends</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: modular database backends</li>
+<li><em>From</em>: Peter Novodvorsky &lt;nidd at altlinux dot ru&gt;</li>
+<li><em>Date</em>: 29 May 2001 23:28:09 +0400</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Organization</em>: Terrapin station</li>
+<li><em>References</em>: &lt;<a href="msg00114.html">7xr8xaac5q.fsf@lambda.novdv.ru</a>&gt;&lt;<a href="msg00118.html">878zjhdvwu.fsf@blackbird.zamazal.org</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Milan Zamazal &lt;pdm@zamazal.org&gt; writes:
+
+&gt; &gt;&gt;&gt;&gt;&gt; &quot;PN&quot; == Peter Novodvorsky &lt;nidd@altlinux.ru&gt; writes:
+&gt; 
+&gt;     PN&gt;         Second thing I don't like in GNATS, it doesn't has
+&gt;     PN&gt; ACLs. This modular framework should support them.  Here is the
+&gt;     PN&gt; header file that will briefly describe what I mean:
+&gt; 
+&gt; I'm afraid I couldn't understand what kind of ACLs you would like to
+&gt; have.  Could you elaborate?
+
+1). i don't like that client can pass without authentication phase.
+If he want to login as anonymous,  he  has to do it. IE,
+
+USER anonymous nidd@altlinux.ru
+
+2). I don't like that check of user/password is made by gnatsd and not
+by &quot;database driver&quot;. I mean that function that authentificates user
+isn't called by init_gnats that actually connects to database, but after
+it.  Access control is done by gnatsd, and not by database driver.
+
+3). There is no access control for query-pr, send-pr and edit-pr. This 
+is close to the subject of 2)., because  authentification is made on
+the side of client, not on the side of database.
+
+Advanced topics.
+
+4). I want that some bugs  can be edited only by group of developers.
+It can't be done in current version.
+
+Is it enough? ;-)
+
+
+&gt; However, no new features will get into GNATS 4.0.  I think the backend
+&gt; architecture and the MIME handling could be the main feature candidates
+&gt; for the first non-bug-fix release after 4.0.  Of course, we can start
+&gt; discussing the API and architecture now and you can also work on a
+&gt; preliminary implementation in the meantime, just don't expect it to have
+&gt; it in 4.0.
+
+May be you could make a CVS branch for 4.99?
+
+&gt; BTW, please note I'll be soon out of Internet for about a week or two.
+
+Heh, that's bad because I wanted to begin making implementation very
+actively. Do you have thoughts on the subject?  I'm writing
+``specification'' of some kind. Maybe it   will give the subject for
+discussion.
+
+Regards,
+
+-- 
+Peter Novodvorsky     <A  HREF="http://www.altlinux.ru/">http://www.altlinux.ru/</A>    AltLinux Team, Russia
+Debian.Org                                       <A  HREF="http://debian.org/~nidd">http://debian.org/~nidd</A>
+            Debian  ---  no need to  wait for tomorrow.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00166" href="msg00166.html">Re: modular database backends</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00114" href="msg00114.html">modular database backends</a></strong>
+<ul><li><em>From:</em> Peter Novodvorsky</li></ul></li>
+<li><strong><a name="00118" href="msg00118.html">Re: modular database backends</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00126">Date&nbsp;Index</A>] [<a href="subjects.html#00126">Subject&nbsp;Index</a>] [<a href="authors.html#00126">Author&nbsp;Index</a>] [<A HREF="threads.html#00126">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00125.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00127.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00125.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00166.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

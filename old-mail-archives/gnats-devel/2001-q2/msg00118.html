@@ -1,0 +1,148 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: modular database backends -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 28 May 2001 21:37:36 &#45;0000 -->
+<!--X-Message-Id: 878zjhdvwu.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 7xr8xaac5q.fsf@lambda.novdv.ru -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: modular database backends</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00118">Date&nbsp;Index</A>] [<a href="subjects.html#00118">Subject&nbsp;Index</a>] [<a href="authors.html#00118">Author&nbsp;Index</a>] [<A HREF="threads.html#00118">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00117.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00119.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00117.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00126.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: modular database backends</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Peter Novodvorsky &lt;nidd at altlinux dot ru&gt;</li>
+<li><em>Subject</em>: Re: modular database backends</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 28 May 2001 23:08:01 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00114.html">7xr8xaac5q.fsf@lambda.novdv.ru</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;PN&quot; == Peter Novodvorsky &lt;nidd@altlinux.ru&gt; writes:
+
+    PN&gt;         So I've began work on making database backends to gnats
+    PN&gt; modular.  Just now, gnats has two &quot;backends&quot;, network (gnatsd)
+    PN&gt; and filsystem. If we make system of backends modular we could
+    PN&gt; have SQL backend, etc., etc.
+
+Yes, this is a wanted feature.
+
+    PN&gt;         Second thing I don't like in GNATS, it doesn't has
+    PN&gt; ACLs. This modular framework should support them.  Here is the
+    PN&gt; header file that will briefly describe what I mean:
+
+I'm afraid I couldn't understand what kind of ACLs you would like to
+have.  Could you elaborate?
+
+    PN&gt;         If everything will be OK in the end following will be
+    PN&gt; possible:
+
+    PN&gt;            user -&gt; client -&gt; gnatsd -&gt; SQL server (MySQL,
+    PN&gt; Postgres)
+
+    PN&gt;         What do you think of this crazy idea?
+
+I can't see anything crazy in it. :-) Actually I was already asked by my
+friend about the possibility of using LDAP as the PR storage.
+
+However, no new features will get into GNATS 4.0.  I think the backend
+architecture and the MIME handling could be the main feature candidates
+for the first non-bug-fix release after 4.0.  Of course, we can start
+discussing the API and architecture now and you can also work on a
+preliminary implementation in the meantime, just don't expect it to have
+it in 4.0.
+
+    PN&gt; I'm not professional programmer and I would like to discuss
+    PN&gt; implementation of this feature with maintainer.
+
+OK.
+
+BTW, please note I'll be soon out of Internet for about a week or two.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+Omigod, it's a flame war about a flame war.  You know, a meta-flame war!
+                                                 Kenny Tilton in comp.lang.lisp
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00126" href="msg00126.html">Re: modular database backends</a></strong>
+<ul><li><em>From:</em> Peter Novodvorsky</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00114" href="msg00114.html">modular database backends</a></strong>
+<ul><li><em>From:</em> Peter Novodvorsky</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00118">Date&nbsp;Index</A>] [<a href="subjects.html#00118">Subject&nbsp;Index</a>] [<a href="authors.html#00118">Author&nbsp;Index</a>] [<A HREF="threads.html#00118">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00117.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00119.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00117.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00126.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

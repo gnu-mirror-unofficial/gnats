@@ -1,0 +1,172 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Proposal for a Gnats 3.114 release -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 4 May 2001 21:54:20 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10105041544310.16732&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20010504224906.00b888b0@iwww.clustra.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Rick Macdonald - Re: Proposal for a Gnats 3.114 release</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00066">Date&nbsp;Index</A>] [<a href="subjects.html#00066">Subject&nbsp;Index</a>] [<a href="authors.html#00066">Author&nbsp;Index</a>] [<A HREF="threads.html#00066">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00065.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00065.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Proposal for a Gnats 3.114 release</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Re: Proposal for a Gnats 3.114 release</li>
+<li><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Date</em>: Fri, 4 May 2001 15:54:08 -0600 (MDT)</li>
+<li><em>cc</em>: gnats-devel at sources dot redhat dot com, Milan Zamazal &lt;pdm at zamazal dot org&gt;,       Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Fri, 4 May 2001, Yngve Svendsen wrote:
+
+&gt; Gnats 4 will take some time still, as far as I can see. Therefore, I would 
+&gt; like to propose that we reease the current tip of the v3 tree as Gnats 
+&gt; 3.114. A &quot;wrapup release&quot; of Gnats 3 would complement Gnatsweb 2.8.0 
+&gt; perfectly, I think.
+
+I have a dev version of TkGnats that I should have released a year ago. If
+I update my web page, will you include it in the gnats 3.114 release? It
+will be tkgnats v3.0.18.
+
+Here is the changelog:
+
+=================
+Changes in 3.0.17 PRE_RELEASE
+=================
+
+27APR2000
+
+o  The Help for Category, Submitter-Id and Responsible is now dynamic
+   and descriptions are taken from the categories, submitters and
+   responsibles files as configured in gnats-adm. (This info is
+   retrieved via gnatsd or [n]query-pr.
+
+09MAR2000
+
+o  In SendPr, unqualified names in the Notify-List only get the 
+   default domainname appended if the name is _not_ found in the
+   responsibles list. For this to work, it is assumed that the
+   first and third fields of the responsible entry are different.
+   For example, this will not get the default domainname appended:
+           rickm:Rick Macdonald:rickm@example.com
+   but this will:
+           rickm:Rick Macdonald:
+   
+o  A new config variable TkGnats(QueryFileMenu) adds items to the File
+   menu of the main Query window. See tkgnats.config for examples.
+
+18FEB2000
+
+o  Fixed error when handling gnatsd access denied problems:
+
+   Error in startup script: can't read &quot;TkGnats(UserAccess)&quot;: no such
+element
+   in array while executing
+   &quot;if {$TkGnats(UserAccess) == &quot;noaccess&quot;} {
+       # The userid/password isn't valid or otherwise returned
+access=none.
+       if {[info exist...&quot;
+       (procedure &quot;get_gnats_config&quot; line 13) invoked from within
+       &quot;get_gnats_config&quot;
+           (file &quot;/opt/tkgnats/share/tkgnats/tkquerypr.tcl&quot; line 64)
+
+o  Updated delete_pr to work. It's been broken since about gnats-3.107.
+
+16FEB2000
+
+o  Line wrapping in the Full, Raw and Description_Summary reports
+   has been fixed, again. 
+
+o  The Full PR report now begins a new page for each PR.
+
+04FEB2000
+
+o  If you edit a PR where the Responsible person has been removed 
+   from the responsibles file, the PR would get saved with a blank
+   Responsible field. This triggers a bug in gen-index which causes
+   the previous index record to be duplicated and the one with the
+   blank Responsible person gets lost. To fix this, the Responsible
+   field is now hard-wired as mandatory for the EditPr window, and
+   the user is warned about the invalid value.
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00067" href="msg00067.html">Re: Proposal for a Gnats 3.114 release</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00065" href="msg00065.html">Proposal for a Gnats 3.114 release</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00066">Date&nbsp;Index</A>] [<a href="subjects.html#00066">Subject&nbsp;Index</a>] [<a href="authors.html#00066">Author&nbsp;Index</a>] [<A HREF="threads.html#00066">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00065.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00065.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: GNATS password management -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 26 Jun 2001 17:51:07 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010626194604.04dcd278@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - GNATS password management</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00205">Date&nbsp;Index</A>] [<a href="subjects.html#00205">Subject&nbsp;Index</a>] [<a href="authors.html#00205">Author&nbsp;Index</a>] [<A HREF="threads.html#00205">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00204.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00206.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00204.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00209.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>GNATS password management</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: GNATS password management</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 26 Jun 2001 19:48:42 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Below is an outline of the two password-management tools I'd like to see 
+implemented for GNATS 4. gnats-pwconv is intended for upgraders from 
+version 3 to version 4, while gnats-pw partially mimics the functionality 
+of Apache's htpasswd tool.
+
+What do you all think?
+
+Yngve Svendsen
+
+
+
+
+gnats-pwconv
+gnats-pwconv [-mp] infile outfile
+gnats-pwconv -n[mp] infile
+
+Converts the plaintext passwords in the GNATS 3 password file infile and 
+writes the resulting complete version 4 password file to outfile. 
+Infile=outfile should be disallowed.
+
+-m, --md5	Use MD5 encryption, i.e. convert passwords to MD5 and add $1$ prefix
+-n, --nocreate	Don't create file; display results on stdout.
+-d, --crypt	Force CRYPT encryption of the passwords (default).
+-p, --plaintext	Do not encrypt the passwords (plaintext). Prefixes existing 
+passwords with $0$
+-t, --test	Tests which encryption methods are supported by the system
+-h --help
+-V --version
+
+
+
+gnats-pw
+gnats-pw [-cmdps] passwordfile username accesslevel
+gnats-pw -n[mdps] username accesslevel
+
+Prompts for a password (twice), then inserts or edits the corresponding 
+entry in the specified passwordfile. If the -n option is given, the 
+resulting passwordfile entry is written to stdout instead.
+
+-c, --create	Create a new file.
+-n, --noupdate	Don't update file; display results on stdout.
+-m, --md5	Force MD5 encryption of the password, i.e. convert the password 
+to MD5 and add $1$ prefix
+-d, --crypt	Force CRYPT encryption of the password (default).
+-p, --plaintext	Do not encrypt the password (plaintext). Prefixes the 
+entered password with $0$
+-h, --help
+-V, --version
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00209" href="msg00209.html">Re: GNATS password management</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00205">Date&nbsp;Index</A>] [<a href="subjects.html#00205">Subject&nbsp;Index</a>] [<a href="authors.html#00205">Author&nbsp;Index</a>] [<A HREF="threads.html#00205">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00204.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00206.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00204.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00209.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

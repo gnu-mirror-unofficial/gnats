@@ -1,0 +1,145 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Encrypted password patch -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 24 Jun 2001 18:34:52 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10106241233300.21688&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 87vgllyj84.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Rick Macdonald - Re: Encrypted password patch</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00195">Date&nbsp;Index</A>] [<a href="subjects.html#00195">Subject&nbsp;Index</a>] [<a href="authors.html#00195">Author&nbsp;Index</a>] [<A HREF="threads.html#00195">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00194.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00196.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00194.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00196.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Encrypted password patch</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: Encrypted password patch</li>
+<li><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Date</em>: Sun, 24 Jun 2001 12:34:43 -0600 (MDT)</li>
+<li><em>cc</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;,       gnats-devel at sources dot redhat dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+I haven't been following this thread very closely, but have a question.
+
+If TkGnats is ever ported to GNATS v4, what does it need to support these
+encrypted passwords? An externally compiled C program?
+
+On 24 Jun 2001, Milan Zamazal wrote:
+
+&gt; &gt;&gt;&gt;&gt;&gt; &quot;YS&quot; == Yngve Svendsen &lt;yngve.svendsen@clustra.com&gt; writes:
+&gt; 
+&gt;     YS&gt; The following patch against current version 4 CVS implements the
+&gt;     YS&gt; following password system:
+&gt; 
+&gt;     YS&gt; - If the password in gnatsd.access is prefixed with $0$, the
+&gt;     YS&gt; password is assumed to be explicit plaintext.  - If it is
+&gt;     YS&gt; prefixed with $1$, it is assumed to be in MD5 format.  - If it
+&gt;     YS&gt; has no prefix, it is assumed to be in standard DES crypt format.
+&gt; 
+&gt;     YS&gt; I have tested this both on Linux and Solaris, and it works just
+&gt;     YS&gt; as expected.
+&gt; 
+&gt; Please note that patch breaks the compilation if the `crypt' function is
+&gt; not present.  It should handle the situation reasonably, possibly by
+&gt; never matching passwords not starting with $0$; the code must be
+&gt; #ifdefed appropriately.
+&gt; 
+&gt;     YS&gt; then write a Perl script to convert old password files.
+&gt; 
+&gt; I wouldn't like to make GNATS installation dependent on Perl (despite
+&gt; this is only a small utility), so the script should be written in C or
+&gt; in sh using standard Unix tools (I'd think about awk, I think it's
+&gt; present on every Unix system).
+&gt; 
+&gt; (If anything of the above is difficult for you, no problem -- just
+&gt; define the behavior and I'll do it.)
+&gt; 
+&gt; Regards,
+&gt; 
+&gt; Milan Zamazal
+&gt; 
+&gt; -- 
+&gt; Free software is about freedom, not about free beer.  If you care only about
+&gt; the latter, you'll end up with no freedom and no free beer.
+&gt; 
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00196" href="msg00196.html">Re: Encrypted password patch</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00194" href="msg00194.html">Re: Encrypted password patch</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00195">Date&nbsp;Index</A>] [<a href="subjects.html#00195">Subject&nbsp;Index</a>] [<a href="authors.html#00195">Author&nbsp;Index</a>] [<A HREF="threads.html#00195">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00194.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00196.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00194.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00196.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

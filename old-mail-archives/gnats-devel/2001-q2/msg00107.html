@@ -1,0 +1,136 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: Gnatsweb -->
+<!--X-From-R13: "[nex R. Pnhfuxr" <zqoNwhavcre.arg> -->
+<!--X-Date: 27 May 2001 09:25:45 &#45;0000 -->
+<!--X-Message-Id: 200105270925.CAA27058@red.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: HFEKLDKNKFAIFHPHGJCCOEBPCCAA.James@JDennis.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Mark D. Baushke - Re: Gnatsweb</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00107">Date&nbsp;Index</A>] [<a href="subjects.html#00107">Subject&nbsp;Index</a>] [<a href="authors.html#00107">Author&nbsp;Index</a>] [<A HREF="threads.html#00107">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00106.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00108.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00106.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00108.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnatsweb</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;James Dennis&quot; &lt;James at JDennis dot net&gt;</li>
+<li><em>Subject</em>: Re: Gnatsweb </li>
+<li><em>From</em>: &quot;Mark D. Baushke&quot; &lt;mdb at juniper dot net&gt;</li>
+<li><em>Date</em>: Sun, 27 May 2001 02:25:04 -0700</li>
+<li><em>cc</em>: gnats-devel at sources dot redhat dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi James,
+
+Make sure that your clients are all properly issuing the EDITADDR
+directive in the gnats client-server protocol (this is how gnats fills
+in the State-Changed-By field).
+
+Depending on the version of gnatsweb you have, you want it to send a
+client_cmd(&quot;editaddr $db_prefs{'user'}&quot;); in the 'sub submitedit {...}
+code.
+
+However, you also need for $db_prefs{'user'} to have the value of the
+username which will be in a user cookie, so if cookies are disabled or
+the user is not entering anything to get that information filled out,
+then, you won't have any useful information for the editaddr command
+to the server and you will get the 'null' results you are seeing.
+
+	Good luck,
+	-- Mark
+
+&gt; From: &quot;James Dennis&quot; &lt;James@JDennis.net&gt;
+&gt; Date: Sun, 27 May 2001 10:08:07 +0100
+&gt; 
+&gt; 
+&gt; Hey folks,
+&gt; 
+&gt; I've got the latest gnatsweb and GNATs from CVS and I've almost got it
+&gt; running exactly how I want. One problem is that the person making an edit is
+&gt; not reported correctly eg:
+&gt; 
+&gt; State-Changed-From-To: open-&gt;analyzed
+&gt; State-Changed-By:
+&gt; State-Changed-When: Sat, 26 May 2001 20:03:03 BST
+&gt; State-Changed-Why:
+&gt; 
+&gt; Emails also come from 'null'. Anyone know how to fix this?
+&gt; 
+&gt; J.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00108" href="msg00108.html">RE: Gnatsweb</a></strong>
+<ul><li><em>From:</em> James Dennis</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00106" href="msg00106.html">Gnatsweb</a></strong>
+<ul><li><em>From:</em> James Dennis</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00107">Date&nbsp;Index</A>] [<a href="subjects.html#00107">Subject&nbsp;Index</a>] [<a href="authors.html#00107">Author&nbsp;Index</a>] [<A HREF="threads.html#00107">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00106.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00108.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00106.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00108.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

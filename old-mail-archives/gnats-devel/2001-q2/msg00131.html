@@ -1,0 +1,139 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: an apache&#45;ized gnatsd (was RE: modular database backends) -->
+<!--X-From-R13: Vnaf&#45;Oyoreg Epuarvqre <Vnaf&#45;Oyoreg.EpuarvqreNzpuc.fvrzraf.qr> -->
+<!--X-Date: 31 May 2001 10:03:35 &#45;0000 -->
+<!--X-Message-Id: 15126.5871.314777.986495@mail&#45;g.mchp.siemens.de -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AA6B@postal.jnpr.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hans-Albert Schneide - Re: an apache-ized gnatsd (was RE: modular database backends)</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00131">Date&nbsp;Index</A>] [<a href="subjects.html#00131">Subject&nbsp;Index</a>] [<a href="authors.html#00131">Author&nbsp;Index</a>] [<A HREF="threads.html#00131">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00130.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00132.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00130.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00160.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: an apache-ized gnatsd (was RE: modular database backends)</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Dirk Bergstrom &lt;dirk at juniper dot net&gt;</li>
+<li><em>Subject</em>: Re: an apache-ized gnatsd (was RE: modular database backends)</li>
+<li><em>From</em>: Hans-Albert Schneider &lt;Hans-Albert dot Schneider at mchp dot siemens dot de&gt;</li>
+<li><em>Date</em>: Thu, 31 May 2001 12:03:27 +0200 (MET DST)</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00128.html">C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AA6B@postal.jnpr.net</a>&gt;</li>
+<li><em>Reply-To</em>: Hans-Albert dot Schneider at mchp dot siemens dot de</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;DB&quot; == Dirk Bergstrom &lt;dirk@juniper.net&gt; writes:
+
+    DB&gt; bob kaehms writes:
+    &gt;&gt; Just as a thought, perhaps the whole thing should be done
+    &gt;&gt; in php/mysql.
+
+    DB&gt; i gave some thought to rewriting gnatsd as a
+    DB&gt; mod_perl/apache system, and teaching the tools (query-pr,
+    DB&gt; etc.) to use HTTP instead of the gnatsd protocol.
+[...]
+
+Please do not forget those GNATS installations that sit behind a
+firewall and cannot get HTTP connections from the outside, but
+can get e-mail connections.  E.g., it is relatively easy for me
+to get an e-mail address that is reachable from the outside and
+can send to the outside.  Though there are, of course, externally
+reachable WWW servers, I have severe doubts whether I would be
+allowed to run some CGI script there *that contacts the
+intranet*.
+
+So I do need an e-mail based frontend.
+
+
+BTW, concerning anonymous connections to the database: here, too,
+reports sent in (and updated!) via e-mail must be kept in mind
+(though connecting as &quot;anonymous&quot; with the sender's e-mail
+address as password should not be too much trouble, as long as
+it can be done non-interactively).
+
+
+Hans-Albert
+
+-- 
+Hans-Albert Schneider		&lt;Hans-Albert.Schneider@mchp.siemens.de&gt;
+Siemens AG			phone:	(+49) 89 636 45445
+Corporate Technology		fax:	(+49) 89 636 42284
+Munich, Germany
+ -- To get my public PGP key, send me a mail with subject &quot;send key&quot; --
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00160" href="msg00160.html">Re: an apache-ized gnatsd (was RE: modular database backends)</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00128" href="msg00128.html">an apache-ized gnatsd (was RE: modular database backends)</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00131">Date&nbsp;Index</A>] [<a href="subjects.html#00131">Subject&nbsp;Index</a>] [<a href="authors.html#00131">Author&nbsp;Index</a>] [<A HREF="threads.html#00131">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00130.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00132.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00130.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00160.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

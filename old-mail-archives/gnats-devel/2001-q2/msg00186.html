@@ -1,0 +1,138 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: disallowing intial high&#45;priority PRs -->
+<!--X-From-R13: Buvy Sqjneqf <crqjneqfNqvfnfgre.wnw.pbz> -->
+<!--X-Date: 20 Jun 2001 18:18:25 &#45;0000 -->
+<!--X-Message-Id: 20010620130144.A2177@disaster.jaj.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Phil Edwards - disallowing intial high-priority PRs</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00186">Date&nbsp;Index</A>] [<a href="subjects.html#00186">Subject&nbsp;Index</a>] [<a href="authors.html#00186">Author&nbsp;Index</a>] [<A HREF="threads.html#00186">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00185.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00187.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00185.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00193.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>disallowing intial high-priority PRs</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: disallowing intial high-priority PRs</li>
+<li><em>From</em>: Phil Edwards &lt;pedwards at disaster dot jaj dot com&gt;</li>
+<li><em>Date</em>: Wed, 20 Jun 2001 13:01:44 -0400</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+I've been informally requested to look into disallowing random anonymous
+submitters from sending in PRs with the priority set to 'high'.  There's a
+local policy that only the project maintainers have authority to set 'high'
+priority (and thus steering the actions of a lot of people), and an annoying
+number of the PRs showing up are from well-meaning people who feel their
+specific problem is really really important.  (It is to /them/ but...)
+
+Anyhow, I spewed out this hack.  Am I headed in the right direction?
+(The problem with testing it is that the only gnatsd server available to
+me is the one I'd eventually be modifying, i.e., no spare servers.)
+
+Diff'd against stock 3.113 sources.
+
+
+--- pr.c.orig	Tue Mar  2 19:18:54 1999
++++ pr.c	Wed Feb 28 16:37:48 2001
+@@ -747,6 +747,16 @@
+ 	  if (verify_enum (i, pr[i].value, token))
+ 	    found = TRUE;
+ 
++          /* This hack prohibits random net submitters from submitting
++             a high-priority PR; the idea is that maintainers should be
++             the only ones permitted to raise priority to high.
++             This should be more configurable. */
++          if (found == TRUE &amp;&amp; (!strcmp(pr[i].name,PRIORITY_STRING))
++                            &amp;&amp; (!strcmp(pr[i].value,&quot;high&quot;))
++                            &amp;&amp; (!strcmp(field_value(SUBMITTER),
++                                        pr[SUBMITTER].default_value)))
++            found = FALSE;
++
+ 	  if (found == FALSE)
+ 	    {
+ 	      if (check)
+
+
+
+Any comments, flames, and suggestions would be highly appreciated.
+Thanks for your time,
+
+Phil
+
+-- 
+pedwards at disaster dot jaj dot com  |  pme at sources dot redhat dot com
+devphil at several other less interesting addresses in various dot domains
+The gods do not protect fools.  Fools are protected by more capable fools.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00193" href="msg00193.html">Re: disallowing intial high-priority PRs</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00186">Date&nbsp;Index</A>] [<a href="subjects.html#00186">Subject&nbsp;Index</a>] [<a href="authors.html#00186">Author&nbsp;Index</a>] [<A HREF="threads.html#00186">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00185.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00187.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00185.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00193.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

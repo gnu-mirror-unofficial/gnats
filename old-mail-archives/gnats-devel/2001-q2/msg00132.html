@@ -1,0 +1,131 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: RE: persistent DB connections (was: RE: modular database backends) -->
+<!--X-From-R13: Rvex Pretfgebz <qvexNwhavcre.arg> -->
+<!--X-Date: 31 May 2001 23:50:40 &#45;0000 -->
+<!--X-Message-Id: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AAAD@postal.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - RE: persistent DB connections (was: RE: modular database backends)</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00132">Date&nbsp;Index</A>] [<a href="subjects.html#00132">Subject&nbsp;Index</a>] [<a href="authors.html#00132">Author&nbsp;Index</a>] [<A HREF="threads.html#00132">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00131.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00133.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00131.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00133.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: persistent DB connections (was: RE: modular database backends)</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: 'Michael Richardson' &lt;mcr at sandelman dot ottawa dot on dot ca&gt;</li>
+<li><em>Subject</em>: RE: persistent DB connections (was: RE: modular database backends) </li>
+<li><em>From</em>: Dirk Bergstrom &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Thu, 31 May 2001 16:50:37 -0700</li>
+<li><em>Cc</em>: &quot;'gnats-devel at sources dot redhat dot com'&quot; &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+i, too, am inclined towards #3, but it does require rather a lot of
+re-engineering.  under the current setup, gnatsd generally runs for only one
+&quot;transaction&quot; (a search, a pr-edit, one gnatsweb hit, etc.).  turning it
+into a persistent daemon would, to put it nicely, help us discover any
+hidden memory leaks.
+
+furthermore, while gnatsd does have the RSET command (&quot;reset internal
+settings to initial startup&quot;), it doesn't have any of the other mechanisms
+necessary to a persistent daemon.  i'm sure the code is readily available,
+but it's not trivial to get everything working, stable, and leak-free...
+
+--
+Dirk Bergstrom              dirk@juniper.net
+____________________________________________
+Juniper Networks Inc.,  Engineering Web Guru
+Tel: 408.745.3182          Fax: 408.745.8905
+
+
+&gt; -----Original Message-----
+&gt; From: Michael Richardson [<A  HREF="mailto:mcr@sandelman.ottawa.on.ca">mailto:mcr@sandelman.ottawa.on.ca</A>]
+&gt; Sent: Wednesday, May 30, 2001 9:09 AM
+&gt; To: Dirk Bergstrom
+&gt; Subject: Re: persistent DB connections (was: RE: modular database
+&gt; backends) 
+&gt; 
+&gt; 
+&gt; 
+&gt;   You should put the database connection in gnatsd.
+&gt;   It does not have to be spawned from inetd.
+&gt; 
+&gt;   #3 is where you should go.
+&gt; 
+&gt; Canadian Commuter Challenge Project -- GNU Potato Caboose 
+&gt; Michael Richardson, Sandelman Software Works, Ottawa, ON  
+&gt; EMAIL: mcr@commuterchallenge.net
+&gt; for help, email or page at 1-866-231-8608
+&gt; 
+&gt; 
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00133" href="msg00133.html">Re: persistent DB connections (was: RE: modular database backends )</a></strong>
+<ul><li><em>From:</em> Michael Richardson</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00132">Date&nbsp;Index</A>] [<a href="subjects.html#00132">Subject&nbsp;Index</a>] [<a href="authors.html#00132">Author&nbsp;Index</a>] [<A HREF="threads.html#00132">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00131.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00133.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00131.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00133.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

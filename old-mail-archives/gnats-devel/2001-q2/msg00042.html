@@ -1,0 +1,118 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: gen&#45;index caveat in 4.0 -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 23 Apr 2001 12:26:45 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010423141845.00b9d7b0@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - gen-index caveat in 4.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00042">Date&nbsp;Index</A>] [<a href="subjects.html#00042">Subject&nbsp;Index</a>] [<a href="authors.html#00042">Author&nbsp;Index</a>] [<A HREF="threads.html#00042">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00041.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00043.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00041.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00041.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gen-index caveat in 4.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: gen-index caveat in 4.0</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Mon, 23 Apr 2001 14:25:15 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+(Details at 
+<A  HREF="http://sources.redhat.com/cgi-bin/gnatsweb.pl?cmd=view&amp;pr=180&amp;database=gnats">http://sources.redhat.com/cgi-bin/gnatsweb.pl?cmd=view&amp;pr=180&amp;database=gnats</A>)
+
+I tried migrating one of our databases to Gnats 4. Among other things, I 
+had to regenerate the index file. I first tried leaving the default setting 
+of &quot;binary-index true&quot; in dbconfig. gen-index generated a faulty index, 
+with queries bombing with the error message
+
+622 - Index file /usr/local/share/gnats/helpdesk/gnats-adm/index contains 
+incorrect number of fields
+
+After setting binary-index to &quot;false&quot; and rerunning gen-index, things 
+worked as they should.
+
+Inspecting the check-db script, I noticed the --numeric option of 
+gen-index, which makes gen-index sort its output by PR number. On a hunch I 
+tried passing that option when regernerating the index. And that produced a 
+working binary index!
+
+In short: When regenerating a binary index, use the --numeric option with 
+gen-index.
+
+Now, I wonder what causes this. If it is a simple oversight in the 
+binary-index handling of gnatsd, it should be corrected. But if numeric 
+sorting order is always needed due to design, gen-index should be modified 
+to use the --numeric option as default.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00042">Date&nbsp;Index</A>] [<a href="subjects.html#00042">Subject&nbsp;Index</a>] [<a href="authors.html#00042">Author&nbsp;Index</a>] [<A HREF="threads.html#00042">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00041.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00043.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00041.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00041.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: Long paragraphs are lost during PR edits -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 30 Apr 2001 15:25:54 &#45;0000 -->
+<!--X-Message-Id: 5.0.0.25.2.20010430171103.00b2b430@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: Long paragraphs are lost during PR edits</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00058">Date&nbsp;Index</A>] [<a href="subjects.html#00058">Subject&nbsp;Index</a>] [<a href="authors.html#00058">Author&nbsp;Index</a>] [<A HREF="threads.html#00058">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00057.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00059.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00057.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: Long paragraphs are lost during PR edits</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: Long paragraphs are lost during PR edits</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Mon, 30 Apr 2001 17:23:17 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Gnats 3.113 has a nasty bug where, when you edit a PR containing text 
+paragraphs of more than 512 characters, these paragraphs are discarded by 
+gnatsd. They simply vanish from the PR.
+
+This is caused by the #define MAXLINE 512 in gnats/query.h
+
+I have increased this to 16384 (16kB), and the problem disappeared. The 
+following patch against the tip of the v3 branch does this:
+
+2001-04-30  Yngve Svendsen &lt;yngve.svendsen@clustra.com&gt;
+
+     * query.h: Increase MAXLINE to 16384
+
+
+Index: query.h
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/query.h,v
+retrieving revision 1.1.1.1
+diff -u -p -r1.1.1.1 query.h
+--- query.h     1998/11/05 19:54:10     1.1.1.1
++++ query.h     2001/04/30 15:09:47
+@@ -42,7 +42,7 @@ Software Foundation, 59 Temple Place - S
+  /* Query the gnats config file.  */
+  #define LIST_CONFIG (1&lt;&lt;6)
+
+-#define MAXLINE 512
++#define MAXLINE 16384
+
+  /* How we should print out the format of the PR.  */
+  extern unsigned int query_format;
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00058">Date&nbsp;Index</A>] [<a href="subjects.html#00058">Subject&nbsp;Index</a>] [<a href="authors.html#00058">Author&nbsp;Index</a>] [<A HREF="threads.html#00058">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00057.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00059.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00057.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: Safe tempfile handling for send&#45;pr v4 -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 13 May 2001 16:57:20 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010513184535.0853d308@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: Safe tempfile handling for send-pr v4</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00087">Date&nbsp;Index</A>] [<a href="subjects.html#00087">Subject&nbsp;Index</a>] [<a href="authors.html#00087">Author&nbsp;Index</a>] [<A HREF="threads.html#00087">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00086.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00088.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00086.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00086.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: Safe tempfile handling for send-pr v4</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: Safe tempfile handling for send-pr v4</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Sun, 13 May 2001 18:58:50 +0200</li>
+<li><em>Cc</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The following set of patches for the current version 4 CVS changes send-pr 
+to use the mktemp command when generating temporary files, averting 
+possible symlink attacks and making race conditions less likely.
+
+On systems that do not have mktemp, the behaviour is unchanged.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+
+
+configure.in: Check for the mktemp command and set HAVE_MKTEMP accordingly.
+configure: Regenerated.
+Makefile.in: Substitute xHAVE_MKTEMPx
+send-pr.sh: Use mktemp to generate temp files safely on platforms
+where it is available.
+
+
+Index: configure.in
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/configure.in,v
+retrieving revision 1.3
+diff -u -p -r1.3 configure.in
+--- configure.in	2000/01/05 02:46:25	1.3
++++ configure.in	2001/05/13 15:02:34
+@@ -17,6 +17,8 @@ AC_ECHON
+  AC_LISPDIR
+  AC_PASSWD
+
++AC_CHECK_PROG(HAVE_MKTEMP, mktemp, yes, no)
++
+  SUBMITTER=unknown
+  DEFAULT_ORGANIZATION=unknown
+
+
+
+Index: configure
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/configure,v
+retrieving revision 1.4
+diff -u -p -r1.4 configure
+--- configure	2000/01/05 02:46:25	1.4
++++ configure	2001/05/13 15:05:00
+@@ -676,11 +676,42 @@ fi
+  test -n &quot;$verbose&quot; &amp;&amp; echo &quot;	setting PASSWD to ${PASSWD}&quot;
+
+
++# Extract the first word of &quot;mktemp&quot;, so it can be a program name with args.
++set dummy mktemp; ac_word=$2
++echo $ac_n &quot;checking for $ac_word&quot;&quot;... $ac_c&quot; 1&gt;&amp;6
++echo &quot;configure:683: checking for $ac_word&quot; &gt;&amp;5
++if eval &quot;test \&quot;`echo '$''{'ac_cv_prog_HAVE_MKTEMP'+set}'`\&quot; = set&quot;; then
++  echo $ac_n &quot;(cached) $ac_c&quot; 1&gt;&amp;6
++else
++  if test -n &quot;$HAVE_MKTEMP&quot;; then
++  ac_cv_prog_HAVE_MKTEMP=&quot;$HAVE_MKTEMP&quot; # Let the user override the test.
++else
++  IFS=&quot;${IFS= 	}&quot;; ac_save_ifs=&quot;$IFS&quot;; IFS=&quot;:&quot;
++  ac_dummy=&quot;$PATH&quot;
++  for ac_dir in $ac_dummy; do
++    test -z &quot;$ac_dir&quot; &amp;&amp; ac_dir=.
++    if test -f $ac_dir/$ac_word; then
++      ac_cv_prog_HAVE_MKTEMP=&quot;yes&quot;
++      break
++    fi
++  done
++  IFS=&quot;$ac_save_ifs&quot;
++  test -z &quot;$ac_cv_prog_HAVE_MKTEMP&quot; &amp;&amp; ac_cv_prog_HAVE_MKTEMP=&quot;no&quot;
++fi
++fi
++HAVE_MKTEMP=&quot;$ac_cv_prog_HAVE_MKTEMP&quot;
++if test -n &quot;$HAVE_MKTEMP&quot;; then
++  echo &quot;$ac_t&quot;&quot;$HAVE_MKTEMP&quot; 1&gt;&amp;6
++else
++  echo &quot;$ac_t&quot;&quot;no&quot; 1&gt;&amp;6
++fi
++
++
+  SUBMITTER=unknown
+  DEFAULT_ORGANIZATION=unknown
+
+  echo $ac_n &quot;checking for --with-submitter&quot;&quot;... $ac_c&quot; 1&gt;&amp;6
+-echo &quot;configure:684: checking for --with-submitter&quot; &gt;&amp;5
++echo &quot;configure:715: checking for --with-submitter&quot; &gt;&amp;5
+  if test -n &quot;$with_submitter&quot; ; then
+      echo &quot;$ac_t&quot;&quot;$with_submitter&quot; 1&gt;&amp;6
+      SUBMITTER=&quot;$with_submitter&quot;
+@@ -689,7 +720,7 @@ else
+  fi
+
+  echo $ac_n &quot;checking for --with-organization&quot;&quot;... $ac_c&quot; 1&gt;&amp;6
+-echo &quot;configure:693: checking for --with-organization&quot; &gt;&amp;5
++echo &quot;configure:724: checking for --with-organization&quot; &gt;&amp;5
+  if test -n &quot;$with_organization&quot; ; then
+      echo &quot;$ac_t&quot;&quot;$with_organization&quot; 1&gt;&amp;6
+      DEFAULT_ORGANIZATION=&quot;$with_organization&quot;
+@@ -874,6 +905,7 @@ s%@SUBMITTER@%$SUBMITTER%g
+  s%@ECHON@%$ECHON%g
+  s%@LISPDIR@%$LISPDIR%g
+  s%@PASSWD@%$PASSWD%g
++s%@HAVE_MKTEMP@%$HAVE_MKTEMP%g
+
+  CEOF
+  EOF
+
+
+Index: Makefile.in
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/Makefile.in,v
+retrieving revision 1.6
+diff -u -p -r1.6 Makefile.in
+--- Makefile.in	2001/01/24 22:51:16	1.6
++++ Makefile.in	2001/05/13 15:01:56
+@@ -40,6 +40,9 @@ DEFAULT_MAIL_AGENT = @DEFAULT_MAIL_AGENT
+  # Command line to display the passwd database
+  PASSWD = @PASSWD@
+
++# Do we have the mktemp command?
++HAVE_MKTEMP = @HAVE_MKTEMP@
++
+  # What to install
+  SEND_PR_INSTALL = install-norm
+  SEND_PR_INSTALL_ARCH_DEP = install-norm-arch-dep
+@@ -126,6 +129,7 @@ send-pr: send-pr.sh Makefile
+  	    -e 's,xECHONx,$(ECHON),' \
+  	    -e 's,xMAIL_AGENTx,$(DEFAULT_MAIL_AGENT),' \
+  	    -e 's,xPASSWDx,$(PASSWD),' \
++	    -e 's,xHAVE_MKTEMPx,$(HAVE_MKTEMP),' \
+  	    -e 's%xDEFAULT_ORGANIZATIONx%$(DEFAULT_ORGANIZATION)%' \
+  	    -e 's,xDEFAULT_RELEASEx,$(DEFAULT_RELEASE),' \
+              -e 's,xBINDIRx,$(bindir),g' \
+
+
+
+Index: send-pr.sh
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/send-pr.sh,v
+retrieving revision 1.16
+diff -u -p -r1.16 send-pr.sh
+--- send-pr.sh	2001/04/08 18:28:25	1.16
++++ send-pr.sh	2001/05/13 16:34:21
+@@ -43,6 +43,9 @@ DEFAULT_ORGANIZATION=&quot;xDEFAULT_ORGANIZAT
+  # How to read the passwd database.
+  PASSWD=&quot;xPASSWDx&quot;
+
++# Do we have the mktemp command available?
++HAVE_MKTEMP=&quot;xHAVE_MKTEMPx&quot;
++
+  ECHON=xECHONx
+
+  # By default send-pr connects directly to the database.  However, it
+@@ -94,16 +97,36 @@ else
+      TMPDIR=&quot;`echo $TMPDIR | sed -e 's,/$,,'`&quot;
+    fi
+  fi
++
++# TEMP:   Temporary copy of the PR, to be edited by the user.
++# BAD:    The PR will end up here if the user aborts.
++# REF:    The 'reference' copy of the PR template, used to verify that the 
+user
++#         actually did edit the template.
++# FIXFIL: A sed script used to remove comments from the template before 
+processing.
++
++if [ $HAVE_MKTEMP = yes ]; then
++    TEMP=`mktemp $TMPDIR/pXXXXXX` || exit 1
++    BAD=`mktemp $TMPDIR/pbadXXXXXX` || exit 1
++    REF=`mktemp $TMPDIR/pfXXXXXX` || exit 1
++	FIXFIL=`mktemp $TMPDIR/fixXXXXXX` || exit 1
++else
++    TEMP=$TMPDIR/p$$
++    BAD=$TMPDIR/pbad$$
++    REF=$TMPDIR/pf$$
++	FIXFIL=$TMPDIR/fix$$
++    bad_temp=0
++    : &gt; $TEMP0 || bad_temp=1
++    : &gt; $TEMP || bad_temp=1
++    : &gt; $BAD || bad_temp=1
++    : &gt; $REF || bad_temp=1
++	: &gt; $FIXFIL || bad_temp=1
++    if [ $bad_temp = 1 ]; then
++        rm -f $TEMP $BAD $REF $FIXFIL
++        exit 1;
++    fi
++fi
++REMOVE_TEMP=&quot;rm -f $TEMP $BAD $REF&quot;
+
+-# Temporary copy of the PR, to be edited by the user.
+-TEMP=$TMPDIR/p$$
+-# The PR will end up here if the user aborts.
+-BAD=$TMPDIR/pbad$$
+-# The 'reference' copy of the PR template, used to verify that the user
+-# actually did edit the template.
+-REF=$TMPDIR/pf$$
+-# A sed script used to remove comments from the template before processing.
+-FIXFIL=$TMPDIR/fix$$
+
+  # find a user name
+  if [ &quot;$LOGNAME&quot; = &quot;&quot; ]; then
+
+
+
+Index: ChangeLog
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/ChangeLog,v
+retrieving revision 1.18
+diff -u -p -r1.18 ChangeLog
+--- ChangeLog	2001/04/15 18:04:05	1.18
++++ ChangeLog	2001/05/13 16:43:19
+@@ -1,3 +1,12 @@
++2001-05-13  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
++
++	* configure.in: Check for the mktemp command and set HAVE_MKTEMP
++	accordingly.
++	configure: Regenerated.
++	Makefile.in: Substitute xHAVE_MKTEMPx
++	send-pr.sh: Use mktemp to generate temp files safely on platforms
++	where it is available.
++
+  2001-04-15  Milan Zamazal  &lt;pdm@zamazal.org&gt;
+
+  	* send-pr-el.in (gnats::get-config): Buffer checking fixed (Debian
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00087">Date&nbsp;Index</A>] [<a href="subjects.html#00087">Subject&nbsp;Index</a>] [<a href="authors.html#00087">Author&nbsp;Index</a>] [<A HREF="threads.html#00087">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00086.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00088.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00086.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00086.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>
