@@ -1,0 +1,1074 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on December, 4  2001 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Keeping Track: Installation</TITLE>
+
+<META NAME="description" CONTENT="Keeping Track: Installation">
+<META NAME="keywords" CONTENT="Keeping Track: Installation">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC26"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC25"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC27"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 3. Installing GNATS </H1>
+<!--docid::SEC26::-->
+<P>
+
+<A NAME="IDX125"></A>
+<A NAME="IDX126"></A>
+<A NAME="IDX127"></A>
+<A NAME="IDX128"></A>
+</P><P>
+
+See also <A HREF="gnats_5.html#SEC73">Where the tools and utilities reside</A>.
+</P><P>
+
+There are several steps you need to follow to fully configure and
+install GNATS on your system.  You need <CODE>root</CODE> access in order
+to create a new account for <CODE>gnats</CODE> and to install the GNATS
+utilities.  You may need <CODE>root</CODE> access on some systems in order to
+set up mail aliases and to allow this new account access to
+<CODE>cron</CODE> and <CODE>at</CODE>.
+</P><P>
+
+If you are updating an older version of GNATS rather than installing
+from scratch, see <A HREF="gnats_3.html#SEC34">Upgrading from older versions</A>.
+</P><P>
+
+GNATS installation relies on two other freely available software
+packages, which should be installed before you go on to configure and
+build GNATS.  These are GNU <CODE>make</CODE> and <CODE>Texinfo</CODE>.
+Both are available from the GNU FTP site at
+<A HREF="ftp://ftp.gnu.org">ftp://ftp.gnu.org</A>.
+</P><P>
+
+To build GNATS, you must:
+</P><P>
+
+<UL>
+<LI>
+Run <CODE>configure</CODE>, with correct options if the defaults are
+unsuitable for your site.  See section <A HREF="gnats_3.html#SEC27">Configuring and compiling the software</A>.  Default installation locations are in
+<A HREF="gnats_5.html#SEC73">Where GNATS lives</A>.
+<P>
+
+<LI>
+Compile the GNATS programs on your system.  See section <A HREF="gnats_3.html#SEC27">Configuring and compiling the software</A>.
+<P>
+
+<LI>
+Create an initial database by using the <CODE>mkdb</CODE> command.
+See section <A HREF="gnats_3.html#SEC29">3.3 Installing the default database</A>.
+<P>
+
+<LI>
+Set up periodic jobs, using cron, to handle Problem Reports arriving by
+mail.  See section <A HREF="gnats_3.html#SEC30">3.4 Setting up periodic jobs</A>.
+<P>
+
+<LI>
+Set up mail aliases for GNATS.  See section <A HREF="gnats_3.html#SEC31">Setting up mail aliases</A>.
+<P>
+
+<LI>
+Install the GNATS tools and utilities locally, and install the user
+tools (<CODE>query-pr</CODE>, <CODE>edit-pr</CODE>, <CODE>send-pr</CODE>) on every machine
+in your local network.  See section <A HREF="gnats_3.html#SEC33">Installing the user tools</A>.
+<P>
+
+<LI>
+Install the GNATS daemon <TT>`gnatsd'</TT>.  See section <A HREF="gnats_3.html#SEC32">3.6 Installing the daemon</A>.
+<P>
+
+<LI>
+Update the local configuration files
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>dbconfig       categories     submitters
+responsible    gnatsd.access  states
+classes      addresses
+</FONT></pre></td></tr></table></P><P>
+
+in <TT>`<VAR>DATABASEDIR</VAR>/gnats-adm'</TT>, as well as the files
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>gnatsd.host_access    databases
+</FONT></pre></td></tr></table></P><P>
+
+in <TT>`<VAR>SYSCONFDIR</VAR>/gnats'</TT> (usually
+<TT>`/usr/local/etc/gnats'</TT>).
+</P><P>
+
+<LI>
+If there are people outside your organization who will be submitting PRs
+or who are supposed to be able to query and/or edit PRs, you may need to
+instruct them to obtain and build the GNATS tools <CODE>query-pr</CODE>,
+<CODE>edit-pr</CODE> and <CODE>send-pr</CODE> for their systems.  However, for many
+sites, setting up a remote access interface to GNATS, such as Gnatsweb
+is a better solution since this requires no configuration on the remote
+side.
+</UL>
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC27">3.1 Configuring and compiling the software</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC28">3.2 Installing the utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC29">3.3 Installing the default database</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Setting up the default database</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC30">3.4 Setting up periodic jobs</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC31">3.5 Setting up mail aliases</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC32">3.6 Installing the daemon</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC33">3.7 Installing the user tools</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC34">3.8 Upgrading from older versions</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Configure and make"></A>
+<HR SIZE="6">
+<A NAME="SEC27"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC28"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.1 Configuring and compiling the software </H2>
+<!--docid::SEC27::-->
+<P>
+
+<OL>
+<LI>
+First, unpack your distribution.  We provide source code in a <CODE>tar</CODE>
+file which was compressed using <CODE>gzip</CODE>.  The code can be extracted
+into a directory <VAR>unpackdir</VAR> using
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>cd <VAR>unpackdir</VAR>
+gunzip gnats-4.0-alpha.tar.gz
+tar xvf gnats-4.0-alpha.tar
+</FONT></pre></td></tr></table></P><P>
+
+The sources reside in a directory called <TT>`gnats-4.0-alpha'</TT>
+when unpacked.  We call this the <EM>top level</EM> of the source
+directory, or <EM>srcdir</EM>.  The sources for the GNATS tools are in
+the subdirectory <TT>`gnats-4.0-alpha/gnats/*'</TT>.  Lists of files
+included in the distribution are in each directory in the file
+<TT>`MANIFEST'</TT>.
+</P><P>
+
+<A NAME="IDX129"></A>
+<A NAME="IDX130"></A>
+<LI>
+You may wish to alter the installation directory for the Emacs lisp
+files.  If your Emacs lisp library is not in
+<TT>`<VAR>prefix</VAR>/share/emacs/site-lisp'</TT>, edit the files
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>srcdir</VAR>/gnats/Makefile.in   <EM>and</EM>
+<VAR>srcdir</VAR>/send-pr/Makefile.in
+</FONT></pre></td></tr></table></P><P>
+
+Change the variable <CODE>lispdir</CODE> from <TT>`<VAR>prefix</VAR>/emacs/site-lisp'</TT> to
+the directory containing your Emacs lisp library.  For information on
+<VAR>prefix</VAR>, see <A HREF="gnats_5.html#SEC74"><VAR>prefix</VAR></A>.
+</P><P>
+
+<LI>
+Run <CODE>configure</CODE>.  You can nearly always run <CODE>configure</CODE> with
+the simple command
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>./configure
+</pre></td></tr></table></P><P>
+
+and the "Right Thing" happens:
+</P><P>
+
+<UL>
+<LI>
+GNATS is configured in the same directory you unpacked it in;
+<P>
+
+<LI>
+when built, GNATS runs on the machine you're building it on;
+<P>
+
+<LI>
+when installed, files are installed under <TT>`/usr/local'</TT>
+(see section <A HREF="gnats_5.html#SEC73">Where GNATS lives</A>).
+<P>
+
+<LI>
+all GNATS utilities operate on the <EM>default database</EM>, assumed
+to be named <EM>default</EM> and to be located in
+<TT>`/usr/local/com/default'</TT>, unless you invoke the utilities with
+<CODE>-d</CODE> <VAR>databasename</VAR> or <CODE>--directory=</CODE><VAR>databasename</VAR>, or
+set the <VAR>GNATSDB</VAR> environment variable to point to some other database.
+</UL>
+<P>
+
+<A NAME="IDX131"></A>
+The most common options to <CODE>configure</CODE> are listed below:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>configure [ --prefix=<VAR>prefix</VAR> ]
+          [ --exec-prefix=<VAR>exec-prefix</VAR> ]
+          [ --with-gnats-service=<VAR>service-name</VAR> ]
+          [ --with-gnats-user=<VAR>username</VAR> ]
+          [ --with-gnatsd-user-access-file=<VAR>path</VAR> ]
+          [ --with-gnatsd-host-access-file=<VAR>path</VAR> ]
+          [ --with-gnats-dblist-file=<VAR>path</VAR> ]
+          [ --with-gnats-default-db=<VAR>path</VAR> ]
+          [ --with-kerberos ] [ --with-krb4 ]
+          [ --verbose ]
+</FONT></pre></td></tr></table></P><P>
+
+<DL COMPACT>
+<A NAME="IDX132"></A>
+<DT><CODE>--prefix=<VAR>prefix</VAR></CODE>
+<DD>All host-independent programs and files are to be installed under
+<VAR>prefix</VAR>.  (Host-dependent programs and files are also installed in
+<VAR>prefix</VAR> by default.)  The default for <VAR>prefix</VAR> is
+<TT>`/usr/local'</TT>.  See section <A HREF="gnats_5.html#SEC73">Where GNATS lives</A>.
+<P>
+
+<A NAME="IDX133"></A>
+<DT><CODE>--exec-prefix=<VAR>exec-prefix</VAR></CODE>
+<DD>All host-dependent programs and files are to be installed under
+<VAR>exec-prefix</VAR>.  The default for <VAR>exec-prefix</VAR> is <VAR>prefix</VAR>.
+See section <A HREF="gnats_5.html#SEC73">Where GNATS lives</A>.
+<P>
+
+<A NAME="IDX134"></A>
+<DT><CODE>--with-gnats-service=<VAR>service-name</VAR></CODE>
+<DD>Set <VAR>service-name</VAR> to be the GNATS network service.  Default
+name is <VAR>support</VAR>.
+<P>
+
+<A NAME="IDX135"></A>
+<DT><CODE>--with-gnats-user=<VAR>username</VAR></CODE>
+<DD>Set <VAR>username</VAR> to be the user name for GNATS.  Default username
+is <VAR>gnats</VAR>.
+<P>
+
+<A NAME="IDX136"></A>
+<DT><CODE>--with-gnatsd-user-access-file=<VAR>path</VAR></CODE>
+<DD>Set global (across all databases) gnatsd user access file to
+<VAR>path</VAR>. Default is
+<TT>`/usr/local/etc/gnats/gnatsd.access'</TT>.  Per-database user access
+permissions are set in a <TT>`gnatsd.access'</TT> file in the
+<TT>`gnats-adm'</TT> subdirectory of each database.
+<P>
+
+<A NAME="IDX137"></A>
+<DT><CODE>--with-gnatsd-host-access-file=<VAR>path</VAR></CODE>
+<DD>Set global (across all databases) gnatsd host access file to
+<VAR>path</VAR>. Default is
+<TT>`/usr/local/etc/gnats/gnatsd_host.access'</TT>.  There is currently
+no way to specify host access permissions on a per-database basis.
+<P>
+
+<A NAME="IDX138"></A>
+<DT><CODE>--with-gnats-dblist-file=<VAR>path</VAR></CODE>
+<DD>Specify the file containing the list of databases.
+<P>
+
+Default is <TT>`<VAR>prefix</VAR>/etc/gnats/databases'</TT>.
+</P><P>
+
+<A NAME="IDX139"></A>
+<DT><CODE>--with-gnats-default-db=<VAR>path</VAR></CODE>
+<DD>Specify the default database to use when GNATS tools are invoked
+without the <CODE>-d</CODE> or <CODE>--databasename</CODE> option, and when the
+<VAR>GNATSDB</VAR> envrionment variable hasn't been set. Default is
+<TT>`/<VAR>prefix</VAR>/com/gnatsdb'</TT>.
+<P>
+
+<A NAME="IDX140"></A>
+<DT><CODE>--with-kerberos</CODE>
+<DD>Include code for Kerberos authentication.
+<P>
+
+<A NAME="IDX141"></A>
+<DT><CODE>--with-krb4</CODE>
+<DD>Support Kerberos 4.
+<P>
+
+<DT><CODE>--verbose</CODE>
+<DD>Give verbose output while <CODE>configure</CODE> runs.
+</DL>
+<P>
+
+<CODE>configure</CODE> supports several more options which allow you to
+specify in great detail where files are installed. For a complete list
+of options, run <CODE>./configure --help</CODE> in the source directory.
+</P><P>
+
+<A NAME="IDX142"></A>
+<A NAME="IDX143"></A>
+You can build GNATS in a different directory (<VAR>objdir</VAR>) from the
+source code by calling the <CODE>configure</CODE> program from the new
+directory, as in
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>mkdir <VAR>objdir</VAR>
+cd <VAR>objdir</VAR>
+<VAR>srcdir</VAR>/configure <small>...</small>
+</FONT></pre></td></tr></table></P><P>
+
+By default, <CODE>make</CODE> compiles the programs in the same directory
+as the sources (<VAR>srcdir</VAR>).  Emacs lisp files are byte-compiled if
+<CODE>make</CODE> can find Emacs on your local system.
+</P><P>
+
+<LI>
+Make sure you have GNU <CODE>make</CODE>, then run 
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>make all info
+</FONT></pre></td></tr></table></P><P>
+
+from the directory where <CODE>configure</CODE> created a <TT>`Makefile'</TT>
+(this is <VAR>objdir</VAR> if you used it, otherwise <VAR>srcdir</VAR>.)  These
+targets indicate:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>all</CODE>
+<DD>Compile all programs
+<P>
+
+<DT><CODE>info</CODE>
+<DD>Create <SAMP>`info'</SAMP> files using <CODE>makeinfo</CODE>.
+</DL>
+</OL>
+<P>
+
+<A NAME="Installing utils"></A>
+<HR SIZE="6">
+<A NAME="SEC28"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC27"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC29"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC29"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.2 Installing the utilities </H2>
+<!--docid::SEC28::-->
+<P>
+
+The following steps are necessary for a complete installation.  You may
+need <CODE>root</CODE> access for these.
+</P><P>
+
+<OL>
+<LI>
+<A NAME="IDX144"></A>
+Create an account for the <CODE>gnats</CODE> user.  If you used the
+<CODE>--with-gnats-user</CODE> option when you ran <CODE>configure</CODE> to set a
+different user name than <VAR>gnats</VAR>,  give the user that name.  When we
+refer to the user <CODE>gnats</CODE> below, substitute as appropriate.
+<P>
+
+This user must have an entry in the file <TT>`/etc/passwd'</TT>.  The home
+directory for this account should be /<VAR>prefix</VAR>/share/gnats, and the
+default <CODE>PATH</CODE> for this user should contain
+<TT>`<VAR>exec-prefix</VAR>/bin'</TT> and
+<TT>`<VAR>exec-prefix</VAR>/libexec/gnats'</TT>.
+</P><P>
+
+<LI>
+Install the utilities by invoking
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>make install install-info
+</FONT></pre></td></tr></table></P><P>
+
+These targets indicate:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>install</CODE>
+<DD>Installs all programs into their configured locations
+(see section <A HREF="gnats_5.html#SEC73">Where GNATS lives</A>).
+<P>
+
+<DT><CODE>install-info</CODE>
+<DD>Installs <SAMP>`info'</SAMP> files into their configured locations
+(see section <A HREF="gnats_5.html#SEC73">Where GNATS lives</A>).
+</DL>
+<P>
+
+After you have installed GNATS, you can remove the object files with
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>make clean
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="IDX145"></A>
+<A NAME="IDX146"></A>
+<A NAME="IDX147"></A>
+<LI>
+Place the following lines in the file <TT>`default.el'</TT> in your Emacs
+lisp library, or instruct your local responsible parties to place the
+lines in their <TT>`.emacs'</TT>:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>(autoload 'edit-pr "gnats" 
+   "Command to edit a problem report." t)
+(autoload 'view-pr "gnats"
+   "Command to view a problem report." t)
+(autoload 'unlock-pr "gnats"
+   "Unlock a problem report." t)
+(autoload 'query-pr "gnats"
+   "Command to query information about problem reports." t)
+(autoload 'send-pr-mode "send-pr"
+   "Major mode for sending problem reports." t)
+(autoload 'send-pr "send-pr"
+   "Command to create and send a problem report." t)
+</FONT></pre></td></tr></table></P><P>
+
+Emacs lisp files are byte-compiled if <CODE>make</CODE> can find Emacs on your
+local system.
+</OL>
+<P>
+
+<A NAME="Setting up the default database"></A>
+<HR SIZE="6">
+<A NAME="SEC29"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC28"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC30"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC30"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.3 Installing the default database </H2>
+<!--docid::SEC29::-->
+<P>
+
+For the following steps, log in as the user <CODE>gnats</CODE>.
+</P><P>
+
+Initialize the default database with the command <CODE>mkdb</CODE>.  If you
+ran the pre-build configure with the <CODE>--with-gnats-default-db</CODE>
+option, substitute the path below for the one you specified:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>mkdb /usr/local/com/gnatsdb
+</pre></td></tr></table></P><P>
+
+This creates a database named <CODE>gnatsdb</CODE> with all its data stored
+below the specified directory. <CODE>mkdb</CODE> creates the directory itself,
+together with three different subdirectories<A NAME="DOCF2" HREF="gnats_fot.html#FOOT2">(2)</A>:
+</P><P>
+
+<UL>
+<LI>A directory for the mandatory GNATS category <VAR>pending</VAR>.
+<P>
+
+<LI>A <TT>`gnats-queue'</TT> directory for queueing new messages to
+GNATS before they are processed by <CODE>file-pr</CODE>.
+<P>
+
+<LI>The administrative directory <TT>`gnats-adm'</TT>. This directory is
+populated with default configuration files from the
+<TT>`<VAR>prefix</VAR>/etc/gnats/defaults'</TT> directory.
+</UL>
+<P>
+
+The next configuration step is to edit the default files copied to the
+database's <TT>`gnats-adm'</TT> directory by <CODE>mkdb</CODE>.
+</P><P>
+
+The default <TT>`dbconfig'</TT> file installed by <CODE>mkdb</CODE> provides a
+good basis for many GNATS databases. The default file causes
+similar behaviour to the 3.x versions of GNATS. However, even if
+this might be precisely what you want, you should still go through the
+file and check that the default settings suit your needs.
+See section <A HREF="gnats_4.html#SEC40">The <TT>`dbconfig'</TT> file</A>.
+</P><P>
+
+Then edit the files <TT>`categories'</TT>, <TT>`responsible'</TT>, and
+<TT>`submitters'</TT> in the <TT>`gnats-adm'</TT> directory (see section <A HREF="gnats_4.html#SEC50">Other database-specific config files</A>) to reflect your
+local needs.  For special configurations, you may also have to edit the
+<TT>`states'</TT> and <TT>`classes'</TT> files.
+</P><P>
+
+If you used the <CODE>--with-gnats-default-db</CODE> option in the pre-build
+configure to change the location of the default database, you need to
+edit the <TT>`databases'</TT> config file, see <A HREF="gnats_4.html#SEC39">The <TT>`databases file'</TT></A>.  This file is by default located in the
+<TT>`<VAR>prefix</VAR>/etc/gnats'</TT> directory, but may have been changed
+by the option <CODE>--with-gnats-dblist-file</CODE> option during configure.
+</P><P>
+
+<A NAME="IDX148"></A>
+<A NAME="IDX149"></A>
+<A NAME="Setting up periodic jobs"></A>
+<HR SIZE="6">
+<A NAME="SEC30"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC29"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.4 Setting up periodic jobs </H2>
+<!--docid::SEC30::-->
+<P>
+
+Allow the new user <CODE>gnats</CODE> access to <CODE>cron</CODE> and <CODE>at</CODE>.  To
+do this, add the name <CODE>gnats</CODE> to the files <TT>`cron.allow'</TT> and
+<TT>`at.allow'</TT>, which normally reside in the directory
+<TT>`/var/spool/cron'</TT>.  If these files do not exist, make sure
+<CODE>gnats</CODE> does not appear in either of the files <TT>`cron.deny'</TT>
+and <TT>`at.deny'</TT> (in the same directory).  If you changed the name
+of the GNATS user during configure, remember to substitute as
+appropriate in the previous steps.
+</P><P>
+
+<A NAME="IDX150"></A>
+Create a <CODE>crontab</CODE> entry that periodically runs the program
+<CODE>queue-pr</CODE> with the <SAMP>`--run'</SAMP> option
+(see section <A HREF="gnats_4.html#SEC67"><CODE>queue-pr</CODE></A>).  For example, to run
+<SAMP>`queue-pr --run'</SAMP> every ten minutes, create a file called
+<TT>`.mycron'</TT> in the home directory of the user <CODE>gnats</CODE> which
+contains the line:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>0,10,20,30,40,50 * * * * <VAR>exec-prefix</VAR>/libexec/gnats/queue-pr --run
+</FONT></pre></td></tr></table></P><P>
+
+(Specify the full path name for <CODE>queue-pr</CODE>.)  Then run
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>crontab .mycron
+</FONT></pre></td></tr></table></P><P>
+
+See the <CODE>man</CODE> pages for <CODE>cron</CODE> and <CODE>crontab</CODE> for details
+on using <CODE>cron</CODE>.
+</P><P>
+
+<A NAME="Aliases"></A>
+<HR SIZE="6">
+<A NAME="SEC31"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC30"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC32"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC32"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.5 Setting up mail aliases </H2>
+<!--docid::SEC31::-->
+<P>
+
+The following mail aliases must be added on the machine where the
+GNATS server is installed.  The instructions below are for Sendmail
+or Sendmail-like mail systems.  If these instructions don't fit your
+system, particularly if you do not have an <TT>`aliases'</TT> file, ask your
+mail administrator for advice.
+</P><P>
+
+The following aliases should be placed in the file
+<TT>`/etc/aliases'</TT>. Yoy may need <CODE>root</CODE> access to add these
+aliases:
+</P><P>
+
+<UL>
+<LI>
+<A NAME="IDX151"></A>
+Create an alias for the GNATS administrator.  This address should
+point to the address of the person in charge of administrating
+GNATS:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>gnats-admin:  <VAR>address</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+<LI>
+<A NAME="IDX152"></A>
+<A NAME="IDX153"></A>
+<A NAME="IDX154"></A>
+<A NAME="IDX155"></A>
+Create an alias to redirect incoming Problem Reports.  This alias should
+redirect incoming mail via a <EM>pipe</EM> to the program <SAMP>`queue-pr
+-q'</SAMP>.  For example, if Problem Reports coming to your site are to arrive
+at the address <SAMP>`bugs@your.company.com'</SAMP>, create an alias to the
+effect of:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>bugs:  "| <VAR>exec-prefix</VAR>/libexec/gnats/queue-pr -q"
+</FONT></pre></td></tr></table></P><P>
+
+This places incoming Problem Reports in
+the <TT>`<VAR>gnats-queue</VAR>'</TT> directory of your database.  Remember to
+fill in the full path of the <CODE>queue-pr</CODE> command as appropriate for
+your installation.
+</P><P>
+
+<LI>
+You may also wish to forward a copy of each incoming Problem Report to a
+log.  This can be accomplished with something like:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>bug-q: "| <VAR>exec-prefix</VAR>/libexec/gnats/queue-pr -q"
+bug-log:  /some/path/bugs.log
+bugs:      bug-q, bug-log
+</FONT></pre></td></tr></table></P><P>
+
+This configuration archives incoming Problem Reports in the file
+<TT>`bug.log'</TT>, and also feeds them to the program <CODE>queue-pr</CODE>.
+(Remember, <TT>`bug.log'</TT> needs to be world-writable, and should be
+pruned regularly; see section <A HREF="gnats_4.html#SEC37">GNATS Administration</A>.)  In
+order for the log file to protect fully against data loss in case a disk
+runs full, try to place it on a different disk volume than the
+GNATS database.
+</P><P>
+
+<LI>
+If you want your users to be able to query the database by mail, use the
+following alias:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr: "| <VAR>exec-prefix</VAR>/libexec/gnats/mail-query"
+</FONT></pre></td></tr></table></P><P>
+
+The <CODE>mail-query</CODE> program uses <SAMP>`--restricted'</SAMP> to search on the
+database, and by default only searches for PRs that aren't closed
+(see section <A HREF="gnats_2.html#SEC21">Querying the database</A>).
+</P><P>
+
+</UL>
+<P>
+
+<A NAME="Installing the daemon"></A>
+<HR SIZE="6">
+<A NAME="SEC32"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.6 Installing the daemon </H2>
+<!--docid::SEC32::-->
+<P>
+
+By default, the daemon and clients are set to use port 1529.  Add the line
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>support		1529/tcp			# GNATS
+</FONT></pre></td></tr></table></P><P>
+
+to your <TT>`/etc/services'</TT> file.  If you want a different service
+name, configure GNATS with
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>--with-gnats-service=<VAR>servicename</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+In your <TT>`inetd.conf'</TT> file, add the line
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>support	stream	tcp	nowait	gnats	/usr/local/libexec/gnats/gnatsd gnatsd
+</FONT></pre></td></tr></table></P><P>
+
+adjusting the path accordingly if you used configure options to make
+changes to the defaults.  To make <CODE>inetd</CODE> start spawning the
+GNATS daemon when connected on that port, send it a hangup signal
+(<CODE>HUP</CODE>).
+</P><P>
+
+If you use an Internet superserver different from <CODE>inetd</CODE>,
+please refer to its documentation for information how to configure it.
+</P><P>
+
+At this point, you will probably want to set the access permissions of
+the different hosts that are going to be accessing your databases.  The
+access permissions can currently only be set on a global scale (that is,
+across all the databases on a GNATS server).  The location and name
+of the global host access configuration file can be set during the
+pre-build configure as shown above, but by default the file is
+/usr/local/etc/gnats/gnatsd_host.access.  It lists the hosts
+allowed to access your server, and what their default access levels are.
+Each line in the file denotes one server, or one part of a network
+domain.  There are three fields on each line, but only two are currently
+used.  To grant all hosts from the domain <VAR>site.com</VAR> edit access,
+use this line:
+</P><P>
+
+<VAR>site.com</VAR>:<VAR>edit</VAR>
+</P><P>
+
+If you run a GNATS web interface or similar tool on the same
+machine as the server is running on, you probably want to grant
+<VAR>localhost</VAR> edit access:
+</P><P>
+
+<VAR>localhost</VAR>:<VAR>edit</VAR>
+</P><P>
+
+If you are using Kerberos, the <TT>`gnatsd_host.access'</TT> file shows the
+sites that don't require Kerberos authentication.
+</P><P>
+
+The third field might in the future be used for things like controlling
+what categories, submitter-id's PRs, etc., can be accessed from that
+site.  Access attempts that are denied are logged to the syslog messages
+file (<TT>`/var/adm/messages'</TT> on many systems).
+</P><P>
+
+<A NAME="Installing tools"></A>
+<HR SIZE="6">
+<A NAME="SEC33"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC32"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC34"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC34"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.7 Installing the user tools </H2>
+<!--docid::SEC33::-->
+<P>
+
+When you install the GNATS utilities, the user tools are installed
+by default on the host machine.  If your machine is part of a network,
+however, you may wish to install the user tools on each machine in the
+network so that responsible parties on those machines can submit new
+Problem Reports, query the database, and edit existing PRs.  To do this,
+follow these steps <EM>on each new host</EM>.  You may need <CODE>root</CODE> access on
+each machine.
+</P><P>
+
+<A NAME="Upgrading"></A>
+<HR SIZE="6">
+<A NAME="SEC34"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC35"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.8 Upgrading from older versions </H2>
+<!--docid::SEC34::-->
+<P>
+
+The following procedure covers an upgrade from all GNATS 3 versions
+newer than 3.108.  If your installation is an older 3.10x version, or
+even the ancient 3.2 version, you need to review the
+<TT>`UPGRADING.old'</TT> file in the GNATS distribution before carrying
+out the steps detailed here.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC35"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC34"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC36"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC34"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.8.1 Overview </H3>
+<!--docid::SEC35::-->
+<P>
+
+Although almost all of the GNATS internals have been redesigned and
+rewritten for GNATS 4, little has changed in the format and
+structure of the database data.  The only change that needs to be taken
+into account when upgrading is the fact that the database index format
+is binary in a default installation of GNATS 4.  Thus, you will
+need to regenerate your database index by using the <CODE>gen-index</CODE>
+tool.
+</P><P>
+
+Apart from building and installing new binaries, the major changes which
+impinge on the upgrade procedure are all on the configuration side.  The
+main database configuration file, <TT>`dbconfig'</TT>, is far more complex
+and powerful than the old <TT>`config'</TT> file, and while the installation
+process creates a sensible set of default values which are similar to
+GNATS 3.11x's defaults, you still need to migrate any changes you
+may have made to your own local configuration.
+</P><P>
+
+Another aspect which needs consideration are remote submitter sites.
+Such sites either need to be instructed to upgrade their locally
+installed copies of the GNATS user tools (<CODE>send-pr</CODE>,
+<CODE>edit-pr</CODE> and <CODE>query-pr</CODE>), or they should be given access
+through interfaces such as Gnatsweb.
+</P><P>
+
+Since the GNATS network daemon has been completely reworked, with
+an entirely new command set, all network-based interfaces, such as
+Gnatsweb and TkGnats need to be upgraded to versions that support
+GNATS 4.  Currently, Gnatsweb is the only network-based interface
+which has been rewritten for GNATS 4.  The <TT>`contrib'</TT> directory
+of this distribution contains some third-party interfaces, and the
+<TT>`README'</TT> file contains pointers to where you can obtain the newest
+versions of these tools.
+</P><P>
+
+This document only deals with upgrading GNATS itself.  Third-party
+tools should have separate upgrading instructions in their
+distributions.
+</P><P>
+
+<HR SIZE="6">
+<A NAME="SEC36"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC35"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC34"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.8.2 Upgrading </H3>
+<!--docid::SEC36::-->
+<P>
+
+<OL>
+<LI>
+Before you begin, make a backup of your entire GNATS database
+directory hierarchy, the GNATS executables directory and the
+GNATS user tools (<CODE>send-pr</CODE>, <CODE>query-pr</CODE> etc.)  The
+locations of these may vary, but in a default GNATS 3 installation,
+the database(s) reside under <TT>`/usr/local/share/gnats'</TT>, the
+executables are located in <TT>`/usr/local/libexec/gnats'</TT> and the
+user tools reside in <TT>`/usr/local/bin'</TT>.
+<P>
+
+<LI>
+(optional) In order to avoid confusing your users, you may want to
+remove the old GNATS 3 executables and tools, escpecially if you
+plan to install GNATS 4 in a different location than version 3.
+<P>
+
+<LI>
+Build and install GNATS 4.  See section <A HREF="gnats_3.html#SEC26">Installing GNATS</A>.  It is recommended that you use the
+<CODE>--with-gnats-default-db</CODE> option when running <CODE>configure</CODE>,
+in order to set the default database to be one of your already existing
+GNATS 3 databases.
+<P>
+
+<LI>
+Edit the GNATS <TT>`databases'</TT> file, located in
+<TT>`<VAR>SYSCONFDIR</VAR>/gnats'</TT>.  In a default GNATS 4 installation
+this is <TT>`/usr/local/etc/gnats'</TT>.  Add entries for all your old
+GNATS 3 databases.  See section <A HREF="gnats_4.html#SEC39">The <TT>`databases'</TT> file</A>.
+<P>
+
+<LI>
+In GNATS 3, the file <TT>`gnatsd.conf'</TT> specifies minimum access
+levels for the different hosts accessing the GNATS daemon,
+<CODE>gnatsd</CODE>.  There is one <TT>`gnatsd.conf'</TT> for each database.  In
+GNATS 4, these files have been replaced by a single file named
+<TT>`gnatsd.host_access'</TT> which contains settings that apply across all
+the databases on the server.  This file is located in the same directory
+as the <TT>`databases'</TT> file.  You need to combine the host access
+settings from all your GNATS 3 databases and add them to the
+<TT>`gnatsd.host_access'</TT> file.  Note that you are no longer able to
+control host access on a per-database basis.  Optionally, you may delete
+the old <TT>`gnatsd.conf'</TT> files.  See section <A HREF="gnats_7.html#SEC84">Controlling access to GNATS databases</A>.
+<P>
+
+<LI>
+Next, you need to migrate the settings in the old <TT>`config'</TT> files of
+your databases to corresponding <TT>`dbconfig'</TT> files.  The database you
+specified with the <CODE>--with-gnats-default-db</CODE> configure option
+got a default <TT>`dbconfig'</TT> installed.  This default file contains
+field definitions etc. which makes this version of GNATS behave
+almost exactly like older versions.  Copy this default file to the
+<TT>`gnats-adm'</TT> directories of any other GNATS databases that
+you may have on your host before you proceed to migrate your old
+configuration settings.
+<P>
+
+The following is a list of the configuration directives that may be
+present in a <TT>`config'</TT> file and their counterparts (if any) in
+GNATS 4.
+</P><P>
+
+<DL COMPACT>
+<DT><VAR>GNATS_ADDR</VAR>
+<DD>This setting has no counterpart in GNATS 4, since GNATS no
+longer needs to know its own mail address.
+<P>
+
+<DT><VAR>GNATS_ADMIN</VAR>
+<DD>This setting is now set in the <TT>`responsible'</TT> file in the
+<TT>`gnats-adm'</TT> directory of your database(s).
+<P>
+
+<DT><VAR>GNATS_SITE</VAR>
+<DD>GNATS 4 has no concept of a named `site', so this directive is
+obsolete.
+<P>
+
+<DT><VAR>SUBMITTER</VAR>
+<DD>Obsolete, since it relates to <VAR>GNATS_SITE</VAR>.
+<P>
+
+<DT><VAR>DEFAULT_RELEASE</VAR>
+<DD><DT><VAR>DEFAULT_ORGANIZATION</VAR>
+<DD>The GNATS 4 <TT>`dbconfig'</TT> file has separate configuration
+sections for each defined field.  Field defaults are set with the
+<CODE>default</CODE> keyword in these sections.  See section <A HREF="gnats_4.html#SEC40">The <TT>`dbconfig'</TT> file</A>.
+<P>
+
+<DT><VAR>NOTIFY</VAR>
+<DD>Controlled by the <CODE>notify-about-expired-prs</CODE> setting in the
+<TT>`dbconfig'</TT> file.
+<P>
+
+<DT><VAR>ACKNOWLEDGE</VAR>
+<DD>Controlled by the <CODE>send-submitter-ack</CODE> setting in the
+<TT>`dbconfig'</TT> file.
+<P>
+
+<DT><VAR>DEFAULT_SUBMITTER</VAR>
+<DD>The default submitter is now always the first entry in the
+<TT>`submitters'</TT> file of your database.
+<P>
+
+<DT><VAR>KEEP_RECEIVED_HEADERS</VAR>
+<DD>Controlled by the <CODE>keep-all-received-headers</CODE> setting in the
+<TT>`dbconfig'</TT> file.
+<P>
+
+<DT><VAR>DEBUG_MODE</VAR>
+<DD>Controlled by the <CODE>debug-mode</CODE> setting in the <TT>`dbconfig'</TT> file.
+<P>
+
+<DT><VAR>BDAY_START</VAR>
+<DD><DT><VAR>BDAY_END</VAR>
+<DD><DT><VAR>BWEEK_START</VAR>
+<DD><DT><VAR>BWEEK_END</VAR>
+<DD>Controlled by the settings <CODE>business-day-hours</CODE> and
+<CODE>business-week-days</CODE> in the <TT>`dbconfig'</TT> file.
+<P>
+
+<DT><VAR>DEFINE_CATEGORY</VAR>
+<DD>The default category for PRs that arrive without one is now the first
+category listed in the <TT>`categories'</TT> file of your database.
+</DL>
+<P>
+
+After your are done migrating the settings, you may optionally delete
+the old <TT>`config'</TT> files.  Since there are many more configuration
+settings available in the GNATS 4 <TT>`dbconfig'</TT> file, you should
+take some time to review them all before proceeding.  See section <A HREF="gnats_4.html#SEC40">The <TT>`dbconfig'</TT> file</A>.
+</P><P>
+
+<LI>
+GNATS 4 uses a different password format in the
+<TT>`gnatsd.access'</TT> file than older versions, since it supports
+<CODE>crypt()</CODE> and MD5 passwords (see section <A HREF="gnats_7.html#SEC84">Controlling access to GNATS databases</A>).  You need to translate your old
+<TT>`gnatsd.access'</TT> files to the new format by using the
+<CODE>gnats-pwconv</CODE> tool which was installed in the
+<TT>`<VAR>EXEC-PREFIX</VAR>/libexec/gnats'</TT> directory, typically
+<TT>`/usr/local/libexec/gnats'</TT>.  See <A HREF="gnats_4.html#SEC60">Administrative Utilities</A> for details on how to use
+<CODE>gnats-pwconv</CODE>.
+<P>
+
+<LI>
+The final step involves regenerating the indexes of your databases.  For
+this, log in as the user <CODE>gnats</CODE>.  Then run the <CODE>gen-index</CODE>
+command for each of your databases.  See <A HREF="gnats_4.html#SEC60">Administrative Utilities</A> for details on how to use
+<CODE>gen-index</CODE>.
+<P>
+
+<LI>
+Sit back and enjoy your new GNATS 4 setup...
+</OL>
+<P>
+
+<A NAME="Management"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC26"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC37"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC91">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Yngve Svendsen</I> on <I>December, 4  2001</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>
