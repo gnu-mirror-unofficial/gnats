@@ -1,0 +1,124 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: regression testing, test harnesses, etc. -->
+<!--X-From-R13: "Rvex Pretfgebz" <qvexNwhavcre.arg> -->
+<!--X-Date: 17 Jul 2001 06:45:31 &#45;0000 -->
+<!--X-Message-Id: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5ACA7@postal.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - regression testing, test harnesses, etc.</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00061">Date&nbsp;Index</A>] [<a href="subjects.html#00061">Subject&nbsp;Index</a>] [<a href="authors.html#00061">Author&nbsp;Index</a>] [<A HREF="threads.html#00061">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00060.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00062.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00060.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>regression testing, test harnesses, etc.</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: regression testing, test harnesses, etc.</li>
+<li><em>From</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Mon, 16 Jul 2001 23:45:25 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+we've noticed some flaky behavior in our gnats 4.0a install; see the PRs
+i recently filed:
+
+<A  HREF="http://sources.redhat.com/cgi-bin/gnatsweb.pl?database=gnats;cmd=submit%">http://sources.redhat.com/cgi-bin/gnatsweb.pl?database=gnats;cmd=submit%</A>
+20query;originator=dirk;columns=category;columns=state;columns=responsib
+le;columns=synopsis;sortby=PR
+
+because of this, and because we like to be paranoid, we want to run some
+tests on gnats, to make sure that it's not doing scary things behind our
+backs, and to see what and where it's limits are.
+
+is there a test-suite for gnats?  i've seen test.pl in the
+contrib/gnatsweb directory; it's not much to work with, and it's mostly
+aimed at testing a few parts of gnatsweb.  i figure that if y'all are
+doing active development, you might have some test-harness scripts
+laying around...
+
+i'm going to to test our current install, and run the same tests on 4.0
+once it's released (to see if we trust it enough to install it).  if
+anyone has scripts i can work with, that would be great; failing that,
+suggestions for tests to run would be appreciated.  in any case, i'm
+going to try to write somewhat generic test routines, so that they'll be
+useful for gnats development, and not just juniper.
+
+your input will be appreciated (though i reserve the right to ignore
+good advice and bull-headedly do my own thing).
+
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,          Computer Geek
+Tel: 707.433.0564           Fax: 707.433.0769
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00067" href="msg00067.html">Re: regression testing, test harnesses, etc.</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00061">Date&nbsp;Index</A>] [<a href="subjects.html#00061">Subject&nbsp;Index</a>] [<a href="authors.html#00061">Author&nbsp;Index</a>] [<A HREF="threads.html#00061">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00060.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00062.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00060.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: how to install gnatsweb??? -->
+<!--X-From-R13: Irf Pneevf <jrfoNargjbexpf.pbz> -->
+<!--X-Date: 19 Mar 2001 16:21:30 &#45;0000 -->
+<!--X-Message-Id: 20010319102059.A74330@us.networkcs.com -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Derived: gif00000.gif -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Wes Barris - how to install gnatsweb???</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00066">Date&nbsp;Index</A>] [<a href="subjects.html#00066">Subject&nbsp;Index</a>] [<a href="authors.html#00066">Author&nbsp;Index</a>] [<A HREF="threads.html#00066">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00065.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00065.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>how to install gnatsweb???</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Mailing List &lt;gnats-devel at sourceware dot cygnus dot com&gt;</li>
+<li><em>Subject</em>: how to install gnatsweb???</li>
+<li><em>From</em>: Wes Barris &lt;wesb at networkcs dot com&gt;</li>
+<li><em>Date</em>: Mon, 19 Mar 2001 10:20:59 -0600</li>
+<li><em>Reply-To</em>: Wes Barris &lt;wes at networkcs dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hello,
+
+I need some help installing gnatsweb.  I am trying to do this on a
+new Redhat 7 (Linux) system.  I have tried installing gnats via rpm
+(the prefered method), cvs (as described on
+<A  HREF="http://sources.redhat.com/gnats/">http://sources.redhat.com/gnats/</A>), and finally, building manually (using
+configure, make, etc.).  It seems that gnats itself is working.  I can
+use either send-pr or query-pr and all is well.
+
+I can't get gnatsweb-2.7beta to work with any of these installations.
+It can't be that hard.  Others use it, right?  The INSTALL file that
+comes with gnatsweb says:
+
+1) install gnatsd -- Done.
+
+2) configure host access -- Done.
+
+3) gnats/web servers on same hose -- Skip.
+
+4) line 1 of gnatsweb.pl -- Done.
+
+5) make test USERNAME=anon PASSWORD=pw DATABASE=db_alias
+
+What is the &quot;db_alias&quot;?  This is the first I have seen it mentioned.
+Here is what I tried:
+
+root@kirby# make test USERNAME=wes PASSWORD=test DATABASE=gnats-adm
+perl test.pl
+Content-type: text/html
+
+&lt;H1&gt;Software error:&lt;/H1&gt;
+&lt;PRE&gt;Can't call method &amp;quot;header&amp;quot; on an undefined value at gnatsweb.pl line 2117, &amp;lt;SOCK&amp;gt; line 1.
+&lt;/PRE&gt;
+&lt;P&gt;
+For help, please send mail to this site's webmaster, giving this error message 
+and the time and date of the error.
+
+[Mon Mar 19 10:13:54 2001] test.pl: Can't call method &quot;header&quot; on an undefined value at gnatsweb.pl line 2117, &lt;SOCK&gt; line 1.
+connect...........................................FAIL
+make: *** [test] Error 255
+root@kirby#
+
+
+
+Would someone please please please tell me what I am missing?  Others
+must get this error too.  I have followed all of the instructions
+as far as I can tell.  What do others do to get gnatsweb to work???
+
+
+When I try to access gnatsweb.pl from the web, it prompts me for
+a username and password, but the database selection box is empty.
+I have attached a very small gif showing what it looks like.
+
+-----------------------------------------------------------------------
+Wes Barris                                            wes@networkcs.com
+Network Computing Services, Inc.                           612.626.8090
+-----------------------------------------------------------------------
+Today's fortune: It is easier to fight for one's principles than to
+live up to them.
+</PRE>
+<P><A HREF="gif00000.gif" >gnatsweb.gif</A></P>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00067" href="msg00067.html">Re: how to install gnatsweb???</a></strong>
+<ul><li><em>From:</em> Gerald Pfeifer</li></ul></li>
+<li><strong><a name="00070" href="msg00070.html">Re: how to install gnatsweb???</a></strong>
+<ul><li><em>From:</em> George Nawfal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00066">Date&nbsp;Index</A>] [<a href="subjects.html#00066">Subject&nbsp;Index</a>] [<a href="authors.html#00066">Author&nbsp;Index</a>] [<A HREF="threads.html#00066">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00065.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00065.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

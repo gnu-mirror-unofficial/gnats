@@ -1,0 +1,143 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: gnatsweb/235: Arrival&#45;Date/Date&#45;format in query&#45;result is wrong -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 15 Aug 2001 18:20:24 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010815233607.00b41790@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20010809040501.27652.qmail@sourceware.cygnus.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: gnatsweb/235: Arrival-Date/Date-format in query-result is wrong</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00090">Date&nbsp;Index</A>] [<a href="subjects.html#00090">Subject&nbsp;Index</a>] [<a href="authors.html#00090">Author&nbsp;Index</a>] [<A HREF="threads.html#00090">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00089.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00091.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00089.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00089.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnatsweb/235: Arrival-Date/Date-format in query-result is wrong</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: aavictor at email dot com, gnats-gnats at sourceware dot cygnus dot com</li>
+<li><em>Subject</em>: Re: gnatsweb/235: Arrival-Date/Date-format in query-result is wrong</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 16 Aug 2001 00:31:14 +0200</li>
+<li><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+
+&gt;Background : End users complain the arrival-time is not relevent to 
+&gt;Hongkong time. So, I change the timezone of system clock from CST to HKT , 
+&gt;and reboot. After that,
+&gt;I create a test request on &quot;Thu Aug 09 10:10:00 HKT 2001&quot; , and output in 
+&gt;Query Results is &quot;1970-01-01 07:59:59&quot;.
+&gt;The arrival time of this request is -1 in index (gnats-adm directory)
+
+(I am CCing the gnats-devel mailing list on this, as I think others might 
+be interested in this)
+
+Interesting problem. It seems to be a side-effect of GNATS not having heard 
+of the HKT time zone name abbreviation, and I think it is caused by the 
+following:
+
+When GNATS receives a problem report, it takes the current date and time 
+from the clock on the server and puts that into the Arrival-Date field of 
+the GNATS report. No parsing is involved, so it doesn't matter if the 
+server uses a format that GNATS doesn't understand.
+
+However, GNATS also uses an index file to make searching faster. The 
+Arrival Date is one of the fields in this index, and when creating it, 
+GNATS attempts to parse the date string into an internal format. Not 
+knowing what to make of the &quot;HKT&quot; in the date string, it seems to default 
+to putting &quot;-1&quot; into the index field. This -1 is what causes the wrong date 
+which you are seeing in the Gnatsweb query results.
+
+So, all in all, this is not really a Gnatsweb problem, but a problem in 
+GNATS itself. There are myriads of different timezone abbreviations, and 
+GNATS unfortunately doesn't know about all of them. The upcoming GNATS 4 
+has largely solved this by using numeric time zone strings relative to UTC, 
+like +0200 or -0800.
+
+I think the best workaround for you would be to set a timezone on your 
+server which is known to GNATS. As far as I can see, HKT is UTC+8 hours, so 
+you should get by with either of the following, cut from the GNATS 
+getdate.y file:
+
+     { &quot;awst&quot;,   tZONE,     -HOUR (8) }, /* West Australian Standard */
+     { &quot;cct&quot;,    tZONE,     -HOUR (8) }, /* China Coast, USSR Zone 7 */
+     { &quot;pht&quot;,    tZONE,     -HOUR (8) }, /* Asia Manila */
+     { &quot;wst&quot;,    tZONE,     -HOUR (8) }, /* West Australian Standard */
+
+You could also try to insert the HKT timezone in the proper location of the 
+getdate.c file and recompile GNATS. The format of the time zone entries in 
+getdate.c should be more or less self-explanatory.
+
+By the way, you should definitely update your Gnatsweb installation. 
+Functionality has improved quite a bit lately, and versions up to and 
+including Gnatsweb 2.8.1 have a nasty security hole. You can find out more 
+about this at <A  HREF="http://sources.redhat.com/gnats/">http://sources.redhat.com/gnats/</A>
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00090">Date&nbsp;Index</A>] [<a href="subjects.html#00090">Subject&nbsp;Index</a>] [<a href="authors.html#00090">Author&nbsp;Index</a>] [<A HREF="threads.html#00090">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00089.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00091.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00089.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00089.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

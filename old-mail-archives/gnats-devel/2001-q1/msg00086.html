@@ -1,0 +1,115 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: gnatsweb 2.7beta ignoring some server errors + fix -->
+<!--X-From-R13: "U. Bnhy Lvrzon" <cnhyNznlnaargjbexf.pbz> -->
+<!--X-Date: 22 Mar 2001 01:28:10 &#45;0000 -->
+<!--X-Message-Id: 20010321172744.A7530@tango.mayannetworks.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>G. Paul Ziemba - gnatsweb 2.7beta ignoring some server errors + fix</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00086">Date&nbsp;Index</A>] [<a href="subjects.html#00086">Subject&nbsp;Index</a>] [<a href="authors.html#00086">Author&nbsp;Index</a>] [<A HREF="threads.html#00086">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00085.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00087.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00085.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00085.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnatsweb 2.7beta ignoring some server errors + fix</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: gnatsweb 2.7beta ignoring some server errors + fix</li>
+<li><em>From</em>: &quot;G. Paul Ziemba&quot; &lt;paul at mayannetworks dot com&gt;</li>
+<li><em>Date</em>: Wed, 21 Mar 2001 17:27:44 -0800</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+When I submit an edit (sub submitedit), sometimes the gnats
+server returns an error to the lock command (e.g., &quot;490 ...&quot;).
+Gnatsweb did not catch that error, and eventually generated a
+misleading error message to the effect that:
+
+    &amp;$err_sub(&quot;PR $pr has been modified since you started editing it.&quot;,
+	 &quot;Please return to the edit form, press the Reload button, &quot;
+	 . &quot;then make your edits again.\n&quot;
+	 . &quot;&lt;pre&gt;Last-Modified was    '$fields{'Last-Modified'}'\n&quot;
+	 . &quot;Last-Modified is now '$oldfields{'Last-Modified'}'&lt;/pre&gt;\n&quot;); 
+
+because %oldfields did not have any significant values in it.
+
+My fix was to modify lockpr to look for an undef returned by
+client_cmd(&quot;lock $pr $user&quot;) and to then return undef itself
+in that case. Further, to modify submitedit to detect an &quot;undef&quot;
+return from lockpr and then to call &amp;$err_sub with $gnats::FULL_ERRSTR
+to print the server error to the user.
+
+I am sure my quick hack is not the best approach to this problem,
+so I am sending merely this explanation in hopes that Gerald or
+someone else can generate a better fix.
+
+thanks,
+
+ ~!paul
+
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00086">Date&nbsp;Index</A>] [<a href="subjects.html#00086">Subject&nbsp;Index</a>] [<a href="authors.html#00086">Author&nbsp;Index</a>] [<A HREF="threads.html#00086">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00085.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00087.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00085.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00085.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

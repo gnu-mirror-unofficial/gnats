@@ -1,0 +1,125 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: gnatsd output question -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 10 Aug 2001 18:54:45 &#45;0000 -->
+<!--X-Message-Id: 87snezizbn.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - gnatsd output question</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00088">Date&nbsp;Index</A>] [<a href="subjects.html#00088">Subject&nbsp;Index</a>] [<a href="authors.html#00088">Author&nbsp;Index</a>] [<A HREF="threads.html#00088">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00087.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00089.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00087.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00099.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnatsd output question</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: GNATS Development Mailing List &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: gnatsd output question</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 10 Aug 2001 19:45:16 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+I'm not familiar with Internet protocols, so I need an advice on a
+certain gnatsd output.
+
+When a new problem is submitted via gnatsd, its output looks like this:
+
+  subm 
+  211 Ok.
+  &lt;the report text&gt;
+  .
+  210 GNATS database is now locked.
+  210 PR added.
+  210 GNATS database is now unlocked.
+
+or, in the case of failure, like this:
+
+  subm
+  211 Ok.
+  .
+  210 GNATS database is now locked.
+  402 Failure reading header
+  210 GNATS database is now unlocked.
+
+As you can see above, after submitting the report text gnatsd outputs
+*three* status report lines as single messages, the overall result
+message is wrapped by the locking status messages.  Is this behavior
+and/or format right?  If not, how should the output look?
+
+Thanks for any advice.
+
+Milan Zamazal
+
+-- 
+And why?
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00099" href="msg00099.html">RE: gnatsd output question</a></strong>
+<ul><li><em>From:</em> Marcus Williams</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00088">Date&nbsp;Index</A>] [<a href="subjects.html#00088">Subject&nbsp;Index</a>] [<a href="authors.html#00088">Author&nbsp;Index</a>] [<A HREF="threads.html#00088">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00087.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00089.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00087.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00099.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Gnats &#38; Gnatsweb 2.6 -->
+<!--X-From-R13: Fubznf @vyfra <Fubznf.@vyfraNYirearynaq.pbz> -->
+<!--X-Date: 20 Jul 2000 07:55:23 &#45;0000 -->
+<!--X-Message-Id: 1188DB8D58CAD211A8E30008C79F8A0517E1BC@ukwssrv01.kverneland.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Gnats &amp; Gnatsweb 2.6</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00015">Date&nbsp;Index</A>] [<a href="subjects.html#00015">Subject&nbsp;Index</a>] [<a href="authors.html#00015">Author&nbsp;Index</a>] [<A HREF="threads.html#00015">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00014.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00014.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Gnats &amp; Gnatsweb 2.6</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: &quot;'gnats-devel at sourceware dot cygnus dot com'&quot; &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+<LI><em>Subject</em>: Gnats &amp; Gnatsweb 2.6</LI>
+<LI><em>From</em>: Thomas Nilsen &lt;Thomas dot Nilsen at Kverneland dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 20 Jul 2000 09:54:42 +0200</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I've set up gnats v3.113 and gnatsweb 2.6 on a RH 6.2 Linux box. 
+
+Everything seems to work fine except for editing PRs from within the
+Gnatsweb interface. Once I click on the "submit-edit" button, the following
+error is produced:
+
+Error:GNATS server cannot create lock file: Permission Denied.
+
+This error is produced when I set /usr/share/gnats/gnats-db/gants-adm/locks
+with owner as gnats. But even though the error says it cannot create the
+lock file, a lock file is produced in this directory.
+
+However, with the default installation (installed as a RPM binary) the locks
+directory did not exist. After giving locks/ the same permissions as the
+rest of the gnats folders, Gnatsweb comes up with the following error:
+
+Error:Cannot create lock file /usr/.../gnats-adm/locks/xx.lock where xx is
+the PR number.
+
+Using edit-pr on the command line as a standard user works fine, so the
+problem must be with Gnatsweb and the permission settings on the locks
+directory. Can anyone tell me what it is supposed to be? 
+
+Apache is running as user/group nobody.
+
+Regards, Thomas Nilsen
+Global Services
+Kverneland IT AS
+Phone: +44 1380 72 23 61 Ext. 201 - Mobile: +47 95258962
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00015">Date&nbsp;Index</A>] [<a href="subjects.html#00015">Subject&nbsp;Index</a>] [<a href="authors.html#00015">Author&nbsp;Index</a>] [<A HREF="threads.html#00015">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00014.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00014.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

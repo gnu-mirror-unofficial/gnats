@@ -1,0 +1,195 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: RE: Compiing. -->
+<!--X-From: "Sanborn, Ed" <esanborn@northchurch.net> -->
+<!--X-Date: 27 May 1999 19:25:22 &#45;0000 -->
+<!--X-Message-Id: C1E763AF1EB6D21197170090271E09B20B3C4E@forge.northc.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>RE: Compiing.</TITLE>
+<LINK REV="made" HREF="mailto:esanborn@northchurch.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00007">Date Index</A>] [<a href="subjects.html#00007">Subject Index</a>] [<a href="authors.html#00007">Author Index</a>] [<A HREF="threads.html#00007">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00006.html">Date Prev</A>]&nbsp;[<A HREF="msg00008.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00006.html">Thread Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: Compiing.</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "'Kenneth H. Cox'" &lt;kenstir@senteinc.com&gt;</LI>
+<LI><em>Subject</em>: RE: Compiing.</LI>
+<LI><em>From</em>: "Sanborn, Ed" &lt;esanborn@northchurch.net&gt;</LI>
+<LI><em>Date</em>: Thu, 27 May 1999 15:11:49 -0400</LI>
+<LI><em>Cc</em>: "'gnats-devel@sourceware.cygnus.com'" &lt;gnats-devel@sourceware.cygnus.com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi Kenneth,
+
+    I'm getting the following error when testing...
+
+&lt;root@brigade:/raid5/users/esanborn/gnatsweb-2.3&gt;make test USERNAME=esanborn
+PASSWORD=blah DATABASE=db_alias
+make: Fatal error in reader: Makefile, line 39: Unexpected end of line seen
+
+Any ideas why?
+
+-Ed
+
+-----Original Message-----
+From: Kenneth H. Cox [<A  HREF="mailto:kenstir@senteinc.com">mailto:kenstir@senteinc.com</A>]
+Sent: Thursday, May 27, 1999 12:00 PM
+To: Sanborn, Ed
+Cc: 'gnats-devel@sourceware.cygnus.com'
+Subject: RE: Compiing.
+
+
+Yes, it requires 
+
+	1. gnats be installed
+	2. gnatsd (gnats network server) be installed and configured
+	   (see .info documentation)
+	3. you have a web server with Perl 5 and CGI.pm
+	   (comes with perl5.004_04 on my linux system)
+
+I do use it.  In fact I wrote it along with another guy.
+
+-Ken
+
+
+On Thu, 27 May 1999, Sanborn, Ed wrote:
+
+&gt; Hi,
+&gt; 
+&gt;   He's a who...Luca Salvadori.  Either way, so far it's been a bust.
+&gt; Does Gnatsweb need the base gnats package installed first?  Do you
+&gt; use it? 
+&gt; 
+&gt; -Ed
+&gt; 
+&gt; -----Original Message-----
+&gt; From: Kenneth H. Cox [<A  HREF="mailto:kenstir@senteinc.com">mailto:kenstir@senteinc.com</A>]
+&gt; Sent: Thursday, May 27, 1999 11:37 AM
+&gt; To: Sanborn, Ed
+&gt; Cc: 'gnats-devel@sourceware.cygnus.com'
+&gt; Subject: RE: Compiing.
+&gt; 
+&gt; 
+&gt; On Thu, 27 May 1999, Sanborn, Ed wrote:
+&gt; &gt; Thanks!  OK.  Well, the only reason I am using this other release is
+&gt; 'cause
+&gt; &gt; it
+&gt; &gt; supposedly has good support to work with wwwgnats by Luca. Of course
+&gt; &gt; that doesn't mattr if I can't even get the base package compiled. Is
+there
+&gt; &gt; an acceptable web front-end to gnats version 3.110?
+&gt; 
+&gt; Who or what is Luca?  I haven't heard of a wwwgnats which
+&gt; worked for a long time.  Acceptible alternative you ask?  Why Gnatsweb 
+&gt; is great if I have to say so myself.  See gnatsweb 2.3 available
+&gt; from:
+&gt; 
+&gt;     <A  HREF="ftp://ftp.senteinc.com/pub/sente/gnatsweb/">ftp://ftp.senteinc.com/pub/sente/gnatsweb/</A>
+&gt; 
+&gt; Regards,
+&gt; Ken
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; &gt; 
+&gt; &gt; -----Original Message-----
+&gt; &gt; From: Kenneth H. Cox [<A  HREF="mailto:kenstir@senteinc.com">mailto:kenstir@senteinc.com</A>]
+&gt; &gt; Sent: Thursday, May 27, 1999 11:14 AM
+&gt; &gt; To: Sanborn, Ed
+&gt; &gt; Cc: 'gnats-devel@sourceware.cygnus.com'
+&gt; &gt; Subject: Re: Compiing.
+&gt; &gt; 
+&gt; &gt; 
+&gt; &gt; On Thu, 27 May 1999, Sanborn, Ed wrote:
+&gt; &gt; &gt;     I am getting an error when compiling gnats.  I'm compiling version
+&gt; &gt; &gt; 3.101-beta with gcc on a Sun with Solaris 2.6.  Here's the bottom of
+the
+&gt; 
+&gt; &gt; &gt; make output:
+&gt; &gt; 
+&gt; &gt; Try 3.110, which you can get at:
+&gt; &gt; 
+&gt; &gt;   sourceware.cygnus.com/pub/gnats/snapshots/gnats-3.110.tar.gz
+&gt; &gt; 
+&gt; &gt; Regards,
+&gt; &gt; --
+&gt; &gt; Kenneth H. Cox
+&gt; &gt; Software Guy
+&gt; &gt; Sente, Inc.
+&gt; &gt; 
+&gt; 
+&gt; Regards,
+&gt; --
+&gt; Kenneth H. Cox
+&gt; Software Guy
+&gt; Sente, Inc.
+&gt; 
+
+Regards,
+--
+Kenneth H. Cox
+Software Guy
+Sente, Inc.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00007">Date Index</A>] [<a href="subjects.html#00007">Subject Index</a>] [<a href="authors.html#00007">Author Index</a>] [<A HREF="threads.html#00007">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00006.html">Date Prev</A>]&nbsp;[<A HREF="msg00008.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00006.html">Thread Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,115 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Gnatsweb report for Gnats 4.0 -->
+<!--X-From-R13: "Bnaba, Bnhy&#45;Oaqer" <Bnhy&#45;OaqerBnabaNEvreenElfgrzf.pbz> -->
+<!--X-Date: 5 Jul 2000 00:51:32 &#45;0000 -->
+<!--X-Message-Id: D1D937EF0E0FD311ADC800600815C3030262B47A@SVVAN330 -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Derived: msg00001 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Gnatsweb report for Gnats 4.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00001">Date&nbsp;Index</A>] [<a href="subjects.html#00001">Subject&nbsp;Index</a>] [<a href="authors.html#00001">Author&nbsp;Index</a>] [<A HREF="threads.html#00001">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00000.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00000.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Gnatsweb report for Gnats 4.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: &quot;'gnats-devel at sourceware dot cygnus dot com'&quot; &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+<LI><em>Subject</em>: Gnatsweb report for Gnats 4.0</LI>
+<LI><em>From</em>: &quot;Panon, Paul-Andre&quot; &lt;Paul-AndrePanon at SierraSystems dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 4 Jul 2000 17:51:23 -0700 </LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hello
+
+A couple of our users who like dead-tree reports wanted to be able to get a
+View-style report of multiple PRs at once. The following diff contains some
+(ugly, hacked) additions to the gnatsweb.pl script.  It adds a "Report"
+button to the query results screen when the table contains between 2 and 50
+rows. Pressing the button will report on a single web page the details of
+all the PRs in the result list. If you first select one of the result column
+titles (i.e. Responsible or Class) so that the Query results are ordered by
+that column, the report will also present the PRs in the same order.  This
+patch steals/copies a fair amount of code from the subroutines for view and
+submit query; it is probably possible to separate out common code into
+common procedures but I couldn't justify spending the time.
+
+However, if it seems useful for others, somebody could clean it up (or not)
+and incorporate it into the gnatsweb distribution.  I checked gnatsweb out
+of CVS on June 6, however since the changes are mostly in a standalone set
+of perl subroutines it hopefully shouldn't be significantly changed. There's
+also a couple of other changes which could probably be omitted: I fixed a
+couple of missing HTML closing tags (there's probably still many missing),
+and applied the patch somebody posted earlier on the dev list to work around
+the error reported by gnatsd when no criteria area is submitted on a query
+(i.e. "ignore closed" is unchecked)
+
+Paul-Andre Panon 
+
+ &lt;&lt;gnatsweb.pl.diff&gt;&gt; 
+</PRE>
+<P><A HREF="msg00001/gnatsweb.pl.diff" >gnatsweb.pl.diff</A></P>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00001">Date&nbsp;Index</A>] [<a href="subjects.html#00001">Subject&nbsp;Index</a>] [<a href="authors.html#00001">Author&nbsp;Index</a>] [<A HREF="threads.html#00001">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00000.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00000.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

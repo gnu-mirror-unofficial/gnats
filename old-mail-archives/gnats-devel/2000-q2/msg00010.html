@@ -1,0 +1,155 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: Re: newbie questions -->
+<!--X-From-R13: Zrr Penqfunj <yrrNfrpgvbaWH.pbz> -->
+<!--X-Date: 25 Apr 2000 22:15:15 &#45;0000 -->
+<!--X-Message-Id: 20000425181502.A29330@sectionIV.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20000425154110.A28608@sectionIV.com -->
+<!--X-Reference: Pine.GSO.4.10.10004251503270.21546&#45;100000@sys4 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: newbie questions</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00010">Date&nbsp;Index</A>] [<a href="subjects.html#00010">Subject&nbsp;Index</a>] [<a href="authors.html#00010">Author&nbsp;Index</a>] [<A HREF="threads.html#00010">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00009.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00011.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00009.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00011.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: newbie questions</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Subject</em>: Re: newbie questions</LI>
+<LI><em>From</em>: Lee Bradshaw &lt;lee at sectionIV dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 25 Apr 2000 18:15:02 -0400</LI>
+<LI><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00008.html">20000425154110.A28608@sectionIV.com</A>&gt; &lt;<A HREF="msg00009.html">Pine.GSO.4.10.10004251503270.21546-100000@sys4</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Tue, Apr 25, 2000 at 03:12:22PM -0600, Rick Macdonald wrote:
+&gt; I don't know who is setting the string unknown-addr either, but the value
+&gt; that I use is the GNATS_ADDR from the gnats_adm/config file that TkGnats
+&gt; retrieves from the gnats sedrver through gnatsd. Check that file and set
+&gt; GNATS_ADDR if it's missing. 
+
+gnatsweb seems to work so I tried grabbing the info from the gnatsd
+daemon:
+
+  freefall ~ $ telnet localhost support
+  Trying 127.0.0.1...
+  Connected to localhost.
+  Escape character is '^]'.
+  200 freefall GNATS server 3.113 ready.
+  LCFG
+  220 List follows.
+  GNATS_ADDR="bugs"
+  GNATS_USER="gnats"
+  GNATS_ADMIN="gnats-admin"
+  GNATS_SITE="sectionIV"
+  SUBMITTER="sectionIV"
+  DEFAULT_RELEASE="1.0"
+  DEFAULT_ORGANIZATION="sectionIV"
+  NOTIFY=1
+  ACKNOWLEDGE=1
+  DEFAULT_SUBMITTER="test"
+  KEEP_RECEIVED_HEADERS=1
+  BDAY_START=8
+  BDAY_END=17
+  BWEEK_START=1
+  BWEEK_END=5
+  DEBUG_MODE=0
+  .
+
+bugs is an email alias:
+  freefall ~ $ grep bugs /etc/aliases
+  bugs:           "| /usr/lib/gnats/queue-pr -q"
+
+Should this work with tkgnats?
+
+&gt; I'd say the location of the perl script, such as:
+&gt; 
+&gt; <A  HREF="http://intranet/cgi-bin/gnatsweb.pl">http://intranet/cgi-bin/gnatsweb.pl</A>
+
+Thanks, that works. I was using the full path to cgi-bin. I'm an chip
+designer who is trying to find an alternative to an MS Access database
+that one of our sites is using. Gnats seems to fit my flow (unix/linux
+systems) much better and the web and tk interfaces should be
+acceptable to the windows users.
+
+-- 
+Lee Bradshaw                 lee@sectionIV.com (preferred)
+Alantro Communications       lee@alantro.com
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00011" HREF="msg00011.html">Re: newbie questions</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00008" HREF="msg00008.html">Re: newbie questions</A></STRONG>
+<UL><LI><EM>From:</EM> Lee Bradshaw</LI></UL></LI>
+<LI><STRONG><A NAME="00009" HREF="msg00009.html">Re: newbie questions</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00010">Date&nbsp;Index</A>] [<a href="subjects.html#00010">Subject&nbsp;Index</a>] [<a href="authors.html#00010">Author&nbsp;Index</a>] [<A HREF="threads.html#00010">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00009.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00011.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00009.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00011.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,164 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: PR 375 &#45; Point 1 -->
+<!--X-From-R13: [nex Yhpury <znexNxhpury.arg> -->
+<!--X-Date: 10 Jan 2001 04:42:57 &#45;0000 -->
+<!--X-Message-Id: 01011015420608.01014@bombers.kuchel.net -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Mark Kuchel - PR 375 - Point 1</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date&nbsp;Index</A>] [<a href="subjects.html#00002">Subject&nbsp;Index</a>] [<a href="authors.html#00002">Author&nbsp;Index</a>] [<A HREF="threads.html#00002">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00001.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00020.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PR 375 - Point 1</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</LI>
+<LI><em>Subject</em>: PR 375 - Point 1</LI>
+<LI><em>From</em>: Mark Kuchel &lt;mark at kuchel dot net&gt;</LI>
+<LI><em>Date</em>: Wed, 10 Jan 2001 15:42:06 +1100</LI>
+<LI><em>Cc</em>: &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+In regards to PR 375, I will deal with each of the individual points in 
+it seperately (i.e., each of the * points). Anything &gt; is from the PR.
+
+&gt; * The login page makes no mention of needing to have cookies enabled;
+ 
+The problem here under lynx is that it doesn't use javascript.  For
+lynx and other browsers in that class, adding in a simple 
+&lt;noscript&gt;...&lt;/noscript&gt; section telling them that they need cookies 
+turned on to work.  This also works for browsers such as netscape and 
+mozilla when you turn javascript off in them.
+ 
+ 
+&gt; but without cookies enabled it just redirects to another login
+&gt; page (under Netscape) or goes to a "Redirecting" page which does     
+&gt; nothing (under lynx).
+ 
+gnatsweb can't set any cookies so goes back to the login page.  If 
+netscape (or for that matter, any browser) has cookies disabled, then 
+it will go back to the login page. With the noscript patch mentioned 
+above, it shouldn't matter whether or not the user's browser has 
+javascript capabilities or not, they should get the message they need 
+to use a browser that supports cookies.  The problem with lynx and the 
+redirecting page is already fixed through an earlier patch of mine.  
+But not the problem with lynx and cookies.  I am having problems 
+getting lynx to work with cookies.
+ 
+&gt; The latter problem seems to be because it is trying to use
+&gt; an HTTP "Refresh" header, which is not mentioned in RFC 2616 (the 
+&gt; HTTP 1.1 spec)
+ 
+Yes that is true, but then again neither are cookies and they are sent 
+in the http headers, and the problem has been overcome.    
+
+The patch was tested with netscape 4.75, mozilla M18, lynx 2.8.4 and 
+konqueror from kdebase 2.0.6 from mandrake.  
+
+Note it messes up the formatting of the table at the top, but I can't 
+figure out why (it no longer likes the fonts, is that because of 
+javascript being turned off, I don't know).
+
+Mark
+
+-- 
+--------------------------------------------------------------------
+| Mark Kuchel            |                                         |
+| mark@kuchel.net        | www.kuchel.net                          |
+| Phone: 03 9387 4668    | Mobile: 0438 650 150                    |
+--------------------------------------------------------------------
+</PRE>
+<PRE>
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvs/gnats/gnats/contrib/gnatsweb/gnatsweb.pl,v
+retrieving revision 2.19
+diff -c -3 -p -r2.19 gnatsweb.pl
+*** gnatsweb.pl	2001/01/10 02:24:20	2.19
+--- gnatsweb.pl	2001/01/10 04:22:09
+*************** if (val == null) {
+*** 2824,2829 ****
+--- 2824,2835 ----
+  
+  //--&gt;
+  &lt;/SCRIPT&gt;
++ &lt;noscript&gt;
++ Due to the fact that you are using a browser that doesn't support javascript,
++  there is now way of telling if your browser can accept cookies. Gnatsweb
++ requires cookies to keep track of your login and other information.
++ Please enable cookies before pressing the &lt;tt&gt;login&lt;/tt&gt; button.
++ &lt;/noscript&gt;   
+    };
+  }
+  
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00020" HREF="msg00020.html">Re: PR 375 - Point 1</A></STRONG>
+<UL><LI><EM>From:</EM> Gerald Pfeifer</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date&nbsp;Index</A>] [<a href="subjects.html#00002">Subject&nbsp;Index</a>] [<a href="authors.html#00002">Author&nbsp;Index</a>] [<A HREF="threads.html#00002">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00001.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00020.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

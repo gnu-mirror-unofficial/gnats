@@ -1,0 +1,151 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: RE: Gnats &#38; Gnatsweb 2.6 -->
+<!--X-From-R13: Fubznf @vyfra <Fubznf.@vyfraNYirearynaq.pbz> -->
+<!--X-Date: 20 Jul 2000 12:57:46 &#45;0000 -->
+<!--X-Message-Id: 1188DB8D58CAD211A8E30008C79F8A0517E1C7@ukwssrv01.kverneland.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>RE: Gnats &amp; Gnatsweb 2.6</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00016">Date&nbsp;Index</A>] [<a href="subjects.html#00016">Subject&nbsp;Index</a>] [<a href="authors.html#00016">Author&nbsp;Index</a>] [<A HREF="threads.html#00016">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00015.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00017.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00015.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00017.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: Gnats &amp; Gnatsweb 2.6</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: &quot;'Verdeyen, Michael'&quot; &lt;Michael dot Verdeyen at mchugh dot com&gt;</LI>
+<LI><em>Subject</em>: RE: Gnats &amp; Gnatsweb 2.6</LI>
+<LI><em>From</em>: Thomas Nilsen &lt;Thomas dot Nilsen at Kverneland dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 20 Jul 2000 14:56:35 +0200</LI>
+<LI><em>Cc</em>: &quot;'gnats-devel at sourceware dot cygnus dot com'&quot; &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+gnatsd is running as user gnats. 
+
+I've tried varios permissions to the locks directory, but no matter what I
+do it always result in the "Permission denied" error. 
+
+What puzzles me a bit is that the lock file is created as soon as I click on
+"submit edit", but it is given -rw-r--r-- permissions (where user &amp; group is
+gnats). But if you use edit-pr from the command line, the lock file is
+generated as soon as you hit enter and not released before the edit session
+is ended, and the permissions are -rw-r--r-- with root as user, and &lt;user&gt;
+for group (logged in as &lt;user&gt; ).
+Shouldn't the lock file be generated when you start editing the PR and
+released once you click on "Submit-edit"?
+
+Regards, Thomas
+Kverneland IT AS
+
+-----Original Message-----
+From: Verdeyen, Michael [<A  HREF="mailto:Michael.Verdeyen@mchugh.com">mailto:Michael.Verdeyen@mchugh.com</A>]
+Sent: 20. juli 2000 13:20
+To: Thomas Nilsen
+Subject: RE: Gnats &amp; Gnatsweb 2.6
+
+
+What about the gnatsd process?  What user is it running as?  gnatsweb.pl
+just talks to gnatsd to do its work (at least that's how it works in my
+configuration)
+
+-----Original Message-----
+From: Thomas Nilsen [<A  HREF="mailto:Thomas.Nilsen@Kverneland.com">mailto:Thomas.Nilsen@Kverneland.com</A>]
+Sent: Thursday, July 20, 2000 2:55 AM
+To: 'gnats-devel@sourceware.cygnus.com'
+Subject: Gnats &amp; Gnatsweb 2.6
+
+
+I've set up gnats v3.113 and gnatsweb 2.6 on a RH 6.2 Linux box. 
+
+Everything seems to work fine except for editing PRs from within the
+Gnatsweb interface. Once I click on the "submit-edit" button, the following
+error is produced:
+
+Error:GNATS server cannot create lock file: Permission Denied.
+
+This error is produced when I set /usr/share/gnats/gnats-db/gants-adm/locks
+with owner as gnats. But even though the error says it cannot create the
+lock file, a lock file is produced in this directory.
+
+However, with the default installation (installed as a RPM binary) the locks
+directory did not exist. After giving locks/ the same permissions as the
+rest of the gnats folders, Gnatsweb comes up with the following error:
+
+Error:Cannot create lock file /usr/.../gnats-adm/locks/xx.lock where xx is
+the PR number.
+
+Using edit-pr on the command line as a standard user works fine, so the
+problem must be with Gnatsweb and the permission settings on the locks
+directory. Can anyone tell me what it is supposed to be? 
+
+Apache is running as user/group nobody.
+
+Regards, Thomas Nilsen
+Global Services
+Kverneland IT AS
+Phone: +44 1380 72 23 61 Ext. 201 - Mobile: +47 95258962
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00016">Date&nbsp;Index</A>] [<a href="subjects.html#00016">Subject&nbsp;Index</a>] [<a href="authors.html#00016">Author&nbsp;Index</a>] [<A HREF="threads.html#00016">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00015.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00017.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00015.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00017.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

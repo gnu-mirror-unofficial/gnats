@@ -1,0 +1,128 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: Re: Submitting PR's 'closed' or with predetermined closing time. -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 12 May 2000 13:40:10 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10005120724280.29066&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.LNX.4.21.0005112145310.13629&#45;100000@netcore.fi -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Submitting PR's 'closed' or with predetermined closing time.</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Submitting PR's 'closed' or with predetermined closing time.</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Pekka Savola &lt;pekkas at netcore dot fi&gt;</LI>
+<LI><em>Subject</em>: Re: Submitting PR's 'closed' or with predetermined closing time.</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Fri, 12 May 2000 07:33:30 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Thu, 11 May 2000, Pekka Savola wrote:
+
+&gt; I think this feature might be useful in environments where many
+&gt; administrators file "for-inform" informational PR's in the database.
+&gt; 
+&gt; Is it possible to file new PR's as 'closed'?  At least Gnatsweb doesn't
+&gt; support this.  The reason?  Because this is informational (of which some
+&gt; are there for archival purposes only), it might not make sense having to
+&gt; remember to close the PR and thus sending excess messages to all
+&gt; concerning parties.
+
+This was always mostly in the gnats core, I think, but 10 months ago I
+fixed up a couple of details and we use it all the time with TkGnats for
+exactly the same reason.
+
+I _think_ gnatsweb would present the state field in the sendpr form by
+simply setting the "show-in-send-pr-form-please" flag (don't have the name
+handy), but there may be more to it that this.
+
+&gt; Another interesting feature might be a PR that would automatically close
+&gt; or change state without sending those informational emails.  This way,
+&gt; some new announcement would show in open reports for a while, and after
+&gt; some time (when people have probably seen it), it would be silently
+&gt; archived.
+
+I have a state of "purge", which has state class of "closed". I never
+wrote the script yet, but the intention is to a have a script that deltes
+from the gnats database all PRs with a state of purge that have been
+closed longer than some number of days.
+
+Built-in generic support for such features would be interesting, as you
+say. Perhaps in V4 some day...
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00018" HREF="msg00018.html">Submitting PR's 'closed' or with predetermined closing time.</A></STRONG>
+<UL><LI><EM>From:</EM> Pekka Savola</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

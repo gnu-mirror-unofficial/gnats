@@ -1,0 +1,163 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: Problems with GNATS -->
+<!--X-From-R13: "[ruhy Enatuiv" <zfnatuivNzlfha.pbz> -->
+<!--X-Date: 15 Sep 2000 00:10:27 &#45;0000 -->
+<!--X-Message-Id: 1446b15e23.15e231446b@mysun.om -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Problems with GNATS</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00029.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Problems with GNATS</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Subject</em>: Re: Problems with GNATS</LI>
+<LI><em>From</em>: &quot;Mehul Sanghvi&quot; &lt;msanghvi at mysun dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 14 Sep 2000 20:03:56 -0400</LI>
+<LI><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I have a machine which acts as my mailhost.  It also acts as the
+internal webhost.  I have a seperate machine gnatshost.  I have gnatsweb
+set up on the mailhost/webhost.  It points to and gets stuff from
+gnatshost.  At least queries.  I am nost sure about new entires that are
+created.
+
+So the /etc/aliases file that needs to be setup cirrectly is the one on
+my mailhost/webhost or the one on my gnatshost ?  I currently have it
+setup correctly on my gnatshost.  Is there a way for Gnatsweb to use
+gnatshost as the mail system ?  Currently all systems are setup to relay
+mail to the mailhost.  On the mailhost, I have /etc/aliases setup to
+forward to the gnatshost like so:
+
+    gnats:  gnats@gnatshost
+
+But I do not seem to be seeing anything on gnatshost.  The /etc/aliases
+entries on gnatshost are of the form:
+
+    gnats:  /path/to/query-pr -d /psth/to/database -q
+
+I might have made syntax errors above, but they are correct in the real
+file.  I am just doing this off the top of my head.
+
+Should I be doing anything at all with /etc/aliases on mailhost ?  Or
+just on gnatshost ?  Or on both systems, like I am doing now ?
+
+
+For the existing PRs in that we already have in GNATS,  I get no
+notifications whatsoever (I am the gnats-admin and gnats-admin is setup
+to be the responsible person at all levels, at least while we are
+testing GNATS out).  I have DEBUG mode enabled,  NOTIFICATION is
+enabled.  Is there a cron job or something I need to run ?  And how does
+GNATS generate a new index automagically ?  According to the
+documentation I should not have to touch gnats-admin/index or
+gnats-admin/current.
+
+
+thanks,
+
+   mehul
+
+
+
+----- Original Message -----
+From: Rick Macdonald &lt;rickm@vsl.com&gt;
+Date: Wednesday, September 13, 2000 1:41 pm
+Subject: Re: Problems with GNATS
+
+&gt; On Wed, 13 Sep 2000, Mehul Sanghvi wrote:
+&gt; 
+&gt; &gt; 	1. Does GNATS have to reside on teh same machine that is
+&gt; &gt; acting             as your mailhost ?
+&gt; 
+&gt; No, but beware that if it _is_ a different machine, then your queue-
+&gt; pr -q
+&gt; entry in your mail aliases file must specify "-d 
+&gt; /pull/path/to/gnats-db"
+&gt; and _NOT_ "-d alias" where "alias" is the gnats alias in the
+&gt; /etc/gnats-db.conf file.
+&gt; 
+&gt; This applies to gnats 3.x, but probably gnats 4.0 as well depending on
+&gt; where the gnats aliases are stored. The bottom line is that they 
+&gt; need to
+&gt; be visible to the machine running the queue-pr if you use aliases 
+&gt; on the
+&gt; queue-pr command line.
+&gt; 
+&gt; ...RickM...
+&gt; 
+&gt; 
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00029" HREF="msg00029.html">Re: Problems with GNATS</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00029.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

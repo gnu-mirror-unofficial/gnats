@@ -1,0 +1,211 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: refile&#45;pr -->
+<!--X-From-R13: Bnhy Fenvan <cfgNwhavcre.arg> -->
+<!--X-Date: 10 Mar 2001 03:23:13 &#45;0000 -->
+<!--X-Message-Id: 200103100322.TAA23174@garnet.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Paul Traina - refile-pr</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00048">Date&nbsp;Index</A>] [<a href="subjects.html#00048">Subject&nbsp;Index</a>] [<a href="authors.html#00048">Author&nbsp;Index</a>] [<A HREF="threads.html#00048">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00047.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00049.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00047.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00046.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>refile-pr</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: refile-pr</LI>
+<LI><em>From</em>: Paul Traina &lt;pst at juniper dot net&gt;</LI>
+<LI><em>Date</em>: Fri, 9 Mar 2001 19:22:43 -0800 (PST)</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+Here's a script I wrote a long time ago, I don't think it made it into GNATSv4.
+
+This does what Bryce asked for in a round-about way (Bob's formatting tools are
+so totally cool...):
+
+refile-pr -o &lt;original-pr-number&gt; &lt;pr&gt; [&lt;pr&gt; ...]
+
+This will take the text ONLY parts of the subsequent PRs and refile them to
+the original PR.  THis is useful when someone replies but changes the subject.
+
+Paul
+
+#!/bin/sh
+# Program to submit problem reports for GNATS.
+# Copyright (C) 1999 Free Software Foundation, Inc.
+# Contributed by Bob Manson (manson@juniper.net).
+#
+# This file is part of GNU GNATS.
+#
+# GNU GNATS is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2, or (at your option)
+# any later version.
+#
+# GNU GNATS is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with GNU GNATS; see the file COPYING.  If not, write to
+# the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+
+debug_print=false # or echo to get output.
+
+LIBEXECDIR=/usr/local/libexec
+BINDIR=/usr/local/bin
+EDIT_USER=
+EDIT_PASSWD=
+version=4.0-alpha
+
+usage="
+Usage:  refile-pr [-V|--version] [-h|--help] [-d|--database database_name]
+                  [-H|--host hostname] [-P|--port port_number]
+                  [-v|--user userid]   [-w|--passwd password]
+                  -o|--original pr-to-attach-to &lt;pr&gt; [&lt;pr&gt; ...]
+"
+
+# Parse command line.  We don't really need to do this, but that's ok.
+
+while [ $# -gt 0 ]; do
+   case "$1" in
+     -V|--version|--ve*)
+       echo "$version"; exit 0
+       ;;
+
+     -d | --database)
+       if [ $# -eq 1 ]; then echo "$usage"; exit 1; fi
+       shift ; GNATS_DB="--database=$1" ;;
+     -d=* | --database=*) GNATS_DB="$1" ;;
+
+     -H | --host)
+       if [ $# -eq 1 ]; then echo "$usage"; exit 1; fi
+       shift ; GNATS_HOST="--host=$1" ;;
+     -H=* | --host=*) GNATS_HOST="$1" ;;
+
+     -P | --port)
+       if [ $# -eq 1 ]; then echo "$usage"; exit 1; fi
+       shift ; GNATS_PORT="--port=$1" ;;
+     -P=* | --port=*) GNATS_PORT="$1" ;;
+
+     -v | --user)
+       if [ $# -eq 1 ]; then echo "$usage"; exit 1; fi
+       shift ; EDIT_USER="--user=$1" ;;
+     -v=* | --user=*) EDIT_USER="$1" ;;
+
+     -w | --passwd)
+       if [ $# -eq 1 ]; then echo "$usage"; exit 1; fi
+       shift ; EDIT_PASSWD="--passwd=$1" ;;
+     -w=* | --passwd=*) EDIT_PASSWD="$1" ;;
+
+     -o|--original*)
+       if [ $# -eq 1 ]; then echo "$usage"; exit 1; fi
+       shift ; ORIGINAL="$1" ;;
+
+     -h|--help*)
+       echo "$usage"; exit 0
+       ;;
+
+     -*)
+       echo "$usage"; exit 1
+       ;;
+
+     *)
+       break
+       ;;
+   esac
+   shift
+done
+
+if [ $# = 0 ] ; then
+   echo "$0: missing PR's to refile under original PR" 1&gt;&amp;2
+   exit 1
+fi
+
+# set command here to always pass host and port, and directory if supplied
+PR_EDIT="$LIBEXECDIR/gnats/pr-edit ${GNATS_HOST} ${GNATS_PORT} ${EDIT_USER} ${EDIT_PASSWD} ${GNATS_DB}"
+QUERY_PR="$BINDIR/query-pr ${GNATS_HOST} ${GNATS_PORT} ${EDIT_USER} ${EDIT_PASSWD} ${GNATS_DB}"
+
+QUERY_FMT='"Date: %s\nFrom: %s\nSubject: %s\n\n%s" Date: From: Subject: Description'
+
+if [ "$ORIGINAL" = "" ]; then
+    echo "$0: original PR to refile under required" 1&gt;&amp;2
+    exit 1
+fi
+
+# Get data from bogus PRs
+
+$QUERY_PR --format "$QUERY_FMT" "$@" | \
+	$PR_EDIT --append audit-trail $ORIGINAL &amp;&amp; \
+	for pr in "$@" ; do
+	    $PR_EDIT --user gnats --delete $pr
+	done
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00048">Date&nbsp;Index</A>] [<a href="subjects.html#00048">Subject&nbsp;Index</a>] [<a href="authors.html#00048">Author&nbsp;Index</a>] [<A HREF="threads.html#00048">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00047.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00049.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00047.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00046.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,511 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Fw: Bugs -->
+<!--X-From-R13: [vyna Lnznmny <cqzNqrovna.bet> -->
+<!--X-Date: 26 Sep 2000 19:05:57 &#45;0000 -->
+<!--X-Message-Id: 87k8bz7z6x.fsf@seznam.cz -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Fw: Bugs</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00040">Date&nbsp;Index</A>] [<a href="subjects.html#00040">Subject&nbsp;Index</a>] [<a href="authors.html#00040">Author&nbsp;Index</a>] [<A HREF="threads.html#00040">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00039.html">Date&nbsp;Prev</A>]&nbsp;[Date&nbsp;Next]</td>
+      <td>[Thread&nbsp;Prev]&nbsp;[<A HREF="msg00037.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Fw: Bugs</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: GNATS Development &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+<LI><em>Subject</em>: Fw: Bugs</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at debian dot org&gt;</LI>
+<LI><em>Date</em>: 26 Sep 2000 21:03:50 +0200</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+[I've sent the following reports to bug-gnats@gnu.org two days ago, but
+I couldn't see them there till now, so I'm resending them here.  Sorry
+if you receive them twice.]
+
+</PRE>
+<PRE>
+Subject: Topics
+
+Topics:
+   send-pr -L
+   How to list the information about classes?
+   tkgnats and GNATS 4
+   pr-edit crashes
+   Manual Texinfo bugs
+   configure bugs
+   `defaults' location
+   Compilation error in gnats.el
+
+</PRE>
+<BLOCKQUOTE><BR><HR ALIGN="LEFT" WIDTH="80%">
+<UL>
+<LI><em>To</em>: GNATS Bugs &lt;bug-gnats at gnu dot org&gt;</LI>
+<LI><em>Subject</em>: send-pr -L</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at debian dot org&gt;</LI>
+<LI><em>Date</em>: 24 Sep 2000 12:12:08 +0200</LI>
+</UL>
+<PRE>
+GNATS 4, today's CVS snapshot.
+
+`send-pr --help' prints the following information
+
+  Usage: send-pr [-PVL] [-t address] [-f filename] [-s severity]
+         [-c address] [--request-id] [--version]
+
+but the `-L' option only invokes the same help message.  It should
+either be added, or removed from the help.
+
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+
+</PRE>
+<HR ALIGN="LEFT" WIDTH="80%"></BLOCKQUOTE><BR>
+<BLOCKQUOTE><BR><HR ALIGN="LEFT" WIDTH="80%">
+<UL>
+<LI><em>To</em>: GNATS Development &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+<LI><em>Subject</em>: How to list the information about classes?</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at freesoft dot cz&gt;</LI>
+<LI><em>Date</em>: 24 Sep 2000 12:27:05 +0200</LI>
+</UL>
+<PRE>
+It seems `query-pr' in GNATS 4 no longer supports the option
+`--list-classes'.  How can I list all information about available
+classes, as stated in the `classes' file?
+
+Thanks for any advice.
+
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+
+</PRE>
+<HR ALIGN="LEFT" WIDTH="80%"></BLOCKQUOTE><BR>
+<BLOCKQUOTE><BR><HR ALIGN="LEFT" WIDTH="80%">
+<UL>
+<LI><em>To</em>: GNATS Development &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+<LI><em>Subject</em>: tkgnats and GNATS 4</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at debian,org&gt;</LI>
+<LI><em>Date</em>: 24 Sep 2000 12:31:03 +0200</LI>
+</UL>
+<PRE>
+Does tkgnats support GNATS 4?  I tried to run it, but after pressing the
+"Create/Query Problem Reports", I receive the error message
+"query-pr: unrecognized option '--list-config'".
+
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+
+</PRE>
+<HR ALIGN="LEFT" WIDTH="80%"></BLOCKQUOTE><BR>
+<BLOCKQUOTE><BR><HR ALIGN="LEFT" WIDTH="80%">
+<UL>
+<LI><em>To</em>: GNATS Bugs &lt;bug-gnats at gnu dot org&gt;</LI>
+<LI><em>Subject</em>: pr-edit crashes</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at debian dot org&gt;</LI>
+<LI><em>Date</em>: 24 Sep 2000 12:47:49 +0200</LI>
+</UL>
+<PRE>
+GNATS 4, today's CVS snapshot.
+
+When there is no database configuration file or it's empty, pr-edit
+crashes after writing out the error message:
+
+  $ /usr/lib/gnats/pr-edit --lockdb
+  pr-edit: Unable to open global configuration file /etc/gnats/databases
+  segmentation violation
+
+  $ /usr/lib/gnats/pr-edit --lockdb
+  pr-edit: List of databases in /etc/gnats/databases is empty?!
+  segmentation violation
+
+When the database configuration files exists, but the databases
+directory listed there doesn't exist, pr-edit crashes without any
+explanation (which is very confusing for users):
+
+  $ /usr/lib/gnats/pr-edit --lockdb
+  segmentation violation
+
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+
+</PRE>
+<HR ALIGN="LEFT" WIDTH="80%"></BLOCKQUOTE><BR>
+<BLOCKQUOTE><BR><HR ALIGN="LEFT" WIDTH="80%">
+<UL>
+<LI><em>To</em>: GNATS Bugs &lt;bug-gnats at gnu dot org&gt;</LI>
+<LI><em>Subject</em>: Manual Texinfo bugs</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at debian dot org&gt;</LI>
+<LI><em>Date</em>: 24 Sep 2000 12:56:07 +0200</LI>
+</UL>
+<PRE>
+GNATS 4, today's CVS snapshot.
+
+The Texinfo manual can't be processed with makeinfo.  Patch fixing the
+fatal bugs is attached.
+
+</PRE>
+<PRE>
+--- gnats-3.999.20000924.orig/gnats/p-usage.texi
++++ gnats-3.999.20000924/gnats/p-usage.texi
+@@ -29,7 +29,9 @@
+ 
+ @item view-pr
+ Used by software maintainers to view individual Problem Reports using
+-Emacs (@pxref{view-pr,,Viewing individual Problem Reports}).
++Emacs.
++TODO: Make cross-reference.
++@c (@pxref{view-pr,,Viewing individual Problem Reports}).
+ @end table
+ 
+ @cindex administrative utilities
+@@ -48,6 +50,8 @@
+ set of fields stored in the index is changed, or if you need a copy of
+ the current index for some reason (@pxref{gen-index,,Regenerating the
+ index}).
++
++@end table
+ 
+ @cindex internal utilities
+ @subheading Internal Utilities
+--- gnats-3.999.20000924.orig/gnats/p-admin.texi
++++ gnats-3.999.20000924/gnats/p-admin.texi
+@@ -158,7 +158,7 @@
+ @xref{Locations,,Where @sc{gnats} lives}.
+ 
+ Your local configuration is determined by the following data files in the
+-@file {gnats-adm} subdirectory of the database.  It can be altered at
++@file{gnats-adm} subdirectory of the database.  It can be altered at
+ any time by editing the pertinent file.
+ 
+ @table @code
+@@ -166,7 +166,6 @@
+ @item dbconfig
+ Controls the PR format and the behavior of the clients. 
+ See @ref{Local configuration,, Changing your local configuration}.
+-@end itemize
+ 
+ @cindex @code{categories} file
+ @item categories
+--- gnats-3.999.20000924.orig/gnats/p-admin.texi
++++ gnats-3.999.20000924/gnats/p-admin.texi
+@@ -158,7 +158,7 @@
+ @xref{Locations,,Where @sc{gnats} lives}.
+ 
+ Your local configuration is determined by the following data files in the
+-@file {gnats-adm} subdirectory of the database.  It can be altered at
++@file{gnats-adm} subdirectory of the database.  It can be altered at
+ any time by editing the pertinent file.
+ 
+ @table @code
+@@ -166,7 +166,6 @@
+ @item dbconfig
+ Controls the PR format and the behavior of the clients. 
+ See @ref{Local configuration,, Changing your local configuration}.
+-@end itemize
+ 
+ @cindex @code{categories} file
+ @item categories
+--- gnats-3.999.20000924.orig/gnats/gnats.texi
++++ gnats-3.999.20000924/gnats/gnats.texi
+@@ -115,7 +115,7 @@
+ * Management::            GNATS Administration
+ * Installation::          Installing GNATS
+ * Locations::             Where @sc{gnats} lives
+-* Mulitple Databases::    Multiple @sc{gnats} databases on one host
++* Multiple Databases::    Multiple @sc{gnats} databases on one host
+ * Access Control::        Controlling access to @sc{gnats} databases
+ * Regexps::               Querying using regular expressions
+ * Index::
+@@ -325,12 +325,13 @@
+ @sc{gnats} (@pxref{Installation,,Installing @sc{gnats}}).
+ 
+ @menu
+-* prefix::
+-* exec-prefix::
+-* defaults::       Default installation locations
++* prefix::                      
++* exec-prefix::                 
++* GNATS_ROOT::                  
++* defaults::                    Default installation locations
+ @end menu
+ 
+-@node prefix
++@node prefix, exec-prefix, Locations, Locations
+ @section @var{prefix}
+ @cindex @var{prefix}
+ 
+@@ -366,7 +367,7 @@
+ @noindent
+ @xref{Configure and make,,Configuring and compiling the software}.
+ 
+-@node exec-prefix
++@node exec-prefix, GNATS_ROOT, prefix, Locations
+ @section @var{exec-prefix}
+ @cindex @var{exec-prefix}
+ 
+@@ -443,7 +444,7 @@
+ Again, @emph{it is not necessary to use this paradigm when building the
+ @sc{gnats} tools}.
+ 
+-@node GNATS_ROOT
++@node GNATS_ROOT, defaults, exec-prefix, Locations
+ @section @var{GNATS_ROOT}
+ @cindex @var{GNATS_ROOT}
+ 
+@@ -463,7 +464,7 @@
+ @file{current}.  @xref{Local configuration,, Changing your local
+ configuration}, and @ref{Admin files,,Administrative data files}.
+ 
+-@node defaults
++@node defaults,  , GNATS_ROOT, Locations
+ @section Default installation locations
+ @cindex default installation locations
+ 
+@@ -475,6 +476,7 @@
+ @item @var{exec-prefix}
+ defaults to @var{prefix}; change using @code{configure}
+ (@pxref{Configure and make,,Configuring and compiling the software}).
++@end table
+ 
+ @noindent
+ @sc{gnats} installs tools, utilities, and files into the following
+@@ -511,7 +513,8 @@
+ @item pr-edit
+ @xref{pr-edit,,The main PR processor}.
+ @item mkdb
+-@xref{mkdb,,Script for creating new databases}
++TODO: Make cross reference.
++@c @xref{mkdb,,Script for creating new databases}.
+ @end table
+ 
+ @item @var{exec-prefix}/lib/libiberty.a
+</PRE>
+<PRE>
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+</PRE>
+<HR ALIGN="LEFT" WIDTH="80%"></BLOCKQUOTE><BR>
+<BLOCKQUOTE><BR><HR ALIGN="LEFT" WIDTH="80%">
+<UL>
+<LI><em>To</em>: GNATS Bugs &lt;bug-gnats at gnu dot org&gt;</LI>
+<LI><em>Subject</em>: configure bugs</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at debian dot org&gt;</LI>
+<LI><em>Date</em>: 24 Sep 2000 13:00:56 +0200</LI>
+</UL>
+<PRE>
+GNATS 4, today's CVS snapshot.
+
+I've found two bugs in the `configure' script.  Appropriate patch is
+attached.
+
+</PRE>
+<PRE>
+--- gnats-3.999.20000924.orig/gnats/configure.in
++++ gnats-3.999.20000924/gnats/configure.in
+@@ -245,13 +245,13 @@
+ 	GLOBAL_DB_LIST_FILE=$with_gnats_dblist_file
+ fi
+ 
+-if test -z "${DB_LIST_FILE}"; then
++if test -z "${GLOBAL_DB_LIST_FILE}"; then
+ 	AC_MSG_RESULT(default to ${datadir}/gnats/databases)
+ 	GLOBAL_DB_LIST_FILE=${datadir}/gnats/databases
+ fi
+ 
+ AC_MSG_CHECKING(for --with-gnats-default-db)
+-if test -n "${with_default_db}"; then
++if test -n "${with_gnats_default_db}"; then
+ 	AC_MSG_RESULT($with_gnats_default_db)
+ 	GNATS_DEFAULT_DB_DIR="$with_gnats_default_db"
+ fi
+</PRE>
+<PRE>
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+</PRE>
+<HR ALIGN="LEFT" WIDTH="80%"></BLOCKQUOTE><BR>
+<BLOCKQUOTE><BR><HR ALIGN="LEFT" WIDTH="80%">
+<UL>
+<LI><em>To</em>: GNATS Bugs &lt;bug-gnats at gnu dot org&gt;</LI>
+<LI><em>Subject</em>: `defaults' location</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at debian dot org&gt;</LI>
+<LI><em>Date</em>: 24 Sep 2000 13:06:00 +0200</LI>
+</UL>
+<PRE>
+GNATS 4, today's CVS snapshot.
+
+I had some problem to put the `defaults' file to the appropriate
+location, as dictated by Debian standards.  Could you please look at the
+attached patch and tell me whether there is a better way to change the
+location of the file or (if there's not) to put support for changing it?
+
+</PRE>
+<PRE>
+--- gnats-3.999.20000924.orig/gnats/Makefile.in
++++ gnats-3.999.20000924/gnats/Makefile.in
+@@ -17,12 +17,16 @@
+ # You should have received a copy of the GNU General Public License
+ # along with GNU gnats; see the file COPYING.  If not, write to
+ # the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
++#
++# 2000-09-05: Modified by Milan Zamazal &lt;pdm@debian.org&gt; to fit Debian policy.
+ 
+ srcdir = @srcdir@
+ VPATH = @srcdir@
+ 
+ #**** Start of system configuration section.
+ 
++DEFAULTSDIR=/etc/gnats/defaults
++
+ # Where the default gnats database is located.
+ # default: $(sharedstatedir)/gnatsdb
+ GNATS_DEFAULT_DB_DIR = @GNATS_DEFAULT_DB_DIR@
+@@ -383,7 +387,7 @@
+ 
+ install-tools-arch-indep: all-tools dbconfig
+ 	$(SHELL) $(srcdir)/../mkinstalldirs $(datadir)/gnats
+-	$(SHELL) $(srcdir)/../mkinstalldirs $(libexecdir)/gnats/defaults
++	$(SHELL) $(srcdir)/../mkinstalldirs $(DEFAULTSDIR)
+ 	@if [ `whoami` = root -o `whoami` = $(GNATS_USER) ] ; then \
+ 	  echo "chown $(GNATS_USER) $(datadir)/gnats" ; \
+ 	  chown $(GNATS_USER) $(datadir)/gnats ; \
+@@ -393,9 +397,9 @@
+ 	$(INSTALL_DATA) $(srcdir)/gnats.el $(lispdir)/gnats.el
+ 	for i in categories submitters responsible gnatsd.access addresses states classes dbconfig ; do \
+ 	    if [ -f "$$i" ] ; then \
+-		$(INSTALL_DATA) $$i $(datadir)/gnats/defaults/$$i ; \
++		$(INSTALL_DATA) $$i $(DEFAULTSDIR)/$$i ; \
+ 	    else \
+-		$(INSTALL_DATA) $(srcdir)/$$i $(datadir)/gnats/defaults/$$i ; \
++		$(INSTALL_DATA) $(srcdir)/$$i $(DEFAULTSDIR)/$$i ; \
+ 	    fi ; \
+ 	done
+</PRE>
+<PRE>
+Thanks,
+
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+</PRE>
+<HR ALIGN="LEFT" WIDTH="80%"></BLOCKQUOTE><BR>
+<BLOCKQUOTE><BR><HR ALIGN="LEFT" WIDTH="80%">
+<UL>
+<LI><em>To</em>: GNATS Bugs &lt;bug-gnats at gnu dot org&gt;</LI>
+<LI><em>Subject</em>: Compilation error in gnats.el</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at freesoft dot cz&gt;</LI>
+<LI><em>Date</em>: 24 Sep 2000 13:57:05 +0200</LI>
+</UL>
+<PRE>
+GNATS 4, today's CVS snapshot.
+
+This is an old bug, still not fixed.
+
+</PRE>
+<PRE>
+--- gnats-3.999.20000924.orig/gnats/gnats.el
++++ gnats-3.999.20000924/gnats/gnats.el
+@@ -326,8 +326,8 @@
+ 		  (get gnats-server-conn 'pr-number)
+ 		  " "
+ 		  (get field 'field-name))
+-	  curr-value change-reason)))
+-       server-resp)))
++	  curr-value change-reason))))
++    server-resp))
+ 
+ (defun gnats-apply-edits (count)
+   "Verify the current set of edits with the server.  If all edits are acceptable, the outstanding edits are applied and any resulting error messages are displayed.  If there are no errors after the edits are applied, the PR contents are reloaded."
+</PRE>
+<PRE>
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+</PRE>
+<HR ALIGN="LEFT" WIDTH="80%"></BLOCKQUOTE><BR>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00040">Date&nbsp;Index</A>] [<a href="subjects.html#00040">Subject&nbsp;Index</a>] [<a href="authors.html#00040">Author&nbsp;Index</a>] [<A HREF="threads.html#00040">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00039.html">Date&nbsp;Prev</A>]&nbsp;[Date&nbsp;Next]</td>
+      <td>[Thread&nbsp;Prev]&nbsp;[<A HREF="msg00037.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

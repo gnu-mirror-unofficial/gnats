@@ -1,0 +1,126 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: Re: Local security -->
+<!--X-From-R13: Fvz Dvxre <FvzDNQnyqrenElfgrzf.pbz> -->
+<!--X-Date: 10 Jun 2000 19:18:35 &#45;0000 -->
+<!--X-Message-Id: 39429461.83E21121@CalderaSystems.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.GSO.4.10.10006091901280.28716&#45;100000@sys4 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Local security</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00031">Date&nbsp;Index</A>] [<a href="subjects.html#00031">Subject&nbsp;Index</a>] [<a href="authors.html#00031">Author&nbsp;Index</a>] [<A HREF="threads.html#00031">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00030.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00030.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Local security</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Subject</em>: Re: Local security</LI>
+<LI><em>From</em>: Tim Riker &lt;TimR at CalderaSystems dot com&gt;</LI>
+<LI><em>Date</em>: Sat, 10 Jun 2000 13:17:53 -0600</LI>
+<LI><em>CC</em>: John Goerzen &lt;jgoerzen at progenylinux dot com&gt;,       gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Organization</em>: Caldera Systems, Inc. (http://www.caldera.com/)</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00030.html">Pine.GSO.4.10.10006091901280.28716-100000@sys4</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I install gnats databases under /var/lib/gnats-* and then chown them to
+gnats:gnats and remove and world permissions. This means that local
+users will not be able to access the files at all (as users are not in
+the gnats group). This forces network access for everyone. Works very
+well for us.
+
+/etc/gnats* should be owned by root, not gnats. These should be group
+gnats but not group writeable. The important issue here is just to make
+it harder to muck with the access rules. ie: only root can do that.
+
+Rick Macdonald wrote:
+&gt; 
+&gt; On 9 Jun 2000, John Goerzen wrote:
+&gt; 
+&gt; &gt; I'm looking at setting up gnats.  It is impressing me so far, and its
+&gt; &gt; network security features look good.  However, I can't seem to find
+&gt; &gt; any options for local security at all.  Anybody with an account on the
+&gt; &gt; system seems to be able to use edit-pr to change any bug at all.  Is
+&gt; &gt; there any way to restrict this?  Is something misconfigured on my box?
+&gt; &gt; Is this feature planned?
+&gt; 
+&gt; About all that you can do is remove or restrict the command line programs
+&gt; and then use the network security by using gnatsweb and/or TkGnats as
+&gt; front-ends.
+&gt; 
+&gt; ...RickM...
+
+-- 
+Tim Riker - <A  HREF="http://rikers.org/">http://rikers.org/</A> - short SIGs! &lt;g&gt;
+All I need to know I could have learned in Kindergarten
+... if I'd just been paying attention.
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00030" HREF="msg00030.html">Re: Local security</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00031">Date&nbsp;Index</A>] [<a href="subjects.html#00031">Subject&nbsp;Index</a>] [<a href="authors.html#00031">Author&nbsp;Index</a>] [<A HREF="threads.html#00031">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00030.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00030.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

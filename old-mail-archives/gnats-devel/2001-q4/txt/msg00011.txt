@@ -1,0 +1,65 @@
+From gnats-devel-return-794-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Thu Nov 15 01:07:48 2001
+Return-Path: <gnats-devel-return-794-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 30209 invoked by alias); 15 Nov 2001 01:07:48 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 30152 invoked from network); 15 Nov 2001 01:07:43 -0000
+Received: from unknown (HELO Mercury.acs.unt.edu) (129.120.220.1)
+  by sourceware.cygnus.com with SMTP; 15 Nov 2001 01:07:43 -0000
+Received: from iatro.unt.edu (iatro.unt.edu [129.120.48.55])
+	by Mercury.acs.unt.edu (8.8.8/8.8.8) with ESMTP id TAA17071
+	for <gnats-devel@sourceware.cygnus.com>; Wed, 14 Nov 2001 19:07:36 -0600 (CST)
+Received: from gwia.unt.edu (gwia.unt.edu [129.120.48.1])
+	by iatro.unt.edu (8.9.3/8.9.3) with SMTP id TAA27389
+	for <gnats-devel@sourceware.cygnus.com>; Wed, 14 Nov 2001 19:06:46 -0600
+Received: from SMTP-Message_Server by gwia.unt.edu
+	with Novell_GroupWise; Wed, 14 Nov 2001 19:06:45 -0600
+Message-Id: <sbf2c0c5.026@gwia.unt.edu>
+X-Mailer: Novell GroupWise Internet Agent 5.5.5.1
+Date: Wed, 14 Nov 2001 19:06:33 -0600
+From: "Moe Elzubeir" <elzubeir@cobaf.coba.unt.edu>
+To: <yngve.svendsen@clustra.com>, <gnats-devel@sourceware.cygnus.com>
+Subject: Re: gnats/gnatsweb problem
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Disposition: inline
+
+Okay, looking over at my gnatsd.conf, it has the following 'exact'
+lines:
+
+----
+localhost:edit:
+arabeyes.org:edit:
+4.40.3.117:edit:
+----
+
+So... what now?
+
+<pull hair />
+
+ ;-)
+
+>>> Yngve Svendsen <yngve.svendsen@clustra.com> 11/14/01 13:02 PM >>>
+
+This means that you are at least getting through to port 1529, but it
+seems 
+that gnatsd is closing the connection immediately. You probably don't
+have 
+'localhost' in the host access list in the gnatsd.conf file in you 
+gnats-adm directory. Access control documentation is a mess in GNATS 3,
+so 
+it is understandable if you are confused about this. This is far better
+in 
+the GNATS 4 manual.
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+

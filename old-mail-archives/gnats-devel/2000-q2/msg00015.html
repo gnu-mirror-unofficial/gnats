@@ -1,0 +1,119 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: Re: How to add a field to the Gnats Data Base? -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 11 May 2000 12:43:11 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10005110633130.21077&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 3919FA11.1454ED6A@adaptivesilicon.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: How to add a field to the Gnats Data Base?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00015">Date&nbsp;Index</A>] [<a href="subjects.html#00015">Subject&nbsp;Index</a>] [<a href="authors.html#00015">Author&nbsp;Index</a>] [<A HREF="threads.html#00015">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00014.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00014.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00017.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: How to add a field to the Gnats Data Base?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Steve Kelem &lt;kelem at adaptivesilicon dot com&gt;</LI>
+<LI><em>Subject</em>: Re: How to add a field to the Gnats Data Base?</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 11 May 2000 06:36:43 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Wed, 10 May 2000, Steve Kelem wrote:
+
+&gt; How hard is it to add a field to the Gnats data base?
+&gt; I need to add a field "By When?" that takes a date.
+&gt; This will allow us to categorize each PR for when we intend to
+&gt; fix/respond to them, and then concentrate on the PRs for a certain
+&gt; release date.
+
+In GNATS 3.113, this already exists if you build it --with-release-based.
+The field is supported by TkGnats, I assume but don't know for sure that
+gnatsweb does as well, but you'll have to check.
+
+I think all you need to do after rebuilding gnats is to run "gen-index" to
+build a new index with the three new fields that you get
+--with-release-based. With TkGnats, you can "hide" the other two if you
+don't want them (Keywords and Quarter).
+
+In V4, you can add and subtract whatever you want!
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00017" HREF="msg00017.html">Re: How to add a field to the Gnats Data Base?</A></STRONG>
+<UL><LI><EM>From:</EM> Steve Kelem</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00014" HREF="msg00014.html">How to add a field to the Gnats Data Base?</A></STRONG>
+<UL><LI><EM>From:</EM> Steve Kelem</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00015">Date&nbsp;Index</A>] [<a href="subjects.html#00015">Subject&nbsp;Index</a>] [<a href="authors.html#00015">Author&nbsp;Index</a>] [<A HREF="threads.html#00015">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00014.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00014.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00017.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

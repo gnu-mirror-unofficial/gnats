@@ -1,0 +1,161 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: MAILER&#45;DAEMON@egcs.cygnus.com: failure notice -->
+<!--X-From: Torbjorn Tornkvist <tobbe@serc.rmit.edu.au> -->
+<!--X-Date: 2 Jun 1999 04:35:11 &#45;0000 -->
+<!--X-Message-Id: 199906020435.OAA09477@universe.serc.rmit.edu.au -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>MAILER-DAEMON@egcs.cygnus.com: failure notice</TITLE>
+<LINK REV="made" HREF="mailto:tobbe@serc.rmit.edu.au">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00008">Date Index</A>] [<a href="subjects.html#00008">Subject Index</a>] [<a href="authors.html#00008">Author Index</a>] [<A HREF="threads.html#00008">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00007.html">Date Prev</A>]&nbsp;[<A HREF="msg00009.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00009.html">Thread Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>MAILER-DAEMON@egcs.cygnus.com: failure notice</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel@sourceware.cygnus.com</LI>
+<LI><em>Subject</em>: MAILER-DAEMON@egcs.cygnus.com: failure notice</LI>
+<LI><em>From</em>: Torbjorn Tornkvist &lt;tobbe@serc.rmit.edu.au&gt;</LI>
+<LI><em>Date</em>: Wed, 02 Jun 1999 14:35:01 +1000</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+Hi ! 
+
+I've been trying to report a bug in GNATS (see below).
+BTW: What is the proper way of doing that ?
+
+Thanx ! /Tobbe
+
+------- Forwarded Message
+
+From MAILER-DAEMON Wed Jun  2 13:09 EST 1999
+Received: from fw.serc.rmit.edu.au (fw-in.serc.rmit.edu.au [131.170.42.1])
+	by universe.serc.rmit.edu.au (8.8.5/8.8.5) with ESMTP id NAA07341
+	for &lt;tobbe@universe.serc.rmit.edu.au&gt;; Wed, 2 Jun 1999 13:09:44 +1000 (EST)
+Received: (from mail@localhost)
+	by fw.serc.rmit.edu.au (8.9.1/8.9.1) id NAA07967
+	for &lt;tobbe@universe.serc.rmit.edu.au&gt;; Wed, 2 Jun 1999 13:16:18 +1000 (EST)
+Received: from egcs.cygnus.com(205.180.83.80) by fw.serc.rmit.edu.au via smap (V2.1)
+	id xma007965; Wed, 2 Jun 99 13:16:08 +1000
+Received: (qmail 24047 invoked for bounce); 2 Jun 1999 03:09:26 -0000
+Message-Id: &lt;199906020316.NAA07967@fw.serc.rmit.edu.au&gt;
+Date: 2 Jun 1999 03:09:26 -0000
+From: MAILER-DAEMON@egcs.cygnus.com
+To: tobbe@universe.serc.rmit.edu.au
+Subject: failure notice
+Content-Type: text
+Content-Length: 1994
+
+Hi. This is the qmail-send program at egcs.cygnus.com.
+I'm afraid I wasn't able to deliver your message to the following addresses.
+This is a permanent error; I've given up. Sorry it didn't work out.
+
+&lt;bug-gnats@sourceware.cygnus.com&gt;:
+Sorry, no mailbox here by that name. (#5.1.1)
+
+- --- Below this line is a copy of the message.
+
+Return-Path: &lt;tobbe@universe.serc.rmit.edu.au&gt;
+Received: (qmail 24044 invoked from network); 2 Jun 1999 03:09:25 -0000
+Received: from universe.serc.rmit.edu.au (131.170.42.12)
+  by egcs.cygnus.com with SMTP; 2 Jun 1999 03:09:24 -0000
+Received: from universe.serc.rmit.edu.au (localhost [127.0.0.1])
+	by universe.serc.rmit.edu.au (8.8.5/8.8.5) with ESMTP id NAA07333
+	for &lt;bug-gnats@sourceware.cygnus.com&gt;; Wed, 2 Jun 1999 13:09:16 +1000 (EST)
+Message-Id: &lt;199906020309.NAA07333@universe.serc.rmit.edu.au&gt;
+From: Torbjorn Tornkvist &lt;tobbe@serc.rmit.edu.au&gt;
+X-Mailer: mh-e-5.0.2 (GNU Emacs 20.3.1)
+To: bug-gnats@sourceware.cygnus.com
+Subject: GNATS doesn't compile with egcs-2.91.66
+Date: Wed, 02 Jun 1999 13:09:16 +1000
+Sender: tobbe@serc.rmit.edu.au
+
+
+GNATS doesn't compile with egcs-2.91.66 !
+
+It is a construct in the qvariable.c file that breaks it.
+Sorry, I don't have the exact code in front of me but
+it is something like:
+
+  FILE *outdir=stdout;
+
+This compiles with egcs-2.91.60, but not ecgs-2.91.66.
+
+It was a discussion at gnu.gcc.bug which indicated that
+the newer version ov egcs did the right thing. So that
+means that this is a bug in GNATS.
+
+Thanx ! /Tobbe
++---------------------------------------------------+
+| Torbjörn Törnkvist , tel: +61 3 9925 4089         |
+| email: tobbe@serc.rmit.edu.au                     |
+| WWW:   <A  HREF="http://www.serc.rmit.edu.au/~tobbe">http://www.serc.rmit.edu.au/~tobbe</A>         |
+| smail: SERC                                       |
+|        110 Victoria St, Carlton                   |
+|        Victoria 3053                              |
+|        AUSTRALIA                                  |
++---------------------------------------------------+
+
+------- End of Forwarded Message
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00008">Date Index</A>] [<a href="subjects.html#00008">Subject Index</a>] [<a href="authors.html#00008">Author Index</a>] [<A HREF="threads.html#00008">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00007.html">Date Prev</A>]&nbsp;[<A HREF="msg00009.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00009.html">Thread Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

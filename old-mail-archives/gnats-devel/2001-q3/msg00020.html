@@ -1,0 +1,154 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: gnatsweb -->
+<!--X-From-R13: E Dnzrfu <enfunazhNacq.upygrpu.pbz> -->
+<!--X-Date: 9 Jul 2001 08:29:49 &#45;0000 -->
+<!--X-Message-Id: 3B4969D6.A57765A1@npd.hcltech.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AA5E@postal.jnpr.net -->
+<!--X-Reference: 3B496672.E07CE955@retriever.com.au -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>S Ramesh - Re: gnatsweb</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00017.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnatsweb</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Margaret BRIERTON &lt;margaret at retriever dot com dot au&gt;</li>
+<li><em>Subject</em>: Re: gnatsweb</li>
+<li><em>From</em>: S Ramesh &lt;rashanmu at npd dot hcltech dot com&gt;</li>
+<li><em>Date</em>: Mon, 09 Jul 2001 13:52:46 +0530</li>
+<li><em>CC</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Organization</em>: HCL Technologies Ltd.</li>
+<li><em>References</em>: &lt;C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AA5E@postal.jnpr.net&gt; &lt;<a href="msg00019.html">3B496672.E07CE955@retriever.com.au</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi Margaret,
+
+Check out ur /etc/aliases file.
+In that u should have a alias like
+
+bug-log: /usr/local/share/gnats/gnats-db/gnats-adm/bugs.log
+
+if its so while submitting a bug.. ur mail will create that bugs.log and append
+all the bugs then and there. tthe owner and group will be &quot;mail&quot;.
+u can view that file as root.
+
+This is working for me. BUt i have another problem.
+the previous alias like
+
+bug -q: /usr/local/libexec/gnats/queue-pr
+
+is not woring for me. the mail is returning and its saying that int he returned
+mail that
+
+queue-pr service not availabe like that. can be plz help me to sort it out. this
+gnats installation is taking me days. Also i have apache webserver on the the
+same host where gnats is installed. i installed gnatsweb likw
+
+make install CGI_DIR=/var/www/cgi-bin.
+
+it is installed there.. but how to invoke it.. when i put my IP addr on the
+browser.. ts displaying the deauflt test page only. i have gnatsd running
+.Kindly help me.. ia m in urgent need of these things.. which i got stuck two
+days back.
+
+Regds,
+Ramesh
+
+******************************************************************************88
+
+Margaret BRIERTON wrote:
+
+&gt; Hi
+&gt;
+&gt; Can someone tell me what the permissions ie owner and group should be for the
+&gt; file bugs.log?
+&gt;
+&gt; I get as far as submitting a problem report using gnatsweb and i get the
+&gt; following error:
+&gt;
+&gt; /usr/local/share/gnats/gnats-db/gnats-adm/bugs.log... Can't create output:
+&gt; Permission denied
+&gt; /dead.letter... cannot open /dead.letter: Permission denied
+&gt;  Error
+&gt;
+&gt; Bad pipe to /usr/lib/sendmail -oi -t
+&gt;
+&gt; I created the file as the GNATS admin.
+&gt;
+&gt; cheers
+&gt;
+&gt; margaret
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00019" href="msg00019.html">gnatsweb</a></strong>
+<ul><li><em>From:</em> Margaret BRIERTON</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00017.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: PATCH installed: gnatsweb 2.9.x browser compatibility -->
+<!--X-From-R13: Urenyq Bsrvsre <csrvsreNqonv.ghjvra.np.ng> -->
+<!--X-Date: 25 Sep 2001 13:45:59 &#45;0000 -->
+<!--X-Message-Id: Pine.BSF.4.33.0109251535400.58719&#45;100000@naos.dbai.tuwien.ac.at -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Gerald Pfeifer - PATCH installed: gnatsweb 2.9.x browser compatibility</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00126">Date&nbsp;Index</A>] [<a href="subjects.html#00126">Subject&nbsp;Index</a>] [<a href="authors.html#00126">Author&nbsp;Index</a>] [<A HREF="threads.html#00126">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00125.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00127.html">Date&nbsp;Next</A>]</td>
+      <td>[Thread&nbsp;Prev]&nbsp;[<A HREF="msg00123.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH installed: gnatsweb 2.9.x browser compatibility</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;,  Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: PATCH installed: gnatsweb 2.9.x browser compatibility</li>
+<li><em>From</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</li>
+<li><em>Date</em>: Tue, 25 Sep 2001 15:45:43 +0200 (CEST)</li>
+<li><em>cc</em>: Franz Sirl &lt;Franz dot Sirl-kernel at lauterbach dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+I have installed the following fix by Franz on the gnatsweb-v2-branch
+branch of the gnatsweb repository on savannah.gnu.org.
+
+Gnatsweb 4.x doesn't seem to have this problem, but it might sense to
+release 2.9.1 at some point, as this causes problems for the Konquerer
+browser, for example.
+
+Gerald
+
+2001-09-24  Franz Sirl  &lt;Franz.Sirl-kernel@lauterbach.com&gt;
+
+	* gnatsweb.pl: Spaces in HREFs must be encoded.
+
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvsroot/gnatsweb/gnatsweb/gnatsweb.pl,v
+retrieving revision 1.1.1.1.2.8
+diff -u -3 -p -r1.1.1.1.2.8 gnatsweb.pl
+--- gnatsweb.pl	2001/09/10 09:11:04	1.1.1.1.2.8
++++ gnatsweb.pl	2001/09/25 13:36:15
+@@ -2313,7 +2313,7 @@ EOF
+   $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=create&quot; STYLE=&quot;$buttonstyle&quot;&gt;CREATE&lt;/A&gt;&lt;/TD&gt;);
+   $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=query&quot; STYLE=&quot;$buttonstyle&quot;&gt;QUERY&lt;/A&gt;&lt;/TD&gt;);
+   $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=advanced%20query&quot; STYLE=&quot;$buttonstyle&quot;&gt;ADV. QUERY&lt;/A&gt;&lt;/TD&gt;);
+-  $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=login again&quot; STYLE=&quot;$buttonstyle&quot;&gt;LOGIN AGAIN&lt;/A&gt;&lt;/TD&gt;);
++  $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=login%20again&quot; STYLE=&quot;$buttonstyle&quot;&gt;LOGIN AGAIN&lt;/A&gt;&lt;/TD&gt;);
+   $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=help&quot; STYLE=&quot;$buttonstyle&quot;&gt;HELP&lt;/A&gt;&lt;/TD&gt;);
+   $row2 .= qq(&lt;/TR&gt;\n);
+   $row2 .= qq(&lt;/TABLE&gt;\n&lt;/TD&gt;\n&lt;/TR&gt;);
+
+
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00126">Date&nbsp;Index</A>] [<a href="subjects.html#00126">Subject&nbsp;Index</a>] [<a href="authors.html#00126">Author&nbsp;Index</a>] [<A HREF="threads.html#00126">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00125.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00127.html">Date&nbsp;Next</A>]</td>
+      <td>[Thread&nbsp;Prev]&nbsp;[<A HREF="msg00123.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

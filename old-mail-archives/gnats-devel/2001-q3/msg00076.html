@@ -1,0 +1,117 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: check&#45;db script  can not process &#45;&#45;database argument correctly -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 28 Jul 2001 17:47:55 &#45;0000 -->
+<!--X-Message-Id: 87ae1p4cao.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: check-db script  can not process --database argument correctly</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00076">Date&nbsp;Index</A>] [<a href="subjects.html#00076">Subject&nbsp;Index</a>] [<a href="authors.html#00076">Author&nbsp;Index</a>] [<A HREF="threads.html#00076">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00075.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00077.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00075.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00075.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: check-db script  can not process --database argument correctly</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: dkoschuetzki at gmx dot de</li>
+<li><em>Subject</em>: Re: check-db script  can not process --database argument correctly</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 28 Jul 2001 11:45:35 +0200</li>
+<li><em>Cc</em>: GNATS Development &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt; The check-db script does not process the argument --database
+&gt; correctly, the argument gets parsed but the databases file is not
+&gt; scanned for the GNATSROOT and therefore the default directory is used.
+
+--database in check-db works fine for me, I can't reproduce the problem
+and can't see any reason why it shouldn't work.  I probably
+misunderstood something, could you please describe the problem more
+precisely?
+
+&gt; Second problem: more than one database argument seems to be ignored
+&gt; without checking the database.
+
+According to the documentation, there seems to be no support for
+multiple --database options in check-db.
+
+Nevertheless I admit there should be an easy way to check all databases.
+First, I thought it should be default behavior of check-db, but that
+would be inconsistent with the general approach of using the default
+database by default.  So I added a new option `--all-databases' to
+check-db, it should appear in CVS soon.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+  _/_\_/_  o     _\_/_\_  o     _/_\_/_  o     _\_/_\_  o    BEWARE!
+-&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--   *Bugs* are
+   / \ /   o      \ / \   o      / \ /   o      \ / \   o     approaching!
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00076">Date&nbsp;Index</A>] [<a href="subjects.html#00076">Subject&nbsp;Index</a>] [<a href="authors.html#00076">Author&nbsp;Index</a>] [<A HREF="threads.html#00076">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00075.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00077.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00075.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00075.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

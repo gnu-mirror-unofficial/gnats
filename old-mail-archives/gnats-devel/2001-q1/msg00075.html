@@ -1,0 +1,164 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Antwort: Re: Antwort: Re: how to install gnatsweb??? -->
+<!--X-From-R13: fgrsna.xnrfNcbegnk.pbz -->
+<!--X-Date: 20 Mar 2001 09:30:43 &#45;0000 -->
+<!--X-Message-Id: OFA857F046.70C32516&#45;ONC1256A15.0032E821@portax.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>stefan.kaes - Antwort: Re: Antwort: Re: how to install gnatsweb???</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00075">Date&nbsp;Index</A>] [<a href="subjects.html#00075">Subject&nbsp;Index</a>] [<a href="authors.html#00075">Author&nbsp;Index</a>] [<A HREF="threads.html#00075">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00074.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00076.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00074.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00078.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Antwort: Re: Antwort: Re: how to install gnatsweb???</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Antwort: Re: Antwort: Re: how to install gnatsweb???</li>
+<li><em>From</em>: stefan dot kaes at portax dot com</li>
+<li><em>Date</em>: Tue, 20 Mar 2001 10:27:52 +0100</li>
+<li><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com,stefan dot kaes at portax dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+Hmm, I forgot about emacs and the command line tools, since I have stopped
+using them long time ago.
+It would probably be a lot of work to to fully support mime in the emacs
+mode and the command line.
+I have another suggestion: don't include the attachments in the pr.
+Why not simply store them along with the pr and make the attachment
+directory read/write accessible to the web server?
+The attachments could then be extracted by gnatsweb and replaced by URLs to
+the files on the web server.
+The URL's could then be replaced by hrefs when presented through gnatsweb
+to the user.
+And most email clients convert http://... text into clickable URLs anyway.
+
+comments?
+
+
+
+                                                                                                                                   
+                    Yngve Svendsen                                                                                                 
+                    &lt;yngve.svendsen@cl        An:     stefan.kaes@portax.com                                                       
+                    ustra.com&gt;                Kopie:  gnats-devel@sourceware.cygnus.com                                            
+                                              Thema:  Re: Antwort: Re: how to install gnatsweb???                                  
+                    20.03.2001 10:11                                                                                               
+                                                                                                                                   
+                                                                                                                                   
+
+
+
+At 10:03 20.03.2001 +0100, stefan.kaes@portax.com wrote:
+
+&gt;Well, I had the same problem: the test failed
+&gt;
+&gt; &gt; [....] test.pl: Can't call method &quot;header&quot; on an undefined value at
+&gt;gnatsweb.pl line 2117, &lt;SOCK&gt; line 1.
+&gt; &gt; connect...........................................FAIL
+&gt;
+&gt;I continued the installation nevertheless: I can query the database via
+&gt;gnatsweb and look at pr's but editing pr's doesn't work.
+&gt;I get change notification messages per email, but the pr's never change in
+&gt;the database. I suspected unix access rights but they look OK.
+&gt;Any ideas?
+
+Check the gnats-adm/locks directory. There might be some left-over lock
+files there.
+
+
+&gt;The main reason that I'm trying gnatsweb is its supposed ability to
+include
+&gt;file attachments, although from the documentation I got the feeleing, that
+&gt;attachments show up in text format in notifications etc.
+&gt;
+&gt;Will gnats4 have native support for attachments (so that bug reports have
+&gt;mime format)?#
+
+Unfortunately, no. However, since most people who are currently active on
+this list are from Europe, I believe we all feel the need for this. But we
+are in dire need of active developers. The drip-feeding of single patches
+now and then is too little.
+
+Anyone care to do some thinking on how GNATS should be redesigned to handle
+
+MIME? And how should attachments be handled? Where should they be stored,
+and how should they appear when viewing GNATS reports in Gnatsweb? in
+Emacs? in plain command-line edit-pr?
+
+- Yngve
+
+
+
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00078" href="msg00078.html">Re: Antwort: Re: Antwort: Re: how to install gnatsweb???</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00075">Date&nbsp;Index</A>] [<a href="subjects.html#00075">Subject&nbsp;Index</a>] [<a href="authors.html#00075">Author&nbsp;Index</a>] [<A HREF="threads.html#00075">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00074.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00076.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00074.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00078.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

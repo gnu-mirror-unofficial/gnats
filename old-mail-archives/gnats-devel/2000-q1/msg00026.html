@@ -1,0 +1,193 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: Re: gnats4.0 -->
+<!--X-From-R13: Qney Sqjneqf <prqjneqfNivgrffr.pbz> -->
+<!--X-Date: 8 Mar 2000 00:47:25 &#45;0000 -->
+<!--X-Message-Id: 200003080046.QAA27663@marley.vitesse.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: gnats4.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00026">Date&nbsp;Index</A>] [<a href="subjects.html#00026">Subject&nbsp;Index</a>] [<a href="authors.html#00026">Author&nbsp;Index</a>] [<A HREF="threads.html#00026">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00025.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00027.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00025.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats4.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: Re: gnats4.0</LI>
+<LI><em>From</em>: Carl Edwards &lt;cedwards at vitesse dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 7 Mar 2000 16:46:52 -0800 (PST)</LI>
+<LI><em>Reply-To</em>: Carl Edwards &lt;cedwards at vitesse dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+Hi All,
+
+I'm starting a helpdesk project for our company's
+SysAdmin group and was hoping to use GNATS.
+
+I've got the cvs version up and running (with gnatsweb)
+and now I've got to start the customizing.
+
+My only other experience with this sort of tool is
+ClearDDTS ... I am hoping this will be easier :-)
+
+Pointers to additional documentation, or helpful
+tips from previous and similar projects would be
+appreciated.
+
+Questions:
+
+  Can I or has anyone tied the password authentication
+  of gnatsd to the UNIX passwd system?
+  
+  If I put gnatsweb behind a secure site how do I stop
+  the user from getting challenged 3 times?
+    1) Web server
+    2) GnatsWeb
+    3) gnatsd
+    
+ 
+
+Thanks,
+-Carl Edwards
+ Vitesse Semiconductor
+ 
+
+&gt;Yes, it's available now!
+&gt;
+&gt;Best of all, it's *FREE* for your downloading pleasure!
+&gt;
+&gt;See the web page at <A  HREF="http://sourceware.cygnus.com/gnats/">http://sourceware.cygnus.com/gnats/</A>
+&gt;
+&gt;which will tell you:
+&gt;
+&gt;If you would like to use the most recent version of GNATS under
+&gt;development, you can check out the source code using CVS:
+&gt;
+&gt;cvs -d :pserver:anoncvs@anoncvs.cygnus.com:/cvs/gnats login
+&gt;{enter "anoncvs" as the password}
+&gt;cvs -d :pserver:anoncvs@anoncvs.cygnus.com:/cvs/gnats co -P gnats
+&gt;
+&gt;
+&gt;We at Juniper are now using 4.0 with the latest gnatsweb in
+&gt;production.  I believe Bob is almost ready to announce 4.0 for FCS,
+&gt;however he's looking for folks to review and help update some of
+&gt;the documentation, which is *sorely* out of date.
+&gt;
+&gt;I would like to solicit all interested GNATS users to check out
+&gt;the latest code.  There are a bunch of really great new features.
+&gt;
+&gt;My personal favorite is that all GNATS fields are now fully
+&gt;configurable through a file called "field-config."  There is no
+&gt;need to edit 12 places in the source code to add or change a field.
+&gt;
+&gt;GNATS fields now can be sanity checked (regular expressions, or
+&gt;must match a valid date, or must match an enumerated type) by the
+&gt;server.
+&gt;
+&gt;The multiple database code has been cleaned up,  many MANY bug
+&gt;fixes for memory leaks and buffer overflows have been fixed (GNATS
+&gt;v3 was not exactly secure... I'd be very afraid to run GNATSD on
+&gt;an open server if I were you).
+&gt;
+&gt;The release tarball is coming right around the corner,  but folks
+&gt;can make it come faster if they will help us polish off the
+&gt;documentation.
+&gt;
+&gt;Please check out the latest code and send your feedback to either
+&gt;Bob or the list as appropriate.
+&gt;
+&gt;Paul
+&gt;
+&gt;p.s. GNATSv3 front-ends (e.g. tkgnats) may not be compatible with
+&gt;     GNATSv4 if they use GNATSD.  We have upgraded gnatsweb,  but
+&gt;     other code out there may need some cleanup and dusting off
+&gt;     to handle all the new features.
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;
+&gt;On Fri, Mar 03, 2000 at 03:37:35PM -0500, Wasserman, Sherry wrote:
+&gt;&gt; Hi There,
+&gt;&gt; 
+&gt;&gt; We're anxiously waiting for gnats4.0. Any idea when it will be available?
+&gt;&gt; 
+&gt;&gt; Sherry Wasserman
+&gt;&gt; Comverse Network Systems
+&gt;&gt; 1025 Briggs Rd. Suite 100
+&gt;&gt; Mt. Laurel NJ 08054
+&gt;&gt; (856) 608-2858
+&gt;&gt; sherry.wasserman@comverse-in.ocm &lt;<A  HREF="mailto:demasi@comverse-in.com">mailto:demasi@comverse-in.com</A>&gt; 
+&gt;&gt; 
+
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00026">Date&nbsp;Index</A>] [<a href="subjects.html#00026">Subject&nbsp;Index</a>] [<a href="authors.html#00026">Author&nbsp;Index</a>] [<A HREF="threads.html#00026">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00025.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00027.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00025.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

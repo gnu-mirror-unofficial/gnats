@@ -1,0 +1,138 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: Problems with GNATS -->
+<!--X-From-R13: "[ruhy @. Enatuiv" <zfnatuivNlnubb.pbz> -->
+<!--X-Date: 18 Sep 2000 20:55:44 &#45;0000 -->
+<!--X-Message-Id: 20000918205539.5169.qmail@web2106.mail.yahoo.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Problems with GNATS</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00030">Date&nbsp;Index</A>] [<a href="subjects.html#00030">Subject&nbsp;Index</a>] [<a href="authors.html#00030">Author&nbsp;Index</a>] [<A HREF="threads.html#00030">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00029.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00031.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00029.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00031.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Problems with GNATS</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;, Mehul Sanghvi &lt;msanghvi at mysun dot com&gt;</LI>
+<LI><em>Subject</em>: Re: Problems with GNATS</LI>
+<LI><em>From</em>: &quot;Mehul N. Sanghvi&quot; &lt;msanghvi at yahoo dot com&gt;</LI>
+<LI><em>Date</em>: Mon, 18 Sep 2000 13:55:39 -0700 (PDT)</LI>
+<LI><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Reply-To</em>: msanghvi at yahoo dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+--- Rick Macdonald &lt;rickm@vsl.com&gt; wrote:
+&gt; On Thu, 14 Sep 2000, Mehul Sanghvi wrote:
+&gt; No, mail is mail and the alias should be on the mailhost and
+&gt; gnatshost
+&gt; relays mail to mailhost just like every other machine.
+&gt; 
+&gt; I'm assuming that the gnats database directories are mountable on
+&gt; mailhost...
+&gt; 
+
+OK.  I now have the mailhost setup with the aliases and the GNATS
+distribution mounted via NFS to mailhost.
+
+I now seem to be getting the following error from sendmail:
+
+   query-pr: no PRs matched
+   554 "| /nfs/gnatshost/usr/local/gnats/bin/query-pr -d \
+/nfs/gnatshost/usr/local/gnats/share/gnats/test-db -q" ... unknown
+mailer error 1
+
+I was getting errors which indicated that query-pr was unknown but then
+I remembered that I had to place a link in /etc/smrsh for sendmail to
+allow the use of an external program.  Having done that, I get the
+above error message.
+
+&gt; Let's get the mail going first and see what happens. You shouldn't
+&gt; ever
+&gt; need to touch index or current.
+&gt; 
+
+OK.  well I guess we are still trying to get the mail going.
+
+&gt; ...RickM...
+&gt; 
+
+
+
+mehul
+
+
+__________________________________________________
+Do You Yahoo!?
+Yahoo! Mail - Free email you can access from anywhere!
+<A  HREF="http://mail.yahoo.com/">http://mail.yahoo.com/</A>
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00031" HREF="msg00031.html">Re: Problems with GNATS</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00030">Date&nbsp;Index</A>] [<a href="subjects.html#00030">Subject&nbsp;Index</a>] [<a href="authors.html#00030">Author&nbsp;Index</a>] [<A HREF="threads.html#00030">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00029.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00031.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00029.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00031.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,131 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: patches for PR 218, index corruption -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 9 Nov 2001 22:17:01 &#45;0000 -->
+<!--X-Message-Id: 87itcki8fs.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5B1CAAC2F0818444BF07B7AD8845E53C013E8500@ELECTRON.jnpr.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: patches for PR 218, index corruption</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00116">Date&nbsp;Index</A>] [<a href="subjects.html#00116">Subject&nbsp;Index</a>] [<a href="authors.html#00116">Author&nbsp;Index</a>] [<A HREF="threads.html#00116">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00115.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00117.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00115.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00074.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: patches for PR 218, index corruption</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Subject</em>: Re: patches for PR 218, index corruption</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 09 Nov 2001 10:45:43 +0100</li>
+<li><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00111.html">5B1CAAC2F0818444BF07B7AD8845E53C013E8500@ELECTRON.jnpr.net</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt;&gt;&gt;&gt;&gt; &quot;DB&quot; == Dirk Bergstrom &lt;dirk@juniper.net&gt; writes:
+
+    DB&gt; *) second answer: oh, wait, i understand the problem.  mtime is
+    DB&gt; only to the second, so we could read the index, lock the db, and
+    DB&gt; check the mtime, and it would look fine, but we might miss that
+    DB&gt; someone had written a new index in the second half of the second
+    DB&gt; that we read it in.  mtime reads the same, but the index is
+    DB&gt; different.
+
+Exactly.
+
+    DB&gt; i really don't want to force an index read *every* time we
+    DB&gt; access the index.  that could be a big hit.  i counted seven
+    DB&gt; getFirstPR() calls in an edit transaction,
+
+I see.
+
+    DB&gt; ok, here's a solution:
+
+    DB&gt; put a call to getIndex() in lock_gnats(), so that after a
+    DB&gt; successful lock, we are guaranteed a clean index.  this adds one
+    DB&gt; extra index read, but it should solve the problem.
+
+    DB&gt; what do you think?
+
+I think this would be a reasonable solution, thanks.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+real programmer?  don't get me started.  if you need to hide your
+pathetic excuse for a carreer behind super-macho languages like C, C++,
+and/or Perl instead of writing clean, maintainable, efficient code, you
+aren't much of a real programmer in my view.  -- Erik Naggum in comp.emacs
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00111" href="msg00111.html">RE: patches for PR 218, index corruption</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00116">Date&nbsp;Index</A>] [<a href="subjects.html#00116">Subject&nbsp;Index</a>] [<a href="authors.html#00116">Author&nbsp;Index</a>] [<A HREF="threads.html#00116">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00115.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00117.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00115.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00074.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: PR 375 &#45; Point 1 -->
+<!--X-From-R13: Urenyq Bsrvsre <csrvsreNqonv.ghjvra.np.ng> -->
+<!--X-Date: 3 Feb 2001 12:47:38 &#45;0000 -->
+<!--X-Message-Id: Pine.BSF.4.33.0102031342030.24609&#45;100000@deneb.dbai.tuwien.ac.at -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 01011015420608.01014@bombers.kuchel.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Gerald Pfeifer - Re: PR 375 - Point 1</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00001.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: PR 375 - Point 1</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Mark Kuchel &lt;mark at kuchel dot net&gt;</LI>
+<LI><em>Subject</em>: Re: PR 375 - Point 1</LI>
+<LI><em>From</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</LI>
+<LI><em>Date</em>: Sat, 3 Feb 2001 13:47:31 +0100 (CET)</LI>
+<LI><em>cc</em>: &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Wed, 10 Jan 2001, Mark Kuchel wrote:
+&gt;&gt; * The login page makes no mention of needing to have cookies enabled;
+&gt; The problem here under lynx is that it doesn't use javascript.  For
+&gt; lynx and other browsers in that class, adding in a simple
+&gt; &lt;noscript&gt;...&lt;/noscript&gt; section telling them that they need cookies
+&gt; turned on to work.  This also works for browsers such as netscape and
+&gt; mozilla when you turn javascript off in them.
+&gt; [...]
+&gt; The patch was tested with netscape 4.75, mozilla M18, lynx 2.8.4 and
+&gt; konqueror from kdebase 2.0.6 from mandrake.
+
+Thanks!
+
+I had fixed this in a somewhat different way for the modified version we
+used for gcc.gnu.org, but I agree that using &lt;noscript&gt; is a much better
+idea, so I merged our two patches and installed the following into the
+GNATS repository (and on gcc.gnu.org as well, so that we have more
+extensive testing).
+
+Sorry for the delay, but now I'm nearly done with the gnatsweb patch
+backlog. Send more patches! :-)
+
+Gerald
+
+
+2001-02-03  Mark Kuchel &lt;mark@kuchel.net&gt;
+            Gerald Pfeifer  &lt;pfeifer@dbai.tuwien.ac.at&gt;
+
+	* gnatsweb.pl (login_page_javascript): Properly warn about cookies
+	being required, both if Javascript is enabled and if it is disabled.
+
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvs/gnats/gnats/contrib/gnatsweb/gnatsweb.pl,v
+retrieving revision 2.21
+diff -u -3 -p -r2.21 gnatsweb.pl
+--- gnatsweb.pl	2001/01/22 15:29:03	2.21
++++ gnatsweb.pl	2001/02/03 12:41:53
+@@ -2815,13 +2815,21 @@ val = getCookie("gnatsweb-test-cookie");
+ delCookie("gnatsweb-test-cookie");
+ if (val == null) {
+     document.write("&lt;h2&gt;Warning: your browser is not accepting cookies&lt;/h2&gt;"
+-        + "Gnatsweb requires cookies to keep track of your login and other "
+-        + "information.  Please enable cookies before pressing the "
+-        + "&lt;tt&gt;login&lt;/tt&gt; button.");
++        ."&lt;p&gt;Unfortunately, Gnatsweb requires cookies to keep track of your "
++        ."login and other information. "
++        ."Please enable cookies before logging in.&lt;/p&gt;");
+ }
+
+ //--&gt;
+ &lt;/SCRIPT&gt;
++&lt;noscript&gt;
++&lt;p&gt;(Due to the fact that your browser does not support Javascript,
++there is no way of telling whether it can accept cookies.)
++
++Unfortunately, Gnatsweb requires cookies to keep track of your"
++login and other information.
++Please enable cookies before logging in.&lt;/p&gt;
++&lt;/noscript&gt;
+   };
+ }
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00002" HREF="msg00002.html">PR 375 - Point 1</A></STRONG>
+<UL><LI><EM>From:</EM> Mark Kuchel</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00001.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

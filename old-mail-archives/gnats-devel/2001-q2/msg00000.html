@@ -1,0 +1,179 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: MIME mail filter for GNATS -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 3 Apr 2001 16:28:02 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.12.2.20010403173559.0564efc8@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - MIME mail filter for GNATS</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00000">Date&nbsp;Index</A>] [<a href="subjects.html#00000">Subject&nbsp;Index</a>] [<a href="authors.html#00000">Author&nbsp;Index</a>] [<A HREF="threads.html#00000">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[Date&nbsp;Prev]&nbsp;[<A HREF="msg00001.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="">Thread&nbsp;Prev</A>]&nbsp;[Thread&nbsp;Next]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>MIME mail filter for GNATS</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: MIME mail filter for GNATS</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 03 Apr 2001 18:27:05 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+This is a followup to the little Perl snippet I posted a couple of months 
+ago to translate quoted printables (those ugly =F9, =E8 and so on which 
+appear in messages that use international character sets.) The script I 
+posted had several grave shortcomings and bugs. For instance, it transpired 
+that it was the script itself which broke recognition of PR numbers in 
+Subject lines with international characters, resulting in the creation of a 
+new PR each time a reply to a PR with such a Subject line was received.
+
+After spending some time studying the relevant RFCs (especially 822 and 
+2047), I have now come up with a much more watertight and robust script. I 
+have done quite a bit of testing, and it seems to work very well. PR number 
+recognition now seems to work exactly as it should.
+
+Warning: Using this filter causes PRs to be stored in the Gnats database in 
+a decoded format which might not be supported properly by all UNIXes. 
+Outgoing mail from GNATS will also be unencoded, possibly resulting in 
+problems when mail is transferred over the Internet. Some mail clients may 
+also have problems with it. In short: your mileage may vary. Anyone wanna 
+start looking into proper internationalization of Gnats itself, allowing us 
+to avoid kludges such as this script?
+
+Script attached below. It will also be posted to 
+<A  HREF="http://sources.redhat.com/gnats/">http://sources.redhat.com/gnats/</A>. The Perl MIME tools module is required, 
+you can get it from <A  HREF="http://search.cpan.org/search?dist=MIME-tools">http://search.cpan.org/search?dist=MIME-tools</A>
+
+In order to use the script, set up the mail alias which receives bug 
+reports to pipe messages through this script before it is piped into 
+queue-pr. Like this:
+
+| /path-to-script/script.pl | /usr/local/libexec/gnats/queue-pr -q
+
+
+#!/usr/bin/perl
+# Script to translate quoted-printables in MIME-encoded mail messages
+# Fully decodes header fields according to RFC2047
+# Merges multi-line header fields into single lines
+
+undef $/; # We want to treat everything read from STDIN as one line
+$input = &lt;&gt;;
+($headers, $body) = split (/\n\n/, $input, 2);
+
+# Process the headers:
+$headers =~ s/\?=\s\n/\?=\n/g; # Lines ending with an encoded-word
+                                # have an extra space at the end. Remove it.
+$headers =~ s/\n[ |\t]//g; # Merge multi-line headers into a single line.
+$transheaders = '';
+
+foreach $line (split(/\n/, $headers))
+{
+   while ($line =~ m/=\?[^?]+\?(.)\?([^?]*)\?=/)
+   {
+     $encoding   = $1;
+     $txt        = $2;
+     $str_before = $`;
+     $str_after  = $';
+
+# Base64
+     if ($encoding =~ /b/i)
+     {
+       require MIME::Base64;
+       MIME::Base64-&gt;import(decode_base64);
+       $txt = decode_base64($txt);
+     }
+
+# QP
+     elsif ($encoding =~ /q/i)
+     {
+       require MIME::QuotedPrint;
+       MIME::QuotedPrint-&gt;import(decode_qp);
+       $txt = decode_qp($txt);
+     }
+
+     $line = $str_before . $txt . $str_after;
+   }
+   # The decode above does not do underline-to-space translation:
+   $line =~ tr/_/ /;
+   $transheaders .= $line . &quot;\n&quot;;
+}
+
+# Process the body:
+$transbody = MIME::QuotedPrint::decode($body);
+
+# Output the combined results. We got a free \n from
+# the transheaders concatenation.
+print $transheaders . &quot;\n&quot; . $transbody;
+# Script ends here.
+
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00000">Date&nbsp;Index</A>] [<a href="subjects.html#00000">Subject&nbsp;Index</a>] [<a href="authors.html#00000">Author&nbsp;Index</a>] [<A HREF="threads.html#00000">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[Date&nbsp;Prev]&nbsp;[<A HREF="msg00001.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="">Thread&nbsp;Prev</A>]&nbsp;[Thread&nbsp;Next]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

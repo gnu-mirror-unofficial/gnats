@@ -1,0 +1,124 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: To Address problem in Gnats -->
+<!--X-From-R13: E Dnzrfu <enfunazhNacq.upygrpu.pbz> -->
+<!--X-Date: 17 Aug 2001 08:30:03 &#45;0000 -->
+<!--X-Message-Id: 3B7CD5D7.1F479C70@npd.hcltech.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>S Ramesh - To Address problem in Gnats</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00092">Date&nbsp;Index</A>] [<a href="subjects.html#00092">Subject&nbsp;Index</a>] [<a href="authors.html#00092">Author&nbsp;Index</a>] [<A HREF="threads.html#00092">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00091.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00093.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00091.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00091.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>To Address problem in Gnats</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Gnats &lt;gnats-devel at sourceware dot cygnus dot com&gt;,  GNATS Development Mailing List &lt;gnats-devel at sources dot redhat dot com&gt;,  bugs &lt;bug-gnats at gnu dot org&gt;</li>
+<li><em>Subject</em>: To Address problem in Gnats</li>
+<li><em>From</em>: S Ramesh &lt;rashanmu at npd dot hcltech dot com&gt;</li>
+<li><em>Date</em>: Fri, 17 Aug 2001 13:59:11 +0530</li>
+<li><em>CC</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;, Rick Macdonald &lt;rickm at vsl dot com&gt;,  Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Organization</em>: HCL Technologies Ltd.</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+HI all,
+
+I have installed Gnats 3.113.1 and Gnatsweb2.8.2. Now everything is
+working fine. But the TO address in each bug report is as
+
+bugs@Ramesh.hcltech.com
+
+Here bugs is the default vlaue in the gnats-adm/config file. and Ramesh
+is the gnats server hostname. so when i send a bug report the people who
+where in the notify list is also receiving a copy of the bug report of
+that category. Now what they are simply doing is they just want to send
+a reply to all who where in the list ( belongs to the same project ).
+When they send like this..
+
+bugs@Ramesh.hcltech.com
+
+address is not a valid address since our mail addresses will be
+npd.hcltech.com. so its bouncing back ( which i want a way to avoid this
+)
+
+So we created a dns entry for Ramesh.hcltech.com.. so that when this
+address is int he mail header it will reach host Ramesh( GNats server ).
+
+Now the second problem arriving is.. since this address &quot;bugs&quot; is
+already aliased in /etc/aliases to queue to queue - pr program it just
+queues this mail and puts it into pending directory. so my pending
+directory is growing.
+
+I need a way to avoid the bounce back and also i dont want to grow the
+pending directory. if the mail is being discarded also well and good. is
+there any way to doing it. this is of very much urgent. ANy immediate
+help will be very much welcome.
+
+Thanks,
+Ramesh
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00092">Date&nbsp;Index</A>] [<a href="subjects.html#00092">Subject&nbsp;Index</a>] [<a href="authors.html#00092">Author&nbsp;Index</a>] [<A HREF="threads.html#00092">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00091.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00093.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00091.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00091.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

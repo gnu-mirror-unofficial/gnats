@@ -1,0 +1,142 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: send&#45;pr broken -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 12 Mar 2001 21:45:02 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.10.2.20010312223354.00b3ccb8@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20010312150537.A91932@us.networkcs.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: send-pr broken</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00057">Date&nbsp;Index</A>] [<a href="subjects.html#00057">Subject&nbsp;Index</a>] [<a href="authors.html#00057">Author&nbsp;Index</a>] [<A HREF="threads.html#00057">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00056.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00058.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00056.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00055.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: send-pr broken</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Wes Barris &lt;wes at networkcs dot com&gt;,gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: Re: send-pr broken</LI>
+<LI><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</LI>
+<LI><em>Date</em>: Mon, 12 Mar 2001 22:41:56 +0100</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+&gt;I snooped through the send-pr code and found this snippet:
+&gt;
+&gt;# Configuration file to be read.  It must be a shell script that can redefine
+&gt;# the variables above to fit a local configuration.
+&gt;CONFIGFILE=/usr/local/etc/gnats/send-pr.conf
+&gt;
+&gt;if [ -r $CONFIGFILE ]; then
+&gt;   . $CONFIGFILE
+&gt;fi
+&gt;
+&gt;
+&gt;It looks like send-pr is looking for a file named "send-pr.conf".  This
+&gt;is not included in the gnats distribution.  I don't see any documentation
+&gt;on it anywhere.
+
+I went through the process of installing Gnats 4 from CVS in order to check 
+the docs, and you have found exactly the same as I - the documentation is 
+far from up-to-date. Besides, a standard send-pr.conf file should 
+definitely be created. I have created a GNATS report about this on 
+sources.redhat.com, so this has been recorded. Development on version 4 is 
+proceding, but slowly (hint hint), so fixing these things may take some time.
+
+I ended up using somthing like the following. It's been a couple of weeks 
+since I did the install, but I think this is exactly the same as we had in 
+our v3 config:
+
+GNATS_ADDR="xxxxxxx@clustra.com"
+GNATS_ADMIN="xxxxxxxxx@clustra.com"
+GNATS_SITE="xxxxxxxxxx"
+SUBMITTER="xxxxxxxxxx"
+DEFAULT_ORGANIZATION="xxxxxxxxxxxxxxxxx"
+DEFAULT_RELEASE="&lt;prompt&gt;"
+NOTIFY=0
+ACKNOWLEDGE=0
+DEFAULT_SUBMITTER="xxxxxxxxxxx"
+KEEP_RECEIVED_HEADERS=1
+BDAY_START=8
+BDAY_END=16
+BWEEK_START=1
+BWEEK_END=5
+DEBUG_MODE=0
+
+If only I could find the time, I'd clean up my installation notes and make 
+some preliminary docs available. Maybe later this week.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00056" HREF="msg00056.html">send-pr broken</A></STRONG>
+<UL><LI><EM>From:</EM> Wes Barris</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00057">Date&nbsp;Index</A>] [<a href="subjects.html#00057">Subject&nbsp;Index</a>] [<a href="authors.html#00057">Author&nbsp;Index</a>] [<A HREF="threads.html#00057">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00056.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00058.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00056.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00055.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

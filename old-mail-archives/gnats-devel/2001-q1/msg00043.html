@@ -1,0 +1,151 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: installing gnatsweb -->
+<!--X-From-R13: Irf Pneevf <jrfoNargjbexpf.pbz> -->
+<!--X-Date: 9 Mar 2001 17:33:14 &#45;0000 -->
+<!--X-Message-Id: 20010309113226.E64250@us.networkcs.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Wes Barris - installing gnatsweb</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00043">Date&nbsp;Index</A>] [<a href="subjects.html#00043">Subject&nbsp;Index</a>] [<a href="authors.html#00043">Author&nbsp;Index</a>] [<A HREF="threads.html#00043">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00042.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00044.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00042.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00044.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>installing gnatsweb</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: installing gnatsweb</LI>
+<LI><em>From</em>: Wes Barris &lt;wesb at networkcs dot com&gt;</LI>
+<LI><em>Date</em>: Fri, 9 Mar 2001 11:32:27 -0600</LI>
+<LI><em>Reply-To</em>: Wes Barris &lt;wes at networkcs dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hello,
+
+Is there any documentation on installing gnatsweb other than what is
+in the file gnatsweb-2.7beta.tar.gz?  I am new to gnats and gnatsweb
+and have spent weeks trying to get gnatsweb to work without any luck.
+
+I have installed gnats on a Redhat 7.0 system by installing the following
+two rpms:
+
+root@kirby# rpm -qa | fgrep gnats
+gnats-3.113-5
+gnats-db-3.113-5
+
+I have downloaded gnatsweb from here:
+
+<A  HREF="ftp://sources.redhat.com/pub/gnats/contrib/gnatsweb-2.7beta.tar.gz">ftp://sources.redhat.com/pub/gnats/contrib/gnatsweb-2.7beta.tar.gz</A>
+
+I have followed the installation steps in gnatsweb-2.7beta/INSTALL
+up to step 5 where it says:
+
+    5. Run the tests to make sure the setup is OK.  Specify a
+       username/password/database_name on the command line like so:
+
+           make test USERNAME=anon PASSWORD=pw DATABASE=db_alias
+
+This is the first I have seen a username/password mentioned.  The
+Redhat gnats rpms don't come with a password file so I created this:
+
+root@kirby# cat /usr/share/gnats/gnats-db/gnats-adm/gnatsd.access
+wes:test:admin:*
+*:*:view
+
+I can't find any information on what to use for the DATABASE so I
+tried this:
+
+root@kirby# make test USERNAME=wes PASSWORD=test DATABASE=/usr/share/gnats/gnats-db
+perl test.pl
+Content-type: text/html
+
+&lt;H1&gt;Software error:&lt;/H1&gt;
+&lt;PRE&gt;Can't call method &amp;quot;header&amp;quot; on an undefined value at gnatsweb.pl line 2117, &amp;lt;SOCK&amp;gt; line 1.
+&lt;/PRE&gt;
+&lt;P&gt;
+For help, please send mail to this site's webmaster, giving this error message 
+and the time and date of the error.
+
+[Fri Mar  9 10:41:19 2001] test.pl: Can't call method "header" on an undefined value at gnatsweb.pl line 2117, &lt;SOCK&gt; line 1.
+connect...........................................FAIL
+make: *** [test] Error 255
+
+I must be doing something wrong but I don't know what.  Does anyone
+use gnatsweb?  Does it really work?  HELP!
+
+-----------------------------------------------------------------------
+Wes Barris                                            wes@networkcs.com
+Network Computing Services, Inc.                           612.626.8090
+-----------------------------------------------------------------------
+Today's fortune: How many weeks are there in a light year?
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00044" href="msg00044.html">Re: installing gnatsweb</a></strong>
+<ul><li><em>From:</em> Gerald Pfeifer</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00043">Date&nbsp;Index</A>] [<a href="subjects.html#00043">Subject&nbsp;Index</a>] [<a href="authors.html#00043">Author&nbsp;Index</a>] [<A HREF="threads.html#00043">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00042.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00044.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00042.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00044.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,131 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: Prevent 'number' from appearing twice in Gnatsweb Query Results -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 5 Apr 2001 00:34:09 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.12.2.20010405021716.00ba3d30@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: Prevent 'number' from appearing twice in Gnatsweb Query Results</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00005">Date&nbsp;Index</A>] [<a href="subjects.html#00005">Subject&nbsp;Index</a>] [<a href="authors.html#00005">Author&nbsp;Index</a>] [<A HREF="threads.html#00005">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00004.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00006.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00004.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00004.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: Prevent 'number' from appearing twice in Gnatsweb Query Results</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: Prevent 'number' from appearing twice in Gnatsweb Query Results</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 05 Apr 2001 02:32:22 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The following patch provides a workaround for the problem which causes the 
+Number column to appear twice in the Query Results table.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+
+2001-04-05  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (query_page): Shift 'number' out of the array of
+           selectable column names (@fieldnames) to prevent user from
+           selecting it. That would cause the 'number' column to be
+           repeated twice, since NUMBER_FIELD is explicitly added to the
+           search format in submitquery. The best solution would be to
+           remove the explicit addition, but that messes up column sorting.
+           However, since the only drawback of the current fix is that we
+           force the inclusion of PR numbers in the query results listing,
+           this doesn't seem to matter much.
+
+
+
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvs/gnats/gnats/contrib/gnatsweb/gnatsweb.pl,v
+retrieving revision 2.32
+diff -u -p -r2.32 gnatsweb.pl
+--- gnatsweb.pl	2001/04/04 23:06:09	2.32
++++ gnatsweb.pl	2001/04/05 00:16:51
+@@ -1378,6 +1378,13 @@ sub query_page
+          &quot;&lt;/td&gt;\n&lt;/tr&gt;\n&quot;,
+  	&quot;&lt;tr valign=top&gt;\n&lt;td&gt;Column Display:&lt;/td&gt;\n&lt;td&gt;&quot;;
+
++  # 30/Mar/2001 yngves
++  # The 'number' field is always first in the @fieldnames array.
++  # If users were allowed to select it in this list, the PR number
++  # would appear twice in the Query Results table. We prevent this
++  # by shifting 'number' out of the array.
++  shift(@fieldnames);
++
+    my @lcfields;
+    foreach (@fieldnames)
+    {
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00005">Date&nbsp;Index</A>] [<a href="subjects.html#00005">Subject&nbsp;Index</a>] [<a href="authors.html#00005">Author&nbsp;Index</a>] [<A HREF="threads.html#00005">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00004.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00006.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00004.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00004.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: dbase security -->
+<!--X-From-R13: Vnaf&#45;Oyoreg Epuarvqre <Vnaf&#45;Oyoreg.EpuarvqreNzpuc.fvrzraf.qr> -->
+<!--X-Date: 12 Jul 2001 11:27:49 &#45;0000 -->
+<!--X-Message-Id: 15181.35240.736840.686484@mail&#45;g.mchp.siemens.de -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20010704143751.A20232@mail.geotax.nl -->
+<!--X-Reference: 87bsmygnmu.fsf@blackbird.zamazal.org -->
+<!--X-Reference: 20010709091814.C5387@mail.geotax.nl -->
+<!--X-Reference: 3B4D4ED4.262077C9@retriever.com.au -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hans-Albert Schneide - Re: dbase security</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00042">Date&nbsp;Index</A>] [<a href="subjects.html#00042">Subject&nbsp;Index</a>] [<a href="authors.html#00042">Author&nbsp;Index</a>] [<A HREF="threads.html#00042">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00041.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00043.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00041.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: dbase security</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Margaret BRIERTON &lt;margaret at retriever dot com dot au&gt;</li>
+<li><em>Subject</em>: Re: dbase security</li>
+<li><em>From</em>: Hans-Albert Schneider &lt;Hans-Albert dot Schneider at mchp dot siemens dot de&gt;</li>
+<li><em>Date</em>: Thu, 12 Jul 2001 13:27:36 +0200 (MET DST)</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00006.html">20010704143751.A20232@mail.geotax.nl</a>&gt;&lt;<a href="msg00010.html">87bsmygnmu.fsf@blackbird.zamazal.org</a>&gt;&lt;<a href="msg00018.html">20010709091814.C5387@mail.geotax.nl</a>&gt;&lt;<a href="msg00041.html">3B4D4ED4.262077C9@retriever.com.au</a>&gt;</li>
+<li><em>Reply-To</em>: Hans-Albert dot Schneider at mchp dot siemens dot de</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;MB&quot; == Margaret BRIERTON &lt;margaret@retriever.com.au&gt; writes:
+
+    MB&gt; Hi I've tried and changed the security on my database by
+    MB&gt; restricting the IP address in the file gnatsd.conf.
+
+    MB&gt; I also want to restrict a user to have only view access
+    MB&gt; in the gnatsd.acces file.
+
+    MB&gt; When i try and log in i get the follwing error:
+
+
+    MB&gt; Error: Couldn't connect to gnats server
+
+    MB&gt; host localhost, port 1529
+    MB&gt; access denied
+
+    MB&gt; Why is this?
+
+You probably did not list localhost (or 127.0.0.1) in
+gnatsd.conf, and have an entry of &quot;*:deny:&quot;.
+
+    MB&gt; Plus it seems that the userid can override the ip address
+    MB&gt; ie the access file can override the conf
+    MB&gt; file..............does this make sense??????????????
+
+(The following applies to 3.113; it might have changed with 4.x)
+The check for the IP address is done when the client tries to
+establish the connection, i.e., before user authentication can
+happen.  If the access level for the client machine is &quot;deny&quot;,
+then the connection is rejected (this seems to have happened with
+localhost).
+
+If the access level for the client machine is at least &quot;none&quot;,
+then a user (or gnatsweb or some other program on behalf of the
+user) gets the opportunity to log in.  The access level
+(permissions) of the user are the *maximum* of the access levels
+granted to the client machine in gnatsd.conf and granted to the
+userid in gnatsd.access.
+
+
+Hans-Albert
+
+-- 
+Hans-Albert Schneider		&lt;Hans-Albert.Schneider@mchp.siemens.de&gt;
+Siemens AG			phone:	(+49) 89 636 45445
+Corporate Technology		fax:	(+49) 89 636 42284
+Munich, Germany
+ -- To get my public PGP key, send me a mail with subject &quot;send key&quot; --
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00006" href="msg00006.html">mail adresses concatenated without commas in between</a></strong>
+<ul><li><em>From:</em> Hans Drexler</li></ul></li>
+<li><strong><a name="00010" href="msg00010.html">Re: mail adresses concatenated without commas in between</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+<li><strong><a name="00018" href="msg00018.html">Re: mail adresses concatenated without commas in between</a></strong>
+<ul><li><em>From:</em> Hans Drexler</li></ul></li>
+<li><strong><a name="00041" href="msg00041.html">dbase security</a></strong>
+<ul><li><em>From:</em> Margaret BRIERTON</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00042">Date&nbsp;Index</A>] [<a href="subjects.html#00042">Subject&nbsp;Index</a>] [<a href="authors.html#00042">Author&nbsp;Index</a>] [<A HREF="threads.html#00042">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00041.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00043.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00041.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: gnats compiling error -->
+<!--X-From-R13: Irf Pneevf <jrfoNargjbexpf.pbz> -->
+<!--X-Date: 9 Mar 2001 22:25:15 &#45;0000 -->
+<!--X-Message-Id: 20010309162442.B79305@us.networkcs.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Wes Barris - gnats compiling error</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00046">Date&nbsp;Index</A>] [<a href="subjects.html#00046">Subject&nbsp;Index</a>] [<a href="authors.html#00046">Author&nbsp;Index</a>] [<A HREF="threads.html#00046">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00045.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00045.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnats compiling error</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: gnats compiling error</LI>
+<LI><em>From</em>: Wes Barris &lt;wesb at networkcs dot com&gt;</LI>
+<LI><em>Date</em>: Fri, 9 Mar 2001 16:24:42 -0600</LI>
+<LI><em>Reply-To</em>: Wes Barris &lt;wes at networkcs dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I am trying to compile gnats (downloaded using cvs) on a Redhat 7
+system.
+
+It appears that a string is too long for gcc on Redhat 7:
+
+gcc -c -I. -I. -I./../include  -g -O2 -W -Wall -W -Wall -ansi -pedantic -Werror -Wstrict-prototypes -Wmissing-prototypes -Wwrite-strings -Wno-format  -DHAVE_CONFIG_H -DGNATSD_USER_ACCESS_FILE=\"/usr/local/share/gnats/gnatsd.access\" -DGNATSD_HOST_ACCESS_FILE=\"/usr/local/share/gnats/gnatsd.host_access\" -DDEFAULT_GNATS_SERVICE=\"support\" -DGLOBAL_DB_LIST_FILE=\"/usr/local/etc/gnats/databases\" -DGNATS_USER=\"gnats\" ./query-pr.c
+cc1: warnings being treated as errors
+./query-pr.c: In function `usage':
+./query-pr.c:948: warning: string length `1617' is greater than the minimum length `509' ISO C89 is required to support
+make[1]: *** [query-pr.o] Error 1
+make[1]: Leaving directory `/home/wes/gnats/gnats'
+make: *** [all-gnats] Error 2
+
+-----------------------------------------------------------------------
+Wes Barris                                            wes@networkcs.com
+Network Computing Services, Inc.                           612.626.8090
+-----------------------------------------------------------------------
+Today's fortune: How many weeks are there in a light year?
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00047" HREF="msg00047.html">Re: gnats compiling error</A></STRONG>
+<UL><LI><EM>From:</EM> Gerald Pfeifer</LI></UL></LI>
+<LI><STRONG><A NAME="00051" HREF="msg00051.html">Re: gnats compiling error</A></STRONG>
+<UL><LI><EM>From:</EM> Milan Zamazal</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00046">Date&nbsp;Index</A>] [<a href="subjects.html#00046">Subject&nbsp;Index</a>] [<a href="authors.html#00046">Author&nbsp;Index</a>] [<A HREF="threads.html#00046">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00045.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00045.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

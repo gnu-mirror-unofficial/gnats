@@ -1,0 +1,145 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: "Exotic" GNATS 4 fields -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 3 Oct 2001 18:24:52 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10110031214500.3320&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20011003131936.00b3f338@10.10.1.1 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Rick Macdonald - Re: &quot;Exotic&quot; GNATS 4 fields</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00015">Date&nbsp;Index</A>] [<a href="subjects.html#00015">Subject&nbsp;Index</a>] [<a href="authors.html#00015">Author&nbsp;Index</a>] [<A HREF="threads.html#00015">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00014.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00014.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00035.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: &quot;Exotic&quot; GNATS 4 fields</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Re: &quot;Exotic&quot; GNATS 4 fields</li>
+<li><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Date</em>: Wed, 3 Oct 2001 12:24:34 -0600 (MDT)</li>
+<li><em>cc</em>: Mark Brown &lt;Mark dot Brown at ed dot aculab dot com&gt;, gnats-devel at sources dot redhat dot com,       bug-gnats at gnu dot org</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+On Wed, 3 Oct 2001, Yngve Svendsen wrote:
+
+&gt; At 12:06 03.10.2001 +0100, Mark Brown wrote:
+&gt; &gt;On Tue, Oct 02, 2001 at 10:01:02PM +0200, Yngve Svendsen wrote:
+&gt; &gt;
+&gt; &gt; &gt; Rename Cases to Related-PRs.
+&gt; &gt;
+&gt; &gt;Could I add a plea for another fireld called Testsuite-Cases: or
+&gt; &gt;something (that's not a good name)?
+&gt; 
+&gt; I would say that with the current customization features of GNATS 4, adding 
+&gt; a field like that is so easy that including it in the default config 
+&gt; wouldn't be necessary. You can find out more about this if you have a look 
+&gt; at the current snapshot of the version 4 manual at 
+&gt; <A  HREF="http://sources.redhat.com/gnats/4_0_manual/">http://sources.redhat.com/gnats/4_0_manual/</A>, specifically the section at 
+&gt; <A  HREF="http://sources.redhat.com/gnats/4_0_manual/gnats_4.html#SEC38">http://sources.redhat.com/gnats/4_0_manual/gnats_4.html#SEC38</A>
+&gt; 
+&gt; Anyone else care to comment?
+
+My take on this is that no existing gnats users are going to use the gnats
+4 default fields, so I have no need to worry about getting _my_ favorite
+fields into the default.
+
+I can see having some default configs to choose from:
+   - one that matches gnats 3 exactly
+   - one that matches gnats 3 with-release-base exactly
+   - some new v4 config that is the one we're talking about now
+
+Plus, perhaps a library of snippits of neat field definitions that can be
+copy/pasted into the default as desired.
+
+Any new gnats installs are going to delete some fields from the default
+and add some neat fields from the library and add some of their own wierd
+fields. It's likely a bit easier to delete fields from the default than to
+paste in definitions from the library set, so one might want to make the
+default config the union of the suggestions, not the intersection, ...
+
+You can go on...
+
+How about a Tk configuration tool that presents a list of all definintions
+in the &quot;library&quot; with descriptions. You just go up and down the list and
+click check boxes on and off for what you want (much like the Linux kernel
+&quot;make xconfig&quot;). In this case, the &quot;default&quot; config is the set of
+definitions that have checkboxes pre-set in the config tool.
+
+...RickM...
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00035" href="msg00035.html">Re: &quot;Exotic&quot; GNATS 4 fields</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00013" href="msg00013.html">Re: &quot;Exotic&quot; GNATS 4 fields</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00015">Date&nbsp;Index</A>] [<a href="subjects.html#00015">Subject&nbsp;Index</a>] [<a href="authors.html#00015">Author&nbsp;Index</a>] [<A HREF="threads.html#00015">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00014.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00014.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00035.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

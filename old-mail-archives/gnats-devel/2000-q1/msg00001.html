@@ -1,0 +1,167 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: potential memory leaks -->
+<!--X-From-R13: "Unel Krr" <tnelNcerffyre.pbz> -->
+<!--X-Date: 13 Jan 2000 02:17:17 &#45;0000 -->
+<!--X-Message-Id: 00f501bf5d5b$b5836ec0$6500a8c0@nss.com -->
+<!--X-Content-Type: multipart/alternative -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>potential memory leaks</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00001">Date&nbsp;Index</A>] [<a href="subjects.html#00001">Subject&nbsp;Index</a>] [<a href="authors.html#00001">Author&nbsp;Index</a>] [<A HREF="threads.html#00001">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00000.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00000.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>potential memory leaks</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+<LI><em>Subject</em>: potential memory leaks</LI>
+<LI><em>From</em>: "Gary Yee" &lt;gary at pressler dot com&gt;</LI>
+<LI><em>Date</em>: Wed, 12 Jan 2000 18:17:49 -0600</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<TABLE><TR><TD BGCOLOR="#ffffff" STYLE="background-color: #ffffff; ">
+
+
+<DIV><FONT face=Arial size=2>Hi!</FONT></DIV>
+<DIV><FONT face=Arial size=2>I'm currently looking over the code for version 
+3.113 of GNATS.&nbsp; I think there are some potential memory 
+leaks.</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Arial size=2>Here is some code from main.c:</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Courier size=2>&nbsp; /* Check if the message is a reply to an 
+existing PR; if it is, then</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp; just append this message to 
+the end of that PR. Otherwise, process</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp; it normally. */</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; pr_path = check_if_reply ();</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; if (pr_path)</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp; {</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp; /* Before inserting the reply, see 
+if someone's got the PR</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; locked; if 
+they do, then try it at the next run of the queue. */</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp;&nbsp; char *buf = 
+get_lock_path (pr_path);</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp;&nbsp; if (access (buf, R_OK) 
+== 0)</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+{</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+unlock_gnats ();</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+exit (1);</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+}</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp;&nbsp; append_report (fp, 
+pr_path);</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp;&nbsp;&nbsp; xfree 
+(pr_path);</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp; }</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; else</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; &nbsp; gnats (fp);</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Courier size=2>&nbsp; /* Clean up. */</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; if (log_method == MAIL)</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp;&nbsp;&nbsp; close_mail_file 
+(gnats_logfile);</FONT></DIV>
+<DIV><FONT face=Courier size=2>#ifdef HAVE_SYSLOG_H</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; else if (log_method == 
+SYSLOG)</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp;&nbsp;&nbsp; closelog ();</FONT></DIV>
+<DIV><FONT face=Courier size=2>#endif</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Courier size=2>&nbsp; /* unlock the whole thing. */</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; unlock_gnats ();</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; free_db_conf();</FONT></DIV>
+<DIV><FONT face=Courier size=2>&nbsp; exit (0);</FONT></DIV>
+<DIV><FONT face=Courier size=2>}</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Arial size=2>If the call to access() returns 0, which means that 
+the PR is already locked, shouldn't there be calls to close_mail_file(), 
+free_db_conf(), and xfree() along with the call to unlock_gnats()?</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Arial size=2>In headers.c, the call to set_continued_header() is 
+immediately followed by the line</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Arial size=2>&nbsp;&nbsp;&nbsp; buf = NULL;</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Arial size=2>This assumes that the memory originally pointed to 
+by buf gets assigned to something in the set_continued_header function.&nbsp; 
+This is true except when header[i].value is not NULL and (keep_rec &amp;&amp; i 
+== RECEIVED) is false.&nbsp; In this case, nothing is done with 
+buf.</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Arial size=2>That's all for now.</FONT></DIV>
+<DIV>&nbsp;</DIV>
+<DIV><FONT face=Arial size=2>Regards,</FONT></DIV>
+<DIV><FONT face=Arial size=2>Gary</FONT></DIV>
+<DIV>&nbsp;</DIV>
+</TD></TR></TABLE>
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00002" HREF="msg00002.html">Re: potential memory leaks</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00001">Date&nbsp;Index</A>] [<a href="subjects.html#00001">Subject&nbsp;Index</a>] [<a href="authors.html#00001">Author&nbsp;Index</a>] [<A HREF="threads.html#00001">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00000.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00000.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

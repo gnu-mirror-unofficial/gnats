@@ -1,0 +1,278 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Patch to 3.x gnats&#45;el.in -->
+<!--X-From-R13: Xnfba [reevyy <wnfbaNerqung.pbz> -->
+<!--X-Date: 12 Jul 2000 21:40:40 &#45;0000 -->
+<!--X-Message-Id: 200007122140.OAA06956@casey.cygnus.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Patch to 3.x gnats-el.in</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00012">Date&nbsp;Index</A>] [<a href="subjects.html#00012">Subject&nbsp;Index</a>] [<a href="authors.html#00012">Author&nbsp;Index</a>] [<A HREF="threads.html#00012">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00011.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00013.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00011.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00011.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Patch to 3.x gnats-el.in</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: Patch to 3.x gnats-el.in</LI>
+<LI><em>From</em>: Jason Merrill &lt;jason at redhat dot com&gt;</LI>
+<LI><em>Date</em>: Wed, 12 Jul 2000 14:40:37 -0700</LI>
+<LI><em>CC</em>: jason at casey dot cygnus dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I know this stuff is obsolete, but it's being used on sourceware.  I
+needed to make these changes for it to be useful to me.
+
+I would just check it in, but I'm not in the gnats group.
+
+2000-07-12  Jason Merrill  &lt;jason@redhat.com&gt;
+
+	Fix various network lossage in gnats.el.
+	* gnats-el.in (gnats::start-background): Pass --host.
+	(gnats:query-pr): Add spaces around -d.
+	(gnats:summ-pr): Likewise.
+
+	Allow for customization of Class field options, too.
+	* gnats-el.in (gnats::classes): New variable.
+	(gnats::default-classes): New constant.
+	(gnats::set-classes): New fn.
+	(gnats::classes-sans-descriptions): New fn.
+	(gnats::fields): Use it.
+	(gnats::get-list-from-file): Comment out broken, incomplete code
+	in favor of suboptimal but functional code.
+
+Index: gnats/gnats-el.in
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/Attic/gnats-el.in,v
+retrieving revision 1.1.1.2.6.1
+diff -c -p -r1.1.1.2.6.1 gnats-el.in
+*** gnats/gnats-el.in	1999/10/26 02:28:41	1.1.1.2.6.1
+--- gnats/gnats-el.in	2000/07/12 21:37:39
+***************
+*** 1,6 ****
+  ;;;; -*-emacs-lisp-*-
+  ;;;; EMACS interface for GNATS.
+! ;;;;  Copyright (C) 1992-96, 1997 Free Software Foundation, Inc.
+  ;;;;  Contributed by Brendan Kehoe (brendan@cygnus.com)
+  ;;;;   based on an original version by Heinz G. Seidl.
+  ;;;;
+--- 1,6 ----
+  ;;;; -*-emacs-lisp-*-
+  ;;;; EMACS interface for GNATS.
+! ;;;;  Copyright (C) 1992-96, 1997, 2000 Free Software Foundation, Inc.
+  ;;;;  Contributed by Brendan Kehoe (brendan@cygnus.com)
+  ;;;;   based on an original version by Heinz G. Seidl.
+  ;;;;
+*************** causes GNATS to keep all such buffers.")
+*** 165,170 ****
+--- 165,178 ----
+    '(("open") ("analyzed") ("feedback") ("suspended") ("closed"))
+    "List of fallback GNATS states; not used if `states' file available.")
+  
++ (defvar gnats::classes nil
++   "List of GNATS classes; Computed at runtime.")
++ 
++ (defconst gnats::default-classes
++   '(("sw-bug") ("doc-bug") ("change-request") ("support")
++     ("mistaken") ("duplicate"))
++   "List of fallback GNATS classes; not used if `classes' file available.")
++ 
+  (defvar gnats::mode-name nil
+    "Name of the GNATS mode.")
+  
+*************** message from a gnats client.")
+*** 231,236 ****
+--- 239,247 ----
+    (let ((lst (member (list state) (gnats::states-sans-descriptions))))
+      (or (car (car (cdr lst))) "")))
+  
++ (defun gnats::classes-sans-descriptions ()
++   (mapcar 'list (mapcar 'car (gnats::set-classes))))
++ 
+  (defvar gnats::query-pr-history nil
+    "Past arguments passed to the query-pr program.")
+  
+*************** if needed."
+*** 1062,1068 ****
+  		       (if gnats:alias
+  			   (setq args (append args (list "-d" gnats:alias))))
+  		       (if gnats:network-server
+! 			   (append args (list "--user" gnats:userid "--passwd" gnats:password))
+  			 args))
+  		     ))
+  
+--- 1073,1081 ----
+  		       (if gnats:alias
+  			   (setq args (append args (list "-d" gnats:alias))))
+  		       (if gnats:network-server
+! 			   (append args (list "--host" gnats:network-server 
+! 					      "--user" gnats:userid
+! 					      "--passwd" gnats:password))
+  			 args))
+  		     ))
+  
+*************** if needed."
+*** 1379,1384 ****
+--- 1392,1409 ----
+               "states" t))
+        gnats::default-states))
+  
++ (defun gnats::set-classes ()
++   ;; Get classes from classes file; if no file, return hardcoded
++   ;; defaults.
++   (or gnats::classes
++       (setq gnats::classes
++ 	    (gnats::get-list-from-file
++ 	     (if gnats:network-server
++ 		 "cla"
++ 	       "classes")
++              "classes" t))
++       gnats::default-classes))
++ 
+  (defun gnats::get-list (buffer)
+    (let (result)
+      (save-excursion
+*************** if needed."
+*** 1424,1433 ****
+            (set-buffer buf)
+            (setq buffer-read-only nil)
+            (erase-buffer)
+!           (insert-file-contents
+!            (if gnats:network-server
+!                (concat bn "." filename)
+!              file))
+            (setq result (gnats::get-alist buf))
+            (kill-buffer buf)))
+        (message "Parsing the %s file...done." desc))
+--- 1449,1462 ----
+            (set-buffer buf)
+            (setq buffer-read-only nil)
+            (erase-buffer)
+! ;; This is obviously incomplete.  The current state is rather suboptimal,
+! ;; but usable; copy the appropriate file from the remote host.  The commented
+! ;; code is just broken.
+! ;          (insert-file-contents
+! ;           (if gnats:network-server
+! ;               (concat bn "." filename)
+! ;             file))
+!        (insert-file-contents file)
+            (setq result (gnats::get-alist buf))
+            (kill-buffer buf)))
+        (message "Parsing the %s file...done." desc))
+*************** to find the text that the hits refer to.
+*** 1660,1666 ****
+  				 gnats:network-server gnats:userid gnats:password)
+  		       (concat gnats:::query-pr " "))
+  		     (if gnats:alias
+! 			 (format (concat options "-d" gnats:alias))
+  		       options))
+  		    "No more query-pr hits" (concat gnats:::query-pr " ")))
+  
+--- 1689,1695 ----
+  				 gnats:network-server gnats:userid gnats:password)
+  		       (concat gnats:::query-pr " "))
+  		     (if gnats:alias
+! 			 (format (concat options " -d " gnats:alias))
+  		       options))
+  		    "No more query-pr hits" (concat gnats:::query-pr " ")))
+  
+*************** Well, display a summary, at least."
+*** 2047,2053 ****
+  				 gnats:network-server gnats:userid gnats:password)
+  		       (concat gnats:::query-pr " "))
+  		     (if gnats:alias
+! 			 (format (concat options "-d" gnats:alias))
+  		       options)))
+        ;; um, okay, how to i check for errors?
+        (goto-char (point-min))
+--- 2076,2082 ----
+  				 gnats:network-server gnats:userid gnats:password)
+  		       (concat gnats:::query-pr " "))
+  		     (if gnats:alias
+! 			 (format (concat options " -d " gnats:alias))
+  		       options)))
+        ;; um, okay, how to i check for errors?
+        (goto-char (point-min))
+*************** Well, display a summary, at least."
+*** 2143,2150 ****
+      (setcdr (nthcdr 3 (assoc "Priority" fields))
+  	    '(gnats::update-audit-trail))
+      (setcar (cdr (assoc "Class" fields))
+! 	    '(("sw-bug") ("doc-bug") ("change-request") ("support")
+! 	      ("mistaken") ("duplicate")))
+      (setcdr (assoc "Submitter-Id" fields) '(gnats::set-submitters t enum))
+      (setcdr (assoc "Customer-Id" fields) (cdr (assoc "Submitter-Id" fields)))
+      fields)
+--- 2172,2178 ----
+      (setcdr (nthcdr 3 (assoc "Priority" fields))
+  	    '(gnats::update-audit-trail))
+      (setcar (cdr (assoc "Class" fields))
+! 	    (gnats::classes-sans-descriptions))
+      (setcdr (assoc "Submitter-Id" fields) '(gnats::set-submitters t enum))
+      (setcdr (assoc "Customer-Id" fields) (cdr (assoc "Submitter-Id" fields)))
+      fields)
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00012">Date&nbsp;Index</A>] [<a href="subjects.html#00012">Subject&nbsp;Index</a>] [<a href="authors.html#00012">Author&nbsp;Index</a>] [<A HREF="threads.html#00012">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00011.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00013.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00011.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00011.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

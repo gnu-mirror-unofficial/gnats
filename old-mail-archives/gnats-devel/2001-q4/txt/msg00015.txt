@@ -1,0 +1,53 @@
+From gnats-devel-return-798-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Thu Nov 15 11:40:48 2001
+Return-Path: <gnats-devel-return-798-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 29666 invoked by alias); 15 Nov 2001 11:40:47 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 29644 invoked from network); 15 Nov 2001 11:40:46 -0000
+Received: from unknown (HELO sokol.skynet.cz) (193.165.254.8)
+  by sourceware.cygnus.com with SMTP; 15 Nov 2001 11:40:46 -0000
+X-Envelope-To: gnats-devel@sources.redhat.com
+Received: from blackbird.zamazal.org (mail@asasync49.skynet.cz [193.165.192.149])
+        by sokol.skynet.cz (8.9.3/8.9.3) with ESMTP id MAA27162;
+        Thu, 15 Nov 2001 12:40:40 +0100
+	(envelope-from pdm@zamazal.org)
+Received: from pdm by blackbird.zamazal.org with local (Exim 3.32 #1 (Debian))
+	id 164KsP-0006SU-00; Thu, 15 Nov 2001 12:40:13 +0100
+To: Dan Martinez <dfm@juniper.net>
+Cc: "Dirk Bergstrom" <dirk@juniper.net>, <gnats-devel@sources.redhat.com>
+Subject: Re: broken behavior from pr-edit
+References: <5B1CAAC2F0818444BF07B7AD8845E53C013E8506@ELECTRON.jnpr.net>
+	<87u1vz9a5j.fsf@blackbird.zamazal.org>
+	<y477ksvhksu.fsf@dfm-bsd.juniper.net>
+From: Milan Zamazal <pdm@zamazal.org>
+Date: 15 Nov 2001 12:30:24 +0100
+In-Reply-To: <y477ksvhksu.fsf@dfm-bsd.juniper.net>
+Message-ID: <873d3g6zlb.fsf@blackbird.zamazal.org>
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Lines: 15
+
+>>>>> "DM" == Dan Martinez <dfm@juniper.net> writes:
+
+    DM> Please let me know what you think of these changes, and whether
+    DM> they might have any unanticipated side-effects.
+
+The changes look well to me at the first look, thanks!  I apply them
+once I stop being busy with the transfer of the GNATS site to gnu.org.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+Free software is about freedom, not about free beer.  If you care only about
+the latter, you'll end up with no freedom and no free beer.
+

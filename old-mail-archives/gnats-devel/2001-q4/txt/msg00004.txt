@@ -1,0 +1,49 @@
+From gnats-devel-return-787-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Tue Nov 13 21:30:18 2001
+Return-Path: <gnats-devel-return-787-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 26833 invoked by alias); 13 Nov 2001 21:30:13 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 26785 invoked from network); 13 Nov 2001 21:30:04 -0000
+Received: from unknown (HELO vexpert.dbai.tuwien.ac.at) (128.130.111.12)
+  by sourceware.cygnus.com with SMTP; 13 Nov 2001 21:30:04 -0000
+Received: from pulcherrima (pulcherrima [128.130.111.23])
+	by vexpert.dbai.tuwien.ac.at (8.11.6/8.11.6) with ESMTP id fADLU2I07087;
+	Tue, 13 Nov 2001 22:30:02 +0100 (MET)
+Date: Tue, 13 Nov 2001 22:29:57 +0100 (CET)
+From: Gerald Pfeifer <pfeifer@dbai.tuwien.ac.at>
+To: <gnats-devel@sources.redhat.com>, "Joseph S. Myers" <jsm28@cam.ac.uk>
+Subject: Re: gnatsweb PR status change messages
+In-Reply-To: <Pine.LNX.4.33.0111121751100.17260-100000@kern.srcf.societies.cam.ac.uk>
+Message-ID: <Pine.BSF.4.33.0111132228090.38674-100000@pulcherrima.dbai.tuwien.ac.at>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+On Mon, 12 Nov 2001, Joseph S. Myers wrote:
+> Gnatsweb 2.9x does not send PR status change messages to the GNATS
+> address.  This breaks the way it is used for GCC, since developers put a
+> PR in "feedback" state with the status change message requesting feedback,
+> but if the user sends feedback it then doesn't get included in the PR,
+> which may then later get closed wrongly for lack of feedback (feedback
+> having gone to the mailing lists but not been filed with the PR).
+> [...]
+> A minimal patch for gnatsweb 2.9x is:
+
+Thanks!
+
+Yngve, we now have this patch in production on gcc.gnu.org and it works
+as expected -- unless there are strong reasons against, I recommend to
+include it for the 2.9x branch.
+
+(If you want, I can create a ChangeLog and apply the patch.)
+
+Gerald
+-- 
+Gerald "Jerry" pfeifer@dbai.tuwien.ac.at http://www.dbai.tuwien.ac.at/~pfeifer/
+

@@ -1,0 +1,119 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: How to spawn gnatsd without using inetd? -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 11 Aug 2000 22:17:55 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10008111611440.18341&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.LNX.4.21.0008111547350.5626&#45;100000@wlug.westbo.se -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: How to spawn gnatsd without using inetd?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00021">Date&nbsp;Index</A>] [<a href="subjects.html#00021">Subject&nbsp;Index</a>] [<a href="authors.html#00021">Author&nbsp;Index</a>] [<A HREF="threads.html#00021">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00020.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00022.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00020.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00019.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: How to spawn gnatsd without using inetd?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Carl-Johan Sveningsson &lt;woc at wlug dot westbo dot se&gt;</LI>
+<LI><em>Subject</em>: Re: How to spawn gnatsd without using inetd?</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Fri, 11 Aug 2000 16:14:52 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel at sources dot redhat dot com, Lars-Erik Stacke &lt;les at nov dot skf dot se&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Fri, 11 Aug 2000, Carl-Johan Sveningsson wrote:
+
+&gt; Hi developers.
+&gt; 
+&gt; I have a problem. The enterprice is running a NIS, and therefore probably
+&gt; /etc/services isn't read. inetd can't find support/tcp, and therefore 1529
+&gt; remains closed and inaccessible.
+&gt; 
+&gt; This is bad.
+&gt; 
+&gt; Though, some way, gnatsd should be spawnable manually so it opens up for
+&gt; outside calls? -n? Documentation on invoking gnatsd is very poor, so I
+&gt; turn to you. Could you help me you think?
+
+It seems to me you can do one of these:
+
+1)  add support/tcp etc to NIS.
+
+2)  if you can't do #1, but have root access to the machine running
+    gnatsd: 
+
+    set /etc/nsswitch.conf "services: files nis" and then put
+    support/tcp into /etc/services.
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00020" HREF="msg00020.html">How to spawn gnatsd without using inetd?</A></STRONG>
+<UL><LI><EM>From:</EM> Carl-Johan Sveningsson</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00021">Date&nbsp;Index</A>] [<a href="subjects.html#00021">Subject&nbsp;Index</a>] [<a href="authors.html#00021">Author&nbsp;Index</a>] [<A HREF="threads.html#00021">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00020.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00022.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00020.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00019.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,129 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: Gnatsweb help -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 25 Jul 2001 22:48:44 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010726003616.00a3a9b0@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AD3E@postal.jnpr.net -->
+<!--X-Reference: 3B5BCED4.5FCDCAC3@npd.hcltech.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Gnatsweb help</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00073">Date&nbsp;Index</A>] [<a href="subjects.html#00073">Subject&nbsp;Index</a>] [<a href="authors.html#00073">Author&nbsp;Index</a>] [<A HREF="threads.html#00073">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00072.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00074.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00072.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnatsweb help</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: S Ramesh &lt;rashanmu at npd dot hcltech dot com&gt;</li>
+<li><em>Subject</em>: Re: Gnatsweb help</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 26 Jul 2001 00:43:43 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com, bugs &lt;bug-gnats at gnu dot org&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00068.html">C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AD3E@postal.jnpr.net</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 12:44 23.07.01 +0530, S Ramesh wrote:
+&gt;I have installed gnats 3.113.1 and gnatsweb 2.8.2 in a server. now i have
+&gt;done with instaalation.. i could able to send and edit PR from web. but the
+&gt;problem is how to configure it.
+&gt;
+&gt;1. i gnatsd.access i have a username and passwd for a user with accessleve
+&gt;and dbase alias name.  now when a user creates a PR his reporters mail id
+&gt;field is filled by him and he can give any email id. how to restrict this
+&gt;stuff. is there any possiblity of having unix username and passwd
+&gt;associated with gnatsd.access user name and passwd.
+
+In gnatsweb.pl, you could remove the field from the form and instead have 
+it sent with the form as a hidden value. The modification should be fairly 
+straightforward if you know a little bit about HTML forms.
+
+&gt;2. once logged in thru web from a browser froma machine the last login
+&gt;remains even if we kill the browser. so once logged in the cookies get
+&gt;enables. how to make it to ask every time for username and passwd.
+
+One way would of course be to run an OS where cookies are kept private to 
+each user. However, I will probably add a &quot;logout&quot; button to the main page 
+shortly. This will clear the current login cookie and leave you at the 
+login screen afterwards. I'll just have to reach a conclusion in a debate 
+with myself over whether the Login Again button should simply have its name 
+changed and behaviour slightly modified, or whether we need an all-new button.
+
+A logout button will definitely appear in Gnatsweb 4, but it should be easy 
+to port, so it will quite likely also appear in a new Gnatsweb 2.8.x release.
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00068" href="msg00068.html">fix for PR 219 - large PRs or updates take many minutes to process</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+<li><strong><a name="00069" href="msg00069.html">Gnatsweb help</a></strong>
+<ul><li><em>From:</em> S Ramesh</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00073">Date&nbsp;Index</A>] [<a href="subjects.html#00073">Subject&nbsp;Index</a>] [<a href="authors.html#00073">Author&nbsp;Index</a>] [<A HREF="threads.html#00073">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00072.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00074.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00072.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

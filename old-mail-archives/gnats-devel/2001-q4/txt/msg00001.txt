@@ -1,0 +1,54 @@
+From gnats-devel-return-784-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Mon Nov 12 19:09:49 2001
+Return-Path: <gnats-devel-return-784-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 13392 invoked by alias); 12 Nov 2001 18:40:15 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 7022 invoked from network); 12 Nov 2001 18:23:44 -0000
+Received: from unknown (HELO sokol.skynet.cz) (193.165.254.8)
+  by sourceware.cygnus.com with SMTP; 12 Nov 2001 18:23:44 -0000
+X-Envelope-To: gnats-devel@sources.redhat.com
+Received: from blackbird.zamazal.org (mail@asasync78.skynet.cz [193.165.192.178])
+        by sokol.skynet.cz (8.9.3/8.9.3) with ESMTP id TAA07558;
+        Mon, 12 Nov 2001 19:23:35 +0100
+	(envelope-from pdm@zamazal.org)
+Received: from pdm by blackbird.zamazal.org with local (Exim 3.32 #1 (Debian))
+	id 163Ljq-0007av-00; Mon, 12 Nov 2001 19:23:18 +0100
+To: Yngve Svendsen <yngve.svendsen@clustra.com>
+Cc: "Dirk Bergstrom" <dirk@juniper.net>, <gnats-devel@sources.redhat.com>
+Subject: Re: proposal for improvements in indexing
+References: <5.1.0.14.2.20011109114543.00b54968@mail.trd.clustra.com>
+From: Milan Zamazal <pdm@zamazal.org>
+Date: 12 Nov 2001 17:18:31 +0100
+In-Reply-To: <5.1.0.14.2.20011109114543.00b54968@mail.trd.clustra.com>
+Message-ID: <87668g9d48.fsf@blackbird.zamazal.org>
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Lines: 18
+
+>>>>> "YS" == Yngve Svendsen <yngve.svendsen@clustra.com> writes:
+
+    YS> Isn't this one of the benfits we would gain from implementing
+    YS> support for proper relational databases as backends?
+
+Database backends will be no way the only way of storing the data.
+Using a database engine for a BTS is an unnecessary burden for many
+sites.  The plain file system storage will remain supported, it has many
+advantages in some situations.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+  _/_\_/_  o     _\_/_\_  o     _/_\_/_  o     _\_/_\_  o    BEWARE!
+-<_|_|_|_><--  -<_|_|_|_><--  -<_|_|_|_><--  -<_|_|_|_><--   *Bugs* are
+   / \ /   o      \ / \   o      / \ /   o      \ / \   o     approaching!
+

@@ -1,0 +1,154 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: Empty table cells in Gnatsweb query results -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 4 Apr 2001 22:14:34 &#45;0000 -->
+<!--X-Message-Id: 5.0.2.1.2.20010405000811.00b395a0@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: Empty table cells in Gnatsweb query results</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00003">Date&nbsp;Index</A>] [<a href="subjects.html#00003">Subject&nbsp;Index</a>] [<a href="authors.html#00003">Author&nbsp;Index</a>] [<A HREF="threads.html#00003">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00002.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00004.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00002.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: Empty table cells in Gnatsweb query results</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: Empty table cells in Gnatsweb query results</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 05 Apr 2001 00:12:50 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Fix for problems where the table in the Query Results page contained empty 
+cells.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+
+2001-04-04  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (display_query_results): Use the provided 'nonempty'
+         routine to pad empty cells with &amp;nbsp;'s instead of the if used in
+         the last checkin. This only takes care of the cases where the empty
+         cells are not at the end of a row.
+
+         * gnatsweb.pl (display_query_results): When there are one or more
+         empty cells at the end of a query result row, the remaining cells
+         are padded with &amp;nbsp;'s.
+
+
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvs/gnats/gnats/contrib/gnatsweb/gnatsweb.pl,v
+retrieving revision 2.30
+diff -u -p -r2.30 gnatsweb.pl
+--- gnatsweb.pl	2001/03/28 23:35:39	2.30
++++ gnatsweb.pl	2001/04/04 22:08:17
+@@ -1793,6 +1793,7 @@ sub display_query_results
+        $ufield='Number';
+      }
+      print &quot;\n&lt;th&gt;&lt;a href=\&quot;$href\&quot;&gt;$ufield&lt;/a&gt;&lt;/th&gt;\n&quot;;
++    $nooffields = @ufields;
+    }
+
+    # Reset param 'sortby' to its original value, so that 'store query' works.
+@@ -1835,19 +1836,20 @@ sub display_query_results
+        # map them back into strings.
+        if ($fieldtypes[$whichfield] eq 'enum')
+        {
+-	my $enumvals = fieldinfo($ufields[$whichfield], 'values');
+-	$fieldcontents = $$enumvals[$fieldcontents - 1] || 'invalid';
++				my $enumvals = fieldinfo($ufields[$whichfield], 'values');
++				$fieldcontents = $$enumvals[$fieldcontents - 1] || 'invalid';
+        }
+        $fieldcontents = $q-&gt;escapeHTML($fieldcontents);
+-      if ($fieldcontents)
+-      {
+-	print &quot;&lt;td nowrap&gt;$fieldcontents&lt;/td&gt;&quot;;
+-      }
+-      else
+-      {
+-	print &quot;&lt;td nowrap&gt;&amp;nbsp;&lt;/td&gt;&quot;;
+-      }
++      $fieldcontents = nonempty($q-&gt;escapeHTML($fieldcontents));
++      print &quot;&lt;td nowrap&gt;$fieldcontents&lt;/td&gt;&quot;;
+        $whichfield++;
++    }
++    # Pad the remaining, empty columns with &amp;nbsp;'s
++    my $n = @{$_};
++    while ($nooffields - $n &gt; 0)
++    {
++      print &quot;&lt;td&gt;&amp;nbsp;&lt;/td&gt;&quot;;
++      $n++;
+      }
+      print &quot;\n&lt;/tr&gt;\n&quot;;
+    }
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00003">Date&nbsp;Index</A>] [<a href="subjects.html#00003">Subject&nbsp;Index</a>] [<a href="authors.html#00003">Author&nbsp;Index</a>] [<A HREF="threads.html#00003">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00002.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00004.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00002.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

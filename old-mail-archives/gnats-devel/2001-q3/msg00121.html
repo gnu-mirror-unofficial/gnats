@@ -1,0 +1,174 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: RE: Multiple Databases -->
+<!--X-From-R13: "Urbetr @njsny" <trbetrNpcynar.pbz> -->
+<!--X-Date: 19 Sep 2001 13:50:42 &#45;0000 -->
+<!--X-Message-Id: ENENLKJEBFFIGCCPLPGNGEGFCAAA.george@cplane.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 4.2.2.20010919094403.00a96740@email.psu.edu -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>George Nawfal - RE: Multiple Databases</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00121">Date&nbsp;Index</A>] [<a href="subjects.html#00121">Subject&nbsp;Index</a>] [<a href="authors.html#00121">Author&nbsp;Index</a>] [<A HREF="threads.html#00121">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00120.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00122.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00120.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00119.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: Multiple Databases</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Perry Klein&quot; &lt;pgk3 at psu dot edu&gt;, &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: RE: Multiple Databases</li>
+<li><em>From</em>: &quot;George Nawfal&quot; &lt;george at cplane dot com&gt;</li>
+<li><em>Date</em>: Wed, 19 Sep 2001 09:49:48 -0400</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Perry,
+
+The following instructions should help you set up multiple databases:
+
+ 1- Copy/Create an empty database
+ Copy an empty database into the new location. For simplicity, let's call
+the
+ new database &quot;lcd&quot; and let's copy it into this directory:
+  /usr/local/share/gnats/lcd-db/
+
+ 2- Modify the config file in the new database
+ Now that you've created a new database, you need to modify the config file.
+ Open the file ../lcd-db/gnats-adm/config and change the following
+ variables:
+ Change GNATS_ADDR           to &quot;lcd&quot;
+ Change GNATS_SITE           to &quot;lcd&quot;
+ Change SUBMITTER            to &quot;lcd&quot;
+ Change DEFAULT_ORGANIZATION to &quot;lcd&quot;
+
+ You can keep the other variables as they are or change them if you want to.
+
+ 3- Modify gnats-db.conf file
+ Add the following line to the file /etc/gnats-db.conf:
+ /usr/local/share/gnats/lcd-db:lcd
+ The above line inserts &quot;lcd&quot; in the Database combo box at login.
+
+ 4- Modify the aliases file
+ Add the following lines to the file /etc/aliases - gnats section
+ lcd:     &quot;| /usr/local/libexec/gnats/queue-pr -q -d
+/usr/local/share/gnats/lcd-db/&quot;
+ lcd-gnats:   lcd
+
+ 5- Modify the crontab file
+ Add the following line(s) to the file /etc/crontab - gnats section
+ 0,10,20,30,40,50 * * * * /usr/local/libexec/gnats/queue-pr --run -d
+ /usr/local/share/gnats/lcd-db
+
+ 6- Modify the .mycron file
+ Open the file .mycron, located at the user gnats home directory. Then add
+the following
+ line to it:
+ 0-59 * * * * /usr/local/libexec/gnats/queue-pr --run -d
+/usr/local/share/gnats/lcd-db
+
+ 7- Create an email account for lcd
+ Create an email account for lcd, say lcd@foo.com if your domain name is
+foo.
+ Set its .qmail file to have the following line:
+ | /usr/local/libexec/gnats/queue-pr -q
+
+ 8- Reload the .mycron file:
+ Login as gnats users then type &quot;crontab .mycron&quot; in order to reload the
+.mycron file
+ into the memory.
+
+
+George
+
+
+-----Original Message-----
+From: gnats-devel-owner@sources.redhat.com
+[<A  HREF="mailto:gnats-devel-owner@sources.redhat.com]On">mailto:gnats-devel-owner@sources.redhat.com]On</A> Behalf Of Perry Klein
+Sent: Wednesday, September 19, 2001 9:45 AM
+To: gnats-devel@sources.redhat.com
+Subject: Multiple Databases
+
+
+I am looking for more information on setting up multiple databases for
+gnats. gnats is currently being used at our facility for a project, but
+another project is interested in using it. The on-line documentation refers
+to the capability of multiple databases on one host, but lacks the details
+in what is needed in regards to the pr-queue, and other components. It is
+important that we keep the two projects segregated.  Each will have its own
+administrator as well.  Any additional information would be appreciated.
+
+
+Thanks,
+
+Perry Klein
+
+
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00120" href="msg00120.html">Multiple Databases</a></strong>
+<ul><li><em>From:</em> Perry Klein</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00121">Date&nbsp;Index</A>] [<a href="subjects.html#00121">Subject&nbsp;Index</a>] [<a href="authors.html#00121">Author&nbsp;Index</a>] [<A HREF="threads.html#00121">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00120.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00122.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00120.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00119.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

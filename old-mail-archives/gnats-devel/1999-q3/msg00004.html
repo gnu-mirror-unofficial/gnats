@@ -1,0 +1,191 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: Re: proclamation of intent -->
+<!--X-From-R13: Pbo [nafba <oznafbaNwhavcre.arg> -->
+<!--X-Date: 18 Aug 1999 20:13:17 &#45;0000 -->
+<!--X-Message-Id: 199908182013.NAA02379@tristam.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.GSO.4.10.9908181250580.26990&#45;100000@sys4 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: proclamation of intent</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date Index</A>] [<a href="subjects.html#00004">Subject Index</a>] [<a href="authors.html#00004">Author Index</a>] [<A HREF="threads.html#00004">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date Prev</A>]&nbsp;[<A HREF="msg00005.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread Prev</A>]&nbsp;[<A HREF="msg00005.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: proclamation of intent</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel@sourceware.cygnus.com</LI>
+<LI><em>Subject</em>: Re: proclamation of intent </LI>
+<LI><em>From</em>: Bob Manson &lt;bmanson@juniper.net&gt;</LI>
+<LI><em>Date</em>: Wed, 18 Aug 1999 13:13:14 -0700</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+[resent to list, I missed a cc:]
+
+In message &lt;<A HREF="msg00003.html">Pine.GSO.4.10.9908181250580.26990-100000@sys4</A>&gt;, Rick Macdonald writ
+es:
+&gt;By "query classes" do you mean "full", "sql", etc?
+
+Exactly.
+
+&gt;This seems inconsistant. Would this be better:
+&gt;
+&gt;        query "Summary" {
+&gt;                format "%8s %-8.8s %-8.8s %-9.9s %-9.9s %-8.8s %-10.10s %s"
+&gt;                fields {
+&gt;                       "Number" "Responsible" "Category" "State"
+&gt;                       "Severity" "Priority" "Submitter" "Synopsis"
+&gt;                {
+&gt;        }
+
+Yeah, much better.  Thanks.  I just pulled the printf stuff off the
+top of my head.
+
+&gt;This opens an interesting possibility. Couldn't any client then feed
+&gt;something similar to the above to [n]query-pr/gnatsd, and thereby define
+&gt;it's own query output?
+
+That's the plan.  Either something like the above formatting, or a
+simple list of fields to return as output.
+
+&gt;As a start, this format would want to be reasonable to parse as a list in
+&gt;Tcl and perl. Perhaps we need client-selectable formats: tcl, perl, sh,
+&gt;csh?
+
+I could see that.  Want to make this as simple as possible to use, so
+having that sort of flexibility would be important.
+
+I'm also not sure what exactly the clients would need to know, other
+than the names of the fields, their datatypes, and probably
+information about any restrictions on what values are valid (for enums
+the set of enumerated values, regexps, etc.)  Any further thoughts
+would be most helpful.
+
+Oh, and there should be a human-readable description of the field.
+Don't want to forget that!
+
+Ideally it would be possible for the client to get all of the data
+that describes a field, but presenting this in a useful way is going
+to be difficult (this quickly turnes into the traditional textual
+database metadata problem).
+
+What I want to avoid is getting *too* generic.  Somewhere there's a
+rather thin line between "this is a problem reporting/bug tracking
+system" and "this is a generic searchable text database that happens
+to have some default settings oriented around bug tracking".  I think
+that happens about the time you have to try and figure out how to
+describe fields other than in very simplistic terms.
+
+The *eventual* goal is to be able to layer this on top of a "real"
+database.  But that's off in the future.
+
+&gt;It sounds like you might just use regexps. An exact match of "RickM" would
+&gt;need ^RickM$. An inexact (substring?) might be .*ick.*, *ick*, or just
+&gt;ick?
+
+Well, sometimes you really want to specify a string, even if it has
+regexp characters in it.  Obviously you can escape everything, but
+that can be painful (especially for an unknowing user that's calling a
+simple client like query-pr, and passing in abbreviations to search
+for).
+
+I can also envision different search types for other data types,
+primarily numeric fields.  It'd be sorta nice to be able to select
+ranges of PRs easily (without having to explain complex regexps to
+users), or other types of numeric fields (numeric priorities?  version
+numbers or release qualifiers that are actual numbers?)  If you have
+that ability, then being able to specify string versus regexp searches
+seems like a natural extension.
+
+As another example, perhaps we have several severity levels, and we
+want all PRs that are less than serious.  Yes, we can list all of the
+less-than-serious priorities out in a regexp search, but it's far
+easier and more accurate to specify that we want all PRs less than
+serious.
+
+As for the string versus substring match, query-pr currently has
+varying behavior depending on what fields are being searched (some
+fields trying to match with an exact regexp, others allow matches with
+parts of the field).  I'm not sure if this is good or bad (the choices
+really seem quite arbitrary) but that's the way it's worked for a long
+time.  I'd rather give the user the ability to specify it, perhaps
+with defaults specified in the configuration file.
+
+As for when this will be released... I was hoping to get something out
+this week, probably without any of the configuration file code but
+with a lot of the other changes I've been proposing.
+					Bob
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00005" HREF="msg00005.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Stephen Dahmen &lt;dahmens@bah.com&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00006" HREF="msg00006.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald &lt;rickm@vsl.com&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00007" HREF="msg00007.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald &lt;rickm@vsl.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00003" HREF="msg00003.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald &lt;rickm@vsl.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date Index</A>] [<a href="subjects.html#00004">Subject Index</a>] [<a href="authors.html#00004">Author Index</a>] [<A HREF="threads.html#00004">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date Prev</A>]&nbsp;[<A HREF="msg00005.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread Prev</A>]&nbsp;[<A HREF="msg00005.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,146 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: Re: proclamation of intent -->
+<!--X-From-R13: Egrcura Rnuzra <qnuzrafNonu.pbz> -->
+<!--X-Date: 18 Aug 1999 20:37:51 &#45;0000 -->
+<!--X-Message-Id: 3.0.5.32.19990818143521.00c1dcf0@mclean2&#45;mail.usae.bah.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.GSO.4.10.9908181250580.26990&#45;100000@sys4 -->
+<!--X-Reference: 199908182013.NAA02379@tristam.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: proclamation of intent</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00005">Date Index</A>] [<a href="subjects.html#00005">Subject Index</a>] [<a href="authors.html#00005">Author Index</a>] [<A HREF="threads.html#00005">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00004.html">Date Prev</A>]&nbsp;[<A HREF="msg00006.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00004.html">Thread Prev</A>]&nbsp;[<A HREF="msg00006.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: proclamation of intent</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel@sourceware.cygnus.com</LI>
+<LI><em>Subject</em>: Re: proclamation of intent </LI>
+<LI><em>From</em>: Stephen Dahmen &lt;dahmens@bah.com&gt;</LI>
+<LI><em>Date</em>: Wed, 18 Aug 1999 14:35:21 -0600</LI>
+<LI><em>References</em>: &lt;Your message of "Wed, 18 Aug 1999 13:34:30 MDT."             &lt;<A HREF="msg00003.html">Pine.GSO.4.10.9908181250580.26990-100000@sys4</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi Bob...
+
+great ideas...
+
+not sure if this is related to gnats, or just gnatsweb (which is the only
+way I interface with gnats at the moment)... but it would be nice to
+specify a sort query results.
+
+Any thoughts about rewriting it using Perl instead?  here's some bennys
+that I see:
+
+1. you could use DBI and start with flat file database(s), then move to a
+"real database" by just changing DBD modules. In fact users could decide to
+use whatever database they want. Then you'll grant them SQL capability and
+you will have many friends and future employers.
+
+2. Take you half the time of doing it in C. 
+
+3. Would have a fresh design rather than a severely munged C implementation.
+
+4. It could be object oriented rather than arrgh structured.
+
+5. Really portable! Even to NT probably! 
+
+6. Perl already has an awesome distribution mechanism in place (CPAN)
+
+7. would probably multiply the number of teams using it.
+
+8. Would make it easier for a web interface to be written (could hook/reuse
+	the core code)
+
+9. It could much more easily be extended by future GNATS junkies.
+
+
+Course if you don't know Perl, then it could be a drawback... :\
+I'd be willing to help out informally with the design/architecture if you'd
+like.
+
+Good Luck with it.  Lets hope the client developers take advantage of it...
+my thought is fewer and fewer are going to be using GNATS from the command
+line.. i know my team couldn't use it that way.  Gnatsweb has been a
+blessing. I'd hope you would start to lean more towards facilitating web
+integration .
+
+Oh, and there should be a way to convert "old" gnats data into the new
+world without having to re-enter everything again.  Another good job for Perl.
+
+Regards,
+
+Stephen
+
+PS&gt; is there any affiliation between Juniper and the current keepers of
+GNATS that would afford you the luxury of doing all this work? Just curious!
+
+&gt;
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00003" HREF="msg00003.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald &lt;rickm@vsl.com&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00004" HREF="msg00004.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00005">Date Index</A>] [<a href="subjects.html#00005">Subject Index</a>] [<a href="authors.html#00005">Author Index</a>] [<A HREF="threads.html#00005">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00004.html">Date Prev</A>]&nbsp;[<A HREF="msg00006.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00004.html">Thread Prev</A>]&nbsp;[<A HREF="msg00006.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

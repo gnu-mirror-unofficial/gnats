@@ -1,0 +1,121 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: (gnats4) patch to client.c for unspecified host -->
+<!--X-From-R13: [vpunry Penqre <zoenqreNnherzn.pbz> -->
+<!--X-Date: 29 Feb 2000 04:55:41 &#45;0000 -->
+<!--X-Message-Id: qcln441ubv.fsf@swag.sw.oz.au -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>(gnats4) patch to client.c for unspecified host</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00012">Date&nbsp;Index</A>] [<a href="subjects.html#00012">Subject&nbsp;Index</a>] [<a href="authors.html#00012">Author&nbsp;Index</a>] [<A HREF="threads.html#00012">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00011.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00013.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00011.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00011.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>(gnats4) patch to client.c for unspecified host</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Bob Manson &lt;bmanson at sourceware dot cygnus dot com&gt;</LI>
+<LI><em>Subject</em>: (gnats4) patch to client.c for unspecified host</LI>
+<LI><em>From</em>: Michael Brader &lt;mbrader at aurema dot com&gt;</LI>
+<LI><em>Date</em>: 29 Feb 2000 15:55:16 +1100</LI>
+<LI><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+If the command line clients are called in such a way that network
+access is implied and a host isn't supplied then you get a SEGV
+
+This patch prints out the following message instead:
+
+[mbrader@swag mbrader] query-pr -v mbrader -w mbrader -d db1
+query-pr: Could not determine hostname or hostname not supplied
+
+-- 
+Michael Brader
+Aurema Pty Ltd (formerly Softway Pty Ltd)
+PO Box 305, Strawberry Hills, NSW 2012, Australia
+Email:mbrader@aurema.com, Tel: +61 2 9698 2322, Fax: +61 2 9699 9174
+</PRE>
+<PRE>
+Index: client.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/client.c,v
+retrieving revision 1.36
+diff -u -r1.36 client.c
+--- client.c	2000/02/27 03:04:54	1.36
++++ client.c	2000/02/29 04:42:57
+@@ -462,6 +462,11 @@
+ {
+   FILE *file;
+ 
++  if (hostname == NULL)
++    {
++      fprintf (stderr, "%s: Could not determine hostname or hostname not supplied\n", program_name);
++      exit (1);
++    }
+ #if 1
+   if (hostname[0] == '/' || hostname[0] == '.')
+     {
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00012">Date&nbsp;Index</A>] [<a href="subjects.html#00012">Subject&nbsp;Index</a>] [<a href="authors.html#00012">Author&nbsp;Index</a>] [<A HREF="threads.html#00012">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00011.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00013.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00011.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00011.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

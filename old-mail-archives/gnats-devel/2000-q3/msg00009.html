@@ -1,0 +1,186 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: Maintainer? -->
+<!--X-From-R13: Xrss Pnvyrl <wonvyrlNavfn.arg> -->
+<!--X-Date: 10 Jul 2000 19:07:57 &#45;0000 -->
+<!--X-Message-Id: 20000710120753.A27379@sparky.nisa.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20000710102127.A5395@sparky.nisa.net -->
+<!--X-Reference: 002501bfea9c$e117e2e0$fba8c73f@trianon -->
+<!--X-Reference: 20000710114032.A23487@sparky.nisa.net -->
+<!--X-Reference: 00a801bfeaa1$4c7da480$fba8c73f@trianon -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Maintainer?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00009">Date&nbsp;Index</A>] [<a href="subjects.html#00009">Subject&nbsp;Index</a>] [<a href="authors.html#00009">Author&nbsp;Index</a>] [<A HREF="threads.html#00009">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00008.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00008.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Maintainer?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Paul Traina &lt;pst at juniper dot net&gt;, Jeff Bailey &lt;jbailey at nisa dot net&gt;,       gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: Re: Maintainer?</LI>
+<LI><em>From</em>: Jeff Bailey &lt;jbailey at nisa dot net&gt;</LI>
+<LI><em>Date</em>: Mon, 10 Jul 2000 12:07:53 -0700</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00005.html">20000710102127.A5395@sparky.nisa.net</A>&gt; &lt;<A HREF="msg00006.html">002501bfea9c$e117e2e0$fba8c73f@trianon</A>&gt; &lt;<A HREF="msg00007.html">20000710114032.A23487@sparky.nisa.net</A>&gt; &lt;<A HREF="msg00008.html">00a801bfeaa1$4c7da480$fba8c73f@trianon</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Mon, Jul 10, 2000 at 12:01:47PM -0700, Paul Traina wrote:
+&gt; Gnats is being actively maintained, and v4.0 is ready to be released, modulo
+&gt; the fact that nobody has time to finish the documentation (Bob's done all
+&gt; the manual pages, but the info files need to be updated).
+&gt;
+&gt; Hint hint: If you wanted to finish this off, you'd make a bunch of people
+&gt; very happy.
+
+If the manual pages are done, then I might be able to do some work on the 
+Info files.
+
+&gt; Are your changes based upon the current 4.0 branch?  The structure of the
+&gt; database is already well defined through the field-config file...?
+
+My changes are based on a CVS checkout from a week ago.  The reason I 
+want to expose this information through the daemon is that I want to be 
+able to just point my web front end at the daemon and say "Learn!" and 
+have it configure itself appropriately.  This way it can run from a 
+completely different machine if desired.  It also means that internally 
+gnats can move away from the flat file system and move to databases and 
+still provide a consistant front end for getting information about the 
+structure of the ticket system.
+
+The second step of being able to modify the structure of the database is 
+simply an extension to the first idea:  Gnats can be very easy to setup 
+and get running in a basic configuration, but can be confusing to get all 
+of the flat files right.  I would like to make it so that a user with 
+appropriate priviledges can change the configuration of the system.  This 
+would also be configurable through one of the config files, to help 
+prevent against hacking. =)
+
+&gt; ----- Original Message -----
+&gt; From: "Jeff Bailey" &lt;jbailey@nisa.net&gt;
+&gt; To: "Paul Traina" &lt;pst@juniper.net&gt;; "Jeff Bailey" &lt;jbailey@nisa.net&gt;;
+&gt; &lt;gnats-devel@sourceware.cygnus.com&gt;
+&gt; Sent: Monday, July 10, 2000 11:40 AM
+&gt; Subject: Re: Maintainer?
+&gt; 
+&gt; 
+&gt; &gt; On Mon, Jul 10, 2000 at 11:30:09AM -0700, Paul Traina wrote:
+&gt; &gt;
+&gt; &gt; I'm starting some patches for gnatsd to provide information on the
+&gt; &gt; structure of the database.  The next set will be the ability to modify
+&gt; &gt; the database structure through gnatsd.
+&gt; &gt;
+&gt; &gt; I'm cooking up a front end for my work that looks a little bit more like
+&gt; &gt; bugzilla.  It will be done in PHP.  I may offer it for the contrib/
+&gt; &gt; directory.
+&gt; &gt;
+&gt; &gt; I wanted to make sure that Gnats was still being maintained/it was
+&gt; &gt; possible to contribute, so I don't have to fork.  I think I may already
+&gt; &gt; have assignment papers into the FSF from 3 or 4 years ago.
+&gt; &gt;
+&gt; &gt; &gt; I can help.  What are your changes?
+&gt; &gt; &gt;
+&gt; &gt; &gt; ----- Original Message -----
+&gt; &gt; &gt; From: "Jeff Bailey" &lt;jbailey@nisa.net&gt;
+&gt; &gt; &gt; To: &lt;gnats-devel@sourceware.cygnus.com&gt;
+&gt; &gt; &gt; Sent: Monday, July 10, 2000 10:21 AM
+&gt; &gt; &gt; Subject: Maintainer?
+&gt; &gt; &gt;
+&gt; &gt; &gt;
+&gt; &gt; &gt; &gt; Who is the current maintainer of GNATS?  I have some patches that I'm
+&gt; &gt; &gt; &gt; preparing against the CVS, but I notice that there hasn't been a
+&gt; commit
+&gt; &gt; &gt; &gt; in months.
+&gt; &gt; &gt; &gt;
+&gt; &gt; &gt; &gt; --
+&gt; &gt; &gt; &gt; "It is easy to be blinded to the essential uselessness of computers by
+&gt; &gt; &gt; &gt; the sense of accomplishment you get from getting them to work at all."
+&gt; &gt; &gt; &gt;  - Douglas Adams
+&gt; &gt; &gt; &gt;
+&gt; &gt;
+&gt; &gt; --
+&gt; &gt; "It is easy to be blinded to the essential uselessness of computers by
+&gt; &gt; the sense of accomplishment you get from getting them to work at all."
+&gt; &gt;  - Douglas Adams
+&gt; &gt;
+
+-- 
+"It is easy to be blinded to the essential uselessness of computers by
+the sense of accomplishment you get from getting them to work at all."
+ - Douglas Adams
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00005" HREF="msg00005.html">Maintainer?</A></STRONG>
+<UL><LI><EM>From:</EM> Jeff Bailey</LI></UL></LI>
+<LI><STRONG><A NAME="00006" HREF="msg00006.html">Re: Maintainer?</A></STRONG>
+<UL><LI><EM>From:</EM> Paul Traina</LI></UL></LI>
+<LI><STRONG><A NAME="00007" HREF="msg00007.html">Re: Maintainer?</A></STRONG>
+<UL><LI><EM>From:</EM> Jeff Bailey</LI></UL></LI>
+<LI><STRONG><A NAME="00008" HREF="msg00008.html">Re: Maintainer?</A></STRONG>
+<UL><LI><EM>From:</EM> Paul Traina</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00009">Date&nbsp;Index</A>] [<a href="subjects.html#00009">Subject&nbsp;Index</a>] [<a href="authors.html#00009">Author&nbsp;Index</a>] [<A HREF="threads.html#00009">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00008.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00008.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,138 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Thoughts on gnatsweb -->
+<!--X-From-R13: Fbz Febzrl <gebzrlNerqung.pbz> -->
+<!--X-Date: 10 Feb 2001 22:12:16 &#45;0000 -->
+<!--X-Message-Id: 87wvay9o57.fsf@creche.redhat.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Tom Tromey - Thoughts on gnatsweb</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00063.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Thoughts on gnatsweb</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: Thoughts on gnatsweb</LI>
+<LI><em>From</em>: Tom Tromey &lt;tromey at redhat dot com&gt;</LI>
+<LI><em>Date</em>: 10 Feb 2001 15:19:48 -0700</LI>
+<LI><em>Reply-To</em>: tromey at redhat dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I've been using gnatsweb for a while now, maybe a couple of years, and
+I have noticed a few things which I find annoying.  I hesitate to call
+them bugs exactly, because they don't actually get in the way of my
+use of gnatsweb.  (And, FWIW, in general I like gnatsweb quite a bit.)
+
+
+One thing that is annoying is that sometimes gnatsweb forgets that I
+can log in to a database.  For instance, on the gcc web pages there
+are links like this:
+
+    <A  HREF="http://gcc.gnu.org/cgi-bin/gnatsweb.pl?user=guest&amp;amp;password=guest&amp;amp;database=gcc&amp;amp;cmd=login">http://gcc.gnu.org/cgi-bin/gnatsweb.pl?user=guest&amp;amp;password=guest&amp;amp;database=gcc&amp;amp;cmd=login</A>
+
+This is supposed to take you to the gcc gnats page.
+
+Well, this is annoying because if I already have a gnats account for
+this database, and I'm already logged in, following this link will log
+me in again as `guest'.  I think either links like this shouldn't log
+me in again, or it should be possible to specify a default
+user/password pair (perhaps in the site config file) and then simply
+leave them out of the URL in the link.
+
+
+My next problem with gnatsweb is that I tend to like to go to a
+particular query result page and do my work from there.  Unfortunately
+this is not entirely doable because there is no way to create a new PR
+from the query page.  In fact, if you save a link to your stored query
+(so you can jump directly to it without intervening steps) then you
+have no way to go from the query page back to the main page or
+anyplace else.
+
+I think this problem could be solved using some kind of navigation bar
+that would show up even on the query page.  I think it would be
+sufficient to have buttons going to `main page', `query', and
+`advanced query'.
+
+
+A while back I reported some problems involving using Gnatsweb on two
+databases on the same host at the same time.  I haven't tried this
+lately, so I don't know if these problems are fixed.  I imagine that I
+sent them to bug-gnats@gnu.org.  Does anybody know if anything has
+changed here?
+
+Tom
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00063" href="msg00063.html">Re: Thoughts on gnatsweb</a></strong>
+<ul><li><em>From:</em> Gerald Pfeifer</li></ul></li>
+<li><strong><a name="00072" href="msg00072.html">Re: Thoughts on gnatsweb</a></strong>
+<ul><li><em>From:</em> Gerald Pfeifer</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00063.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

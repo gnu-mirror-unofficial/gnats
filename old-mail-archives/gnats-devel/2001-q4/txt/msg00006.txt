@@ -1,0 +1,50 @@
+From gnats-devel-return-789-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Wed Nov 14 10:02:16 2001
+Return-Path: <gnats-devel-return-789-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 7891 invoked by alias); 14 Nov 2001 10:02:14 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 7816 invoked from network); 14 Nov 2001 10:02:05 -0000
+Received: from unknown (HELO sokol.skynet.cz) (193.165.254.8)
+  by sourceware.cygnus.com with SMTP; 14 Nov 2001 10:02:05 -0000
+X-Envelope-To: <gnats-devel@sources.redhat.com>
+Received: from blackbird.zamazal.org (mail@asasync52.skynet.cz [193.165.192.152])
+        by sokol.skynet.cz (8.9.3/8.9.3) with ESMTP id LAA02622
+        for <gnats-devel@sources.redhat.com>; Wed, 14 Nov 2001 11:02:02 +0100
+	(envelope-from pdm@zamazal.org)
+Received: from pdm by blackbird.zamazal.org with local (Exim 3.32 #1 (Debian))
+	id 163wrk-0003U5-00; Wed, 14 Nov 2001 11:01:56 +0100
+To: GNATS Development Mailing List <gnats-devel@sources.redhat.com>
+Subject: WARNING: Transferring GNATS services to gnu.org
+From: Milan Zamazal <pdm@zamazal.org>
+Date: 14 Nov 2001 10:25:35 +0100
+Message-ID: <87vggdbt68.fsf@blackbird.zamazal.org>
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Lines: 17
+
+The planned transfer of all the GNATS development related services from
+sources.redhat.com to gnu.org is going to start on Thursday (whatever
+your local time zone is:-).  Some of the services may not be available
+for a day or two, hopefully not longer.  This concerns the CVS archive,
+bug tracking system, mailing lists, and web pages.
+
+I'll send an announcement with references to the new locations when the
+transfer is done.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+  _/_\_/_  o     _\_/_\_  o     _/_\_/_  o     _\_/_\_  o    BEWARE!
+-<_|_|_|_><--  -<_|_|_|_><--  -<_|_|_|_><--  -<_|_|_|_><--   *Bugs* are
+   / \ /   o      \ / \   o      / \ /   o      \ / \   o     approaching!
+

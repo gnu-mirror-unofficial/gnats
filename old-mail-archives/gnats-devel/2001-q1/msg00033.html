@@ -1,0 +1,137 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: Compatibility between GNATS 3.x and 4.x? gnatsweb? -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 12 Feb 2001 21:23:03 &#45;0000 -->
+<!--X-Message-Id: 87wvaviq3x.fsf@zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.BSF.4.33.0102120224340.83060&#45;100000@deneb.dbai.tuwien.ac.at -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00033">Date&nbsp;Index</A>] [<a href="subjects.html#00033">Subject&nbsp;Index</a>] [<a href="authors.html#00033">Author&nbsp;Index</a>] [<A HREF="threads.html#00033">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00032.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00034.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00032.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00022.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</LI>
+<LI><em>Subject</em>: Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</LI>
+<LI><em>Date</em>: 12 Feb 2001 21:49:22 +0100</LI>
+<LI><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00028.html">Pine.BSF.4.33.0102120224340.83060-100000@deneb.dbai.tuwien.ac.at</A>&gt;</LI>
+<LI><em>Resent-X-Face</em>: #G'i&gt;Q&gt;~:^*=!qpsXTU;iEZ8xcAz+u~Vq0(&lt;P&gt;a6!3ebS/2|\r{9&amp;asz&amp;Qp]~)uF,N&quot;4,jST&amp;F&gt;.|='gO6:N&lt;FD-e0EI5.+#BblSdQ!$7ZC'3m/6m4edq-E&amp;nU+R%&lt;!V&amp;MXqR&lt;W5RIISsd?Q6]Ig]V4|Y_QsT/c$EX1WqSYQizlNDh,krFL=uX6OQU?N[wW(8'3[cMK$w</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; "GP" == Gerald Pfeifer &lt;pfeifer@dbai.tuwien.ac.at&gt; writes:
+        
+    GP&gt; On 11 Feb 2001, Milan Zamazal wrote:
+
+    &gt;&gt; - I don't consider a backward compatibility being a serious issue
+    &gt;&gt; here, because I suppose most installed interfaces are tight to
+    &gt;&gt; their server and are supposed to be upgraded together with the
+    &gt;&gt; server.
+
+    GP&gt; Hmm, not necessarily. For example, I would have liked to use the
+    GP&gt; current CVS version of gnatsweb on gcc.gnu.org, first to do some
+    GP&gt; testing by myself, and then also in production use. This I could
+    GP&gt; do easily, but having the entire GNATS installation updated,
+    GP&gt; would be quite more involved.
+
+If I understand you well, you mean that new Gnatsweb should still allow
+work with GNATS 3?  This would be nice but it is solely a matter of
+Gnatsweb.  If Gnatsweb is designed well enough, the backward
+compatibility shouldn't be a big problem.  (As for my gnats2w hack,
+there's no problem with retaining the backward compatibility with
+GNATS 3, there is a problem with supporting the full flexibility of
+GNATS 4 instead -- gnats2w wasn't designed with a big functional
+extensions of the server in mind.)
+
+    GP&gt; (I hope the upgrade path from GNAT 3.x to 4.x will be simple and
+    GP&gt; well documented, so that one can easily migrated his databases?
+    GP&gt; Then it'll be less of a problem for most regular sites.)
+
+Yes, moving databases should be easy -- actually I use a copy of GNATS
+bug database from sources.redhat.com (running with GNATS 3 there) on my
+machine with GNATS 4.  All I had to do was to add the `dbconfig' file
+and to customize it a little.  Of course, I plan to document the upgrade
+process appropriately.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+"Having GNU Emacs is like having a dragon's cave of treasures."
+                                                Robert J. Chassell
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00028" HREF="msg00028.html">Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</A></STRONG>
+<UL><LI><EM>From:</EM> Gerald Pfeifer</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00033">Date&nbsp;Index</A>] [<a href="subjects.html#00033">Subject&nbsp;Index</a>] [<a href="authors.html#00033">Author&nbsp;Index</a>] [<A HREF="threads.html#00033">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00032.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00034.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00032.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00022.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

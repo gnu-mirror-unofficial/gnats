@@ -1,0 +1,139 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: Compatibility between GNATS 3.x and 4.x? gnatsweb? -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 12 Feb 2001 21:22:34 &#45;0000 -->
+<!--X-Message-Id: 87itmhnfub.fsf@zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.BSF.4.33.0102081230010.11021&#45;100000@deneb.dbai.tuwien.ac.at -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00031">Date&nbsp;Index</A>] [<a href="subjects.html#00031">Subject&nbsp;Index</a>] [<a href="authors.html#00031">Author&nbsp;Index</a>] [<A HREF="threads.html#00031">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00030.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00030.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</LI>
+<LI><em>Subject</em>: Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</LI>
+<LI><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</LI>
+<LI><em>Date</em>: 11 Feb 2001 21:07:40 +0100</LI>
+<LI><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00024.html">Pine.BSF.4.33.0102081230010.11021-100000@deneb.dbai.tuwien.ac.at</A>&gt;</LI>
+<LI><em>Resent-X-Face</em>: #G'i&gt;Q&gt;~:^*=!qpsXTU;iEZ8xcAz+u~Vq0(&lt;P&gt;a6!3ebS/2|\r{9&amp;asz&amp;Qp]~)uF,N&quot;4,jST&amp;F&gt;.|='gO6:N&lt;FD-e0EI5.+#BblSdQ!$7ZC'3m/6m4edq-E&amp;nU+R%&lt;!V&amp;MXqR&lt;W5RIISsd?Q6]Ig]V4|Y_QsT/c$EX1WqSYQizlNDh,krFL=uX6OQU?N[wW(8'3[cMK$w</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; "GP" == Gerald Pfeifer &lt;pfeifer@dbai.tuwien.ac.at&gt; writes:
+
+    GP&gt; Are GNATS 3.x and 4.0 supposed to be incompatible?
+
+Yes.
+
+    GP&gt; Or should it be possible to update the GNATS server and keep
+    GP&gt; existing clients?
+
+No.
+
+There were major changes, regarding especially the query interface and
+configuration, between the versions 3 and 4.  This has led to a
+significant simplification of the gnatsd command set.  IMHO this implies
+that:
+
+- Though it might be technically possible to retain most of the gnatsd 3
+  commands (I didn't check carefully), it would leave a lot of garbage
+  in the gnatsd command set instead of really simplifying it.
+
+- Since this is simplification, interfaces should benefit from it and
+  should be updated to the new gnatsd command set.  It shouldn't be
+  difficult once the gnatsd commands and the GNATS query language are
+  documented.
+
+- I don't consider a backward compatibility being a serious issue here,
+  because I suppose most installed interfaces are tight to their server
+  and are supposed to be upgraded together with the server.
+
+[BTW, I'll be out of Internet soon, for about two weeks.  So don't panic
+if I'll be completely quiet during that period.]
+
+Regards,
+
+Milan Zamazal
+
+-- 
+And why?
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00028" HREF="msg00028.html">Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</A></STRONG>
+<UL><LI><EM>From:</EM> Gerald Pfeifer</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00024" HREF="msg00024.html">Compatibility between GNATS 3.x and 4.x? gnatsweb?</A></STRONG>
+<UL><LI><EM>From:</EM> Gerald Pfeifer</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00031">Date&nbsp;Index</A>] [<a href="subjects.html#00031">Subject&nbsp;Index</a>] [<a href="authors.html#00031">Author&nbsp;Index</a>] [<A HREF="threads.html#00031">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00030.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00030.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

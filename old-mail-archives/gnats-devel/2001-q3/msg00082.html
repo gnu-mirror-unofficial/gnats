@@ -1,0 +1,136 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: GNATS 4 build problems on Solaris -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 31 Jul 2001 14:35:05 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010731161938.04d92950@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - GNATS 4 build problems on Solaris</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00082">Date&nbsp;Index</A>] [<a href="subjects.html#00082">Subject&nbsp;Index</a>] [<a href="authors.html#00082">Author&nbsp;Index</a>] [<A HREF="threads.html#00082">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00081.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00083.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00081.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00086.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>GNATS 4 build problems on Solaris</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: GNATS 4 build problems on Solaris</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 31 Jul 2001 16:31:51 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Today's CVS version of GNATS 4 does not compile on Solaris with GCC 2.95.2. 
+The following happens:
+
+gcc -c -I. -I. -I./../include  -g -O2 -W -Wall -W -Wall -ansi -pedantic 
+-Werror -Wstrict-prototypes -Wmissing-prototypes -Wwrite-strings 
+-Wno-format  -DHAVE_CONFIG_H 
+-DGNATSD_USER_ACCESS_FILE=\&quot;/usr/local/etc/gnats/gnatsd.access\&quot; 
+-DGNATSD_HOST_ACCESS_FILE=\&quot;/usr/local/etc/gnats/gnatsd.host_access\&quot; 
+-DDEFAULT_GNATS_SERVICE=\&quot;support\&quot; 
+-DGLOBAL_DB_LIST_FILE=\&quot;/usr/local/etc/gnats/databases\&quot; 
+-DGNATS_USER=\&quot;gnats\&quot; misc.c
+cc1: warnings being treated as errors
+misc.c: In function `value_is_empty':
+misc.c:656: warning: subscript has type `char'
+gmake[1]: *** [misc.o] Error 1
+gmake[1]: Leaving directory `/usr/local/src/gnats-600/gnats/gnats'
+gmake: *** [all-gnats] Error 2
+
+
+Turns out that isspace() requires an explicit cast to int on Solaris. The 
+following little patch fixes it:
+
+Index: misc.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/misc.c,v
+retrieving revision 1.31
+diff -u -p -r1.31 misc.c
+--- misc.c      2001/07/15 17:31:59     1.31
++++ misc.c      2001/07/31 14:34:12
+@@ -653,7 +653,7 @@ value_is_empty (const char *string)
+    {
+      unsigned int i;
+      for (i = 0; i &lt; strlen (string); i++)
+-      if (! isspace (string[i]))
++      if (! isspace ((int)string[i]))
+         return FALSE;
+      return TRUE;
+    }
+
+
+
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00086" href="msg00086.html">Re: GNATS 4 build problems on Solaris</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00082">Date&nbsp;Index</A>] [<a href="subjects.html#00082">Subject&nbsp;Index</a>] [<a href="authors.html#00082">Author&nbsp;Index</a>] [<A HREF="threads.html#00082">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00081.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00083.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00081.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00086.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

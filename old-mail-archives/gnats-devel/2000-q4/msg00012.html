@@ -1,0 +1,111 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Problem with installation on Solaris 2.6: client.c does not compile -->
+<!--X-From-R13: F.YyrlznaaNg&#45;bayvar.qr -->
+<!--X-Date: 2 Nov 2000 09:21:05 &#45;0000 -->
+<!--X-Message-Id: 13rGYG&#45;1xq2XAC@fwd02.sul.t&#45;online.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>T.Kleymann - Problem with installation on Solaris 2.6: client.c does not compile</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00012">Date&nbsp;Index</A>] [<a href="subjects.html#00012">Subject&nbsp;Index</a>] [<a href="authors.html#00012">Author&nbsp;Index</a>] [<A HREF="threads.html#00012">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00011.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00013.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00011.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00009.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Problem with installation on Solaris 2.6: client.c does not compile</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: Problem with installation on Solaris 2.6: client.c does not compile</LI>
+<LI><em>From</em>: T dot Kleymann at t-online dot de</LI>
+<LI><em>Date</em>: 02 Nov 2000 09:20 GMT</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi,
+
+I would like to install GNATS on a Solaris 2.6 system. I have 
+downloaded GNATS 3.113 and am attempting to compile it with GCC 2.95.2. The 'make 
+all' process is happily working for some time, but then chokes on 
+client.c:
+
+/usr/local/bin/gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H 
+client.c
+client.c: In function `client_init':
+client.c:390: warning: assignment makes pointer from integer without a 
+cast
+client.c:396: dereferencing pointer to incomplete type
+client.c:402: warning: assignment makes pointer from integer without a 
+cast
+client.c:407: dereferencing pointer to incomplete type
+*** Error code 1
+make: Fatal error: Command failed for target `client.o'
+Current working directory /export/home/gnats/import/gnats-3.113/gnats
+*** Error code 1
+make: Fatal error: Command failed for target `all-gnats'
+
+Any suggestions? 
+
+--Thomas
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00012">Date&nbsp;Index</A>] [<a href="subjects.html#00012">Subject&nbsp;Index</a>] [<a href="authors.html#00012">Author&nbsp;Index</a>] [<A HREF="threads.html#00012">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00011.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00013.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00011.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00009.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,218 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: [CORRECTED] Patch for typos in 3.113 gnats.texi -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 15 Jan 2001 22:23:15 &#45;0000 -->
+<!--X-Message-Id: 5.0.1.4.2.20010115231743.04824ca8@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - [CORRECTED] Patch for typos in 3.113 gnats.texi</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00013">Date&nbsp;Index</A>] [<a href="subjects.html#00013">Subject&nbsp;Index</a>] [<a href="authors.html#00013">Author&nbsp;Index</a>] [<A HREF="threads.html#00013">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00012.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00014.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00012.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00012.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>[CORRECTED] Patch for typos in 3.113 gnats.texi</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: [CORRECTED] Patch for typos in 3.113 gnats.texi</LI>
+<LI><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</LI>
+<LI><em>Date</em>: Mon, 15 Jan 2001 23:22:04 +0100</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Original patch had the old and new files the wrong way round. Patches 
+against 3.113 will be collected on sources.redhat.com in a few days.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+www.clustra.com
+
+
+*** gnats-orig.texi     Mon Jan 15 18:05:59 2001
+--- gnats.texi  Mon Jan 15 18:05:10 2001
+***************
+*** 114,120 ****
+   * Management::            GNATS Administration
+   * Installation::          Installing GNATS
+   * Locations::             Where @sc{gnats} lives
+! * Mulitple Databases::    Multiple @sc{gnats} databases on one host
+   * Access Control::        Controlling access to @sc{gnats} databases
+   * Regexps::               Querying using regular expressions
+   * Index::
+--- 114,120 ----
+   * Management::            GNATS Administration
+   * Installation::          Installing GNATS
+   * Locations::             Where @sc{gnats} lives
+! * Multiple Databases::    Multiple @sc{gnats} databases on one host
+   * Access Control::        Controlling access to @sc{gnats} databases
+   * Regexps::               Querying using regular expressions
+   * Index::
+***************
+*** 164,170 ****
+
+   @sc{gnats} makes this easy by automatically filing incoming problem
+   reports into appropriate places, by notifying responsible parties of the
+! existence of the problem and (optionally) sending an acknowledgement to
+   the submitter that the report was received, and by making these Problem
+   Reports accessible to queries and easily editable.  @sc{gnats} is a
+   database specialized for a specific task.
+--- 164,170 ----
+
+   @sc{gnats} makes this easy by automatically filing incoming problem
+   reports into appropriate places, by notifying responsible parties of the
+! existence of the problem and (optionally) sending an acknowledgment to
+   the submitter that the report was received, and by making these Problem
+   Reports accessible to queries and easily editable.  @sc{gnats} is a
+   database specialized for a specific task.
+***************
+*** 200,206 ****
+
+   @item
+   Maintainers, managers and administrators can use @w{@code{query-pr}} to
+! make inquiries about indidvidual PRs or groups of PRs.
+
+   @end itemize
+
+--- 200,206 ----
+
+   @item
+   Maintainers, managers and administrators can use @w{@code{query-pr}} to
+! make inquiries about individual PRs or groups of PRs.
+
+   @end itemize
+
+***************
+*** 233,239 ****
+
+   Once a problem is recorded in the database, work can begin toward a
+   solution.  A problem's initial @dfn{state} is @dfn{open}
+! (@pxref{States,,States of Problem Reports}).  An acknowledgement is sent
+   to the originator of the bug report (if that feature of @sc{gnats} is
+   activated).  @sc{gnats} forwards copies of the report to the party
+   responsible for that problem category and to the person responsible for
+--- 233,239 ----
+
+   Once a problem is recorded in the database, work can begin toward a
+   solution.  A problem's initial @dfn{state} is @dfn{open}
+! (@pxref{States,,States of Problem Reports}).  An acknowledgment is sent
+   to the originator of the bug report (if that feature of @sc{gnats} is
+   activated).  @sc{gnats} forwards copies of the report to the party
+   responsible for that problem category and to the person responsible for
+***************
+*** 637,643 ****
+
+
+   @c ===============================================================
+! @node Mulitple Databases
+   @appendix Multiple Databases on one host
+
+   @sc{gnats} can support multiple databases on one host.  The options
+--- 637,643 ----
+
+
+   @c ===============================================================
+! @node Multiple Databases
+   @appendix Multiple Databases on one host
+
+   @sc{gnats} can support multiple databases on one host.  The options
+***************
+*** 659,665 ****
+   file.
+
+   @example
+! # list of GNATS databases and alaises
+   #
+   # Field 1 - fully qualified path to database
+   # Field 2 - a comma separated list of aliases
+--- 659,665 ----
+   file.
+
+   @example
+! # list of GNATS databases and aliases
+   #
+   # Field 1 - fully qualified path to database
+   # Field 2 - a comma separated list of aliases
+***************
+*** 709,715 ****
+   @code{CHDB} command is allowed, and you just get one try.
+
+   The second field of the @file{gnats-adm/gnatsd.conf} file is the access
+! level for the user's host.  The default is @code{edit} to be compatable
+   with previous releases of @code{gnats}.  If the user's hostname isn't in
+   the @file{gnatsd.conf} file or its access level is @code{deny}, the
+   connection is closed immediately.
+--- 709,715 ----
+   @code{CHDB} command is allowed, and you just get one try.
+
+   The second field of the @file{gnats-adm/gnatsd.conf} file is the access
+! level for the user's host.  The default is @code{edit} to be compatible
+   with previous releases of @code{gnats}.  If the user's hostname isn't in
+   the @file{gnatsd.conf} file or its access level is @code{deny}, the
+   connection is closed immediately.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00013">Date&nbsp;Index</A>] [<a href="subjects.html#00013">Subject&nbsp;Index</a>] [<a href="authors.html#00013">Author&nbsp;Index</a>] [<A HREF="threads.html#00013">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00012.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00014.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00012.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00012.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

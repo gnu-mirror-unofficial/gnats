@@ -1,0 +1,194 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: another minor patch to gnatsweb 2.9.0 -->
+<!--X-From-R13: Dboreg Zhcgba gur Ubbq <euyNnfgeb.Bevaprgba.SRG> -->
+<!--X-Date: 18 Sep 2001 17:13:06 &#45;0000 -->
+<!--X-Message-Id: 15271.32768.4522.195154@kaze.Princeton.EDU -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Robert Lupton the Go - another minor patch to gnatsweb 2.9.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00119">Date&nbsp;Index</A>] [<a href="subjects.html#00119">Subject&nbsp;Index</a>] [<a href="authors.html#00119">Author&nbsp;Index</a>] [<A HREF="threads.html#00119">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00118.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00118.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00110.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>another minor patch to gnatsweb 2.9.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: another minor patch to gnatsweb 2.9.0</li>
+<li><em>From</em>: Robert Lupton the Good &lt;rhl at astro dot Princeton dot EDU&gt;</li>
+<li><em>Date</em>: Tue, 18 Sep 2001 13:10:24 -0400</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com, bug-gnats at gnu dot org</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+
+Here's another patch to fix a number of minor problems.
+
+1/ A number of undefined variables --- these produce worrying messages
+in the httpd logs.
+
+Specifically:
+	check that $fields{'Responsible'} is defined
+
+	ensure that $global_prefs{'columns'} is always defined
+
+	Set a value for gnatsweb-test-cookie to work around an
+	assumption in at least my copy of CGI::cookie
+
+2/ Fix the &quot;Login Again&quot; button at the top of each page, by changing
+the action to
+	cmd=login%20again
+
+
+Did my patches to e.g. load pre-existing queries make it into gnatsweb?
+
+
+					R
+
+
+*** gnatsweb.pl.1	Mon Sep 17 13:59:36 2001
+--- gnatsweb.pl.2	Tue Sep 18 13:04:57 2001
+***************
+*** 586,592 ****
+  
+    # If Responsible is '&lt;default&gt;', delete it; gnats handles that.  See
+    # also &amp;sendpr.
+!   if($fields{'Responsible'} eq '&lt;default&gt;') {
+      delete $fields{'Responsible'};
+    }
+  
+--- 586,592 ----
+  
+    # If Responsible is '&lt;default&gt;', delete it; gnats handles that.  See
+    # also &amp;sendpr.
+!   if(defined($fields{'Responsible'}) &amp;&amp; $fields{'Responsible'} eq '&lt;default&gt;') {
+      delete $fields{'Responsible'};
+    }
+  
+***************
+*** 786,792 ****
+      {
+        $valign = 'valign=top';
+        $val =~ s/$/&lt;br&gt;/gm;
+!       $val =~ s/&lt;br&gt;$//; # previous substitution added one too many &lt;br&gt;'s
+        $val = mark_urls($val);
+      }
+      print &quot;&lt;tr&gt;&lt;td $valign nowrap&gt;&lt;b&gt;$_:&lt;/b&gt;&lt;/td&gt;\n&lt;td&gt;&quot;,
+--- 786,792 ----
+      {
+        $valign = 'valign=top';
+        $val =~ s/$/&lt;br&gt;/gm;
+!       $val =~ s/&lt;br&gt;$//; # previous substitution added one too many &lt;br&gt;s
+        $val = mark_urls($val);
+      }
+      print &quot;&lt;tr&gt;&lt;td $valign nowrap&gt;&lt;b&gt;$_:&lt;/b&gt;&lt;/td&gt;\n&lt;td&gt;&quot;,
+***************
+*** 2412,2418 ****
+    $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=create&quot; STYLE=&quot;$buttonstyle&quot;&gt;CREATE&lt;/A&gt;&lt;/TD&gt;);
+    $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=query&quot; STYLE=&quot;$buttonstyle&quot;&gt;QUERY&lt;/A&gt;&lt;/TD&gt;);
+    $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=advanced%20query&quot; STYLE=&quot;$buttonstyle&quot;&gt;ADV. QUERY&lt;/A&gt;&lt;/TD&gt;);
+!   $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=login again&quot; STYLE=&quot;$buttonstyle&quot;&gt;LOGIN AGAIN&lt;/A&gt;&lt;/TD&gt;);
+    $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=help&quot; STYLE=&quot;$buttonstyle&quot;&gt;HELP&lt;/A&gt;&lt;/TD&gt;);
+    $row2 .= qq(&lt;/TR&gt;\n);
+    $row2 .= qq(&lt;/TABLE&gt;\n&lt;/TD&gt;\n&lt;/TR&gt;);
+--- 2411,2417 ----
+    $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=create&quot; STYLE=&quot;$buttonstyle&quot;&gt;CREATE&lt;/A&gt;&lt;/TD&gt;);
+    $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=query&quot; STYLE=&quot;$buttonstyle&quot;&gt;QUERY&lt;/A&gt;&lt;/TD&gt;);
+    $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=advanced%20query&quot; STYLE=&quot;$buttonstyle&quot;&gt;ADV. QUERY&lt;/A&gt;&lt;/TD&gt;);
+!   $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=login%20again&quot; STYLE=&quot;$buttonstyle&quot;&gt;LOGIN AGAIN&lt;/A&gt;&lt;/TD&gt;);
+    $row2 .= qq(&lt;TD&gt;&lt;A HREF=&quot;$url&amp;cmd=help&quot; STYLE=&quot;$buttonstyle&quot;&gt;HELP&lt;/A&gt;&lt;/TD&gt;);
+    $row2 .= qq(&lt;/TR&gt;\n);
+    $row2 .= qq(&lt;/TABLE&gt;\n&lt;/TD&gt;\n&lt;/TR&gt;);
+***************
+*** 3130,3136 ****
+  exp = new Date();
+  exp.setTime(exp.getTime() + (1000 * 60 * 60)); // +1 hour
+  setCookie(&quot;gnatsweb-test-cookie&quot;, &quot;whatever&quot;, exp);
+! val = getCookie(&quot;gnatsweb-test-cookie&quot;);
+  delCookie(&quot;gnatsweb-test-cookie&quot;);
+  if (val == null) {
+      document.write(&quot;&lt;h2&gt;Warning: your browser is not accepting cookies!&lt;/h2&gt;&quot;
+--- 3129,3135 ----
+  exp = new Date();
+  exp.setTime(exp.getTime() + (1000 * 60 * 60)); // +1 hour
+  setCookie(&quot;gnatsweb-test-cookie&quot;, &quot;whatever&quot;, exp);
+! val = getCookie(&quot;gnatsweb-test-cookie=1&quot;);
+  delCookie(&quot;gnatsweb-test-cookie&quot;);
+  if (val == null) {
+      document.write(&quot;&lt;h2&gt;Warning: your browser is not accepting cookies!&lt;/h2&gt;&quot;
+***************
+*** 3274,3279 ****
+--- 3273,3280 ----
+    }
+    elsif (defined($cvals{'columns'})) {
+      $global_prefs{'columns'} = $cvals{'columns'};
++   } else {
++     $global_prefs{'columns'} = '';
+    }
+  
+    # DB prefs.
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00119">Date&nbsp;Index</A>] [<a href="subjects.html#00119">Subject&nbsp;Index</a>] [<a href="authors.html#00119">Author&nbsp;Index</a>] [<A HREF="threads.html#00119">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00118.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00118.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00110.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

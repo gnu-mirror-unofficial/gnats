@@ -1,0 +1,175 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: Re: 3.113 vs 4.0 -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 13 Jan 2000 15:34:50 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10001130805120.1851&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 6B1DF6EEBA51D31182F20090274043682C0181@mail&#45;in.comverse&#45;in.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: 3.113 vs 4.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date&nbsp;Index</A>] [<a href="subjects.html#00004">Subject&nbsp;Index</a>] [<a href="authors.html#00004">Author&nbsp;Index</a>] [<A HREF="threads.html#00004">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: 3.113 vs 4.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "Wasserman, Sherry" &lt;sherry dot wasserman at comverse-in dot com&gt;</LI>
+<LI><em>Subject</em>: Re: 3.113 vs 4.0</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 13 Jan 2000 08:23:43 -0700 (MST)</LI>
+<LI><em>cc</em>: "'gnats-devel at sourceware dot cygnus dot com'" &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Thu, 13 Jan 2000, Wasserman, Sherry wrote:
+
+&gt; I was recently charged with the task of incorporating some custom changes
+&gt; into the gnats system my company has been using for many years.  Apparently,
+&gt; years ago, my predecessors managed to get 3.2 (I can hear your groans!)
+&gt; working and made enough changes that upgrading was not desirable.  
+
+Groan!   ;-)
+
+&gt; I have suggested upgrading to the current gnats before adding any new
+&gt; features, and have gotten the ok.  I have started working on 3.113, and know
+&gt; that we can make use of many of the added features.  However, I'm beginning
+&gt; to wonder if I should hold off with customization until I can go to 4.0? 
+
+It's probably an issue of timing. I'd wait if I could.
+
+&gt; Do you have a good estimate of when 4.0 will be released?  
+
+The very first usable release could be real soon now, at least that was
+the plan a week ago.
+
+&gt; What are the major changes? 
+
+I'm not sure if this is written up in a single doc anywhere yet.
+
+&gt; Is there a fairly stable 4.0 that I could start looking at now?
+
+I don't think there is a current tarfile snapshot. There is cvs access to
+the source tree, and instructions on the Cygnus web page.
+
+&gt; We will want to incorporate a web interface.  Will a new version of gnatsweb
+&gt; be required?  If so, is there any info on when that will be ready?
+
+New version, yes. The V4 author mentioned that he has updated gnatsweb, if
+I understand his passing comment correctly.
+
+&gt; And finally, the change we are planning, in case you might be thinking along
+&gt; these lines: 
+&gt; 
+&gt; We need to track PRs by software release.  We want to have multiple release
+&gt; number fields, where the release number is validated (send-pr as well as
+&gt; edit-pr) by checking a file.  Then,  for each release there must be an
+&gt; associated state.  As a PR is acted on for a specific release, the
+&gt; associated state will be changed. When all releases have been taken care of,
+&gt; the PR is closed and an overall state would be set.  (Of course, we will
+&gt; have to be able to query by release number and state and the query will
+&gt; check all of the release fields.)
+
+The first release may not actually allow adding and removing fields, but
+that's certainly the intent. Just about everything is configurable. You
+could, I hope, do something at least as good as this:
+
+Others please jump in here if I'm wrong or missed out some possibilities.
+I'm just going by past plans and talk but haven't worked with the current
+sources yet.
+
+Configure gnats with some number of release fields. Each of these could be
+a simple text field where you type in a release number which would be
+validated against a regular expression (by gnats), or, they could be
+enumerated fields which would appear as radio buttons or a listbox in the
+front-end GUI in which case validated is redundant since the GUI choices
+were built on the fly from a fresh config fetched from the server. (Of
+course the sever is going to validate the choice anyway.) From
+time-to-time you would diddle the enumerated list of release numbers for
+these fields.
+
+My choice would be the enumerated fields, not simple text.
+
+Similarly, you would define some enumerated release-state fields to match
+the release fields. Gnats will supply query capabilities for all of these
+new fields.
+
+If I got the above right, you haven't had to change the gnats core at
+all! Pretty cool, eh? Like I said: I'd wait if I could!
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00005" HREF="msg00005.html">Re: 3.113 vs 4.0</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00003" HREF="msg00003.html">3.113 vs 4.0</A></STRONG>
+<UL><LI><EM>From:</EM> Wasserman, Sherry</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date&nbsp;Index</A>] [<a href="subjects.html#00004">Subject&nbsp;Index</a>] [<a href="authors.html#00004">Author&nbsp;Index</a>] [<A HREF="threads.html#00004">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

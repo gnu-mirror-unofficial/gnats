@@ -1,0 +1,150 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Please ignore my previous email.  Here is the correct patchfile. -->
+<!--X-From-R13: [nepryyr Unaaba <ztnaabaNDrqsrea@rgjbexf.pbz> -->
+<!--X-Date: 8 Feb 2001 04:29:35 &#45;0000 -->
+<!--X-Message-Id: 3A82202B.CE8EA915@RedfernNetworks.com -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Marcelle Gannon - Please ignore my previous email.  Here is the correct patchfile.</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00022">Date&nbsp;Index</A>] [<a href="subjects.html#00022">Subject&nbsp;Index</a>] [<a href="authors.html#00022">Author&nbsp;Index</a>] [<A HREF="threads.html#00022">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00021.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00023.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00021.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Please ignore my previous email.  Here is the correct patchfile.</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: Please ignore my previous email.  Here is the correct patchfile.</LI>
+<LI><em>From</em>: Marcelle Gannon &lt;mgannon at RedfernNetworks dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 08 Feb 2001 15:27:23 +1100</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Sorry about the previous email.  This is the first time I have submitted
+a patch and I am not yet too familiar with cvs.  This patch is to fix a
+buffer overrun problem in files.c in the function get_class_enum_field()
+which can cause a crash when the number of classes in the classes file
+becomes too large.  Hope you find it useful.
+
+--
+Marcelle Gannon
+Graduate Engineer
+Redfern Broadband Networks
+A member of the Redfern Photonics Pty Ltd group of companies
+
+Lvl. 1,
+1 Central Avenue,
+Australian Technology Park,
+Eveleigh NSW 1430
+Australia
+
+Tel: +61 (2) 9209 4860
+Fax: +61 (2) 9209 4992
+E-Mail: mgannon@RedfernNetworks.com
+
+</PRE>
+<PRE>
+Index: files.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/Attic/files.c,v
+retrieving revision 1.1.1.2.4.1
+diff -u -p -r1.1.1.2.4.1 files.c
+--- files.c	1999/09/21 23:18:39	1.1.1.2.4.1
++++ files.c	2001/02/08 04:26:03
+@@ -533,12 +533,20 @@ get_class_type (class)
+ }     
+ 
+ /* get_class_enum_field - return a string of bar-separated classes */
++/* Modifications by Marcelle Gannon, 19/01/01 to fix up buffer overrun */
++/* problem to allow unlimited number of classes                    */
+    
+ char *
+ get_class_enum_field ()
+ {
+   Classes *c;
+-  char line[STR_MAX];
++  char *line, *trimline;
++  int totlen = 0;            /* count up the length of the string required first */
++  c = class_chain;
++  totlen += (strlen(c-&gt;key) + 1);         /* +1 for the \0  */
++  for (c = c-&gt;next; c; c = c-&gt;next)
++      totlen += (strlen(c-&gt;key) + 3);     /* +3 for the " | " characters */
++  line = xmalloc(totlen * sizeof(char)); 
+   line[0] = '\0';
+   c = class_chain;
+   strcat (line, c-&gt;key);
+@@ -547,7 +555,9 @@ get_class_enum_field ()
+       strcat (line,  " | ");
+       strcat (line, c-&gt;key);
+     }
+-  return (strdup (line));
++  trimline = strdup(line);    /* probably don't need to do this step, included as */
++  xfree(line);                 /* strdup was used in the previous version          */
++  return trimline;
+ }
+ 
+ /*  init_states - reads and parses the whole states file
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00022">Date&nbsp;Index</A>] [<a href="subjects.html#00022">Subject&nbsp;Index</a>] [<a href="authors.html#00022">Author&nbsp;Index</a>] [<A HREF="threads.html#00022">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00021.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00023.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00021.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

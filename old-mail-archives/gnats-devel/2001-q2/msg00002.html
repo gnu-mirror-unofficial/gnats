@@ -1,0 +1,132 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: GNATS' handling of long mail subject lines -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 3 Apr 2001 17:12:12 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.12.2.20010403185705.00bc2248@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - GNATS' handling of long mail subject lines</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date&nbsp;Index</A>] [<a href="subjects.html#00002">Subject&nbsp;Index</a>] [<a href="authors.html#00002">Author&nbsp;Index</a>] [<A HREF="threads.html#00002">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00001.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00111.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>GNATS' handling of long mail subject lines</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: GNATS' handling of long mail subject lines</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 03 Apr 2001 19:11:17 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The MIME script I submitted has one very positive side-effect: It works 
+around GNATS' inability to handle long mail subject headers that are split 
+over several lines.
+
+The problem is as follows: The RFCs describing e-mail and e-mail headers 
+(822 and 2047) allow for the possibility of splitting long headers across 
+several lines. The splitting is done by adding CRLF and then a space on the 
+next line, before the header itself continues.
+
+A long &quot;Subject:&quot; header might thus look like this:
+
+Subject: This is a PR with an extremely long subject line.
+  It keeps going on and on and on and on and on and on and
+  on and on and on and on and on and on and on and on and
+  on and on and on and on and on and on and on and on all
+  the way until it stops
+
+The MIME script I wrote removes the extra CRLF and space, placing the 
+entire header text on a single line. GNATS seems perfectly happy with that.
+
+If this kind of header is fed directly into GNATS, as in a standard 
+plain-vanilla installation, all kinds of strangeness results. For instance, 
+the index is messed up, so that queries return garbage. See 
+<A  HREF="http://sources.redhat.com/cgi-bin/gnatsweb.pl?cmd=view&amp;pr=161&amp;database=gnats">http://sources.redhat.com/cgi-bin/gnatsweb.pl?cmd=view&amp;pr=161&amp;database=gnats</A> 
+for more details.
+
+The upshot of this is that mail parsing in GNATS itself needs to be 
+improved. This shouldn't be too much of a challenge for someone with a bit 
+of experience with C (I am, unfortunately NOT one of those). It should be 
+done independently of implementation of MIME handling and other 
+internationalization.
+
+Anyone feel up to the challenge? I may be able to provide a little bit of 
+further help if someone wants to take it on. In the meantime, the MIME 
+script provides a temporary workaround.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00111" href="msg00111.html">Re: GNATS' handling of long mail subject lines</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date&nbsp;Index</A>] [<a href="subjects.html#00002">Subject&nbsp;Index</a>] [<a href="authors.html#00002">Author&nbsp;Index</a>] [<A HREF="threads.html#00002">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00001.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00111.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

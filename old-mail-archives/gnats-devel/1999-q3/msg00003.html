@@ -1,0 +1,241 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: Re: proclamation of intent -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 18 Aug 1999 19:36:52 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.9908181250580.26990&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 199908181821.LAA02046@tristam.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: proclamation of intent</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00003">Date Index</A>] [<a href="subjects.html#00003">Subject Index</a>] [<a href="authors.html#00003">Author Index</a>] [<A HREF="threads.html#00003">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00002.html">Date Prev</A>]&nbsp;[<A HREF="msg00004.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00002.html">Thread Prev</A>]&nbsp;[<A HREF="msg00004.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: proclamation of intent</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Bob Manson &lt;bmanson@juniper.net&gt;</LI>
+<LI><em>Subject</em>: Re: proclamation of intent</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm@vsl.com&gt;</LI>
+<LI><em>Date</em>: Wed, 18 Aug 1999 13:34:30 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel@sourceware.cygnus.com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Wed, 18 Aug 1999, Bob Manson wrote:
+
+Great news!
+
+&gt; The plan is to have all information that describe fields live in a
+&gt; struct (currently it's all done as extensions of PR_entry, tho this
+&gt; will probably change), rather than hard-coded throughout the sources.
+&gt; This work is mostly complete.  Some fields have special meaning to
+&gt; gnats, such as Number, Category, Submitter, State, Last-Modified,
+&gt; etc. and thus their presence will remain hardcoded, but wherever
+&gt; possible fields will be user-configurable, and it will certainly be
+&gt; possible to add new fields via a configuration file.
+
+Sounds good.
+
+&gt; The clients will need to obtain the list of valid fields and their
+&gt; datatypes by doing appropriate queries.  Perhaps it would make sense
+&gt; to add these sorts of functions to query-pr, tho it might be a better
+&gt; idea to have a separate program to do it instead.  Such a client would
+&gt; also be able to do basic field validation (verify that the provided
+&gt; data is valid for an enumerated field).
+
+At this point I can't tell which would be better yet.
+
+&gt; I'm beginning to wonder if it makes sense for the user to invoke
+&gt; query-pr directly.  That is, it may make sense to move some amount of
+&gt; the current functionality that is in query-pr into another program,
+&gt; and have query-pr be a script or some other program that does
+&gt; appropriate formatting of output.
+
+As above, I can't tell yet.
+
+&gt; As a specific example, the various query classes that are currently in
+&gt; query-pr don't exactly make sense to me in a more generic context.
+&gt; That functionality can be easily achieved by putting an appropriate
+&gt; script on top of a query-pr-like program.
+
+By "query classes" do you mean "full", "sql", etc?
+
+&gt; Obviously there will need to be a configuration file that describes
+&gt; the field structure.  That's essentially the main issue I need to
+&gt; resolve now, by coming up with an appropriate design. I'm thinking
+&gt; something along the lines of:
+&gt; 
+
+&gt; 	field "Priority" {
+&gt; 		enum {
+&gt; 			values {
+&gt; 				"high" "medium" "low"
+&gt; 			}
+&gt; 			default "medium"
+&gt; 		}
+&gt; 		query-pr-option "p" "--priority"
+&gt; 		network-query-command "PRIO"
+&gt; 		query-default exact-regexp
+&gt; 	}
+
+This seems OK.
+
+&gt; 	index {
+&gt; 		path "path/relative/to/GNATS_ROOT"
+&gt; 		fields {
+&gt; 			"Submitter"  "Responsible" "State" "Confidential"
+&gt; 			"Severity" "Priority" "Date-Required" "Quarter"
+&gt; 			...
+&gt; 		}
+&gt; 		separator "|"
+&gt; 	}
+
+GNATS would then dynamically decide if any given query required only index
+fields, or if the entire PR text had to be read? It does that now, but
+it's hardwired to know that all but multitext fields are in the index.
+
+&gt; For now, I will also have a query section that will look something like
+&gt; 
+&gt; 	query "Full" {
+&gt; 		fields all
+&gt; 	}
+&gt; 
+&gt; 	query "Summary" {
+&gt; 		printf ("%8s %-8.8s %-8.8s %-9.9s %-9.9s %-8.8s %-10.10s %s",
+&gt; 			"Number", "Responsible", "Category", "State",
+&gt; 			"Severity", "Priority", "Submitter", "Synopsis");
+&gt; 	}
+
+This seems inconsistant. Would this be better:
+
+        query "Summary" {
+                format "%8s %-8.8s %-8.8s %-9.9s %-9.9s %-8.8s %-10.10s %s"
+                fields {
+                       "Number" "Responsible" "Category" "State"
+                       "Severity" "Priority" "Submitter" "Synopsis"
+                {
+        }
+
+This opens an interesting possibility. Couldn't any client then feed
+something similar to the above to [n]query-pr/gnatsd, and thereby define
+it's own query output?
+
+&gt; This is probably all "a bit verbose", but I like files where I can
+&gt; just look at them and have a good idea of exactly what's going on.
+
+Of great interest to front-end writers is the format that query-pr and
+gnatsd would use to send the above info to the client. Obviously, where
+the above examples refer to external admin files, GNATS would send the
+expanded field info, and _not_ a reference to any of these files. 
+
+As a start, this format would want to be reasonable to parse as a list in
+Tcl and perl. Perhaps we need client-selectable formats: tcl, perl, sh,
+csh?
+
+&gt; The new options will come in when new fields are used.  Obviously the
+&gt; current scheme of single-letter options or specific network commands
+&gt; for queries is not extensible or practical; instead, query-pr will have
+&gt; options such as
+&gt; 
+&gt; 	--field-Content --equals "foo"
+&gt; 	--field-Last-Modified --is-less-than "some-date"
+&gt; 
+&gt; I haven't decided the exact syntax of this, but that's the basic idea.
+
+Seems basically OK.
+
+&gt; I'd like to be able to specify inexact matches versus exact matches,
+&gt; and strings versus regexps too.  Maybe I should give up on the idea of
+&gt; trying to do this as a set of options, and make it full expressions.
+
+It sounds like you might just use regexps. An exact match of "RickM" would
+need ^RickM$. An inexact (substring?) might be .*ick.*, *ick*, or just
+ick?
+
+On the other hand, I think I know what you're after. Tcl, for example, has
+a list search command (lsearch) with mode switches of -exact, -glob and
+-regexp.
+
+&gt; I've already added the ability to have boolean expressions to query-pr:
+&gt; 
+&gt; ( --release "3.3" --and --submitter "bar" ) --or --release "3.4"
+
+Cool!
+
+&gt; These changes will necessarily make the network clients incompatible
+&gt; with old servers, and vice-versa.  I don't see much reason to try and
+&gt; make this work.
+
+Agreed.
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00004" HREF="msg00004.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00002" HREF="msg00002.html">proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00003">Date Index</A>] [<a href="subjects.html#00003">Subject Index</a>] [<a href="authors.html#00003">Author Index</a>] [<A HREF="threads.html#00003">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00002.html">Date Prev</A>]&nbsp;[<A HREF="msg00004.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00002.html">Thread Prev</A>]&nbsp;[<A HREF="msg00004.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,46 @@
+From gnats-devel-return-788-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Tue Nov 13 22:54:00 2001
+Return-Path: <gnats-devel-return-788-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 27655 invoked by alias); 13 Nov 2001 22:53:56 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 27607 invoked from network); 13 Nov 2001 22:53:50 -0000
+Received: from unknown (HELO smtp.trd.clustra.com) (194.143.59.98)
+  by sourceware.cygnus.com with SMTP; 13 Nov 2001 22:53:50 -0000
+Received: (qmail 14968 invoked from network); 13 Nov 2001 22:53:47 -0000
+Received: from yngves-vpn.clustra.com (HELO 0dbtq2nsupuzl4u.clustra.com) (10.22.1.3)
+  by maestro.clustra.com with SMTP; 13 Nov 2001 22:53:47 -0000
+Message-Id: <5.1.0.14.2.20011113235320.00bc8bd8@10.10.1.1>
+X-Sender: yngves@10.10.1.1
+X-Mailer: QUALCOMM Windows Eudora Version 5.1
+Date: Tue, 13 Nov 2001 23:54:33 +0100
+To: Gerald Pfeifer <pfeifer@dbai.tuwien.ac.at>,
+ <gnats-devel@sources.redhat.com>,"Joseph S. Myers" <jsm28@cam.ac.uk>
+From: Yngve Svendsen <yngve.svendsen@clustra.com>
+Subject: Re: gnatsweb PR status change messages
+In-Reply-To: <Pine.BSF.4.33.0111132228090.38674-100000@pulcherrima.dbai.
+ tuwien.ac.at>
+References: <Pine.LNX.4.33.0111121751100.17260-100000@kern.srcf.societies.cam.ac.uk>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+
+At 22:29 13.11.2001 +0100, Gerald Pfeifer wrote:
+>Thanks!
+>
+>Yngve, we now have this patch in production on gcc.gnu.org and it works
+>as expected -- unless there are strong reasons against, I recommend to
+>include it for the 2.9x branch.
+>
+>(If you want, I can create a ChangeLog and apply the patch.)
+
+Gerald, please do. I have no idea why this wasn't working properly in 
+previous 2.9.x versions. Seems it's time for a 2.9.3 pretty soon.
+
+- Yngve
+

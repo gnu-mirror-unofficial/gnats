@@ -1,0 +1,59 @@
+From gnats-devel-return-792-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Wed Nov 14 23:31:06 2001
+Return-Path: <gnats-devel-return-792-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 23718 invoked by alias); 14 Nov 2001 23:31:04 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 23697 invoked from network); 14 Nov 2001 23:31:02 -0000
+Received: from unknown (HELO smtp.trd.clustra.com) (194.143.59.98)
+  by sourceware.cygnus.com with SMTP; 14 Nov 2001 23:31:02 -0000
+Received: (qmail 1526 invoked from network); 14 Nov 2001 23:31:00 -0000
+Received: from yngves-vpn.clustra.com (HELO 0dbtq2nsupuzl4u.clustra.com) (10.22.1.3)
+  by maestro.clustra.com with SMTP; 14 Nov 2001 23:31:00 -0000
+Message-Id: <5.1.0.14.2.20011115002730.050fab38@10.10.1.1>
+X-Sender: yngves@10.10.1.1
+X-Mailer: QUALCOMM Windows Eudora Version 5.1
+Date: Thu, 15 Nov 2001 00:31:47 +0100
+To: Lars Henriksen <Lars.Henriksen@netman.dk>
+From: Yngve Svendsen <yngve.svendsen@clustra.com>
+Subject: Re: Gnats 4.0/Gnatsweb 4.0 migration problems.
+Cc: Bug-gnats mailing list <bug-gnats@gnu.org>,
+ Gnats development mailing list <gnats-devel@sourceware.cygnus.com>
+In-Reply-To: <20011106164320.B9248@teapot.netman.dk>
+References: <5.1.0.14.2.20011106145913.04899c18@mail.trd.clustra.com>
+ <20011106141848.A19049@teapot.netman.dk>
+ <5.1.0.14.2.20011106145913.04899c18@mail.trd.clustra.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+
+At 16:43 06.11.2001 +0100, Lars Henriksen wrote:
+> > GNATS apparently no longer needs to know its own mail address since PR
+> > submission is by default done by speaking directly to the GNATS network
+> > daemon, gnatsd. Thus, GNATS_ADDR is also obsolete. The same applies to
+> > GNATS_USER.
+>
+>Yes, "by default". But the old mail interface is still available as an
+>alternative in send-pr and therefore needs a per database mail aliases?
+>But I can see from the 4.0 manual and from send-pr itself that there is
+>some discrepancies to be resolved :-) By the way, section 3.5 should explain
+>that the role of the mail address has changed (or maybe some other section).
+
+The role of the mail aliases has not changed as such, except that remote 
+tools are now free to speak directly to the GNATS daemon. People can still 
+send mail to the aliases and have it filed into the database, just as in 
+GNATS 3.
+
+The reason why GNATS_ADDR is obsolete is that send-pr now has its own 
+configuration file (which is not documented yet -- the send-pr 
+documentation is about the only part of the manual that is still to be 
+revised), and the rest of GNATS needn't know about the PR submission address.
+
+Yngve Svendsen
+GNATS 4 doc guy
+

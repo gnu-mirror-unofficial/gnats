@@ -1,0 +1,127 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: Re: Setting CC on reports via email -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 8 Mar 2000 22:35:16 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10003081527230.10835&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 200003082134.WAA01063@loewis.home.cs.tu&#45;berlin.de -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Setting CC on reports via email</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00028">Date&nbsp;Index</A>] [<a href="subjects.html#00028">Subject&nbsp;Index</a>] [<a href="authors.html#00028">Author&nbsp;Index</a>] [<A HREF="threads.html#00028">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00027.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00029.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00027.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00031.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Setting CC on reports via email</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: &quot;Martin v. Loewis&quot; &lt;martin at loewis dot home dot cs dot tu-berlin dot de&gt;</LI>
+<LI><em>Subject</em>: Re: Setting CC on reports via email</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Wed, 8 Mar 2000 15:34:15 -0700 (MST)</LI>
+<LI><em>cc</em>: gnats-devel at sourceware dot cygnus dot com, bug-gnats at gnu dot org</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Wed, 8 Mar 2000, Martin v. Loewis wrote:
+
+&gt; I noticed gnatsweb has a feature for keeping a list of additional
+&gt; people to notify on status changes in a PR (CC these people on PR
+&gt; status email). I have two questions about this feature:
+&gt; 
+&gt; 1. Is it reliable? I.e. will the notification work regardless of
+&gt;    whether the change is made via gnatsweb, via or edit-pr?
+
+The CC list in gnatsweb (called "Notify-List" in TkGnats) is actually the
+X-GNATS-Notify "mail header" of GNATS PR's. As long as you have the latest
+gnats version (3.113), it works fine.
+
+It appears this is still the same in GNATS v4.
+
+&gt; 2. Is it available on creation of a report via email as well? If so,
+&gt;    how can I set the CC list when creating a PR.
+
+Just add it to the email headers. Here is an example:
+
+From: ...
+Reply-To: ...
+To: bugs
+Subject: Tad needs get out of jail free card
+X-Send-Pr-Version: tkgnats-3.0.17
+X-GNATS-Notify: mark@example.com, joe@example.com
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00031" HREF="msg00031.html">Re: Setting CC on reports via email</A></STRONG>
+<UL><LI><EM>From:</EM> Martin v. Loewis</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00027" HREF="msg00027.html">Setting CC on reports via email</A></STRONG>
+<UL><LI><EM>From:</EM> Martin v. Loewis</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00028">Date&nbsp;Index</A>] [<a href="subjects.html#00028">Subject&nbsp;Index</a>] [<a href="authors.html#00028">Author&nbsp;Index</a>] [<A HREF="threads.html#00028">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00027.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00029.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00027.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00031.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

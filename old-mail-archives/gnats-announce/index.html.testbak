@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>The gnats-announce mailing list archives</title>
+</head>
+<body>
+
+<h1>The gnats-announce mailing list archives</h1>
+
+For information about this project, please see the <a href="/gnats/">
+GNATS project web page</a>.
+
+<p>
+<form method="get" action="/cgi-bin/htsearch"> 
+  <input type="hidden" name="method" value="and"> 
+  <input type="hidden" name="format" value="builtin-long"> 
+  <input type="hidden" name="sort" value="time"> 
+  <input type="hidden" name="config" value="htdig"> 
+  <input type="hidden" name="restrict" value="/ml/gnats-announce/"> 
+  <input type="hidden" name="exclude" value=""> 
+  Search this list:
+  <input type="text" size="12" name="words" value=""> 
+  <input type="submit" value="Search">
+</form> 
+
+<ul>
+<!--newyearsgohere-->
+   <li><a href="2000/">2000</a>
+   <li><a href="1999/">Archive for 1999</a>
+</ul>
+
+</body>
+</html>

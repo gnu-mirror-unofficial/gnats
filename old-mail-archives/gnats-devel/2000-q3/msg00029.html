@@ -1,0 +1,146 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: Problems with GNATS -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 18 Sep 2000 03:17:04 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10009172002170.9942&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 1446b15e23.15e231446b@mysun.om -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Problems with GNATS</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00029">Date&nbsp;Index</A>] [<a href="subjects.html#00029">Subject&nbsp;Index</a>] [<a href="authors.html#00029">Author&nbsp;Index</a>] [<A HREF="threads.html#00029">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00028.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00030.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00028.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00030.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Problems with GNATS</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Mehul Sanghvi &lt;msanghvi at mysun dot com&gt;</LI>
+<LI><em>Subject</em>: Re: Problems with GNATS</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Sun, 17 Sep 2000 21:11:00 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Thu, 14 Sep 2000, Mehul Sanghvi wrote:
+
+&gt; I have a machine which acts as my mailhost.
+&gt; I have a seperate machine gnatshost. 
+
+I have the same setup myself.
+
+&gt; So the /etc/aliases file that needs to be setup cirrectly is the one
+&gt; on my mailhost/webhost or the one on my gnatshost ?  I currently have
+&gt; it setup correctly on my gnatshost.  Is there a way for Gnatsweb to
+&gt; use gnatshost as the mail system ?  Currently all systems are setup to
+&gt; relay mail to the mailhost.  On the mailhost, I have /etc/aliases
+&gt; setup to forward to the gnatshost like so:
+&gt; 
+&gt;     gnats:  gnats@gnatshost
+
+No, mail is mail and the alias should be on the mailhost and gnatshost
+relays mail to mailhost just like every other machine.
+
+I'm assuming that the gnats database directories are mountable on
+mailhost...
+
+&gt; But I do not seem to be seeing anything on gnatshost.  The /etc/aliases
+&gt; entries on gnatshost are of the form:
+&gt; 
+&gt;     gnats:  /path/to/query-pr -d /psth/to/database -q
+&gt; 
+&gt; I might have made syntax errors above, but they are correct in the real
+&gt; file.  I am just doing this off the top of my head.
+
+That's close (you probably have it right):
+
+gnats:  "| /usr/local/libexec/gnats/queue-pr -d /path/to/gnats-db -q"
+
+&gt; Should I be doing anything at all with /etc/aliases on mailhost ?  Or
+&gt; just on gnatshost ?  Or on both systems, like I am doing now ?
+
+As above, just on mailhost.
+
+&gt; For the existing PRs in that we already have in GNATS,  I get no
+&gt; notifications whatsoever (I am the gnats-admin and gnats-admin is setup
+&gt; to be the responsible person at all levels, at least while we are
+&gt; testing GNATS out).  I have DEBUG mode enabled,  NOTIFICATION is
+&gt; enabled.  Is there a cron job or something I need to run ?  And how does
+&gt; GNATS generate a new index automagically ?  According to the
+&gt; documentation I should not have to touch gnats-admin/index or
+&gt; gnats-admin/current.
+
+Let's get the mail going first and see what happens. You shouldn't ever
+need to touch index or current.
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00027" HREF="msg00027.html">Re: Problems with GNATS</A></STRONG>
+<UL><LI><EM>From:</EM> Mehul Sanghvi</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00029">Date&nbsp;Index</A>] [<a href="subjects.html#00029">Subject&nbsp;Index</a>] [<a href="authors.html#00029">Author&nbsp;Index</a>] [<A HREF="threads.html#00029">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00028.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00030.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00028.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00030.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,123 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: PATCH: gnatsweb.pl and redirects -->
+<!--X-From-R13: Urenyq Bsrvsre <csrvsreNqonv.ghjvra.np.ng> -->
+<!--X-Date: 10 Jan 2001 02:27:00 &#45;0000 -->
+<!--X-Message-Id: Pine.BSF.4.31.0101100324370.67765&#45;100000@deneb.dbai.tuwien.ac.at -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Gerald Pfeifer - PATCH: gnatsweb.pl and redirects</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00001">Date&nbsp;Index</A>] [<a href="subjects.html#00001">Subject&nbsp;Index</a>] [<a href="authors.html#00001">Author&nbsp;Index</a>] [<A HREF="threads.html#00001">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00000.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00000.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: gnatsweb.pl and redirects</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</LI>
+<LI><em>Subject</em>: PATCH: gnatsweb.pl and redirects</LI>
+<LI><em>From</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</LI>
+<LI><em>Date</em>: Wed, 10 Jan 2001 03:26:42 +0100 (CET)</LI>
+<LI><em>cc</em>: Mark Kuchel &lt;mark at kuchel dot net&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The first patch I installed as gnatsweb maintainer. ;-)
+
+2000-12-29  Mark Kuchel  &lt;mark@kuchel.net&gt;
+	    Gerald Pfeifer  &lt;pfeifer@dbai.tuwien.ac.at&gt;
+
+	* gnatsweb.pl (main): Add an explicit link to the automatic
+	redirection page.
+
+This helps browsers, where the automatic redirect does not work. Thanks
+Mark!
+
+More to come...
+
+Gerald
+
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvs/gnats/gnats/contrib/gnatsweb/gnatsweb.pl,v
+retrieving revision 2.18
+diff -u -3 -p -r2.18 gnatsweb.pl
+--- gnatsweb.pl	2000/04/25 23:08:19	2.18
++++ gnatsweb.pl	2001/01/10 02:21:37
+@@ -3060,7 +3060,11 @@ sub main
+       }
+       print "&lt;/pre&gt;&lt;/font&gt;&lt;hr&gt;\n";
+     }
+-    print $q-&gt;h3("hold on...redirecting"),
++    # Add a link to the new URL. In case the refresh/redirect above did not
++    # work, at least the user can select the link manually.
++    print $q-&gt;h3("Hold on... Redirecting...&lt;br&gt;".
++                 "In case it does not work automatically, please follow ".
++                 "&lt;a href=\"$url\"&gt;this link&lt;/a&gt;."),
+     $q-&gt;end_html();
+     exit();
+   }
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00001">Date&nbsp;Index</A>] [<a href="subjects.html#00001">Subject&nbsp;Index</a>] [<a href="authors.html#00001">Author&nbsp;Index</a>] [<A HREF="threads.html#00001">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00000.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00000.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

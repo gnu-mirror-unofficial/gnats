@@ -1,0 +1,133 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: GNATS installation -->
+<!--X-From-R13: "Gzn D" <hznNpzbfpuvcf.pbz> -->
+<!--X-Date: 11 Jul 2001 22:23:08 &#45;0000 -->
+<!--X-Message-Id: NFBBKKJOOOFPOFEJFANIIELCCBAA.uma@cmoschips.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Uma R - GNATS installation</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00039">Date&nbsp;Index</A>] [<a href="subjects.html#00039">Subject&nbsp;Index</a>] [<a href="authors.html#00039">Author&nbsp;Index</a>] [<A HREF="threads.html#00039">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00038.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00040.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00038.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00040.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>GNATS installation</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;GNATS&quot; &lt;gnats-devel at sourceware dot cygnus dot com&gt;</li>
+<li><em>Subject</em>: GNATS installation</li>
+<li><em>From</em>: &quot;Uma R&quot; &lt;uma at cmoschips dot com&gt;</li>
+<li><em>Date</em>: Wed, 11 Jul 2001 15:27:59 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+Hi,
+  I have added the support category into the etc/inetd.conf file also as per
+the installation guide. By the way this
+is for solaris installation. GNATS is compatible both for solaris as well as
+linux is it...In Linux i dint have inetd.conf
+file in /etc and so I created one and added the line but it says connection
+refused in the browser when i tried to
+connect it. Please do bear with me as this is a critical thing for us to
+have GNATS tool right now.
+
+Uma
+
+-----Original Message-----
+From: Yngve Svendsen [<A  HREF="mailto:yngve.svendsen@clustra.com">mailto:yngve.svendsen@clustra.com</A>]
+Sent: Wednesday, July 11, 2001 2:58 PM
+To: Uma R; gnats-devel@sourceware.cygnus.com
+Subject: Re: GNATS installation
+
+
+At 14:50 11.07.2001 -0700, Uma R wrote:
+
+&gt;  Kindly help me what could be the problem. The main problem what i
+&gt;feel is connection refused error message is given. Why it is giving
+&gt;  so.
+&gt;
+&gt;  Even when i do telnet to the localhost at port 1529 like,
+&gt;  &quot;telnet localhost 1529&quot;
+&gt;the connection gets refused. But this entry is there in the /etc/services
+&gt;file.
+&gt;
+&gt;Also is the database in-built with GNATS itself???
+&gt;PLEASE FOLLOW-UP THIS PROBLEM AS THIS IS A SERIOUS ISSUE FOR MANY OTHERS
+&gt;TOO.
+
+(hey, go easy on that Caps-lock key)
+
+GNATS manages its own database -- it is simply a directory hierarchy where
+the PRs reside in separate files in this structure.
+
+You seem not to have set up your inetd.conf file properly. You need to
+retrace the steps in the GNATS installation chapter of the manual and check
+your entry in inetd.conf.
+
+Yngve Svendsen
+Gnatswbe maintainer
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00039">Date&nbsp;Index</A>] [<a href="subjects.html#00039">Subject&nbsp;Index</a>] [<a href="authors.html#00039">Author&nbsp;Index</a>] [<A HREF="threads.html#00039">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00038.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00040.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00038.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00040.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: how to install gnatsweb??? -->
+<!--X-From-R13: Irf Pneevf <jrfoNargjbexpf.pbz> -->
+<!--X-Date: 20 Mar 2001 14:50:59 &#45;0000 -->
+<!--X-Message-Id: 20010320085049.B32445@us.networkcs.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20010319102059.A74330@us.networkcs.com -->
+<!--X-Reference: Pine.BSF.4.33.0103191737190.22313&#45;100000@taygeta.dbai.tuwi en.ac.at -->
+<!--X-Reference: 5.1.0.10.2.20010319180145.00b3b878@10.10.1.1 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Wes Barris - Re: how to install gnatsweb???</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00083">Date&nbsp;Index</A>] [<a href="subjects.html#00083">Subject&nbsp;Index</a>] [<a href="authors.html#00083">Author&nbsp;Index</a>] [<A HREF="threads.html#00083">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00082.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00084.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00082.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00070.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: how to install gnatsweb???</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Re: how to install gnatsweb???</li>
+<li><em>From</em>: Wes Barris &lt;wesb at networkcs dot com&gt;</li>
+<li><em>Date</em>: Tue, 20 Mar 2001 08:50:49 -0600</li>
+<li><em>Cc</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;, Wes Barris &lt;wes at networkcs dot com&gt;,       gnats-devel at sourceware dot cygnus dot com</li>
+<li><em>References</em>: &lt;<a href="msg00066.html">20010319102059.A74330@us.networkcs.com</a>&gt; &lt;Pine.BSF.4.33.0103191737190.22313-100000@taygeta.dbai.tuwi en.ac.at&gt; &lt;<a href="msg00069.html">5.1.0.10.2.20010319180145.00b3b878@10.10.1.1</a>&gt;</li>
+<li><em>Reply-To</em>: Wes Barris &lt;wes at networkcs dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Mon, Mar 19, 2001 at 06:05:49PM +0100, Yngve Svendsen wrote:
+&gt; 
+&gt; 2.7 beta works perfectly well with GNATS 3.x
+&gt; 
+&gt; Wes Barris &lt;wes@networkcs.com&gt; wrote:
+&gt; &gt;5) make test USERNAME=anon PASSWORD=pw DATABASE=db_alias
+&gt; 
+&gt; db_alias is the primary name or one of the alias names of your database, as 
+&gt; specified in gnats-db.conf, and specifying that correctly should help.
+&gt; 
+&gt; Hope this helps,
+
+I figured it out!  You mentioned a &quot;gnats-db.conf&quot; file.  I didn't
+have one.  When I created one and put it in the /etc directory, it
+worked.  A lot of you gnatsweb users will probably say: &quot;Well DUH!!!&quot;.
+
+The thing is, I have never used gnatsweb (or gnats for that matter)
+before.  /etc/gnats-db.conf is not installed via the &quot;make&quot; procedure.
+Nothing is said about this file in the documentation.  A new user
+like me has no way of knowing anything about this file.
+
+After receiving the above email, I used the unix &quot;find&quot; command to
+locate the gnats-db.conf file in the .tar.gz distribution.  The only
+way I knew where to place this file was because of the first comment
+in the file:
+
+   # sample /etc/gnats-db.conf file
+   # list of GNATS databases and aliases
+   # Field 1 - fully qualified path to database
+   # Field 2 - a comma separated list of aliases
+   /var/lib/gnats/gnats-db:normal,standard,regular
+   #/var/lib/gnats/alternate-db:alt
+   #/home/gnats/special-db:special
+
+The database line even needs to be fixed to work with the default
+installation.  Information about this file really needs to be made
+available somewhere if people are expected to be able to install
+this stuff.
+
+
+
+&gt; 
+&gt; Yngve Svendsen
+&gt; IS Engineer
+&gt; Clustra AS, Trondheim, Norway
+&gt; yngve.svendsen@clustra.com
+
+-- 
+-----------------------------------------------------------------------
+Wes Barris                                            wes@networkcs.com
+Network Computing Services, Inc.                           612.626.8090
+-----------------------------------------------------------------------
+Today's fortune: Life is a game of bridge -- and you've just been
+finessed.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00066" href="msg00066.html">how to install gnatsweb???</a></strong>
+<ul><li><em>From:</em> Wes Barris</li></ul></li>
+<li><strong><a name="00069" href="msg00069.html">Re: how to install gnatsweb???</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00083">Date&nbsp;Index</A>] [<a href="subjects.html#00083">Subject&nbsp;Index</a>] [<a href="authors.html#00083">Author&nbsp;Index</a>] [<A HREF="threads.html#00083">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00082.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00084.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00082.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00070.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

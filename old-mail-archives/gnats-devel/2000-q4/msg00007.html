@@ -1,0 +1,147 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: Is anybody looking at PRs submitted to gnats&#45;gnats at all? -->
+<!--X-From-R13: Egrssra Acry <bcryNehzzf.hav&#45;znaaurvz.qr> -->
+<!--X-Date: 17 Oct 2000 10:54:46 &#45;0000 -->
+<!--X-Message-Id: 2ae00cae.u10t12e.1d4c4&#45;opel@dial&#45;in134.rz.uni&#45;mannheim.de -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: msanghvi@yahoo.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Is anybody looking at PRs submitted to gnats-gnats at all?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00007">Date&nbsp;Index</A>] [<a href="subjects.html#00007">Subject&nbsp;Index</a>] [<a href="authors.html#00007">Author&nbsp;Index</a>] [<A HREF="threads.html#00007">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00006.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00006.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Is anybody looking at PRs submitted to gnats-gnats at all?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: Re: Is anybody looking at PRs submitted to gnats-gnats at all?</LI>
+<LI><em>From</em>: Steffen Opel &lt;opel at rumms dot uni-mannheim dot de&gt;</LI>
+<LI><em>Date</em>: Tue, 17 Oct 0 12:53:04 +0200</LI>
+<LI><em>Organization</em>: Not an Organization</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Oct 16 Mehul (Mehul N. Sanghvi) wrote:
+
+&gt; Where does one get the 4.0 sources ?
+
+You'll have to check them out yourself anonymously from the GNATS CVS 
+repository at redhat (cygnus), as documented at the GNATS website 
+(<A  HREF="http://sources.redhat.com/gnats">http://sources.redhat.com/gnats</A>):
+
+Initialize your anonymous login account (enter anoncvs as password)
+
+	$ cvs -d :pserver:anoncvs@anoncvs.cygnus.com:/cvs/gnats login
+
+Checkout the GNATS sources
+
+	$ cvs -z9 -d :pserver:anoncvs@anoncvs.cygnus.com:/cvs/gnats co -P gnats
+
+&gt; And how easy is it to upgrade from the latest 3.xxx release ?
+
+This I don't know, I have started my current project from scratch.
+
+&gt; Is the problem with gen-index generating duplicate entries if previous 
+&gt; entries have something missing, fixed in 4.0 ?
+
+I don't know either, but apparently the index functionality has ben rewritten 
+to support binary indices, which are ways faster than the ones in the past; 
+given the quality of Bobs great rewrite project I'd be confident that this 
+works :-)
+
+&gt; Also does Gnatsweb work with 4.0 ?  That would be important, as that is
+&gt; the interface we will be deploying throughout the company (except for
+&gt; my desktop which will have good old emacs support :) )
+
+Basically yes, but there are a few problems (severity depending on your 
+needs), like for example access level problems as documented in PR 108:
+	
+<A  HREF="http://sources.redhat.com/cgi-bin/gnatsweb.pl?cmd=view&amp;pr=108&amp;database=gnats&amp;user=guest&amp;password=guest">http://sources.redhat.com/cgi-bin/gnatsweb.pl?cmd=view&amp;pr=108&amp;database=gnats&amp;user=guest&amp;password=guest</A>
+
+I'm eventually going to fix all of those I'll encounter over time, if at all 
+possible (the 108 problem depends on GNATS 4 itself, hence a response from 
+the GNATS maintainer is required to provide a decent solution); but since I'm 
+doing this for a spare time project at the moment there are no guarantees and 
+schedules at all, no business should rely on this!
+
+Another problem here seems to be that the maintainer of Gnatsweb apparently 
+has not only dropped the project but is unreachable too, making the 
+probably needed move to a new maintainer a bit more difficult.  Consequently 
+there will be the problem again with collecting/publishing patches to 
+gnatsweb in a coordinated manner rather than just sending them to this list 
+here and there.
+
+Ciao,
+Steffen
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00008" HREF="msg00008.html">Re: Is anybody looking at PRs submitted to gnats-gnats at all?</A></STRONG>
+<UL><LI><EM>From:</EM> David H. Thornley</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00007">Date&nbsp;Index</A>] [<a href="subjects.html#00007">Subject&nbsp;Index</a>] [<a href="authors.html#00007">Author&nbsp;Index</a>] [<A HREF="threads.html#00007">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00006.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00006.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,164 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Gnatsweb 4 ChangeLog -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 8 Aug 2001 13:06:33 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010808145323.049015e8@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Gnatsweb 4 ChangeLog</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00087">Date&nbsp;Index</A>] [<a href="subjects.html#00087">Subject&nbsp;Index</a>] [<a href="authors.html#00087">Author&nbsp;Index</a>] [<A HREF="threads.html#00087">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00086.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00088.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00086.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00068.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Gnatsweb 4 ChangeLog</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Gnatsweb 4 ChangeLog</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Wed, 08 Aug 2001 15:03:12 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Major work has been done on Gnatsweb in the last few weeks, and several 
+much-requested features have been added (a top-of-the-page navigation bar 
+and logout functionality among them). I believe that we're now almost 
+feature-complete with respect to what I plan to put into Gnatsweb 4.0. The 
+current version number is now 3.97. Please note that this version of 
+Gnatsweb will only work with GNATS 4.
+
+Gnatsweb development is hosted at the savannah.gnu.org CVS repository, but 
+since version 3.97 represents a bit of a milestone, it has also been 
+committed to the contrib directory of the head branch of the GNATS 
+repository at sources.redhat.com. See <A  HREF="http://sources.redhat.com/gnats/">http://sources.redhat.com/gnats/</A> for 
+further information on how to get GNATS 4 from CVS.
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+
+
+ChangeLog since last posting to this list about two weeks ago:
+
+2001-08-08  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl: ($VERSION): Change to 3.97 -- we're nearly
+           4.0 feature-complete now.
+
+         * gnatsweb.pl: Replace the Login Again functionality with a Log
+           Out function:
+         - Replace all occurences of &quot;login again&quot; with &quot;logout&quot;.
+         - (main_page): Change the &quot;Login Again&quot; label to &quot;Log Out / Change
+           Database&quot;.
+         - (cmd_logout): New subroutine. Clears the db_prefs cookie and
+           redirects the user to the login page.
+         - (main): Call cmd_logout instead of going directly to login_page.
+
+         * gnatsweb.pl: Add a navigation bar just below the page banner:
+         - $site_button_background and $site_button_foreground. New
+           variables initialized to black and white resp.
+         - (page_start_html): Rewrite to display button bar and generally
+           clean up the code, with clearer style declarations.
+         - (login_page): Call page_start_html with an additional parameter
+           set to '1'. Prevents the button bar from being displayed on this
+           page.
+
+2001-08-07  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (download_attachment): Fix a syntax error which
+         prevented attachment downloading from working properly.
+
+         * Cleanup to get rid of strict warnings:
+         gnatsweb.pl: Change initial definition of
+         $no_create_without_access from undef to ''.
+         - (submitedit, main, mark_urls, display_query_results, unparsepr):
+           Add some || '' constructs. Fixes a bunch of 'uninitialized
+           value' warnings.
+         - (param2field): Correctly translate 'PR' to 'Number'.  Remove
+           warn statement as it makes little sense with GNATS 4
+           configurable fields.
+
+2001-07-26  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (display_query_results): Use cellspacing 0 and
+           cellpadding 1. Makes table a tad more readable.
+
+         * gnatsweb.pl (page_start_html): Redesign the banner. Different
+         typeface, different size. This is done so that we no longer need
+         to keep separate styles based on browser and platform - things
+         will look fairly similar across the board.
+         - Also, we now print user and access level info in the banner
+         itself, along with the database name.
+         - (page_heading): Stop printing user and access level info in the
+         heading (it now appears in the banner). We now print the page
+         heading inside a simple &lt;H1&gt;, instead of in a table. This makes
+         for cleaner HTML and less space between heading and page content.
+         - Remove the third parameter in calls to page_heading. This used
+         to control whether to print user and access info in the page
+         heading.
+
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00087">Date&nbsp;Index</A>] [<a href="subjects.html#00087">Subject&nbsp;Index</a>] [<a href="authors.html#00087">Author&nbsp;Index</a>] [<A HREF="threads.html#00087">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00086.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00088.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00086.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00068.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,47 @@
+From gnats-devel-return-797-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Thu Nov 15 09:49:57 2001
+Return-Path: <gnats-devel-return-797-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 22054 invoked by alias); 15 Nov 2001 09:49:52 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 21908 invoked from network); 15 Nov 2001 09:49:42 -0000
+Received: from unknown (HELO smtp.trd.clustra.com) (194.143.59.98)
+  by sourceware.cygnus.com with SMTP; 15 Nov 2001 09:49:42 -0000
+Received: (qmail 29156 invoked from network); 15 Nov 2001 09:49:41 -0000
+Received: from yngves-vpn.clustra.com (HELO 0dbtq2nsupuzl4u.clustra.com) (10.22.1.3)
+  by maestro.clustra.com with SMTP; 15 Nov 2001 09:49:41 -0000
+Message-Id: <5.1.0.14.2.20011115104639.00b42f80@10.10.1.1>
+X-Sender: yngves@10.10.1.1
+X-Mailer: QUALCOMM Windows Eudora Version 5.1
+Date: Thu, 15 Nov 2001 10:50:28 +0100
+To: "Uma V" <uma.v@mphasis.com>,<gnats-devel@sourceware.cygnus.com>
+From: Yngve Svendsen <yngve.svendsen@clustra.com>
+Subject: RE: gnats/gnatsweb problem
+In-Reply-To: <78BE7700906EE7438678F9C9152DDEA14B8417@BKOREX01.corp.mphas
+ is.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+
+At 15:14 15.11.2001 +0530, Uma V wrote:
+>hi,
+>i need to know how to add an icon to the gnatsweb.pl file
+>
+>i need the icon as part of the banner text. e.g., i want an plus a
+>banner text in the top heading of each page.
+>
+>plz do let me know as how i can customize it.
+
+You need to do a little bit of Perl programming, modifying the 
+page_start_html subroutine to include whatever you want. Do notice that 
+most web servers can't serve graphics files out of the cgi-bin directory, 
+so you need to locate these under the ordinary document root.
+
+Yngve Svendsen
+Gnatsweb maintainer
+

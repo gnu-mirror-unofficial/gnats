@@ -1,0 +1,220 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Patch for missing timezones in 3.113 -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 20 Feb 2001 19:24:46 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.7.2.20010220202041.00b3d0a0@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Patch for missing timezones in 3.113</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00035">Date&nbsp;Index</A>] [<a href="subjects.html#00035">Subject&nbsp;Index</a>] [<a href="authors.html#00035">Author&nbsp;Index</a>] [<A HREF="threads.html#00035">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00034.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00036.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00034.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00034.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Patch for missing timezones in 3.113</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: Patch for missing timezones in 3.113</LI>
+<LI><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 20 Feb 2001 20:23:19 +0100</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Previously posted to bug-gnats. gnats-devel is probably the right place for 
+patches, so I resend it to this list.
+
+I have also archived the 3.113 patches I have been able to find on 
+<A  HREF="http://sources.redhat.com/gnats">http://sources.redhat.com/gnats</A>.
+
+At 23:11 19.02.2001 +0100, Yngve Svendsen wrote:
+&gt;&gt;At 21:14 19.02.2001 +0100, Milan Zamazal wrote:
+&gt;&gt; &gt;&gt;&gt;&gt;&gt; "JTC" == Jason T Cheng &lt;jason@inetworx.com.ph&gt; writes:
+&gt;&gt;
+&gt;&gt;     JTC&gt; 2.  when i try to change the state of a PR, it returns the ff
+&gt;&gt;     JTC&gt; error Error: parse the ARRIVAL_DATE date: Mon Feb 19 19:10:01
+&gt;&gt;     JTC&gt; PHT 2001.
+&gt;&gt;
+&gt;&gt;I think this is because PHT isn't a valid time zone name (at least from
+&gt;&gt;the point of view of GNATS, I don't know whether time zone names are
+&gt;&gt;standardized anywhere).
+&gt;
+&gt;No standard seems to exist. Many UNIX flavours understand a great range of 
+&gt;abbreviations, but the most exhaustive list I managed to find was from the 
+&gt;documentation for the Perl date manipulation module at 
+&gt;<A  HREF="http://www.cise.ufl.edu/~sbeck/DateManip.html#TIMEZONES">http://www.cise.ufl.edu/~sbeck/DateManip.html#TIMEZONES</A>
+&gt;
+&gt;The missing ones from this list should probably be added to Gnats.
+
+The included patch adds the missing time zones from the web page mentioned 
+above. I am fairly certain that the list in Gnats should be complete after 
+applying this patch. It is against v3.113.
+
+Milan: This patch should be almost directly applicable to getdate.c in 
+Gnats 4 HEAD as well.
+
+Regards,
+
+- Yngve
+
+
+
+
+
+Index: getdate.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/getdate.c,v
+retrieving revision 1.1.1.1.4.1.2.1
+diff -u -p -r1.1.1.1.4.1.2.1 getdate.c
+--- getdate.c   1999/10/27 07:20:25     1.1.1.1.4.1.2.1
++++ getdate.c   2001/02/20 00:01:43
+@@ -1454,12 +1454,14 @@ static TABLE const OtherTable[] = {
+  /* Some of these are commented out because a time_t can't store a float. */
+  static TABLE const TimezoneTable[] = {
+      { "gmt",   tZONE,     HOUR ( 0) }, /* Greenwich Mean */
+-    { "ut",    tZONE,     HOUR ( 0) }, /* Universal (Coordinated) */
++    { "ut",            tZONE,     HOUR ( 0) }, /* Universal (Coordinated) */
+      { "utc",   tZONE,     HOUR ( 0) },
+      { "wet",   tZONE,     HOUR ( 0) }, /* Western European */
++    { "west",  tZONE,     HOUR ( 0) }, /* Alias for Western European */
+      { "bst",   tDAYZONE,  HOUR ( 0) }, /* British Summer */
++    { "gb",            tDAYZONE,  HOUR ( 0) }, /* GMT with daylight savings */
+      { "wat",   tZONE,     HOUR ( 1) }, /* West Africa */
+-    { "at",    tZONE,     HOUR ( 2) }, /* Azores */
++    { "at",            tZONE,     HOUR ( 2) }, /* Azores */
+  #if    0
+      /* For completeness.  BST is also British Summer, and GST is
+       * also Guam Standard. */
+@@ -1472,8 +1474,8 @@ static TABLE const TimezoneTable[] = {
+      { "ndt",   tDAYZONE,  HOUR (3.5) },        /* Newfoundland Daylight */
+  #endif
+      { "ast",   tZONE,     HOUR ( 4) }, /* Atlantic Standard */
++    { "sat",   tZONE,     HOUR ( 4) }, /* Chile */
+      { "adt",   tDAYZONE,  HOUR ( 4) }, /* Atlantic Daylight */
+-    { "eest",   tZONE,     -HOUR (2) }, /* Eastern European Standard Time */
+      { "est",   tZONE,     HOUR ( 5) }, /* Eastern Standard */
+      { "edt",   tDAYZONE,  HOUR ( 5) }, /* Eastern Daylight */
+      { "cst",   tZONE,     HOUR ( 6) }, /* Central Standard */
+@@ -1482,27 +1484,35 @@ static TABLE const TimezoneTable[] = {
+      { "mdt",   tDAYZONE,  HOUR ( 7) }, /* Mountain Daylight */
+      { "pst",   tZONE,     HOUR ( 8) }, /* Pacific Standard */
+      { "pdt",   tDAYZONE,  HOUR ( 8) }, /* Pacific Daylight */
++    { "akst",  tZONE,     HOUR ( 9) }, /* Alaska Standard */
+      { "yst",   tZONE,     HOUR ( 9) }, /* Yukon Standard */
++    { "akdt",  tDAYZONE,  HOUR ( 9) }, /* Alaska Daylight */
+      { "ydt",   tDAYZONE,  HOUR ( 9) }, /* Yukon Daylight */
+      { "hst",   tZONE,     HOUR (10) }, /* Hawaii Standard */
+      { "hdt",   tDAYZONE,  HOUR (10) }, /* Hawaii Daylight */
+      { "cat",   tZONE,     HOUR (10) }, /* Central Alaska */
+      { "ahst",  tZONE,     HOUR (10) }, /* Alaska-Hawaii Standard */
+-    { "nt",    tZONE,     HOUR (11) }, /* Nome */
++    { "nt",            tZONE,     HOUR (11) }, /* Nome */
+      { "idlw",  tZONE,     HOUR (12) }, /* International Date Line West */
+      { "cet",   tZONE,     -HOUR (1) }, /* Central European */
+      { "ces",    tDAYZONE,  -HOUR (1) }, /* Central European Summer */
+      { "cest",   tDAYZONE,  -HOUR (1) }, /* Central European Summer */
+      { "met",   tZONE,     -HOUR (1) }, /* Middle European */
+      { "mewt",  tZONE,     -HOUR (1) }, /* Middle European Winter */
++    { "mez",   tZONE,     -HOUR (1) }, /* Middle European */
+      { "mest",  tDAYZONE,  -HOUR (1) }, /* Middle European Summer */
++    { "metdst",        tDAYZONE,  -HOUR (1) }, /* An alias for mest used 
+by HP-UX */
+      { "mesz",  tDAYZONE,  -HOUR (1) }, /* Middle European Summer */
+      { "swt",   tZONE,     -HOUR (1) }, /* Swedish Winter */
+      { "sst",   tDAYZONE,  -HOUR (1) }, /* Swedish Summer */
+      { "fwt",   tZONE,     -HOUR (1) }, /* French Winter */
+      { "fst",   tDAYZONE,  -HOUR (1) }, /* French Summer */
++    { "eest",   tZONE,     -HOUR (2) }, /* Eastern European Standard Time */
+      { "eet",   tZONE,     -HOUR (2) }, /* Eastern Europe, USSR Zone 1 */
+-    { "bt",    tZONE,     -HOUR (3) }, /* Baghdad, USSR Zone 2 */
++    { "sast",  tZONE,     -HOUR (2) }, /* South African Standard */
++    { "msd",   tDAYZONE,  -HOUR (2) }, /* Moscow Daylight (according to 
+def. msd=msk) */
++    { "bt",            tZONE,     -HOUR (3) }, /* Baghdad, USSR Zone 2 */
++    { "msk",   tZONE,     -HOUR (3) }, /* Moscow */
+  #if 0
+      { "it",    tZONE,     -HOUR (3.5) },/* Iran */
+  #endif
+@@ -1523,8 +1533,12 @@ static TABLE const TimezoneTable[] = {
+  #if 0
+      { "jt",    tZONE,     -HOUR (7.5) },/* Java (3pm in Cronusland!) */
+  #endif
++    { "awst",  tZONE,     -HOUR (8) }, /* West Australian Standard */
+      { "cct",   tZONE,     -HOUR (8) }, /* China Coast, USSR Zone 7 */
++    { "pht",   tZONE,     -HOUR (8) }, /* Asia Manila */
++    { "wst",   tZONE,     -HOUR (8) }, /* West Australian Standard */
+      { "jst",   tZONE,     -HOUR (9) }, /* Japan Standard, USSR Zone 8 */
++    { "rok",   tZONE,     -HOUR (9) }, /* Republic of Korea */
+  #if 0
+      { "cast",  tZONE,     -HOUR (9.5) },/* Central Australian Standard */
+      { "cadt",  tDAYZONE,  -HOUR (9.5) },/* Central Australian Daylight */
+
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00035">Date&nbsp;Index</A>] [<a href="subjects.html#00035">Subject&nbsp;Index</a>] [<a href="authors.html#00035">Author&nbsp;Index</a>] [<A HREF="threads.html#00035">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00034.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00036.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00034.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00034.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,290 @@
+--- gnatsweb.pl	Tue Jul  4 17:21:03 2000
++++ gnatsweb2.6s.pl	Tue Jul  4 17:21:03 2000
+@@ -1092,7 +1092,7 @@
+ 
+   foreach (@fieldnames)
+   {
+-    if (fieldinfo ($_, 'flags') & $READONLY)
++    if ((fieldinfo ($_, 'flags') & $READONLY) || ($_ eq $AUDIT_TRAIL_FIELD))
+     {
+       next;
+     }
+@@ -1551,7 +1551,7 @@
+   local($client_cmd_debug) = 1 if $debug;
+   client_cmd("rset");
+ 
+-  my $expr = "";
++  my $expr = '!builtin:Number="0"';
+   if ($originatedbyme)
+   {
+     $expr = 'builtinfield:originator="'.$db_prefs{'user'}.'"';
+@@ -1643,6 +1643,114 @@
+   page_end_html($page);
+ }
+ 
++sub queryreport
++{
++  my $page = 'Query Report';
++  page_start_html($page);
++  page_heading($page, 'Query Report', 1);
++  my $debug = 0;
++
++  my @fielddisplaylist = $q->param('columns');
++
++  my $originatedbyme = $q->param('originatedbyme');
++  my $ignoreclosed   = $q->param('ignoreclosed');
++
++  local($client_cmd_debug) = 1 if $debug;
++  client_cmd("rset");
++
++  my $expr = "";
++  if ($originatedbyme)
++  {
++    $expr = 'builtinfield:originator="'.$db_prefs{'user'}.'"';
++  }
++  if ($ignoreclosed)
++  {
++    $expr = appendexpr ('(! builtinfield:State[type]="closed")', '&', $expr);
++  }
++
++  ### Construct expression for each param which specifies a query.
++  my $field;
++  foreach $field ($q->param())
++  {
++    my @val = $q->param($field);
++    my $stringval = join(" ", @val);
++
++    # Bleah. XXX ??? !!!
++    if ($stringval ne '')
++    {
++      my $ucfield = param2field ($field);
++      if (isvalidfield ($ucfield))
++      {
++	my $subexp = "";
++	my $sval;
++
++	# Turn multiple param values into ORs.
++	foreach $sval (@val)
++	{
++	  if ($sval ne 'any' && $sval ne '')
++	  {
++	    $subexp = appendexpr ($subexp, '|', "$ucfield^\"$sval\"");
++	  }
++	}
++	$expr = appendexpr ($expr, '&', $subexp);
++      }
++      elsif ($field eq 'text' || $field eq 'multitext')
++      {
++	$expr = appendexpr ($expr, '&', "fieldtype:$field~\"$stringval\"");
++      }
++      elsif ($field =~ /_after$/ || $field =~ /_before$/)
++      {
++	my $op;
++	# Waaah, nasty. XXX ??? !!!
++	if ($field =~ /_after$/)
++	{
++	  $op = '>';
++	}
++	else
++	{
++	  $op = '<';
++	}
++	# Whack off the trailing _after or _before.
++	$field =~ s/_[^_]*$//;
++	$field = param2field ($field);
++	$expr = appendexpr ($expr, '&', $field.$op.'"'.$stringval.'"');
++      }
++    }
++  }
++
++  my $format="\"%s";
++  my @ucfields = map { param2field ($_) } @fielddisplaylist;
++  # XXX ??? !!! Might want to use a newline or a more complex separator
++  # instead of a | here.
++  foreach (@ucfields)
++  {
++    if (fieldinfo ($_, 'fieldtype') eq 'date')
++    {
++      $format .= "|%D";
++    }
++    elsif (fieldinfo ($_, 'fieldtype') eq 'enum')
++    {
++      $format .= "|%d";
++    }
++    else 
++    {
++      $format .= "|%s";
++    }
++  }
++
++  $format .= "\" ".${NUMBER_FIELD}." ".join (" ", @ucfields);
++
++  client_cmd("expr $expr");
++  client_cmd("qfmt $format");
++
++  my(@query_results) = client_cmd ("quer");
++
++  report_results(@query_results);
++#  display_query_results(@query_results);
++  page_footer($page);
++  page_end_html($page);
++}
++
+ # by_field -
+ #     Sort routine called by display_query_results.
+ #
+@@ -1787,6 +1895,7 @@
+     {
+       print " <a href=\"$sn?cmd=edit&pr=$id&database=$global_prefs{'database'}\"><font size=-1>edit</font></a>";
+     }
++    print "</td>";
+ 
+     my $fieldcontents;
+     my $whichfield = 0;
+@@ -1799,7 +1908,7 @@
+ 	my $enumvals = fieldinfo($ufields[$whichfield], 'values');
+ 	$fieldcontents = $$enumvals[$fieldcontents - 1] || 'invalid';
+       }
+-      print "<td nowrap>$fieldcontents";
++      print "<td nowrap>$fieldcontents</td>";
+       $whichfield++;
+     }
+     print "\n";
+@@ -1827,6 +1936,124 @@
+         $q->submit('cmd', 'store query'),
+         "</table>",
+         $q->end_form();
++
++  # Allow the user to produce a report suitable for printing.
++  # Need to repeat params as hidden fields so they are available
++  # to the 'report' handler.
++  if ($num_matches > 1 && $num_matches < 50)
++  { 
++    print $q->start_form();
++    foreach ($q->param())
++    {
++      # Ignore certain params.
++      next if /^(cmd|queryname|columns)$/;
++
++      print $q->hidden($_);
++    }
++    
++    # Since we stripped out the columns above, re-add the column needed for the
++    # sortby
++    if (! ($sortby eq 'PR'))
++    {
++      print $q->hidden(-name=>'columns', -value=> param('sortby'), -override=>1);
++    }
++
++    print "<table>",
++          "<tr>",
++          "<td>Prepare a report of these PRs suitable for printing: </td>",
++          "<td>";
++    print $q->submit('cmd', 'report'),
++  		  "</td></tr>",
++          "</table>",
++          $q->end_form();
++  }
++}
++
++# report_results -
++#     Report query results.
++#     The results are listed using the same layout as the view command,
++#     but sorted using the order selected in the query screen
++sub report_results
++{
++  my(@query_results) = @_;
++  my(@fields) = $q->param('columns');
++  my($field, %fields);
++
++  my $num_matches = scalar(@query_results);
++
++  print $q->start_form(),
++	$q->hidden(name=>'cmd', -value=>'view', -override=>1),
++	"<table border=1>";
++
++  # Note that $sortby is the normal uppercased name of the field, and not
++  # a "parameterized" version.
++  my($sortby) = $q->param('sortby') || 'PR';
++
++  print "<tr>";
++  my $whichfield = 0;
++
++  local($sortbyfieldnum) = 0;
++  if (!($sortby eq 'PR'))
++  { $sortbyfieldnum = 1;
++  }
++
++  # Sort @query_results according to the rules in by_field().
++  # Using the "map, sort" idiom allows us to perform the expensive
++  # split() only once per item, as opposed to during every comparison.
++  my(@presplit_prs) = map { [ (split /\|/) ] } @query_results;
++  my(@sorted_prs);
++  my $sortby_fieldtype = fieldinfo ($sortby, 'fieldtype');
++  if ($sortby_fieldtype eq 'enum' || $sortby_fieldtype eq 'integer'
++      || $sortby eq 'PR') {
++    @sorted_prs = sort by_field_numeric @presplit_prs;
++  } else {
++    @sorted_prs = sort by_field @presplit_prs;
++  }
++
++  # Print the PR's.
++  my $myurl = $q->url();
++  my @fieldtypes = map { fieldinfo ($_, 'fieldtype') } @ufields;
++  foreach (@sorted_prs)
++  {
++    my $id = shift @{$_};
++    # %fields must be 'local' to be available to site callback
++    %fields = readpr($id);
++  
++    print $q->hr(),
++		  $q->h2("Issue ".$fields{'Number'}),
++          "<table>";
++    print "<tr><td><b>Reporter's email:</b></td><td>",
++          $q->tt($fields{'Reply-To'}),
++          # a blank row, to separate header info from PR info
++          "</td></tr>",
++          "<tr><td>&nbsp;<td>&nbsp;\n";
++  
++    foreach (@fieldnames)
++    {
++      # XXX ??? !!! FIXME
++      if ($_ eq $AUDIT_TRAIL_FIELD || $_ eq 'Number')
++      {
++        next;
++      }
++      my $val = $q->escapeHTML($fields{$_}) || ''; # to avoid -w warning
++      my $valign = '';
++      if (fieldinfo($_, 'fieldtype') eq 'multitext')
++      {
++        $valign = 'valign=top';
++        $val =~ s/$/<br>/gm;
++        $val =~ s/<br>$//; # previous substitution added one too many <br>'s
++      }
++      print "<tr><td nowrap $valign><b>$_:</b></td><td>",
++            $q->tt($val), "</td></tr>\n"		if (! ($val eq ''));
++      # Print attachments after Description.
++      print_attachments(\%fields, 'view') if /Description/;
++    }
++    print "</table>";
++  
++  }
++
++  print $q->hr(),
++  page_footer($page);
+ }
+ 
+ # store_query -
+@@ -3134,6 +3361,12 @@
+     print $q->header();
+     initialize();
+     submitedit();
++  }
++  elsif($cmd eq 'report')
++  {
++    print $q->header();
++    initialize();
++    queryreport();
+   }
+   elsif($cmd eq 'query')
+   {

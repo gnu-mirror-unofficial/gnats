@@ -1,0 +1,71 @@
+From gnats-devel-return-783-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Mon Nov 12 18:28:07 2001
+Return-Path: <gnats-devel-return-783-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 32764 invoked by alias); 12 Nov 2001 18:06:33 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 30726 invoked from network); 12 Nov 2001 18:02:17 -0000
+Received: from unknown (HELO navy.csi.cam.ac.uk) (131.111.8.49)
+  by sourceware.cygnus.com with SMTP; 12 Nov 2001 18:02:17 -0000
+Received: from student.cusu.cam.ac.uk
+	([131.111.179.82] helo=kern.srcf.societies.cam.ac.uk ident=mail)
+	by navy.csi.cam.ac.uk with esmtp (Exim 3.22 #1)
+	id 163LPT-0000DN-00
+	for gnats-devel@sources.redhat.com; Mon, 12 Nov 2001 18:02:15 +0000
+Received: from jsm28 (helo=localhost)
+	by kern.srcf.societies.cam.ac.uk with local-esmtp (Exim 3.12 #1 (Debian))
+	id 163LPS-00051D-00
+	for <gnats-devel@sources.redhat.com>; Mon, 12 Nov 2001 18:02:14 +0000
+Date: Mon, 12 Nov 2001 18:02:13 +0000 (GMT)
+From: "Joseph S. Myers" <jsm28@cam.ac.uk>
+X-X-Sender:  <jsm28@kern.srcf.societies.cam.ac.uk>
+To:  <gnats-devel@sources.redhat.com>
+Subject: gnatsweb PR status change messages
+Message-ID: <Pine.LNX.4.33.0111121751100.17260-100000@kern.srcf.societies.cam.ac.uk>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+Gnatsweb 2.9x does not send PR status change messages to the GNATS
+address.  This breaks the way it is used for GCC, since developers put a
+PR in "feedback" state with the status change message requesting feedback,
+but if the user sends feedback it then doesn't get included in the PR,
+which may then later get closed wrongly for lack of feedback (feedback
+having gone to the mailing lists but not been filed with the PR).
+
+I don't know how GNATS 4 handles this, but it ought to arrange for the
+destination and originator addresses of status change messages (and such
+headers as Mail-Followup-To) to be such that replies go to all relevant
+people (submitter, responsible person, any relevant mailing lists) and the
+GNATS address for the replies to be filed.  If it doesn't break mail
+clients, perhaps both the GNATS address and that of the person who made
+the change should be in the From header.
+
+(FWIW my wishlist for what a bug tracking system for GCC ought to do,
+after someone complained about problem with GNATS, is at
+http://gcc.gnu.org/ml/gcc-bugs/2001-10/msg00649.html
+- how does GNATS 4 do on this?)
+
+A minimal patch for gnatsweb 2.9x is:
+
+--- gnatsweb.pl.orig	Mon Nov 12 17:38:22 2001
++++ gnatsweb.pl	Mon Nov 12 17:38:44 2001
+@@ -1299,7 +1299,7 @@
+ 
+     # Get list of people to notify, then add old responsible person.
+     # If that person doesn't exist, don't worry about it.
+-    %mailto = interested_parties($pr, 0, %fields);
++    %mailto = interested_parties($pr, 1, %fields);
+     if(defined($adr = praddr($oldfields{'Responsible'})))
+     {
+       $mailto{$adr} = 1;
+
+-- 
+Joseph S. Myers
+jsm28@cam.ac.uk
+

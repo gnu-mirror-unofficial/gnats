@@ -1,0 +1,139 @@
+<!-- MHonArc v2.3.3 -->
+<!--X-Subject: Compiing. -->
+<!--X-From: "Sanborn, Ed" <esanborn@northchurch.net> -->
+<!--X-Date: 27 May 1999 13:54:01 &#45;0000 -->
+<!--X-Message-Id: C1E763AF1EB6D21197170090271E09B20B3C38@forge.northc.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Compiing.</TITLE>
+<LINK REV="made" HREF="mailto:esanborn@northchurch.net">
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00003">Date Index</A>] [<a href="subjects.html#00003">Subject Index</a>] [<a href="authors.html#00003">Author Index</a>] [<A HREF="threads.html#00003">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00002.html">Date Prev</A>]&nbsp;[<A HREF="msg00004.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00008.html">Thread Prev</A>]&nbsp;[<A HREF="msg00004.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Compiing.</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "'gnats-devel@sourceware.cygnus.com'" &lt;gnats-devel@sourceware.cygnus.com&gt;</LI>
+<LI><em>Subject</em>: Compiing.</LI>
+<LI><em>From</em>: "Sanborn, Ed" &lt;esanborn@northchurch.net&gt;</LI>
+<LI><em>Date</em>: Thu, 27 May 1999 09:39:53 -0400</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi,
+
+    I am getting an error when compiling gnats.  I'm compiling version
+3.101-beta with gcc on a Sun with Solaris 2.6.  Here's the bottom of the 
+make output:
+
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H internal.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H misc.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H pr.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H xmalloc.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H index.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H lists.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H query.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H
+-DX_GNATS_ROOT="\"/usr/local/gnats\""  -DGNATS_ADDR="\"bugs\""
+-DGNATS_ADMIN="\"gnats-admin\""  -DGNATS_USER="\"gnats\""
+-DGNATS_SERVER="\"gnats\""  -DGNATS_SERVER_PORT="1529"
+-DGNATS_SERVICE="\"support\""  -DDEFAULT_SUBMITTER="\"unknown\""
+-DDEFAULT_RELEASE="\"unknown-1.0\""  -DNOTIFY=1  -DACKNOWLEDGE=1
+-DKEEP_RECEIVED_HEADERS=1  -DMAIL_AGENT="\"/usr/lib/sendmail -oi -t\""
+-DBINDIR="\"/usr/local/lib/gnats\""  -DBDAY_START=8  -DBDAY_END=17
+-DBWEEK_START=1  -DBWEEK_END=5 config.c
+echo 'char *version_string = "3.99";' &gt; version.c-t
+mv version.c-t version.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H version.c
+ar rc libgnats.a edit.o files.o getdate.o headers.o internal.o misc.o pr.o
+xmalloc.o index.o lists.o query.o config.o version.o
+true libgnats.a
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H query-pr.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H regex.c
+gcc  -o query-pr query-pr.o regex.o \
+	libgnats.a `if [ -f ../libiberty/libiberty.a ] ; then echo
+../libiberty/libiberty.a ; else echo -liberty ; fi` 
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H nquery-pr.c
+gcc -c -I. -I. -I./../include  -g  -DHAVE_CONFIG_H client.c
+gcc  -o nquery-pr nquery-pr.o client.o \
+	libgnats.a `if [ -f ../libiberty/libiberty.a ] ; then echo
+../libiberty/libiberty.a ; else echo -liberty ; fi` 
+Undefined			first referenced
+ symbol  			    in file
+socket                              client.o
+gethostbyname                       client.o
+getservbyname                       client.o
+inet_addr                           client.o
+connect                             client.o
+ld: fatal: Symbol referencing errors. No output written to nquery-pr
+*** Error code 1
+make: Fatal error: Command failed for target `nquery-pr'
+Current working directory /raid5/users/esanborn/gnats/gnats-3.101-beta/gnats
+*** Error code 1
+make: Fatal error: Command failed for target `all-gnats'
+&lt;root@brigade:/raid5/users/esanborn/gnats/gnats-3.101-beta&gt;
+
+
+Anything anyone can do to help would be appreciated.
+
+-Ed
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00003">Date Index</A>] [<a href="subjects.html#00003">Subject Index</a>] [<a href="authors.html#00003">Author Index</a>] [<A HREF="threads.html#00003">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00002.html">Date Prev</A>]&nbsp;[<A HREF="msg00004.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00008.html">Thread Prev</A>]&nbsp;[<A HREF="msg00004.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

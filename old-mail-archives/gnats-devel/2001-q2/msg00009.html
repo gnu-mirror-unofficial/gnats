@@ -1,0 +1,153 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: send&#45;pr and multiple databases -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 8 Apr 2001 13:58:59 &#45;0000 -->
+<!--X-Message-Id: 87snjjeq8x.fsf@zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.7.2.20010224005935.00b3d0c8@mail.trd.clustra.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: send-pr and multiple databases</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00009">Date&nbsp;Index</A>] [<a href="subjects.html#00009">Subject&nbsp;Index</a>] [<a href="authors.html#00009">Author&nbsp;Index</a>] [<A HREF="threads.html#00009">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00008.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00008.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: send-pr and multiple databases</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Re: send-pr and multiple databases</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 08 Apr 2001 10:43:10 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;5.1.0.7.2.20010224005935.00b3d0c8@mail.trd.clustra.com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; &quot;YS&quot; == Yngve Svendsen &lt;yngve.svendsen@clustra.com&gt; writes:
+
+    YS&gt; The current GNATS 4 documentation no longer mentions the
+    YS&gt; &quot;config&quot; file,
+
+Huh?  I can see the node &quot;The `config' file&quot; in my documentation.
+
+    YS&gt; since most of the functions of this file was moved to the new
+    YS&gt; dbconfig file.
+
+Right, the documentation needs to be completely updated.  I'll do this
+as soon as various disasters relax to pursue me permanently.
+
+    YS&gt; However, in order to change the default behaviour of send-pr.sh,
+    YS&gt; one still has to make a config file. According to the script,
+    YS&gt; this file is supposed to be called send-pr.conf and it is to be
+    YS&gt; located (by default) in /usr/local/etc/gnats. This is not
+    YS&gt; documented, and no default send-pr.conf is created during
+    YS&gt; installation.
+
+This is a hack.  It was introduced for Debian, since it's totally
+unsuitable to configure anything by editing a script in /usr/bin/.
+
+    YS&gt; I would like to suggest that all database-specific parameters
+    YS&gt; such as DEFAULT_ORGANIZATION and MAIL_ADDR are removed from the
+    YS&gt; script itself and put in a default send-pr.conf in the defaults
+    YS&gt; directory. Then send-pr gets a new command-line option -d which
+    YS&gt; is used to select a database to send the PR to.
+
+I don't think it's necessary to remove the parameters from the file--in
+simple installations they can be fine.  However there should be a way to
+override the defaults easily.  The problem of the current send-pr.conf
+is that it doesn't handle multiple destinations well.  Any suggestions
+how to do it in a better way?
+
+    YS&gt; All this is assuming that the mkdist utility is really gone (I
+    YS&gt; could find no explicit account in the ChangeLog as to what was
+    YS&gt; done to it, except that all the mkdist manpages were removed at
+    YS&gt; some point),
+
+Yes, I was surprised by that as well.  I don't know what was the
+intention of that action, nor CVS logs seem to explain it. :-(
+
+    YS&gt; and that send-pr is really only supposed to be a local tool,
+    YS&gt; speaking directly to gnatsd.
+
+I'd like to have in GNATS something like `reportbug' in Debian.  It is a
+simple tool which asks you for basic properties of your problem report,
+if you're online and the destination database is available it displays
+you already reported bugs, etc. and thus guides you a bit through the
+process of reporting the bug.
+
+But it is a post-4 task (unless someone volunteers to redesign send-pr
+himself).  For now, I wouldn't touch the script except fixing the
+configuration and of course documenting it.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+Omigod, it's a flame war about a flame war.  You know, a meta-flame war!
+                                                 Kenny Tilton in comp.lang.lisp
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00009">Date&nbsp;Index</A>] [<a href="subjects.html#00009">Subject&nbsp;Index</a>] [<a href="authors.html#00009">Author&nbsp;Index</a>] [<A HREF="threads.html#00009">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00008.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00008.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: Re: POP3 connection errors -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 8 Jun 2000 16:25:04 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10006081017140.17608&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 393FC3C2.10D0EBE1@adaptivesilicon.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: POP3 connection errors</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00025">Date&nbsp;Index</A>] [<a href="subjects.html#00025">Subject&nbsp;Index</a>] [<a href="authors.html#00025">Author&nbsp;Index</a>] [<A HREF="threads.html#00025">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00024.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00026.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00024.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00023.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: POP3 connection errors</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Steve Kelem &lt;kelem at adaptivesilicon dot com&gt;</LI>
+<LI><em>Subject</em>: Re: POP3 connection errors</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 8 Jun 2000 10:19:38 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Thu, 8 Jun 2000, Steve Kelem wrote:
+
+&gt; I'm running gnats on Linux, and it's working fine except for one
+&gt; thing...
+&gt; 
+&gt; New Problem Reports keep getting filed for the fetchmail process.
+&gt; What's causing the problem?
+&gt; Why do I get a Problem Report each time there's a problem with
+&gt; fetchmail?
+&gt; Should I be invoking fetchmail differently?
+
+It looks to me that the error mail from fetchmail is being copied to the
+GNATS_ADDR of gmats. GNATS sees that it isn't a valid PR format, does it's
+best to interpret it, and puts it into the "pending" category.
+
+So, what is your gnats bug address and why is the fetchmail error mail
+going to it?
+
+&gt; Thanks for your help,
+&gt; Steve Kelem
+&gt; 
+&gt; &gt;Number:         102
+&gt; &gt;Category:       pending
+&gt; &gt;Synopsis:       Cron &lt;problem-reports@asi&gt; /usr/bin/fetchmail -s
+&gt; &gt;Confidential:   yes
+&gt; &gt;Severity:       serious
+&gt; &gt;Priority:       medium
+&gt; &gt;Responsible:    admin
+&gt; &gt;State:          new
+&gt; &gt;Quarter:
+&gt; &gt;Keywords:
+&gt; &gt;Date-Required:
+&gt; &gt;Class:          sw-bug
+&gt; &gt;Submitter-Id:   unknown
+&gt; &gt;Arrival-Date:   Thu Jun 08 07:52:00 PDT 2000
+&gt; &gt;Closed-Date:
+&gt; &gt;Last-Modified:
+&gt; &gt;Originator:
+&gt; &gt;Release:
+&gt; &gt;Organization:
+&gt; &gt;Environment:
+&gt; &gt;Description:
+&gt;  fetchmail: POP3 connection to mailserver failed: temporary name server
+&gt; error
+&gt;  fetchmail: Query status=2
+&gt; &gt;How-To-Repeat:
+&gt; &gt;Fix:
+&gt; &gt;Release-Note:
+&gt; &gt;Audit-Trail:
+&gt; &gt;Unformatted:
+&gt; 
+&gt; 
+&gt; 
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00024" HREF="msg00024.html">POP3 connection errors</A></STRONG>
+<UL><LI><EM>From:</EM> Steve Kelem</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00025">Date&nbsp;Index</A>] [<a href="subjects.html#00025">Subject&nbsp;Index</a>] [<a href="authors.html#00025">Author&nbsp;Index</a>] [<A HREF="threads.html#00025">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00024.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00026.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00024.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00023.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

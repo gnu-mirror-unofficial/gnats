@@ -1,0 +1,120 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Re: gnats compiling error -->
+<!--X-From-R13: Urenyq Bsrvsre <csrvsreNqonv.ghjvra.np.ng> -->
+<!--X-Date: 12 Mar 2001 00:20:58 &#45;0000 -->
+<!--X-Message-Id: Pine.BSF.4.33.0103120118030.39504&#45;100000@deneb.dbai.tuwien.ac.at -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 873dck87tg.fsf@zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Gerald Pfeifer - Re: gnats compiling error</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00052">Date&nbsp;Index</A>] [<a href="subjects.html#00052">Subject&nbsp;Index</a>] [<a href="authors.html#00052">Author&nbsp;Index</a>] [<A HREF="threads.html#00052">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00051.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00053.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00051.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00058.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats compiling error</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</LI>
+<LI><em>Subject</em>: Re: gnats compiling error</LI>
+<LI><em>From</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</LI>
+<LI><em>Date</em>: Mon, 12 Mar 2001 01:20:42 +0100 (CET)</LI>
+<LI><em>cc</em>: Wes Barris &lt;wes at networkcs dot com&gt;, &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On 11 Mar 2001, Milan Zamazal wrote:
+&gt; I don't have access to the standard and gcc 2.95.3 (which I use)
+&gt; compiles the file without any complaints so could someone provide
+&gt; me more details about that thing please?
+
+ISO C specififes a minimum string length that a conforming compiler must
+be able to process. This is a lower bound and a decent compiler will not
+have such a low limit, but to be an the safe side, current snapshots of
+GCC and thus also GCC 3.0 (will) warn about strings exceeding this length.
+
+&gt; Is it sufficient to simply split the long string into several strings
+&gt; via string concatenation
+&gt;
+&gt;   "..." "..." "..." "..."
+
+No, I don't think so, for the result will be one big string.
+
+Gerald
+-- 
+Gerald "Jerry" pfeifer@dbai.tuwien.ac.at <A  HREF="http://www.dbai.tuwien.ac.at/~pfeifer/">http://www.dbai.tuwien.ac.at/~pfeifer/</A>
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00058" HREF="msg00058.html">Re: gnats compiling error</A></STRONG>
+<UL><LI><EM>From:</EM> Milan Zamazal</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00051" HREF="msg00051.html">Re: gnats compiling error</A></STRONG>
+<UL><LI><EM>From:</EM> Milan Zamazal</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00052">Date&nbsp;Index</A>] [<a href="subjects.html#00052">Subject&nbsp;Index</a>] [<a href="authors.html#00052">Author&nbsp;Index</a>] [<A HREF="threads.html#00052">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00051.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00053.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00051.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00058.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,339 @@
+<!-- MHonArc v2.5.1 -->
+<!--X-Subject: Re: broken behavior from pr&#45;edit -->
+<!--X-From-R13: Rna [negvarm <qszNwhavcre.arg> -->
+<!--X-Date: 12 Nov 2001 19:28:24 &#45;0000 -->
+<!--X-Message-Id: y477ksvhksu.fsf@dfm&#45;bsd.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5B1CAAC2F0818444BF07B7AD8845E53C013E8506@ELECTRON.jnpr.net -->
+<!--X-Reference: 87u1vz9a5j.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dan Martinez - Re: broken behavior from pr-edit</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00124">Date&nbsp;Index</A>] [<a href="subjects.html#00124">Subject&nbsp;Index</a>] [<a href="authors.html#00124">Author&nbsp;Index</a>] [<A HREF="threads.html#00124">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00123.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00125.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00123.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00136.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+  <tr><th align="left">Other format:</th>
+  <td>[<a href="/cgi-bin/get-raw-msg?listname=gnats-devel&date=2001-q4&msgid=y477ksvhksu.fsf@dfm-bsd.juniper.net">Raw text</a>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: broken behavior from pr-edit</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: broken behavior from pr-edit</li>
+<li><em>From</em>: Dan Martinez &lt;dfm at juniper dot net&gt;</li>
+<li><em>Date</em>: 12 Nov 2001 11:05:21 -0800</li>
+<li><em>Cc</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;, &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00113.html">5B1CAAC2F0818444BF07B7AD8845E53C013E8506@ELECTRON.jnpr.net</a>&gt;&lt;<a href="msg00123.html">87u1vz9a5j.fsf@blackbird.zamazal.org</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Milan Zamazal wrote:
+
+&gt; &gt;&gt;&gt;&gt;&gt; &quot;DB&quot; == Dirk Bergstrom &lt;dirk@juniper.net&gt; writes:
+&gt; 
+&gt;     DB&gt; we've come across a problem with pr-edit.  it doesn't know how
+&gt;     DB&gt; to deal with field that require a change-reason:
+&gt; 
+&gt;     DB&gt; dbergstr@crawler:980$ echo closed | pr-edit --replace=state 1234
+&gt;     DB&gt; pr-edit: cannot understand 213 `Ok, now send the field change reason.'
+&gt; 
+&gt;     DB&gt; anyone feel like implementing a quick fix for this?  if not, i
+&gt;     DB&gt; might take a whack at adding a --change-reason= option.
+&gt; 
+&gt; It would be nice if you did this.  I don't know about a better fix
+&gt; now.
+
+Milan:
+
+Below are diffs which hack this functionality into pr-edit.
+
+Someone *may* want to consider integrating them into the Gnats
+development tree, but this should be done only after due consideration
+by someone who understands the possible architectural
+implications. Being fairly new to Gnats, I'm not sure I do.
+
+Highlights of the patches:
+
+- get_reply() is now declared as returning int rather than void,
+  recognizes the reply code CODE_SEND_CHANGE_REASON, and returns the
+  reply code received from the server.
+- netEditField() and handleNetworkEdit() now take an additional
+  &quot;reason&quot; argument of type char *.
+- If netEditField() receives a reply code of CODE_SEND_CHANGE_REASON
+  after sending the new field value, if supplies the value of its
+  &quot;reason&quot; argument to the server. If no reason argument was applied,
+  the function prints an error message and exits.
+- pr-edit takes an additional command-line argument: &quot;reason&quot;,
+  shortcut 'R', which is passed to handleNetworkEdit(), and from there
+  to netEditField.
+
+Please let me know what you think of these changes, and whether they
+might have any unanticipated side-effects.
+
+Thanks,
+Dan
+
+Index: client.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/client.c,v
+retrieving revision 1.41
+diff -u -r1.41 client.c
+--- client.c	2001/04/15 18:11:51	1.41
++++ client.c	2001/11/12 18:36:25
+@@ -265,11 +265,12 @@
+ } 
+ 
+ 
+-void
++int
+ get_reply (FILE *outfp)
+ {
+   Reply *r;
+   int done = 0;
++  int retval = 0;
+ 
+   /* Make sure anything we've written has gone to them.  */
+   if (fflush (serv_write) == EOF || ferror (serv_write))
+@@ -300,9 +301,11 @@
+ 	    case CODE_OK:
+ 	    case CODE_SEND_PR:
+ 	    case CODE_SEND_TEXT:
++            case CODE_SEND_CHANGE_REASON:
+ 	    case CODE_INFORMATION_FILLER:
+ 	      break;
+ 
++
+ 	    case CODE_CLOSING:
+ 	      if (debug)
+ 		{
+@@ -331,6 +334,8 @@
+ 	      fprintf (outfp, &quot;%s\n&quot;, r-&gt;text);
+ 	      break;
+ 
++
++
+ 	    case CODE_NONEXISTENT_PR:
+ 	    case CODE_UNREADABLE_PR:
+ 	    case CODE_LOCKED_PR:
+@@ -388,6 +393,7 @@
+ 	      safe_exit ();
+ 	      break;
+ 	    }
++          retval = r-&gt;state;
+ 
+ 	  free_reply (r);
+ 	}
+@@ -398,9 +404,12 @@
+ 	      fprintf (stderr, &quot;%s: null reply from the server\n&quot;,
+ 		       program_name);
+ 	    }
++          retval = 0;
+ 	  done = 1;
+ 	}
+     }
++
++  return retval;
+ }
+ 
+ void
+@@ -1231,10 +1240,11 @@
+ 
+ void
+ netEditField (FILE *fp, const char *prnum, const char *fieldname, 
+-	      const char *editEmailAddr, int append)
++	      const char *editEmailAddr, int append, char *reason)
+ {
+   const char *cmd;
+   char *line;
++  int reply;
+ 
+   netSetEditEmailAddr (editEmailAddr);
+   if (append)
+@@ -1253,7 +1263,17 @@
+       free (line);
+     }
+   fprintf (serv_write, &quot;.\r\n&quot;);
+-  get_reply (stdout);
++  /* Have to send the field-change reason here. */
++  reply = get_reply (stdout);
++  if (reply == CODE_SEND_CHANGE_REASON) {
++    if (reason)
++      fprintf (serv_write, &quot;%s\r\n.\r\n&quot;, reason);
++    else {
++      fprintf (stderr, &quot;%s: server wants a change-reason for %s,&quot;
++               &quot; but none was supplied.\n&quot;, program_name, fieldname);
++      safe_exit ();
++    }
++  }
+ }
+ 
+ void
+Index: gnats.h
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/gnats.h,v
+retrieving revision 1.47
+diff -u -r1.47 gnats.h
+--- gnats.h	2001/11/01 22:35:14	1.47
++++ gnats.h	2001/11/12 18:36:25
+@@ -249,7 +249,7 @@
+ 				     unsigned int responseTimeInDays);
+ 
+ /* in client.c */
+-extern void get_reply (FILE *);
++extern int get_reply (FILE *);
+ extern void client_exit (void);
+ extern void safe_exit (void);
+ extern void client_chdb (const char *database);
+@@ -288,7 +288,8 @@
+ 
+ extern void netEditField (FILE *fieldData, const char *prNum, 
+ 			  const char *fieldName,
+-			  const char *editUserEmailAddr, int appendToField);
++			  const char *editUserEmailAddr, int appendToField,
++                          char *reason);
+ 
+ extern void netSubmitNewPR (FILE *file);
+ extern void netModifyPR (FILE *file, const char *prNum,
+Index: pr-edit.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/pr-edit.c,v
+retrieving revision 1.34
+diff -u -r1.34 pr-edit.c
+--- pr-edit.c	2001/11/09 22:22:09	1.34
++++ pr-edit.c	2001/11/12 18:36:25
+@@ -55,6 +55,7 @@
+   {&quot;submit&quot;, 0, NULL, 's'},
+   {&quot;append&quot;, 1, NULL, 'a'},
+   {&quot;replace&quot;, 1, NULL, 'r'},
++  {&quot;reason&quot;, 1, NULL, 'R'},
+   {&quot;process&quot;, 1, NULL, 'p'},
+   {&quot;database&quot;, 1, NULL, 'd'},
+   {&quot;filename&quot;, 1, NULL, 'f'},
+@@ -142,7 +143,8 @@
+ 
+ static void
+ handleNetworkEdit (int edit_options, FILE *fpin, char *prnum, char *username,
+-		   char *editEmailAddr, char *processid, char *fieldname)
++		   char *editEmailAddr, char *processid, char *fieldname,
++                   char *reason)
+ {
+   int exitcode = 0;
+ 
+@@ -155,10 +157,10 @@
+       netUnlockPR (prnum);
+       break;
+     case APPEND:
+-      netEditField (fpin, prnum, fieldname, editEmailAddr, 1);
++      netEditField (fpin, prnum, fieldname, editEmailAddr, 1, reason);
+       break;
+     case REPLACE:
+-      netEditField (fpin, prnum, fieldname, editEmailAddr, 0);
++      netEditField (fpin, prnum, fieldname, editEmailAddr, 0, reason);
+       break;
+     case SUBMIT:
+       {
+@@ -212,6 +214,7 @@
+   int port = -1;
+   int networkmode = 0;
+   char *editUserEmailAddr = NULL;
++  char *reason = NULL;
+ 
+   program_name = basename (argv[0]);
+   edit_options = MODIFY;
+@@ -284,6 +287,10 @@
+ 	  fieldname = optarg;
+ 	  break;
+ 
++	case 'R':
++	  reason = optarg;
++	  break;
++
+ 	case DELETE_PR_OPT:
+ 	  edit_options = DELETE;
+ 	  break;
+@@ -390,7 +397,7 @@
+ 	  exit (3);
+ 	}
+       handleNetworkEdit (edit_options, fp, prnum, username, editUserEmailAddr,
+-			 processid, fieldname);
++			 processid, fieldname, reason);
+     }
+ 
+   database = init_gnats (program_name, nameOfDatabase, &amp;err);
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00136" href="msg00136.html">Re: broken behavior from pr-edit</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00113" href="msg00113.html">broken behavior from pr-edit</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+<li><strong><a name="00123" href="msg00123.html">Re: broken behavior from pr-edit</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00124">Date&nbsp;Index</A>] [<a href="subjects.html#00124">Subject&nbsp;Index</a>] [<a href="authors.html#00124">Author&nbsp;Index</a>] [<A HREF="threads.html#00124">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00123.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00125.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00123.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00136.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

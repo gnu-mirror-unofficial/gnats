@@ -1,0 +1,140 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: gnats/gnatsweb problem -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 10 Nov 2001 10:46:22 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011110113908.00b41b70@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: sbec3819.020@gwia.unt.edu -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: gnats/gnatsweb problem</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00119">Date&nbsp;Index</A>] [<a href="subjects.html#00119">Subject&nbsp;Index</a>] [<a href="authors.html#00119">Author&nbsp;Index</a>] [<A HREF="threads.html#00119">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00118.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00118.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats/gnatsweb problem</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Moe Elzubeir&quot; &lt;elzubeir at cobaf dot coba dot unt dot edu&gt;,&lt;gnats-devel at sourceware dot cygnus dot com&gt;</li>
+<li><em>Subject</em>: Re: gnats/gnatsweb problem</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Sat, 10 Nov 2001 11:46:59 +0100</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 20:09 09.11.2001 -0600, Moe Elzubeir wrote:
+&gt;Hello,
+&gt;
+&gt;I have been trying to setup gnats for awhile now. I have successfully
+&gt;set gnats so I can submit reports, view them, edit them, etc. However, I
+&gt;haven't been able to set gnatsweb to work with it at all.
+&gt;
+&gt;I am running gnatsd through inetd, here is the line:
+&gt;--
+&gt;support   stream  tcp nowait  gnats /usr/lib/gnats/gnatsd gnatsd
+&gt;--
+&gt;
+&gt;in my /etc/inetd.conf
+&gt;
+&gt;I tried to run 'make test USER=whome PASSWORD=mypass DATABASE=somedb',
+&gt;but that failed too and gave me the same message first discussed on the
+&gt;TROUBLESHOOTING file. I tried to telnet to port 1529 but to no avail
+&gt;(didn't accept the connection).. This attempt (telnet) is from the same
+&gt;machine running gnatsd (supposedly) and the web server.
+&gt;
+&gt;I think the problem (other than not being able to connect to port 1529)
+&gt;is that i'm not sure what the 'username' and 'password' refer to. Is
+&gt;this the user I created for gnats when I first installed it? The one
+&gt;defaulting to uid,gid:41 ?
+&gt;
+&gt;I really would appreciate your help.
+
+In GNATS 3, send-pr, view-pr and edit-pr etc. all work directly against the 
+database directory hierarchy and not through the network daemon. What is 
+failing here is the gnatsd daemon which serves requests from interfaces 
+such as Gnatsweb. A couple of things you should make sure of:
+- Did you restart inetd after adding the gnatsd entry?
+- Are you certain that gnatsd is located in /usr/lib/gnats/gnatsd?
+- Did you add the 'support' entry in the /etc/services file?
+- Did you say USER or USERNAME to 'make test'? The correct parameter is 
+USERNAME.
+- The USERNAME and PASSWORD options refer to a valid password/username 
+combination from the gnatsd.access file of your database. Create suc a 
+username password combination and try again.
+
+If you are still unable to connect after doing these things, you should 
+send the exact output from a telnet connection attempt to this mailing list.
+
+Hope this helps,
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00118" href="msg00118.html">gnats/gnatsweb problem</a></strong>
+<ul><li><em>From:</em> Moe Elzubeir</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00119">Date&nbsp;Index</A>] [<a href="subjects.html#00119">Subject&nbsp;Index</a>] [<a href="authors.html#00119">Author&nbsp;Index</a>] [<A HREF="threads.html#00119">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00118.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00118.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00120.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

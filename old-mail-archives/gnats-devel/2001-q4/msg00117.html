@@ -1,0 +1,129 @@
+<!-- MHonArc v2.5.0 -->
+<!--X-Subject: Re: proposal for improvements in indexing -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 9 Nov 2001 22:17:39 &#45;0000 -->
+<!--X-Message-Id: 87eln8i7r1.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5B1CAAC2F0818444BF07B7AD8845E53C010E2344@ELECTRON.jnpr.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: proposal for improvements in indexing</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00117">Date&nbsp;Index</A>] [<a href="subjects.html#00117">Subject&nbsp;Index</a>] [<a href="authors.html#00117">Author&nbsp;Index</a>] [<A HREF="threads.html#00117">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00116.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00118.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00116.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00113.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: proposal for improvements in indexing</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Subject</em>: Re: proposal for improvements in indexing</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 09 Nov 2001 11:00:34 +0100</li>
+<li><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00112.html">5B1CAAC2F0818444BF07B7AD8845E53C010E2344@ELECTRON.jnpr.net</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<!-- [<a href="/cgi-bin/get-raw-msg?listname=gnats-devel&date=2001-q4&msgnum=1">Get raw message</a>] -->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt;&gt;&gt;&gt;&gt; &quot;DB&quot; == Dirk Bergstrom &lt;dirk@juniper.net&gt; writes:
+
+    DB&gt; what's really needed is to move to a better index format, like
+    DB&gt; gdbm.  i *think* that would allow us to get rid of the full
+    DB&gt; database lock (for most cases).  we would only need PR locks,
+    DB&gt; and the gdbm_open() call (which, presumably, does not allow two
+    DB&gt; writers on the same dbm file).
+
+I'm not familiar with gdbm, but if it provides the useful features, I've
+nothing against using it.  And it should be always better than the
+current proprietary binary index format.
+
+I think GNATS should generally move to using more available libraries.
+We'll need one for MIME handling, I'm also going to look at glib, since
+it could simplify the current internal data structure mess which is a
+source of pointer bugs, etc.  Some people might object this would
+complicate GNATS installation on proprietary systems, where such
+libraries might not be commonly available, but I think this argument
+doesn't outweigh the development troubles nowadays.
+
+    DB&gt; of course, that's real work.  but i think it should be
+    DB&gt; considered for 4.1 or 4.2...
+
+OK, I'm taking a note about it as a post-4.0 suggestion.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+  _/_\_/_  o     _\_/_\_  o     _/_\_/_  o     _\_/_\_  o    BEWARE!
+-&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--  -&lt;_|_|_|_&gt;&lt;--   *Bugs* are
+   / \ /   o      \ / \   o      / \ /   o      \ / \   o     approaching!
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00112" href="msg00112.html">proposal for improvements in indexing</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00117">Date&nbsp;Index</A>] [<a href="subjects.html#00117">Subject&nbsp;Index</a>] [<a href="authors.html#00117">Author&nbsp;Index</a>] [<A HREF="threads.html#00117">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00116.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00118.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00116.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00113.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!-- MHonArc v2.5.1 -->
+<!--X-Subject: proposal for improvements in indexing -->
+<!--X-From-R13: "Rvex Pretfgebz" <qvexNwhavcre.arg> -->
+<!--X-Date: 8 Nov 2001 21:08:25 &#45;0000 -->
+<!--X-Message-Id: 5B1CAAC2F0818444BF07B7AD8845E53C010E2344@ELECTRON.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - proposal for improvements in indexing</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00112">Date&nbsp;Index</A>] [<a href="subjects.html#00112">Subject&nbsp;Index</a>] [<a href="authors.html#00112">Author&nbsp;Index</a>] [<A HREF="threads.html#00112">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00111.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00113.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00111.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00114.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+  <tr><th align="left">Other format:</th>
+  <td>[<a href="/cgi-bin/get-raw-msg?listname=gnats-devel&date=2001-q4&msgid=5B1CAAC2F0818444BF07B7AD8845E53C010E2344@ELECTRON.jnpr.net">Raw text</a>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>proposal for improvements in indexing</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: proposal for improvements in indexing</li>
+<li><em>From</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Thu, 8 Nov 2001 13:08:22 -0800</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+whilst trying to solve the ongoing problems in PR 218, i've become frustrated with the gnats index &amp; database lock system.  it's crufty and error prone, and it needs some serious work.
+
+what's really needed is to move to a better index format, like gdbm.  i *think* that would allow us to get rid of the full database lock (for most cases).  we would only need PR locks, and the gdbm_open() call (which, presumably, does not allow two writers on the same dbm file).
+
+this would make the system a *lot* more robust.  it would improve speed (many transactions would need to read only one PR entry, instead of the whole index).  it would reduce the possibility of index corruption (reading &amp; writing thousands of index entries for each edit seems like a bad idea).  it would reduce lock contention (two processes could simultaneously edit different PRs).
+
+of course, that's real work.  but i think it should be considered for 4.1 or 4.2...
+
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,          Computer Geek
+Tel: 707.433.0564           Fax: 707.433.0769
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00114" href="msg00114.html">Re: proposal for improvements in indexing</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00117" href="msg00117.html">Re: proposal for improvements in indexing</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00112">Date&nbsp;Index</A>] [<a href="subjects.html#00112">Subject&nbsp;Index</a>] [<a href="authors.html#00112">Author&nbsp;Index</a>] [<A HREF="threads.html#00112">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00111.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00113.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00111.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00114.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

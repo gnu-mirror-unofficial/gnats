@@ -1,0 +1,180 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: fix for PR 219 &#45; large PRs or updates take many minutes to process -->
+<!--X-From-R13: "Rvex Pretfgebz" <qvexNwhavcre.arg> -->
+<!--X-Date: 23 Jul 2001 07:11:14 &#45;0000 -->
+<!--X-Message-Id: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AD3E@postal.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - fix for PR 219 - large PRs or updates take many minutes to process</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00068">Date&nbsp;Index</A>] [<a href="subjects.html#00068">Subject&nbsp;Index</a>] [<a href="authors.html#00068">Author&nbsp;Index</a>] [<A HREF="threads.html#00068">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00067.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00069.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00067.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00069.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>fix for PR 219 - large PRs or updates take many minutes to process</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: fix for PR 219 - large PRs or updates take many minutes to process</li>
+<li><em>From</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Mon, 23 Jul 2001 00:11:14 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+after i submitted PR 219, it bit us again, locking up the server for a
+couple hours.  i decided i'd apply my meager C skills, and see if i
+couldn't fix it.  it seemed clear it was a badly written loop, and it
+wasn't too hard to find it.  turns out there were two problems, a typo
+and a needlessly repeated strlen() call.  the patch gives a 1000x
+improvement in processing time for large PR updates.
+
+the PR is here:
+
+<A  HREF="http://sources.redhat.com/cgi-bin/gnatsweb.pl?cmd=view&amp;pr=219&amp;database=g">http://sources.redhat.com/cgi-bin/gnatsweb.pl?cmd=view&amp;pr=219&amp;database=g</A>
+nats
+
+and the patch is here (untouched by meddlesome MTAs):
+
+<A  HREF="http://otisbean.com/file-pr_patch.txt">http://otisbean.com/file-pr_patch.txt</A>
+
+and here it is for your reading pleasure:
+
+Index: file-pr.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/file-pr.c,v
+retrieving revision 1.40
+diff -u -r1.40 file-pr.c
+--- file-pr.c   2001/07/15 17:32:31     1.40
++++ file-pr.c   2001/07/23 07:03:06
+@@ -729,6 +729,7 @@
+ {
+   char line [1024]; /* This size doesn't matter here */
+   char *buf;
++  size_t buf_size, len;
+   const char *from, *to, *subject, *date, *cc;
+   PR *pr;
+ 
+@@ -761,17 +762,24 @@
+ \n&quot;,
+            from, to, cc, subject, date);
+ 
+-  while ((fgets (line, sizeof (buf) - 1, infile)) != NULL)
++  /* copy the message from infile, indenting each line by one character
+*/
++  len = buf_size = strlen (buf);
++  while ((fgets (line, sizeof (line) - 1, infile)) != NULL)
+     {
+-      size_t len = strlen (buf);
+       size_t lineLen = strlen (line);
+ 
+-      buf = xrealloc (buf, len + lineLen + 2);
++      if (buf_size &lt; len + lineLen + 2)
++       {
++         buf_size += sizeof(line) &lt;&lt; 2;
++         buf = xrealloc (buf, buf_size);
++       }
++
+       if (buf[len - 1] == '\n')
+        {
+          buf[len++] = ' ';
+        }
+       memcpy (buf + len, line, lineLen + 1);
++      len += lineLen;
+     }
+ 
+   fclose (infile);
+
+--------------
+two fixes:
+
+1) read sizeof(line)-1 chars from the message (&lt;=1024 chars), instead of
+sizeof(buf)-1 chars (2 chars).
+
+2) add code to keep track of buf's length in a variable, instead of
+doing a strlen(buf) for every loop iteration.
+
+the first fix gives a 20-30x improvement (from hours to minutes) for a
+1.4 MB testcase.  the second fix gave a 50x improvement (five minutes to
+&gt;10 seconds) for the same testcase.
+
+and some cleanup:
+
+xrealloc()ing buf in 4K chunks only when needed, instead of every loop
+iteration.  doesn't seem to change speed, but it feels better...
+
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,          Computer Geek
+Tel: 707.433.0564           Fax: 707.433.0769
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00069" href="msg00069.html">Gnatsweb help</a></strong>
+<ul><li><em>From:</em> S Ramesh</li></ul></li>
+<li><strong><a name="00081" href="msg00081.html">Re: fix for PR 219 - large PRs or updates take many minutes to process</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00068">Date&nbsp;Index</A>] [<a href="subjects.html#00068">Subject&nbsp;Index</a>] [<a href="authors.html#00068">Author&nbsp;Index</a>] [<A HREF="threads.html#00068">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00067.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00069.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00067.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00069.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

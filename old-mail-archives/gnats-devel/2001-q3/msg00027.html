@@ -1,0 +1,154 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: gnatsd daemon problem -->
+<!--X-From-R13: E Dnzrfu <enfunazhNacq.upygrpu.pbz> -->
+<!--X-Date: 11 Jul 2001 14:11:06 &#45;0000 -->
+<!--X-Message-Id: 01071119345703.01111@Ram -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>S Ramesh - gnatsd daemon problem</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnatsd daemon problem</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sourceware dot cygnus dot com</li>
+<li><em>Subject</em>: gnatsd daemon problem</li>
+<li><em>From</em>: S Ramesh &lt;rashanmu at npd dot hcltech dot com&gt;</li>
+<li><em>Date</em>: Wed, 11 Jul 2001 19:34:57 +0530</li>
+<li><em>Cc</em>: Margaret BRIERTON &lt;margaret at retriever dot com dot au&gt;,       Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Organization</em>: HCL Technologies Ltd.</li>
+<li><em>Reply-To</em>: rashanmu at npd dot hcltech dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi,
+
+I need to check out whether the &quot;gnatsd&quot; daemon is working fine or  
+   not coz for gnatsweb to wrok properly gnatsd has to run. In my  
+system i have only xinetd internet superserver and not inetd.
+   so i created a file gnatsd in the /etc/xinetd.d directory as
+
+service support
+{
+        disable = no
+        socket_type     = stream
+        protocol        = tcp
+        wait            = no
+        user            = gnats
+        server          = /usr/local/lib/gnats/gnatsd
+}
+
+Is this format is correct. after doing this i again run the xinetd 
+daemon but i could not find gnatsd in the processes list like when i 
+tried
+
+ps -ef | grep ?
+
+i could not find gnatsd even i restarted the system. SO what could be 
+the problem. Is inetd superserver is a must or xinetd itself can do. 
+Only thing is xinetd config is different compared to inetd. 
+
+Also while running the make test in the gnatsweb directory like
+
+ make test USERNAME=anonymous PASSWORD=guest DATABASE=main
+
+the output is like......
+
+perl test.pl
+Content-type: text/html
+ 
+&lt;H1&gt;Software error:&lt;/H1&gt;
+&lt;CODE&gt;Can't call method &amp;quot;header&amp;quot; on an undefined value at 
+gnatsweb.pl line 2199.
+&lt;/CODE&gt;
+&lt;P&gt;
+For help, please send mail to this site's webmaster, giving this 
+error message
+and the time and date of the error.
+ 
+[Wed Jul 11 19:12:51 2001] test.pl: Can't call method &quot;header&quot; on an 
+undefined value at gnatsweb.pl line 2199.
+connect...........................................FAIL
+make: *** [test] Error 111
+
+So what could be the problem. Connection refused errno is returned. 
+Means noboyd is listening in the port 1529 r what? I request 
+you to help me to figure out the exact problem. Its really 
+frustrating and i am in urgent need of help.
+
+Thanks,
+Ramesh
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00028" href="msg00028.html">Re: gnatsd daemon problem</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00029" href="msg00029.html">Re: gnatsd daemon problem</a></strong>
+<ul><li><em>From:</em> nick</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

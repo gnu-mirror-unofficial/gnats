@@ -1,0 +1,118 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: send&#45;pr in Gnats 4 -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 19 Mar 2001 15:25:02 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.10.2.20010319145321.00b35480@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - send-pr in Gnats 4</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00065">Date&nbsp;Index</A>] [<a href="subjects.html#00065">Subject&nbsp;Index</a>] [<a href="authors.html#00065">Author&nbsp;Index</a>] [<A HREF="threads.html#00065">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00064.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00066.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00064.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00061.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>send-pr in Gnats 4</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: send-pr in Gnats 4</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Mon, 19 Mar 2001 16:24:29 +0100</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I am finishing up a preliminary installation how-to for Gnats 4.
+
+There is one remaining problem, though. After digging through miles of 
+ChangeLogs and some source, I can't seem to reach a definitive conclusion 
+about what role 'send-pr' is supposed to have.
+
+ From the ChangeLog, I see that all the 'site' functionality has been 
+removed. As far as I can see, this means that the functionality for making 
+send-pr distributions for remote sites is gone (the mkdist utility), and 
+that the focus for send-pr is now on usage on the same network as the Gnats 
+server is running on. Thus, send-pr no longer submits PRs by mail as 
+default, instead preferring to communicate directly with gnatsd on the server.
+
+However, send-pr seems to be unable to work in a multiple database 
+environment when configured to talk directly to gnatsd, since it has no 
+options to select a database and does not issue a CHDB after connecting to 
+gnatsd. This renders it unusable for sites that have multiple databases or 
+that have changed the default database name.
+
+The Emacs interface is also unable to work with multiple databases. I don't 
+know much lisp, but from what I can see, the ability to change database has 
+been removed entirely from gnats.el
+
+Does anyone know if I am right about these things? And if so, what 
+functionality has been removed intentionally and permanently, and what 
+functionality remains to be (re-)implemented?
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00065">Date&nbsp;Index</A>] [<a href="subjects.html#00065">Subject&nbsp;Index</a>] [<a href="authors.html#00065">Author&nbsp;Index</a>] [<A HREF="threads.html#00065">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00064.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00066.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00064.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00061.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

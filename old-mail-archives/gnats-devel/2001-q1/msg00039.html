@@ -1,0 +1,113 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: send&#45;pr and multiple databases -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 24 Feb 2001 00:33:35 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.7.2.20010224005935.00b3d0c8@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - send-pr and multiple databases</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00039">Date&nbsp;Index</A>] [<a href="subjects.html#00039">Subject&nbsp;Index</a>] [<a href="authors.html#00039">Author&nbsp;Index</a>] [<A HREF="threads.html#00039">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00038.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00040.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00038.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00037.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>send-pr and multiple databases</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: send-pr and multiple databases</LI>
+<LI><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</LI>
+<LI><em>Date</em>: Sat, 24 Feb 2001 01:31:27 +0100</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The current GNATS 4 documentation no longer mentions the "config" file, 
+since most of the functions of this file was moved to the new dbconfig file.
+
+However, in order to change the default behaviour of send-pr.sh, one still 
+has to make a config file. According to the script, this file is supposed 
+to be called send-pr.conf and it is to be located (by default) in 
+/usr/local/etc/gnats. This is not documented, and no default send-pr.conf 
+is created during installation.
+
+I would like to suggest that all database-specific parameters such as 
+DEFAULT_ORGANIZATION and MAIL_ADDR are removed from the script itself and 
+put in a default send-pr.conf in the defaults directory. Then send-pr gets 
+a new command-line option -d which is used to select a database to send the 
+PR to.
+
+All this is assuming that the mkdist utility is really gone (I could find 
+no explicit account in the ChangeLog as to what was done to it, except that 
+all the mkdist manpages were removed at some point), and that send-pr is 
+really only supposed to be a local tool, speaking directly to gnatsd.
+
+Comments, anyone?
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00039">Date&nbsp;Index</A>] [<a href="subjects.html#00039">Subject&nbsp;Index</a>] [<a href="authors.html#00039">Author&nbsp;Index</a>] [<A HREF="threads.html#00039">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00038.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00040.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00038.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00037.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

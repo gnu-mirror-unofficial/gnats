@@ -1,0 +1,292 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: Re: 3.113 vs 4.0 -->
+<!--X-From-R13: Pbo [nafba <znafbaNwhavcre.arg> -->
+<!--X-Date: 14 Jan 2000 05:34:02 &#45;0000 -->
+<!--X-Message-Id: 200001140536.VAA05567@tristam.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 6B1DF6EEBA51D31182F20090274043682C0181@mail&#45;in.comverse&#45;in.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: 3.113 vs 4.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00006">Date&nbsp;Index</A>] [<a href="subjects.html#00006">Subject&nbsp;Index</a>] [<a href="authors.html#00006">Author&nbsp;Index</a>] [<A HREF="threads.html#00006">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00005.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00007.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00005.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: 3.113 vs 4.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "Wasserman, Sherry" &lt;sherry dot wasserman at comverse-in dot com&gt;</LI>
+<LI><em>Subject</em>: Re: 3.113 vs 4.0 </LI>
+<LI><em>From</em>: Bob Manson &lt;manson at juniper dot net&gt;</LI>
+<LI><em>Date</em>: Thu, 13 Jan 2000 21:36:47 -0800</LI>
+<LI><em>cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+In message &lt;<A HREF="msg00003.html">6B1DF6EEBA51D31182F20090274043682C0181@mail-in.comverse-in.com</A>&gt;, "W
+asserman, Sherry" writes:
+&gt;So my questions are:
+&gt;Do you have a good estimate of when 4.0 will be released?  
+
+I've deliberately tried to be vague about this, because release dates
+always slip.  However, we are testing 4.0 internally at Juniper, and
+plan on switching over to it very soon (ideally in a week or so, but
+that depends on what the testing results are...so far things have been
+looking great, but there are always gotchas).  Once we've done that,
+it would make sense to talk about doing a formal net release.
+
+I will say "by the end of February", but probably sooner.  Which is
+much later than I was originally planning.
+
+&gt;What are the major changes? 
+
+The external user interface has changed either a lot or a little,
+depending on how you look at it.  The standard set of command-line
+clients (query-pr, edit-pr, send-pr) are still there, and on the
+surface behave the same way they always did.
+
+Many of the other clients (specifically the network versions of the
+clients, like nquery-pr) have either been merged into the appropriate
+place, or deleted.  Many of the scripts that just called other clients
+have been removed.  Many of the internal programs have also been
+removed (no significant functionality is gone, but has been integrated
+into other programs).
+
+GNATS_ROOT is no more.  Instead, databases are always referenced by
+name (there is a new environment variable GNATSDB used to specify the
+name of the database to use; the default database is appropriately
+named "default"). Databases are looked up in a global database list,
+or can be queried over the network from gnatsd.
+
+Network access for the command-line clients is specified by specifying
+"hostname:port:databasename:user:password" in the GNATSDB variable.
+All of the command-line clients function identically with either
+direct file access or network access via gnatsd (except for a few
+options in query-pr that don't make sense for network access).
+
+gnatsd has been majorly revised.  The majority of the commands have
+changed, and the command set is much smaller now.  (In particular, the
+multitude of query commands are totally gone.)  PR submission and
+editing can be done via gnatsd; individual fields may be edited as
+well (individual field edits are also supported by pr-edit).  And
+several odd commands were deleted...
+
+There are query expressions used by both gnatsd and query-pr (in fact,
+internally queries are always expressed in terms of expressions).
+While query-pr still accepts the old (deprecated) --fieldname query
+options, those will only work for the old builtin fields; new fields
+must be queried via a query expression.  This leads to a much more
+flexible query mechanism, and will make perfect sense if/when the
+search engine is revised to use an SQL or other database.
+
+Fields in the database are controlled by a configuration file.  While
+currently the entire set of old hard-coded fields still exist (tho a
+lot of them have lost all meaning to GNATS and will be removed before
+the final release), the types of data stored in the fields, legal
+values, external names of the field headers, etc. are totally
+controlled by the configuration file.
+
+Adding or deleting fields is trivial; it's also easy to control the
+format of full PRs in terms of what order the fields occur, and which
+fields need to be present when a PR is initially submitted.  The index
+file is also completely configurable in terms of what fields are
+stored there.  There is no longer any hard-coded database
+configuration within GNATS itself.
+
+Some fields will always need to exist (for example, the PR numbering
+system is unlikely to change).  Those builtin fields (number,
+responsible, category, etc.)  can be referred to directly even if
+their external names have been changed; every effort has been made to
+distinguish between a field's "external" name (what appears in the PR
+header) and its internal meaning to GNATS.
+
+The appearance of query results are controlled by a configuration
+file as well; when queries are done via the server or query-pr, it's
+possible to specify an existing query format (such as "full" to get an
+entire PR, or "summary" to get the old query-pr --summary format) or a
+new one can be supplied to control which fields are returned, and in
+what data format.
+
+Internally the code has undergone a lot of revision (there isn't a lot
+of the original structure left) to support all this junk.  The focus
+now is on gnatsd-based submission and queries, although the old mail
+submission methods are still supported.  (send-pr no longer uses mail
+to submit PRs; it sends them directly to gnatsd or files them itself.)
+
+The move away from mail has probably been the most controversial
+change. While the server side still has the same amount of support as
+it always did for handling mail PR submissions, there are no
+mail-based clients. Paul Traina and I have been debating about
+supplying one (he's not into the idea, I'm sorta wavering but I still
+believe it's impractical except in very specific cases).
+
+GNATS has traditionally been a mail-based PR system.  By that I mean
+that the idea is that you could always easily hand-edit a PR and send
+it in with a mail client; its use of "fields" and such were more
+conveniences than anything else.  gnatsd was cute, but didn't really
+do the job it needed to do.
+
+That's both a strength (if you're into using email and text editors
+for things) and a weakness (it is a severe limitation in terms of the
+interface and features that can be provided or expected of the user).
+It also makes it much harder to do centralized policy, both in terms
+of access control and even more trivial issues such as the actual
+"physical" representation of PRs.
+
+One other significant change is that GNATS itself does most everything
+in terms of PR editing and control.  It takes care of sending mail for
+PR submissions and edits (the format of outgoing mail, who gets the
+mail etc. is controlled by the database configuration file), and most
+significantly, the server and pr-edit take care of adding audit-trail
+entries for edits.  External clients are thus expected to be rather
+moronic, which is a definite change over previous versions of GNATS.
+
+There is also a generic facility for causing other fields in a PR to
+be edited when the value of a field is changed.  So for example, if
+you wanted to track the last time a particular field was changed by
+setting a date in another field when it changes, that's easily done.
+
+&gt;Is there a fairly stable 4.0 that I could start looking at now?
+
+The contents of the anonymous CVS repository are in flux, but I've
+tried very hard to make sure that the head of the tree always builds
+and runs.
+
+The documentation is rather sparse (the info files have not been
+updated at all, but I've made a half-hearted effort at updating the
+man pages and writing new ones).  I do CVS checkins pretty frequently
+tho, and there have been a lot of changes even in the last week.
+
+There isn't a tarball (I don't want to get stuck sending out patches
+for half-baked releases), and I haven't added a new branch tag in
+quite a while due to lack of interest.
+
+&gt;We will want to incorporate a web interface.  Will a new version of gnatsweb
+&gt;be required?  If so, is there any info on when that will be ready?
+
+Yes, a new version of gnatsweb will be needed.  I've been testing a
+port I've done of 2.6, and a working version will be available when
+the release is made that supports the new 4.0 features.
+
+Your release field issues can be mostly handled by v4, and I can think
+of a number of ways to do it.  Certainly having one or more enumerated
+fields that only accepts certain values is no problem, and 4.0 also
+supports the concept of a "multi-enum" field where a field contains
+multiple values, but each value must be an enumerated value out of a
+list.
+
+Enum fields can be enumerated either with values in an external file,
+or with a list built into the configuration file.
+
+There isn't any mechanism for "closing" the PR based on the values in
+these fields.  There are probably ways of dealing with that, if it's
+essential that the PR be automatically closed when the individual
+states are taken care of.
+
+However, a "closed" PR doesn't mean much anymore.  Yes, there is still
+a PR state field, but it's pretty much treated as just another
+enumerated field (with a mostly-unused adm file associated with it).
+The concept of "closed", or even "state", is really just a convenience
+more than anything else, and tends to be more of a leftover from gnats
+v3.  That is, there's still a --skip-closed option to query-pr (as in
+
+	query-pr --skip-closed
+
+You can get exactly the same results by saying
+
+	query-pr --expr "(! builtinfield:state[type] = closed)"
+
+But that's no different than saying
+
+	query-pr --expr "(! PR-Type = foobaz)"
+
+or any other query you choose to do.  Make sense?
+
+Succinctly put, "A PR's state is how you choose to look at it".  So if
+you want to declare a "closed PR" as a PR where some set of fields
+have some particular values, you can do that.  In fact, the only time
+the core GNATS code refers to the value of the State: field is to set
+the date in the builtin closed-date field when the state field is set
+to closed.
+
+Ideally even that (setting the closed-date field) would be controlled
+by the configuration file rather than builtin to the program, but
+we're starting to get into feeping creaturitis for something that's
+gonna be out the door soon; won't be addressed in 4.0, will be dealt
+with later.
+
+Queries on new fields aren't a problem, of course.
+						Bob
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00008" HREF="msg00008.html">Re: 3.113 vs 4.0</A></STRONG>
+<UL><LI><EM>From:</EM> Jeroen Ruigrok/Asmodai</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00003" HREF="msg00003.html">3.113 vs 4.0</A></STRONG>
+<UL><LI><EM>From:</EM> Wasserman, Sherry</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00006">Date&nbsp;Index</A>] [<a href="subjects.html#00006">Subject&nbsp;Index</a>] [<a href="authors.html#00006">Author&nbsp;Index</a>] [<A HREF="threads.html#00006">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00005.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00007.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00005.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

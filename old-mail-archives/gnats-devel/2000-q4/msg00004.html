@@ -1,0 +1,180 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: gnatsweb and cookies w/o Javasript (fwd) -->
+<!--X-From-R13: Urenyq Bsrvsre <csrvsreNqonv.ghjvra.np.ng> -->
+<!--X-Date: 11 Oct 2000 21:25:49 &#45;0000 -->
+<!--X-Message-Id: Pine.BSF.4.21.0010112322090.14588&#45;100000@deneb.dbai.tuwien.ac.at -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>gnatsweb and cookies w/o Javasript (fwd)</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date&nbsp;Index</A>] [<a href="subjects.html#00004">Subject&nbsp;Index</a>] [<a href="authors.html#00004">Author&nbsp;Index</a>] [<A HREF="threads.html#00004">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnatsweb and cookies w/o Javasript (fwd)</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: gnatsweb and cookies w/o Javasript (fwd)</LI>
+<LI><em>From</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</LI>
+<LI><em>Date</em>: Wed, 11 Oct 2000 23:25:40 +0200 (CEST)</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+As it seems that the mailing list and development are getting active
+again, a final try to get some response.
+
+Please note that I didn't just complain or file a report, I actually
+provided a patch, so it's a bit frustrating not to get any response
+for that long. :-(
+
+Gerald
+
+---------- Forwarded message ----------
+From: Gerald Pfeifer &lt;pfeifer@dbai.tuwien.ac.at&gt;
+To: gnats-devel@sourceware.cygnus.com
+Date: Tue, 25 Jul 2000 19:08:28 +0200 (CEST)
+Subject: gnatsweb and cookies w/o Javasript (fwd)
+
+I have not received any feedback for the patch included below, so I'm
+trying again, in the hope that this is the right address where someone
+will have a look.
+
+Gerald
+
+---------- Forwarded message ----------
+From: Gerald Pfeifer &lt;pfeifer@dbai.tuwien.ac.at&gt;
+To: Kenneth H. Cox &lt;kenstir@abraham.senteinc.com&gt;
+Cc: bug-gnats@gnu.org
+Date: Tue, 4 Jul 2000 12:04:28 +0200 (CEST)
+Subject: gnatsweb and cookies w/o Javasript
+
+Folks (including myself but just today we got a real bug report at
+the GCC project concerning this) often are caught by gnatsweb requiring
+cookies but not specifying that to the user.
+
+I realized that there is now Javascript code to do exactly that, but
+more often than not, folks with cookies disabled (or no support for
+cookies in the browser) do not have Javascript either!
+
+Please consider the patch below, which I already installed at the
+gcc.gnu.org (and thus the sources.redhat.com) GNATS site.
+
+(This patch also avoids the phrase "pressing the button" which does
+not apply to all users.)
+
+Gerald
+
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvs/gcc/wwwdocs/cgi-bin/gnatsweb.pl,v
+retrieving revision 1.7
+retrieving revision 1.10
+diff -c -3 -p -r1.7 -r1.10
+*** gnatsweb.pl	2000/05/11 07:00:34	1.7
+--- gnatsweb.pl	2000/07/04 09:03:52	1.10
+*************** delCookie("gnatsweb-test-cookie");
+*** 2894,2901 ****
+  if (val == null) {
+      document.write("&lt;h2&gt;Warning: your browser is not accepting cookies&lt;/h2&gt;"
+          + "Gnatsweb requires cookies to keep track of your login and other "
+!         + "information.  Please enable cookies before pressing the "
+!         + "&lt;tt&gt;login&lt;/tt&gt; button.");
+  }
+  
+  //--&gt;
+--- 2894,2900 ----
+  if (val == null) {
+      document.write("&lt;h2&gt;Warning: your browser is not accepting cookies&lt;/h2&gt;"
+          + "Gnatsweb requires cookies to keep track of your login and other "
+!         + "information.  Please enable cookies before logging in.");
+  }
+  
+  //--&gt;
+*************** sub login_page
+*** 2929,2935 ****
+    # are not really needed; use the username as the default.
+    my $def_password = $db_prefs{'password'} || $ENV{'REMOTE_USER'};
+    print $q-&gt;start_form(),
+!         "&lt;p&gt;Use username '&lt;b&gt;guest&lt;/b&gt;' and password '&lt;b&gt;guest&lt;/b&gt;' for read-only and bug reporting access.",
+          "&lt;table&gt;",
+          "&lt;tr&gt;&lt;td&gt;User Name:&lt;td&gt;",
+          $q-&gt;textfield(-name=&gt;'user',
+--- 2928,2938 ----
+    # are not really needed; use the username as the default.
+    my $def_password = $db_prefs{'password'} || $ENV{'REMOTE_USER'};
+    print $q-&gt;start_form(),
+!         "&lt;p&gt;Use username '&lt;b&gt;guest&lt;/b&gt;' and password '&lt;b&gt;guest&lt;/b&gt;' for".
+!         " read-only and bug reporting access.",
+!         " Unfortunately, GNATSweb requires cookies to keep track".
+!         " of your login and other information.  Please enable cookies".
+!         " before logging in.",
+          "&lt;table&gt;",
+          "&lt;tr&gt;&lt;td&gt;User Name:&lt;td&gt;",
+          $q-&gt;textfield(-name=&gt;'user',
+
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date&nbsp;Index</A>] [<a href="subjects.html#00004">Subject&nbsp;Index</a>] [<a href="authors.html#00004">Author&nbsp;Index</a>] [<A HREF="threads.html#00004">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00002.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,134 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: send&#45;pr broken -->
+<!--X-From-R13: Irf Pneevf <jrfoNargjbexpf.pbz> -->
+<!--X-Date: 12 Mar 2001 21:06:09 &#45;0000 -->
+<!--X-Message-Id: 20010312150537.A91932@us.networkcs.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Wes Barris - send-pr broken</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00056">Date&nbsp;Index</A>] [<a href="subjects.html#00056">Subject&nbsp;Index</a>] [<a href="authors.html#00056">Author&nbsp;Index</a>] [<A HREF="threads.html#00056">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00055.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00055.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>send-pr broken</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: send-pr broken</LI>
+<LI><em>From</em>: Wes Barris &lt;wesb at networkcs dot com&gt;</LI>
+<LI><em>Date</em>: Mon, 12 Mar 2001 15:05:37 -0600</LI>
+<LI><em>Reply-To</em>: Wes Barris &lt;wes at networkcs dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+The cvs version of gnats: send-pr is broken.  After building, installing,
+and configuring gnats, send-pr produces this error:
+
+root@kirby# send-pr
+It seems that send-pr is not installed with your organization set to a useful
+value.  To fix this, you need to edit the  configuration
+file and fill in the organization with the correct value.
+
+It seems that send-pr is not installed with your unique submitter-id.
+You need to run
+
+          install-sid YOUR-SID
+
+where YOUR-SID is the identification code you received with `send-pr'.
+`send-pr' will automatically insert this value into the template field
+`&gt;Submitter-Id'.  If you've downloaded `send-pr' from the Net, use `net'
+for this value.  If you do not know your id, run `send-pr --request-id' to 
+get one from your support site.
+root@kirby#
+
+I snooped through the send-pr code and found this snippet:
+
+# Configuration file to be read.  It must be a shell script that can redefine
+# the variables above to fit a local configuration.
+CONFIGFILE=/usr/local/etc/gnats/send-pr.conf
+
+if [ -r $CONFIGFILE ]; then
+  . $CONFIGFILE
+fi
+
+
+It looks like send-pr is looking for a file named "send-pr.conf".  This
+is not included in the gnats distribution.  I don't see any documentation
+on it anywhere.
+-- 
+-----------------------------------------------------------------------
+Wes Barris                                            wes@networkcs.com
+Network Computing Services, Inc.                           612.337.3423
+-----------------------------------------------------------------------
+Today's fortune: I think animal testing is a terrible idea; they get
+all nervous and give the wrong answers.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00057" href="msg00057.html">Re: send-pr broken</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00056">Date&nbsp;Index</A>] [<a href="subjects.html#00056">Subject&nbsp;Index</a>] [<a href="authors.html#00056">Author&nbsp;Index</a>] [<A HREF="threads.html#00056">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00055.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00055.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

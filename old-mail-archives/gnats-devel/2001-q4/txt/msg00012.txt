@@ -1,0 +1,51 @@
+From gnats-devel-return-795-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Thu Nov 15 09:34:35 2001
+Return-Path: <gnats-devel-return-795-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 11877 invoked by alias); 15 Nov 2001 09:34:30 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 11628 invoked from network); 15 Nov 2001 09:34:23 -0000
+Received: from unknown (HELO smtp.trd.clustra.com) (194.143.59.98)
+  by sourceware.cygnus.com with SMTP; 15 Nov 2001 09:34:23 -0000
+Received: (qmail 7335 invoked from network); 15 Nov 2001 09:34:20 -0000
+Received: from yngves-vpn.clustra.com (HELO 0dbtq2nsupuzl4u.clustra.com) (10.22.1.3)
+  by maestro.clustra.com with SMTP; 15 Nov 2001 09:34:20 -0000
+Message-Id: <5.1.0.14.2.20011115103258.00b41bb8@10.10.1.1>
+X-Sender: yngves@10.10.1.1
+X-Mailer: QUALCOMM Windows Eudora Version 5.1
+Date: Thu, 15 Nov 2001 10:35:08 +0100
+To: "Moe Elzubeir" <elzubeir@cobaf.coba.unt.edu>,
+ <gnats-devel@sourceware.cygnus.com>
+From: Yngve Svendsen <yngve.svendsen@clustra.com>
+Subject: Re: gnats/gnatsweb problem
+In-Reply-To: <sbf2c0c5.025@gwia.unt.edu>
+Mime-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"; format=flowed
+
+At 19:06 14.11.2001 -0600, Moe Elzubeir wrote:
+>Okay, looking over at my gnatsd.conf, it has the following 'exact'
+>lines:
+>
+>----
+>localhost:edit:
+>arabeyes.org:edit:
+>4.40.3.117:edit:
+>----
+>
+>So... what now?
+
+First, this: Use 127.0.0.1 instead of localhost. Depending on your name 
+resolution setup, the machine might have trouble recognizing `localhost'.
+
+If that doesn't work, check that gnatsd isn't dying when it is started. Try 
+logging in as the `gnats' user and run gnatsd from the command line.
+
+Yngve Svendsen
+Gnatsweb maintainer
+

@@ -1,0 +1,405 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: Re: gnats4.0 -->
+<!--X-From-R13: [vpunry Penqre <zoenqreNnherzn.pbz> -->
+<!--X-Date: 7 Mar 2000 06:14:08 &#45;0000 -->
+<!--X-Message-Id: qcput7gven.fsf@swag.sw.oz.au -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Reference: 6B1DF6EEBA51D31182F20090274043682C01FF@mail&#45;in.comverse&#45;in.com -->
+<!--X-Reference: 20000303155004.H76065@purple.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: gnats4.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00024">Date&nbsp;Index</A>] [<a href="subjects.html#00024">Subject&nbsp;Index</a>] [<a href="authors.html#00024">Author&nbsp;Index</a>] [<A HREF="threads.html#00024">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00023.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00025.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00023.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00025.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats4.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Paul Traina &lt;pst at juniper dot net&gt;</LI>
+<LI><em>Subject</em>: Re: gnats4.0</LI>
+<LI><em>From</em>: Michael Brader &lt;mbrader at aurema dot com&gt;</LI>
+<LI><em>Date</em>: 07 Mar 2000 17:13:20 +1100</LI>
+<LI><em>Cc</em>: &quot;'gnats-devel at sourceware dot cygnus dot com'&quot; &lt;gnats-devel at sourceware dot cygnus dot com&gt;,       Bob Manson &lt;bmanson at juniper dot net&gt;</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00020.html">6B1DF6EEBA51D31182F20090274043682C01FF@mail-in.comverse-in.com</A>&gt; &lt;<A HREF="msg00021.html">20000303155004.H76065@purple.juniper.net</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+[Trimmed to gnats-devel + Bob]
+
+[Bob, there's a patch for mail-query.sh/Makefile.in at the end of this
+message]
+
+Paul Traina &lt;pst@juniper.net&gt; writes:
+
+&gt; Yes, it's available now!
+&gt; 
+&gt; [...]
+&gt; 
+&gt; We at Juniper are now using 4.0 with the latest gnatsweb in
+&gt; production.  I believe Bob is almost ready to announce 4.0 for FCS,
+&gt; however he's looking for folks to review and help update some of
+&gt; the documentation, which is *sorely* out of date.
+
+Is there a TODO list that we can work with? I'm happy to work on doco
+for 4.0 but wouldn't want to be duplicating someone else's efforts. It
+seems that nothing has been done to gnats.texi and that all new doco
+is in the manpages. I'll stick my hand up and volunteer to start
+working on getting the TeXinfo in order, if we are going to maintain
+the TeXinfo doco.
+
+Anyway, here's a quick list of comments/suggestions/questions on the
+manpages. Some of the comments might be more about gnats than the
+doco. Obviously, prefix each comment with IMHO.
+
+*** field-config
+
+- General comments
+
+        Can't we call it something else now as field-config is less
+        and less relevant. Perhaps dbconfig or just config (it does
+        supersede it after all) would be better.
+
+        In the spirit of procmailex, a field-configex(5) containing
+        examples of various types of configurations would help people
+        warm to what is going to initially appear to be a very complex
+        file.
+
+- section: NAME
+
+     "It is very helpful if the  administrator  has  a  reasonably
+     good  understanding  of  the overall GNATS PR process before
+     trying to create or edit a database configuration."
+
+        We should tell them where to get this overview from (a pointer
+        to Keeping Track or the SEE ALSO section would be good)
+
+- section: Overall Database Configuration
+
+          "If set to true, the database is placed into debug mode.
+          This  causes  all  outgoing  email  to  be  sent to the
+          gnats-admin user listed in the responsible adm file."
+
+        Where can I find out what is meant by adm file? I assume it is
+        defined as a file in the gnats-adm directory of a database.
+
+          "If set to true, all of the Received:  headers  for  PRs
+          submitted via email are kept in the PR; otherwise, only
+          the first one is kept."
+
+        We should probably add "Setting this option to true can take
+        up a lot of disk space"
+
+        In send-submitter-ack
+
+          "This is in addition to the normal notification mail to the
+          person(s) responsible for the new PR."
+
+        s/mail to the/mail sent to the/
+
+- section: Individual field configuration
+
+        In builtin-name
+
+          state           What's the frequency, Kenneth?
+
+        :-) Perhaps "What state is the PR IN" or "The current state of
+        the PR"
+
+        In query-default
+
+        The difference between exact-regexp and inexact-regexp is ?
+        
+- section: Field datatypes
+
+        In enumerated-in-file:
+
+        I understand the usefulness of this, particularly while people
+        are upgrading, but should we not deprecate this in favour of
+        the field-config file? Or am I missing something?
+
+*** gnats.7
+
+- section: DESCRIPTION
+
+        "Many of the  primary  functions  available  with  GNATS  are
+        accessible from within GNU Emacs."
+
+        You might want to comment this out until it is true :-)
+
+- section: STRUCTURE
+
+        Wouldn't it make more sense with the first two paragraphs
+        reversed, introducing databases then talking about what
+        happens within each database
+
+        Perhaps some of the stuff from the databases file man page
+        could be put here as well, particularly the explanation of the
+        default database as it seems likely to bite some people (it
+        bit me :-)
+
+     "The database name default is special; this is the entry used
+     if  no database name is specified via a --database option or
+     the GNATSDB environment variable."
+
+- section: HISTORY
+
+        Delete Elisp
+
+*** gnatsd.8
+
+- section: OPTIONS
+
+          "son,  gnatsd  will immediately exit.  (It is unclear to
+          the  author  of  this  man  page  why  this  option  is
+          present.)"
+
+        This is the reason (albeit somewhat dodgy) from gnats.texi
+
+         There are three main features: 
+         
+         --------------------
+         @example
+         - security by obscurity, defined in the next paragraph
+         - access level set by host name or IP address
+         - access level set by userid and password
+         @end example
+         
+         @code{gnatsd} has parameters @code{-r} or @code{--require-db}. If so
+         executed, nobody gets in unless they are able to ask for a database by
+         alias name with the @code{CHDB} (change database) command. If you
+         specify an incorrect database alias the connection is closed. Only the
+         @code{CHDB} command is allowed, and you just get one try.
+         --------------------
+
+        I think the option should be removed. It doesn't provide any
+        real security but it might lead some people to believe that it
+        does (a 'CHDB default' will almost always succeed in Gnats4).
+
+- section: COMMANDS
+
+        USER or CHDB
+
+          maybe add at the end:
+
+        Whenever a CHDB command is processed, the user's access level
+        is set to the level for their host.
+
+        ADMV
+
+        I may find it later, but there seems to be no definition of an
+        adm file (a file specified in an enumerated-in-file section in
+        field-config) anywhere.
+
+*** mkdb
+
+- section: DESCRIPTION
+
+        "The command should be run as @GNATS_USER@."
+
+        Perhaps: The command must be run as @GNATS_USER@. or you will
+        run into problems with file/directory permissions.
+
+*** mkcat/rmcat
+
+- section: DESCRIPTION
+
+        Typo: s/histerical/historical/ or possibly hysterical :-)
+
+*** pr-edit
+
+- section: DESCRIPTION
+
+        first line typo: s/exit/edit/
+
+*** queue-pr
+
+- section: DESCRIPTION
+
+        first line: s/should run/should be run/ ??
+
+        Maybe there should be more information about running queue-pr
+        via cron with some examples, noting that there needs to be a
+        cron entry for each database (with an associated -d option)
+        Though maybe this should be in Keeping Track.
+
+*** query-pr
+
+-section: QUERY BY MAIL
+
+        This needs updating to remove the deprecated operators from
+        the manual. The program itself needs some work. I've included
+        a patch at the end of this message for mail-query.sh and
+        Makefile.in which works but still seems to have a couple of
+        glitches with --expr. It also uses the deprecated
+        --skip-closed flag. I don't have any need for this feature so
+        I'm passing the buck.
+
+Anyway, enjoy!
+
+Michael Brader
+
+-- 
+Michael Brader
+Aurema Pty Ltd (formerly Softway Pty Ltd)
+PO Box 305, Strawberry Hills, NSW 2012, Australia
+Email:mbrader@aurema.com, Tel: +61 2 9698 2322, Fax: +61 2 9699 9174
+
+</PRE>
+<PRE>
+Index: mail-query.sh
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/mail-query.sh,v
+retrieving revision 1.3
+diff -u -r1.3 mail-query.sh
+--- mail-query.sh	2000/01/02 07:19:22	1.3
++++ mail-query.sh	2000/03/07 05:49:33
+@@ -19,12 +19,12 @@
+ # along with GNU GNATS; see the file COPYING.  If not, write to
+ # the Free Software Foundation, 675 Mass Ave, Cambridge, MA 02139, USA.
+ 
+-GNATS_ADMIN_ADDR="`query-pr --responsible-address gnats-admin`"
+-LIBEXECDIR=xLIBEXECDIRx
+-
+ PATH=xBINDIRx:/bin:/sbin:/usr/bin:/usr/ucb:/usr/bsd:/usr/sbin
+ export PATH
+ 
++GNATS_ADMIN_ADDR="`query-pr --responsible-address gnats-admin`"
++LIBEXECDIR=xLIBEXECDIRx
++
+ # Don't expand globs for the arguments to query-pr.
+ set -f
+ 
+@@ -48,8 +48,11 @@
+ 
+ exec 3&gt;&amp;1 4&gt;&amp;2 &gt; $mail 2&gt;&amp;1
+ 
++database=${GNATSDB:-default}
++
+ if [ -n "$to" ]; then
+   echo "To: $to"
++  echo "From: $GNATS_ADMIN_ADDR"
+   echo "Subject: query-pr output [$args]"
+   echo
+   case $args in
+@@ -67,13 +70,15 @@
+       query-pr --help
+       ;;
+     *query-pr*)
+-      query-pr --restricted --state 'o|a|f|s' \
+-	`echo $args | sed 's/^.*query-pr//'` --database="$GNATSDB" $*;;
++# FIXME: relies on the fact that multiple database options use the last one
++      query-pr --restricted -d $database --skip-closed \
++	`echo $args | sed 's/^.*query-pr//'` $*;;
+     *)
+-      query-pr --restricted --state 'o|a|f|s' $args --database="$GNATSDB" $*;;
++      query-pr --restricted -d $database --skip-closed $args $*;;
+   esac
+ else
+   echo "To: $GNATS_ADMIN_ADDR"
++  echo "From: $GNATS_ADMIN_ADDR"
+   echo "Subject: query-pr request failed"
+   echo
+   echo "Subject line:$args"
+@@ -92,14 +97,15 @@
+ 2) All matching PRs are confidential.  For security reasons, this mail server
+    does not display confidential PRs.
+ 
+-3) All matching PRs are closed.  By default, this mail server does not display
+-   closed PRs; to override this behavior, specify \`--state=' (i.e. match any
+-   state) in your query.
+-
+ __EOF__
+   query-pr --help &gt;&gt; $mail 2&gt;&amp;1
+ fi
+ 
++# FIXME: Currently all PRs are returned, including closed ones
++# 3) All matching PRs are closed.  By default, this mail server does not display
++#    closed PRs; to override this behavior, specify \`--state=' (i.e. match any
++#    state) in your query.
++
+ $LIBEXECDIR/gnats/mail-agent &lt; $mail
+ 
+-[ $? -eq 0 ] &amp;&amp; rm -f $mail
++#[ $? -eq 0 ] &amp;&amp; rm -f $mail
+</PRE>
+<PRE>
+Index: Makefile.in
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/Makefile.in,v
+retrieving revision 1.32
+diff -r1.32 Makefile.in
+309c309
+&lt; 	@sed -e 's,xGNATS_DEFAULT_DB_DIRx,$(GNATS_DEFAULT_DB_DIR),g' \
+---
+&gt; 	@sed -e 's,xLIBEXECDIRx,$(libexecdir),g' \
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00020" HREF="msg00020.html">gnats4.0</A></STRONG>
+<UL><LI><EM>From:</EM> Wasserman, Sherry</LI></UL></LI>
+<LI><STRONG><A NAME="00021" HREF="msg00021.html">Re: gnats4.0</A></STRONG>
+<UL><LI><EM>From:</EM> Paul Traina</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00024">Date&nbsp;Index</A>] [<a href="subjects.html#00024">Subject&nbsp;Index</a>] [<a href="authors.html#00024">Author&nbsp;Index</a>] [<A HREF="threads.html#00024">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00023.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00025.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00023.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00025.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

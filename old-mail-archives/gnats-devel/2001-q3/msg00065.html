@@ -1,0 +1,908 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: Gnats Linux installation -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 20 Jul 2001 02:03:38 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10107191954140.9649&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: NFBBKKJOOOFPOFEJFANIAENICBAA.uma@cmoschips.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Rick Macdonald - Re: Gnats Linux installation</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00065">Date&nbsp;Index</A>] [<a href="subjects.html#00065">Subject&nbsp;Index</a>] [<a href="authors.html#00065">Author&nbsp;Index</a>] [<A HREF="threads.html#00065">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00064.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00066.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00064.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00066.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnats Linux installation</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Uma R &lt;uma at cmoschips dot com&gt;</li>
+<li><em>Subject</em>: Re: Gnats Linux installation</li>
+<li><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Date</em>: Thu, 19 Jul 2001 20:02:30 -0600 (MDT)</li>
+<li><em>cc</em>: GNATS &lt;gnats-devel at sourceware dot cygnus dot com&gt;,       Gnats Devel Help &lt;gnats-devel-help at sources dot redhat dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+On Thu, 19 Jul 2001, Uma R wrote:
+
+&gt; Hi,
+&gt;   I have installed gnats in Linux and facing some problems,
+&gt;    1. I don't know how to start the gnats daemon (xinetd.d is a directory
+&gt; and there i have created a file called gnatsd but I am not aware of how this
+&gt; xinetd daemon starts)
+
+I had never heard of xinetd before, but I see it's an enhanced replacement
+for inetd. Normally you need to add gnats to /etc/inetd.conf. It looks
+like xinetd uses xinetd.conf. Try &quot;man xinetd.conf&quot;. Try the command
+&quot;locate xinetd&quot; and see what is found if you can't find the man page.
+
+&gt;    2. Because of this I am getting problems with sending emails which fails
+&gt; and gets spooled into the /var/spool dir. The failure notice which's dumped
+&gt; with the mail says, the bugs.log file can't be created, queue-pr service is
+
+Create an empty bugs.log file and give it 666 permissions and try again.
+(But adding gnats to xinetd is the key to getting it working).
+
+&gt; unavailable etc and i feel its becoz of the absence of gnats daemon.
+
+OK, here's the man page just in case (version 2.1.8.8):
+
+XINETD.CONF(5L)					  XINETD.CONF(5L)
+
+
+
+NAME
+       xinetd.conf - Extended Internet Services	Daemon configura-
+       tion file
+
+DESCRIPTION
+       xinetd.conf is the configuration	file that determines  the
+       services	 provided  by  xinetd.	Any line whose first non-
+       white-space character is	a '#'  is  considered  a  comment
+       line. Empty lines are ignored.
+
+       The file	contains entries of the	form:
+
+	      service &lt;service_name&gt;
+	      {
+		     &lt;attribute&gt; &lt;assign_op&gt; &lt;value&gt; &lt;value&gt; ...
+		     ...
+	      }
+
+       The  assignment	operator,  assign_op,  can be one of '=',
+       '+=', '-='.  The	majority of attributes support	only  the
+       simple  assignment  operator, '='.  Attributes whose value
+       is a set	of values support all assignment operators.   For
+       such  attributes, '+=' means adding a value to the set and
+       '-=' means removing a value from	the set.  A list of these
+       attributes  will	 be  given  after  all the attributes are
+       described.
+
+       Each entry  defines  a  service	identified  by	the  ser-
+       vice_name.    The   following   is  a  list  of	available
+       attributes:
+
+       id		This attribute is used to uniquely  iden-
+			tify  a	 service.  This	is useful because
+			there exist services that can use differ-
+			ent  protocols	and  need to be	described
+			with different entries in the  configura-
+			tion file.  By default,	the service id is
+			the same as the	service	name.
+
+       type		Any combination	of the	following  values
+			may be used:
+
+			RPC	    if this is an RPC service
+
+			INTERNAL    if this is a service provided
+				    by xinetd.
+
+			UNLISTED    if	this  is  a  service  not
+				    listed  in	a standard system
+				    file (like /etc/rpc	 for  RPC
+				    services,	or  /etc/services
+				    for	non-RPC	services).
+
+       flags		Any combination	of  the	 following  flags
+			may be used:
+
+			REUSE	    Set	 the SO_REUSEADDR flag on
+				    the	 service  socket   (check
+				    setsockopt(2) for more infor-
+				    mation).
+
+			INTERCEPT   Intercept packets or accepted
+				    connections	 in order to ver-
+				    ify	that they are coming from
+				    acceptable	locations (inter-
+				    nal	 or  multi-threaded  ser-
+				    vices cannot be intercepted).
+
+			NORETRY	    Avoid retry	attempts in  case
+				    of fork failure.
+
+			IDONLY	    Accept  connections	only when
+				    the	remote end identifies the
+				    remote  user (i.e. the remote
+				    host must run an  identifica-
+				    tion   server).    This  flag
+				    applies only  to  connection-
+				    based services.  This flag is
+				    ineffective	if the USERID log
+				    option is not used.
+
+			NAMEINARGS  This  will	cause  the  first
+				    arguement in &quot;server_args&quot; to
+				    be argv[0] when executing the
+				    server,   as   specified   in
+				    &quot;server&quot;.  This allows you to
+				    use	tcpd by	 puting	 tcpd  in
+				    &quot;server&quot;  and the name of the
+				    server in &quot;server_args&quot;  like
+				    in normal inetd.
+
+			NODELAY	    If	the service is a tcp ser-
+				    vice and the NODELAY flag  is
+				    set,   then	 the  TCP_NODELAY
+				    flag  will	be  set	 on   the
+				    socket.   If  the  service is
+				    not	 a  tcp	  service,   this
+				    option has no effect.
+
+       socket_type	Possible   values   for	  this	attribute
+			include:
+
+			stream	    stream-based service
+
+			dgram	    datagram-based service
+
+			raw	    service that requires  direct
+				    access to IP
+
+			seqpacket   service  that  requires reli-
+				    able   sequential	 datagram
+				    transmission
+
+       protocol		determines  the	protocol that is employed
+			by the service.	 The protocol must  exist
+			in  /etc/protocols.  If	this attribute is
+			not   defined,	 the   default	 protocol
+			employed by the	service	will be	used.
+
+       wait		This  attribute	determines if the service
+			is single-threaded or multi-threaded.  If
+			its  value  is yes the service is single-
+			threaded; this	means  that  xinetd  will
+			start  the  server  and	then it	will stop
+			handling requests for the  service  until
+			the  server dies.  If the attribute value
+			is no, the service is multi-threaded  and
+			xinetd	will  keep  handling  new service
+			requests.
+
+       user		determines the uid for	the  server  pro-
+			cess.	The   user  name  must	exist  in
+			/etc/passwd.  This attribute is	 ineffec-
+			tive  if  the effective	user ID	of xinetd
+			is not super-user.
+
+       group		determines the gid for	the  server  pro-
+			cess.	The  group  name  must	exist  in
+			/etc/group.  If	a group	is not specified,
+			the  group  of	user  will  be used (from
+			/etc/passwd).  This attribute is ineffec-
+			tive  if  the effective	user ID	of xinetd
+			is not super-user.
+
+       instances	determines the number of servers that can
+			be  simultaneously  active  for	a service
+			(the default is	no limit). The	value  of
+			this  attribute	can be either a	number or
+			UNLIMITED which	means that  there  is  no
+			limit.
+
+       nice		determines the server priority.	Its value
+			is a (possibly	negative)  number;  check
+			nice(3)	for more information.
+
+       server		determines  the	 program  to  execute for
+			this service.
+
+       server_args	determines the arguments  passed  to  the
+			server.	 In contrast to	inetd, the server
+			name   should	not   be   included    in
+			server_args.
+
+       only_from	determines  the	remote hosts to	which the
+			particular  service  is	 available.   Its
+			value is a list	of IP addresses	which can
+			be specified in	any  combination  of  the
+			following ways:
+
+			a)   a	numeric	 address  in  the form of
+			     %d.%d.%d.%d. If the rightmost compo-
+			     nents  are	 0,  they  are treated as
+			     wildcards (for example, 128.138.12.0
+			     matches  all hosts	on the 128.138.12
+			     subnet).  0.0.0.0 matches all Inter-
+			     net addresses.
+
+			b)   a	factorized address in the form of
+			     %d.%d.%d.{%d,%d,...}.  There  is  no
+			     need  for	all  4	components  (i.e.
+			     %d.%d.{%d,%d,...%d}  is  also   ok).
+			     However, the factorized part must be
+			     at	the end	of the address.
+
+			c)   a network name (from /etc/networks)
+
+			d)   a host name.  When	a  connection  is
+			     made  to xinetd, a	reverse	lookup is
+			     performed,	and  the  canonical  name
+			     returned  is  compared to the speci-
+			     fied host name.  You  may	also  use
+			     domain   names   in   the	 form  of
+			     .domain.com.  If the reverse  lookup
+			     of	  the	client's   IP  is  within
+			     .domain.com, a match occurs.
+
+			e)   an	ip address/netmask range  in  the
+			     form of 1.2.3.4/32.
+
+			Specifying this	attribute without a value
+			makes the service available to nobody.
+
+       no_access	determines the remote hosts to which  the
+			particular  service  is	 unavailable. Its
+			value can be specified in the same way as
+			the  value  of	the  only_from attribute.
+			These two attributes determine the  loca-
+			tion  access  control enforced by xinetd.
+			If none	of the two  is	specified  for	a
+			service, the service is	available to any-
+			one. If	both are specified for a service,
+			the  one that is the better match for the
+			address	of the remote host determines  if
+			the  service  is  available  to	that host
+			(for example, if the only_from list  con-
+			tains  128.138.209.0  and  the	no_access
+			list  contains	128.138.209.10	then  the
+			host  with the address 128.138.209.10 can
+			not access the service).
+
+       access_times	determines the time  intervals	when  the
+			service	is available. An interval has the
+			form hour:min-hour:min (connections  will
+			be  accepted  at  the bounds of	an inter-
+			val). Hours can	range from 0  to  23  and
+			minutes	from 0 to 59.
+
+       log_type		determines  where  the service log output
+			is sent. There are two formats:
+
+			SYSLOG	syslog_facility	[syslog_level]
+			       The log output is sent  to  syslog
+			       at  the specified facility. Possi-
+			       ble facility names  include:  dae-
+			       mon, auth, user,	local0-7.  Possi-
+			       ble level  names	 include:  emerg,
+			       alert, crit, err, warning, notice,
+			       info, debug.  If	a  level  is  not
+			       present,	  the  messages	 will  be
+			       recorded	at the info level.
+
+			FILE  file [soft_limit [hard_limit]]
+			       The log output is appended to file
+			       which  will  be created if it does
+			       not exist. Two limits on	the  size
+			       of  the log file	can be optionally
+			       specified.  The first limit  is	a
+			       soft  one;  xinetd will log a mes-
+			       sage the	first time this	limit  is
+			       exceeded	 (if  xinetd logs to sys-
+			       log, the	message	will be	 sent  at
+			       the  alert  priority  level).  The
+			       second  limit  is  a  hard  limit;
+			       xinetd  will  stop logging for the
+			       affected	service	(if the	log  file
+			       is  a  common  log file,	then more
+			       than one	service	may be	affected)
+			       and  will log a message about this
+			       (if xinetd  logs	 to  syslog,  the
+			       message	will be	sent at	the alert
+			       priority	level).	 If a hard  limit
+			       is  not	specified, it defaults to
+			       the soft	limit increased	by 1% but
+			       the  extra size must be within the
+			       parameters    LOG_EXTRA_MIN    and
+			       LOG_EXTRA_MAX  which default to 5K
+			       and 20K respectively  (these  con-
+			       stants are defined in config.h).
+
+       log_on_success	determines  what  information  is  logged
+			when a server is started  and  when  that
+			server	exits  (the  service id	is always
+			included in the	log entry).  Any combina-
+			tion of	the following values may be spec-
+			ified:
+
+			PID	    logs the  server  process  id
+				    (if	 the  service  is  imple-
+				    mented  by	 xinetd	  without
+				    forking  another  process the
+				    logged process id will be 0)
+
+			HOST	    logs the remote host address
+
+			USERID	    logs  the  user  id	 of   the
+				    remote  user  using	 the  RFC
+				    1413 identification	protocol.
+				    This option	is available only
+				    for	  multi-threaded   stream
+				    services.
+
+			EXIT	    logs  the  fact that a server
+				    exited along  with	the  exit
+				    status   or	 the  termination
+				    signal  (the  process  id  is
+				    also logged	if the PID option
+				    is used)
+
+			DURATION    logs the duration of  a  ser-
+				    vice session
+
+       log_on_failure	determines  what  information  is  logged
+			when a server cannot be	 started  (either
+			because	of a lack of resources or because
+			of access control restrictions). The ser-
+			vice  id  is  always  included in the log
+			entry along with the reason for	 failure.
+			Any  combination  of the following values
+			may be specified:
+
+			HOST	    logs the remote host address.
+
+			USERID	    logs   the	user  id  of  the
+				    remote  user  using	 the  RFC
+				    1413 identification	protocol.
+				    This option	is available only
+				    for	  multi-threaded   stream
+				    services.
+
+			ATTEMPT	    logs the fact that	a  failed
+				    attempt was	made (this option
+				    is implied by all others).
+
+			RECORD	    records information	from  the
+				    remote end in case the server
+				    could not  be  started.  This
+				    allows monitoring of attempts
+				    to	use  the  service.    For
+				    example,  the  login  service
+				    logs the local  user,  remote
+				    user and terminal type.  Cur-
+				    rently,  the  services   that
+				    support   this   option  are:
+				    login, shell, exec,	finger.
+
+       rpc_version	determines the RPC version for a RPC ser-
+			vice.  The version can be a single number
+			or a range in the form number-number.
+
+       rpc_number	determines the number for an UNLISTED RPC
+			service	(this attribute	is ignored if the
+			service	is not unlisted).
+
+       env		The value of this attribute is a list  of
+			strings	 of the	form 'name=value'.  These
+			strings	will be	added to the  environment
+			before	starting  a server (therefore the
+			server's   environment	  will	  include
+			xinetd's  environment  plus the	specified
+			strings).
+
+       passenv		The value of this attribute is a list  of
+			environment variables from xinetd's envi-
+			ronment	 that  will  be	 passed	 to   the
+			server.	 An empty list implies passing no
+			variables to the server	except for  those
+			explicitly    defined	using	the   env
+			attribute.  (notice that you can use this
+			attribute  in  conjuction  with	 the  env
+			attribute to specify exactly  what  argu-
+			ment will be passed to the server).
+
+       port		determines  the	 service  port.	 If  this
+			attribute  is  specified  for  a  service
+			listed in /etc/services, it must be equal
+			to the port number listed in that file.
+
+       redirect		Allows a tcp service to	be redirected  to
+			another	host.  When xinetd recieves a tcp
+			connection on this port	it spawns a  pro-
+			cess that establishes a	connection to the
+			host and port number specified,	and  for-
+			wards  all  data  between  the two hosts.
+			This option is useful when your	 internal
+			machines  are  not visible to the outside
+			world.	 Syntax	 is:   redirect	  =   (ip
+			address)  (port).   You	 can  also  use	a
+			hostname instead of  the  IP  address  in
+			this  field.  The hostname lookup is per-
+			formed only once, when xinetd is started,
+			and  the first IP address returned is the
+			one  that  is  used   until   xinetd   is
+			restarted.  The	&quot;server&quot; attribute is not
+			required when this option  is  specified.
+			If  the	 &quot;server&quot; attribute is specified,
+			this attribute takes priority.
+
+       bind		Allows a service to be bound  to  a  spe-
+			cific  interface  on  the  machine.  This
+			means you can have a telnet  server  lis-
+			tening on a local, secured interface, and
+			not on the external  interface.	  Or  one
+			port  on  one interface	can do something,
+			while the same port on a different inter-
+			face  can do something completely differ-
+			ent.   Syntax:	bind  =	 (ip  address  of
+			interface).
+
+       interface	Synonym	for bind.
+
+       banner		Takes  the  name of a file to be splatted
+			at the remote host when	a  connection  to
+			that service is	established.  This banner
+			is printed regardless of access	 control.
+			It should *always* be printed when a con-
+			nection	has been made.
+
+       banner_success	Takes the name of a file to  be	 splatted
+			at  the	 remote	host when a connection to
+			that service is	granted.  This banner  is
+			printed	 as soon as access is granted for
+			the service.
+
+       banner_fail	Takes the name of a file to  be	 splatted
+			at  the	 remote	host when a connection to
+			that service is	denied.	 This  banner  is
+			printed	immediatly upon	denial of access.
+			This is	useful for informing  your  users
+			that  they  are	 doing	something bad and
+			they shouldn't be doing	it anymore.
+
+       per_source	Takes an integer  or  &quot;UNLIMITED&quot;  as  an
+			arguement.   This  specifies  the maximum
+			instances of this service per  source  IP
+			address.   This	 can also be specified in
+			the defaults section.
+
+       cps		Limits the rate	of incoming  connections.
+			Takes  two  arguements.	 The first argue-
+			ment is	the  number  of	 connections  per
+			second	to handle.  If the rate	of incom-
+			ing connections	is higher than this,  the
+			service	 will  be  temporarily	disabled.
+			The second arguement  is  the  number  of
+			seconds	 to  wait  before re-enabling the
+			service	after it has been disabled.
+
+       max_load		Takes a	floating point value as	the  load
+			at  which the service will stop	accepting
+			connections.  For example: 2 or	2.5.  The
+			service	 will  stop accepting connections
+			at this	load.  This  is	 the  one  minute
+			load  average.	 This  is an OS	dependant
+			feature, and  currently	 only  Linux  and
+			Solaris	are supported for this.
+
+       groups		Takes  either  &quot;YES&quot;  or  &quot;NO&quot;.	  This is
+			Solar Designer's fix to	the supplementary
+			groups	problem.  If the groups	attribute
+			is set to YES, then the	 server	 is  exe-
+			cuted  with access to the groups that the
+			server's effective UID has access to.  If
+			the  groups  attribute is set to NO, then
+			the server runs	with no	group  privleges.
+
+       You  don't need to specify all of the above attributes for
+       each service.  The necessary attributes for a service are:
+
+	      socket_type
+	      user		(non-unlisted services only)
+	      server		(non-internal services only)
+	      wait
+	      protocol		(RPC and unlisted services only)
+	      rpc_version	(RPC services only)
+	      rpc_number	(unlisted RPC services only)
+	      port		(unlisted non-RPC services only)
+
+       The following attributes	support	all assignment operators:
+
+	      only_from
+	      no_access
+	      log_on_success
+	      log_on_failure
+	      passenv
+	      env		(does not support the '-=' opera-
+				tor)
+
+       These  attributes can also appear more than once	in a ser-
+       vice entry.  The	remaining attributes support only the '='
+       operator	and can	appear at most once in a service entry.
+
+       The  configuration file may also	contain	a single defaults
+       entry that has the form
+
+	      defaults
+	      {
+		     &lt;attribute&gt; = &lt;value&gt; &lt;value&gt; ...
+		     ...
+	      }
+
+       This entry provides default attribute values  for  service
+       entries	that  don't  specify  those  attributes. Possible
+       default attributes:
+
+	      log_type
+	      log_on_success	(cumulative effect)
+	      log_on_failure	(cumulative effect)
+	      only_from		(cumulative effect)
+	      no_access		(cumulative effect)
+	      passenv		(cumulative effect)
+	      instances
+	      disabled		(cumulative effect)
+	      enabled		(cumulative effect)
+
+       Attributes with a cumulative effect can be specified  mul-
+       tiple times with	the values specified each time accumulat-
+       ing (i.e. '=' does the same  thing  as  '+=').	With  the
+       exception of disabled they all have the same meaning as if
+       they were specified in a	service	entry.	 disabled  deter-
+       mines services that are disabled	even if	they have entries
+       in the configuration file. This allows for quick	reconfig-
+       uration	by specifying disabled services	with the disabled
+       attribute instead of commenting them out.   The	value  of
+       this  attribute	is a list of space separated service ids.
+       enabled has the same properties as disabled.  The  differ-
+       ence being that enabled is a list of which services are to
+       be enabled.  If enabled is specified,  only  the	 services
+       specified are available.	 If enabled is not specified, all
+       services	are assumed to be enabled, except those	listed in
+       disabled.
+
+
+INTERNAL SERVICES
+       xinetd  provides	 the  following	services internally (both
+       stream and datagram based): echo, time, daytime,	 chargen,
+       and  discard.   These  services	are under the same access
+       restrictions as all other services  except  for	the  ones
+       that  don't  require  xinetd  to	 fork another process for
+       them. Those ones	(time, daytime,	 and  the  datagram-based
+       echo, chargen, and discard) have	no limitation in the num-
+       ber of instances.
+
+       xinetd also provides two	 UNLISTED  internal  stream-based
+       services: servers and services.	The former lists informa-
+       tion about running servers while	 the  latter  provides	a
+       list  of	 currently active services.  There is one service
+       per line	and each line contains the service name, protocol
+       (e.g. &quot;tcp&quot;) and	port number.
+
+       There  is  also now an administrative interface that is an
+       internal	service.  The service name &quot;xadmin&quot; is	reserved,
+       and  will always	be an internal service.	 You should spec-
+       ify a port number for this service, and probably	also some
+       IP based	access control,	since at the time of this writing
+       it does not have	any password protection.  You can  telnet
+       to this port and	query xinetd for some information.
+
+NOTES
+       1.  The	following service attributes cannot be changed on
+	   reconfiguration: socket_type, wait, protocol, type.
+
+       2.  When	the attributes only_from and  no_access	 are  not
+	   specified  for  a  service  (either	directly  or  via
+	   defaults) the address check is  considered  successful
+	   (i.e. access	will not be denied).
+
+       3.  The	address	 check	is based on the	IP address of the
+	   remote host and not on its domain address. We do  this
+	   so  that  we	 can  avoid remote name	lookups	which may
+	   take	a long time (since xinetd is  single-threaded,	a
+	   name	lookup will prevent the	daemon from accepting any
+	   other requests until	the  lookup  is	 resolved).   The
+	   down	 side of this scheme is	that if	the IP address of
+	   a remote host changes, then access to that host may be
+	   denied  until  xinetd is reconfigured.  Whether access
+	   is actually denied or not will depend on  whether  the
+	   new host IP address is among	those allowed access. For
+	   example, if the IP address  of  a  host  changes  from
+	   1.2.3.4  to	1.2.3.5	 and  only_from	 is  specified as
+	   1.2.3.0 then	access will not	be denied.
+
+       4.  If the USERID log option is specified and  the  remote
+	   host	 either	 does not run an identification	server or
+	   the server sends back a bad reply, access will not  be
+	   denied unless the IDONLY service flag is used.
+
+       5.  Interception	 works by forking a process which acts as
+	   a filter between the	 remote	 host(s)  and  the  local
+	   server.  This obviously has a performance impact so it
+	   is up to you	to make	the compromise	between	 security
+	   and	performance  for  each	service.   The	following
+	   tables show the overhead of interception.   The  first
+	   table  shows	the time overhead-per-datagram for a UDP-
+	   based service using various datagram	sizes.	For  TCP-
+	   based  services  we	measured  the bandwidth	reduction
+	   because of interception while sending a certain amount
+	   of  data  from  client  to  server  (the time overhead
+	   should the same as for UDP-based services  but  it  is
+	   &quot;paid&quot;  only	 by the	first packet of	a continuous data
+	   transmission).  The amount of data  is  given  in  the
+	   table  as  system_callsxdata_sent_per_call, i.e.  each
+	   send(2) system call transferred so many bytes of data.
+	   The bandwidth reduction is given in terms of	bytes per
+	   second and as  a  percentage	 of  the  bandwidth  when
+	   interception	 is not	performed.  All	measurements were
+	   done	on a SparcStation IPC running SunOS 4.1.
+
+		  Datagram size	(bytes)	   Latency (msec)
+		  ---------------------	   --------------
+		  64			   1.19
+		  256			   1.51
+		  1024			   1.51
+		  4096			   3.58
+
+
+		  Bytes	sent		   Bandwidth reduction
+		  ----------		   -------------------
+		  10000x64		   941 (1.2%)
+		  10000x256		   4,231 (1.8%)
+		  10000x1024		   319,300 (39.5%)
+		  10000x4096		   824,461 (62.1%)
+
+EXAMPLE
+	      #
+	      #	Sample configuration file for xinetd
+	      #
+
+	      defaults
+	      {
+		     log_type		 = FILE	/var/log/servicelog
+		     log_on_success	 = PID
+		     log_on_failure	 = HOST	RECORD
+		     only_from		 = 128.138.193.0 128.138.204.0
+128.138.209.0
+		     only_from		 = 128.138.252.1
+		     instances		 = 10
+		     disabled		 = rstatd
+	      }
+
+	      #
+	      #	Note 1:	the protocol attribute is not required
+	      #	Note 2:	the instances attribute	overrides the default
+	      #
+	      service login
+	      {
+		     socket_type	 = stream
+		     protocol		 = tcp
+		     wait		 = no
+		     user		 = root
+		     server		 = /usr/etc/in.rlogind
+		     instances		 = UNLIMITED
+	      }
+
+	      #
+	      #	Note 1:	the instances attribute	overrides the default
+	      #	Note 2:	the log_on_success flags are augmented
+	      #
+	      service shell
+	      {
+		     socket_type	 = stream
+		     wait		 = no
+		     user		 = root
+		     instances		 = UNLIMITED
+		     server		 = /usr/etc/in.rshd
+		     log_on_success	 += HOST RECORD
+	      }
+
+	      service ftp
+	      {
+		     socket_type	 = stream
+		     wait		 = no
+		     nice		 = 10
+		     user		 = root
+		     server		 = /usr/etc/in.ftpd
+		     server_args	 = -l
+		     instances		 = 4
+		     log_on_success	 += DURATION HOST USERID
+		     access_times	 = 2:00-9:00 12:00-24:00
+	      }
+
+	      #
+	      #	This entry and the next	one specify internal services.
+Since this
+	      #	is the same service using a different socket type, the id
+attribute
+	      #	is used	to uniquely identify each entry
+	      #
+	      service echo
+	      {
+		     id			 = echo-stream
+		     type		 = INTERNAL
+		     socket_type	 = stream
+		     user		 = root
+		     wait		 = no
+	      }
+
+	      service echo
+	      {
+		     id			 = echo-dgram
+		     type		 = INTERNAL
+		     socket_type	 = dgram
+		     user		 = root
+		     wait		 = no
+	      }
+
+	      service servers
+	      {
+		     type		 = INTERNAL UNLISTED
+		     protocol		 = tcp
+		     port		 = 9099
+		     socket_type	 = stream
+		     wait		 = no
+	      }
+
+	      #
+	      #	Sample RPC service
+	      #
+	      service rstatd
+	      {
+		     type		 = RPC
+		     socket_type	 = dgram
+		     protocol		 = udp
+		     server		 = /usr/etc/rpc.rstatd
+		     wait		 = yes
+		     user		 = root
+		     rpc_version	 = 2-4
+		     env		 = LD_LIBRARY_PATH=/etc/securelib
+	      }
+
+	      #
+	      #	Sample unlisted	service
+	      #
+	      service unlisted
+	      {
+		     type		 = UNLISTED
+		     socket_type	 = stream
+		     protocol		 = tcp
+		     wait		 = no
+		     server		 = /home/user/some_server
+		     port		 = 20020
+	      }
+
+SEE ALSO
+       xinetd(1L),
+
+       xinetd.log(5)
+
+       Postel J., Echo Protocol	, RFC 862, May 1983
+
+       Postel J., Discard Protocol , RFC 863, May 1983
+
+       Postel J., Character Generator Protocol	,  RFC	864,  May
+       1983
+
+       Postel J., Daytime Protocol , RFC 867, May 1983
+
+       Postel  J.,  Harrenstien	 K., Time Protocol , RFC 868, May
+       1983
+
+       StJohns M.,  Identification Protocol , RFC 1413,	 February
+       1993
+
+BUGS
+       Supplementary group ids are not supported.
+
+       If  the	INTERCEPT flag is not used, access control on the
+       address of the remote host is not performed when	 wait  is
+       yes and socket_type is stream.
+
+       If  the	INTERCEPT flag is not used, access control on the
+       address of the remote host for services where wait is  yes
+       and  socket_type	 is  dgram is performed	only on	the first
+       packet. The server may then accept packets from hosts  not
+       in  the access control list. This can happen with RPC ser-
+       vices.
+
+       There is	no way to put a	SPACE in an environment	variable.
+
+       When  wait  is  yes  and	socket_type is stream, the socket
+       passed to the server can	only accept connections.
+
+       The INTERCEPT flag is not supported for internal	 services
+       or multi-threaded services.
+
+
+
+			  2 October 1998	  XINETD.CONF(5L)
+
+
+
+...RickM...
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00066" href="msg00066.html">Re: Gnats Linux installation</a></strong>
+<ul><li><em>From:</em> nick</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00064" href="msg00064.html">Gnats Linux installation</a></strong>
+<ul><li><em>From:</em> Uma R</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00065">Date&nbsp;Index</A>] [<a href="subjects.html#00065">Subject&nbsp;Index</a>] [<a href="authors.html#00065">Author&nbsp;Index</a>] [<A HREF="threads.html#00065">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00064.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00066.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00064.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00066.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

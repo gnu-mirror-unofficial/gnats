@@ -1,0 +1,47 @@
+From gnats-devel-return-799-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Fri Nov 16 17:01:57 2001
+Return-Path: <gnats-devel-return-799-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 30067 invoked by alias); 16 Nov 2001 17:01:55 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 30028 invoked from network); 16 Nov 2001 17:01:51 -0000
+Received: from unknown (HELO vexpert.dbai.tuwien.ac.at) (128.130.111.12)
+  by sourceware.cygnus.com with SMTP; 16 Nov 2001 17:01:51 -0000
+Received: from naos (naos [128.130.111.28])
+	by vexpert.dbai.tuwien.ac.at (8.11.6/8.11.6) with ESMTP id fAGH1mI11796;
+	Fri, 16 Nov 2001 18:01:48 +0100 (MET)
+Date: Fri, 16 Nov 2001 18:01:45 +0100 (CET)
+From: Gerald Pfeifer <pfeifer@dbai.tuwien.ac.at>
+To: Yngve Svendsen <yngve.svendsen@clustra.com>
+cc: <gnats-devel@sources.redhat.com>, "Joseph S. Myers" <jsm28@cam.ac.uk>,
+   <gnats-gnats@sourceware.cygnus.com>
+Subject: Re: gnatsweb PR status change messages
+In-Reply-To: <5.1.0.14.2.20011115012156.05189d30@10.10.1.1>
+Message-ID: <Pine.BSF.4.33.0111161759040.59032-100000@naos.dbai.tuwien.ac.at>
+MIME-Version: 1.0
+Content-Type: TEXT/PLAIN; charset=US-ASCII
+
+On Thu, 15 Nov 2001, Yngve Svendsen wrote:
+> Hm. After some more consideration, I have decided that this doesn't look
+> like the right way to solve the problem. If I am not completely
+> misunderstanding the problem, wouldn't the correct way to solve this be
+> to set a correct Reply-To header on these messages?
+
+Yes, but apart from being slightly more invasive a patch, my personal
+experience is that people often ignore the Reply-To while the keep the
+Cc.
+
+(If you prefer the Reply-To, I definitely won't object; we just should
+try to address this somehow.)
+
+Cheers,
+Gerald
+-- 
+Gerald "Jerry" pfeifer@dbai.tuwien.ac.at http://www.dbai.tuwien.ac.at/~pfeifer/
+

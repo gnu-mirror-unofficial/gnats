@@ -1,0 +1,126 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: gnats V4.0 issues -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 4 Jan 2000 05:35:16 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10001032213450.27946&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>gnats V4.0 issues</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00000">Date&nbsp;Index</A>] [<a href="subjects.html#00000">Subject&nbsp;Index</a>] [<a href="authors.html#00000">Author&nbsp;Index</a>] [<A HREF="threads.html#00000">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[Date&nbsp;Prev]&nbsp;[<A HREF="msg00001.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="">Thread&nbsp;Prev</A>]&nbsp;[Thread&nbsp;Next]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnats V4.0 issues</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Bob Manson &lt;bmanson at juniper dot net&gt;</LI>
+<LI><em>Subject</em>: gnats V4.0 issues</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Mon, 3 Jan 2000 22:30:42 -0700 (MST)</LI>
+<LI><em>cc</em>: gnats-devel at sourceware dot cygnus dot com, bugs-gnats at gnu dot org</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+Bob - I've been looking at the V4 source and have a question.
+
+First, it's reasonable for a front-end like TkGnats to be able to, given
+ONLY a gnats server hostname and port, present the user with a menu of
+all databases on that server. Then, having selected a particular database,
+do all the normal stuff that the front-end can do now: submit, query,
+view, edit. All this with no knowledge of the database other than the
+server and port.
+
+This requires the front-end to:
+
+1) get a list of databases from gnatsd (DBLA).
+2) get the GNATS_ADDR (bugs email address) from gnatsd (LCFG).
+
+I've implemented this in my current DEV version of TkGnats, but hit the
+problem that LCFG requires VIEW access (something that I had done in the
+core myself). I had to do some fancy coding in TkGnats to be able to get
+the userid/passwd FIRST in order to do the LCFG command to cover the case
+where a server is setup with NONE as the default access. DBLA is not
+restricted.
+
+Then I went looking to see how this might all work with V4.
+
+First, I see that DBLA is now part of LIST, and LIST requires VIEW access.
+Second, I don't see anywhere that gnatsd will return GNATS_ADDR (the
+gnats-adm/config file seems to be gone).
+
+What I'm after is probably that the LIST command be unrestricted (this
+requires discussion!) and that the GNATS_ADDR can be retrieved somehow.
+
+Perhaps just "LIST Databases" should be unrestricted (as before), but add
+the GNATS_ADDR for each database to the returned list. Hopefully nobody
+thinks the bugs email addresses need to be hidden...
+
+Comments please!
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00000">Date&nbsp;Index</A>] [<a href="subjects.html#00000">Subject&nbsp;Index</a>] [<a href="authors.html#00000">Author&nbsp;Index</a>] [<A HREF="threads.html#00000">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[Date&nbsp;Prev]&nbsp;[<A HREF="msg00001.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="">Thread&nbsp;Prev</A>]&nbsp;[Thread&nbsp;Next]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

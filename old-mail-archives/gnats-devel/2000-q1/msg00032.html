@@ -1,0 +1,242 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: P.R. criteria -->
+<!--X-From-R13: Rna Prgur <qna_orgurNlnubb.pbz> -->
+<!--X-Date: 23 Mar 2000 13:02:59 &#45;0000 -->
+<!--X-Message-Id: 20000323130255.27135.qmail@web1004.mail.yahoo.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>P.R. criteria</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00032">Date&nbsp;Index</A>] [<a href="subjects.html#00032">Subject&nbsp;Index</a>] [<a href="authors.html#00032">Author&nbsp;Index</a>] [<A HREF="threads.html#00032">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00031.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00033.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00031.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00033.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>P.R. criteria</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com, rt-users at lists dot fsck dot com, jitterbug at samba dot org, dsifry at linuxcare dot com</LI>
+<LI><em>Subject</em>: P.R. criteria</LI>
+<LI><em>From</em>: Dan Bethe &lt;dan_bethe at yahoo dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 23 Mar 2000 05:02:55 -0800 (PST)</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+	Hello, everyone.  I am in need of help choosing a problem reporting
+and management system.  I respect the work done by all the groups I'm
+contacting, and I intend to contact more.  I appreciate all responses. 
+The following text is my complete current status.  You can find the
+HTML version of it at <A  HREF="http://mmmgood.via.net">http://mmmgood.via.net</A>.  You may prefer the
+formatting of the HTML version; it's easier to read.
+	I look forward to hearing from you.
+
+   Criteria for Problem Reporting Systems 
+     * basics
+          + all software involved (interface, main system,
+            database, etc) must be GPL-compatible unless that
+            seriously hinders practical selection
+          + must have an excellent developer support community,
+            willing and able to actively accept change requests
+            and patches. very important.
+          + not exclusively oriented on software development.
+            configurable for all general problem-reporting tasks
+          + integrate with source code repository -- "what patch
+            is associated with this bugfix?"
+          + integrate with billing system
+               o lets people buy support
+               o lets us farm out support
+     * user interfaces
+          + www
+          + maybe command line (probably through RDBMS)
+          + maybe open standard application like tcl/tk
+          + email interface
+          + easy enough to use, operable by external parties and
+            the random public
+     * database interface options
+          + database-neutral (maybe perl-based for DBI)
+          + SQL RDBMS
+               o preferably PostgreSQL because of entirely free
+                 license
+               o will consider MySQL, due to not entirely free
+                 license
+     * configuration
+          + interface configuration template, for adding new
+            categories, items, actions, etc
+          + dependancy support between tasks
+       
+   Possible candidates 
+   All candidates from the list at
+   <A  HREF="http://freshmeat.net/appindex/development/bug%20tracking.html">http://freshmeat.net/appindex/development/bug%20tracking.html</A>
+   , that are at all like free or open source software, will be
+   evaluated.
+     * GNATS (<A  HREF="http://sourceware.cygnus.com/gnats/">http://sourceware.cygnus.com/gnats/</A>), gnatsweb
+       (<A  HREF="http://sourceware.cygnus.com/ml/gnats-announce/1999/msg00">http://sourceware.cygnus.com/ml/gnats-announce/1999/msg00</A>
+       006.html), and wwwgnats
+       (<A  HREF="http://alumni.caltech.edu/~dank/wwwgnats/README.html">http://alumni.caltech.edu/~dank/wwwgnats/README.html</A>)
+          + fully GPL
+          + customizable enough for non-software p.r.'s
+          + our developers already have experience with 3.x --
+            have added credit card support -- see
+            <A  HREF="http://www.cyclic.com/cyclic-pages/gnats-ygg.txt">http://www.cyclic.com/cyclic-pages/gnats-ygg.txt</A>
+          + its use is depended upon by its own developers --
+            ideal developer support community
+          + all imagined user interfaces, with multiple choices
+            for www. Do I have the current wwwgnats, as listed
+            above? I need help in choosing between wwwgnats and
+            gnatsweb.
+          + no RDBMS in 3.x, and I'm not sure about its inclusion
+            in the future of 4.0
+          +
+          + well-proven and -understood in general
+          + evolving from an older internal structure. arcane
+            installation and setup. rather unwieldy to new GNATS
+            admins.
+          + I definately need to know the status on the future of
+            4.0, which is already a usable beta with a CVS
+            checkin every few days at Cygnus. I'm currently
+            working on installing it.
+     * Bugzilla (<A  HREF="http://www.mozilla.org/bugs">http://www.mozilla.org/bugs</A>)
+          + GPL-incompatible to the point of severe moral
+            compromise, according to
+            <A  HREF="http://www.gnu.org/philosophy/license-list.html">http://www.gnu.org/philosophy/license-list.html</A>. It
+            states that MPL software can't link with GPL
+            software. Alternate viewpoints on this issue are
+            welcome, as that page is currently my only guide.
+          + has inter-item dependancy support
+          + massively tested, proven, scalable, stable, etc
+          + author support for Bugzilla is barely stated on web
+            site, and seems to be discouraged.
+          + in summary, Bugzilla has major technological
+            advantages, and major practical disadvantages. It
+            appears to completely rock.
+     * Request Tracker <A  HREF="http://www.fsck.com/projects/rt/">http://www.fsck.com/projects/rt/</A>
+          + fully GPL
+          + uses MySQL, with alleged near future intentions for
+            other RDBMS's
+          + all necessary user interfaces, with multiple choices
+            of implementations for some. very smart-looking and
+            complete www interface.
+          + the rate of its support is uncertain. Seems to be a
+            small developer base, maybe one person, according to
+            web site. Maturity of product is uncertain to me.
+     * Frontdesk
+          + under investigation
+     * Front Track
+          + unix support lags severely and support is very
+            expensive. Not a good choice.
+     * PRepS
+          + very good inteface as a Linux/GTK app and www.
+          + no email interface
+          + purported by author to exist as a subset of GNATS,
+            where the use of GNATS is recommended if more
+            functionality is desired. Probably not a good choice
+            for us.
+     * Jitterbug / Caretracker
+          + Can't locate the Linuxcare modifications, called
+            Caretracker. Major recent modifications to
+            Linuxcare's web site. No response yet from
+            Caretracker maintainer David Sifry. Can't locate any
+            relevant web sites or mailing lists.
+
+Current Summary 
+   
+   Due to several months of combined team experience with GNATS,
+   ideal developer community support, and alleged future
+   features, it is currently a favorite even if it needs
+   modifications for our ideal use. However, I'd really like to
+   know that RDBMS support is a near reality, or else that there
+   will be an easy forward compatibility path with it in the
+   future. Also we'd like it to be database-neutral, such as with
+   perl DBI.
+   
+   Request Tracker and Caretracker (if I could find it) look very
+   interesting. But can their developers compare to the proven
+   ambition of GNATS? Problem report systems are very complex and
+   integral, stressing all infrastructural components and
+   standards that it's based on, all the way down to the OS.
+   
+   What is up with the MPL?
+   
+   Our team will contribute to any changes that we'd need on any
+   P.R. system. Please send (or carbon copy) direct advice to
+   dan_bethe@yahoo.com.
+
+
+
+=====
+"Don't expect your own messiah; this neverworld which you desire is
+only in your mind." -- <A  HREF="http://www.dreamtheater.net/songb4.htm#IV5">http://www.dreamtheater.net/songb4.htm#IV5</A>
+
+__________________________________________________
+Do You Yahoo!?
+Talk to your friends online with Yahoo! Messenger.
+<A  HREF="http://im.yahoo.com">http://im.yahoo.com</A>
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00033" HREF="msg00033.html">Re: [rt-users] P.R. criteria</A></STRONG>
+<UL><LI><EM>From:</EM> Marion Hakanson</LI></UL></LI>
+<LI><STRONG><A NAME="00038" HREF="msg00038.html">Re: P.R. criteria</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00032">Date&nbsp;Index</A>] [<a href="subjects.html#00032">Subject&nbsp;Index</a>] [<a href="authors.html#00032">Author&nbsp;Index</a>] [<A HREF="threads.html#00032">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00031.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00033.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00031.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00033.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

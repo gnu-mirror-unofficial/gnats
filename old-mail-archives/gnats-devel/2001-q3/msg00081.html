@@ -1,0 +1,124 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: fix for PR 219 &#45; large PRs or updates take many minutes to process -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 30 Jul 2001 18:33:38 &#45;0000 -->
+<!--X-Message-Id: 87g0bey7l8.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AD3E@postal.jnpr.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Re: fix for PR 219 - large PRs or updates take many minutes to process</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00081">Date&nbsp;Index</A>] [<a href="subjects.html#00081">Subject&nbsp;Index</a>] [<a href="authors.html#00081">Author&nbsp;Index</a>] [<A HREF="threads.html#00081">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00080.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00082.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00080.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00064.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: fix for PR 219 - large PRs or updates take many minutes to process</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Subject</em>: Re: fix for PR 219 - large PRs or updates take many minutes to process</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 30 Jul 2001 13:33:39 +0200</li>
+<li><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00068.html">C0D6C1C24CDBE1449BFEF1B72AFBF3A709A5AD3E@postal.jnpr.net</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt;&gt;&gt;&gt;&gt; &quot;DB&quot; == Dirk Bergstrom &lt;dirk@juniper.net&gt; writes:
+
+    DB&gt; 1) read sizeof(line)-1 chars from the message (&lt;=1024 chars),
+    DB&gt; instead of sizeof(buf)-1 chars (2 chars).
+
+    DB&gt; 2) add code to keep track of buf's length in a variable, instead
+    DB&gt; of doing a strlen(buf) for every loop iteration.
+
+    DB&gt; the first fix gives a 20-30x improvement (from hours to minutes)
+    DB&gt; for a 1.4 MB testcase.  the second fix gave a 50x improvement
+    DB&gt; (five minutes to
+    &gt;&gt; 10 seconds) for the same testcase.
+
+    DB&gt; and some cleanup:
+
+    DB&gt; xrealloc()ing buf in 4K chunks only when needed, instead of
+    DB&gt; every loop iteration.  doesn't seem to change speed, but it
+    DB&gt; feels better...
+
+Thanks, Dirk, this is a very useful work!  I applied the patch with
+minor changes.
+
+Regards,
+
+Milan Zamazal
+
+-- 
+Wasting somebody else's time strikes me as the height of rudeness.
+						      Bill Gates
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00068" href="msg00068.html">fix for PR 219 - large PRs or updates take many minutes to process</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00081">Date&nbsp;Index</A>] [<a href="subjects.html#00081">Subject&nbsp;Index</a>] [<a href="authors.html#00081">Author&nbsp;Index</a>] [<A HREF="threads.html#00081">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00080.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00082.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00080.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00064.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

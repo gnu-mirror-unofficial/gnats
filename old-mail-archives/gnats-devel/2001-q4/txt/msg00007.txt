@@ -1,0 +1,51 @@
+From gnats-devel-return-790-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Wed Nov 14 18:47:32 2001
+Return-Path: <gnats-devel-return-790-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 29970 invoked by alias); 14 Nov 2001 18:47:32 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 29922 invoked from network); 14 Nov 2001 18:47:23 -0000
+Received: from unknown (HELO Mercury.acs.unt.edu) (129.120.220.1)
+  by sourceware.cygnus.com with SMTP; 14 Nov 2001 18:47:23 -0000
+Received: from iatro.unt.edu (iatro.unt.edu [129.120.48.55])
+	by Mercury.acs.unt.edu (8.8.8/8.8.8) with ESMTP id MAA07429
+	for <gnats-devel@sourceware.cygnus.com>; Wed, 14 Nov 2001 12:47:21 -0600 (CST)
+Received: from gwia.unt.edu (gwia.unt.edu [129.120.48.1])
+	by iatro.unt.edu (8.9.3/8.9.3) with SMTP id MAA22330
+	for <gnats-devel@sourceware.cygnus.com>; Wed, 14 Nov 2001 12:46:17 -0600
+Received: from SMTP-Message_Server by gwia.unt.edu
+	with Novell_GroupWise; Wed, 14 Nov 2001 12:46:12 -0600
+Message-Id: <sbf26794.036@gwia.unt.edu>
+X-Mailer: Novell GroupWise Internet Agent 5.5.5.1
+Date: Wed, 14 Nov 2001 12:45:50 -0600
+From: "Moe Elzubeir" <Elzubeir@cobaf.coba.unt.edu>
+To: "<"<gnats-devel@sourceware.cygnus.com>
+Subject: gnatsd running?
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Disposition: inline
+
+
+I guess no one has a solution to my problem :(
+
+My other alternative is to run gnatsd as stand-alone. Are there any
+reasons why I should not
+consider this option? Is there anyone out there with the same problem
+I'm having? I have
+exhausted all my forseeable options.
+
+<frustration level=5>arghhh..</furstration>
+
+
+--
+Mohammed Elzubeir
+COBA Tech Support
+College of Business Computing Center
+University of North Texas
+

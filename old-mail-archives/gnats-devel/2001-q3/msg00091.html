@@ -1,0 +1,103 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Bug using "Sente Extensions" -->
+<!--X-From-R13: Uyraa Vrafunj <turafunjNnygren.pbz> -->
+<!--X-Date: 16 Aug 2001 20:05:07 &#45;0000 -->
+<!--X-Message-Id: 654DA751A174D411ABDB0001026EFCD310C466@otc&#45;msg01.altera.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Glenn Henshaw - Bug using &quot;Sente Extensions&quot;</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00091">Date&nbsp;Index</A>] [<a href="subjects.html#00091">Subject&nbsp;Index</a>] [<a href="authors.html#00091">Author&nbsp;Index</a>] [<A HREF="threads.html#00091">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00090.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00092.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00090.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00090.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Bug using &quot;Sente Extensions&quot;</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com,       &quot;'Yngve Svendsen'&quot; &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Bug using &quot;Sente Extensions&quot;</li>
+<li><em>From</em>: Glenn Henshaw &lt;ghenshaw at altera dot com&gt;</li>
+<li><em>Date</em>: Thu, 16 Aug 2001 13:04:31 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+  I found a bug in the latest version of gnatsweb (2.8.2). If you use the
+Sente extensions to the &quot;View PR&quot;, a change to the title of the pages makes
+the extra buttons (Mine and Analyzed) disappear. 
+
+  The changes in gnatsweb-site.pl are as follows:
+
+*** 118,124 ****      {          # override footer html          my($title) = @args;!         if ($title eq 'View PR')          {              # Add one-click buttons at footer of view PR page.              return sente_view_postlude();--- 118,124 ----      {          # override footer html          my($title) = @args;!         if ($title =~ /^View PR/)          {              # Add one-click buttons at footer of view PR page.              return sente_view_postlude();
+
+
+  
+
+-- 
+Glenn Henshaw                         
+Altera Ottawa Technology Center      
+Phone: (613) 591-6702                 Email: ghenshaw@altera.com
+
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00091">Date&nbsp;Index</A>] [<a href="subjects.html#00091">Subject&nbsp;Index</a>] [<a href="authors.html#00091">Author&nbsp;Index</a>] [<A HREF="threads.html#00091">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00090.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00092.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00090.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00090.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

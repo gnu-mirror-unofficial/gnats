@@ -1,0 +1,172 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Patch for typos in 3.113 p&#45;admin.texi -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 15 Jan 2001 17:16:02 &#45;0000 -->
+<!--X-Message-Id: 5.0.1.4.2.20010115181052.049b5a40@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Patch for typos in 3.113 p-admin.texi</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00009">Date&nbsp;Index</A>] [<a href="subjects.html#00009">Subject&nbsp;Index</a>] [<a href="authors.html#00009">Author&nbsp;Index</a>] [<A HREF="threads.html#00009">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00008.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00008.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Patch for typos in 3.113 p-admin.texi</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: Patch for typos in 3.113 p-admin.texi</LI>
+<LI><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</LI>
+<LI><em>Date</em>: Mon, 15 Jan 2001 18:12:56 +0100</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Patch for typos in v3.113 p-admin.texi
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+Cell.: +47 913 915 02
+
+
+
+
+*** p-admin-orig.texi   Mon Jan 15 18:12:14 2001
+--- p-admin.texi        Mon Jan 15 18:11:29 2001
+***************
+*** 195,201 ****
+   file}, and @ref{at-pr,,Timely Reminders}.
+
+   @item
+! Whether or not to send an automatic acknowledgement to the originator of
+   a problem report when the @sc{gnats} first receives the PR.
+
+   @item
+--- 195,201 ----
+   file}, and @ref{at-pr,,Timely Reminders}.
+
+   @item
+! Whether or not to send an automatic acknowledgment to the originator of
+   a problem report when the @sc{gnats} first receives the PR.
+
+   @item
+***************
+*** 223,229 ****
+   @samp{&gt;Category:} field, and the maintainers responsible for each
+   category.  Update this file whenever you have a new category, or
+   whenever a category is no longer valid.  You must also update this file
+! whenever responsiblility for a category changes, or if a maintainer is
+   no longer valid.  @xref{categories file,,The @code{categories} file}.  Also
+   see @ref{mkcat,,Adding a new problem category}, and @ref{rmcat,,Removing
+   a problem category}.
+--- 223,229 ----
+   @samp{&gt;Category:} field, and the maintainers responsible for each
+   category.  Update this file whenever you have a new category, or
+   whenever a category is no longer valid.  You must also update this file
+! whenever responsibility for a category changes, or if a maintainer is
+   no longer valid.  @xref{categories file,,The @code{categories} file}.  Also
+   see @ref{mkcat,,Adding a new problem category}, and @ref{rmcat,,Removing
+   a problem category}.
+***************
+*** 792,798 ****
+   This file contains mappings between submitter IDs and corresponding e-mail
+   addresses.
+
+! When a PR comes in without a submitter ID (if someone sends umformatted 
+e-mail
+   to the "bugs" address), @sc{gnats} will try to derive the submitter ID 
+from the
+   address in the "From:" header.  The entries in this file consist of two
+   fields, separated by a colon:
+--- 792,798 ----
+   This file contains mappings between submitter IDs and corresponding e-mail
+   addresses.
+
+! When a PR comes in without a submitter ID (if someone sends unformatted 
+e-mail
+   to the "bugs" address), @sc{gnats} will try to derive the submitter ID 
+from the
+   address in the "From:" header.  The entries in this file consist of two
+   fields, separated by a colon:
+***************
+*** 1278,1284 ****
+
+   @code{pr-edit} does the background work for @code{edit-pr}, including
+   error-checking and refiling newly edited Problem Reports and handling
+! file locks.  It can be called interactively, though it has no useable
+   editing interface.
+
+   The usage for @code{pr-edit} is:
+--- 1278,1284 ----
+
+   @code{pr-edit} does the background work for @code{edit-pr}, including
+   error-checking and refiling newly edited Problem Reports and handling
+! file locks.  It can be called interactively, though it has no usable
+   editing interface.
+
+   The usage for @code{pr-edit} is:
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00009">Date&nbsp;Index</A>] [<a href="subjects.html#00009">Subject&nbsp;Index</a>] [<a href="authors.html#00009">Author&nbsp;Index</a>] [<A HREF="threads.html#00009">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00008.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00010.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00008.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,156 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: GNATS and MIME -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 20 Feb 2001 14:23:49 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.7.2.20010220151323.0563fc88@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - GNATS and MIME</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00034">Date&nbsp;Index</A>] [<a href="subjects.html#00034">Subject&nbsp;Index</a>] [<a href="authors.html#00034">Author&nbsp;Index</a>] [<A HREF="threads.html#00034">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00033.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00035.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00033.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00036.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>GNATS and MIME</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: GNATS and MIME</LI>
+<LI><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 20 Feb 2001 15:19:33 +0100</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+This went to bug-gnats yesterday, but I'm sending this to gnats-devel as 
+well, since it contains a request for volunteers to look into a problem 
+(see the end of the message).
+
+Anyone out there with a little bit of coding experience and a tiny bit of 
+spare time?
+
+At 17:01 19.02.2001 +0100, Palle Girgensohn wrote:
+&gt;Hi!
+&gt;
+&gt;Has anyone tried to get gnats to behave more politely with
+&gt;MIMEified mails. Now, it will not work at all if the subject is
+&gt;mimified (by for example, correctly embedding Swedish едц
+&gt;characters with ?ISO?8859... stuff). Also, messages can look
+&gt;pretty ugly, with lots of '=E5' for every д etc...
+&gt;
+&gt;I'm running 3.113. Will this behave better in version 4? Has
+&gt;anyone patched gnats?
+&gt;
+&gt;/Palle
+
+Use a script to translate quoted printables. The following little Perl 
+script does this (yes, it might be tad unelegant, but it works):
+
+#########################
+#!/usr/bin/perl
+
+use MIME::QuotedPrint ();
+while (&lt;&gt;) {
+   $line = $_;
+   $line =~ s/=\?iso-8859-1\?Q\?//i;
+   $line =~ s/\?=//g;
+
+   if ($line =~ /^Subject/ ) {
+       $line =~ tr/_/ /;
+   };
+
+   if ($line =~ /^From/ ) {
+       $line =~ tr/_/ /;
+   };
+
+   $line = MIME::QuotedPrint::decode($line);
+
+   print $line;
+};
+
+########################
+
+Then set up the mail alias which receives bug reports to pipe messages 
+through this script before it is piped into queue-pr. Like this:
+
+| /path-to-script/script.pl | /usr/local/libexec/gnats/queue-pr -q
+
+Warning: this seems to break recognition of PR numbers when people reply by 
+mail to PRs. I believe this to be because the routine in file-pr that 
+handles mail subject recognition breaks down when it encounters anything 
+beyond 7-bit ASCII. The consequence is that if a PR that has such 
+characters in the Subject is replied to by mail, file-pr will create a new 
+problem report with a new number. A workaround is to remove the qp 
+translation of the Subject line in the script above.
+
+I haven't looked at the Subject recognition problem, so if someone else 
+would care to take a peek at file-pr.c and see if they can find a solution, 
+I'd be thankful.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00034">Date&nbsp;Index</A>] [<a href="subjects.html#00034">Subject&nbsp;Index</a>] [<a href="authors.html#00034">Author&nbsp;Index</a>] [<A HREF="threads.html#00034">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00033.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00035.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00033.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00036.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

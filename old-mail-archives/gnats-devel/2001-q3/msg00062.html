@@ -1,0 +1,148 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: GNATS installation question -->
+<!--X-From-R13: Vnaf&#45;Oyoreg Epuarvqre <Vnaf&#45;Oyoreg.EpuarvqreNzpuc.fvrzraf.qr> -->
+<!--X-Date: 17 Jul 2001 11:33:22 &#45;0000 -->
+<!--X-Message-Id: 15188.8811.674625.705752@mail&#45;g.mchp.siemens.de -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 7D4344E32B34D511A6500002A560C6024A221E@IL&#45;TLV&#45;MAIL4 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hans-Albert Schneide - Re: GNATS installation question</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00062">Date&nbsp;Index</A>] [<a href="subjects.html#00062">Subject&nbsp;Index</a>] [<a href="authors.html#00062">Author&nbsp;Index</a>] [<A HREF="threads.html#00062">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00061.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00063.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00061.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00053.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: GNATS installation question</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Giat, Hana&quot; &lt;Hana_Giat at icomverse dot com&gt;</li>
+<li><em>Subject</em>: Re: GNATS installation question</li>
+<li><em>From</em>: Hans-Albert Schneider &lt;Hans-Albert dot Schneider at mchp dot siemens dot de&gt;</li>
+<li><em>Date</em>: Tue, 17 Jul 2001 13:32:59 +0200 (MET DST)</li>
+<li><em>CC</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00054.html">7D4344E32B34D511A6500002A560C6024A221E@IL-TLV-MAIL4</a>&gt;</li>
+<li><em>Reply-To</em>: Hans-Albert dot Schneider at mchp dot siemens dot de</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt;&gt;&gt;&gt;&gt; &quot;HG&quot; == Giat, Hana &lt;Hana_Giat@icomverse.com&gt; writes:
+
+    HG&gt; Although, i cannot spawn the deamon because &quot;520 You are
+    HG&gt; not on the host access list: stdin (stdin).&quot;
+
+Do you try to start it manually, from the command line?  It is
+intended to be started by inetd (or xinetd, or a similar program).
+You should need root privileges to edit its configuration file,
+and also for step 5) below.
+
+
+I am assuming inetd for the following.  My /etc/inetd.conf
+contains a line like this:
+
+#
+# GNATS Problem Report System
+#
+support    stream  tcp     nowait  gnats        /usr/local/libexec/gnats/gnatsd gnatsd
+
+Make sure that:
+
+1) The 1st field (&quot;support&quot; above) contains a known service; that
+   is, /etc/services contains a line for it.  It could also be
+   the corresponding NIS map, or some LDAP entry, or whatever
+   your system uses instead.  Your system administrator should know.
+
+2) The 5th field (&quot;gnats&quot;) is the username of your GNATS user.
+
+3) The 6th field (&quot;/usr/local/libexec/gnats/gnatsd&quot;) is the full
+   pathname of the gnatsd program.  You do not need to use
+   TCP-wrapper or something like this, as gnatsd does something
+   similar through gnats.conf.
+
+4) Check the man page for inetd.conf and reorder the fields, if
+   needed.
+
+
+5) Tell the running inetd to reread its configuration file, by
+   sending it a &quot;kill -HUP&quot;.
+
+
+
+Hope this helps,
+
+     Hans-Albert
+
+-- 
+Hans-Albert Schneider		&lt;Hans-Albert.Schneider@mchp.siemens.de&gt;
+Siemens AG			phone:	(+49) 89 636 45445
+Corporate Technology		fax:	(+49) 89 636 42284
+Munich, Germany
+ -- To get my public PGP key, send me a mail with subject &quot;send key&quot; --
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00054" href="msg00054.html">GNATS installation question</a></strong>
+<ul><li><em>From:</em> Giat, Hana</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00062">Date&nbsp;Index</A>] [<a href="subjects.html#00062">Subject&nbsp;Index</a>] [<a href="authors.html#00062">Author&nbsp;Index</a>] [<A HREF="threads.html#00062">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00061.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00063.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00061.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00053.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

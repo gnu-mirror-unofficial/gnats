@@ -1,0 +1,122 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Compatibility between GNATS 3.x and 4.x? gnatsweb? -->
+<!--X-From-R13: Urenyq Bsrvsre <csrvsreNqonv.ghjvra.np.ng> -->
+<!--X-Date: 8 Feb 2001 11:44:51 &#45;0000 -->
+<!--X-Message-Id: Pine.BSF.4.33.0102081230010.11021&#45;100000@deneb.dbai.tuwien.ac.at -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Gerald Pfeifer - Compatibility between GNATS 3.x and 4.x? gnatsweb?</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00024">Date&nbsp;Index</A>] [<a href="subjects.html#00024">Subject&nbsp;Index</a>] [<a href="authors.html#00024">Author&nbsp;Index</a>] [<A HREF="threads.html#00024">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00023.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00025.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00023.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00031.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Compatibility between GNATS 3.x and 4.x? gnatsweb?</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</LI>
+<LI><em>Subject</em>: Compatibility between GNATS 3.x and 4.x? gnatsweb?</LI>
+<LI><em>From</em>: Gerald Pfeifer &lt;pfeifer at dbai dot tuwien dot ac dot at&gt;</LI>
+<LI><em>Date</em>: Thu, 8 Feb 2001 12:44:42 +0100 (CET)</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Today I tried merging the changes since gnatsweb 2.6 into the existing
+installation of GNATS 3.x and gnatsweb 2.6 (+ patches) on gcc.gnu.org.
+
+In this case, and also when I just took vanilla gnatsweb CVS sources,
+this failed to work against the current GNATS installation there:
+
+  Error: HCPRUN500E Unrecognized command.
+  Error: cannot understand ''
+  Error: cannot understand ''
+
+This means that gnatsweb CVS sources (which have some GNATS 4.0 patches)
+won't work against a GNATS 3.x server, even though the README states
+otherwise.
+
+I assume that also means that gnatsweb 2.6 won't work against a GNATS 4.0
+server, either, though I don't have a GNATS 4.0 server available for
+testing now.
+
+Are GNATS 3.x and 4.0 supposed to be incompatible? Or should it be
+possible to update the GNATS server and keep existing clients?
+
+
+That current gnatsweb CVS sources don't work against a 3.x server seems
+like a bug to me, though I won't have time to address this anytime soon.
+
+Anyone willing to help with that??
+
+Gerald
+-- 
+Gerald "Jerry" pfeifer@dbai.tuwien.ac.at <A  HREF="http://www.dbai.tuwien.ac.at/~pfeifer/">http://www.dbai.tuwien.ac.at/~pfeifer/</A>
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00031" HREF="msg00031.html">Re: Compatibility between GNATS 3.x and 4.x? gnatsweb?</A></STRONG>
+<UL><LI><EM>From:</EM> Milan Zamazal</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00024">Date&nbsp;Index</A>] [<a href="subjects.html#00024">Subject&nbsp;Index</a>] [<a href="authors.html#00024">Author&nbsp;Index</a>] [<A HREF="threads.html#00024">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00023.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00025.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00023.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00031.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

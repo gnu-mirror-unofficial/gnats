@@ -1,0 +1,55 @@
+From gnats-devel-return-785-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com Mon Nov 12 19:10:19 2001
+Return-Path: <gnats-devel-return-785-listarch-gnats-devel=sourceware.cygnus.com@sources.redhat.com>
+Delivered-To: listarch-gnats-devel@sourceware.cygnus.com
+Received: (qmail 13455 invoked by alias); 12 Nov 2001 18:40:17 -0000
+Mailing-List: contact gnats-devel-help@sourceware.cygnus.com; run by ezmlm
+Precedence: bulk
+List-Subscribe: <mailto:gnats-devel-subscribe@sources.redhat.com>
+List-Archive: <http://sources.redhat.com/ml/gnats-devel/>
+List-Post: <mailto:gnats-devel@sources.redhat.com>
+List-Help: <mailto:gnats-devel-help@sources.redhat.com>, <http://sources.redhat.com/ml/#faqs>
+Sender: gnats-devel-owner@sources.redhat.com
+Delivered-To: mailing list gnats-devel@sources.redhat.com
+Received: (qmail 7025 invoked from network); 12 Nov 2001 18:23:44 -0000
+Received: from unknown (HELO sokol.skynet.cz) (193.165.254.8)
+  by sourceware.cygnus.com with SMTP; 12 Nov 2001 18:23:44 -0000
+X-Envelope-To: gnats-devel@sources.redhat.com
+Received: from blackbird.zamazal.org (mail@asasync78.skynet.cz [193.165.192.178])
+        by sokol.skynet.cz (8.9.3/8.9.3) with ESMTP id TAA07572;
+        Mon, 12 Nov 2001 19:23:36 +0100
+	(envelope-from pdm@zamazal.org)
+Received: from pdm by blackbird.zamazal.org with local (Exim 3.32 #1 (Debian))
+	id 163Ljq-0007b5-00; Mon, 12 Nov 2001 19:23:18 +0100
+To: "Dirk Bergstrom" <dirk@juniper.net>
+Cc: <gnats-devel@sources.redhat.com>, "Dan Martinez" <dfm@juniper.net>
+Subject: Re: broken behavior from pr-edit
+References: <5B1CAAC2F0818444BF07B7AD8845E53C013E8506@ELECTRON.jnpr.net>
+From: Milan Zamazal <pdm@zamazal.org>
+Date: 12 Nov 2001 18:22:32 +0100
+In-Reply-To: <5B1CAAC2F0818444BF07B7AD8845E53C013E8506@ELECTRON.jnpr.net>
+Message-ID: <87u1vz9a5j.fsf@blackbird.zamazal.org>
+User-Agent: Gnus/5.09 (Gnus v5.9.0) Emacs/21.1
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Lines: 19
+
+>>>>> "DB" == Dirk Bergstrom <dirk@juniper.net> writes:
+
+    DB> we've come across a problem with pr-edit.  it doesn't know how
+    DB> to deal with field that require a change-reason:
+
+    DB> dbergstr@crawler:980$ echo closed | pr-edit --replace=state 1234
+    DB> pr-edit: cannot understand 213 `Ok, now send the field change reason.'
+
+    DB> anyone feel like implementing a quick fix for this?  if not, i
+    DB> might take a whack at adding a --change-reason= option.
+
+It would be nice if you did this.  I don't know about a better fix now.
+
+Thanks,
+
+Milan Zamazal
+
+-- 
+http://www.zamazal.org
+

@@ -1,0 +1,173 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: PATCH: Gnatsweb help page -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 4 Apr 2001 23:58:33 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.12.2.20010405014731.00b3e058@iwww.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - PATCH: Gnatsweb help page</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date&nbsp;Index</A>] [<a href="subjects.html#00004">Subject&nbsp;Index</a>] [<a href="authors.html#00004">Author&nbsp;Index</a>] [<A HREF="threads.html#00004">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>PATCH: Gnatsweb help page</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: PATCH: Gnatsweb help page</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Thu, 05 Apr 2001 01:56:30 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Changes Gnatsweb to display the gnatsweb.html page as help text when the 
+main menu Help button is clicked.
+
+Yngve Svendsen
+IS Engineer
+Clustra AS, Trondheim, Norway
+yngve.svendsen@clustra.com
+
+
+2001-04-05  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (help_page): If present, return the gnatsweb.html
+         document installed with Gnatsweb, stripped with send_html, as
+         help text. Ported from Gnatsweb 2.7 beta.
+
+         * gnatsweb.pl (send_html): New subroutine that strips off
+         everything outside &lt;BODY&gt; and &lt;/BODY&gt; in an HTML document and
+         returns the contents. Ported from Gnatsweb 2.7 beta.
+
+
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvs/gnats/gnats/contrib/gnatsweb/gnatsweb.pl,v
+retrieving revision 2.31
+diff -u -p -r2.31 gnatsweb.pl
+--- gnatsweb.pl	2001/04/04 22:16:28	2.31
++++ gnatsweb.pl	2001/04/04 22:56:10
+@@ -2064,17 +2064,51 @@ sub delete_stored_query
+    }
+  }
+
++# send_html -
++#     Send HTML help file, after first trimming out everything but
++#     &lt;body&gt;..&lt;/body&gt;.  This is done in this way for convenience of
++#     installation.  If the gnatsweb.html is installed into the cgi-bin
++#     directory along with the gnatsweb.pl file, then it can't be loaded
++#     directly by Apache.  So, we send it indirectly through gnatsweb.pl.
++#     This approach has the benefit that the resulting page has the
++#     customized gnatsweb look.
++#
++sub send_html
++{
++  my $file = shift;
++  open(HTML, &quot;$file&quot;) || die &quot;Can't open $file: $!&quot;;
++  undef $/; # slurp file whole
++  my $html = &lt;HTML&gt;;
++  close(HTML);
++
++  # send just the stuff inside &lt;body&gt;..&lt;/body&gt;
++  $html =~ s/.*&lt;body&gt;//is;
++  $html =~ s/&lt;\/body&gt;.*//is;
++
++  print $html;
++}
++
+  sub help_page
+  {
+-  my $page = 'Help';
++  my $html_file = $q-&gt;param('help_file') || 'gnatsweb.html';
++  my $page      = $q-&gt;param('help_title') || 'Help';
++  my $heading   = $page;
+    page_start_html($page);
+-  page_heading($page, 'Help', 1);
++  page_heading($page, $heading);
+
+-  print p('Welcome to our problem report database.');
+-  print p('This web interface is called gnatsweb, ',
+-          'the database system itself is called gnats.');
+-  print p('For details, please ',
+-          a({-href=&gt;&quot;$gnats_info_top&quot;}, 'refer to our documentation'));
++  # If send_html doesn't work, print some default, very limited, help text.
++  if (!send_html($html_file))
++  {
++    print p('Welcome to our problem report database. ',
++            'You\'ll notice that here we call them &quot;problem reports&quot; ',
++            'or &quot;PR\'s&quot;, not &quot;bugs&quot;.');
++    print p('This web interface is called &quot;gnatsweb&quot;. ',
++            'The database system itself is called &quot;gnats&quot;.',
++            'You may want to peruse ',
++            a({-href=&gt;&quot;$gnats_info_top&quot;}, 'the gnats manual'),
++            'to read about bug lifecycles and the like, ',
++            'but then again, you may not.');
++  }
+
+    page_footer($page);
+    page_end_html($page);
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date&nbsp;Index</A>] [<a href="subjects.html#00004">Subject&nbsp;Index</a>] [<a href="authors.html#00004">Author&nbsp;Index</a>] [<A HREF="threads.html#00004">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

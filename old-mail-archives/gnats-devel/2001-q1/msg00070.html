@@ -1,0 +1,169 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: Re: how to install gnatsweb??? -->
+<!--X-From-R13: Urbetr @njsny <trbetrNpcynar.pbz> -->
+<!--X-Date: 19 Mar 2001 18:05:56 &#45;0000 -->
+<!--X-Message-Id: 3AB64B03.4B593F11@cplane.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20010319102059.A74330@us.networkcs.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>George Nawfal - Re: how to install gnatsweb???</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00070">Date&nbsp;Index</A>] [<a href="subjects.html#00070">Subject&nbsp;Index</a>] [<a href="authors.html#00070">Author&nbsp;Index</a>] [<A HREF="threads.html#00070">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00069.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00071.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00069.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00065.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: how to install gnatsweb???</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Wes Barris &lt;wes at networkcs dot com&gt;</li>
+<li><em>Subject</em>: Re: how to install gnatsweb???</li>
+<li><em>From</em>: George Nawfal &lt;george at cplane dot com&gt;</li>
+<li><em>Date</em>: Mon, 19 Mar 2001 13:08:03 -0500</li>
+<li><em>CC</em>: Mailing List &lt;gnats-devel at sourceware dot cygnus dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00066.html">20010319102059.A74330@us.networkcs.com</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi!
+
+I've had this problem before.   I was missing a colon in one of the lines in the 'Categories' file.
+
+Look into your gnats-db.conf file and make sure that it is correct.
+Then look into the configuration files and verify that they are correct too. Try to restore those files to their defaults and
+see if that solves your problem. It worked for me.
+
+George
+
+
+Wes Barris wrote:
+
+&gt; Hello,
+&gt;
+&gt; I need some help installing gnatsweb.  I am trying to do this on a
+&gt; new Redhat 7 (Linux) system.  I have tried installing gnats via rpm
+&gt; (the prefered method), cvs (as described on
+&gt; <A  HREF="http://sources.redhat.com/gnats/">http://sources.redhat.com/gnats/</A>), and finally, building manually (using
+&gt; configure, make, etc.).  It seems that gnats itself is working.  I can
+&gt; use either send-pr or query-pr and all is well.
+&gt;
+&gt; I can't get gnatsweb-2.7beta to work with any of these installations.
+&gt; It can't be that hard.  Others use it, right?  The INSTALL file that
+&gt; comes with gnatsweb says:
+&gt;
+&gt; 1) install gnatsd -- Done.
+&gt;
+&gt; 2) configure host access -- Done.
+&gt;
+&gt; 3) gnats/web servers on same hose -- Skip.
+&gt;
+&gt; 4) line 1 of gnatsweb.pl -- Done.
+&gt;
+&gt; 5) make test USERNAME=anon PASSWORD=pw DATABASE=db_alias
+&gt;
+&gt; What is the &quot;db_alias&quot;?  This is the first I have seen it mentioned.
+&gt; Here is what I tried:
+&gt;
+&gt; root@kirby# make test USERNAME=wes PASSWORD=test DATABASE=gnats-adm
+&gt; perl test.pl
+&gt; Content-type: text/html
+&gt;
+&gt; &lt;H1&gt;Software error:&lt;/H1&gt;
+&gt; &lt;PRE&gt;Can't call method &amp;quot;header&amp;quot; on an undefined value at gnatsweb.pl line 2117, &amp;lt;SOCK&amp;gt; line 1.
+&gt; &lt;/PRE&gt;
+&gt; &lt;P&gt;
+&gt; For help, please send mail to this site's webmaster, giving this error message
+&gt; and the time and date of the error.
+&gt;
+&gt; [Mon Mar 19 10:13:54 2001] test.pl: Can't call method &quot;header&quot; on an undefined value at gnatsweb.pl line 2117, &lt;SOCK&gt; line 1.
+&gt; connect...........................................FAIL
+&gt; make: *** [test] Error 255
+&gt; root@kirby#
+&gt;
+&gt; Would someone please please please tell me what I am missing?  Others
+&gt; must get this error too.  I have followed all of the instructions
+&gt; as far as I can tell.  What do others do to get gnatsweb to work???
+&gt;
+&gt; When I try to access gnatsweb.pl from the web, it prompts me for
+&gt; a username and password, but the database selection box is empty.
+&gt; I have attached a very small gif showing what it looks like.
+&gt;
+&gt; -----------------------------------------------------------------------
+&gt; Wes Barris                                            wes@networkcs.com
+&gt; Network Computing Services, Inc.                           612.626.8090
+&gt; -----------------------------------------------------------------------
+&gt; Today's fortune: It is easier to fight for one's principles than to
+&gt; live up to them.
+&gt;
+&gt;   ------------------------------------------------------------------------
+&gt;                    Name: gnatsweb.gif
+&gt;    gnatsweb.gif    Type: GIF Image (image/gif)
+&gt;                Encoding: base64
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00066" href="msg00066.html">how to install gnatsweb???</a></strong>
+<ul><li><em>From:</em> Wes Barris</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00070">Date&nbsp;Index</A>] [<a href="subjects.html#00070">Subject&nbsp;Index</a>] [<a href="authors.html#00070">Author&nbsp;Index</a>] [<A HREF="threads.html#00070">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00069.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00071.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00069.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00065.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

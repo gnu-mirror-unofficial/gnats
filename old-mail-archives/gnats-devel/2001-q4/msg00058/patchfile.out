@@ -1,0 +1,112 @@
+Index: gnatsweb.pl
+===================================================================
+RCS file: /cvsroot/gnatsweb/gnatsweb/gnatsweb.pl,v
+retrieving revision 1.1.1.1.2.21
+diff -u -p -r1.1.1.1.2.21 gnatsweb.pl
+--- gnatsweb.pl	2001/10/23 11:16:16	1.1.1.1.2.21
++++ gnatsweb.pl	2001/10/23 14:52:29
+@@ -129,6 +129,7 @@ $REASONCHANGE = 4;   # whether change to
+ $ENUM         = 8;   # whether field should be displayed as enumerated
+ $EDITEXCLUDE  = 16;  # if set, don't display on edit page
+ $AUDITINCLUDE = 32;  # if set, save changes in Audit-Trail
++$REQUIRED     = 64;  # if set, field is required when PR is created
+ 
+ $| = 1; # flush output after each print
+ 
+@@ -502,11 +503,11 @@ sub sendpr
+ 	$q->p($q->submit('cmd', 'submit'),
+ 	" or ",
+ 	$q->reset(-name=>'reset')),
+-	"<hr>\n",
++	"* = required fields<hr>\n",
+ 	"<table>";
+   my $def_email = $global_prefs{'email'}
+         || cb('get_default_value', 'email') || '';
+-  print "<tr>\n<td><b>Reporter's email:</b></td>\n<td>",
++  print "<tr>\n<td><b>*Reporter's email:</b></td>\n<td>",
+         $q->textfield(-name=>'email',
+                       -default=>$def_email,
+                       -size=>$textwidth),
+@@ -542,7 +543,9 @@ sub sendpr
+     {
+       if ($lc_fieldname eq "category")
+       {
+-        print "<tr>\n<td><b>$_:</b>\n</td>\n<td>",
++        print "<tr>\n<td><b>";
++	if ($fieldnames{$_} & $REQUIRED) {print "*"};
++	print"$_:</b>\n</td>\n<td>",
+         $intro,
+         $q->popup_menu(-name=>$_,
+                        -values=>\@$lc_fieldname,
+@@ -552,7 +555,9 @@ sub sendpr
+       }
+       elsif ($lc_fieldname eq "responsible")
+       {
+-        print "<tr>\n<td><b>$_:</b>\n</td>\n<td>",
++        print "<tr>\n<td><b>";
++	if ($fieldnames{$_} & REQUIRED) {print "*"};
++	print"$_:</b>\n</td>\n<td>",
+         $intro,
+         $q->popup_menu(-name=>$_,
+                        -values=>\@$lc_fieldname,
+@@ -561,7 +566,9 @@ sub sendpr
+         print "</td>\n</tr>\n";
+       } else
+       {  
+-        print "<tr>\n<td><b>$_:</b>\n</td>\n<td>",
++        print "<tr>\n<td><b>";
++	if ($fieldnames{$_} & $REQUIRED) {print "*"};
++	print"$_:</b>\n</td>\n<td>",
+         $intro,
+         $q->popup_menu(-name=>$_,
+                        -values=>\@$lc_fieldname,
+@@ -575,7 +582,9 @@ sub sendpr
+       my $rows = 4;
+       $rows = 8 if /Description/;
+       $rows = 2 if /Environment/;
+-      print "<tr>\n<td valign=top><b>$_:</b></td>\n<td>",
++      print "<tr>\n<td><b>";
++      if ($fieldnames{$_} & $REQUIRED) {print "*"};
++      print"$_:</b>\n</td>\n<td>",
+             $intro,
+             $q->textarea(-name=>$_,
+                          -cols=>$textwidth,
+@@ -587,7 +596,9 @@ sub sendpr
+     }
+     else
+     {
+-      print "<tr>\n<td><b>$_:</b></td>\n<td>",
++      print "<tr>\n<td><b>";
++      if ($fieldnames{$_} & $REQUIRED) {print "*"};
++      print"$_:</b>\n</td>\n<td>",
+             $intro,
+             $q->textfield(-name=>$_,
+                           -size=>$textwidth,
+@@ -2700,8 +2711,8 @@ sub initialize
+   # See $MULTILINE above for bit definitions.
+   %fieldnames = (
+     "Number"        => $SENDEXCLUDE | $EDITEXCLUDE,
+-    "Category"      => $ENUM,
+-    "Synopsis"      => 0,
++    "Category"      => $ENUM | $REQUIRED,
++    "Synopsis"      => $REQUIRED,
+     "Confidential"  => $ENUM,
+     "Severity"      => $ENUM,
+     "Priority"      => $ENUM,
+@@ -2711,13 +2722,13 @@ sub initialize
+     "Keywords"      => 0,
+     "Date-Required" => 0,
+     "Class"         => $ENUM,
+-    "Submitter-Id"  => $ENUM | $EDITEXCLUDE,
++    "Submitter-Id"  => $ENUM | $EDITEXCLUDE | $REQUIRED,
+     "Arrival-Date"  => $SENDEXCLUDE | $EDITEXCLUDE,
+     "Closed-Date"   => $SENDEXCLUDE | $EDITEXCLUDE,
+     "Last-Modified" => $SENDEXCLUDE | $EDITEXCLUDE,
+     "Originator"    => $EDITEXCLUDE,
+-    "Release"       => 0,
+-    "Organization"  => $MULTILINE | $SENDEXCLUDE | $EDITEXCLUDE, # => $MULTILINE
++    "Release"       => $REQUIRED,
++    "Organization"  => $MULTILINE | $SENDEXCLUDE | $EDITEXCLUDE | $REQUIRED, # => $MULTILINE
+     "Environment"   => $MULTILINE,
+     "Description"   => $MULTILINE,
+     "How-To-Repeat" => $MULTILINE,

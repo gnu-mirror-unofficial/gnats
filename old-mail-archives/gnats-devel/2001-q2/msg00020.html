@@ -1,0 +1,162 @@
+<!-- MHonArc v2.4.7 -->
+<!--X-Subject: RE: gnats/133 -->
+<!--X-From-R13: Rvex Pretfgebz <qvexNwhavcre.arg> -->
+<!--X-Date: 9 Apr 2001 18:31:29 &#45;0000 -->
+<!--X-Message-Id: C0D6C1C24CDBE1449BFEF1B72AFBF3A703DE6AA5@postal.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - RE: gnats/133</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00007.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: gnats/133</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: 'Sarang Padalkar' &lt;sarangp at catamarancom dot com&gt;, Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: RE: gnats/133</li>
+<li><em>From</em>: Dirk Bergstrom &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Mon, 9 Apr 2001 11:31:15 -0700 </li>
+<li><em>Cc</em>: yngve dot svendsen at clustra dot com, GNATS Development &lt;gnats-devel at sourceware dot cygnus dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+we had the same problem with 4.0a (which we've been using at juniper for the
+last year or so).  there was a pernicious little bug that caused a segfault
+during PR creation (unfortunately, i can't remember the exact
+circumstances), and its side effect was to leave behind stale DB locks.
+
+once i tracked it down, i had bob manson (then working at juniper) fix the
+bug, and the problem went away.
+
+here's bob's message about the fix:
+-------------
+2001-08-23
+I believe I just checked in a fix, but at usual I haven't tested it
+other than to verify that everything still builds.
+
+There were two separate problems--one was that it wasn't regarding a
+non-existent field as OK if the field didn't have a default value, and
+the other was that it was trying to copy in the default value into an
+invalid field even if the field didn't have a default value.
+
+So this brings up a subtle point.  PRs can now have missing enum
+fields, but only if the enum field in question doesn't have an
+explicit default value.  (Otherwise, the field is added to the PR with
+the default value.)  Further, it would be OK to remove an enum field
+from a PR, but only if the field wasn't given a default value.  
+
+I'm not sure if that's the right thing to do (and it's a subtle point)
+but that's how it works right now.
+						Bob
+----------------
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,   Engineering Web Guru
+Tel: 408.745.3182           Fax: 408.745.8095
+ 
+
+&gt; -----Original Message-----
+&gt; From: Sarang Padalkar [<A  HREF="mailto:sarangp@catamarancom.com">mailto:sarangp@catamarancom.com</A>]
+&gt; Sent: Monday, April 09, 2001 9:25 AM
+&gt; To: Milan Zamazal
+&gt; Cc: yngve.svendsen@clustra.com; GNATS Development
+&gt; Subject: Re: gnats/133
+&gt; 
+&gt; 
+&gt; Please see my comments embedded below
+&gt; 
+&gt; 
+&gt; &gt;&gt;&gt;&gt;&gt; &quot;M&quot; == Milan Zamazal &lt;pdm@zamazal.org&gt; writes:
+&gt; 
+&gt;     M&gt; [gnats-devel@: This is a problem with pending lock files in
+&gt;     M&gt; GNATS 3.113, the original PR and my answer is at the end
+&gt;     M&gt; below.]
+&gt; 
+&gt; &gt;&gt;&gt;&gt;&gt; &quot;SP&quot; == Sarang Padalkar &lt;sarangp@catamarancom.com&gt; writes:
+&gt;  
+&gt;     SP&gt; We seem to be running into the same problem frequently (once a
+&gt;     SP&gt; week).  Does anybody know what triggers this problem?
+&gt; 
+&gt;     M&gt; I don't and would be very interested in it.
+&gt; 
+&gt;     M&gt; Do you use Gnatsweb for accessing the affected databases?
+&gt; 
+&gt; Yes (2.7beta). In my case, there is always a core file (gnatsd) that
+&gt; is left behind. My suspicion is that the lock file is not 
+&gt; removed because
+&gt; gnatsd crashes. 
+&gt; --------------------------------------------------------------
+&gt; -----------------
+&gt; Sarang Padalkar              (sarang@catamarancom.com)        
+&gt;      408.965.2554
+&gt; Catamaran Communications                    2345 Harris Way, 
+&gt; San Jose, CA 95131
+&gt; 
+&gt; 
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00007.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

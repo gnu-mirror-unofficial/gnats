@@ -1,0 +1,202 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: RE: gnats4.0 -->
+<!--X-From-R13: "Inffrezna, Eureel" <fureel.jnffreznaNpbzirefr&#45;va.pbz> -->
+<!--X-Date: 7 Mar 2000 13:58:11 &#45;0000 -->
+<!--X-Message-Id: 6B1DF6EEBA51D31182F20090274043682C0207@mail&#45;in.comverse&#45;in.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>RE: gnats4.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00025">Date&nbsp;Index</A>] [<a href="subjects.html#00025">Subject&nbsp;Index</a>] [<a href="authors.html#00025">Author&nbsp;Index</a>] [<A HREF="threads.html#00025">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00024.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00026.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00024.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00026.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: gnats4.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: &quot;'pst at juniper dot com'&quot; &lt;pst at juniper dot com&gt;,       &quot;'bmanson at juniper dot net'&quot; &lt;bmanson at juniper dot net&gt;</LI>
+<LI><em>Subject</em>: RE: gnats4.0</LI>
+<LI><em>From</em>: &quot;Wasserman, Sherry&quot; &lt;sherry dot wasserman at comverse-in dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 7 Mar 2000 08:55:30 -0500 </LI>
+<LI><em>Cc</em>: &quot;'gnats-devel at sourceware dot cygnus dot com'&quot; &lt;gnats-devel at sourceware dot cygnus dot com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi,
+What kind of help do you need w/ the documentation and in what areas?  I'd
+be happy to help!  I not only recognize the value and importance of good and
+accurate documentation, I'm one of the rare s/w people who also likes to
+write and has some experience in editing and writing user manuals for a
+variety of applications.  
+
+On the other hand, I have no experience in CVS -- we don't use it here, and
+I'd rather not invest time in learning how to configure, build and use it
+just so I can get the gnats 4 sources.  I assume that I'd need the programs
+to work on any documentation.  Is there any way someone can tar up the
+sources for me?  This would get us going on version 4 and any documentation
+you want help with.
+
+Sherry
+----------------------------------------------------------------------------
+---------------------------------------
+		-----Original Message-----
+		From:	Paul Traina [<A  HREF="mailto:pst@juniper.net">mailto:pst@juniper.net</A>]
+		Sent:	Friday, March 03, 2000 6:50 PM
+		To:	Wasserman, Sherry
+		Cc:	'gnats-devel@sourceware.cygnus.com';
+bug-gnats@gnu.org
+		Subject:	Re: gnats4.0
+
+		Yes, it's available now!
+
+		Best of all, it's *FREE* for your downloading pleasure!
+
+		See the web page at <A  HREF="http://sourceware.cygnus.com/gnats/">http://sourceware.cygnus.com/gnats/</A>
+
+		which will tell you:
+
+		If you would like to use the most recent version of GNATS
+under
+		development, you can check out the source code using CVS:
+
+		cvs -d :pserver:anoncvs@anoncvs.cygnus.com:/cvs/gnats login
+		{enter "anoncvs" as the password}
+		cvs -d :pserver:anoncvs@anoncvs.cygnus.com:/cvs/gnats co -P
+gnats
+
+
+		We at Juniper are now using 4.0 with the latest gnatsweb in
+		production.  I believe Bob is almost ready to announce 4.0
+for FCS,
+		however he's looking for folks to review and help update
+some of
+		the documentation, which is *sorely* out of date.
+
+		I would like to solicit all interested GNATS users to check
+out
+		the latest code.  There are a bunch of really great new
+features.
+
+		My personal favorite is that all GNATS fields are now fully
+		configurable through a file called "field-config."  There is
+no
+		need to edit 12 places in the source code to add or change a
+field.
+
+		GNATS fields now can be sanity checked (regular expressions,
+or
+		must match a valid date, or must match an enumerated type)
+by the
+		server.
+
+		The multiple database code has been cleaned up,  many MANY
+bug
+		fixes for memory leaks and buffer overflows have been fixed
+(GNATS
+		v3 was not exactly secure... I'd be very afraid to run
+GNATSD on
+		an open server if I were you).
+
+		The release tarball is coming right around the corner,  but
+folks
+		can make it come faster if they will help us polish off the
+		documentation.
+
+		Please check out the latest code and send your feedback to
+either
+		Bob or the list as appropriate.
+
+		Paul
+
+		p.s. GNATSv3 front-ends (e.g. tkgnats) may not be compatible
+with
+		     GNATSv4 if they use GNATSD.  We have upgraded gnatsweb,
+but
+		     other code out there may need some cleanup and dusting
+off
+		     to handle all the new features.
+
+
+
+
+
+
+
+		On Fri, Mar 03, 2000 at 03:37:35PM -0500, Wasserman, Sherry
+wrote:
+		&gt; Hi There,
+		&gt; 
+		&gt; We're anxiously waiting for gnats4.0. Any idea when it
+will be available?
+		&gt; 
+		&gt; Sherry Wasserman
+		&gt; Comverse Network Systems
+		&gt; 1025 Briggs Rd. Suite 100
+		&gt; Mt. Laurel NJ 08054
+		&gt; (856) 608-2858
+		&gt; sherry.wasserman@comverse-in.ocm
+&lt;<A  HREF="mailto:demasi@comverse-in.com">mailto:demasi@comverse-in.com</A>&gt; 
+		&gt; 
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00025">Date&nbsp;Index</A>] [<a href="subjects.html#00025">Subject&nbsp;Index</a>] [<a href="authors.html#00025">Author&nbsp;Index</a>] [<A HREF="threads.html#00025">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00024.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00026.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00024.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00026.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

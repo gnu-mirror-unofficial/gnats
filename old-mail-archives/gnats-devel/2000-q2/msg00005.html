@@ -1,0 +1,132 @@
+<!-- MHonArc v2.4.5 -->
+<!--X-Subject: RE: gnats4.0 -->
+<!--X-From-R13: Bnhy Fenvan <cfgNwhavcre.arg> -->
+<!--X-Date: 10 Apr 2000 16:01:43 &#45;0000 -->
+<!--X-Message-Id: 25928A4228FDD211BD8000902762822202195512@allegro.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>RE: gnats4.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00005">Date&nbsp;Index</A>] [<a href="subjects.html#00005">Subject&nbsp;Index</a>] [<a href="authors.html#00005">Author&nbsp;Index</a>] [<A HREF="threads.html#00005">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00004.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00006.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00004.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00035.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: gnats4.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: 'Rick Macdonald' &lt;rickm at vsl dot com&gt;, Michael Richardson &lt;mcr at solidum dot com&gt;</LI>
+<LI><em>Subject</em>: RE: gnats4.0 </LI>
+<LI><em>From</em>: Paul Traina &lt;pst at juniper dot net&gt;</LI>
+<LI><em>Date</em>: Mon, 10 Apr 2000 09:04:19 -0700</LI>
+<LI><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I wouldn't try for any hybrid, at a bare minimum, one would be losing all of
+the v4 feature enhancements.
+The v3 and v4 index files are quite different (Bob fixed the '|' problem),
+in v4, any field can now be indexed, so it's wickedly fast.
+
+ -----Original Message-----
+From: 	Rick Macdonald [<A  HREF="mailto:rickm@vsl.com">mailto:rickm@vsl.com</A>] 
+Sent:	Sunday, April 09, 2000 6:25 PM
+To:	Michael Richardson
+Cc:	gnats-devel@sourceware.cygnus.com
+Subject:	Re: gnats4.0 
+
+On Sun, 9 Apr 2000, Michael Richardson wrote:
+
+&gt;   Would it be easier to write a v3-&gt;v4 gnatsd converter perhaps?
+
+I don't think so. I actually have some ideas that might make the tkgnats
+version much simpler; maybe it won't be so bad.
+
+&gt;   So, is there some way that I can run both v3 and v4 gnatsd? 
+
+If the v3 and v4 index files were the same (I don't think they are) and if
+the locking mechanism is the same, etc, perhaps v3 and v4 could co-exist
+and work on the same database, assuming that you stick to the standard
+fields. Just a thought. Bob would be able to answer this.
+
+&gt;   Can I convince the v3 tkGnats to just do read-only access via gnatsd,
+&gt; and submit all updates via email (which would go to a v4 system)?
+
+You mean using the v3 gnatsd? This is the same answer that I have above
+regarding the index file and locking, etc.
+
+&gt;   Well, maybe that doesn't help, since I need to support Win32 people,
+&gt; which is why I don't just point tkGnats at the disk. I think that pointing
+&gt; at the disk is strongly discouraged in v4..
+
+Just so people know, pointing TkGnats "at the disk" means TkGnats runs
+query-pr and pr-edit instead of talking to gnatsd. Except for deleting
+PRs, TkGnats doesn't access gnats files directly (except for some old
+bogus code that reads the gnats-adm/config file if the env var GNATS_ROOT
+is set). Same issue here again: the index file has changed ("|" replaced
+by \0 last time I looked. There may be other changes and issues).
+
+
+...RickM...
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00005">Date&nbsp;Index</A>] [<a href="subjects.html#00005">Subject&nbsp;Index</a>] [<a href="authors.html#00005">Author&nbsp;Index</a>] [<A HREF="threads.html#00005">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00004.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00006.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00004.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00035.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,212 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Gnatsweb 4 ChangeLog -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 23 Jul 2001 14:34:06 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20010723162851.00a31ec0@iwww2.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Gnatsweb 4 ChangeLog</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00070">Date&nbsp;Index</A>] [<a href="subjects.html#00070">Subject&nbsp;Index</a>] [<a href="authors.html#00070">Author&nbsp;Index</a>] [<A HREF="threads.html#00070">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00069.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00071.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00069.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00087.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Gnatsweb 4 ChangeLog</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Gnatsweb 4 ChangeLog</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Mon, 23 Jul 2001 16:32:54 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+This is the last week's ChangeLog from the CVS repository at 
+savannah.gnu.org for what will become Gnatsweb 4.0.
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+
+
+2001-07-18  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (view, edit): Removed the check for non-digit
+         characters introduced below. It is no longer needed since we now
+         treat CODE_NO_PRS_MATCHED as an error.
+
+         * gnatsweb.pl (store_query): Add checking of query name before we
+         attempt to store it. According to
+         <A  HREF="http://home.netscape.com/newsref/std/cookie_spec.html">http://home.netscape.com/newsref/std/cookie_spec.html</A>, cookie
+         names must not contain commas, semicolons or spaces, and they must
+         not be blank.
+
+         * gnatsweb.pl: New variables $print_header_done,
+         $page_start_html_done and $page_heading_done to be used to
+         ensure that we don't print headers, headings and banners twice.
+         (print_header, page_start_html, page_heading): Use these
+         variables.
+         - All direct calls to CGI.pm's header function replaced by calls
+           to print_header.
+         - (gerror): Rewritten to output headers, heading and banner.
+         - (get_reply): We now treat the return code CODE_NO_PRS_MATCHED as
+           an error. Otherwise, users would be able to edit nonexistent
+           PRs. This has the unfortunate side-effect of outputting an error
+           when there are no matches to a query, but I consider that a
+           small price to pay. Tweaked error code formatting.
+         - (popup_or_scrolling_menu): Inserted missing '!' in if statement.
+         - (edit): Switched order of page_heading and readpr.
+
+2001-07-16  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * gnatsweb.pl (page_heading): Use -nowrap=&gt;'1' instead of plain
+           nowrap to avoid silly CGI.pm messages in the error_log.
+
+         * gnatsweb.pl (error_page): New subroutine which replaces the
+         local err_sub routine used in submitedit. We want all error
+         reporting to be done through this subroutine, since it gives us
+         a consistent look.
+
+         * gnatsweb.pl (popup_or_scrolling_menu): Check if $string is
+         defined by using 'if defined' instead of a numeric comparison.
+
+        * gnatsweb.pl (advanced_query_page): Add a line below 'Closed
+         After' and 'Closed Before' reminding users to uncheck 'Ignore
+         Closed'. Added a little bit of vertical space between tables.
+         Ported from 2.x branch.
+
+         * gnatsweb.pl (view, edit): Add a check for non-digit characters
+         in PR numbers. If such characters are found, an appropriate error
+         message is issued. gnatsd will actually accept PR numbers on the
+         format string/xxxx, where xxxx is a number,  and return the
+         appropriate PR. However, when edits are submitted to such a PR, a
+         new PR with the &quot;number&quot; 'string/xxxx' would be created, with the
+         same category as the original PR. This is a workaround for that
+         problem. Ported from 2.x branch.
+
+         * gnatsweb.pl: (page_heading): Set the width of the table
+         containing the page heading and database, username and access
+         level to 100%. Opera would display a too narrow table when the
+         width wasn't explicitly set.
+
+         * gnatsweb.pl (main): Add an explicit link to the automatic
+         redirection page. Fix due to Mark Kuchel. Ported from 2.x branch.
+
+         * gnatsweb.pl (login_page_javascript): Use correct &lt;SCRIPT
+         LANGUAGE&gt;.
+
+         * gnatsweb.pl (submitquery): If there's a query name, include it
+         in the page heading. Ported from 2.x branch.
+
+         * gnatsweb.pl (store_query): Gnatsweb will no longer allow you to
+         store a query if this would result in more than 20 cookies.
+         Otherwise random cookies get dropped and things start acting
+         weird. 20 is a magical number as defined in
+         <A  HREF="http://home.netscape.com/newsref/std/cookie_spec.html">http://home.netscape.com/newsref/std/cookie_spec.html</A>. Ported from
+         2.x branch.
+
+         * gnatsweb-pl (display_query_results): Added a 'View for
+         bookmarking' link, which reloads the same query so that you can
+         bookmark it in your browser. Ported from 2.x branch.
+
+         * gnatsweb.pl (submitedit): Modifying the CC list (X-GNATS-Notify
+         header) was not working if X-GNATS-Notify existed but was empty.
+         Problem turned out to be a couple of extraneous spaces in the
+         field substitution regexps.
+
+         * gnatsweb.pl: Change the example value of $site_mail_domain from
+         @juniper.net to something nonexistent.
+
+         * Implement redirects after edits (ported from 2.x branch):
+
+         gnatsweb.pl (get_pr_url): New subroutine. Returns a URL which
+         will take one to the specified $pr and with a specified $cmd.
+         (get_editpr_url, get_viewpr_url): Rewrite to use get_pr_url.
+         (get_script_name): New subroutine. Same as script_name(), but
+         includes 'database=xxx' parameter.
+         (view, edit): Pass hidden variable return_url.
+         (submitedit): New local subroutine err_sub. Makes it easier to
+         postpone calling print_header. Rewrite all error messages in
+         submitedit to use this routine.
+         (submitedit): After submitting edits, users are now redirected
+         back to the page where they were before the edit.
+         (display_query_results): Change to use get_viewpr_url and
+         get_editpr_url so that we get the return_url parameter as part of
+         the URL.
+         (print_header): New subroutine. Print HTTP header unless it's been
+         printed already.
+         (main): Don't call header() before calling submitedit(). Let
+         submitedit itself take care of printing the headers it needs.
+
+2001-07-15  Yngve Svendsen  &lt;yngve.svendsen@clustra.com&gt;
+
+         * test.pl: Don't use 'diff -u' during 'make test'; not everyone
+         has GNU diff. Ported from 2.x branch.
+
+         * gnatsweb.pl (decode_attachment): Fix a problem where attachments
+         containing a double newline in the body would be truncated
+         during decoding. Fix due to Omar Rashad.
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00070">Date&nbsp;Index</A>] [<a href="subjects.html#00070">Subject&nbsp;Index</a>] [<a href="authors.html#00070">Author&nbsp;Index</a>] [<A HREF="threads.html#00070">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00069.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00071.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00069.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00087.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

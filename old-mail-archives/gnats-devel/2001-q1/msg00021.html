@@ -1,0 +1,1038 @@
+<!-- MHonArc v2.4.6 -->
+<!--X-Subject: Patch for configurable classes in files.c -->
+<!--X-From-R13: [nepryyr Unaaba <ztnaabaNDrqsrea@rgjbexf.pbz> -->
+<!--X-Date: 8 Feb 2001 04:18:15 &#45;0000 -->
+<!--X-Message-Id: 3A821D77.B520EA8B@RedfernNetworks.com -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Marcelle Gannon - Patch for configurable classes in files.c</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00021">Date&nbsp;Index</A>] [<a href="subjects.html#00021">Subject&nbsp;Index</a>] [<a href="authors.html#00021">Author&nbsp;Index</a>] [<A HREF="threads.html#00021">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00020.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00022.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00020.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Patch for configurable classes in files.c</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sources dot redhat dot com</LI>
+<LI><em>Subject</em>: Patch for configurable classes in files.c</LI>
+<LI><em>From</em>: Marcelle Gannon &lt;mgannon at RedfernNetworks dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 08 Feb 2001 15:15:51 +1100</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I wrote this patch for gnats-3.113 after finding it crashed whenever a
+'classes' file with a large number of different classes was used.  I
+couldn't get cvs diff to work so I have attached my copy of files.c
+instead.  The only difference between it and the latest version of
+files.c (from the cvs repository) is in the function
+get_class_enum_field() which I have rewritten to prevent the buffer
+overrun that happened previously.   Hope this is useful.
+
+--
+Marcelle Gannon
+Graduate Engineer
+Redfern Broadband Networks
+A member of the Redfern Photonics Pty Ltd group of companies
+
+Lvl. 1,
+1 Central Avenue,
+Australian Technology Park,
+Eveleigh NSW 1430
+Australia
+
+Tel: +61 (2) 9209 4860
+Fax: +61 (2) 9209 4992
+E-Mail: mgannon@RedfernNetworks.com
+
+</PRE>
+<PRE>
+/* Read in and grok the various administrative files.
+   Copyright (C) 1993-96, 1997 Free Software Foundation, Inc.
+   Originally contributed by Tim Wicinski (wicinski@barn.com).
+
+This file is part of GNU GNATS.
+
+GNU GNATS is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2, or (at your option)
+any later version.
+
+GNU GNATS is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with GNU GNATS; see the file COPYING.  If not, write to the Free
+Software Foundation, 59 Temple Place - Suite 330, Boston, MA 02111, USA.  */
+
+#include "config.h"
+#include "gnats.h"
+
+Responsible *responsible_chain;
+States      *state_chain;
+Classes     *class_chain;
+
+static int get_adm_record		PARAMS((char*, char**, char*));
+static int next_record			PARAMS((char*, char**, int));
+
+/* Find SITE in the submitters list, copying it into CPTR.  */
+int 
+find_submitter (cptr, site)
+     Submitter *cptr;
+     char *site;
+{
+  char *path = (char *) alloca (PATH_MAX);
+  char **array = (char **) alloca (NUM_SUBMITTER_FIELDS * sizeof (char *));
+  int err;
+
+  if (site == NULL)
+    return -1;
+
+  sprintf (path, "%s/gnats-adm/%s", gnats_root, SUBMITTERS);
+  err = get_adm_record (path, array, site);
+
+  if (err == -1) 
+    return err;
+
+  memset (cptr, 0, sizeof (Submitter));
+
+  if (err &gt;= 5)
+    cptr-&gt;notify = array[5];
+  if (err &gt;= 4)
+    cptr-&gt;contact = array[4];
+  if (err &gt;= 3)
+    {
+      if (*array[3])
+	cptr-&gt;rtime = atoi (array[3]);
+      else
+	cptr-&gt;rtime = -1;	/* -1 =&gt; no response time specified */
+      xfree (array[3]);
+    }
+  if (err &gt;= 2)
+    cptr-&gt;type = array[2];
+  if (err &gt;= 1)
+    cptr-&gt;fullname = array[1];
+  if (err &gt;= 0)
+    cptr-&gt;key = array[0];
+
+  if (cptr-&gt;contact == NULL)
+    {
+      log_msg (LOG_INFO, 1, "contact person not defined, setting to:",
+	       gnats_admin);
+      cptr-&gt;contact = gnats_admin;
+    }
+
+  return err;
+}
+
+int 
+find_category (cptr, category)
+     Category *cptr;
+     char *category;
+{
+  char *path = (char *) alloca (PATH_MAX);
+  char **array = (char **) alloca (NUM_CATEGORY_FIELDS * sizeof (char *));
+  int err;
+
+  sprintf (path, "%s/gnats-adm/%s", gnats_root, CATEGORIES);
+  err = get_adm_record (path, array, category);
+
+  if (err == -1)
+    return err;
+
+  memset (cptr, 0, sizeof (Category));
+  
+  if (err &gt;= 3)
+    cptr-&gt;notify = array[3];
+  if (err &gt;= 2)
+    cptr-&gt;person = array[2];
+  if (err &gt;= 1)
+    cptr-&gt;fullname = array[1];
+  if (err &gt;= 0)
+    cptr-&gt;key = array[0];
+
+  return err;
+}
+
+/* Note: use get_responsible_address, not this!  */
+static int
+find_responsible (responsible, person)
+     Responsible *responsible;
+     char *person;
+{
+  Responsible *r;
+
+  if (person == NULL || person[0] == '\0')
+    return -1;
+
+  /* If the chain has worked, then search it. Otherwise, do the 'file
+     thing'. */
+  if (responsible_chain != NULL)
+    {
+      for (r = responsible_chain; r; r = r-&gt;next)
+        if (strcmp (r-&gt;key, person) == 0)
+	  {
+	    responsible-&gt;key = r-&gt;key;
+	    responsible-&gt;fullname = r-&gt;fullname;
+	    responsible-&gt;alias = r-&gt;alias;
+	    responsible-&gt;authentic = r-&gt;authentic;
+	    return 0;
+	  }
+    }
+  else
+    {
+      char *path = (char *) xmalloc (PATH_MAX);
+      char **array = (char **) xmalloc (NUM_RESPONSIBLE_FIELDS * sizeof (char *));
+      int err;
+
+      /* Make sure this is cleared out before we write to it, so if
+	 they're missing an alias field for the responsible party,
+	 we don't end up with garbage.  */
+      memset (array, 0, NUM_RESPONSIBLE_FIELDS * sizeof (char *));
+
+      sprintf (path, "%s/gnats-adm/%s", gnats_root, RESPONSIBLE_FILE);
+      err = get_adm_record (path, array, person);
+      xfree (path);
+      if (err == -1)
+	{
+	  xfree ((char *) array);
+	  return err;
+	}
+
+      responsible-&gt;alias = array[2];
+      responsible-&gt;fullname = array[1];
+      responsible-&gt;key = array[0];
+      responsible-&gt;authentic = 1;
+
+      xfree ((char *) array);
+      return 0;
+    }
+
+  return -1;
+}
+
+/* Read through the adm files, finding the line that matches the
+   variable key.  Return the number of fields in PTR (the ones that matched
+   KEY.  */
+static int
+get_adm_record (fname, ptr, key)
+     char *fname;
+     char **ptr;
+     char *key;
+{
+  FILE *fp;
+  char line[STR_MAX], temp[STR_MAX];
+  char *l, *l2;
+  char *keyed;
+  int err = -1, keyedlen;
+
+  /* append a delimiting ':' to the end of sting to make sure the match
+     is fully correct.  */
+  keyed = (char *) alloca (strlen(key) + 2);
+  /* which is slower - strcpy/strcat or sprintf? */
+  sprintf (keyed, "%s:", key);
+  keyedlen = strlen(keyed); 
+
+  fp = fopen (fname,"r");
+  if (fp == NULL)
+    return -1;
+
+  while (read_string (line, fp) &gt; 0)
+    if (line[0] != '#' &amp;&amp; line[0] != ' ' &amp;&amp; line[0] != '\n' &amp;&amp;
+	!strncasecmp(line, keyed, keyedlen))
+      {
+	/* We found a match, now get the whole line.  */
+	for (l2 = line, l = get_next_field(l2, temp, ':');
+	     l || l2;
+	     (l2 = l) &amp;&amp; (l = get_next_field(l, temp, ':')))
+	  ptr[++err] = (char *) strdup (temp);
+	break;
+      }
+
+  fclose (fp);
+
+  return err;
+}
+
+/* get_responsible_address - dredges the responsible party out of the
+     appropriate places.  This routine should be NIS Correct, but it isn't.  */
+
+Responsible *
+get_responsible_address (person)
+     char *person;
+{
+  Responsible* responsible = (Responsible *) xmalloc (sizeof (Responsible));
+  struct passwd *passwd;
+  char *p;
+
+  /* First check the responsible file; if there's no entry, try the
+     passwd file.  */
+  if (find_responsible (responsible, person) != -1)
+    {
+      if (!responsible-&gt;alias || responsible-&gt;alias[0] == '\0')
+	{
+	  xfree (responsible-&gt;alias);
+	  responsible-&gt;alias = strdup (responsible-&gt;key);
+	}
+    }
+  else
+    {
+      /* We should always allow names to show up as responsible, even
+	 if they aren't listed in the passwd file---folks don't remember
+	 (or usually need) to change closed PRs if the listed person
+	 happens to leave the company.  */
+      responsible-&gt;key = (char *) strdup (person);
+      responsible-&gt;alias = (char *) strdup (responsible-&gt;key);
+
+      if ((passwd = getpwnam (person)) != 0)
+	{
+	  /* Some passwd entries have commas for finger programs that
+	     understand office phone numbers, etc.  Chop 'em off.  */
+	  p = (char *) strchr (passwd-&gt;pw_gecos, ',');
+	  if (p != NULL)
+	    *p = '\0';
+	  responsible-&gt;fullname = (char *) strdup (passwd-&gt;pw_gecos);
+	  responsible-&gt;authentic = 1;
+	}
+      else {
+	responsible-&gt;fullname = strdup("");
+	responsible-&gt;authentic = 0;
+      }
+    } 
+
+  return responsible;
+}
+
+/*  init_responsibles - reads and parses the whole responsibles file
+      into a big linked list.  */
+
+int
+init_responsibles ()
+{
+
+  Responsible *r, *r_start = NULL, *r_end = NULL;
+  FILE *fp;
+
+  char line[STR_MAX];
+  char **array = (char **) alloca (NUM_RESPONSIBLE_FIELDS * sizeof (char *));
+  char *path = (char *) alloca (PATH_MAX);
+
+  memset (array, 0, NUM_RESPONSIBLE_FIELDS * sizeof (char *));
+  sprintf (path, "%s/gnats-adm/%s", gnats_root, RESPONSIBLE_FILE);
+  fp = fopen (path, "r");
+  if (fp == NULL)
+    return 0;
+
+  while (read_string (line, fp) &gt; 0)
+    if (line[0] != '#' &amp;&amp; line[0] != ' ' &amp;&amp; line[0] != '\n')
+      {
+	int fields;
+
+	fields = next_record (line, array, NUM_RESPONSIBLE_FIELDS);
+	r = (Responsible *) xmalloc (sizeof (Responsible));
+	r-&gt;key = array[0];
+	if (fields &gt; 1)
+	  r-&gt;fullname = array[1];
+	else
+	  r-&gt;fullname = strdup ("");
+	if (fields &gt; 2)
+	  {
+	    r-&gt;alias = array[2];
+	    if (!*r-&gt;alias)
+	      {
+		xfree (r-&gt;alias);
+		r-&gt;alias = strdup (r-&gt;key);
+	      }
+	  }
+	else
+	  r-&gt;alias = strdup (r-&gt;key);
+
+	if (r_end == NULL)
+	  r_start = r_end = r;
+	else
+	  {
+	    r_end-&gt;next = r;
+	    r_end = r;
+	  }
+
+	r-&gt;next = NULL;
+     }
+
+  if (r_start != NULL)
+    responsible_chain = r_start;
+
+  fclose (fp);
+
+  if (responsible_chain)
+    return 1;
+  else
+    return 0;
+}
+
+/*  init_classes - reads and parses the whole classes file
+      into a big linked list.  */
+
+int
+init_classes ()
+{
+  Classes *c, *c_start = NULL, *c_end = NULL;
+  FILE   *fp;
+
+  int         ntypes=1;
+  static char *types[1] = { "class" };
+  
+  int         nclasses=6;
+  static char *classes[6] = {
+       "sw-bug",
+       "doc-bug",
+       "support",
+       "change-request",
+       "mistaken",
+       "duplicate"
+  };
+  static char *descst[6] = {
+       "Problem requiring a correction to software.",
+       "Problem requiring a correction or improvement in documentation.",
+       "A support problem or question.",
+       "Suggested change in functionality.",
+       "Not a problem, bad PR submission.",
+       "Duplicate of another existing PR."
+  };
+  
+  char line[STR_MAX];
+  char **array = (char **) alloca (NUM_CLASS_FIELDS * sizeof (char *));
+  char *path = (char *) alloca (PATH_MAX);
+  int  i, nerrs = 0;
+
+  memset (array, 0, NUM_CLASS_FIELDS * sizeof (char *));
+  sprintf (path, "%s/gnats-adm/%s", gnats_root, CLASSES);
+  fp = fopen (path, "r");
+
+  if (fp == NULL)
+    {
+      for (i = 0; i &lt; nclasses; i++)
+        {
+          c = (Classes *) xmalloc (sizeof (Classes));
+          c-&gt;key         = classes[i];
+          c-&gt;type        = strdup ("");
+          c-&gt;description = descst[i];
+          if (c_end == NULL)
+              c_start = c_end = c;
+          else
+    	    {
+              c_end-&gt;next = c;
+              c_end = c;
+    	    }
+    
+          c-&gt;next = NULL;
+        }
+    }
+  else
+    {
+      while (read_string (line, fp) &gt; 0)
+        if (line[0] != '#' &amp;&amp; line[0] != ' ' &amp;&amp; line[0] != '\n')
+          {
+       	    int fields;
+    
+    	    fields = next_record (line, array, NUM_CLASS_FIELDS);
+    	    c = (Classes *) xmalloc (sizeof (Classes));
+    	    c-&gt;key = array[0];
+            for (i = 0; i &lt; strlen (c-&gt;key); i++)
+              {
+                if (! (((c-&gt;key[i] &gt;= '0') &amp;&amp; (c-&gt;key[i] &lt;= '9'))
+                    || ((c-&gt;key[i] &gt;= 'A') &amp;&amp; (c-&gt;key[i] &lt;= 'Z'))
+                    || ((c-&gt;key[i] &gt;= 'a') &amp;&amp; (c-&gt;key[i] &lt;= 'z'))
+                    ||  (c-&gt;key[i] == '-')
+                    ||  (c-&gt;key[i] == '_')
+                    ||  (c-&gt;key[i] == '.')))
+                  {
+                    /* It seems wise to enforce such restrictions starting now,
+                     * even though at this time we only have concrete reasons to
+                     * prohibit ctrl and 8-bit chars, '/', ':', '|', and '#'. 
+                     */
+                    nerrs++;
+                    if (is_daemon)
+                      {
+                        punt (0, "%s: Illegal character `%c' in class name, in %s:\n%s\n",
+                              program_name, c-&gt;key[i], path, line);
+                      }
+                    else
+                      {
+                        fprintf (stderr, "%s: Illegal character `%c' in class name, in %s:\n%s\n",
+                                 program_name, c-&gt;key[i], path, line);
+                      }
+                  }
+              }
+    	    if (fields &gt; 1)
+              {
+    	        c-&gt;type = array[1];
+                if (strlen (c-&gt;type) &gt; 0)
+                  {
+                    for (i = 0; i &lt; ntypes; i++)
+                      {
+                        if (!strcmp (c-&gt;type, types[i]))
+                          break;
+                      }
+                    if (i &gt;= ntypes)
+                      {
+                        nerrs++;
+                        if (is_daemon)
+                          {
+                            punt (0, "%s: Invalid class type in classes file %s:\n%s\n",
+                                  program_name, path, line);
+                          }
+                        else
+                          {
+                            fprintf (stderr, "%s: Invalid class type in classes file %s:\n%s\n",
+                                     program_name, path, line);
+                          }
+                      }
+                  }
+              }
+    	    else
+    	      c-&gt;type = strdup ("");
+    	    if (fields &gt; 2)
+    	      {
+    	        c-&gt;description = array[2];
+    	      }
+    	    else
+    	      c-&gt;description = strdup ("") ;
+        
+            if (c_end == NULL)
+              c_start = c_end = c;
+            else
+              {
+                c_end-&gt;next = c;
+        	c_end = c;
+              }
+        
+            c-&gt;next = NULL;
+          }
+      fclose (fp);
+    }
+        
+  if (c_start != NULL) {
+    class_chain = c_start;
+  }
+  
+  if (nerrs != 0 || !class_chain)
+    {
+      if (is_daemon)
+        {
+          punt (1, "%s: Can not initialize the class chain: %s\n", program_name, path);
+        }
+      else
+        {
+          fprintf (stderr, "%s: Can not initialize the class chain: %s\n",
+                   program_name, path);
+          abort ();
+        }
+    }
+
+  return 0;
+}
+
+/* check_class_type - return 1 if class is of type type, otherwise 0 */
+
+int
+check_class_type (class, type)
+   char *class;
+   char *type;
+{
+  Classes *c;
+  
+  if (class_chain != NULL)
+    {
+      for (c = class_chain; c; c = c-&gt;next)
+        {
+          if (strcmp (c-&gt;key, class) == 0)
+            {
+              return (!strcmp (c-&gt;type, type));
+            }
+        }
+    }
+  
+  return (0);
+}     
+
+/* get_class_type - return the type of class */
+
+char *
+get_class_type (class)
+   char *class;
+{
+  Classes *c;
+  static char *null_str = "";
+  
+  if (class_chain != NULL)
+    {
+      for (c = class_chain; c; c = c-&gt;next)
+        {
+          if (strcmp (c-&gt;key, class) == 0)
+            {
+              return (c-&gt;type);
+            }
+        }
+    }
+
+  /* Huh? Invalid class. Oh well, somebody else will catch this. */
+  return (null_str);
+}     
+
+/* get_class_enum_field - return a string of bar-separated classes */
+/* Modifications by Marcelle Gannon, 19/01/01 to fix up buffer overrun */
+/* problem to allow unlimited number of classes                    */
+   
+char *
+get_class_enum_field ()
+{
+  Classes *c;
+  char *line, *trimline;
+  int totlen = 0;            /* count up the length of the string required first */
+  c = class_chain;
+  totlen += (strlen(c-&gt;key) + 1);         /* +1 for the \0  */
+  for (c = c-&gt;next; c; c = c-&gt;next)
+      totlen += (strlen(c-&gt;key) + 3);     /* +3 for the " | " characters */
+  line = xmalloc(totlen * sizeof(char)); 
+  line[0] = '\0';
+  c = class_chain;
+  strcat (line, c-&gt;key);
+  for (c = c-&gt;next; c; c = c-&gt;next)
+    {
+      strcat (line,  " | ");
+      strcat (line, c-&gt;key);
+    }
+  trimline = strdup(line);    /* probably don't need to do this step, included as */
+  xfree(line);                 /* strdup was used in the previous version          */
+  return trimline;
+}
+
+/*  init_states - reads and parses the whole states file
+      into a big linked list.  */
+
+int
+init_states ()
+{
+
+  States *s, *s_start = NULL, *s_end = NULL;
+  FILE   *fp;
+
+  int         ntypes=2;
+  static char *types[2] = { "open", "closed" };
+  
+  int         nstates=5;
+  static char *states[5] = {
+       "open",
+       "analyzed",
+       "suspended",
+       "feedback",
+       "closed"
+  };
+  static char *descst[5] = {
+       "Default state for a new problem report.",
+       "Problem examined, understood; difficulty of solution estimated.",
+       "No solution yet, work on it also suspended for the time being.",
+       "Problem solved, now awaiting originator's reaction to fix.",
+       "This PR no longer active; it is resolved or otherwise defunct."
+  };
+  
+  char line[STR_MAX];
+  char **array = (char **) alloca (NUM_STATE_FIELDS * sizeof (char *));
+  char *path = (char *) alloca (PATH_MAX);
+  int  i, nerrs = 0;
+
+  memset (array, 0, NUM_STATE_FIELDS * sizeof (char *));
+  sprintf (path, "%s/gnats-adm/%s", gnats_root, STATES);
+  fp = fopen (path, "r");
+
+  if (fp == NULL)
+    {
+      for (i = 0; i &lt; nstates; i++)
+        {
+          s = (States *) xmalloc (sizeof (States));
+          s-&gt;key         = states[i];
+          s-&gt;type        = strdup ("");
+          s-&gt;description = descst[i];
+          if (s_end == NULL)
+              s_start = s_end = s;
+          else
+    	    {
+              s_end-&gt;next = s;
+              s_end = s;
+    	    }
+    
+          s-&gt;next = NULL;
+        }
+    }
+  else
+    {
+      while (read_string (line, fp) &gt; 0)
+        if (line[0] != '#' &amp;&amp; line[0] != ' ' &amp;&amp; line[0] != '\n')
+          {
+       	    int fields;
+    
+    	    fields = next_record (line, array, NUM_STATE_FIELDS);
+    	    s = (States *) xmalloc (sizeof (States));
+    	    s-&gt;key = array[0];
+            for (i = 0; i &lt; strlen (s-&gt;key); i++)
+              {
+                if (! (((s-&gt;key[i] &gt;= '0') &amp;&amp; (s-&gt;key[i] &lt;= '9'))
+                    || ((s-&gt;key[i] &gt;= 'A') &amp;&amp; (s-&gt;key[i] &lt;= 'Z'))
+                    || ((s-&gt;key[i] &gt;= 'a') &amp;&amp; (s-&gt;key[i] &lt;= 'z'))
+                    ||  (s-&gt;key[i] == '-')
+                    ||  (s-&gt;key[i] == '_')
+                    ||  (s-&gt;key[i] == '.')))
+                  {
+                    /* It seems wise to enforce such restrictions starting now,
+                     * even though at this time we only have concrete reasons to
+                     * prohibit ctrl and 8-bit chars, '/', ':', '|', and '#'. 
+                     */
+                    nerrs++;
+                    if (is_daemon)
+                      {
+                        punt (0, "%s: Illegal character `%c' in state name, in %s:\n%s\n",
+                              program_name, s-&gt;key[i], path, line);
+                      }
+                    else
+                      {
+                        fprintf (stderr, "%s: Illegal character `%c' in state name, in %s:\n%s\n",
+                                 program_name, s-&gt;key[i], path, line);
+                      }
+                  }
+              }
+    	    if (fields &gt; 1)
+              {
+    	        s-&gt;type = array[1];
+                if (strlen (s-&gt;type) &gt; 0)
+                  {
+                    for (i = 0; i &lt; ntypes; i++)
+                      {
+                        if (!strcmp (s-&gt;type, types[i]))
+                          break;
+                      }
+                    if (i &gt;= ntypes)
+                      {
+                        nerrs++;
+                        if (is_daemon)
+                          {
+                            punt (0, "%s: Invalid state type in states file %s:\n%s\n",
+                                  program_name, path, line);
+                          }
+                        else
+                          {
+                            fprintf (stderr, "%s: Invalid state type in states file %s:\n%s\n",
+                                     program_name, path, line);
+                          }
+                      }
+                  }
+              }
+    	    else
+    	      s-&gt;type = strdup ("");
+    	    if (fields &gt; 2)
+    	      {
+    	        s-&gt;description = array[2];
+    	      }
+    	    else
+    	      s-&gt;description = strdup ("") ;
+        
+            if (s_end == NULL)
+              s_start = s_end = s;
+            else
+              {
+                s_end-&gt;next = s;
+        	s_end = s;
+              }
+        
+            s-&gt;next = NULL;
+          }
+      fclose (fp);
+    }
+        
+  if (s_start != NULL) {
+    state_chain = s_start;
+    /* Force the last state to be type closed */
+    xfree (s_end-&gt;type);
+    s_end-&gt;type = strdup ("closed");
+  }
+  
+  if (nerrs != 0 || !state_chain)
+    {
+      if (is_daemon)
+        {
+          punt (1, "%s: Can not initialize the state chain: %s\n", program_name, path);
+        }
+      else
+        {
+          fprintf (stderr, "%s: Can not initialize the state chain: %s.\n",
+                   program_name, path);
+          abort ();
+        }
+    }
+
+  return 0;
+}
+
+/* check_state_type - return 1 if state is of type type, otherwise 0 */
+
+int
+check_state_type (state, type)
+   char *state;
+   char *type;
+{
+  States *s;
+  
+  if (state_chain != NULL)
+    {
+      for (s = state_chain; s; s = s-&gt;next)
+        {
+          if (strcmp (s-&gt;key, state) == 0)
+            {
+              return (!strcmp (s-&gt;type, type));
+            }
+        }
+    }
+  
+  return (0);
+}     
+
+/* get_state_type - return the type of state */
+
+char *
+get_state_type (state)
+   char *state;
+{
+  States *s;
+  static char *null_str = "";
+  
+  if (state_chain != NULL)
+    {
+      for (s = state_chain; s; s = s-&gt;next)
+        {
+          if (strcmp (s-&gt;key, state) == 0)
+            {
+              return (s-&gt;type);
+            }
+        }
+    }
+
+  /* Huh? Invalid state. Oh well, somebody else will catch this. */
+  return (null_str);
+}     
+
+/* get_state_enum_field - return a string of bar-separated states */
+   
+char *
+get_state_enum_field ()
+{
+  States *s;
+  char line[STR_MAX];
+  line[0] = '\0';
+  s = state_chain;
+  strcat (line, s-&gt;key);
+  for (s = s-&gt;next; s; s = s-&gt;next)
+    {
+      strcat (line,  " | ");
+      strcat (line, s-&gt;key);
+    }
+  return (strdup (line));
+}
+
+/* next_record - straight from get_adm_record, but w/out the searching
+     for the right record. This builds up an array at a time.  */
+
+static int
+next_record (line, ptr, nfields)
+   char *line;
+   char **ptr;
+   int  nfields;
+{
+  char *l, *l2;
+  int err = 0;
+  char temp[STR_MAX];
+
+  for (l2 = line, l = get_next_field(l2, temp, ':');
+       l || l2;
+       (l2 = l) &amp;&amp; (l = get_next_field(l, temp, ':')))
+    {
+      ptr[err++] = (char *) strdup (temp);
+      if (err &gt;= nfields - 1)
+           break;
+    }
+  /* Put all of the remaining line into the last array position */
+  ptr[err++] = (char *) strdup (l);
+  /* erase whitespace at the end */
+  l = ptr[err - 1] + strlen (ptr[err - 1]);
+  while (l &gt; ptr[err - 1] &amp;&amp; (isspace (*(l-1))))
+       *--l = '\0';
+
+  return err;
+}
+
+void
+free_responsible (responsible)
+     Responsible *responsible;
+{
+  if (responsible-&gt;key &amp;&amp; responsible-&gt;key != gnats_admin)
+    xfree (responsible-&gt;key);
+  if (responsible-&gt;fullname)
+    xfree (responsible-&gt;fullname);
+  if ((responsible-&gt;alias != NULL)
+      &amp;&amp; (responsible-&gt;alias != responsible-&gt;key)
+      &amp;&amp; (responsible-&gt;alias != gnats_admin))
+    xfree (responsible-&gt;alias);
+  return;
+}
+
+void
+free_submitter (submitter)
+     Submitter *submitter;
+{
+  if (submitter-&gt;key)
+    xfree (submitter-&gt;key);
+  if (submitter-&gt;fullname)
+    xfree (submitter-&gt;fullname);
+  if (submitter-&gt;type)
+    xfree (submitter-&gt;type);
+  if (submitter-&gt;contact &amp;&amp; submitter-&gt;contact != gnats_admin)
+    xfree (submitter-&gt;contact);
+  if (submitter-&gt;notify &amp;&amp; submitter-&gt;notify != gnats_admin)
+    xfree (submitter-&gt;notify);
+  return;
+}
+
+void
+free_category (category)
+     Category *category;
+{
+  if (category-&gt;key)
+    xfree (category-&gt;key);
+  if (category-&gt;fullname)
+    xfree (category-&gt;fullname);
+  if (category-&gt;person)
+    xfree (category-&gt;person);
+  if (category-&gt;notify &amp;&amp; category-&gt;notify != gnats_admin)
+    xfree (category-&gt;notify);
+  return;
+}
+
+void
+free_state (state)
+     States *state;
+{
+  if (state-&gt;key)
+    xfree (state-&gt;key);
+  if (state-&gt;type)
+    xfree (state-&gt;type);
+  if (state-&gt;description)
+    xfree (state-&gt;description);
+  return;
+}
+
+char *
+get_responsible_addr (full, strict, name)
+    int full;
+    int strict;
+    char *name;
+{
+  Responsible *r;
+  char *p, *address = (char *) NULL;
+  
+  p = (char *) strchr (name, ' ');
+  if (p != (char *) NULL)
+    *p = '\0';
+  p = (char *) strchr (name, '(');
+  if (p != (char *) NULL)
+    *p = '\0';
+
+  r = get_responsible_address (name);
+
+  if (r &amp;&amp; (r-&gt;authentic || !strict))
+    {
+      address = (char *) xmalloc (STR_MAX);
+      if (full)
+	sprintf (address, "%s:%s:%s", r-&gt;key, r-&gt;fullname, r-&gt;alias);
+      else
+	{
+	  if (r-&gt;alias[0]
+	      /* Make sure if the person putting the entry in accidentally
+		 added a space after the colon, we don't accept that as
+		 an address.  */
+	      &amp;&amp; isalpha (r-&gt;alias[0]))
+	    sprintf (address, "%s", r-&gt;alias);
+	  else
+	    sprintf (address, "%s", r-&gt;key);
+	}
+    }
+
+  return (address);
+}
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00032" HREF="msg00032.html">Re: Patch for configurable classes in files.c</A></STRONG>
+<UL><LI><EM>From:</EM> Milan Zamazal</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00021">Date&nbsp;Index</A>] [<a href="subjects.html#00021">Subject&nbsp;Index</a>] [<a href="authors.html#00021">Author&nbsp;Index</a>] [<A HREF="threads.html#00021">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00020.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00022.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00020.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>
