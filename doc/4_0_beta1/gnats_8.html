@@ -1,0 +1,246 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on January, 9  2002 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Keeping Track: Regexps</TITLE>
+
+<META NAME="description" CONTENT="Keeping Track: Regexps">
+<META NAME="keywords" CONTENT="Keeping Track: Regexps">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC101"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_7.html#SEC100"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC102"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC102"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC102"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_10.html#SEC103">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> D. Querying using regular expressions </H1>
+<!--docid::SEC101::-->
+<P>
+
+See also <A HREF="gnats_2.html#SEC24">2.4.3 Query expressions</A>.
+</P><P>
+
+Unfortunately, we do not have room in this manual for a complete
+exposition on regular expressions.  The following is a basic summary of
+some regular expressions you might wish to use.
+</P><P>
+
+<EM>NOTE: When you use query expressions containing regular
+expressions as part of an ordinary query-pr shell command line, you need
+to quote them with <CODE>"</CODE>, otherwise the shell will try to interpret
+the special characters used, yielding highly unpredictable results.</EM>
+</P><P>
+
+See section `Regular Expression Syntax' in <CITE>Regex</CITE>,
+for details on regular expression syntax.  Also see section `Syntax of Regular Expressions' in <CITE>GNU Emacs Manual</CITE>, but beware that the
+syntax for regular expressions in Emacs is slightly different.
+</P><P>
+
+All search criteria options to <CODE>query-pr</CODE> rely on regular
+expression syntax to construct their search patterns.  For example,
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'State="open"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+matches all PRs whose <SAMP>`&#62;State:'</SAMP> values match with the regular
+expression <SAMP>`open'</SAMP>.
+</P><P>
+
+We can substitute the expression <SAMP>`o'</SAMP> for <SAMP>`open'</SAMP>, according
+to GNU regular expression syntax.  This matches all values of
+<SAMP>`&#62;State:'</SAMP> which begin with the letter <SAMP>`o'</SAMP>.
+</P><P>
+
+We see that
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'State="o"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+is equivalent to
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'State="o"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+in this case, since the only value for <SAMP>`&#62;State:'</SAMP> which matches the
+expression <SAMP>`o'</SAMP> is <SAMP>`open'</SAMP>.  <SAMP>`State="o"'</SAMP> also matches
+<SAMP>`o'</SAMP>, <SAMP>`oswald'</SAMP>, and even <SAMP>`oooooo'</SAMP>, but none of those
+values are valid states for a Problem Report in default GNATS
+installations.
+</P><P>
+
+We can also use the expression operator <SAMP>`|'</SAMP> to signify a logical
+<CODE>OR</CODE>, such that
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'State="o|a"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+matches all <SAMP>`open'</SAMP> or <SAMP>`analyzed'</SAMP> Problem Reports.
+</P><P>
+
+Regular expression syntax considers a regexp token surrounded with
+parentheses, as in <SAMP>`(<VAR>regexp</VAR>)'</SAMP>, to be a <EM>group</EM>.  This
+means that <SAMP>`(ab)*'</SAMP> matches any number (including zero) of
+contiguous instances of <SAMP>`ab'</SAMP>.  Matches include <SAMP>`'</SAMP>, <SAMP>`ab'</SAMP>,
+and <SAMP>`ababab'</SAMP>.
+</P><P>
+
+Regular expression syntax considers a regexp token surrounded with
+square brackets, as in <SAMP>`[<VAR>regexp</VAR>]'</SAMP>, to be a <EM>list</EM>.
+This means that <SAMP>`Char[(ley)(lene)(broiled)'</SAMP> matches any of the
+words <SAMP>`Charley'</SAMP>, <SAMP>`Charlene'</SAMP>, or <SAMP>`Charbroiled'</SAMP> (case is
+significant; <SAMP>`charbroiled'</SAMP> is not matched).
+</P><P>
+
+Using groups and lists, we see that
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'Category="gcc|gdb|gas"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+is equivalent to
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'Category="g(cc|db|as)"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+and is also very similar to
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'Category="g[cda]"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+with the exception that this last search matches any values which begin
+with <SAMP>`gc'</SAMP>, <SAMP>`gd'</SAMP>, or <SAMP>`ga'</SAMP>.
+</P><P>
+
+The <SAMP>`.'</SAMP> character is known as a <EM>wildcard</EM>.  <SAMP>`.'</SAMP> matches
+on any single character.  <SAMP>`*'</SAMP> matches the previous character
+(except newlines), list, or group any number of times, including zero.
+Therefore, we can understand <SAMP>`.*'</SAMP> to mean "match zero or more
+instances of any character."
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'State=".*a"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+matches all values for <SAMP>`&#62;State:'</SAMP> which contain an <SAMP>`a'</SAMP>.  (These
+include <SAMP>`analyzed'</SAMP> and <SAMP>`feedback'</SAMP>.)
+</P><P>
+
+Another way to understand what wildcards do is to follow them on their
+search for matching text.  By our syntax, <SAMP>`.*'</SAMP> matches any
+character any number of times, including zero.  Therefore, <SAMP>`.*a'</SAMP>
+searches for any group of characters which end with <SAMP>`a'</SAMP>, ignoring
+the rest of the field.  <SAMP>`.*a'</SAMP> matches <SAMP>`analyzed'</SAMP> (stopping at
+the first <SAMP>`a'</SAMP>) as well as <SAMP>`feedback'</SAMP>.
+</P><P>
+
+<EM>Note:</EM> When using <SAMP>`fieldtype:Text'</SAMP> or
+<SAMP>`fieldtype:Multitext'</SAMP> (see section <A HREF="gnats_2.html#SEC24">2.4.3 Query expressions</A>), you do not have
+to specify the token <SAMP>`.*'</SAMP> at the beginning of your expression to
+match the entire field.  For the technically minded, this is because
+these queries use <SAMP>`re_search'</SAMP> rather than <SAMP>`re_match'</SAMP>.
+<SAMP>`re_match'</SAMP> <EM>anchors</EM> the search at the beginning of the field,
+while <SAMP>`re_search'</SAMP> does not anchor the search.
+</P><P>
+
+For example, to search in the <CODE>&#62;Description:</CODE> field for the text
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>The defrobulator component returns a nil value.
+</FONT></pre></td></tr></table></P><P>
+
+we can use
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'fieldtype:Multitext="defrobulator.*nil"' --format full
+</FONT></pre></td></tr></table></P><P>
+
+To also match newlines, we have to include the expression <SAMP>`(.|^M)'</SAMP>
+instead of just a dot (<SAMP>`.'</SAMP>).  <SAMP>`(.|^M)'</SAMP> matches "any single
+character except a newline (<SAMP>`.'</SAMP>) <EM>or</EM> (<SAMP>`|'</SAMP>) any newline
+(<SAMP>`^M'</SAMP>)."  This means that to search for the text
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>The defrobulator component enters the bifrabulator routine
+and returns a nil value.
+</FONT></pre></td></tr></table></P><P>
+
+we must use
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>query-pr --expr 'fieldtype:Multitext="defrobulator(.|^M)*nil"'
+         --format full
+</FONT></pre></td></tr></table></P><P>
+
+To generate the newline character <SAMP>`^M'</SAMP>, type the following
+depending on your shell:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>csh</CODE>
+<DD><SAMP>`<EM>control</EM>-V <EM>control</EM>-M'</SAMP>
+<P>
+
+<DT><CODE>tcsh</CODE>
+<DD><SAMP>`<EM>control</EM>-V <EM>control</EM>-J'</SAMP>
+<P>
+
+<DT><CODE>sh (<EM>or</EM> bash)</CODE>
+<DD>Use the <KBD>RETURN</KBD> key, as in
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>(.|
+)
+</FONT></pre></td></tr></table></DL>
+<P>
+
+Again, see section `Regular Expression Syntax' in <CITE>Regex</CITE>, for a much more complete discussion on regular
+expression syntax.
+</P><P>
+
+<A NAME="Support"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC102"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC102"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_10.html#SEC103">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<BR>  
+<FONT SIZE="-1">
+This document was generated
+by <I>Yngve Svendsen</I> on <I>January, 9  2002</I>
+using <A HREF="http://www.mathematik.uni-kl.de/~obachman/Texi2html
+"><I>texi2html</I></A>
+
+</BODY>
+</HTML>
