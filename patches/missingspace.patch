@@ -1,0 +1,16 @@
+Index: file-pr.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/file-pr.c,v
+retrieving revision 1.3.2.1.2.1.2.3
+diff -u -p -r1.3.2.1.2.1.2.3 file-pr.c
+--- file-pr.c	1999/10/31 06:57:45	1.3.2.1.2.1.2.3
++++ file-pr.c	2001/02/20 19:05:02
+@@ -788,7 +788,7 @@ notify_responsible (responsible, subcont
+       if (i == SUBJECT)
+ 	continue;
+       if (*header_value(i))
+-	fprintf(msg, "%s%s", header_name(i), header_value(i));
++	fprintf(msg, "%s %s", header_name(i), header_value(i));
+     }
+ #endif /* DONT_USE_RESENT */
+ 

@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<HTML> 
+  <HEAD> 
+	 <TITLE>GNATS v3.113 patches</TITLE><LINK REL="STYLESHEET"
+	 HREF="../styles/common.css"> 
+  </HEAD> 
+  <BODY VLINK="#551a8b"> 
+	 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"> 
+		<TR> 
+		  <TD><A NAME="top"><IMG SRC="../images/gnatslogo.png" BORDER="0"
+			 ALT="Gnats" ALIGN="LEFT" WIDTH="296" HEIGHT="59"></A></TD> 
+		</TR> 
+	 </TABLE>&nbsp; 
+	 <TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" CLASS="sm"
+	  BGCOLOR="#EEEEEE"> 
+		<TR> 
+		  <TD CLASS="sm">&lt;&lt; <A HREF="../index.html">Back to the main GNATS
+			 page</A></TD> 
+		</TR> 
+	 </TABLE> 
+	 <H1>GNATS v3.113 patches</H1> 
+	 <P>This page collects patches for GNATS v3.113.</P> 
+	 <UL>
+		<LI><A HREF="#clbuforun">Buffer overrun when number of classes in the
+		  classes file becomes too large</A></LI>
+		<LI><A HREF="#missingspace">Missing space in Date: header</A></LI>
+		<LI><A HREF="#typos">Fixes for documentation typos</A></LI>
+	 </UL>
+	 <H2><A NAME="clbuforun">Buffer overrun when number of classes in the
+		classes file becomes too large</A></H2> 
+	 <P>This patch is to fix a buffer overrun problem in files.c in the function
+		get_class_enum_field() which can cause a crash when the number of classes in
+		the classes file becomes too large. Submitted by Marcelle Gannon.
+		<A HREF="clbuforun.patch">Download patch</A>.</P>
+	 <H2><A NAME="missingspace">Missing space in Date: header</A></H2> 
+	 <P>File-pr sends out copies of PRs with a missing space after Date: in the
+		mail headers, like "Date:Mon, 15 Jan 2001 12:53:47 +0100". This causes problems
+		for many mail clients. Submitted by Yngve Svendsen.
+		<A HREF="missingspace.patch">Download patch</A>.</P>
+	 <H2><A NAME="typos">Fixes for documentation typos</A></H2>
+	 <P>The following patches fix typos in the GNATS 3.113 documentation.
+		Submitted by Yngve Svendsen.</P>
+	 <P>Download patch for: <A HREF="typo_gnats_texi.patch">gnats.texi</A>,
+		<A HREF="typo_fields_texi.patch">fields.texi</A>,
+		<A HREF="typo_p-admin_texi.patch">p-admin.texi</A>,
+		<A HREF="typo_p-inst_texi.patch">p-inst.texi</A>,
+		<A HREF="typo_p-usage_texi.patch">p-usage.texi</A>.</P> <HR SIZE="1"> 
+	 <DIV CLASS="ps">First published: Tuesday, 20-Feb-2001 15:51:34 MET<BR>Last
+		modified: Tuesday, 20-Feb-2001 16:33:00 MET<BR><A
+		HREF="mailto:yngve.svendsen@clustra.com">yngve.svendsen@clustra.com</A></DIV>
+	 </BODY>
+</HTML>

@@ -1,0 +1,91 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on January, 19  2001 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Keeping Track: Multiple Databases</TITLE>
+
+<META NAME="description" CONTENT="Keeping Track: Multiple Databases">
+<META NAME="keywords" CONTENT="Keeping Track: Multiple Databases">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="STYLESHEET" HREF="../styles/common.css"></HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC67"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_5.html#SEC66"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_7.html#SEC68"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_7.html#SEC68"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_7.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> C. Multiple Databases on one host </H1>
+<!--docid::SEC67::-->
+<P>
+
+GNATS can support multiple databases on one host.  The options
+<CODE>--directory=</CODE> or <CODE>-d</CODE> are available to specify the GNATS
+database to access for the various tools See section <A HREF="gnats_2.html#SEC10">Invoking the GNATS tools</A>.
+</P><P>
+
+The GNATS daemon can switch between databases by using the
+<CODE>CHDB database</CODE> command.  This will cause the GNATS daemon
+to access the newly specified database.  The daemon will verify that you
+have access to the requested database as determined by
+<TT>`gnatsd.conf'</TT>.
+</P><P>
+
+The database should be specified using a fully qualified path name.  The
+file <TT>`/etc/gnats-db.conf'</TT> can be used to specify aliases for the
+fully qualified path names.  These aliases can be used with the
+<CODE>--directory=</CODE> or <CODE>-d</CODE> option or as a database name for the
+daemon.  The following is an example of a <TT>`/etc/gnats-db.conf'</TT>
+file.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre># list of GNATS databases and aliases
+#
+# Field 1 - fully qualified path to database
+# Field 2 - a comma separated list of aliases
+/usr/local/gnats/standard-db:normal,standard,regular
+/usr/local/gnats/alternate-db:alt
+/home/gnats/special-db:special
+</pre></td></tr></table> 
+The <TT>`/etc/gnats-db.conf'</TT> file name is set in <TT>`db_conf.c'</TT> at
+compile time.
+</P><P>
+
+The GNATS daemon supports two other commands <CODE>DBLS</CODE> and
+<CODE>DBLA</CODE> to list the fully qualified databases and aliases,
+respectively.
+</P><P>
+
+<A NAME="Access Control"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_7.html#SEC68"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_7.html#SEC68"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

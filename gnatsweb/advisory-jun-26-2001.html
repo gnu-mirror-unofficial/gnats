@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD HoTMetaL PRO 6.0::19990601::extensions to HTML 4.0//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+	 <TITLE>Gnatsweb Security Advisory</TITLE><LINK REL="STYLESHEET"
+	 HREF="../styles/common.css"> 
+  </HEAD> 
+  <BODY> 
+	 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"> 
+		<TR> 
+		  <TD><A NAME="top"><IMG SRC="../images/gnatslogo.png" BORDER="0"
+			 ALT="Gnats" WIDTH="296" HEIGHT="59"></A><BR>&nbsp;</TD> 
+		</TR> 
+	 </TABLE> 
+	 <TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" BGCOLOR="#EEEEEE"
+	  CLASS="sm"> 
+		<TR> 
+		  <TD CLASS="sm"><A HREF="../index.html">GNATS</A> &gt; GNATSWEB SECURITY
+			 ADVISORY JUN 26 2001</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H1>Gnatsweb Security Advisory</H1> 
+	 <H2>Versions affected</H2>
+	 <UL>
+		<LI>Gnatsweb 2.7 beta</LI>
+		<LI>Gnatsweb 2.8.0</LI>
+		<LI>Gnatsweb 2.8.1</LI>
+		<LI>Gnatsweb 3.95 for GNATS 4, versions from CVS prior to Jun 26 2001
+		  12:15 PDT.</LI>
+	 </UL> 
+	 <H2>Description</H2> 
+	 <P>In Gnatsweb 2.7 beta, a new help system was introduced. The standard
+		help text was provided in a separate file named 'gnatsweb.html'. For some
+		reason it was decided to allow the name of the help file to be customized, and
+		it was possible to specify this filename by providing a value to the help_file
+		parameter in a request URL. If a URL such as</P>
+	 <P><TT>http://www.whatever.whatever/cgi-bin/gnatsweb.pl?cmd=help&amp;help_file=somefile.html</TT></P>
+	 <P>was used to access Gnatsweb, the file somefile.html would be served up
+		as help text instead. The problem was that the value of this parameter was
+		never checked before it was used in an OPEN statement.</P>
+	 <H2>Impact</H2>
+	 <P>By judicious use of special characters in the value of the help_file
+		parameter, an attacker would be able to read the contents of any file or
+		execute any command to which the web server process user had access.</P> 
+	 <H2>Solution</H2>
+	 <P>Download and apply the patch for your version of Gnatsweb:
+		<A HREF="patches/gw27bfileopen.diff">2.7 beta</A>,
+		<A HREF="patches/gw280fileopen.diff">2.8.0</A>,
+		<A HREF="patches/gw281fileopen.diff">2.8.1</A>. This fix hardcodes the name
+		'gnatsweb.html' for the help file and makes a slight modification to the way
+		the file is opened.</P>
+	 <P>Gnatsweb 3.95 is part of the yet-to-be-released GNATS 4 distribution.
+		Versions checked out of the CVS repository on sources.redhat.com prior to Jun
+		26 2001 12:15 PDT contain this bug. Users running such versions should check
+		out a new version.</P>
+	 <P>A new version of Gnatsweb incorporating this fix, numbered 2.8.2, is
+		available from the FTP site on sources.redhat.com and from
+		<A HREF="ftp://ftp.gnu.org/gnu/gnatsweb/">ftp.gnu.org</A> and its
+		<A HREF="http://www.gnu.org/order/ftp.html">mirrors</A>.</P><HR SIZE="1"> 
+	 <TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" BGCOLOR="#EEEEEE"
+	  CLASS="sm"> 
+		<TR> 
+		  <TD CLASS="sm"><A HREF="../index.html">GNATS</A> &gt; GNATSWEB SECURITY
+			 ADVISORY JUN 26 2001</TD> 
+		</TR> 
+	 </TABLE> 
+	 <DIV CLASS="ps">&nbsp;<BR>First published: Tuesday, 26-Jun-2001 20:46:00
+		MET DST<BR>Last modified: Tuesday, 26-Jun-2001 22:15:00 MET DST<BR><A
+		HREF="mailto:yngve.svendsen@clustra.com">yngve.svendsen@clustra.com</A></DIV>
+	 </BODY>
+</HTML>

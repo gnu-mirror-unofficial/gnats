@@ -1,0 +1,25 @@
+Index: p-usage.texi
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/p-usage.texi,v
+retrieving revision 1.1.1.1
+diff -u -p -r1.1.1.1 p-usage.texi
+--- p-usage.texi	1998/11/05 19:54:10	1.1.1.1
++++ p-usage.texi	2001/02/20 18:33:50
+@@ -247,7 +247,7 @@ of a PR to unlock.
+ @item C-c C-q
+ @item M-x unlock-buffer
+ Removes the lock on the current PR, allowing others to edit it.  The
+-buffer remains active and non-writeable.  To relock a PR, simply type
++buffer remains active and non-writable.  To relock a PR, simply type
+ @samp{e} in the buffer containing the Problem Report.
+ 
+ @item C-c C-e
+@@ -388,7 +388,7 @@ change in the @samp{>Audit-Trail:} field
+ @cindex using @code{query-pr}
+ @cindex invoking @code{query-pr}
+ @cindex @code{query-pr}
+-@cindex querying invdividual problem reports
++@cindex querying individual problem reports
+ 
+ Obtain information from the database by using the program
+ @w{@code{query-pr}}. @code{query-pr} uses search parameters you provide

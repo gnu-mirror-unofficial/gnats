@@ -1,0 +1,25 @@
+Index: gnatsweb.pl
+===================================================================
+RCS file: /clustra/cvs/gnatsweb2/gnatsweb.pl,v
+retrieving revision 1.28
+diff -u -p -r1.28 gnatsweb.pl
+--- gnatsweb.pl	2001/06/04 19:41:33	1.28
++++ gnatsweb.pl	2001/06/26 18:34:09
+@@ -2003,7 +2003,7 @@ sub delete_stored_query
+ sub send_html
+ {
+   my $file = shift;
+-  open(HTML, "$file") || die "Can't open $file: $!";
++  open(HTML, "<$file") || die "Can't open $file: $!";
+   undef $/; # slurp file whole
+   my $html = <HTML>;
+   close(HTML);
+@@ -2017,7 +2017,7 @@ sub send_html
+ 
+ sub help_page
+ {
+-  my $html_file = $q->param('help_file') || 'gnatsweb.html';
++  my $html_file = 'gnatsweb.html';
+   my $page      = $q->param('help_title') || 'Help';
+   my $heading   = $page;
+   page_start_html($page);

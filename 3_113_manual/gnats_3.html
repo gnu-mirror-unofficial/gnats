@@ -1,0 +1,1867 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on January, 19  2001 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Keeping Track: Management</TITLE>
+
+<META NAME="description" CONTENT="Keeping Track: Management">
+<META NAME="keywords" CONTENT="Keeping Track: Management">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="STYLESHEET" HREF="../styles/common.css"></HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC31"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_2.html#SEC30"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC32"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> 3. GNATS Administration </H1>
+<!--docid::SEC31::-->
+<P>
+
+In daily usage, GNATS is self-maintaining.  However, there are
+various administrative duties which need to be performed periodically:
+</P><P>
+
+<DL COMPACT>
+<DT><EM>emptying the <CODE>pending</CODE> directory</EM>
+<DD><A NAME="IDX130"></A>
+If a Problem Report arrives with a <SAMP>`&#62;Category:'</SAMP> value that is
+unrecognized by the <TT>`categories'</TT> file, or if that field is missing,
+GNATS places the PR in the <TT>`pending'</TT> directory
+(see section <A HREF="gnats_5.html#SEC62">Where the tools and utilities reside</A>).  GNATS
+has no way of knowing which subdirectory the PR should be filed under.
+GNATS sends a notice to the <CODE>gnats-admin</CODE> and to the party
+responsible for that submitter (as listed in the <TT>`submitters'</TT> file)
+when this occurs.
+<P>
+
+To file these PRs, simply use <CODE>edit-pr</CODE> to repair the problematic
+fields in each file in the <TT>`pending'</TT> directory.  Be sure to change
+the <SAMP>`&#62;Category:'</SAMP> field of the PR from <SAMP>`pending'</SAMP> to an
+appropriate category.  In many cases the culprit is simply a
+typographical error, although it may be necessary sometimes to contact
+the submitter of the PR to decipher her or his intentions.
+</P><P>
+
+Should you run out of disk space, there may be an empty PR in the
+<TT>`pending'</TT> directory.  In that case, look in the file
+<TT>`<VAR>GNATS_ROOT</VAR>/gnats-adm/bug.log'</TT>, which should still contain
+the full message that was submitted.
+</P><P>
+
+<DT><EM>adding new categories</EM>
+<DD><A NAME="IDX131"></A>
+<A NAME="IDX132"></A>
+To add a new category, simply insert a new line in the
+<TT>`categories'</TT> file and then run the program <CODE>mkcat</CODE>.
+<P>
+
+<EM>Note</EM>: this causes all category lists for <CODE>send-pr</CODE> (except
+the one on the local machine) to become outdated.  Copy the new list on
+to every machine on your network that has <CODE>send-pr</CODE> installed, and
+make sure you advise remote submitters that the category list has
+changed.  See section <A HREF="gnats_3.html#SEC45">Adding a problem category</A>.  Also
+<A HREF="gnats_3.html#SEC36">The <CODE>categories</CODE> file</A>.
+</P><P>
+
+<DT><EM>removing categories</EM>
+<DD><A NAME="IDX133"></A>
+<A NAME="IDX134"></A>
+To remove a category, you need to make sure the relevant subdirectory is
+empty (in other words, make sure no PRs exist for the category you wish
+to remove).  You can then remove the category listing from the
+<TT>`categories'</TT> file, and invoke 
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>rmcat <VAR>category<small>...</small></VAR>
+</FONT></pre></td></tr></table></P><P>
+
+to remove <VAR>category</VAR> (any number of categories may be specified on
+the command line to <CODE>rmcat</CODE>, so long as they abide by the above
+constraints).
+</P><P>
+
+<EM>Note</EM>: this causes all category lists for <CODE>send-pr</CODE> (except
+the one on the local machine) to become outdated.  Copy the new list on
+to every machine on your network that has <CODE>send-pr</CODE> installed, and
+make sure you advise remote submitters that the category list has
+changed.  See section <A HREF="gnats_3.html#SEC46">Removing a problem category</A>.  Also
+<A HREF="gnats_3.html#SEC36">The <CODE>categories</CODE> file</A>.
+</P><P>
+
+<DT><EM>adding and removing maintainers</EM>
+<DD><A NAME="IDX135"></A>
+Edit the <TT>`responsible'</TT> file to add a new maintainer or to remove an
+existing maintainer.  See section <A HREF="gnats_3.html#SEC37">The <CODE>responsible</CODE> file</A>.
+<P>
+
+<DT><EM>building a distribution of <CODE>send-pr</CODE></EM>
+<DD><A NAME="IDX136"></A>
+<A NAME="IDX137"></A>
+You can build a distribution of <CODE>send-pr</CODE> which contains valid
+information for your site by invoking the command <CODE>mkdist</CODE>.
+See section <A HREF="gnats_3.html#SEC48">Configuring <CODE>send-pr</CODE> for the outside world</A>.  You
+can then distribute your customized <CODE>send-pr</CODE> to your
+customers, friends, relatives, etc., so that they can submit Problem
+Reports to your database.
+<P>
+
+<DT><EM>building a new index</EM>
+<DD><A NAME="IDX138"></A>
+<A NAME="IDX139"></A>
+If your index becomes corrupted, or if you wish to generate a new one
+for some reason, use the program <CODE>gen-index</CODE>
+(see section <A HREF="gnats_3.html#SEC47">Regenerating the index</A>).
+<P>
+
+<DT><EM>pruning log files</EM>
+<DD><A NAME="IDX140"></A>
+Log files often grow to unfathomable proportions.  As with gardening, it
+is best to prune these as they grow, lest they take over your disk and
+leave you with no room to gather more Problem Reports.  If you keep log
+files, be sure to keep an eye on them.  (See section <A HREF="gnats_4.html#SEC58">Setting up mail aliases</A>.)
+<P>
+
+<DT><EM>BACKING UP YOUR DATA</EM>
+<DD><A NAME="IDX141"></A>
+Any database is only useful if its data remains uncorrupted and safe.
+Performing periodic backups ensures that problems like disk crashes and
+data corruption are reversible.
+<P>
+
+</DL>
+<P>
+
+See section <A HREF="gnats_5.html#SEC62">Where GNATS lives</A>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC32">3.1 Managing GNATS over a network</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC33">3.2 Changing your local configuration</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC41">3.3 Administrative data files</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC44">3.4 Administrative utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC49">3.5 Internal utilities</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="Networked management"></A>
+<HR SIZE="6">
+<A NAME="SEC32"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.1 Managing GNATS over a network </H2>
+<!--docid::SEC32::-->
+<P>
+
+If you have installed the GNATS user tools on machines around your
+local network, there are a few things you need to remember.
+</P><P>
+
+<CODE>mkcat</CODE> and <CODE>rmcat</CODE> do not update the categories list for
+other machines on your network which have <CODE>send-pr</CODE> installed,
+unless those machines share <VAR>prefix</VAR> with the host machine).  To
+update these lists, copy the <CODE>send-pr</CODE> categories list to each of
+the other hosts.  This categories list is
+<TT>`<VAR>prefix</VAR>/share/gnats/<VAR>site</VAR>'</TT>, where <VAR>site</VAR> is the
+name tag for your local site, as specified in the <TT>`config'</TT> file as
+<SAMP>`GNATS_SITE'</SAMP> (see section <A HREF="gnats_3.html#SEC35">The <CODE>config</CODE> file</A>).
+</P><P>
+
+It is also important to note that only your local <CODE>send-pr</CODE> has
+access to this new information; any copies of <CODE>send-pr</CODE> which you
+have distributed to outside submitters now have outdated category lists.
+You must either contact your submitters and instruct them to update
+their copy of the categories list, which they installed in
+<TT>`<VAR>prefix</VAR>/share/gnats/<VAR>support-site</VAR>'</TT> from the
+distribution you provided, or you must build another distribution of
+<CODE>send-pr</CODE> with this new information and redistribute it.
+</P><P>
+
+If you need to use GNATS utilities, like <CODE>query-pr</CODE> and
+<CODE>edit-pr</CODE>, on other systems besides the one where GNATS itself
+resides, see section <A HREF="gnats_4.html#SEC60">Installing the user tools</A>.
+</P><P>
+
+<A NAME="Local configuration"></A>
+<HR SIZE="6">
+<A NAME="SEC33"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC32"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC34"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.2 Changing your local configuration </H2>
+<!--docid::SEC33::-->
+<P>
+
+See section <A HREF="gnats_5.html#SEC62">Where GNATS lives</A>.
+</P><P>
+
+Your local configuration is determined by the following data files in the
+directory <TT>`<VAR>GNATS_ROOT</VAR>/gnats-adm'</TT>.  It can be altered at
+any time by editing the pertinent file.
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX142"></A>
+<DT><CODE>config</CODE>
+<DD>Variables which control certain behavior.  See section <A HREF="gnats_3.html#SEC35">The <CODE>config</CODE> file</A>.  Behaviors you can change here include
+<P>
+
+<UL>
+<LI>
+The address where your site receives Problem Reports.
+<P>
+
+<LI>
+The address of the GNATS administrator.
+<P>
+
+<LI>
+The nametag for your Support Site (your organization, company,
+group, etc.).
+<P>
+
+<LI>
+The nametag for your local Submitter Site.
+<P>
+
+<LI>
+The default release for your site.
+<P>
+
+<LI>
+The default value for the <SAMP>`&#62;Organization:'</SAMP> field (this value
+appears as the default when you run <CODE>send-pr</CODE>).
+<P>
+
+<LI>
+Whether or not to remind maintainers if a requisite time period has
+passed before they change the state of a Problem Report to
+<SAMP>`analyzed'</SAMP>.  (Also see <A HREF="gnats_3.html#SEC38">The <CODE>submitters</CODE> file</A>, and <A HREF="gnats_3.html#SEC52">Timely Reminders</A>.
+<P>
+
+<LI>
+Whether or not to send an automatic acknowledgment to the originator of
+a problem report when the GNATS first receives the PR. 
+<P>
+
+<LI>
+The value GNATS assigns to PRs which come in with missing or unknown
+values for the <SAMP>`&#62;Submitter-Id:'</SAMP> field.
+<P>
+
+<LI>
+Whether or not GNATS should retain <SAMP>`Received:'</SAMP>
+mail headers from incoming mail.
+<P>
+
+<LI>
+Whether or not GNATS is in a mode for debugging.
+<P>
+
+<LI>
+The values which define business hours.
+<P>
+
+<LI>
+A default category for problem reports which come in without a category.
+<P>
+
+</UL>
+<P>
+
+<A NAME="IDX143"></A>
+<DT><CODE>categories</CODE>
+<DD>The list of categories that GNATS accepts as valid for the
+<SAMP>`&#62;Category:'</SAMP> field, and the maintainers responsible for each
+category.  Update this file whenever you have a new category, or
+whenever a category is no longer valid.  You must also update this file
+whenever responsibility for a category changes, or if a maintainer is
+no longer valid.  See section <A HREF="gnats_3.html#SEC36">The <CODE>categories</CODE> file</A>.  Also
+see <A HREF="gnats_3.html#SEC45">Adding a new problem category</A>, and <A HREF="gnats_3.html#SEC46">Removing a problem category</A>.
+<P>
+
+<A NAME="IDX144"></A>
+<DT><CODE>responsible</CODE>
+<DD>The list of maintainers.  Update this file whenever you have a new
+maintainer, or whenever a maintainer is no longer valid.
+See section <A HREF="gnats_3.html#SEC37">The <CODE>responsible</CODE> file</A>.
+<P>
+
+<A NAME="IDX145"></A>
+<DT><CODE>submitters</CODE>
+<DD>The list of Submitter Sites from whom GNATS accepts Problem Reports.
+This file is mandatory, although the feature it provides is not; see
+<A HREF="gnats_3.html#SEC38">The <CODE>submitters</CODE> file</A>.
+<P>
+
+<A NAME="IDX146"></A>
+<DT><CODE>addresses</CODE>
+<DD>Mappings between submitter IDs and submitters' e-mail addresses.  Use of
+this file is optional.  If you get Problem reports where the
+<SAMP>`&#62;Submitter'</SAMP> field is not filled in, GNATS will use entries in
+this file to try to derive the submitter ID from the e-mail headers.
+</DL>
+<P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC34">3.2.1 Default behavior</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC35">3.2.2 The <CODE>config</CODE> file</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC36">3.2.3 The <CODE>categories</CODE> file</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC37">3.2.4 The <CODE>responsible</CODE> file</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC38">3.2.5 The <CODE>submitters</CODE> file</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC39">3.2.6 The <CODE>states</CODE> file</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC40">3.2.7 The <CODE>addresses</CODE> file</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="default behavior"></A>
+<HR SIZE="6">
+<A NAME="SEC34"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC35"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.1 Default behavior </H3>
+<!--docid::SEC34::-->
+<P>
+
+The default behavior for GNATS is as follows:
+</P><P>
+
+<A NAME="IDX147"></A>
+<UL>
+<LI>
+The address where your site receives Problem Reports is <SAMP>`bugs'</SAMP> (a
+local address).
+<P>
+
+<LI>
+The address of the GNATS administrator is <SAMP>`gnats-admin'</SAMP> (a local
+address).
+<P>
+
+<LI>
+The nametag for your Support Site (your organization, company, group,
+etc.) is the second-to-last field in your domain name.
+<P>
+
+<LI>
+The nametag for your local Submitter Site is the nametag for your
+Support Site.
+<P>
+
+<LI>
+The default release for your site is <SAMP>`unknown-1.0'</SAMP>.
+<P>
+
+<LI>
+The default value for the <SAMP>`&#62;Organization:'</SAMP> field (this value appears as the
+default when you run <CODE>send-pr</CODE>) is the nametag for your Support
+Site.
+<P>
+
+<LI>
+GNATS reminds maintainers if a requisite time period has passed
+before they change the state of a Problem Report to <SAMP>`analyzed'</SAMP>.
+<P>
+
+<LI>
+An automatic acknowledgement is sent to the originator of a problem
+report when the GNATS first receives the PR.
+<P>
+
+<LI>
+The value GNATS assigns to the <SAMP>`&#62;Submitter-Id:'</SAMP> field in PRs
+which arrive with missing or unknown values for that field is
+<SAMP>`unknown'</SAMP>.
+<P>
+
+<LI>
+<SAMP>`Received<small>...</small>'</SAMP> mail headers are retained.
+<P>
+
+<LI>
+GNATS is not in a debugging mode.
+<P>
+
+<LI>
+<EM>business hours</EM> are defined as 8:00am to 5:00pm, Monday through
+Friday.
+</UL>
+<P>
+
+<A NAME="config file"></A>
+<HR SIZE="6">
+<A NAME="SEC35"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC34"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC36"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC36"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.2 The <CODE>config</CODE> file </H3>
+<!--docid::SEC35::-->
+<P>
+
+Much of the behavior GNATS exhibits depends on the values of fields
+in the file <TT>`<VAR>GNATS_ROOT</VAR>/gnats-adm/config'</TT>.  The
+<TT>`config'</TT> file contains a list of variables (using Bourne-shell
+syntax) which control the following behavior.  These values can be
+changed at any time; the new values take effect for all subsequent
+iterations of the tools.
+</P><P>
+
+<DL COMPACT>
+<A NAME="IDX148"></A>
+<DT><CODE>GNATS_ADDR="<VAR>address</VAR>"</CODE>
+<DD>The address where your site receives Problem Reports.  This address is
+aliased in the file <TT>`/etc/aliases'</TT> so that it directs incoming
+mail into <CODE>queue-pr</CODE> (see section <A HREF="gnats_4.html#SEC57">Installing the utilities</A>).
+<P>
+
+The default is <SAMP>`bugs'</SAMP> (a local address).
+</P><P>
+
+<A NAME="IDX149"></A>
+<DT><CODE>GNATS_ADMIN="<VAR>address</VAR>"</CODE>
+<DD>The address of the GNATS administrator.  Normally this is set to
+<SAMP>`gnats-admin'</SAMP>, which is an alias in <TT>`/etc/aliases'</TT> that points
+toward the person responsible for administrating GNATS.
+See section <A HREF="gnats_4.html#SEC57">Installing the utilities</A>.
+<P>
+
+The default is <SAMP>`gnats-admin'</SAMP> (a local address).
+</P><P>
+
+<A NAME="IDX150"></A>
+<DT><CODE>GNATS_SITE="<VAR>site</VAR>"</CODE>
+<DD>The nametag for your Support Site (your organization, company, group,
+etc.).  This nametag should also appear in the <TT>`submitters'</TT> file,
+so that users at your site can submit Problem Reports locally.
+<P>
+
+<VAR>site</VAR> is also used as the name of the file containing a valid
+category list for your site.  This file is installed locally as
+<TT>`<VAR>prefix</VAR>/share/gnats/<VAR>site</VAR>'</TT>.  <EM>Warning:</EM> if you
+change this variable after GNATS is installed, you must also change
+the name of this file, as well as the name of the alias for your local
+submitters (see section <A HREF="gnats_4.html#SEC58">Setting up mail aliases</A>).
+</P><P>
+
+The default is the second-to-last field in your domain name.  For
+example, if your domain name is <SAMP>`unleaded.truckstop.org'</SAMP>, your
+default <VAR>site</VAR> is <SAMP>`truckstop'</SAMP>.
+</P><P>
+
+<A NAME="IDX151"></A>
+<DT><CODE>SUBMITTER="<VAR>submitter-id</VAR>"</CODE>
+<DD>The nametag for your local Submitter Site (this value appears as the
+default value for <SAMP>`&#62;Submitter-Id'</SAMP> when you run <CODE>send-pr</CODE>).
+Even though you are a Support Site, if you submit Problem Reports to
+your own organization you become a Submitter Site.  The value
+<VAR>submitter-id</VAR> is the default value for the <SAMP>`&#62;Submitter-Id:'</SAMP>
+field that your maintainers see when they submit Problem Reports
+locally.
+<P>
+
+The default is the value of <SAMP>`GNATS_SITE'</SAMP>.
+</P><P>
+
+<A NAME="IDX152"></A>
+<DT><CODE>DEFAULT_RELEASE="<VAR>release</VAR>"</CODE>
+<DD>The default release for your site (this value appears as the default
+value for <SAMP>`&#62;Release:'</SAMP> when you run <CODE>send-pr</CODE>).
+<P>
+
+The default is <SAMP>`unknown-1.0'</SAMP>.
+</P><P>
+
+<A NAME="IDX153"></A>
+<DT><CODE>DEFAULT_ORGANIZATION="<VAR>text</VAR>"</CODE>
+<DD>The default value for the <SAMP>`&#62;Organization:'</SAMP> field (this value
+appears as the default when you run <CODE>send-pr</CODE>).
+<P>
+
+The default is the value of <SAMP>`GNATS_SITE'</SAMP>.
+</P><P>
+
+<A NAME="IDX154"></A>
+<DT><CODE>NOTIFY=<VAR>boolean</VAR></CODE>
+<DD>Determines whether or not to remind maintainers if a requisite time
+period has passed before they change the state of a Problem Report to
+<SAMP>`analyzed'</SAMP>.  This feature uses the program <CODE>at-pr</CODE>; see
+<A HREF="gnats_3.html#SEC52">Timely Reminders</A>.
+<P>
+
+This requisite time is determined for each submitter individually; see
+<A HREF="gnats_3.html#SEC38">The <CODE>submitters</CODE> file</A>.  The time is measured in
+<EM>business hours</EM>, which by default are 8:00am to 5:00pm, Monday
+through Friday.  Business hours can be redefined by changing the
+variables <CODE>BDAY_START</CODE>, <CODE>BDAY_END</CODE>, <CODE>BWEEK_START</CODE>, and
+<CODE>BWEEK_END</CODE> in the <TT>`config'</TT> file (see below).
+</P><P>
+
+If <VAR>boolean</VAR> is <SAMP>`1'</SAMP>, this feature is active.  If <VAR>boolean</VAR>
+is <SAMP>`0'</SAMP>, the feature is turned off.  The default value for
+<SAMP>`NOTIFY'</SAMP> is <SAMP>`1'</SAMP>.
+</P><P>
+
+<A NAME="IDX155"></A>
+<DT><CODE>ACKNOWLEDGE=<VAR>boolean</VAR></CODE>
+<DD>Determines whether or not to send an automatic acknowledgement to the
+originator of a problem report when the GNATS first receives the PR.
+<P>
+
+If <VAR>boolean</VAR> is <SAMP>`1'</SAMP>, this feature is active.  If <VAR>boolean</VAR>
+is <SAMP>`0'</SAMP>, the feature is turned off.  The default for
+<SAMP>`ACKNOWLEDGE'</SAMP> is <SAMP>`1'</SAMP>.
+</P><P>
+
+The acknowledgment is of the form:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>To: <VAR>your-address</VAR>
+From: gnats
+Subject: Re: <VAR>category</VAR>/<VAR>gnats-id</VAR>:<VAR>Synopsis</VAR>
+In-Reply-To: Your message of <VAR>date</VAR>
+
+Thank you very much for your problem report.
+It has the internal identification: <VAR>category</VAR>/<VAR>gnats-id</VAR>
+The individual assigned to look at your bug is:
+     <VAR>responsible</VAR>
+
+Category:     <VAR>category of the PR</VAR>
+Responsible:  <VAR>responsible</VAR>
+Synopsis:     <VAR>Synopsis from submitted PR</VAR>
+Arrival-Date: <VAR>arrival date</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="IDX156"></A>
+<DT><CODE>DEFAULT_SUBMITTER="submitter-id"</CODE>
+<DD>The value GNATS assigns to PRs which come in with missing or unknown
+values for the <SAMP>`&#62;Submitter-Id:'</SAMP> field.  This value must also appear
+in the <TT>`submitters'</TT> file; see <A HREF="gnats_3.html#SEC38">The <CODE>submitters</CODE> file</A>.
+<P>
+
+<A NAME="IDX157"></A>
+To disable the feature of GNATS which tracks the
+<SAMP>`&#62;Submitter-Id:'</SAMP>, simply alter the <TT>`submitters'</TT> file to only
+contain the <VAR>submitter-id</VAR> value which appears in
+<CODE>DEFAULT_SUBMITTER</CODE>, and and instruct your submitters to ignore
+the field.
+</P><P>
+
+The default value for <SAMP>`DEFAULT_SUBMITTER'</SAMP> is <SAMP>`unknown'</SAMP>.
+</P><P>
+
+<A NAME="IDX158"></A>
+<DT><CODE>KEEP_RECEIVED_HEADERS=<VAR>boolean</VAR></CODE>
+<DD>Determines whether or not GNATS should retain the
+<SAMP>`Received:'</SAMP> mail headers from incoming mail.  These headers
+often take up a lot of space, and they are seldom used.
+<P>
+
+If <VAR>boolean</VAR> is <SAMP>`1'</SAMP>, this feature is active.  If <VAR>boolean</VAR>
+is <SAMP>`0'</SAMP>, the feature is turned off.  The default value for
+<SAMP>`KEEP_RECEIVED_HEADERS'</SAMP> is <SAMP>`1'</SAMP>.
+</P><P>
+
+<DT><CODE>DEBUG_MODE=<VAR>boolean</VAR></CODE>
+<DD>Determines whether or not GNATS is operating in a mode for
+debugging.  When <VAR>boolean</VAR> is <SAMP>`1'</SAMP>, GNATS fowards all mail
+to the GNATS administrator, <CODE>gnats-admin</CODE>.
+<P>
+
+<A NAME="IDX159"></A>
+<DT><CODE>BDAY_START=<VAR>integer</VAR></CODE>
+<DD><DT><CODE>BDAY_END=<VAR>integer</VAR></CODE>
+<DD><DT><CODE>BWEEK_START=<VAR>integer</VAR></CODE>
+<DD><DT><CODE>BWEEK_END=<VAR>integer</VAR></CODE>
+<DD>The definition of <EM>business hours</EM>.  These values are only used if
+<CODE>NOTIFY</CODE> is set to <SAMP>`1'</SAMP> in the <TT>`config'</TT> file (see above).
+<P>
+
+By default, business hours are 8:00am to 5:00pm Monday through Friday,
+local time.
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>BDAY_START=<VAR>integer</VAR></CODE>
+<DD>Defines the hour of the day when business hours begin.  <VAR>integer</VAR>
+values must fall between <SAMP>`0'</SAMP> (midnight) and <SAMP>`23'</SAMP> (11:00pm).
+The default is <SAMP>`8'</SAMP> (8:00am).
+<P>
+
+<DT><CODE>BDAY_END=<VAR>integer</VAR></CODE>
+<DD>Defines the hour of the day when business hours end.  <VAR>integer</VAR>
+values must fall between <SAMP>`0'</SAMP> (midnight) and <SAMP>`23'</SAMP> (11:00pm).
+The default is <SAMP>`17'</SAMP> (5:00pm).
+<P>
+
+<DT><CODE>BWEEK_START=<VAR>integer</VAR></CODE>
+<DD>Defines the beginning day of the business week.  <VAR>integer</VAR> values
+must fall between <SAMP>`0'</SAMP> (Sunday) and <SAMP>`6'</SAMP> (Saturday).  The
+default is <SAMP>`1'</SAMP> (Monday).
+<P>
+
+<DT><CODE>BWEEK_END=<VAR>integer</VAR></CODE>
+<DD>Defines the ending day of the business week.  <VAR>integer</VAR> values must
+fall between <SAMP>`0'</SAMP> (Sunday) and <SAMP>`6'</SAMP> (Saturday).  The default is
+<SAMP>`5'</SAMP> (Friday).
+<P>
+
+<A NAME="IDX160"></A>
+<DT><CODE>DEFINE_CATEGORY="category"</CODE>
+<DD>Defines the category where problem reports are placed when they come in
+without a category.  The category you choose must be listed in the 
+<CODE>categories</CODE> file.  
+<P>
+
+This line does not appear in the <CODE>config</CODE> file when you install 
+GNATS, so you must add it to the <CODE>config</CODE> file if you want to set a
+default category.  If there is no default category listed, problem reports
+will be put into the "pending" category. 
+</P><P>
+
+</DL>
+<P>
+
+</DL>
+<P>
+
+<A NAME="categories file"></A>
+<HR SIZE="6">
+<A NAME="SEC36"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC35"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC37"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC37"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.3 The <CODE>categories</CODE> file </H3>
+<!--docid::SEC36::-->
+<P>
+
+The <TT>`categories'</TT> file contains a list of problem categories,
+specific to your site, which GNATS tracks.  This file also matches
+responsible people with these categories.  You must edit this file
+initially, creating valid categories and then running <CODE>mkcat</CODE> to
+create the corresponding subdirectories of <CODE><VAR>GNATS_ROOT</VAR></CODE>
+and update the valid categories list for <CODE>send-pr</CODE>.  For
+instructions on running <CODE>mkcat</CODE>, see <A HREF="gnats_3.html#SEC45">Adding a problem category</A>.
+</P><P>
+
+To create a new category, log in as GNATS, add a line to this file,
+and run <CODE>mkcat</CODE>.  Lines beginning with <SAMP>`#'</SAMP> are ignored.
+</P><P>
+
+A line in the <TT>`categories'</TT> file consists of four fields delimited
+by colons, as follows:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>category</VAR>:<VAR>description</VAR>:<VAR>responsible</VAR>:<VAR>notify</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+<DL COMPACT>
+<DT><VAR>category</VAR>
+<DD>A unique category name, made up of text characters.  This name cannot
+contain spaces or any of the following characters:
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>! $ &#38; * ( ) { } [ ] ` ' " ; : &#60; &#62; ~
+</FONT></pre></td></tr></table></P><P>
+
+Ideally, category names should not contain commas or begin with periods.
+Each line has a corresponding subdirectory in the main GNATS
+directory (<VAR>GNATS_ROOT</VAR>).
+</P><P>
+
+<DT><VAR>description</VAR>
+<DD>A terse textual description of the category.
+<P>
+
+<DT><VAR>responsible</VAR>
+<DD>The name tag of the party responsible for this category of problems, as
+listed in the <TT>`responsible'</TT> file (see section <A HREF="gnats_3.html#SEC37">The <CODE>responsible</CODE> file</A>).
+<P>
+
+<DT><VAR>notify</VAR>
+<DD>One or more other parties which should be notified when a Problem Report
+with this category arrives, such as a project manager, other members of
+the same project, other interested parties, or even log files.  These
+should be separated with commas.
+</DL>
+<P>
+
+A good strategy for configuring this file is to have a different
+category for each product your organization supports or wishes to track
+information for, or perhaps with sub-categories within each category.
+For instance, if you wish to track documentation problems in a variety of
+areas, you could have entries such as
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>doc:General Doc Questions:myboss:me,barney
+doc-rock:Doc for ROCK program:me:myboss
+doc-stone:Docs for STONE utils:barney:fred
+doc-local:in-house documentation:me:doc-local-log
+</FONT></pre></td></tr></table></P><P>
+
+In the above example, the nametags <SAMP>`myboss'</SAMP>, <SAMP>`me'</SAMP>,
+<SAMP>`fred'</SAMP>, and <SAMP>`barney'</SAMP> must be defined in the <TT>`responsible'</TT>
+file (see section <A HREF="gnats_3.html#SEC37">The <CODE>responsible</CODE> file</A>).
+</P><P>
+
+Problem Reports with a category of <SAMP>`doc'</SAMP> are sent to the local mail
+address (or alias) <SAMP>`myboss'</SAMP>, and also sent to the addresses
+<SAMP>`me'</SAMP> and <SAMP>`barney'</SAMP>.  PRs with a category of <SAMP>`doc-rock'</SAMP> are
+sent to the local addresses <SAMP>`me'</SAMP> and <SAMP>`myboss'</SAMP> only, while PRs
+with the category <SAMP>`doc-stone'</SAMP> are sent to <SAMP>`fred'</SAMP> as well as to
+<SAMP>`barney'</SAMP>.  PRs with a category of <SAMP>`doc-local'</SAMP> are sent only to
+<SAMP>`me'</SAMP>, and are also filed in <CODE>doc-local-log</CODE> (in this case, an
+alias should be set up in <TT>`/etc/aliases'</TT> to reflect a location for
+the log file, such as <SAMP>`doc-local-log: /users/me/local-log'</SAMP>).
+</P><P>
+
+Whenever you add a new category, be sure to run <CODE>mkcat</CODE> to create a
+subdirectory for it and update the local categories list.
+</P><P>
+
+Only one category must be present for GNATS to function:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>pending:Category for faulty PRs: gnats-admin:
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="IDX161"></A>
+The <TT>`pending'</TT> directory is created automatically when you run
+<SAMP>`make install'</SAMP> (see section <A HREF="gnats_4.html#SEC56">Configuring and compiling the software</A>).
+</P><P>
+
+<A NAME="responsible file"></A>
+<HR SIZE="6">
+<A NAME="SEC37"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC36"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC38"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC38"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.4 The <CODE>responsible</CODE> file </H3>
+<!--docid::SEC37::-->
+<P>
+
+This file contains a list of the responsible parties.  Lines beginning
+with <SAMP>`#'</SAMP> are ignored.  Each entry contains three fields, separated
+by colons:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>responsible</VAR>:<VAR>full-name</VAR>:<VAR>mail-address</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+<DL COMPACT>
+<DT><VAR>responsible</VAR>
+<DD>A name-tag description of the party in question, such as her or his user
+name, or the name of the group.  This name is listed in the PR in
+the <SAMP>`&#62;Responsible:'</SAMP> field.
+<P>
+
+<DT><VAR>full-name</VAR>
+<DD>The full name of the party ("Charlotte Bronte"; "Compiler Group").
+<P>
+
+<DT><VAR>mail-address</VAR>
+<DD>The full, valid mail address of the party.  This field is only necessary
+if the responsible party has no local mail address or alias.
+</DL>
+<P>
+
+A sample <TT>`responsible'</TT> listing might be:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>ren:Ren Hoek:
+stimpy:Stimpson J. Cat:stimpy@lederhosen.org
+</FONT></pre></td></tr></table></P><P>
+
+Here, <CODE>ren</CODE> is a local user.  <CODE>stimpy</CODE> is remote, so his full
+address must be specified.
+</P><P>
+
+The following entry must be present for GNATS to function:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>gnats-admin: GNATS administrator:
+</FONT></pre></td></tr></table></P><P>
+
+(<CODE>gnats-admin</CODE> is a mail alias, so for this purpose
+<CODE>gnats-admin</CODE> is a local address.)
+</P><P>
+
+<A NAME="submitters file"></A>
+<HR SIZE="6">
+<A NAME="SEC38"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC37"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC39"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC39"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.5 The <CODE>submitters</CODE> file </H3>
+<!--docid::SEC38::-->
+<P>
+
+This is a database of sites which submit bugs to your support site.  It
+contains six fields delineated by colons.  Lines beginning with <SAMP>`#'</SAMP>
+will be ignored.
+</P><P>
+
+Entries are of the format:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>submitter-id</VAR>:<VAR>name</VAR>:<VAR>type</VAR>:<VAR>resp-time</VAR>:<VAR>contact</VAR>:<VAR>notify</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+<DL COMPACT>
+<DT><VAR>submitter-id</VAR>
+<DD>A unique identifier for a specific site or other entity who submits
+Problem Reports.
+<P>
+
+<DT><VAR>name</VAR>
+<DD>A textual description of this entity.
+<P>
+
+<DT><VAR>type</VAR>
+<DD>Optional description for the type of relationship this submitter to your
+support site.  This could indicate a contract type, a level of
+expertise, etc., or it can remain blank.
+<P>
+
+<DT><VAR>resp-time</VAR>
+<DD>Optional quoted response time, in <EM>business hours</EM>.  GNATS is
+capable of reminding responsible parties when Problem Reports marked
+with a <SAMP>`&#62;Severity'</SAMP> value of <SAMP>`critical'</SAMP>, or those with a
+<SAMP>`&#62;Severity'</SAMP> of <SAMP>`serious'</SAMP> and a <SAMP>`&#62;Priority'</SAMP> value of
+<SAMP>`high'</SAMP>, are neglected for a certain period.  This argument defines
+that response period for each <VAR>submitter-id</VAR>.  Business hours are
+defined by default as 8:00am to 5:00pm, Monday through Friday.  For
+example, three business days would be equal to 24 business hours.
+<P>
+
+This function is active if the <CODE>NOTIFY</CODE> field is defined as
+<SAMP>`1'</SAMP> in the <TT>`config'</TT> file (see section <A HREF="gnats_3.html#SEC33">Changing your local configuration</A>).  If <CODE>NOTIFY</CODE> is <SAMP>`0'</SAMP>, this field is
+ignored.  For information on <CODE>at-pr</CODE>, the program which sends out
+this reminder, see <A HREF="gnats_3.html#SEC52">Timely Reminders</A>.
+</P><P>
+
+<DT><VAR>contact</VAR>
+<DD>The name tag of the main <EM>contact</EM> at the Support Site for this
+submitter.  This contact should be in the <TT>`responsible'</TT> file
+(see section <A HREF="gnats_3.html#SEC37">The <CODE>responsible</CODE> file</A>).  Incoming bugs
+from <VAR>submitter</VAR> are sent to this contact.  Optionally, this field
+can be left blank.
+<P>
+
+<DT><VAR>notify</VAR>
+<DD>Any other parties who should receive copies of Problem Reports sent in
+by <VAR>submitter</VAR>.  They need not be listed in the <TT>`responsible'</TT> file.
+</DL>
+<P>
+
+A few example entries in the <TT>`submitters'</TT> file:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>univ-hell: University of Hades:eternal:3:beelzebub:lucifer
+tta: Telephones and Telegraphs of America:support:720:dave:
+</FONT></pre></td></tr></table></P><P>
+
+In this example, when a PR comes in from the University of Hades (who
+has an eternal contract), it should have <SAMP>`univ-hell'</SAMP> in its
+<SAMP>`Submitter-Id'</SAMP> field.  This Problem Report goes to <CODE>beelzebub</CODE>
+(who should be in the <TT>`responsible'</TT> file), and if it is not
+analyzed within three business hours a reminder message is sent.
+<CODE>lucifer</CODE> also receives a copy of the bug, and a copy of the
+reminder message as well (if it is sent).  When Telephones and
+Telegraphs of America utilizes their support contract and submits a bug,
+a copy is sent only to <CODE>dave</CODE>, who has 720 business hours to return
+an analysis before a reminder is sent.
+</P><P>
+
+<A NAME="IDX162"></A>
+To disable the feature of GNATS which tracks the
+<SAMP>`&#62;Submitter-Id:'</SAMP>, simply alter the <TT>`submitters'</TT> file to only
+contain the <VAR>submitter-id</VAR> value which appears as the
+<SAMP>`DEFAULT_SUBMITTER'</SAMP> value in the <TT>`config'</TT> file
+(see section <A HREF="gnats_3.html#SEC35">The <CODE>config</CODE> file</A>), and instruct your
+submitters to ignore the field.
+</P><P>
+
+<A NAME="states file"></A>
+<HR SIZE="6">
+<A NAME="SEC39"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC38"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC40"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC40"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.6 The <CODE>states</CODE> file </H3>
+<!--docid::SEC39::-->
+<P>
+
+This file lists the possible states for Problem Reports.  Each line
+consists of a state, followed optionally by colon and a one-line
+description of what the state means.  Lines beginning with <SAMP>`#'</SAMP> will
+be ignored.
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>state</VAR>: <VAR>optional descriptive text</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+State names can contain any alphanumeric character, "-" (hyphen), "_"
+(underscore), or "." (period), but no other characters.  The state name
+ends with a newline, or else with a colon followed by optional
+descriptive text.  The descriptive text, if present, can contain any
+character except newline, which marks the end of the description.  Empty
+or all-whitespace descriptions are allowed (though it's hard to imagine
+why one would want such a thing).  Even though GNATS does not
+currently use this descriptive text, other external tools may, so you
+probably still want to include it.
+</P><P>
+
+The first state listed will be the state automatically assigned to
+Problem Reports when they arrive; by default this is named "open".  The
+last state listed is the end state for Problem Reports -- one should
+usually assume that a PR in this state is not being actively worked on;
+by default this state is named "closed".
+</P><P>
+
+It is probably best to leave "open" as the first state and "closed" as
+the last, otherwise some external tools looking for those two states by
+name may be fooled.
+</P><P>
+
+If the <TT>`states'</TT> file cannot be read, or contains formatting errors,
+GNATS uses the states described in <A HREF="gnats_1.html#SEC4">States</A>.
+</P><P>
+
+<A NAME="addresses file"></A>
+<HR SIZE="6">
+<A NAME="SEC40"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC39"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC33"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.2.7 The <CODE>addresses</CODE> file </H3>
+<!--docid::SEC40::-->
+<P>
+
+This file contains mappings between submitter IDs and corresponding e-mail 
+addresses.
+</P><P>
+
+When a PR comes in without a submitter ID (if someone sends unformatted e-mail
+to the "bugs" address), GNATS will try to derive the submitter ID from the
+address in the "From:" header.  The entries in this file consist of two 
+fields, separated by a colon:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre><VAR>submitter-id</VAR>:<VAR>address-fragment</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+<DL COMPACT>
+<DT><VAR><VAR>submitter-id</VAR></VAR>
+<DD>A valid submitter ID
+<P>
+
+<DT><VAR><VAR>address-fragment</VAR></VAR>
+<DD>Part of all of the e-mail address to be matched
+</DL>
+<P>
+
+Here is an example of an <CODE>addresses</CODE> file:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre># Addresses for Yoyodine Inc
+yoyodine:yoyodine.com
+yoyodine:yoyodine.co.uk
+# Addresses for Foobar Inc.
+foobar1:sales.foobar.com
+foobar2:admin.foobar.com
+foobar3:clark@research.foobar.com
+</FONT></pre></td></tr></table></P><P>
+
+GNATS checks each line in the <CODE>addresses</CODE> file, comparing 
+<VAR>address-fragment</VAR> to the end of the "From:" header, until it finds
+a match.  If no match is found, GNATS uses the default submitter ID.
+</P><P>
+
+You can only have one address fragment per line, but you can have more than
+one line for a given submitter ID.  An address fragment can be a domain
+(i.e. yoyodine.com), a machine location (admin.foobar.com), or a full e-mail
+address (clark@research.foobar.com).
+</P><P>
+
+GNATS can match addresses in three e-mail formats:
+</P><P>
+
+<DL COMPACT>
+<DT><VAR>From: name@address.com</VAR>
+<DD>The address by itself without a full name, not enclosed in brackets
+<P>
+
+<DT><VAR>From: Real Person &#60;name@address.com&#62;</VAR>
+<DD>A full name (optional, with or without quotation marks), followed by the 
+address enclosed in angle brackets
+<P>
+
+<DT><VAR>From: name@address.com (Real Person)</VAR>
+<DD>An address, followed by a name or comment in parentheses
+</DL>
+<P>
+
+If GNATS sees other e-mail address formats, it uses the default
+submitter ID.  Future version of this feature will account for other
+valid e-mail address formats.
+</P><P>
+
+<A NAME="Admin files"></A>
+<HR SIZE="6">
+<A NAME="SEC41"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC40"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC42"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.3 Administrative data files </H2>
+<!--docid::SEC41::-->
+<P>
+
+The following files are located in <TT>`<VAR>GNATS_ROOT</VAR>/gnats-adm'</TT>,
+where <VAR>GNATS_ROOT</VAR> is the resident directory of GNATS.  These
+files are maintained by GNATS; you should never touch them.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC42">3.3.1 The <CODE>index</CODE> file</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">The `index' file</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC43">3.3.2 The <CODE>current</CODE> file</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">The `current' file</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="index file"></A>
+<HR SIZE="6">
+<A NAME="SEC42"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC43"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.3.1 The <CODE>index</CODE> file </H3>
+<!--docid::SEC42::-->
+<P>
+
+The index is used to accelerate searches on the database by
+<CODE>query-pr</CODE> and <CODE>edit-pr</CODE>.  This file is not created until the
+first PR comes in.  It is then kept up to date by GNATS; you should
+never touch this file.
+</P><P>
+
+Searches on subjects contained in the index are much faster than
+searches which depend on data not in the index.  The index contains
+single-line entries for all PR fields except for the multitext fields
+such as Description, How-To-Repeat, etc. Fields are separated by bars
+(<SAMP>`|'</SAMP>) except for <SAMP>`&#62;Category:'</SAMP> and <SAMP>`&#62;Number:'</SAMP>, which are
+separated by a slash (<SAMP>`/'</SAMP>).
+</P><P>
+
+To see an example index, run <CODE>gen-index</CODE> without any options
+(see section <A HREF="gnats_3.html#SEC47">Regenerating the index</A>).
+</P><P>
+
+<A NAME="current file"></A>
+<HR SIZE="6">
+<A NAME="SEC43"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC42"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC41"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.3.2 The <CODE>current</CODE> file </H3>
+<!--docid::SEC43::-->
+<P>
+
+This file contains the last serial number assigned to an incoming PR.
+It is used internally by GNATS; you need never touch this file.
+</P><P>
+
+<A NAME="Admin utils"></A>
+<HR SIZE="6">
+<A NAME="SEC44"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC43"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC45"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.4 Administrative utilities </H2>
+<!--docid::SEC44::-->
+<P>
+
+These tools are used by the GNATS administrator as part of the
+periodic maintenance and configuration of GNATS.
+See section <A HREF="gnats_3.html#SEC31">GNATS Administration</A>.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC45">3.4.1 Adding a problem category</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC46">3.4.2 Removing a problem category</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC47">3.4.3 Regenerating the index</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC48">3.4.4 Configuring <CODE>send-pr</CODE> for the outside world</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">Configuring send-pr for the outside world</TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="mkcat"></A>
+<HR SIZE="6">
+<A NAME="SEC45"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC46"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.4.1 Adding a problem category </H3>
+<!--docid::SEC45::-->
+<P>
+
+To add new categories to the database:
+</P><P>
+
+<OL>
+<LI>
+Add a line to the <TT>`categories'</TT> file under
+<TT>`<VAR>GNATS_ROOT</VAR>/gnats-adm'</TT> for each new category.
+See section <A HREF="gnats_3.html#SEC36">The <CODE>categories</CODE> file</A>.
+<P>
+
+<LI>
+Run <CODE>mkcat</CODE>.  <CODE>mkcat</CODE> creates a directory under
+<VAR>GNATS_ROOT</VAR> for any new categories which appear in the
+<TT>`categories'</TT> file.  <CODE>mkcat</CODE> also recreates the list of valid
+categories for both your locally installed <CODE>send-pr</CODE> and for the
+<CODE>send-pr</CODE> distribution template in
+<TT>`<VAR>prefix</VAR>/share/gnats/dist'</TT> (see section <A HREF="gnats_5.html#SEC62">Where GNATS lives</A>.
+</OL>
+<P>
+
+<EM>Note:</EM> <CODE>mkcat</CODE> does not update the categories list for other
+machines on your network which have <CODE>send-pr</CODE> installed (unless
+the two machines share the directory <VAR>prefix</VAR>).
+See section <A HREF="gnats_3.html#SEC32">Managing GNATS over a network</A>.
+</P><P>
+
+It is also important to note that only your local <CODE>send-pr</CODE> has
+access to this new information; any copies of <CODE>send-pr</CODE> which you
+have distributed to outside submitters now have outdated category lists.
+You must either contact your submitters and instruct them to update
+their copy of the categories list, which they installed in
+<TT>`<VAR>prefix</VAR>/share/gnats/<VAR>support-site</VAR>'</TT> (<EM>Note:</EM> the
+value for <VAR>prefix</VAR> may be different from yours) from the
+distribution you provided, or you must build another distribution of
+<CODE>send-pr</CODE> with this new information and redistribute it
+(see section <A HREF="gnats_3.html#SEC48">Configuring <CODE>send-pr</CODE> for the outside world</A>).
+</P><P>
+
+<A NAME="rmcat"></A>
+<HR SIZE="6">
+<A NAME="SEC46"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC45"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC47"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC47"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.4.2 Removing a problem category </H3>
+<!--docid::SEC46::-->
+<P>
+
+To remove a category from the database:
+</P><P>
+
+<OL>
+<LI>
+Remove the Problem Reports from the subdirectories corresponding to the
+categories you wish to remove, or assign the PRs to new categories.  All
+PRs for a given category reside in
+<TT>`<VAR>GNATS_ROOT</VAR>/<VAR>category</VAR>'</TT>.  Make sure you do this for
+each category you wish to remove.
+<P>
+
+<LI>
+Run <CODE>rmcat</CODE> using
+<P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>rmcat <VAR>category</VAR> [ <VAR>category<small>...</small></VAR> ]
+</FONT></pre></td></tr></table></P><P>
+
+where <VAR>category</VAR> is the category you wish to remove.  You can
+specify as many categories as you wish as long as each category has no
+PRs associated with it.  <CODE>rmcat</CODE> removes the directory under
+<VAR>GNATS_ROOT</VAR> where the Problem Reports for that category had been
+stored.  <CODE>rmcat</CODE> also deletes the category from the list of valid
+categories for both your locally installed <CODE>send-pr</CODE> and for the
+<CODE>send-pr</CODE> distribution template in
+<TT>`<VAR>prefix</VAR>/share/gnats/dist'</TT> (see section <A HREF="gnats_5.html#SEC62">Where GNATS lives</A>).
+</OL>
+<P>
+
+<EM>Note:</EM> <CODE>rmcat</CODE> does not update the categories list for other
+machines on your network which have <CODE>send-pr</CODE> installed.
+See section <A HREF="gnats_3.html#SEC32">Managing GNATS over a network</A>.
+</P><P>
+
+It is also important to note that only your local <CODE>send-pr</CODE> has
+access to this new information; any copies of <CODE>send-pr</CODE> which you
+have distributed to outside submitters now have outdated category lists.
+You must either contact your submitters and instruct them to update
+their copy of the categories list, which they installed in
+<TT>`<VAR>prefix</VAR>/share/gnats/<VAR>support-site</VAR>'</TT> (<EM>Note:</EM> the
+value for <VAR>prefix</VAR> may be different from yours) from the
+distribution you provided, or you must build another distribution of
+<CODE>send-pr</CODE> with this new information and redistribute it
+(see section <A HREF="gnats_3.html#SEC48">Configuring <CODE>send-pr</CODE> for the outside world</A>).
+</P><P>
+
+<A NAME="gen-index"></A>
+<HR SIZE="6">
+<A NAME="SEC47"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC46"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC48"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC48"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.4.3 Regenerating the index </H3>
+<!--docid::SEC47::-->
+<P>
+
+If your <TT>`index'</TT> file becomes corrupted, or if you need a copy of
+the current index for some reason, use
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>gen-index [ -n | --numeric ]
+          [ -d <VAR>directory</VAR> | --directory=<VAR>directory</VAR> ]
+	  [ -c <VAR>filename</VAR> | --catfile=<VAR>filename</VAR> ]
+          [ -o <VAR>filename</VAR> | --outfile=<VAR>filename</VAR> ]
+          [ -h | --help] [ -V | --version ]
+</FONT></pre></td></tr></table></P><P>
+
+With no options, <CODE>gen-index</CODE> generates an index that is ordered the
+same as the order of the categories as they appear in the
+<TT>`categories'</TT> file, and prints it to standard output.  The options
+are:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>-n</CODE>
+<DD><DT><CODE>--numeric</CODE>
+<DD>Sorts index entries numerically.
+<P>
+
+<DT><CODE>-d <VAR>directory</VAR></CODE>
+<DD><DT><CODE>--directory=<VAR>directory</VAR></CODE>
+<DD>Uses <VAR>directory</VAR> as the directory containing the database, by
+default <VAR>GNATS_ROOT</VAR> (see section <A HREF="gnats_5.html#SEC62">Where GNATS lives</A>).
+<P>
+
+<DT><CODE>-o <VAR>filename</VAR></CODE>
+<DD><DT><CODE>--outfile=<VAR>filename</VAR></CODE>
+<DD>Places output in <VAR>filename</VAR> rather than sending it to standard
+output.
+<P>
+
+<DT><CODE>-c <VAR>filename</VAR></CODE>
+<DD><DT><CODE>--catfile=<VAR>filename</VAR></CODE>
+<DD>Point to <VAR>filename</VAR>, the file listing the valid categories.
+<P>
+
+<DT><CODE>-h</CODE>
+<DD><DT><CODE>--help</CODE>
+<DD>Prints the usage for <CODE>gen-index</CODE>.
+<P>
+
+<DT><CODE>-V</CODE>
+<DD><DT><CODE>--version</CODE>
+<DD>Prints the version number for <CODE>gen-index</CODE>.
+</DL>
+<P>
+
+<A NAME="mkdist"></A>
+<HR SIZE="6">
+<A NAME="SEC48"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC47"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC44"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.4.4 Configuring <CODE>send-pr</CODE> for the outside world </H3>
+<!--docid::SEC48::-->
+<P>
+
+Now that GNATS is up and running on your system, you probably want
+to distribute <CODE>send-pr</CODE> to all your friends, relatives, enemies,
+etc. so they can more easily submit bugs to your organization.  To do
+this, create a new directory <VAR>dist-directory</VAR> to hold the
+distribution.  Then run the program
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>mkdist --release=<VAR>release</VAR> <VAR>dist-directory</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+This populates <VAR>dist-directory</VAR> with a full distribution of the
+program <CODE>send-pr</CODE>, including a <TT>`Makefile'</TT> and all the
+<CODE>send-pr</CODE> documentation.  You can then simply package up this
+directory and send it to your bug report submitters.  For example,
+when logged in as <CODE>gnats</CODE> you can do the following:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>mkdir new-dist
+mkdist --release=tools-1.2 new-dist 
+tar cvf send-pr.tar new-dist
+</FONT></pre></td></tr></table></P><P>
+
+This creates a file called <TT>`send-pr.tar'</TT> which contains a full
+distribution of <CODE>send-pr</CODE> customized for your site, with a default
+release number of <SAMP>`tools-1.2'</SAMP>.  You can then place this onto a disk
+or tape and send it to your submitters, or instruct your submitters to
+download it using <CODE>ftp</CODE>.
+</P><P>
+
+If you only have one submitter, you can set the Submitter ID in the
+send-pr script by specifying the <SAMP>`--submitter'</SAMP> option to <CODE>mkdist</CODE>.  If you
+do this, the submitter will not have to run <CODE>install-sid</CODE>.
+</P><P>
+
+<A NAME="Internal utils"></A>
+<HR SIZE="6">
+<A NAME="SEC49"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC48"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC50"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC31"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H2> 3.5 Internal utilities </H2>
+<!--docid::SEC49::-->
+<P>
+
+These tools are used internally by GNATS.  You should never need to
+run these by hand; however, a complete understanding may help you locate
+problems with the GNATS tools or with your local implementation.
+</P><P>
+
+<BLOCKQUOTE><TABLE BORDER=0 CELLSPACING=0> 
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC50">3.5.1 Handling incoming traffic</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC51">3.5.2 Processing incoming traffic</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC52">3.5.3 Timely reminders</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC53">3.5.4 The <CODE>edit-pr</CODE> driver</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP">The edit-pr driver</TD></TR>
+<TR><TD ALIGN="left" VALIGN="TOP"><A HREF="gnats_3.html#SEC54">3.5.5 Address retrieval</A></TD><TD>&nbsp;&nbsp;</TD><TD ALIGN="left" VALIGN="TOP"></TD></TR>
+</TABLE></BLOCKQUOTE>
+<P>
+
+<A NAME="queue-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC50"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC51"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.1 Handling incoming traffic </H3>
+<!--docid::SEC50::-->
+<P>
+
+The program <CODE>queue-pr</CODE> handles traffic coming into GNATS.
+<CODE>queue-pr</CODE> queues incoming Problem Reports in the directory
+<TT>`<VAR>GNATS_ROOT</VAR>/gnats-queue'</TT>, and then periodically (via
+<CODE>cron</CODE>) passes them on to <CODE>file-pr</CODE> to be filed in the
+GNATS database.  See section <A HREF="gnats_4.html#SEC55">Installing GNATS</A>.
+</P><P>
+
+The usage for <CODE>queue-pr</CODE> is as follows:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>queue-pr [ -q | --queue ] [ -r | --run ]
+         [ -f <VAR>filename</VAR> | --file=<VAR>filename</VAR> ]
+         [ -d <VAR>directory</VAR> | --directory=<VAR>directory</VAR> ]
+</FONT></pre></td></tr></table></P><P>
+
+One of <SAMP>`-q'</SAMP> or <SAMP>`-r'</SAMP> (or their longer-named counterparts) must
+be present upon each call to <CODE>queue-pr</CODE>.  These options provide
+different functions, as described below.
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>-q</CODE>
+<DD><DT><CODE>--queue</CODE>
+<DD>Accepts standard input as an incoming mail message, placing this message
+in an incrementally numbered file in the <TT>`gnats-queue'</TT> directory
+under <CODE><VAR>GNATS_ROOT</VAR></CODE> (see section <A HREF="gnats_5.html#SEC62">Where GNATS lives</A>).
+<P>
+
+<DT><CODE>-r</CODE>
+<DD><DT><CODE>--run</CODE>
+<DD>Redirects files in the <TT>`gnats-queue'</TT> directory into the program
+<CODE>file-pr</CODE> one by one.
+<P>
+
+<DT><CODE>-f <VAR>filename</VAR></CODE>
+<DD><DT><CODE>--file=<VAR>filename</VAR></CODE>
+<DD>Used with <SAMP>`-q'</SAMP> (or <SAMP>`--queue'</SAMP>), accepts the file denoted by
+<VAR>filename</VAR> as input rather than reading from standard input.
+<P>
+
+<DT><CODE>-d <VAR>directory</VAR></CODE>
+<DD><DT><CODE>--directory=<VAR>directory</VAR></CODE>
+<DD>Resets the default <VAR>directory</VAR> value, which is by default
+<TT>`<VAR>GNATS_ROOT</VAR>/gnats-queue'</TT>.  When <SAMP>`-d
+<VAR>directory</VAR>'</SAMP> is used in conjunction with the <SAMP>`-q'</SAMP> (or
+<SAMP>`--queue'</SAMP>) option, <CODE>queue-pr</CODE> files incoming messages into
+<VAR>directory</VAR> rather than the <TT>`gnats-queue'</TT> directory.  When
+<SAMP>`-d <VAR>directory</VAR>'</SAMP> is used in conjunction with the <SAMP>`-r'</SAMP>
+(or <SAMP>`--run'</SAMP>) option, <CODE>queue-pr</CODE> redirects into
+<CODE>file-pr</CODE> files from <VAR>directory</VAR> rather than from the
+<TT>`gnats-queue'</TT> directory.
+</DL>
+<P>
+
+<A NAME="file-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC51"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC50"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC52"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC52"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.2 Processing incoming traffic </H3>
+<!--docid::SEC51::-->
+<P>
+
+<CODE>queue-pr</CODE> hands off queued Problem Reports to <CODE>file-pr</CODE> one
+at a time.  <CODE>file-pr</CODE> checks each Problem Report for correct
+information in its fields (particularly a correct <SAMP>`&#62;Category:'</SAMP>),
+assigns it an identification number, and files it in the database under
+the appropriate category.
+</P><P>
+
+If the <SAMP>`&#62;Category:'</SAMP> field does not contain a valid category value
+(i.e., matching a line in the <CODE>categories</CODE> file;
+see section <A HREF="gnats_3.html#SEC36">The <CODE>categories</CODE> file</A>), the PR is assigned to
+the default category, as set in the <CODE>config</CODE> file.  If there is no
+default category defined, the PR is given a
+<SAMP>`&#62;Category:'</SAMP> value of <SAMP>`pending'</SAMP> and is placed in the
+<TT>`pending'</TT> directory.  The GNATS administrator is notified of
+the unplaceable PR.
+</P><P>
+
+<CODE>file-pr</CODE> assigns the Problem Report an identification number,
+files it in the GNATS database (under the default, if the
+<SAMP>`&#62;Category:'</SAMP> field contains an invalid category), and sends
+acknowledgements to appropriate parties.  The person responsible for
+that category of problem (see section <A HREF="gnats_3.html#SEC36">The <CODE>categories</CODE> file</A>) and the person responsible for the submitter site where the PR
+originated (see section <A HREF="gnats_3.html#SEC38">The <CODE>submitters</CODE> file</A>) receive a
+copy of the PR in its entirety.  Optionally, the originator of the PR
+receives an acknowledgement that the PR arrived and was filed
+(see section <A HREF="gnats_3.html#SEC33">Changing your local configuration</A>).
+</P><P>
+
+The usage for <CODE>file-pr</CODE> is as follows:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>file-pr [ -f <VAR>filename</VAR> | --file=<VAR>filename</VAR> ]
+        [ -d <VAR>directory</VAR> | --directory=<VAR>directory</VAR>b ]
+	[ -D | --debug ] [ -h | --help ] [ -V | --version ]
+</FONT></pre></td></tr></table></P><P>
+
+<CODE>file-pr</CODE> requires no options in order to operate, and takes input
+from standard input (normally, the output of <SAMP>`queue-pr -r'</SAMP>)
+unless otherwise specified.  The options include:
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>-f <VAR>filename</VAR></CODE>
+<DD><DT><CODE>--filename=<VAR>filename</VAR></CODE>
+<DD>Uses <VAR>filename</VAR> as input rather than standard input.
+<P>
+
+<DT><CODE>-d <VAR>directory</VAR></CODE>
+<DD><DT><CODE>--directory=<VAR>directory</VAR></CODE>
+<DD>Performs refiling operations in <VAR>directory</VAR> rather than in
+<CODE><VAR>GNATS_ROOT</VAR></CODE>.
+<P>
+
+<DT><CODE>-D</CODE>
+<DD><DT><CODE>--debug</CODE>
+<DD>Give debugging output while <CODE>file-pr</CODE> is running.
+<P>
+
+<DT><CODE>-h</CODE>
+<DD><DT><CODE>--help</CODE>
+<DD>Prints the usage for <CODE>file-pr</CODE>.
+<P>
+
+<DT><CODE>-V</CODE>
+<DD><DT><CODE>--version</CODE>
+<DD>Prints the version number for <CODE>file-pr</CODE>.
+</DL>
+<P>
+
+<A NAME="at-pr"></A>
+<HR SIZE="6">
+<A NAME="SEC52"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC51"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC53"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC53"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.3 Timely reminders </H3>
+<!--docid::SEC52::-->
+<P>
+
+<CODE>at-pr</CODE> creates a queued job using <CODE>at</CODE> which, after an
+allotted <EM>response time</EM> is past, checks the PR to see if its state
+has changed from <SAMP>`open'</SAMP>.
+</P><P>
+
+The <TT>`submitters'</TT> file contains the response time for each
+<CODE>&#62;Submitter-Id:</CODE> (see section <A HREF="gnats_3.html#SEC38">The <CODE>submitters</CODE> file</A>).  The time is determined in <EM>business hours</EM>, which are
+defined by default as 8:00am to 5:00pm Monday through Friday, local
+time.  These hours are defined in the <TT>`config'</TT> file (see section <A HREF="gnats_3.html#SEC35">The <CODE>config</CODE> file</A>).
+</P><P>
+
+If the PR is still open after the requisite time period has passed,
+<CODE>at-pr</CODE> sends a reminder to the GNATS administrator, to the
+maintainer responsible for that submitter, and to the maintainer
+responsible for the PR with the following message:
+</P><P>
+
+<A NAME="IDX163"></A>
+<A NAME="IDX164"></A>
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>To: <VAR>submitter-contact</VAR> <VAR>responsible</VAR> <VAR>gnats-admin</VAR>
+Subject: PR <VAR>gnats-id</VAR> not analyzed in <VAR>#hours</VAR> hours
+
+PR <VAR>gnats-id</VAR> was not analyzed within the acknowledgment period
+of <VAR>#hours</VAR> business hours.  The pertinent information is:
+
+ Submitter-Id: <VAR>submitter</VAR>
+ Originator: <VAR>full name of the submitter</VAR>
+ Synopsis: <VAR>synopsis</VAR>
+ Person responsible for the PR: <VAR>responsible</VAR>
+
+--
+The GNU Problem Report Management System (GNATS)
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="pr-edit"></A>
+<HR SIZE="6">
+<A NAME="SEC53"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC52"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC54"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC54"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.4 The <CODE>edit-pr</CODE> driver </H3>
+<!--docid::SEC53::-->
+<P>
+
+<CODE>pr-edit</CODE> does the background work for <CODE>edit-pr</CODE>, including
+error-checking and refiling newly edited Problem Reports and handling
+file locks.  It can be called interactively, though it has no usable
+editing interface.
+</P><P>
+
+The usage for <CODE>pr-edit</CODE> is:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>pr-edit [ -l <VAR>maintainer</VAR> --lock=<VAR>maintainer</VAR> ]
+        [ -u | --unlock ] [ -c | --check ] [ -F ]
+        [ -L | --lockdb ] [ -U | --unlockdb ]
+        [ -f <VAR>filename</VAR> | --filename=<VAR>filename</VAR> ]
+        [ -d <VAR>directory</VAR> | --directory=<VAR>directory</VAR> ]
+        [ -h | --help ] [ -V | --version ]
+        [ <VAR>gnats-id</VAR> ]
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="IDX165"></A>
+<A NAME="IDX166"></A>
+A <EM>lock</EM> is placed on a Problem Report while the PR is being edited.
+The lock is simply a file in the same directory as the PR, with the name
+<TT>`<VAR>gnats-id</VAR>.lock'</TT>, which contains the name of the maintainer
+who created the lock.  <VAR>maintainer</VAR> then "owns" the lock, and must
+remove it before the PR can be locked again, even by the same
+<VAR>maintainer</VAR><A NAME="DOCF4" HREF="gnats_fot.html#FOOT4">(4)</A>.  If a PR is already locked
+when you attempt to edit it, <CODE>pr-edit</CODE> prints an error message
+giving the name of the maintainer who is currently editing the PR.
+</P><P>
+
+If you do not specify <VAR>gnats-id</VAR>, <CODE>pr-edit</CODE> reads from
+standard input.  You must specify <VAR>gnats-id</VAR> for the functions
+which affect PR locks, <SAMP>`--lock=<VAR>maintainer</VAR>'</SAMP> and
+<SAMP>`--unlock'</SAMP>.
+</P><P>
+
+<DL COMPACT>
+<DT><CODE>-l <VAR>maintainer</VAR></CODE>
+<DD><DT><CODE>--lock=<VAR>maintainer</VAR></CODE>
+<DD>Locks Problem Report <VAR>gnats-id</VAR>, failing (and returning an error
+message) if <VAR>gnats-id</VAR> is already locked, or if <VAR>gnats-id</VAR>
+does not exist.  <CODE>pr-edit</CODE> requires that you specify
+<VAR>gnats-id</VAR> when using this option.
+<P>
+
+<DT><CODE>-u</CODE>
+<DD><DT><CODE>--unlock</CODE>
+<DD>Unlocks Problem Report <VAR>gnats-id</VAR>.  <CODE>pr-edit</CODE> requires that
+you specify <VAR>gnats-id</VAR> when using this option.  You must own a
+file lock to remove it.
+<P>
+
+<DT><CODE>-L</CODE>
+<DD><DT><CODE>--lockdb</CODE>
+<DD>Locks the GNATS database as a whole.  This will prevent any modification
+to any part of the system while it's locked.
+<P>
+
+<DT><CODE>-U</CODE>
+<DD><DT><CODE>--unlockdb</CODE>
+<DD>Unlocks the GNATS database as a whole, allowing modification of its
+files.
+<P>
+
+<DT><CODE>-c</CODE>
+<DD><DT><CODE>--check</CODE>
+<DD>Checks the Problem Report in <VAR>gnats-id</VAR> (or standard input, if
+<VAR>gnats-id</VAR> is not present) for correct information in its
+ENUMERATED fields.  <CODE>pr-edit</CODE> complains about any bogus
+information in the Problem Report.
+<P>
+
+<DT><CODE>-F</CODE>
+<DD>Forces the PR to be submitted to the database, even if there is no
+current index entry for it (i.e., even if the PR did not exist in the
+database previously).
+<P>
+
+<EM>Warning: using this option may corrupt your index.</EM>  If you use
+it, be sure you know what you are doing.
+</P><P>
+
+<DT><CODE>-f <VAR>filename</VAR></CODE>
+<DD><DT><CODE>--filename=<VAR>filename</VAR></CODE>
+<DD>Reads <VAR>filename</VAR> rather than standard input.
+<P>
+
+<DT><CODE>-d <VAR>directory</VAR></CODE>
+<DD><DT><CODE>--directory=<VAR>directory</VAR></CODE>
+<DD>Resets the operating directory (<CODE><VAR>GNATS_ROOT</VAR></CODE>).
+<P>
+
+<DT><CODE>-h</CODE>
+<DD><DT><CODE>--help</CODE>
+<DD>Prints the usage for <CODE>pr-edit</CODE>.
+<P>
+
+<DT><CODE>-V</CODE>
+<DD><DT><CODE>--version</CODE>
+<DD>Prints the version number for <CODE>pr-edit</CODE>.
+</DL>
+<A NAME="pr-addr"></A>
+<HR SIZE="6">
+<A NAME="SEC54"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC53"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_3.html#SEC49"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H3> 3.5.5 Address retrieval </H3>
+<!--docid::SEC54::-->
+<P>
+
+<CODE>pr-addr</CODE> returns an electronic mail address when given a valid <EM>nametag</EM>, as
+it appears in the <TT>`responsible'</TT> file (see section <A HREF="gnats_3.html#SEC37">The <CODE>responsible</CODE> file</A>).  If <VAR>nametag</VAR> is not valid, <CODE>pr-addr</CODE>
+will tell the user that it could not find the requested address.
+</P><P>
+
+Usage is simply:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=smallexample><FONT SIZE=-1><pre>pr-addr <VAR>name</VAR>
+</FONT></pre></td></tr></table></P><P>
+
+<A NAME="Installation"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[ &lt;&lt; ]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_4.html#SEC55"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

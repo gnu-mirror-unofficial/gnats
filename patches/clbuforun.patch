@@ -1,0 +1,41 @@
+Index: files.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/Attic/files.c,v
+retrieving revision 1.1.1.2.4.1
+diff -u -p -r1.1.1.2.4.1 files.c
+--- files.c 1999/09/21 23:18:39 1.1.1.2.4.1
++++ files.c 2001/02/08 04:26:03
+@@ -533,12 +533,20 @@ get_class_type (class)
+ }     
+ 
+ /* get_class_enum_field - return a string of bar-separated classes */
++/* Modifications by Marcelle Gannon, 19/01/01 to fix up buffer overrun */
++/* problem to allow unlimited number of classes                    */
+    
+ char *
+ get_class_enum_field ()
+ {
+   Classes *c;
+-  char line[STR_MAX];
++  char *line, *trimline;
++  int totlen = 0;            /* count up the length of the string required first */
++  c = class_chain;
++  totlen += (strlen(c->key) + 1);         /* +1 for the \0  */
++  for (c = c->next; c; c = c->next)
++      totlen += (strlen(c->key) + 3);     /* +3 for the " | " characters */
++  line = xmalloc(totlen * sizeof(char)); 
+   line[0] = '\0';
+   c = class_chain;
+   strcat (line, c->key);
+@@ -547,7 +555,9 @@ get_class_enum_field ()
+       strcat (line,  " | ");
+       strcat (line, c->key);
+     }
+-  return (strdup (line));
++  trimline = strdup(line);    /* probably don't need to do this step, included as */
++  xfree(line);                 /* strdup was used in the previous version          */
++  return trimline;
+ }
+ 
+ /*  init_states - reads and parses the whole states file
+

@@ -1,0 +1,16 @@
+Index: fields.texi
+===================================================================
+RCS file: /cvs/gnats/gnats/send-pr/fields.texi,v
+retrieving revision 1.1.1.1
+diff -u -p -r1.1.1.1 fields.texi
+--- fields.texi	1998/11/05 19:54:07	1.1.1.1
++++ fields.texi	2001/02/20 18:49:12
+@@ -364,7 +364,7 @@ concept.
+ @cindex @code{Environment} field
+ @cindex @code{>Environment:}
+ @item >Environment:
+-(@sc{MultiText}) Description of the environment where the problem occured:
++(@sc{MultiText}) Description of the environment where the problem occurred:
+ machine architecture, operating system, host and target types,
+ libraries, pathnames, etc.
+ 

@@ -1,0 +1,20 @@
+--- ../untouched/gnatsweb-2.8.0/gnatsweb.pl	Fri May  4 15:44:12 2001
++++ gnatsweb.pl	Tue Jun 26 21:23:58 2001
+@@ -2005,7 +2005,7 @@ sub delete_stored_query
+ sub send_html
+ {
+   my $file = shift;
+-  open(HTML, "$file") || die "Can't open $file: $!";
++  open(HTML, "<$file") || die "Can't open $file: $!";
+   undef $/; # slurp file whole
+   my $html = <HTML>;
+   close(HTML);
+@@ -2019,7 +2019,7 @@ sub send_html
+ 
+ sub help_page
+ {
+-  my $html_file = $q->param('help_file') || 'gnatsweb.html';
++  my $html_file = 'gnatsweb.html';
+   my $page      = $q->param('help_title') || 'Help';
+   my $heading   = $page;
+   page_start_html($page);

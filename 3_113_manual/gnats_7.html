@@ -1,0 +1,191 @@
+<HTML>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- Created on January, 19  2001 by texi2html 1.64 -->
+<!-- 
+Written by: Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Olaf Bachmann <obachman@mathematik.uni-kl.de>
+Send bugs and suggestions to <texi2html@mathematik.uni-kl.de>
+ 
+-->
+<HEAD>
+<TITLE>Keeping Track: Access Control</TITLE>
+
+<META NAME="description" CONTENT="Keeping Track: Access Control">
+<META NAME="keywords" CONTENT="Keeping Track: Access Control">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="texi2html 1.64">
+
+<LINK REL="STYLESHEET" HREF="../styles/common.css"></HEAD>
+
+<BODY LANG="" BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+
+<A NAME="SEC68"></A>
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_6.html#SEC67"> &lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_8.html#SEC69"> &gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_8.html#SEC69"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top"> Up </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_8.html#SEC69"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+<H1> D. Controlling access to databases </H1>
+<!--docid::SEC68::-->
+<P>
+
+GNATS supports granting various levels of access to the GNATS
+databases served by the network daemon, GNATSD.
+</P><P>
+
+GNATS access can be controlled at these levels:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>deny     - gnatsd closes the connection
+none     - no further access until userid and password given
+view     - query and view PRs with Confidential=no only
+viewconf - query and view PRs with Confidential=yes
+edit     - full edit  access
+admin    - full admin access (not currently used)
+</pre></td></tr></table></P><P>
+
+There are three main features: 
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>- security by obscurity, defined in the next paragraph
+- access level set by host name or IP address
+- access level set by userid and password
+</pre></td></tr></table></P><P>
+
+<CODE>gnatsd</CODE> has parameters <CODE>-r</CODE> or <CODE>--require-db</CODE>. If so
+executed, nobody gets in unless they are able to ask for a database by
+alias name with the <CODE>CHDB</CODE> (change database) command. If you
+specify an incorrect database alias the connection is closed. Only the
+<CODE>CHDB</CODE> command is allowed, and you just get one try.
+</P><P>
+
+The second field of the <TT>`gnats-adm/gnatsd.conf'</TT> file is the access
+level for the user's host.  The default is <CODE>edit</CODE> to be compatible
+with previous releases of <CODE>gnats</CODE>.  If the user's hostname isn't in
+the <TT>`gnatsd.conf'</TT> file or its access level is <CODE>deny</CODE>, the
+connection is closed immediately.
+</P><P>
+
+Whenever a <CODE>CHDB</CODE> command is processed (or defaulted), the user's
+access level is set to the level for their host.
+</P><P>
+
+Even if a host is given the <CODE>none</CODE> access, an individual can still
+give the <CODE>USER</CODE> command to possibly gain a higher (but never lower)
+access than is set for their host. The gnatsd <CODE>USER</CODE> command takes
+two arguments: <CODE>USER &#60;userid&#62; &#60;passwd&#62;</CODE>.
+</P><P>
+
+An optional file <TT>`gnats-adm/gnatsd.access'</TT> specifies the user
+access rules. If it doesn't exist, or doesn't contain the user name
+given to gnatsd, then <TT>`/etc/gnatsd.access'</TT> is also checked. This
+filename is set in <TT>`config.c'</TT> at compile time.
+</P><P>
+
+If the access level is <CODE>none</CODE> after processing the userid and
+password, the connection is closed.
+</P><P>
+
+The <TT>`gnatsd.access'</TT> file is clear text, but it is installed to be
+owned by the GNATS user with file permission 600.
+</P><P>
+
+Wildcard characters are supported for the userid and password. A null
+string or "*" matches anything; "?"  matches any one character.
+</P><P>
+
+A <TT>`gnatsd.access'</TT> file might look like this:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre># field 1: user
+# field 2: passwd
+# field 3: access   (valid entries: deny, none, view, viewconf, edit, admin)
+# field 4: database (/etc/gnatsd.access only; ignored in gnatsd-adm)
+rickm:ruckm:edit:*
+pablo:pueblo:view:*
+*:*:none
+</pre></td></tr></table></P><P>
+
+In this example, anybody other than rickm and pablo get denied access,
+assuming that the host access level is also <CODE>none</CODE>. You could set
+the catch-all rule at the end to be <CODE>*:*:view</CODE> to allow view access
+to anyone.
+</P><P>
+
+The fourth field is a comma-separated list of database aliases to match
+alias entries from the second field of the database file
+<TT>`/etc/gnats-db.conf'</TT>.  Wildcard characters are supported.  This
+field is only used in <TT>`/etc/gnatsd.access'</TT>. It's ignored in
+<TT>`gnatsd-adm/gnatsd.access'</TT> since this file is already database
+specific.
+</P><P>
+
+Every <CODE>gnatsd</CODE> command has a minimum access level attached to
+it. If your access level is too low for a command, you get this
+response:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>  LOCK 12 rickm
+  520 You are not authorized to perform this operation (LOCK).
+</pre></td></tr></table></P><P>
+
+These commands, along with all of the query constraint setting
+commands (<CODE>PRIO</CODE>, <CODE>SYNP</CODE>, etc) are unrestricted: 
+   <CODE>HELO</CODE>, <CODE>QUIT</CODE>, <CODE>AUTH</CODE>, 
+   <CODE>USER</CODE>, <CODE>CHDB</CODE> and <CODE>VDAT</CODE>.
+</P><P>
+
+A user must have at least <CODE>edit</CODE> access for these commands:
+</P><P>
+
+<TABLE><tr><td>&nbsp;</td><td class=example><pre>   LKDB                    lock the main GNATS database
+   UNDB                    unlock the main GNATS database
+   LOCK &#60;PR&#62; &#60;user&#62; &#60;pid&#62;  lock &#60;PR&#62; for &#60;user&#62; and optional &#60;pid&#62; and
+                           return PR text
+   UNLK &#60;PR&#62;               unlock &#60;PR&#62;
+   EDIT &#60;PR&#62;               check in edited &#60;PR&#62;
+</pre></td></tr></table></P><P>
+
+All other commands require <CODE>view</CODE> access.
+</P><P>
+
+The <CODE>DBLS</CODE> and <CODE>DBLA</CODE> commands (list databases and aliases)
+require <CODE>view</CODE> access but still only list databases to which the
+user's host has at least <CODE>none</CODE> access. A user might have
+<CODE>view</CODE> access on one database and be able to list the other
+database names, but upon executing <CODE>CHDB</CODE> find that they have
+<CODE>none</CODE> access to the second database and not be able to execute
+anything other than another <CODE>CHDB</CODE>.
+</P><P>
+
+<CODE>nedit-pr</CODE>, <CODE>npr-edit</CODE>, <CODE>nquery-pr</CODE> and <CODE>sub-type</CODE>
+all have the command line args <CODE>-v|--user</CODE> and
+<CODE>-w|--passwd</CODE>. <CODE>gnatsd</CODE> only accepts database alias names for
+the <CODE>-d|--directory</CODE> arg from these commands (not full database
+pathnames). Local clients (<CODE>query-pr</CODE>, <CODE>mkcat</CODE>, etc) accept
+either.
+</P><P>
+
+<A NAME="Regexps"></A>
+<HR SIZE="6">
+<TABLE CELLPADDING=1 CELLSPACING=1 BORDER=0>
+<TR><TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_8.html#SEC69"> &lt;&lt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_8.html#SEC69"> &gt;&gt; </A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT"> &nbsp; <TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="index.html#SEC_Top">Top</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_toc.html#SEC_Contents">Contents</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_9.html#SEC70">Index</A>]</TD>
+<TD VALIGN="MIDDLE" ALIGN="LEFT">[<A HREF="gnats_abt.html#SEC_About"> ? </A>]</TD>
+</TR></TABLE>
+
+</BODY>
+</HTML>

@@ -1,0 +1,43 @@
+Index: p-admin.texi
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/p-admin.texi,v
+retrieving revision 1.1.1.1
+diff -u -p -r1.1.1.1 p-admin.texi
+--- p-admin.texi        1998/11/05 19:54:10     1.1.1.1
++++ p-admin.texi        2001/02/20 16:14:33
+@@ -195,7 +195,7 @@ passed before they change the state of a
+ file}, and @ref{at-pr,,Timely Reminders}.
+ 
+ @item
+-Whether or not to send an automatic acknowledgement to the originator of
++Whether or not to send an automatic acknowledgment to the originator of
+ a problem report when the @sc{gnats} first receives the PR. 
+ 
+ @item
+@@ -223,7 +223,7 @@ The list of categories that @sc{gnats} a
+ @samp{>Category:} field, and the maintainers responsible for each
+ category.  Update this file whenever you have a new category, or
+ whenever a category is no longer valid.  You must also update this file
+-whenever responsiblility for a category changes, or if a maintainer is
++whenever responsibility for a category changes, or if a maintainer is
+ no longer valid.  @xref{categories file,,The @code{categories} file}.  Also
+ see @ref{mkcat,,Adding a new problem category}, and @ref{rmcat,,Removing
+ a problem category}.
+@@ -792,7 +792,7 @@ If the @file{states} file cannot be read
+ This file contains mappings between submitter IDs and corresponding e-mail 
+ addresses.
+ 
+-When a PR comes in without a submitter ID (if someone sends umformatted e-mail
++When a PR comes in without a submitter ID (if someone sends unformatted e-mail
+ to the "bugs" address), @sc{gnats} will try to derive the submitter ID from the
+ address in the "From:" header.  The entries in this file consist of two 
+ fields, separated by a colon:
+@@ -1278,7 +1278,7 @@ The GNU Problem Report Management System
+ 
+ @code{pr-edit} does the background work for @code{edit-pr}, including
+ error-checking and refiling newly edited Problem Reports and handling
+-file locks.  It can be called interactively, though it has no useable
++file locks.  It can be called interactively, though it has no usable
+ editing interface.
+ 
+ The usage for @code{pr-edit} is:

@@ -1,0 +1,70 @@
+Index: gnats.texi
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/gnats.texi,v
+retrieving revision 1.1.1.1
+diff -u -p -r1.1.1.1 gnats.texi
+--- gnats.texi	1998/11/05 19:54:10	1.1.1.1
++++ gnats.texi	2001/02/20 18:21:28
+@@ -114,7 +114,7 @@ tools,,Invoking the @sc{gnats} tools}.
+ * Management::            GNATS Administration
+ * Installation::          Installing GNATS
+ * Locations::             Where @sc{gnats} lives
+-* Mulitple Databases::    Multiple @sc{gnats} databases on one host
++* Multiple Databases::    Multiple @sc{gnats} databases on one host
+ * Access Control::        Controlling access to @sc{gnats} databases
+ * Regexps::               Querying using regular expressions
+ * Index::
+@@ -164,7 +164,7 @@ users of your work to report problems an
+ 
+ @sc{gnats} makes this easy by automatically filing incoming problem
+ reports into appropriate places, by notifying responsible parties of the
+-existence of the problem and (optionally) sending an acknowledgement to
++existence of the problem and (optionally) sending an acknowledgment to
+ the submitter that the report was received, and by making these Problem
+ Reports accessible to queries and easily editable.  @sc{gnats} is a
+ database specialized for a specific task.
+@@ -200,7 +200,7 @@ reports in the database.
+ 
+ @item 
+ Maintainers, managers and administrators can use @w{@code{query-pr}} to
+-make inquiries about indidvidual PRs or groups of PRs.  
++make inquiries about individual PRs or groups of PRs.  
+ 
+ @end itemize
+ 
+@@ -233,7 +233,7 @@ are placed in a separate directory pendi
+ 
+ Once a problem is recorded in the database, work can begin toward a
+ solution.  A problem's initial @dfn{state} is @dfn{open}
+-(@pxref{States,,States of Problem Reports}).  An acknowledgement is sent
++(@pxref{States,,States of Problem Reports}).  An acknowledgment is sent
+ to the originator of the bug report (if that feature of @sc{gnats} is
+ activated).  @sc{gnats} forwards copies of the report to the party
+ responsible for that problem category and to the person responsible for
+@@ -637,7 +637,7 @@ subdirectory, along with lock files for 
+ 
+ 
+ @c ===============================================================
+-@node Mulitple Databases
++@node Multiple Databases
+ @appendix Multiple Databases on one host
+ 
+ @sc{gnats} can support multiple databases on one host.  The options
+@@ -659,7 +659,7 @@ daemon.  The following is an example of 
+ file.
+ 
+ @example
+-# list of GNATS databases and alaises
++# list of GNATS databases and aliases
+ #
+ # Field 1 - fully qualified path to database
+ # Field 2 - a comma separated list of aliases
+@@ -709,7 +709,7 @@ specify an incorrect database alias the 
+ @code{CHDB} command is allowed, and you just get one try.
+ 
+ The second field of the @file{gnats-adm/gnatsd.conf} file is the access
+-level for the user's host.  The default is @code{edit} to be compatable
++level for the user's host.  The default is @code{edit} to be compatible
+ with previous releases of @code{gnats}.  If the user's hostname isn't in
+ the @file{gnatsd.conf} file or its access level is @code{deny}, the
+ connection is closed immediately.
