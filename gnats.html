@@ -157,11 +157,28 @@ cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-
       GNATS uses (gasp) GNATS to track problem reports.  We've got the Gnatsweb
       web interface set up so you can
       <a href="http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats">browse
-	the database or submit new problem reports</a> there.
+        the database or submit new problem reports</a> there.
       Use <tt>guest</tt> as both the login name and the password.  You can also
       try out the Gnatsweb interface if you want to see how things look, but
       please do not submit reports that aren't real.  This database is being
       used by GNATS developers, and is <em>not meant for testing purposes</em>.
+    </p>
+    <p>
+      When you report problems related GNATS itself, <em>please don't
+      forget to provide especially the following information</em>:
+    </p>
+    <ul>
+      <li>The GNATS version you are using.</li>
+      <li>The <em>exact</em> way how to reproduce the bug.</li>
+      <li>Your configuration.</li>
+      <li>If you encounter a compilation or build problem, it is especially
+        important to mention the operating system, compiler and possibly other
+        build utilities you use.</li>
+    </ul>
+    <p>
+      Providing this information in the initial report avoids further
+      unnecessary communication, saves our limited development resources and
+      helps to track down and fix the problem soon.
     </p>
     <p>
       All PR transactions/additions/changes are recorded on the
@@ -335,7 +352,7 @@ cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-
     <p>
       Updated:
       <!-- timestamp start -->
-      $Date: 2001/12/12 19:53:58 $ $Author: yngves $
+      $Date: 2001/12/15 15:30:07 $ $Author: pdm $
       <!-- timestamp end -->
     </p>
     <hr>
