@@ -1,0 +1,149 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: gnatsd accepting new PRs -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 23 Aug 1999 17:58:08 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.9908231147140.20253&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 199908231738.KAA09737@tristam.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>gnatsd accepting new PRs</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00014">Date Index</A>] [<a href="subjects.html#00014">Subject Index</a>] [<a href="authors.html#00014">Author Index</a>] [<A HREF="threads.html#00014">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00013.html">Date Prev</A>]&nbsp;[<A HREF="msg00015.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00023.html">Thread Prev</A>]&nbsp;[<A HREF="msg00015.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnatsd accepting new PRs</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Bob Manson &lt;bmanson@juniper.net&gt;</LI>
+<LI><em>Subject</em>: gnatsd accepting new PRs</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm@vsl.com&gt;</LI>
+<LI><em>Date</em>: Mon, 23 Aug 1999 11:55:06 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel@sourceware.cygnus.com, bug-gnats@gnu.org,       Tony Parent &lt;tony.parent@lsil.com&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+Bob - back in April, Tony Parent contributed a patch to allow gnatsd to
+accept new PRs directly. This is a feature that everyone has wanted for a
+long long time. One benefit is that front-ends can notify the user
+immediately of the new PR number.
+
+I don't suppose that this ever got picked up? The patch probably wouldn't
+match your new code now.
+
+Here are the notes that Tony last sent, just to give you an idea of what
+was done. I have the "version 3" of the actual patch, if you want it. I
+never installed the patch itself, but I gave a little bit of feedback to
+the first couple of attempts to help Tony as he was doing it.
+
+--- snip ---
+
+Here is version 3 of a patch to gnats-3.110 that changes gnatsd so that it
+can create new PR's directly. It adds a new command to gnatsd "crte" that
+takes a PR text followed by a "." on a line by itself.
+
+The basic difference from version 2 of this patch is that I no longer use
+setjmp/longjmp in punt(). The code is still in there, but is turned off
+for now via a #ifdef. I left the setjmp/longjmp in just in case. You may
+discard this if you don't want it. Not using setjmp/longjmp makes the
+gnats() function in file-pr.c more convuluted, but hopefully more
+portable.
+
+Procedure:
+ - Check for db lock. -- print error and return if locked
+ - Lock db if unlocked.
+ - Read in text.
+ - Call gnats() function from file-pr to create new PR
+ - Unlock db.
+ - Print out PR number. (Return PR # to client.)
+
+Some things I had to change:
+
+Makefile   -- to add file-pr.o to gnatsd
+
+cmds.c     -- to add the command. Other changes in this file include a
+quite
+              flag so reset and unlock don't print out stuff if an error
+              occured, and the addition of the crte command to the help
+              function.
+
+file-pr    -- Changed the function "gnats()" to return an integer. This is
+              the new PR number or -1 if none. It used to return void so
+              all previous calls will simply discard this value. Therefore
+              this should be safe.
+
+gnatsd.c   -- Added the command to the list of possible commands.
+
+...RickM...
+
+
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00015" HREF="msg00015.html">Re: gnatsd accepting new PRs</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00010" HREF="msg00010.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00014">Date Index</A>] [<a href="subjects.html#00014">Subject Index</a>] [<a href="authors.html#00014">Author Index</a>] [<A HREF="threads.html#00014">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00013.html">Date Prev</A>]&nbsp;[<A HREF="msg00015.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00023.html">Thread Prev</A>]&nbsp;[<A HREF="msg00015.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

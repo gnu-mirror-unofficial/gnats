@@ -1,0 +1,166 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: "Exotic" GNATS 4 fields -->
+<!--X-From-R13: Xhuna Zrrzrg <whunaNybtvpbtabfvf.pbz> -->
+<!--X-Date: 2 Oct 2001 00:12:40 &#45;0000 -->
+<!--X-Message-Id: 01100121421500.24611@pentaflop.logicognosis.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5B1CAAC2F0818444BF07B7AD8845E53C0D804F@ELECTRON.jnpr.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Juhan Leemet - Re: &quot;Exotic&quot; GNATS 4 fields</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date&nbsp;Index</A>] [<a href="subjects.html#00004">Subject&nbsp;Index</a>] [<a href="authors.html#00004">Author&nbsp;Index</a>] [<A HREF="threads.html#00004">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: &quot;Exotic&quot; GNATS 4 fields</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: Re: &quot;Exotic&quot; GNATS 4 fields</li>
+<li><em>From</em>: Juhan Leemet &lt;juhan at logicognosis dot com&gt;</li>
+<li><em>Date</em>: Mon, 1 Oct 2001 21:42:15 -0230</li>
+<li><em>Organization</em>: Logicognosis, Inc.</li>
+<li><em>References</em>: &lt;<a href="msg00003.html">5B1CAAC2F0818444BF07B7AD8845E53C0D804F@ELECTRON.jnpr.net</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+On Monday 01 October 2001 19:56, Dirk Bergstrom wrote:
+&gt; &gt; &quot;Cases&quot; (I have found no explanation of what it is for)
+&gt;
+&gt; i've never seen this one.  can't imagine what it's good for.  maybe it's
+&gt; similar to Related-PRs, which is a better name anyways.
+
+I suspect it is for &quot;incidents&quot;, i.e. Related-PRs (not quite as precise).
+
+&gt; &gt; &quot;Keywords&quot; (which seem to have little use as long as there
+&gt; &gt; aren't any tools
+&gt; &gt; for indexing the GNATS database apart from gen-index which
+&gt; &gt; doesn't seem to have anything to do with this field)
+&gt;
+&gt; as a former librarian, i'd argue for keeping this field.  as a current
+&gt; gnats 4.0 administrator, i can't argue quite so strongly -- only about
+&gt; 30% of our PR database has data in the keywords field.  however, i think
+&gt; it would be good to encourage people to use this field...
+
+Currently (last 3 years) doing a configuration management contract for a 
+client, I'm inclined to agree that we should keep it, even if not widely or 
+often used. Keywords have always been a problem for HelpDesk and problem 
+reporting/tracking systems. Most approaches depend on you putting them in as 
+you go, and you cannot retrieve based on what is not there. Hard to apply 
+keywords consistently or completely, retroactively, and yet...
+
+OTOH, Keyword (if one is using it) might be more precise than doing a full 
+text search. Since this is an &quot;edited&quot; field, by that I mean that someone 
+intentionally selects a few keywords (as opposed to random selection of 
+whatever words were used), it could be very useful.
+
+One idea that I have been mulling over, but have not used yet, is an approach 
+like IBM's Orthogonal Defect Classification scheme (ODC), for analyzing 
+problem injection/source viz. methodology. The Keyword field could be a good 
+place to put in the various classification parameters, instead of having to 
+customize and/or modify the gnats system.
+
+If interested, see the concept paper on IBM ODC:
+<A  HREF="http://www.chillarege.com/odc/articles/odcconcept/odc.html">http://www.chillarege.com/odc/articles/odcconcept/odc.html</A>
+
+If this kind of thing catches on in the industry, one might want custom 
+field(s) for the ODC classification parameters. For now, Keywords would be 
+good enough.
+
+&gt; &gt; &quot;Quarter&quot; (Not exactly sure what this is -- target quarter for a fix?)
+&gt;
+&gt; i've never understood this one -- i always figured it was a legacy
+&gt; thing.  if it's not a standard field in 3.x, i see no reason to have it
+&gt; in 4.0.
+
+dunno either?
+
+&gt; &gt; &quot;Release-Note&quot;
+&gt;
+&gt; our developers fill this out for every non-confidential PR, and the
+&gt; documentation folks use the info to prepare the published release notes.
+&gt; it's a pretty useful field...
+
+Again, as configuration manager, I would like to see this kind of thing. The 
+question I would have is whether this should come from the PR system or a 
+versioning system? I guess a PR system is better, since each versioned object 
+might have different comments. Has anyone integrated gnats with CVS?
+
+In a previous project, we used to extract the differences in versions and all 
+related comments from all objects, and mash them together (with scripts) for 
+our release notes for a maintenance release or update. Because some fixes 
+&quot;touched&quot; many items, there was a fair bit of redundancy. Getting release 
+notes from a PR could be easier, and also more succinct.
+
+-- 
+Juhan Leemet
+Logicognosis, Inc.
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00003" href="msg00003.html">RE: &quot;Exotic&quot; GNATS 4 fields</a></strong>
+<ul><li><em>From:</em> Dirk Bergstrom</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00004">Date&nbsp;Index</A>] [<a href="subjects.html#00004">Subject&nbsp;Index</a>] [<a href="authors.html#00004">Author&nbsp;Index</a>] [<A HREF="threads.html#00004">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00003.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00003.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00005.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

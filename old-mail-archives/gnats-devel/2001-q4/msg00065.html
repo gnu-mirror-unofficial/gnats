@@ -1,0 +1,123 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: gnats 3.113 trouble building with gcc 3.0.2 -->
+<!--X-From-R13: Qenvt Dbqevthrf <ebqevtpNzrqvnbar.arg> -->
+<!--X-Date: 28 Oct 2001 15:16:31 &#45;0000 -->
+<!--X-Message-Id: 20011028101625.A23428@mediaone.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Craig Rodrigues - gnats 3.113 trouble building with gcc 3.0.2</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00065">Date&nbsp;Index</A>] [<a href="subjects.html#00065">Subject&nbsp;Index</a>] [<a href="authors.html#00065">Author&nbsp;Index</a>] [<A HREF="threads.html#00065">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00064.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00064.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00073.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnats 3.113 trouble building with gcc 3.0.2</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sourceware dot cygnus dot com</li>
+<li><em>Subject</em>: gnats 3.113 trouble building with gcc 3.0.2</li>
+<li><em>From</em>: Craig Rodrigues &lt;rodrigc at mediaone dot net&gt;</li>
+<li><em>Date</em>: Sun, 28 Oct 2001 10:16:25 -0500</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Hi,
+
+I had difficulty compiling gnats 3.113 with gcc 3.0.2,
+under Redhat Linux 7.1.
+
+gcc -c -g -O2 -I. -I./../include ./dummy.c
+In file included from dummy.c:46:
+functions.def: In function `main':
+functions.def:37: too few arguments to function `strstr'
+
+
+This patch solved the problem for me:
+
+
+--- functions.def.orig	Sun Oct 28 10:05:32 2001
++++ functions.def	Sun Oct 28 10:15:40 2001
+@@ -34,7 +34,7 @@
+ DEF(strchr, char*, (s, c), CONST char *s AND int c)
+ DEF(strdup, char*, (s1), char * s1)
+ DEF(strrchr, char*, (s, c), CONST char *s AND int c)
+-DEF(strstr, char*, (), NOTHING)
++DEF(strstr, char*, (s,c), CONST char *s AND CONST char *c)
+ DEF(strtod, double, (), NOTHING)
+ DEF(strtol, long, (), NOTHING)
+ DEF(strtoul, unsigned long, (), NOTHING)
+
+
+-- 
+Craig Rodrigues        
+<A  HREF="http://www.gis.net/~craigr">http://www.gis.net/~craigr</A>    
+rodrigc@mediaone.net          
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00073" href="msg00073.html">Re: gnats 3.113 trouble building with gcc 3.0.2</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00065">Date&nbsp;Index</A>] [<a href="subjects.html#00065">Subject&nbsp;Index</a>] [<a href="authors.html#00065">Author&nbsp;Index</a>] [<A HREF="threads.html#00065">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00064.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00067.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00064.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00073.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: Re: gnats 4.0 alpha... -->
+<!--X-From-R13: [vxr Ehggba <zjf115Nyypbbyw.qnlgba.fnvp.pbz> -->
+<!--X-Date: 26 Aug 1999 12:04:13 &#45;0000 -->
+<!--X-Message-Id: 9908261206.AA13640@llcoolj.dayton.saic.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 199908250501.WAA26322@tristam.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: gnats 4.0 alpha...</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date Index</A>] [<a href="subjects.html#00027">Subject Index</a>] [<a href="authors.html#00027">Author Index</a>] [<A HREF="threads.html#00027">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date Prev</A>]&nbsp;[<A HREF="msg00028.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats 4.0 alpha...</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: bmanson@juniper.net</LI>
+<LI><em>Subject</em>: Re: gnats 4.0 alpha...</LI>
+<LI><em>From</em>: Mike Sutton &lt;mws115@llcoolj.dayton.saic.com&gt;</LI>
+<LI><em>Date</em>: Thu, 26 Aug 99 08:06:18 EDT</LI>
+<LI><em>Cc</em>: gnats-devel@sourceware.cygnus.com, bug-gnats@gnu.org</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00026.html">199908250501.WAA26322@tristam.juniper.net</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+&gt;&gt;&gt;&gt;&gt; "Bob" == Bob Manson &lt;bmanson@juniper.net&gt; writes:
+
+    &gt; I've just checked in my first round of changes.  There's a
+    &gt; GNATS_3_110_final CVS tag that refers to the latest version
+    &gt; before my changes.
+
+Can you stick a tarball out on the sourceware FTP site?
+
+    &gt; Surprisingly enough I'm very interested in feedback, especially
+    &gt; bug reports and general code flamage.
+
+    &gt; Anyone have any strong opinions on:
+
+    &gt; 	* giving up on K&amp;R function definitions et al?  * using -Wall
+    &gt; -ansi -pedantic etc. if gcc is used?
+
+    &gt; I'd like to do both, but I'm not going to be totally against
+    &gt; leaving the K&amp;R stuff there. On the other hand, it is 1999...and
+    &gt; very few compilers don't have basic ANSI-compliance these days.
+
+My SunOs 4.1 box still has a K&amp;R compiler, but it also has gcc.  I
+don't know that Gnats needs to support K&amp;R.  A fallback would be to
+use the GNU ansi2knr program to deal with K&amp;R.  (See the m4
+distribution for ansi2knr.)
+
+    &gt; The network protocol is in for some serious breakage soon.  I'll
+    &gt; also fix the port number, and see about getting a port reserved
+    &gt; for it.
+
+What is about to break?
+
+If you were able to registar a port, that would be great.
+
+Bob, thanks for all your work.
+
+
+Mike Sutton                      | public class
+SAIC				 | software_failure : management_failure
+Beavercreek, OH			 | 
+Suttonm@saic.com                 | These are MY opinions, not SAIC's
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00028" HREF="msg00028.html">Re: gnats 4.0 alpha...</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald &lt;rickm@vsl.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00026" HREF="msg00026.html">gnats 4.0 alpha...</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date Index</A>] [<a href="subjects.html#00027">Subject Index</a>] [<a href="authors.html#00027">Author Index</a>] [<A HREF="threads.html#00027">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date Prev</A>]&nbsp;[<A HREF="msg00028.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

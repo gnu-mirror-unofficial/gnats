@@ -1,0 +1,386 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: GNATS on Win NT -->
+<!--X-From-R13: "Egrsna&#45;I. Vnua" <fgrsna.unuaNf&#45;unua.qr> -->
+<!--X-Date: 7 Sep 2001 18:06:50 &#45;0000 -->
+<!--X-Message-Id: 3B990C7F.92165D41@s&#45;hahn.de -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 000c01c12c9a$306a67b0$4966a8c0@vijay -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Stefan-W. Hahn - Re: GNATS on Win NT</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00106">Date&nbsp;Index</A>] [<a href="subjects.html#00106">Subject&nbsp;Index</a>] [<a href="authors.html#00106">Author&nbsp;Index</a>] [<A HREF="threads.html#00106">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00105.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00107.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00105.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00092.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: GNATS on Win NT</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Vijay Narayanan &lt;vijayn at icelerate dot com&gt;</li>
+<li><em>Subject</em>: Re: GNATS on Win NT</li>
+<li><em>From</em>: &quot;Stefan-W. Hahn&quot; &lt;stefan dot hahn at s-hahn dot de&gt;</li>
+<li><em>Date</em>: Fri, 07 Sep 2001 20:05:51 +0200</li>
+<li><em>CC</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Organization</em>: -no organization-</li>
+<li><em>References</em>: &lt;<a href="msg00093.html">000c01c12c9a$306a67b0$4966a8c0@vijay</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt; Vijay Narayanan wrote:
+&gt; 
+&gt; Hi All,
+&gt; 
+&gt; few queries....
+&gt; 
+&gt; 
+&gt; Is there a GNATS version available for install on Win NT platform. or is GNATS exclusively meant
+&gt; for UNIX?
+&gt; 
+&gt; If available for NT, would it be possible to get a documentation of the install steps on NT from
+&gt; anywhere...?
+&gt; 
+&gt; thanks in advance,
+&gt; Vijay
+&gt; 
+&gt; vijayn@icelerate.com
+&gt; 
+&gt; 
+&gt; 
+
+Hi,
+based on GNATS V3.104beta with last patch vom Mike Sutton from 21.12.1997
+I ported GNATS on WinNT. It is running since 1998 in that configuration.
+
+Extensions:
+- Because the extensions are for german speaking people I inserted a
+  compiler flag and german texts for all attributs.
+- New compiler flag for putting all sending mailfiles in a directory.
+- Missing the possibility of mailling lists I extended GNATS to have a list
+  of users with information wether one wanted to be inform of changes
+  in a categorie or a lonesome PR.
+- I extended pr-edit to get a message which is to be send to all the 
+  receipients. This was necesssary because of the feature mailling list and
+  the chance for a frontend to generate one history entry with all changes
+  at ones (it looks nicer), example:
+
+  Aenderung-wann: Thu, 01 Jul 1999 08:06:57 MET
+  Aenderung-durch: xx
+  Aenderung-Bearbeiter: yy-&gt;zz (Zampa Zampa)
+  Aenderung-Status: offen-&gt;feedback
+  Aenderung-warum:
+    Bitte das Problem untersuchen.
+
+  Usage: pr-edit [-cuLUVFh] [-d directory] [-f filename] [-l username]
+          [-m message]
+          [--directory=directory] [--filename=filename] [--lock=user]
+               [--message=message]
+          [--unlock] [--lockdb] [--unlockdb] [--help] [--version]
+          [--check] [PR]
+
+  where message is a file.
+- In spite of missing a good working sendmail, I wrote a new program which
+  reads the directory &quot;queue-mail&quot; for all outgoing mails.
+- I adopted some things in sending mail. 
+  - GNATS send the complete PR to a responsible which gets the responsibility new.
+  - GNATS sends all changes to the person which generated the PR.
+
+For running on NT you than just need an web frontend which uses the file-based
+programs and not the daemon, because that port was to difficult for me.
+
+All theses changes are working on Linux too.
+
+Here is the complete ChangeLog (sorry but in german):
+Do 03.08.2000 Stefan-W. Hahn
+      * queue-mail.c: Legt Lockdatei bei Start an. Legt Errordatei an,
+	   wenn Fehler auftritt, damit dann keine weiteren Benachrichti-
+	   gungen bei weiteren Fehlern auftreten.
+
+Do 06.01.2000 Stefan-W. Hahn
+      * getdate.y (Convert): Abfrage Year &gt; 1999 auf Year &gt; 2100 korrigiert,
+	  da sonst in get_date bei solchen Daten mit einem falschen Datum
+	  geantwortet wird.
+
+Fr 04.12.1998 Stefan-W. Hahn
+      * files.c (notify_responsible_modify): Benachrichtigung des Einsenders 
+	    eines PR über die durchgeführte Änderung an dem PR.
+      * file-pr.c (append_report): Benachrichtigung des Einsenders eine PR
+	    ueber den Kommentar zu diesem PR.
+
+Sa 21.11.1998 Stefan-W. Hahn
+       * queue-mail.c: aus tools hierher; angepasst an neue Struktur und
+	    config eingebunden. Bei Problemen mit dem Veschicken der Mails
+	    wird jetzt die Datei umbenannt und an den Admin eine Mail
+	    verschickt. 
+
+Mi 14.10.1998 Stefan-W. Hahn
+       * files.c: (notify_responsible, notify_responsible_modify): Nach dem
+	   APPEND_STRING fehlte das Setzen der Abschluss NULL.
+	
+Do 08.10.1998 Stefan-W. Hahn
+       * globals.h: Da STR_MAX nur auf 255 eingestellt war, ist das 
+	    read_string mit dem uebergebenen line beim Einlesen der
+	    categoreis Datei bei vielen notifiers in andere Speicher
+	    gerannt. Dies hatte an anderer Stelle beim free arge
+	    Probleme.
+       * misc.c: Aufgeraeumt beim Schliessen der Mailfiles.
+       * files.c: In den Routinen notify_... sicheren APPEND_STRING
+	    verwendet, damit es dort nicht auch noch schief geht.
+	
+Mi 07.10.1998 Stefan-W. Hahn
+	* misc.c: Korrektur bei close_mail_file, delete_mail_file,
+	    delete_all_mail_files, da diese Stellen fehlertraechtig scheinen.
+	* queue-pr.c: Unter NT liefert ein abgebrochenes Programm im Status
+	    im oberen Byte ein 0xff. Wenn dieses passiert, wird der
+	    bearbeitete teil umbenannt. Das umbennen geht unter NT nur
+	    mit einem Namen der nicht mit . anfaengt; kmtemp geht aber nur
+	    mit einem Namen der mit X aufhoert.
+
+Mi 02.09.1998 Stefan-W. Hahn
+	* query.c: (sql_types): Abfrage auf sw-bu mit den ersten beiden
+	  Buchstaben, damit mit support nicht verwechselt wird.
+	* query.h: define CLASS_SW_BUG1 fuer Abfrage auf zweiten Buchstaben.
+
+Do 27.08.1998 Stefan-W. Hahn
+	* files.c: (get_mail_list_entries): Korrektur; Durchlauf der Maillisteintraege
+	  tokenweise.
+	  (notfiy_responsible): Aufruf von get_mail_list_entries.
+	  (notify_responsible_modify): Aufrfu von get_mail_list_entries.
+	* file-pr.c: (append_report): Aufruf von get_mail_list_entries.
+	  Bei Antwort Zeichen ' als Anfuehrungsstriche.
+	* gnats.h: Externdeklaration von get_mail_list_entries.
+	* Makefile.in/.nt: Version erhoeht.
+
+Mo 25.08.1998 Stefan-W. Hahn
+	* edit-pr.sh: Version in &quot; gestzt, da Klammer in der Version
+	  enthalten.
+	
+Sa 15.08.1998 Stefan-W. Hahn
+	* Makefile.in: Version auf aktuelles Datum gesetzt.
+	* Makefile.nt: Version auf aktuelle Datum gesetzt.
+	* gnats.h: struct timeb ist noch nicht bekannt, also als PARAM
+	  von get_date einen void * eingesetzt.
+	* query-c: in sql_time die Buffergroesse auf 18 erhoeht, damit
+	  richtige Ausgaben erfolgen.
+	* gnatsd.h: Inlcudes, die bei NT nicht bekannt sind geklammert.
+		
+Do 12.08.1998 Stefan-W. Hahn
+	* c: Aufruf von ´configure´ mit den aktuellen Parametern.
+	* gnats.wpj, gnats.mk, win32/*:
+	  Beschreibungsdateien fuer die Compilierung unter NT mittels Watcom C/C++
+	  V11.0.
+	* config_nt.h: Definition aller sonst mittels Makefile definierten defines.
+	* autoconf.h.nt: Unter NT muss diese Datei nach ´autoconf.h´ kopiert werden,
+	  die Uebersetzung funktiniert.
+	* Makefile.nt, m.bat:
+	  Makefile fuer NT. Implementiert ist die Erzeugung der Datei ´version.c´
+	  und der Aufruf ´clean´.
+	* Makefile.in: Defaulteinstellung fuer die LOGG-Mehtod wird beim
+	  uebersetzen mit uebergeben.
+	  Das Programm ´query-pr´ wird auch in das Verzeichnis $(libexecdir)
+	  mit kopiert.
+	* autoconf.h.in: Define fuer DONT_USE_RESENT kann ueber configure mit
+	  konfiguriert werden.
+          Neue Defines: LANGUAGE_GERMAN, USE_MAIL_QUEUE
+
+	* cmds.c: Korrektur der Befehle MLSU, MLPR bei Zugriff auf die
+	  Strukturen category.notify, submitter.contact und submitter.notify
+          Die Funktion modify_pr wurde um einen Parameter ergaenzt.
+	  Vor Zugriff auf category.notify, submitter.contact und submitter.notify
+	  wird auf NIL-Pointer ueberprueft.
+
+	* config.c.in: Neue Variable fuer LOGG_METHOD einrichten. Dieser Wert kann
+	  aus der Konfigurationsdatei bestueckt werden.
+
+	* config.h: Fuehrenden ´/´ vor den Definitionen STATES, CATEGORIES,
+	  SUBMITTERS, RESPONSIBLE_FILE, INDEX entfernt.
+	  Neuer Define MAILLINGLIST_FILE fuer die Maillingliste. Neuer Define fuer die
+	  Default Logging Methode.
+	  Verschiedene Definitionen des Datumsformat-Strings bei deutscher Sprache.
+
+ 	* configure.in: neue Optionen:
+	    --with-language-german         setze deutsche Texte in PR ein
+	    --with-logg-method=method      setze logging-Methode MAIL, STDERR, SYSLOG
+	    --with-use-resent              setze USE-Resent
+	    --with-use-mail-queue          benutze Verzeichnis mail-queue um die Mails
+	                                   zu versenden
+
+	* edit.c: Die Funktion modify_pr wurde um den Parameter message ergaenzt, 
+	  mit dem der Dateiname des zu versendenden Textes uebergeben wird.
+	  Das Lock-File eines PR wird bei Wechsel der Categorie mit verschoben.	
+	  Mails werden bei Aenderungen an einem PR an den Verantwortlichen und 
+	  alle die fuer diese Kategorie eingetragen sind verschickt. Bei Wechsel 
+	  der Kategorie/des Bearbeiters
+	  werden zusaetzlich dem Verantwortlichen/neuen Bearbeiter der PR komplett
+	  geschickt.
+	  Datumsformat ueber die in ´config.h´ definierten Formate.
+
+	* file-pr.c: Prozeduren ´append_notify´, ´notify_responsible´ und
+	  ´verify_analysis´ wurden verlegt nach ´files.c´.
+	  Datumsformat ueber die in ´config.h´ definierten Formate.
+	  Die DEFAULT-Kategorie wird ueber das Config-File festgelegt.	
+	  Abhaengig von dem define LANGUAGE_GERMAN erfolgt eine Auswahl der Texte
+	  fuer diverse Mail-Bodies.
+	  Ein neuer PR wird an den Verantwortlichen der Kategorie und alle verschickt,
+	  die fuer diese Kategorie eingetragen sind. Weiter wird in der 
+	  ´MAILLINGLLIST´
+	  nachgesehen, an wen die PR noch verschickt werden; dies geschieht dann ueber
+	  BCC.
+	
+	* files.c: Neu: ´notify_responsible_modify´.
+	  Unterprogramme zum Bearbeitern der MAILLINGLIST: ´Init_maillinglist´,
+	  ´free_maillinglist´, ´find_maillinglist´.
+
+	* files.h: Neu: Definition der Maillinglist-Eintraege und der Liste.
+	
+	* gnats-dirs.h: Behandlung der Includes fuer ´direct.h´ unter NT.
+	
+	* gnats.h: Deklaration der neuen Variablen logging.
+	  Deklaration der Prozedur ´get_date´ ohne variable Parameteranzahl, da sonst
+	  der Compiler Watcom C/C++ V11 beim Aufrufer die Parameter auf den Stack 
+	  legt, die uebersetzte Funktino diese aber im Register erwrtet.
+
+	* headers.c: Eintrag DATE im Header umbenannt in HDATE, da unter NT sonst eine
+	  doppelte Definition vorhanden ist.
+	
+	* headers.h: Eintrag DATE in HDATE umbenannt.
+	
+	* internal.c: Bei rename zusaetzliche Abfrage auf EEXIST, damit dies auch
+	  unter NT laeuft.
+	  GNATS-Lock-File nach dem Erzeugen auch wieder schliessen, da es unter NT
+	  sonst nicht geloescht werden kann.
+	  Abfrage, ob die Signale SIGQUIT, SIGTERM, SIGHUP, SIGTERM existieren, damit
+	  dies auch unter NT funktioniert.
+
+	* lists.c: Bei Angabe eines Ausgabefiles wird keine zusaetzliche Extension
+	  an die Datei angehaengt.
+	
+	* main.c: Abfrage, ob die Signale SIGQUIT, SIGTERM, SIGHUP, SIGTERM 
+	  existieren, damit dies auch unter NT funktioniert.
+	  Initialisierung der Maillingliste durchfuehren.
+	  Am Ende ueberpruefen, ob wirklich etwas in das Mailfile geschrieben wurde,
+	  ansonsten das Mailfile loeschen, damit keine unnoetigen Debgmails verschickt
+	  werden.
+
+	* misc.c: Include von ´process.h´ fuer NT. Variable ´logging_done´, fuer die
+ 	  Erkennung ob in das Mailfile etwas geschrieben wurde.
+	  Vorbesetzen der log_method aus dem Makefile.
+	  Neue Prozedur: close_all_mail_files. Wird mit atexit installiert und 
+	  schliesst beim Beenden alle noch offenen Mailfiles. Wird nur benoetigt, wenn
+	  USE_MAIL_QUEUE definiert ist.
+	  Mittels USE_MAIL_QUEUE kann die Benutzung der pipe-Aufrufe fuer NT unter-
+	  bunden werden, da diese dort nicht verfuegbar sind.
+	  Neue Prozedur: delete_mail_file zum Loeschen der nicht beschriebenen Mail-
+	  files.
+
+	* pr-edit.c: Deklaration log_level nur, wenn LOG_LEVEL definiert ist, damit
+	  dies auch unter NT laeuft.
+	  Neuer Parameter: --message, -m fuer die Angabe der Datei mit der zu
+	  verschickenden Nachricht fuer den veraenderten PR.
+	  Initialisieren der Maillingliste.
+	  Uebergabe des zu verschickenden Kommentars zum PR
+	  Loeschen des Mailfiles, wenn nichts enthalten ist.
+
+	* pr.c: Bei deutscher Sprache, LANGUAGE_GERMAN, werden die Feldbeschreibungen
+	  laenger ausgegeben.
+	  Die festen Texte werden mittels Compilerschalter LANGUAGE_GERMAN angepasst.
+
+	* pr.h: Definition der englischen und deutschen Festtexte.
+	  Neues PR-Feld: MODIFIER fuer die Aenderungsnummer(n).
+
+	* query-pr.c: Ausgabedatei wird mit &quot;w&quot; statt &quot;w+&quot; geoeffnet.
+	  Hilfetext wurde um die Parameter fuer modified- ergaenzt.
+	
+	* query.c: Abfrage der enum-Felder mittels definierter Werte die abhaengig
+	  von der Sprache sind.
+	  Datumsformat abhaengig von der Sprache.
+          Am Ende von ´date_compare´ return 0 eingefuegt, damit der Watcom Compiler
+	  unter NT keine Warning ausgibt.
+	  Bei Abfrage des Feldes ´LAST_MODIFIED´ vorher eine Abfrage auf NULL 
+	  durchfuehren.
+          Bei deutscher Sprache groessere Felder bei Parameter ´--sql´.
+
+	* query.h: Definition der enum-Werte in Abhaengigkeit von der Sprache.
+
+	* queue-pr.c: Inkludierung von ´process.h´ fuer NT.
+	  Neue Prozedur: ´put_safe_env´ fuer die sichere Umgebung, abhaengig von der
+	  Uebersetzungsumgebung. Spezielle Umgebungesvariable fuer NT.
+	  Aufruf von ´file-pr´ mittels spawn statt fork, da dieser unter NT nicht
+	  verfuegbar ist.
+	  Dateien mit Extension werden bei der Bearbeitung uebergangen.
+	  TMPDIR wird vielfaeltiger bestimmt, damit dies auch unter NT funktioniert.
+	  (Oh wie schoen ist doch UNIX, bei dem es nur eine ROOT gibt.)
+	
+If wished I can make a diff to Version V3.xxx to give all the changes. Sorry for
+don't doing this before but I think there wasn't much interest in NT before and no
+one responsible for doing extensions.
+
+-- 
+Stefan-W. Hahn / <A  HREF="mailto:stefan.hahn@s-hahn.de">mailto:stefan.hahn@s-hahn.de</A> /
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00093" href="msg00093.html">GNATS on Win NT</a></strong>
+<ul><li><em>From:</em> Vijay Narayanan</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00106">Date&nbsp;Index</A>] [<a href="subjects.html#00106">Subject&nbsp;Index</a>] [<a href="authors.html#00106">Author&nbsp;Index</a>] [<A HREF="threads.html#00106">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00105.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00107.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00105.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00092.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

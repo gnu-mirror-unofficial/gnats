@@ -1,0 +1,125 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: 3 socket problems with gnats/gnatsweb -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 5 Oct 2001 13:33:30 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011005153240.00b4caa8@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 15271.32768.4522.195154@kaze.Princeton.EDU -->
+<!--X-Reference: 3BBDA111.8A2536D7@brainstorm.co.uk -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: 3 socket problems with gnats/gnatsweb</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: 3 socket problems with gnats/gnatsweb</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: nick at brainstorm dot co dot uk,gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: Re: 3 socket problems with gnats/gnatsweb</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Fri, 05 Oct 2001 15:35:28 +0200</li>
+<li><em>References</em>: &lt;15271.32768.4522.195154@kaze.Princeton.EDU&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 13:01 05.10.2001 +0100, nick@brainstorm.co.uk wrote:
+&gt;3. I also get the following error while doing a make test:
+&gt;
+&gt;bash-2.04$ make test DATABASE=default
+&gt;perl: warning: Setting locale failed.
+&gt;perl: warning: Please check that your locale settings:
+&gt;         LANGUAGE = (unset),
+&gt;         LC_ALL = &quot;posix&quot;,
+&gt;         LANG = &quot;en_GB&quot;
+&gt;     are supported and installed on your system.
+&gt;perl: warning: Falling back to the standard locale (&quot;C&quot;).
+&gt;perl test.pl
+&gt;perl: warning: Setting locale failed.
+&gt;perl: warning: Please check that your locale settings:
+&gt;         LANGUAGE = (unset),
+&gt;         LC_ALL = &quot;posix&quot;,
+&gt;         LANG = &quot;en_GB&quot;
+&gt;     are supported and installed on your system.
+&gt;perl: warning: Falling back to the standard locale (&quot;C&quot;).
+
+This is not a problem in Gnatsweb itself, but due to some kind of 
+conflicting locales installed on your system. It seems to be a problem that 
+may affect perl installations after system upgrades and suchlike. You may 
+find the following mailing list message helpful:
+<A  HREF="http://linux0.cs.uaf.edu/archive12dec00/msg00103.html">http://linux0.cs.uaf.edu/archive12dec00/msg00103.html</A>
+
+Hope this helps,
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00018" href="msg00018.html">3 socket problems with gnats/gnatsweb</a></strong>
+<ul><li><em>From:</em> nick</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00020">Date&nbsp;Index</A>] [<a href="subjects.html#00020">Subject&nbsp;Index</a>] [<a href="authors.html#00020">Author&nbsp;Index</a>] [<A HREF="threads.html#00020">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00019.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00019.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00021.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: gnats 4.0 alpha... -->
+<!--X-From-R13: Pbo [nafba <oznafbaNwhavcre.arg> -->
+<!--X-Date: 25 Aug 1999 05:02:57 &#45;0000 -->
+<!--X-Message-Id: 199908250501.WAA26322@tristam.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>gnats 4.0 alpha...</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00026">Date Index</A>] [<a href="subjects.html#00026">Subject Index</a>] [<a href="authors.html#00026">Author Index</a>] [<A HREF="threads.html#00026">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00025.html">Date Prev</A>]&nbsp;[<A HREF="msg00027.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00033.html">Thread Prev</A>]&nbsp;[<A HREF="msg00027.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnats 4.0 alpha...</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel@sourceware.cygnus.com, bug-gnats@gnu.org</LI>
+<LI><em>Subject</em>: gnats 4.0 alpha...</LI>
+<LI><em>From</em>: Bob Manson &lt;bmanson@juniper.net&gt;</LI>
+<LI><em>Date</em>: Tue, 24 Aug 1999 22:01:26 -0700</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+I've just checked in my first round of changes.  There's a
+GNATS_3_110_final CVS tag that refers to the latest version before my
+changes.
+
+I've included the verbiage I stuck into the BETA file below.  As
+noted, the bloody thing is pretty bloody; it seems to mostly work, but
+there are definitely some caveats, and it's nowhere near a finished
+release.
+
+Surprisingly enough I'm very interested in feedback, especially bug
+reports and general code flamage.
+
+Anyone have any strong opinions on:
+
+	* giving up on K&amp;R function definitions et al?
+	* using -Wall -ansi -pedantic etc. if gcc is used?
+
+I'd like to do both, but I'm not going to be totally against leaving
+the K&amp;R stuff there. On the other hand, it is 1999...and very few
+compilers don't have basic ANSI-compliance these days.
+
+I have been using -Wall et al in my testing, and it seems like mostly
+a win.
+
+The network protocol is in for some serious breakage soon.  I'll also
+fix the port number, and see about getting a port reserved for it.
+
+I will probably be working heavily on unrelated projects over the next
+couple of days, but I will at least try to respond to email.
+						Bob
+
+------------------------------------------------------------------------------
+August 24th, 1999       GNATS 4.0 alpha "squirrel-1"
+
+[alpha in a file called BETA? WTF? ;-]
+
+I, Bob Manson &lt;bmanson@juniper.net&gt; having usurped GNATS
+maintainership from the tenacious and wily grasp of Jason Molenda (who
+valiantly fought for hours, nay days over it), I have decided to
+further muddy the waters and try to add my own mark of ownership upon
+that which is GNATS.
+
+This is a horribly preliminary release of what will become GNATS 4.0.
+It is considered way-blooding-nasty software, and you will verily lose
+if you try to use it for anything other than playing.  It has
+successfully been built on Solaris 2.6, Linux with glibc2.1, and some
+release of FreeBSD (uname returns 2.2.8, whatever that means).
+
+The most obvious external change is that the format of the fields in
+the database are described in an external file (field-config).
+Eventually it will be possible to add new fields via this
+configuration file.  Presently this may only be used to change
+existing fields, and it is not even possible to change simple things
+like the name of a field.
+The format of field-config is documented via some random and sundry
+comments within it.  Eventually the parser will say something slightly
+more useful than "syntax error at line xxx", and the lexer will cease
+spewing out unrecognized keywords and characters to stdout.  Until
+that day, be amused.
+
+nquery-pr has been deleted, and its functionality is (mostly) merged
+into query-pr.  ("Mostly" meaning that it is necessary to specify a
+network-specific option such as --host in order to get it to do
+network queries; this is lame lossage that needs to be fixed.)
+
+It is also possible to do boolean searches via query-pr. Two new
+options, `--and' and `--or' have been added.  There is currently no
+support for this functionality via the network interface.
+
+Boolean searches are constructed left-to-right, and there is currently
+no parenthesis or other way to restructure queries.  Eventually a full
+expression query syntax will be added, although the current search
+functionality will be maintained.
+
+Internally the code has undergone major surgery.  (I'm not even sure
+where to start describing this.)  Searches are now consolidated into a
+"QueryExpr" struct.  All of the global variables in qvariable.c have
+been deleted, as well as most of the miscellaneous ones.  The madness
+with "is_remote", and the random end-of-line variables is gone.  A lot
+of static infrastructure surrounding fields has been removed.  A
+generic interface has been added to the "random administrative files";
+the contents thereof may eventually be merged into the field-config
+file.  Several new structures have been added.  And with plenty of
+other bad losingness added, I'm sure.
+
+I just read the "PROBLEMS" file for the first time.  Hopefully most of
+the real bug-type problems listed are moot. except for the
+documentation issues.  ("Documentation is like castor oil: programmers
+hate it, so managers claim it must be good for you.")
+
+There's still a pile of work to do; much of it has been documented in
+the TODO file.  Note that in these changes a Juniper-specific field
+has been added.  This has been my benchmark for where in the process
+things are; when it's totally included in the external config with no
+mention of it elsewhere, that's presumably a good sign.
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00027" HREF="msg00027.html">Re: gnats 4.0 alpha...</A></STRONG>
+<UL><LI><EM>From:</EM> Mike Sutton &lt;mws115@llcoolj.dayton.saic.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00026">Date Index</A>] [<a href="subjects.html#00026">Subject Index</a>] [<a href="authors.html#00026">Author Index</a>] [<A HREF="threads.html#00026">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00025.html">Date Prev</A>]&nbsp;[<A HREF="msg00027.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00033.html">Thread Prev</A>]&nbsp;[<A HREF="msg00027.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

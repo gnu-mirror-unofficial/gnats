@@ -1,0 +1,130 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: RE: Gnatsweb under mod_perl -->
+<!--X-From-R13: "Rvex Pretfgebz" <qvexNwhavcre.arg> -->
+<!--X-Date: 18 Oct 2001 22:03:05 &#45;0000 -->
+<!--X-Message-Id: 5B1CAAC2F0818444BF07B7AD8845E53C0D80AD@ELECTRON.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - RE: Gnatsweb under mod_perl</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00056">Date&nbsp;Index</A>] [<a href="subjects.html#00056">Subject&nbsp;Index</a>] [<a href="authors.html#00056">Author&nbsp;Index</a>] [<A HREF="threads.html#00056">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00055.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00055.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00053.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: Gnatsweb under mod_perl</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Yngve Svendsen&quot; &lt;yngve dot svendsen at clustra dot com&gt;,&lt;gnats-devel at sources dot redhat dot com&gt;,&lt;bug-gnats at gnu dot org&gt;</li>
+<li><em>Subject</em>: RE: Gnatsweb under mod_perl</li>
+<li><em>From</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Thu, 18 Oct 2001 15:03:01 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt; I am wondering if anyone have attempted to run Gnatsweb under
+&gt; mod_perl? I am not acquainted with mod_perl, but I'd be interested
+&gt; in making Gnatsweb more compatible with it. So if anyone has tried
+&gt; this, I'd be interested to know what modifications were necessary
+&gt; and in general what steps had to be taken to make it work.
+
+i haven't tried it, and i don't know much about mod_perl (so why is he
+writing?), but i've given it some thought.
+
+seems to me that the big benefit of running under mod_perl would be
+caching of gnats database info (catgories, responsible, submitter-id,
+field names &amp; valid values).  it would be a big savings if we didn't
+have to request, read &amp; parse all that for every request.
+
+however, my understanding of mod_perl is that to really take advantage
+of the power inherent in the system, a program needs to keep a clean
+namespace -- all the variables should be lexically scoped.  gnatsweb has
+an appalling number of global variables, and it would never fly as a
+real mod_perl app.
+
+it could, however, work under the Apache::PerlRun module, which allows
+use of (mostly) unmodified cgis.  unfortunately, you don't get much
+benefit from that (CGI.pm and the perl interpreter stay resident, but
+gnatsweb needs to be restarted from scratch for every request).
+
+this page has some good info on porting to mod_perl:
+
+<A  HREF="http://www.perlreference.com/mod_perl/guide/porting.html">http://www.perlreference.com/mod_perl/guide/porting.html</A>
+
+a good start towards making gnatsweb mod_perl friendly would be to move
+all the config variables into a hash.  instead of twenty individual
+vars, we have one hash, with twenty keys.  this would mean that we could
+add new config switches without declaring the variables; and a
+gnatsweb-site.pl file would work with any version of gnatsweb (that
+supported the config hash).  as it stands, if you try to use a new
+version of the site.pl file with an old version of gnatsweb, it chokes
+on the undeclared config var.
+
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,          Computer Geek
+Tel: 707.433.0564           Fax: 707.433.0769
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00056">Date&nbsp;Index</A>] [<a href="subjects.html#00056">Subject&nbsp;Index</a>] [<a href="authors.html#00056">Author&nbsp;Index</a>] [<A HREF="threads.html#00056">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00055.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00055.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00053.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: patch to gnatsweb 2.9.0 -->
+<!--X-From-R13: Dboreg Zhcgba gur Ubbq <euyNnfgeb.Bevaprgba.SRG> -->
+<!--X-Date: 10 Sep 2001 19:13:12 &#45;0000 -->
+<!--X-Message-Id: 15261.4288.443936.741169@kaze.Princeton.EDU -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Reference: 5.1.0.14.2.20010908181818.00b43c20@10.10.1.1 -->
+<!--X-Derived: msg00109 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Robert Lupton the Go - patch to gnatsweb 2.9.0</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00109">Date&nbsp;Index</A>] [<a href="subjects.html#00109">Subject&nbsp;Index</a>] [<a href="authors.html#00109">Author&nbsp;Index</a>] [<A HREF="threads.html#00109">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00108.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00110.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00108.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00116.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>patch to gnatsweb 2.9.0</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: patch to gnatsweb 2.9.0</li>
+<li><em>From</em>: Robert Lupton the Good &lt;rhl at astro dot Princeton dot EDU&gt;</li>
+<li><em>Date</em>: Mon, 10 Sep 2001 15:13:04 -0400</li>
+<li><em>CC</em>: gnats-announce at sources dot redhat dot com, gnats-devel at sources dot redhat dot com,       bug-gnats at gnu dot org</li>
+<li><em>References</em>: &lt;<a href="msg00108.html">5.1.0.14.2.20010908181818.00b43c20@10.10.1.1</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+
+I've finally got around to forward-porting some of my 2.7 changes.
+
+Here's a patch that:
+
+	1/ Adds a button to load stored queries; they can then
+	be modified and submitted.  This provides a way to edit
+	stored queries.
+
+(Note: this uses a hidden atribute 'full_cmd' to avoid making the
+submit/delete/load stored query too wide with long labels)
+
+	2/ Supports a callback
+		cb('init_prefs', '');
+	to set values in %global_prefs after init_prefs has run.
+
+
+	3/ Include the date that a query was submitted in the result
+	page.  This is very useful when the query is printed and filed
+	away.
+
+	This is only done if $global_prefs{'show date'} is true
+	(default: 1).  I'm not quite sure that I did this in the
+	approved manor.
+
+
+I did not update the docs; your discussion of stored queries is pretty
+short, and I didn't know how you want to do this.  Here's some sample HTML:
+
+&lt;dl&gt;
+&lt;dt&gt;&lt;b&gt;submit stored query&lt;/b&gt; (button and combobox)
+&lt;dd&gt;If there are stored queries (done on the &lt;a href=&quot;#qmatches&quot;&gt;Query Results Page&lt;/a&gt;),
+    this selects one of them.  If no queries are stored, then
+    this field is not displayed.
+&lt;dt&gt;&lt;b&gt;delete stored query&lt;/b&gt; (button and combobox)
+&lt;dd&gt;If there are stored queries (done on the &lt;a href=&quot;#qmatches&quot;&gt;Query Results Page&lt;/a&gt;),
+    this deletes one of them.  If no queries are stored, then
+    this field is not displayed.
+&lt;dt&gt;&lt;b&gt;load stored query&lt;/b&gt; (button and combobox)
+&lt;dd&gt;If there are stored queries (done on the &lt;a href=&quot;#qmatches&quot;&gt;Query Results Page&lt;/a&gt;),
+    this loads one of them into the various fields on this page as if you'd
+    just typed them in; this allows you to edit a stored query.
+    If no queries are stored, then this field is not displayed.
+&lt;/dl&gt;
+
+			R
+
+
+</pre>
+<P><A HREF="msg00109/patch1" >Patch to gnatsweb 2.9.0</A></P>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00108" href="msg00108.html">Announcing gnatsweb 2.9.0</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00109">Date&nbsp;Index</A>] [<a href="subjects.html#00109">Subject&nbsp;Index</a>] [<a href="authors.html#00109">Author&nbsp;Index</a>] [<A HREF="threads.html#00109">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00108.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00110.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00108.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00116.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

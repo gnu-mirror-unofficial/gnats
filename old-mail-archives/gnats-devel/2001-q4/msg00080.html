@@ -1,0 +1,224 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: Plan to move to savannah -->
+<!--X-From-R13: Vhtb Unlbffb <dmgs7xNyvahk133.cbjregenva.zct.tz.pbz> -->
+<!--X-Date: 1 Nov 2001 14:47:41 &#45;0000 -->
+<!--X-Message-Id: qrgvggu8s5f.fsf@powertrain.mpg.gm.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 87snc3pi45.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hugo Gayosso - Re: Plan to move to savannah</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00080">Date&nbsp;Index</A>] [<a href="subjects.html#00080">Subject&nbsp;Index</a>] [<a href="authors.html#00080">Author&nbsp;Index</a>] [<A HREF="threads.html#00080">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00079.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00079.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Plan to move to savannah</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: Plan to move to savannah</li>
+<li><em>From</em>: Hugo Gayosso &lt;qztf7k at linux133 dot powertrain dot mpg dot gm dot com&gt;</li>
+<li><em>Date</em>: 01 Nov 2001 09:47:24 -0500</li>
+<li><em>Cc</em>: GNATS Development Mailing List &lt;gnats-devel at sources dot redhat dot com&gt;,  jbailey at gnu dot org, hugo at gnu dot org</li>
+<li><em>References</em>: &lt;<a href="msg00069.html">87snc3pi45.fsf@blackbird.zamazal.org</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+
+[ Added jbailey and my GNU account to the discussion.  Jeff, if you
+  want to be removed from this discussion, let me know and excuse me
+  for adding you before asking --Hugo ]
+
+
+Milan Zamazal &lt;pdm@zamazal.org&gt; writes:
+
+&gt; I plan to move the GNATS' development infrastructure to
+&gt; savannah.gnu.org.  There is nothing wrong with current Red Hat services,
+&gt; but I like the idea of a centralized GNU software site.  Also, using
+&gt; savannah may be a bit more handy (and savannah hackers fearlessly run
+&gt; GNATS 4 there:-).
+
+It is not a recent GNATS 4 snapshot (but is GNATS 4 baseline), I can't
+get the details of it now (fascist firewall), so if they are important
+let me know and I will get them for you.  (jbailey and myself did that
+installation).
+
+
+
+&gt; The services to be moved are:
+&gt; 
+&gt; 1. CVS repository.
+
+No big deal, just make a tarball and put it somewhere, send the URL to
+savannah-hackers@gnu.org
+
+
+&gt; 2. Bug tracking system.
+
+I guess this means that we need to move a GNATS database.
+
+While the current GNATS installation @ gnu.org is using only one
+database, I did some tests using multiple databases and it seems that
+it is working.
+
+Our plan, is/was to have one GNATS database per project, so maybe this
+change will be as easy as defining the new database @ GNU (plus the
+email alias) and then making a tarball of the current database @ Red
+Hat.
+
+Or is it more complex?
+
+
+&gt; Of course, no data should be lost during the move, especially all CVS
+&gt; data, complete bug history, and mailing list archives should be
+&gt; transfered to the new site.
+&gt; 
+&gt; More details about the particular steps:
+&gt; 
+&gt; 1. Moving the CVS archive should be the simplest thing of the all, it
+&gt;    only concerns a very limited set of people.  Gnatsweb will be removed
+&gt;    from the contrib directory, since it has now its own archive on
+&gt;    savannah.  I'm not sure what to do with TkGnats -- Rick, what are
+&gt;    your plans about it?  Should it simply remain in the CVS as it is?
+
+Rick, if you want to make TkGnats a separate project in Savannah, as
+gnatsweb is, just register this project at <A  HREF="http://savannah.gnu.org">http://savannah.gnu.org</A>
+
+
+&gt; 4. Mailing lists.
+
+GNU is currently using Mailman for mailing list management.
+
+
+&gt;    i.e. with automatic resubscription
+
+Mailman has an option for mass subscription, so if you can get a text
+file of the email addresses currently subscribed this will be easy.
+
+
+&gt;    and a temporary forwarding on redhat, if possible.
+
+We need somebody from redhat to help here.
+
+&gt;    One particular change I'd like to make is to rename the
+&gt;    gnats-devel mailing list to `gnats' or something like that.
+
+There are some GNU standards regarding mailing list naming:
+
+bug-gnats : To report bugs (really? :-) )
+
+help-gnats : Users asking for help (really? :-P )
+
+info-gnats : Announcements and progress reports
+
+Take a look at:
+
+<A  HREF="http://mail.gnu.org/mailman/listinfo">http://mail.gnu.org/mailman/listinfo</A>
+
+
+Those are the minimum, I guess we might want to create:
+
+gnats-devel : for development discussions.
+
+
+&gt; So this is the rough plan.  Please tell me if you have any objections,
+&gt; advice or so.  I don't plan to perform the move tomorrow but I also
+&gt; don't want to wait with it much.  Unless I receive strong objections
+&gt; during the following week, I'll start to talk to both savannah hackers
+&gt; and Red Hat's overseers about technical details of the move.
+
+Let me know how can I help, I qualify as a &quot;savannah-hacker&quot;.  :-)
+
+
+Greetings,
+- -- 
+Hugo Gayosso
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.0.4 (GNU/Linux)
+Comment: For info see <A  HREF="http://www.gnupg.org">http://www.gnupg.org</A>
+
+iD8DBQE74WB8x2JZtTN6co8RAq3oAJ4rhowvlPeiwI6BUybk+3w3ZbxWFgCgjr/a
+9ztXUHp3KuH06FPjeL5E9ZI=
+=wETO
+-----END PGP SIGNATURE-----
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00081" href="msg00081.html">Re: Plan to move to savannah</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00083" href="msg00083.html">Re: Plan to move to savannah</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00088" href="msg00088.html">Re: Plan to move to savannah</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00069" href="msg00069.html">Plan to move to savannah</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00080">Date&nbsp;Index</A>] [<a href="subjects.html#00080">Subject&nbsp;Index</a>] [<a href="authors.html#00080">Author&nbsp;Index</a>] [<A HREF="threads.html#00080">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00079.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00079.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00081.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

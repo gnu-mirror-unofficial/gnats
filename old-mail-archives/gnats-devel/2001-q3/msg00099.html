@@ -1,0 +1,165 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: RE: gnatsd output question -->
+<!--X-From-R13: "[nephf Ivyyvnzf" <znephfNdhvagvp.pb.hx> -->
+<!--X-Date: 5 Sep 2001 08:53:47 &#45;0000 -->
+<!--X-Message-Id: 003e01c135e8$588d3ae0$a0c809c0@itchy.quintic.bogus -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 87snezizbn.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Marcus Williams - RE: gnatsd output question</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00099">Date&nbsp;Index</A>] [<a href="subjects.html#00099">Subject&nbsp;Index</a>] [<a href="authors.html#00099">Author&nbsp;Index</a>] [<A HREF="threads.html#00099">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00098.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00100.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00098.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00100.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: gnatsd output question</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;GNATS Development Mailing List&quot; &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: RE: gnatsd output question</li>
+<li><em>From</em>: &quot;Marcus Williams&quot; &lt;marcus at quintic dot co dot uk&gt;</li>
+<li><em>Date</em>: Wed, 5 Sep 2001 09:54:17 +0100</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt; -----Original Message-----
+&gt; From: pdm@blackbird.zamazal.org [<A  HREF="mailto:pdm@blackbird.zamazal.org]On">mailto:pdm@blackbird.zamazal.org]On</A>
+&gt; Behalf Of Milan Zamazal
+&gt; Sent: 10 August 2001 18:45
+&gt; To: GNATS Development Mailing List
+&gt; Subject: gnatsd output question
+[snip]
+&gt;   211 Ok.
+&gt;   &lt;the report text&gt;
+&gt;   .
+&gt;   210 GNATS database is now locked.
+&gt;   210 PR added.
+&gt;   210 GNATS database is now unlocked.
+&gt;
+&gt; or, in the case of failure, like this:
+&gt;
+&gt;   subm
+&gt;   211 Ok.
+&gt;   .
+&gt;   210 GNATS database is now locked.
+&gt;   402 Failure reading header
+&gt;   210 GNATS database is now unlocked.
+&gt;
+&gt; As you can see above, after submitting the report text
+&gt; gnatsd outputs
+&gt; *three* status report lines as single messages, the overall result
+&gt; message is wrapped by the locking status messages.  Is this behavior
+&gt; and/or format right?  If not, how should the output look?
+[snip]
+
+I'd tend to agree with Rick Macdonald that the lock messages are
+internal to Gnats so dont need to be displayed (unless they fail).
+
+It may be worth doing something like the FTP specs (RFC 0959?) say and
+wrap the three messages inside a multiline result so it becomes (from
+what I remember of the RFC):
+
+subm
+211 Ok.
+.
+210- GNATS database is now locked
+402- Failure reading header
+210- GNATS database is now unlocked
+
+The trailing dash after the result code indicates a multiline
+continuation. However, this is wrong as well as we're only interested
+in the 402 in the middle so it probably should be
+
+subm
+211 Ok.
+.
+402- GNATS database is now locked
+402- Failure reading header
+402- GNATS database is now unlocked
+
+Since you can only tell that theres a header error by reading the full
+message, maybe more error codes should be added so then we can
+exchange 402 for whatever the code is for &quot;Failure reading header&quot;.
+The multiline reply is then only for interactive/information purposes.
+
+Marcus
+
+--
+Marcus Williams - <A  HREF="http://www.onq2.com">http://www.onq2.com</A>
+Quintic Ltd, 39 Newnham Rd, Cambridge, CB3 9EY
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00100" href="msg00100.html">RE: gnatsd output question</a></strong>
+<ul><li><em>From:</em> Rick Macdonald</li></ul></li>
+<li><strong><a name="00103" href="msg00103.html">Re: gnatsd output question</a></strong>
+<ul><li><em>From:</em> Mark D. Baushke</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00088" href="msg00088.html">gnatsd output question</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00099">Date&nbsp;Index</A>] [<a href="subjects.html#00099">Subject&nbsp;Index</a>] [<a href="authors.html#00099">Author&nbsp;Index</a>] [<A HREF="threads.html#00099">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00098.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00100.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00098.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00100.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

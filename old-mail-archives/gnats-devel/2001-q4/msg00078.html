@@ -1,0 +1,267 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: [PATCH]: FTYPINFO command -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 30 Oct 2001 23:34:57 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011031002250.00b41528@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20011029084713.00b41528@10.10.1.1 -->
+<!--X-Reference: 5.1.0.14.2.20011017135224.00b9e008@mail.trd.clustra.com -->
+<!--X-Reference: 87hesikrl8.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - [PATCH]: FTYPINFO command</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00078">Date&nbsp;Index</A>] [<a href="subjects.html#00078">Subject&nbsp;Index</a>] [<a href="authors.html#00078">Author&nbsp;Index</a>] [<A HREF="threads.html#00078">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00077.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00079.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00077.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00096.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>[PATCH]: FTYPINFO command</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: [PATCH]: FTYPINFO command</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Wed, 31 Oct 2001 00:35:22 +0100</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00070.html">5.1.0.14.2.20011029084713.00b41528@10.10.1.1</a>&gt;&lt;<a href="msg00048.html">5.1.0.14.2.20011017135224.00b9e008@mail.trd.clustra.com</a>&gt;&lt;<a href="msg00048.html">5.1.0.14.2.20011017135224.00b9e008@mail.trd.clustra.com</a>&gt;&lt;<a href="msg00070.html">5.1.0.14.2.20011029084713.00b41528@10.10.1.1</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Attached is a set of patches which implements the FTYPINFO command. See my 
+comments below.
+
+At 23:29 29.10.2001 +0100, Milan Zamazal wrote:
+&gt;OK.  So the command format could be
+&gt;
+&gt;   FTYPINFO &lt;field&gt; &lt;option&gt;
+
+I changed this slightly to
+
+FTYPINFO &lt;field&gt; &lt;property&gt;
+
+&gt;as I already suggested.  As for the return values, I think we will cope
+&gt;with basically two situations: A single one-line return value or a list
+&gt;of one-line return values.  So the response should be in correspondence
+&gt;with the description of the 3xx responses in the gnatsd command
+&gt;protocol, distinguishing the two cases by return codes.
+
+I can't see any reason why we should distinguish between the case when 
+there is a single separator and cases when there are multiple? The attached 
+set of patches makes gnatsd return a string og all the separators, enclosed 
+in 'single quotes'.
+
+&gt;I think that for now it would be sufficient to modify your FSEP patch.
+&gt;A test for &lt;option&gt; depending on the field type should be added.  IMHO
+&gt;we needn't add now more than the support for the `separators' option of
+&gt;multi-enum fields.
+
+The way I implemented this is not as elegant as it should be -- ideally, I 
+would go for including supported properties for each field type in the 
+FieldTypeInfo struct as that would make things far cleaner and more 
+extensible. However, I opted for the simplest way this time round.
+
+- Yngve
+
+Index: cmds.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/cmds.c,v
+retrieving revision 1.61
+diff -u -p -r1.61 cmds.c
+--- cmds.c      2001/10/14 20:32:22     1.61
++++ cmds.c      2001/10/30 23:18:57
+@@ -1496,6 +1496,55 @@ GNATS_ftyp (int ac, char **av)
+  }
+
+  void
++GNATS_ftypinfo (int ac, char **av)
++{
++  if (ac == 2)
++    {
++      FieldIndex fnum = find_field_index (currentDatabase, av[0]);
++
++      if (fnum == InvalidFieldIndex)
++        {
++          printf (&quot;%d No such field as `%s'.\r\n&quot;, CODE_INVALID_FIELD_NAME,
++                  av[0]);
++          return;
++        }
++
++      if (strcmp(av[1], &quot;separators&quot;) == 0) {
++        if (fieldDefForIndex (fnum)-&gt;datatype == MultiEnum)
++          {
++            const char *sep = fieldDefForIndex (fnum)-&gt;multiEnumSeparator;
++
++            if (sep == NULL)
++              {
++                sep = &quot;: &quot;;
++              }
++
++            printf (&quot;%d '%s'\r\n&quot;, CODE_INFORMATION, sep);
++          }
++        else if (fieldDefForIndex (fnum)-&gt;datatype != MultiEnum)
++          {
++            printf (&quot;%d Property `%s' not defined for field type `%s'.\r\n&quot;,
++                    CODE_INVALID_FTYPE_PROPERTY, av[1],
++                    fieldTypeAsString (fieldDefForIndex (fnum)-&gt;datatype));
++          }
++      }
++
++      /* Unknown property: */
++      else
++        {
++          printf (&quot;%d No such property as `%s'.\r\n&quot;,
++                  CODE_INVALID_FTYPE_PROPERTY, av[1]);
++        }
++    }
++
++  else
++    {
++      printf (&quot;%d Need two arguments, fieldname and property.\r\n&quot;,
++              CODE_CMD_ERROR);
++    }
++}
++
++void
+  GNATS_fdsc (int ac, char **av)
+  {
+    int x;
+@@ -1675,6 +1724,12 @@ GNATS_help (int ac ATTRIBUTE_UNUSED, cha
+           CODE_INFORMATION);
+    printf (&quot;%d-   FTYP &lt;field&gt;            return the datatype of &lt;field&gt;\r\n&quot;,
+           CODE_INFORMATION);
++  printf (&quot;%d-   FTYPINFO &lt;field&gt; &lt;property&gt;\r\n&quot;,
++      CODE_INFORMATION);
++  printf (&quot;%d-                           return info about a property of 
+the\r\n&quot;,
++      CODE_INFORMATION);
++  printf (&quot;%d-                           specified field\r\n&quot;,
++      CODE_INFORMATION);
+    printf (&quot;%d-   FDSC &lt;field&gt;            return the description of 
+&lt;field&gt;\r\n&quot;,
+           CODE_INFORMATION);
+    printf (&quot;%d-   FVLD &lt;field&gt;            return a string or regexp 
+describing the\r\n&quot;,
+Index: gnatsd.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/gnatsd.c,v
+retrieving revision 1.42
+diff -u -p -r1.42 gnatsd.c
+--- gnatsd.c    2001/10/14 20:32:22     1.42
++++ gnatsd.c    2001/10/30 23:18:57
+@@ -156,7 +156,7 @@ static Command cmds[] =
+       that matches the specified key.  If a subfield is also specified, only
+       the data in that subfield is returned. */
+    { &quot;ADMV&quot;, GNATS_admv, ACCESS_VIEW, FALSE },
+-
++  { &quot;FTYPINFO&quot;, GNATS_ftypinfo, ACCESS_VIEW, FALSE},
+    { NULL, NULL, -1, FALSE },
+  };
+
+Index: gnatsd.h
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/gnatsd.h,v
+retrieving revision 1.25
+diff -u -p -r1.25 gnatsd.h
+--- gnatsd.h    2001/10/14 20:32:22     1.25
++++ gnatsd.h    2001/10/30 23:18:57
+@@ -103,6 +103,7 @@ extern void GNATS_ftyp (int ac, char **a
+  extern void GNATS_fdsc (int ac, char **av);
+  extern void GNATS_fvld (int ac, char **av);
+  extern void GNATS_admv (int ac, char **av);
++extern void GNATS_ftypinfo (int ac, char **av);
+  extern void GNATS_editaddr (int ac, char **av);
+  extern void GNATS_fieldflags (int ac, char **av);
+  extern void GNATS_inputdefault (int ac, char **av);
+Index: pcodes.h
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/pcodes.h,v
+retrieving revision 1.9
+diff -u -p -r1.9 pcodes.h
+--- pcodes.h    2000/03/17 04:31:08     1.9
++++ pcodes.h    2001/10/30 23:18:57
+@@ -57,6 +57,7 @@ Software Foundation, 59 Temple Place - S
+  #define CODE_GNATS_NOT_LOCKED          432
+  #define CODE_PR_NOT_LOCKED             433
+  #define CODE_READONLY_FIELD            434
++#define CODE_INVALID_FTYPE_PROPERTY 435
+  #define CODE_CMD_ERROR                 440
+  #define CODE_WRITE_PR_FAILED           450
+
+
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00096" href="msg00096.html">Re: [PATCH]: FTYPINFO command</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00070" href="msg00070.html">Re: Need gnatsd command to retrieve multienum separators</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00048" href="msg00048.html">Need gnatsd command to retrieve multienum separators</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00072" href="msg00072.html">Re: Need gnatsd command to retrieve multienum separators</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00078">Date&nbsp;Index</A>] [<a href="subjects.html#00078">Subject&nbsp;Index</a>] [<a href="authors.html#00078">Author&nbsp;Index</a>] [<A HREF="threads.html#00078">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00077.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00079.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00077.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00096.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

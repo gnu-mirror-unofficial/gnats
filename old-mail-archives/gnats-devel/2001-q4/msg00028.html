@@ -1,0 +1,177 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: RE: GNATS authentication -->
+<!--X-From-R13: "Vba&#45;Quv @t" <ubapuv_atNzl&#45;qrwn.pbz> -->
+<!--X-Date: 9 Oct 2001 17:33:25 &#45;0000 -->
+<!--X-Message-Id: 200110091733.f99HXCJ17534@mail5.bigmailbox.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Hon-Chi Ng - RE: GNATS authentication</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00028">Date&nbsp;Index</A>] [<a href="subjects.html#00028">Subject&nbsp;Index</a>] [<a href="authors.html#00028">Author&nbsp;Index</a>] [<A HREF="threads.html#00028">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00027.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00029.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00027.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00026.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: GNATS authentication</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: yngve dot svendsen at clustra dot com, holly0906 at hotmail dot com</li>
+<li><em>Subject</em>: RE: GNATS authentication</li>
+<li><em>From</em>: &quot;Hon-Chi Ng&quot; &lt;honchi_ng at my-deja dot com&gt;</li>
+<li><em>Date</em>: Tue, 9 Oct 2001 10:33:12 -0700</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com, bug-gnats at gnu dot org</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Hi Yngve
+
+&gt;
+&gt;From: Yngve Svendsen &lt;yngve.svendsen@clustra.com&gt;
+&gt;To: &quot;holly sadeghi&quot; &lt;holly0906@hotmail.com&gt;
+&gt;Cc: bug-gnats@gnu.org, gnats-devel@sources.redhat.com
+&gt;Subject: GNATS authentication
+&gt;Date: Mon, 08 Oct 2001 21:45:53 +0200
+&gt;
+  ...
+&gt;
+&gt;Ideally, you should be able to set access level 'none' for all hosts, so 
+&gt;users would be required to authenticate in order to do anything. The 
+&gt;problem with this is that Gnatsweb has to get a list of available databases 
+&gt;before the user can be asked to log in, and that is not possible in GNATS 
+&gt;3, since the DBLS command is unavailable when the access level is set to 
+&gt;'none'. And still, anyone would be able to submit PRs. The DBLS problem 
+&gt;will be fixed in GNATS 4, where there will be a separate access level which 
+&gt;allows only the DBLS command to be executed.
+
+My workaround is to make the default database &quot;foo&quot; viewable by anyone which
+is used as test/debug/sandbox database, and make the rest of database denied
+to those otherwise authorized.
+
+E.g.
+a) In gnats-db/gnats-adm/gnatsd.conf of all databases,
+    *:none:
+
+b) In gnats-db/gnats-adm/gnatsd.access for default database &quot;foo&quot;,
+    User1:Passwd1:edit:
+    *:*:view:
+
+c) In gnats-db/gnats-adm/gnatsd.access for the rest of databases,
+    User2:Passwd2:edit:
+    User3:Passwd3:view:
+    *:*:deny:
+
+
+&gt;
+&gt;Unfortunately, GNATS 4 will not be much improved wrt. to security, except 
+&gt;for the DBLS fix. However, we have implemented a workaround in Gnatsweb 4. 
+&gt;If you limit access to GNATS so that Gnatsweb is the only available 
+&gt;interface, you can require users to authenticate against the web server 
+&gt;before they're allowed access to Gnatsweb. Gnatsweb can be configured to 
+&gt;pick up the username the user authenticated to the web server with and use 
+&gt;that as the GNATS username. Basically, you would have an empty user 
+&gt;database in gnatsd.access and an entry in gnatsd.conf saying
+&gt;
+&gt;localhost:edit:
+&gt;
+&gt;(assuming the web server runs on the GNATS server machine)
+&gt;
+  ...
+&gt;
+&gt;All in all, GNATS security is messy and weak. I'd like to invite people to 
+&gt;air their views on this subject -- perhaps we could end up with a 
+&gt;specification for a more robust security and authentication model?
+
+Yngve, is it possible to 
+
+a) make the web server authentication default for GnatsWeb, and
+
+2. possibly an option to tell GNATS 4 to use /etc/passwd, NIS passwd
+   or Apache AuthUserFile for users' passwords instead those in
+   gnats-adm/gnatsd.access?  They may not be the most secure way, but
+   at least better than the plain text password in
+   gnats-adm/gnatsd.access.
+
+In other words, what I'm proposing is
+  - use gnats-adm/gnatsd.access for authorization control, and
+  - use /etc/passwd, NIS passwd or Apache AuthUserFile for
+    authentication control.
+
+
+&gt;
+&gt;Yngve Svendsen
+&gt;
+
+
+Thanks.
+
+Just my 2c.
+
+Hon-Chi
+
+
+------------------------------------------------------------
+--== Sent via Deja.com ==--
+<A  HREF="http://www.deja.com/">http://www.deja.com/</A>
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00028">Date&nbsp;Index</A>] [<a href="subjects.html#00028">Subject&nbsp;Index</a>] [<a href="authors.html#00028">Author&nbsp;Index</a>] [<A HREF="threads.html#00028">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00027.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00029.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00027.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00026.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

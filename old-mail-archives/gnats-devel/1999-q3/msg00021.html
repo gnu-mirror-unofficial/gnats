@@ -1,0 +1,218 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: client info format ideas -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 23 Aug 1999 22:54:55 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.9908231517230.20253&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 199908231912.MAA12266@tristam.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>client info format ideas</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00021">Date Index</A>] [<a href="subjects.html#00021">Subject Index</a>] [<a href="authors.html#00021">Author Index</a>] [<A HREF="threads.html#00021">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00020.html">Date Prev</A>]&nbsp;[<A HREF="msg00022.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00020.html">Thread Prev</A>]&nbsp;[<A HREF="msg00023.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>client info format ideas</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Bob Manson &lt;bmanson@juniper.net&gt;</LI>
+<LI><em>Subject</em>: client info format ideas</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm@vsl.com&gt;</LI>
+<LI><em>Date</em>: Mon, 23 Aug 1999 16:52:06 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel@sourceware.cygnus.com, bug-gnats@gnu.org</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Mon, 23 Aug 1999, Bob Manson wrote:
+
+&gt; I honestly don't have any idea what the configuration info as sent to
+&gt; clients will look like.  I think now would be a great time for people
+&gt; to make suggestions as to what they'd like to see.
+
+OK, here's a rough suggestion, just to get some reactions. I've grabbed
+these examples from your previous post:
+
+        field "Release-Note" {
+                multitext
+                query-default exact-regexp
+        }
+
+        field "Release" {
+                string matching "insert-regex-here"
+                query-pr-option "A" "--release"
+                network-query-command "RLSE"
+                query-default inexact-regexp
+        }
+
+        field "Priority" {
+                enum {
+                        values {
+                                "high" "medium" "low"
+                        }
+                        default "medium"
+                }
+                query-pr-option "p" "--priority"
+                network-query-command "PRIO"
+                query-default exact-regexp
+        }
+
+Looking now, wouldn't it be more straight-forward if all lines were
+keyword-value pairs?
+
+What's missing is that type-of-data has no keyword. It could be:
+
+        field "Release-Note" {
+                type multitext
+and   
+        field "Priority" {
+		type enum
+                enum { ...
+  
+and                      
+                        
+        field "Release" {
+                type text
+                stringmatching "insert-regex-here"
+
+I'm not sure about your "string matching". Are there other sub options to
+"string" other than "matching"? If not, that's why I combined it to one
+keyword "stringmatching".
+
+The point of this little cleanup suggestion is to facilitate this format:
+
+fieldname "list of keyword-value pairs"
+
+(I realize that the format of the gnats config files doesn't have to be
+exactly like the info sent to clients, but it might as well start off
+being more similar, I figure!)
+
+Tcl and perl have different list syntax, but the following idea might be
+useful for perl as well(?).
+
+For Tcl:
+
+fieldname {keyword {value} keyword {value} keyword {value}}
+
+So, for the fields above:
+
+Release-Note {type {multitext} query-default {exact-regexp}}
+
+Release {type {text} stringmatching {[0-9]\.[0-9]} query-pr-option {A
+--release} network-query-command {RLSE} query-default {inexact-regexp}}
+
+Priority {type {enum} enum {values {high medium low} default {medium}}
+query-pr-option {p --priority} network-query-command {PRIO} query-default
+{exact-regexp}}
+
+With this format, I don't even have to parse:
+
+If variable "f" is set to the "Priority" line above:
+
+% array set keys [lindex $f 1]
+% array names keys
+query-default network-query-command enum type query-pr-option
+
+and now there's an array called "keys" with elements equal to your
+keywords.
+
+Note that "enum" is nested:
+
+% puts $keys(enum)
+values {high medium low} default {medium}
+
+but I can do the same thing:
+
+% array set enumkeys $keys(enum)
+% array names enumkeys
+values default
+% puts $enumkeys(values)
+high medium low
+
+There may be drawbacks with the above, such as restricions on the number
+of characters in one line (before an LF or CR/LF). Also, the brace
+characters, if they exist in the keyword-values, would have to be escaped.
+
+An alternative might be just a stream of records:
+
+220 List follows.
+field Priority
+type enum
+enumvalues high medium low
+enumdefault medium
+enumquery-pr-option p --priority
+network-query-command PRIO 
+query-default exact-regexp
+field Release
+...etc...
+query-default inexact-regexp
+.
+
+In this case I've "flattened" the nested enum into the one level of
+keyword-value pairs. It's not really much more work to read this and build
+my own lists or arrays.
+
+...RickM...
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00020" HREF="msg00020.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00021">Date Index</A>] [<a href="subjects.html#00021">Subject Index</a>] [<a href="authors.html#00021">Author Index</a>] [<A HREF="threads.html#00021">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00020.html">Date Prev</A>]&nbsp;[<A HREF="msg00022.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00020.html">Thread Prev</A>]&nbsp;[<A HREF="msg00023.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

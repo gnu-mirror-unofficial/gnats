@@ -1,0 +1,128 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: gnatsweb create PR &#45; mark required fields in form -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 23 Oct 2001 15:40:28 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011023173105.00b50398@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 41C51B624B52D3118F8700805F8B02CD82CD54@hhexch1.hh.sdm.de -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: gnatsweb create PR - mark required fields in form</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00059">Date&nbsp;Index</A>] [<a href="subjects.html#00059">Subject&nbsp;Index</a>] [<a href="authors.html#00059">Author&nbsp;Index</a>] [<A HREF="threads.html#00059">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00058.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00060.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00058.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnatsweb create PR - mark required fields in form</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Schnieder, Tammo&quot; &lt;Tammo dot Schnieder at sdm dot de&gt;</li>
+<li><em>Subject</em>: Re: gnatsweb create PR - mark required fields in form</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 23 Oct 2001 17:40:42 +0200</li>
+<li><em>Cc</em>: gnats-devel at sources dot redhat dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 17:01 23.10.2001 +0200, you wrote:
+&gt;Hi,
+&gt;
+&gt;when creating a PR our Users want to know which fields are required.
+&gt;
+&gt;So I changed the gnatsweb.pl so that required fields are marked with an &quot;*&quot;
+&gt;before their name.
+&gt;
+&gt;I suggested this earlier to Yngve, but without cvs diff.
+&gt;
+&gt;So here it comes.
+
+Sorry I didn't get back to you on this one earlier.
+
+I decided not to implement this in Gnatsweb 2 (Unless the release of GNATS 
+4 gets pushed even more back now, I consider Gnatsweb 2.x to be dead 
+development-wise), but I have it on the list of things that are due to 
+appear in Gnatsweb 4. However, Gnatsweb 4 is in beta already, and since 
+neither GNATS 3 nor GNATS 4 have mechanisms for marking which fields are 
+required in the database config files, I'll take some more time to think 
+about how best to implement this.
+
+The fact that Gnatsweb 2 requires such fields as reporter's e-mail, 
+submitter-id etc. is actually hardcoded into Gnatsweb and is in no way 
+required by GNATS itself. Another important factor is that GNATS 4 is 
+extremely configurable, so only a small number of fields are guaranteed to 
+exist on all GNATS sites.
+
+I have marked this as a change-request for Gnatsweb 4.1, which I'll start 
+work on as soon as GNATS 4 (containing Gnatsweb 4.0) is released, hopefully 
+within the next two or three months.
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00058" href="msg00058.html">gnatsweb create PR - mark required fields in form</a></strong>
+<ul><li><em>From:</em> Schnieder, Tammo</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00059">Date&nbsp;Index</A>] [<a href="subjects.html#00059">Subject&nbsp;Index</a>] [<a href="authors.html#00059">Author&nbsp;Index</a>] [<A HREF="threads.html#00059">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00058.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00060.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00058.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: unparseable gnatsd shell error -->
+<!--X-From-R13: @vpx Pbjre <avpxNoenvafgbez.pb.hx> -->
+<!--X-Date: 17 Oct 2001 09:07:01 &#45;0000 -->
+<!--X-Message-Id: 3BCD45EB.42BDFC67@brainstorm.co.uk -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 3BBD8CFF.C1C0845D@brainstorm.co.uk -->
+<!--X-Reference: 87y9mbzugd.fsf@blackbird.zamazal.org -->
+<!--X-Reference: 5.1.0.14.2.20011016200121.051418f8@10.10.1.1 -->
+<!--X-Reference: 5.1.0.14.2.20011016210856.0518bec0@10.10.1.1 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Nick Bower - Re: unparseable gnatsd shell error</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00046">Date&nbsp;Index</A>] [<a href="subjects.html#00046">Subject&nbsp;Index</a>] [<a href="authors.html#00046">Author&nbsp;Index</a>] [<A HREF="threads.html#00046">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00045.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00045.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: unparseable gnatsd shell error</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Subject</em>: Re: unparseable gnatsd shell error</li>
+<li><em>From</em>: Nick Bower &lt;nick at brainstorm dot co dot uk&gt;</li>
+<li><em>Date</em>: Wed, 17 Oct 2001 09:48:43 +0100</li>
+<li><em>CC</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>References</em>: &lt;<a href="msg00017.html">3BBD8CFF.C1C0845D@brainstorm.co.uk</a>&gt; &lt;<a href="msg00041.html">87y9mbzugd.fsf@blackbird.zamazal.org</a>&gt; &lt;<a href="msg00043.html">5.1.0.14.2.20011016200121.051418f8@10.10.1.1</a>&gt; &lt;<a href="msg00045.html">5.1.0.14.2.20011016210856.0518bec0@10.10.1.1</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+&gt; At 19:24 16.10.2001 +0100, Nick Bower wrote:
+&gt; &gt;nailed it - it's when i change the notify from -1 to 8 in the submitters
+&gt; &gt;file for a particular submitter.  don't know why this causes a problem
+&gt; &gt;for only the non-pending category.  must be something to do with at-pr
+&gt; &gt;(turning off the notication fixes it) and that fact that i used the
+&gt; &gt;customization features to remove:
+&gt; 
+&gt; (snip)
+&gt; 
+&gt; I assume you also removed the Reporter's email field from Gnatsweb?
+
+nup - gnats/gnatsweb is unhacked (except for gnatsweb-site vars).  other
+than using dbconfig to do the customizations in the intended way,
+everything is stock-standard.  the reporter's email is valid and
+recorded.  see later for this separate issue.
+
+this is definately a bug with gnats - i'll submit a PR.  i've just
+switched back to the distribution dbconfig, set notify-about-expired-prs
+= true and i get the same error.
+
+everything is installed in the default locations btw.
+
+&gt; The pending category is handled in a special way, since only the
+&gt; GNATS administrator receives notification e-mail when pending PRs
+&gt; arrive. If you take a look at PR 284, you'll se an explanation
+&gt; together with suggested fix.
+
+thanks - separate issue, and i think it's an obvious use to enter a PR
+via the web interface and not have to provide an email, ie for a call
+centre in a commerical environment.
+
+cheers, nick
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00047" href="msg00047.html">Re: unparseable gnatsd shell error</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00017" href="msg00017.html">Gnats 4 Spaces?</a></strong>
+<ul><li><em>From:</em> nick</li></ul></li>
+<li><strong><a name="00041" href="msg00041.html">Re: Gnats 4 Spaces?</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+<li><strong><a name="00043" href="msg00043.html">Re: unparseable gnatsd shell error</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00045" href="msg00045.html">Re: unparseable gnatsd shell error</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00046">Date&nbsp;Index</A>] [<a href="subjects.html#00046">Subject&nbsp;Index</a>] [<a href="authors.html#00046">Author&nbsp;Index</a>] [<A HREF="threads.html#00046">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00045.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00045.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00047.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

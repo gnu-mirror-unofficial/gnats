@@ -1,0 +1,270 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: GNATSWEB installation -->
+<!--X-From-R13: E Dnzrfu <enfunazhNacq.upygrpu.pbz> -->
+<!--X-Date: 14 Jul 2001 06:00:08 &#45;0000 -->
+<!--X-Message-Id: 01071411002806.01017@Ram -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: NFBBKKJOOOFPOFEJFANIIELPCBAA.uma@cmoschips.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>S Ramesh - Re: GNATSWEB installation</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00050">Date&nbsp;Index</A>] [<a href="subjects.html#00050">Subject&nbsp;Index</a>] [<a href="authors.html#00050">Author&nbsp;Index</a>] [<A HREF="threads.html#00050">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00049.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00051.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00049.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00060.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: GNATSWEB installation</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Uma R&quot; &lt;uma at cmoschips dot com&gt;</li>
+<li><em>Subject</em>: Re: GNATSWEB installation</li>
+<li><em>From</em>: S Ramesh &lt;rashanmu at npd dot hcltech dot com&gt;</li>
+<li><em>Date</em>: Sat, 14 Jul 2001 11:23:43 +0530</li>
+<li><em>Cc</em>: &quot;GNATS&quot; &lt;gnats-devel at sourceware dot cygnus dot com&gt;</li>
+<li><em>Organization</em>: HCL Technologies Ltd.</li>
+<li><em>References</em>: &lt;<a href="msg00049.html">NFBBKKJOOOFPOFEJFANIIELPCBAA.uma@cmoschips.com</a>&gt;</li>
+<li><em>Reply-To</em>: rashanmu at npd dot hcltech dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+If u r installing in redhat 7.1 vcersion or more.. checkout the 
+firewall configuration. login as root and run the setup command and 
+chk out the firewall configuration. if it is high.change  it 
+according to ur need like medium or no. coz if its high means surely 
+it wont allow anny connections from outside. so comes the error... 
+
+connection failed or connection  refused. thsi will surely work.
+
+the problem with solaris i dont know.. i think a version of gnats is 
+there specially for solaris.
+
+<A  HREF="http://www.gigascale.org/softdevel/gnats.htm">http://www.gigascale.org/softdevel/gnats.htm</A>
+
+check out this page. there a link is provided for solaris. I haven't 
+tried that. why don't u.
+
+Regadring TKgnats.. it works fine when the shell utilities like 
+send-pr and edit-pr works fine.
+
+Instead of going for Tkgnats why can't  u use the webinterface.
+Do the following steps to install the webinterface in linux 7.2
+
+1. Get the Gnatsweb 2.8.2
+2. then chk the firewall config.. for checking purpopse.. make it as 
+no firewall.
+3. Now perl and all will be there in 7.2 version so no need to make 
+any changes in the gnatsweb.pl file.
+4. Before these steps u need to have atleast one problem report int 
+he gnats-db. what i mean in u will have some 4 categories whcih 
+already will be there know like gcc, doc, test .,.. atleast one of 
+these directories should have a problem report. if u dont have 
+anything..
+
+go to command propt and 
+
+send-pr
+
+here u give the category as test. and send the report. when the cron 
+deamon find this report in the gnats-queue directory it will use 
+file-pr to file it with a number inthe correspding category 
+directory.. in our case.. its test. so test will be having the PR. if 
+this step itself is not working means.. u have to check the archive 
+where Margret ( retreiver company ) has sent a mail to me.. regd how 
+to make work queue-pr ( read this if needed ).
+
+5. Now u have a problem report under directory test. create a file in 
+/etc directoy like 
+gnats-db.conf
+
+this file should contains the database alias name
+type as 
+
+/usr/local/share/gnats/gnats-db:dbase
+
+(fi u installed as per the instruction then this direcorty will be 
+there for u in ur macine )
+
+then edit ur gantsd.conf
+
+type as *:*:edit:dbase
+
+(this is a test configuration so that anybody can access the database 
+with edit permission... also note that that dbase is my alias --i.e 
+my chossen alias name. u can have ur own ). 
+
+simillarly in the gnatsd.access file edit like
+
+use some alid usernames and passwds with permission 
+
+example 
+
+gnats:gnats:edit:dbase
+
+
+6. thats all config stuff is over. now its only testing..
+
+make test USERNAME=gnats PASSWORD=gnats DATABASE=dbase
+
+surely this will say all test succedded.. if u done the stpes what i 
+mentioned correctly.
+
+7. then install like
+
+make install CGI_DIR=/var/www/cgi-bin
+
+exactly type this command  as root. surely this wont create any probs.
+if u have doubt on my words.. chk out whether a directory like
+/var/www/cgi-bin is there if so what i have said is coorect. if not 
+then ur apache isn ot installed properly.
+
+8. Thats it steps are over..
+
+<A  HREF="http://yourserverip/cgi-bin/gnatsweb.pl">http://yourserverip/cgi-bin/gnatsweb.pl</A>
+
+u will be asked for username and passswd.. eeverything is over.. if 
+ur server ip address is local. then make sure that this IP should be 
+bypassed by the proxy like that of ur intranet server ( if u r doing 
+in a intranet ). 
+
+Hope this stuff will really make u install gnatsweb.. ihad stuck up 
+in the lot of steps mentioned. Margret hashelped me a lot and also 
+the Gnatsweb Maintener. but still i have some config problem and 
+expecting people to help me.. even u also. if u have any problem in 
+the steps mentioned.. contact me...
+
+Ramesh.
+
+
+*************************************************************************************
+
+
+
+On Saturday 14 July 2001 02:36 am, Uma R wrote:
+&gt; We have installed Linux (Redhat) version 7.2. Also in solaris we
+&gt; face the same problem.
+&gt; Do anyone have an idea of whether the TCL/TK version of GNATS works
+&gt; fine.
+&gt;
+&gt; Please do give me what changes shld I make in the files and what
+&gt; are the files that gets
+&gt; affected. This is really a crucial thing for us now. We need it
+&gt; badly.
+&gt;
+&gt;
+&gt; -Uma
+&gt;
+&gt; -----Original Message-----
+&gt; From: S Ramesh [<A  HREF="mailto:rashanmu@npd.hcltech.com">mailto:rashanmu@npd.hcltech.com</A>]
+&gt; Sent: Thursday, July 12, 2001 9:53 PM
+&gt; To: Uma R; GNATS
+&gt; Subject: Re: GNATSWEB installation
+&gt;
+&gt;
+&gt; Yeah even i faced more or less the same problem.
+&gt;
+&gt; but u tell me what version of linux u r using. then i can able to
+&gt; solve the problem. there are some steps u have to follow.
+&gt; reply..
+&gt;
+&gt; Ramesh
+&gt;
+&gt; On Thursday 12 July 2001 10:51 pm, Uma R wrote:
+&gt; &gt; Hi there,
+&gt; &gt;    There are problems in installing the gnatsweb interface. The
+&gt; &gt; changes that needs to be done for the installation are
+&gt; &gt; not clearly mentioned and everyone is facing problems in that.
+&gt; &gt; Please can anyone give the steps for the installation clearly
+&gt; &gt; so that it will make some help to others. Also I need to know
+&gt; &gt; what a CGI enabled directory means in solaris because in linux I
+&gt; &gt; created a directory in /home as /httpd/cgi-bin and things are
+&gt; &gt; installed in that and the problem i face in linux is its says
+&gt; &gt; that the connection is refused when i try to open the gnatsweb.pl
+&gt; &gt; page. In solaris the makefile itself fails. Can u pls do help me
+&gt; &gt; and as i said this is really a critical thing for me and it shld
+&gt; &gt; be done before the day.
+&gt; &gt;
+&gt; &gt; Thanks in advance,
+&gt; &gt; Uma
+&gt; &gt;
+&gt; &gt; &quot;Opportunity is missed by most people because
+&gt; &gt; it is dressed in overalls and looks like work.&quot; - Thomas Edison
+&gt;
+&gt; ----------------------------------------
+&gt; Content-Type: application/ms-tnef; charset=&quot;iso-8859-1&quot;;
+&gt; name=&quot;winmail.dat&quot;
+&gt; Content-Transfer-Encoding: base64
+&gt; Content-Description:
+&gt; ----------------------------------------
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00060" href="msg00060.html">RE: GNATSWEB installation</a></strong>
+<ul><li><em>From:</em> Uma R</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00049" href="msg00049.html">RE: GNATSWEB installation</a></strong>
+<ul><li><em>From:</em> Uma R</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00050">Date&nbsp;Index</A>] [<a href="subjects.html#00050">Subject&nbsp;Index</a>] [<a href="authors.html#00050">Author&nbsp;Index</a>] [<A HREF="threads.html#00050">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00049.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00051.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00049.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00060.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

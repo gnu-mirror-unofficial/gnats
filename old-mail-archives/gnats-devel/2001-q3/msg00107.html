@@ -1,0 +1,175 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: gnatsweb news -->
+<!--X-From-R13: "Rvex Pretfgebz" <qvexNwhavcre.arg> -->
+<!--X-Date: 8 Sep 2001 00:43:04 &#45;0000 -->
+<!--X-Message-Id: 5B1CAAC2F0818444BF07B7AD8845E53C4B1ED5@ELECTRON.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - gnatsweb news</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00107">Date&nbsp;Index</A>] [<a href="subjects.html#00107">Subject&nbsp;Index</a>] [<a href="authors.html#00107">Author&nbsp;Index</a>] [<A HREF="threads.html#00107">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00106.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00108.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00106.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00111.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnatsweb news</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: gnatsweb news</li>
+<li><em>From</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Fri, 7 Sep 2001 17:43:03 -0700</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+changelog for gnatsweb in the savannah.gnu.org CVS repository:
+
+2001-09-07  Dirk Bergstrom  &lt;dirk@juniper.net&gt;
+
+	* gnatsweb.pl (get_mailto_link): rewritten to properly
+html-escape
+	the followup mailto: link contents.
+
+	* gnatsweb.pl (help_page): Changed bare calls to p() &amp; a() to
+	$q-&gt;p() style calls.  Missed these yesterday.
+
+2001-09-06  Dirk Bergstrom  &lt;dirk@juniper.net&gt;
+
+	* gnatsweb.pl: Use CGI qw/-nosticky/; This prevents CGI.pm from
+	appending a bunch of .cgifields to every self_url().  AFAIK,
+we're
+	not using CGI.pm's sticky field features, so we can do w/o the
+	overhead and the unreasonably long URLs it produces.
+
+	* gnatsweb.pl: Changed bare calls to CGI.pm routines to
+qualified
+	calls (ie. submit(foo... becomes $q-&gt;submit(foo... ).  This
+allows
+	us to stop importing the :standard and :netscape extensions to
+	CGI.pm.  Doing so should improve the startup time and decrease
+	memory footprint.
+
+	* gnatsweb.pl: Refresh headers choke on semicolon-separated
+	query-strings, so we change semicolons to ampersands in the URL
+	everywhere we use refresh.
+
+	* gnatsweb.pl (view, edit, submitedit, download_attachment):
+Added
+	code to strip non-digit characters from $pr.  Gnatsd sometimes
+	accepts category/number, and sometimes does the Wrong Thing, and
+I
+	thought it best to remove the possibility of problems.
+
+	* gnatsweb.pl (camouflage, set_pref): Removed camouflage()ing of
+	'user', since the first time I used this version of gnatsweb, it
+	became convinced that my username was 'ag`tavqw'.  This
+migration
+	problem far outweighs the meager benefits of masking the
+username
+	in the cookie.  camouflage()ing the password will still cause
+	migration problems for sites that have used a previous
+incarnation
+	of gnatsweb, but it might be worth it...
+
+	* gnatsweb.pl (page_start_html): Don't show logout button if
+	$site_gnatsweb_server_auth is set.  Don't show button bar on
+main
+	page.  Changed all the html tags to lowercase, for
+	standards-compliance.
+
+	* gnatsweb.pl (datemenu, edit): Removed datemenu(), and the one
+	(unreachable) reference to it.  It was unused, and probably
+	justifiably so, given the robust date parsing abilities in
+gnatsd.
+
+	* gnatsweb.pl (display_query_results): Strip empty params out of
+	$url for the &quot;View for bookmarking&quot; link.
+
+	* gnatsweb.pl (store_query): Strip empty params out of
+	$query_string before building cookie, to help keep it under the
+4K
+	limit.  Check (approx) length of cookie, error if it looks like
+	it's going to be over 4K.
+
+	* gnatsweb.pl (get_mailto_link): Added a new config parameter,
+	%site_pr_submission_address.  If set for the current database,
+	get_mailto_link() adds a mailto: link (&quot;submit followup via
+	email&quot;) that goes to the local PR submission address and the
+PR's
+	Reply-To address.  The subject is set so that the message gets
+	tacked on to the PR's audit trail.
+
+
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,          Computer Geek
+Tel: 707.433.0564           Fax: 707.433.0769
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00111" href="msg00111.html">Re: gnatsweb news</a></strong>
+<ul><li><em>From:</em> Gerald Pfeifer</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00107">Date&nbsp;Index</A>] [<a href="subjects.html#00107">Subject&nbsp;Index</a>] [<a href="authors.html#00107">Author&nbsp;Index</a>] [<A HREF="threads.html#00107">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00106.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00108.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00106.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00111.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

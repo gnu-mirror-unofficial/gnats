@@ -1,0 +1,156 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: Re: gnats v4 &#45;&#45; the Big Question -->
+<!--X-From-R13: Bnhy Fenvan <cfgNwhavcre.arg> -->
+<!--X-Date: 17 Dec 1999 17:54:18 &#45;0000 -->
+<!--X-Message-Id: 19991217095413.G2104@base.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.WNT.4.20.9912162251420.&#45;139601@special&#45;sauce.ne.mediaone.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: gnats v4 -- the Big Question</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00015">Date&nbsp;Index</A>] [<a href="subjects.html#00015">Subject&nbsp;Index</a>] [<a href="authors.html#00015">Author&nbsp;Index</a>] [<A HREF="threads.html#00015">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00014.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00014.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00022.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnats v4 -- the Big Question</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: "Kenneth H. Cox" &lt;kenstir at senteinc dot com&gt;</LI>
+<LI><em>Subject</em>: Re: gnats v4 -- the Big Question</LI>
+<LI><em>From</em>: Paul Traina &lt;pst at juniper dot net&gt;</LI>
+<LI><em>Date</em>: Fri, 17 Dec 1999 09:54:13 -0800</LI>
+<LI><em>Cc</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>References</em>: &lt;<A HREF="msg00014.html">Pine.WNT.4.20.9912162251420.-139601@special-sauce.ne.mediaone.net</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Actually, Bob has been doing major restructuring under the covers
+so that in a future release of gnats, we can make it run under a
+RDBMS like MySQL.  We decided to *not* complete that until after
+4.0 shipped (4.0 needs to get out the door).
+
+I have never noticed gnatsd being slow at start, but didn't really
+pay attention.  There is a lot of stuff going on when init_gnats()
+is called, which hopefully will become more streamlined as we go.
+
+Does gnatsweb open up a new gnatsd every time a HTTP request comes
+in?  I'll assume the answer is yes...?  Since http 1.1 and later
+have persistance, is any of that around in Perl5 modules so that
+you can easily keep context between cgi invocations?
+
+On Thu, Dec 16, 1999 at 11:07:01PM -0500, Kenneth H. Cox wrote:
+&gt; Hello folks,
+&gt; 
+&gt; I have taken a look at the latest gnats in CVS (the squirrel2 release).
+&gt; Before I embark on the relatively large project of changing gnatsweb to
+&gt; support gnats v4, I'd like to ask the Big Question: What are the design
+&gt; goals of v4?
+&gt; 
+&gt; I like gnats.  I use gnats.  But I have 3 big problems with gnats,
+&gt; make that 4, only one of which I think is being solved by gnats v4.
+&gt; 
+&gt; 1. I want to have some new or modified fields, e.g. version should be
+&gt;    enum, and I'd like to have a "fixed in" field which contains the
+&gt;    version number which contains the fix.  This I think is well handled
+&gt;    by gnats v4.
+&gt; 
+&gt; 2. There are things which I'd like to do which I can't, which would
+&gt;    work better in an RDBMS.  For example, after Joe leaves the project
+&gt; 
+&gt; 	update bugs set responsible='kenstir' where responsible='joe'
+&gt; 
+&gt;    Or for reporting the bugs within the last 7 days
+&gt; 
+&gt; 	select id,creation_date from bugs
+&gt; 	where creation_date &lt; CURRENT_DATE() - 7
+&gt; 
+&gt;    Not that I can't do this inside gnatsweb; I can.  But now we're using
+&gt;    gnats as a support call tracker, I have the feeling that I'll be
+&gt;    asked to supply such stats on a weekly or monthly basis.
+&gt; 
+&gt; 3. I have to maintain gnats myself.  It doesn't require a whole lot of
+&gt;    work.  I'm guessing that if gnats were implemented on top of an RDBMS
+&gt;    like MySQL, then I could interest somebody else in learning it and
+&gt;    handling the maintenence.  That way, while they were learning gnats
+&gt;    they would also be learning MySQL which would help them in other
+&gt;    areas and which they could write on their resume etc.
+&gt; 
+&gt; 4. Gnatsd is not blazingly fast.  I attribute this to the fact that
+&gt;    gnatsd is started up from inetd for each connection.  As of v3
+&gt;    there was no other way to do it.  Is this addressed in v4?
+&gt; 
+&gt; Regards,
+&gt; Ken
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00022" HREF="msg00022.html">Re: gnats v4 -- the Big Question</A></STRONG>
+<UL><LI><EM>From:</EM> Kenneth H. Cox</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00014" HREF="msg00014.html">gnats v4 -- the Big Question</A></STRONG>
+<UL><LI><EM>From:</EM> Kenneth H. Cox</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00015">Date&nbsp;Index</A>] [<a href="subjects.html#00015">Subject&nbsp;Index</a>] [<a href="authors.html#00015">Author&nbsp;Index</a>] [<A HREF="threads.html#00015">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00014.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00016.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00014.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00022.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

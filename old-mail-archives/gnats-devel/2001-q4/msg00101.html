@@ -1,0 +1,134 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: Gnats 4.0/Gnatsweb 4.0 migration problems. -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 6 Nov 2001 13:58:50 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011106144956.04936108@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20011106141848.A19049@teapot.netman.dk -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00101">Date&nbsp;Index</A>] [<a href="subjects.html#00101">Subject&nbsp;Index</a>] [<a href="authors.html#00101">Author&nbsp;Index</a>] [<A HREF="threads.html#00101">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00100.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00102.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00100.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00103.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Lars Henriksen &lt;Lars dot Henriksen at netman dot dk&gt;,Bug-gnats mailing list &lt;bug-gnats at gnu dot org&gt;</li>
+<li><em>Subject</em>: Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 06 Nov 2001 14:58:24 +0100</li>
+<li><em>Cc</em>: Gnats development mailing list &lt;gnats-devel at sourceware dot cygnus dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 14:18 06.11.2001 +0100, Lars Henriksen wrote:
+&gt;2.
+&gt;Queries do not work (I have reported this as PR gnats/295).
+&gt;
+&gt;$ query-pr --expr category=&quot;test&quot;
+&gt;query-pr: no PRs matched
+&gt;
+&gt;Whereas
+&gt;
+&gt;$ query-pr --category=test
+&gt;
+&gt;returns 18 PRs. I can look at PRs by number, but have had no success with
+&gt;regular expressions at all.
+
+You need to quote the query expressions to protect them from shell 
+interpretation. The following should work well:
+
+query-pr --expr 'category=&quot;test&quot;'
+
+(Appendix D of the manual mentions shell quoting briefly)
+
+&gt; From Gnatsweb 4.0 I get a
+&gt;
+&gt;Return code: 415 - Invalid expression.
+&gt;
+&gt;whenever I do a query with something other than &quot;any&quot;.
+
+That surprises me, because it works flawlessly in my test setup. Exactly 
+what kind of query are we talking about here? Is it from the ordinary Query 
+page, or are you using regular expressions in the Advanced query page? 
+Could you please describe an exact procedure which reproduces this in your 
+setup?
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00103" href="msg00103.html">Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</a></strong>
+<ul><li><em>From:</em> Lars Henriksen</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00100" href="msg00100.html">Gnats 4.0/Gnatsweb 4.0 migration problems.</a></strong>
+<ul><li><em>From:</em> Lars Henriksen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00101">Date&nbsp;Index</A>] [<a href="subjects.html#00101">Subject&nbsp;Index</a>] [<a href="authors.html#00101">Author&nbsp;Index</a>] [<A HREF="threads.html#00101">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00100.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00102.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00100.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00103.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

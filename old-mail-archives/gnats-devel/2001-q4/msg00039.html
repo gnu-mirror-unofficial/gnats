@@ -1,0 +1,137 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: "Exotic" GNATS 4 fields -->
+<!--X-From-R13: "Bnhy Fenvan" <cfgNwhavcre.arg> -->
+<!--X-Date: 15 Oct 2001 20:44:42 &#45;0000 -->
+<!--X-Message-Id: 005a01c155ba$2d293d80$2b6b6fc0@shockwave.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20011002211349.00b45520@10.10.1.1 -->
+<!--X-Reference: 874rp257iq.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Paul Traina - Re: &quot;Exotic&quot; GNATS 4 fields</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00039">Date&nbsp;Index</A>] [<a href="subjects.html#00039">Subject&nbsp;Index</a>] [<a href="authors.html#00039">Author&nbsp;Index</a>] [<A HREF="threads.html#00039">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00038.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00040.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00038.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: &quot;Exotic&quot; GNATS 4 fields</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Yngve Svendsen&quot; &lt;yngve dot svendsen at clustra dot com&gt;,  &quot;Milan Zamazal&quot; &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: &quot;Exotic&quot; GNATS 4 fields</li>
+<li><em>From</em>: &quot;Paul Traina&quot; &lt;pst at juniper dot net&gt;</li>
+<li><em>Date</em>: Mon, 15 Oct 2001 13:44:19 -0700</li>
+<li><em>Cc</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Organization</em>: Juniper Networks, Inc.</li>
+<li><em>References</em>: &lt;<a href="msg00011.html">5.1.0.14.2.20011002211349.00b45520@10.10.1.1</a>&gt; &lt;<a href="msg00033.html">874rp257iq.fsf@blackbird.zamazal.org</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Seems like a reasonable thing to do.  Remember, we put the fields in that we
+needed, but ideally, only the core fields that GNATS needs should be there
+by default.
+
+----- Original Message -----
+From: &quot;Milan Zamazal&quot; &lt;pdm@zamazal.org&gt;
+To: &quot;Yngve Svendsen&quot; &lt;yngve.svendsen@clustra.com&gt;
+Cc: &lt;gnats-devel@sources.redhat.com&gt;
+Sent: Sunday, October 14, 2001 12:46 PM
+Subject: Re: &quot;Exotic&quot; GNATS 4 fields
+
+
+&gt; &gt;&gt;&gt;&gt;&gt; &quot;YS&quot; == Yngve Svendsen &lt;yngve.svendsen@clustra.com&gt; writes:
+&gt;
+&gt;     YS&gt; From the responses I have received, I suggest that we do as
+&gt;     YS&gt; follows: Keep the Date-Required, Release-Note and Keywords
+&gt;     YS&gt; fields -- they're useful in their own right.  Rename Cases to
+&gt;     YS&gt; Related-PRs.  Comment out Quarter in the dbconfig file, with a
+&gt;     YS&gt; note to the effect that people upgrading from an older
+&gt;     YS&gt; release-based GNATS should enable the field.
+&gt;
+&gt;     YS&gt; Of course, Milan has to make the final desicion on this.
+&gt;
+&gt; I agree except for Cases/Related-PRs.  If we want to retain the field,
+&gt; we should clearly define its format and semantics since GNATS should
+&gt; provide some means (not in 4.0) for problem cross-references.  Unless
+&gt; someone is going to do it now, I'd suggest to remove the field for 4.0
+&gt; and (re)introduce it later, preferably together with the
+&gt; cross-referencing facility.
+&gt;
+&gt; Regards,
+&gt;
+&gt; Milan Zamazal
+&gt;
+&gt; --
+&gt; <A  HREF="http://www.zamazal.org">http://www.zamazal.org</A>
+&gt;
+&gt;
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00011" href="msg00011.html">&quot;Exotic&quot; GNATS 4 fields</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00033" href="msg00033.html">Re: &quot;Exotic&quot; GNATS 4 fields</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00039">Date&nbsp;Index</A>] [<a href="subjects.html#00039">Subject&nbsp;Index</a>] [<a href="authors.html#00039">Author&nbsp;Index</a>] [<A HREF="threads.html#00039">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00038.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00040.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00038.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: gnats v4 &#45;&#45; the Big Question -->
+<!--X-From-R13: "Yraargu V. Qbk" <xrafgveNfragrvap.pbz> -->
+<!--X-Date: 17 Dec 1999 04:08:55 &#45;0000 -->
+<!--X-Message-Id: Pine.WNT.4.20.9912162251420.&#45;139601@special&#45;sauce.ne.mediaone.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>gnats v4 -- the Big Question</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00014">Date&nbsp;Index</A>] [<a href="subjects.html#00014">Subject&nbsp;Index</a>] [<a href="authors.html#00014">Author&nbsp;Index</a>] [<A HREF="threads.html#00014">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00013.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00015.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00013.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00015.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>gnats v4 -- the Big Question</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: gnats v4 -- the Big Question</LI>
+<LI><em>From</em>: "Kenneth H. Cox" &lt;kenstir at senteinc dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 16 Dec 1999 23:07:01 -0500 (Eastern Standard Time)</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hello folks,
+
+I have taken a look at the latest gnats in CVS (the squirrel2 release).
+Before I embark on the relatively large project of changing gnatsweb to
+support gnats v4, I'd like to ask the Big Question: What are the design
+goals of v4?
+
+I like gnats.  I use gnats.  But I have 3 big problems with gnats,
+make that 4, only one of which I think is being solved by gnats v4.
+
+1. I want to have some new or modified fields, e.g. version should be
+   enum, and I'd like to have a "fixed in" field which contains the
+   version number which contains the fix.  This I think is well handled
+   by gnats v4.
+
+2. There are things which I'd like to do which I can't, which would
+   work better in an RDBMS.  For example, after Joe leaves the project
+
+	update bugs set responsible='kenstir' where responsible='joe'
+
+   Or for reporting the bugs within the last 7 days
+
+	select id,creation_date from bugs
+	where creation_date &lt; CURRENT_DATE() - 7
+
+   Not that I can't do this inside gnatsweb; I can.  But now we're using
+   gnats as a support call tracker, I have the feeling that I'll be
+   asked to supply such stats on a weekly or monthly basis.
+
+3. I have to maintain gnats myself.  It doesn't require a whole lot of
+   work.  I'm guessing that if gnats were implemented on top of an RDBMS
+   like MySQL, then I could interest somebody else in learning it and
+   handling the maintenence.  That way, while they were learning gnats
+   they would also be learning MySQL which would help them in other
+   areas and which they could write on their resume etc.
+
+4. Gnatsd is not blazingly fast.  I attribute this to the fact that
+   gnatsd is started up from inetd for each connection.  As of v3
+   there was no other way to do it.  Is this addressed in v4?
+
+Regards,
+Ken
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00015" HREF="msg00015.html">Re: gnats v4 -- the Big Question</A></STRONG>
+<UL><LI><EM>From:</EM> Paul Traina</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00014">Date&nbsp;Index</A>] [<a href="subjects.html#00014">Subject&nbsp;Index</a>] [<a href="authors.html#00014">Author&nbsp;Index</a>] [<A HREF="threads.html#00014">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00013.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00015.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00013.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00015.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

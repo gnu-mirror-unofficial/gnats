@@ -1,0 +1,277 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: Re: proclamation of intent -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 18 Aug 1999 21:15:19 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.9908181459250.4455&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 199908182013.NAA02379@tristam.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: proclamation of intent</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00006">Date Index</A>] [<a href="subjects.html#00006">Subject Index</a>] [<a href="authors.html#00006">Author Index</a>] [<A HREF="threads.html#00006">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00005.html">Date Prev</A>]&nbsp;[<A HREF="msg00007.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00005.html">Thread Prev</A>]&nbsp;[<A HREF="msg00007.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: proclamation of intent</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Bob Manson &lt;bmanson@juniper.net&gt;</LI>
+<LI><em>Subject</em>: Re: proclamation of intent </LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm@vsl.com&gt;</LI>
+<LI><em>Date</em>: Wed, 18 Aug 1999 15:12:54 -0600 (MDT)</LI>
+<LI><em>cc</em>: gnats-devel@sourceware.cygnus.com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Wed, 18 Aug 1999, Bob Manson wrote:
+
+&gt; &gt;As a start, this format would want to be reasonable to parse as a list in
+&gt; &gt;Tcl and perl. Perhaps we need client-selectable formats: tcl, perl, sh,
+&gt; &gt;csh?
+&gt; 
+&gt; I could see that.  Want to make this as simple as possible to use, so
+&gt; having that sort of flexibility would be important.
+&gt; 
+&gt; I'm also not sure what exactly the clients would need to know, other
+&gt; than the names of the fields, their datatypes, and probably
+&gt; information about any restrictions on what values are valid (for enums
+&gt; the set of enumerated values, regexps, etc.)  Any further thoughts
+&gt; would be most helpful.
+&gt; 
+&gt; Oh, and there should be a human-readable description of the field.
+&gt; Don't want to forget that!
+
+Yes, absolutely!
+
+I feel that most of the "client hint" stuff that I sent out a while ago
+still applies. IE which fields are to be shown in send PR, which trigger
+email and change reasons and audit-trail entries, etc.
+
+Have you seen all that? If not, I've pasted it at the bottom here.
+
+I think these items could just be additional fields in your proposal. eg:
+
+        field "Release-Note" {
+                multitext
+                query-default exact-regexp
+		send-suppress
+		edit-requires-reason
+		edit-requires-audit-trail
+		mandatory
+        }
+
+Or it could be like gnatsweb:
+
+                flags "sendsuppress|editreason|audittrail|mandatory"
+
+Or whatever; I'm easy.
+
+&gt; Ideally it would be possible for the client to get all of the data
+&gt; that describes a field, but presenting this in a useful way is going
+&gt; to be difficult (this quickly turnes into the traditional textual
+&gt; database metadata problem).
+
+I don't see anything that the client _wounldn't_ want to get...
+
+&gt; &gt;It sounds like you might just use regexps. An exact match of "RickM" would
+&gt; &gt;need ^RickM$. An inexact (substring?) might be .*ick.*, *ick*, or just
+&gt; &gt;ick?
+&gt; 
+&gt; Well, sometimes you really want to specify a string, even if it has
+&gt; regexp characters in it.  Obviously you can escape everything, but
+&gt; that can be painful (especially for an unknowing user that's calling a
+&gt; simple client like query-pr, and passing in abbreviations to search
+&gt; for).
+&gt; 
+&gt; I can also envision different search types for other data types,
+&gt; primarily numeric fields.  It'd be sorta nice to be able to select
+&gt; ranges of PRs easily (without having to explain complex regexps to
+&gt; users), or other types of numeric fields (numeric priorities?  version
+&gt; numbers or release qualifiers that are actual numbers?)  If you have
+&gt; that ability, then being able to specify string versus regexp searches
+&gt; seems like a natural extension.
+&gt; 
+&gt; As another example, perhaps we have several severity levels, and we
+&gt; want all PRs that are less than serious.  Yes, we can list all of the
+&gt; less-than-serious priorities out in a regexp search, but it's far
+&gt; easier and more accurate to specify that we want all PRs less than
+&gt; serious.
+
+All of these cool things would be great.
+
+&gt; As for the string versus substring match, query-pr currently has
+&gt; varying behavior depending on what fields are being searched (some
+&gt; fields trying to match with an exact regexp, others allow matches with
+&gt; parts of the field).  I'm not sure if this is good or bad (the choices
+&gt; really seem quite arbitrary) but that's the way it's worked for a long
+&gt; time.  I'd rather give the user the ability to specify it, perhaps
+&gt; with defaults specified in the configuration file.
+
+The current behaviour sucks; I can never remember when I need .*foo or
+just foo!
+
+&gt; As for when this will be released... I was hoping to get something out
+&gt; this week, probably without any of the configuration file code but
+&gt; with a lot of the other changes I've been proposing.
+
+Did you pick up my file-pr changes? gnatsweb is actually broken without
+them.
+
+BTW - I have no idea how many of the regular contributors subscribe to
+this list. I hope they are all seeing this.
+
+Here's the client hint stuff. I think just the functionality of
+SUPPRESSED_FIELDS and FIELD_ALIASES would be obsolete with your great
+additions.
+
+The following are called "client hints" because front-end GNATS
+programs such as gnatsweb and TkGnats are free to support any and all
+of these configuration options. These options help give GNATS some
+degree of user-customizable fields until such time as the core GNATS
+code is modified for complete support.
+
+In the absence of the client hints, the default behaviour of any
+particular front-end client is up to the discretion of the client.
+
+The format is comma-separated field names. For example:
+
+	MANDATORY_FIELDS="Category,Originator,Synopsis,Description"
+
+These optional parameters may be placed in the GNATS configuration
+file gnats-db/gnatas-adm/config. GNATS itself ignores these options.
+
+Where defaults are suggested, they are just a guideline to get the
+same behaviour as the gnats clients send-pr and edit-pr.
+
+Please note that GNATS currently has a limit of 255 characters per
+line in the config file, including the parameter name.
+
+FIELD_ALIASES:
+        You can effectively rename any GNATS field with these aliases.
+        The alias only affects the client interface. Behind the 
+        scenes, the GNATS PR field still has the original name.
+
+REQUIRE_AUDIT_TRAIL_ENTRY: 
+        Edits to these fields trigger entries in the Audit-Trail.
+        "none" signals no fields. "all" signals all fields.
+
+REQUIRE_AUDIT_TRAIL_REASON: 
+        Edits to one or more of these fields triggers the
+        prompt of one reason for all changes for the Audit-Trail.
+        "none" signals no fields. "all" signals all fields.
+
+REQUIRE_AUDIT_TRAIL_EMAIL: 
+        Edits to one or more of these fields trigger the 
+        sending of email notification.
+        "none" signals no fields. "all" signals all fields.
+
+MANDATORY_FIELDS:
+        SendPR will insist that new PRs have values for these fields.
+        EditPR will insist that editied PRs have values for these fields.
+        "none" signals no fields. "all" signals all fields, but doesn't
+        include Audit-Trail, Unformatted or Release-Note in EditPR
+	because these fields are usually added by GNATS and are often
+        blank for the first part of a PRs life. You can always add these
+        fields if you wish.
+
+SUPPRESSED_FIELDS: 
+        Fields to suppress from view in all front-end views.
+        SUPPRESSED_FIELDS override MANDATORY_FIELDS if a field
+        appears in both lists.
+
+SUPPRESSED_SEND_FIELDS:  See "unless" options below.
+        Fields not to present in SendPR.
+        Format: field[(unless)]
+	Default: State,Responsible,Release-Note,Unformatted,Audit-Trail
+        Example: State,Responsible(edit),Release-Note,Audit-Trail
+
+SUPPRESSED_EDIT_FIELDS:  See "unless" options below.
+        Fields not to present, or to present read-only, in EditPR.
+	It is suggested that front-ends do not allow editing Arrival-Date,
+        Last-Modified and Closed-Date, since these are maintained by
+GNATS.
+        Format: field[(unless)]
+        Example: Audit-Trail(admin)
+
+SUPPRESS "unless" options:
+        Finer control over the showing of fields in SendPR and EditPR.
+        In SendPR, the field is suppressed. 
+        In EditPR, the field is suppressed or shown read-only, at the
+                   discression or configuration of the front-end.
+
+        Suppress fields:
+
+        user      - unless the user of the front-end asks for it.
+        edit      - unless the user has edit access.
+        edituser  - unless the user has edit access and
+                    the user of the the front-end asks for it.   
+        admin     - unless the user has admin access.
+        adminuser - unless the user has admin access and
+                    the user of the the front-end asks for it.   
+
+...RickM...
+
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00004" HREF="msg00004.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00006">Date Index</A>] [<a href="subjects.html#00006">Subject Index</a>] [<a href="authors.html#00006">Author Index</a>] [<A HREF="threads.html#00006">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00005.html">Date Prev</A>]&nbsp;[<A HREF="msg00007.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00005.html">Thread Prev</A>]&nbsp;[<A HREF="msg00007.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

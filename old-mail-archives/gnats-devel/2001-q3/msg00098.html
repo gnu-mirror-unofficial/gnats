@@ -1,0 +1,156 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: Internet protocol question -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 4 Sep 2001 18:42:08 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10109041233270.15566&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 87ofors67s.fsf@blackbird.zamazal.org -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Rick Macdonald - Re: Internet protocol question</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00098">Date&nbsp;Index</A>] [<a href="subjects.html#00098">Subject&nbsp;Index</a>] [<a href="authors.html#00098">Author&nbsp;Index</a>] [<A HREF="threads.html#00098">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00097.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00099.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00097.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00095.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Internet protocol question</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Subject</em>: Re: Internet protocol question</li>
+<li><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Date</em>: Tue, 4 Sep 2001 12:41:58 -0600 (MDT)</li>
+<li><em>cc</em>: GNATS Development &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+
+I don't know about any official protocol, but I would say the lock
+messages should only be seen when the client does specific lock and unlock
+commands:
+
+LKDB
+210 GNATS database is now locked.
+UNDB
+210 GNATS database is now unlocked.
+&lt;submit PR&gt;
+211 Ok. 
+&lt;the report text&gt;
+.
+210 PR added.
+
+IMHO, when submitting a new PR the lock/unlock activity is something
+internal to the submit function and in this case the extra messages should
+not appear. Locking is encapsulated in the submit function and the client
+has no business or interest in knowing about it or dealing with it. It's
+an implementation detail of the submit function. 
+
+Put another way, it may be that a user has authority to call the submit
+function from a client but does not have the authority to call LKDB/UNDB
+directly. Again, why send lock/unlk messages?
+
+Of course, gnatsd is responsible for ensuring that the lock is released
+whether the submit succeeds or fails.
+
+On 4 Sep 2001, Milan Zamazal wrote:
+
+I'm not familiar with Internet protocols, so I need an advice on a
+certain gnatsd output.
+
+When a new problem is submitted via gnatsd, its output looks like this:
+
+  subm 
+  211 Ok.
+  &lt;the report text&gt;
+  .
+  210 GNATS database is now locked.
+  210 PR added.
+  210 GNATS database is now unlocked.
+
+or, in the case of failure, like this:
+
+  subm
+  211 Ok.
+  .
+  210 GNATS database is now locked.
+  402 Failure reading header
+  210 GNATS database is now unlocked.
+
+As you can see above, after submitting the report text gnatsd outputs
+*three* status report lines as single messages, the overall result
+message is wrapped by the locking status messages.  Is this behavior
+and/or format right?  If not, how should the output look?
+
+Thanks for any advice.
+
+Milan Zamazal
+
+...RickM...
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00097" href="msg00097.html">Internet protocol question</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00098">Date&nbsp;Index</A>] [<a href="subjects.html#00098">Subject&nbsp;Index</a>] [<a href="authors.html#00098">Author&nbsp;Index</a>] [<A HREF="threads.html#00098">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00097.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00099.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00097.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00095.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

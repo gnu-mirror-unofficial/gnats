@@ -1,0 +1,142 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: Re: proclamation of intent -->
+<!--X-From-R13: Bnhy Fenvan <cfgNwhavcre.arg> -->
+<!--X-Date: 23 Aug 1999 17:48:46 &#45;0000 -->
+<!--X-Message-Id: 19990823104833.A6147@red.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: rickm@vsl.com -->
+<!--X-Reference: 199908231738.KAA09737@tristam.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: proclamation of intent</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00011">Date Index</A>] [<a href="subjects.html#00011">Subject Index</a>] [<a href="authors.html#00011">Author Index</a>] [<A HREF="threads.html#00011">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00010.html">Date Prev</A>]&nbsp;[<A HREF="msg00012.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00010.html">Thread Prev</A>]&nbsp;[<A HREF="msg00012.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: proclamation of intent</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Bob Manson &lt;bmanson@juniper.net&gt;</LI>
+<LI><em>Subject</em>: Re: proclamation of intent</LI>
+<LI><em>From</em>: Paul Traina &lt;pst@juniper.net&gt;</LI>
+<LI><em>Date</em>: Mon, 23 Aug 1999 10:48:33 -0700</LI>
+<LI><em>Cc</em>: Rick Macdonald &lt;rickm@vsl.com&gt;, gnats-devel@sourceware.cygnus.com,       bug-gnats@gnu.org</LI>
+<LI><em>References</em>: &lt;rickm@vsl.com&gt; &lt;<A HREF="msg00010.html">199908231738.KAA09737@tristam.juniper.net</A>&gt;</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+How about if you drop a branch tag for gnats 3.x in now (in case folks want
+to do later 3.x releases, and commit a snapshot into the head as 4.0-alpha).
+This will give Rick and Ken a chance to change their front-ends to work with
+4.0's commands, and we'll just screw the old network protocol.
+
+On Mon, Aug 23, 1999 at 10:38:14AM -0700, Bob Manson wrote:
+&gt; In message &lt;<A HREF="msg00007.html">Pine.GSO.4.10.9908231115550.20253-100000@sys4</A>&gt;, Rick Macdonald writ
+&gt; es:
+&gt; &gt;On Wed, 18 Aug 1999, Bob Manson wrote:
+&gt; &gt;
+&gt; &gt;What does everybody think about numbering the next release 3.201, or
+&gt; &gt;3.300 or 4.0?
+&gt; 
+&gt; I was shooting for 4.0 myself, since I think it's a big enough change
+&gt; to merit it.  Maybe "4.0-this-is-guaranteed-to-corrupt-your-PRMS-database"
+&gt; would be a better name ;-)
+&gt; 
+&gt; It's currently not network-protocol-backwards-compatible.  I've
+&gt; removed the myriad of "QXXX" commands and replaced them all with 
+&gt; "QUER queryformatname".  I could put back the old ones, I suppose. (On
+&gt; the other hand if I don't fix this, that means I can rip out all those
+&gt; screwy LXXX commands, the field designation commands, et al.)
+&gt; 
+&gt; In other news, I've implemented the configuration file, and the format
+&gt; looks almost exactly like what we came up with. Works too, tho I
+&gt; haven't removed the old field initialization stuff yet (it's in a new 
+&gt; source file scheduled for demolition).
+&gt; 
+&gt; Maybe I should work on getting a preliminary release out instead of
+&gt; finishing up what I originally started, namely the ability to add
+&gt; fields ;-) I have yet to add the network protocol for dumping out the
+&gt; field info (and the associated client options), there are still a fair
+&gt; number of places that know how many fields there are, and the mapping
+&gt; between internal field names and actual fields is not done (it still
+&gt; essentially derefs an array, bad juju).
+&gt; 
+&gt; If anyone really wants to play with this, I'll put it up.  Check it
+&gt; in? Something.  I say check it into CVS and let Patty sort it out.
+&gt; Other opinions?
+&gt; 
+&gt; &gt;I wish I had a beer for every time I've answered mail from people trying
+&gt; &gt;to build 3.2!
+&gt; 
+&gt; I wish I had a beer for every line of crap code I've deleted.  I'd be
+&gt; drunk for a couple of months, easy. ;-)
+&gt; 						Bob
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00012" HREF="msg00012.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00016" HREF="msg00016.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald &lt;rickm@vsl.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00010" HREF="msg00010.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00011">Date Index</A>] [<a href="subjects.html#00011">Subject Index</a>] [<a href="authors.html#00011">Author Index</a>] [<A HREF="threads.html#00011">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00010.html">Date Prev</A>]&nbsp;[<A HREF="msg00012.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00010.html">Thread Prev</A>]&nbsp;[<A HREF="msg00012.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

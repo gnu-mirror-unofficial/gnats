@@ -1,0 +1,109 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: I want to move 'contrib' directory up a level -->
+<!--X-From-R13: Xnfba [byraqn <wfzNpltahf.pbz> -->
+<!--X-Date: 26 Oct 1999 16:14:07 &#45;0000 -->
+<!--X-Message-Id: 19991026091406.A13153@cygnus.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>I want to move 'contrib' directory up a level</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date Index</A>] [<a href="subjects.html#00002">Subject Index</a>] [<a href="authors.html#00002">Author Index</a>] [<A HREF="threads.html#00002">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date Prev</A>]&nbsp;[<A HREF="msg00003.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00007.html">Thread Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>I want to move 'contrib' directory up a level</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: I want to move 'contrib' directory up a level</LI>
+<LI><em>From</em>: Jason Molenda &lt;jsm at cygnus dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 26 Oct 1999 09:14:06 -0700</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+In a gnats release/snapshot, there is the top-level directory
+(e.g. ``gnats-3.112.1''), below that is a gnats subdirectory (``gnats''),
+and below that is the contrib directory with contributed front-ends like
+gnatsweb and tkgnats.
+
+I want to move this contrib directory up a level.  Its presence in the
+gnats subdir is a reflection on gnats' history as a Cygnus internal
+development project; now that it is a project on its own, there is no
+reason to keep that baggage.  I think it will be more obvious for users
+to see files organized like
+
+  gnats-3.112.1/gnats
+  gnats-3.112.1/send-pr
+  gnats-3.112.1/contrib
+
+
+If no one speaks up, I will do it later this week.  Unfortunately,
+cvs does not revision control files or directories, so when I do this
+everyone will need to do a "cvs update -d" to update their repositories.
+If you check out an old branch (e.g. gnats-3.110) from CVS, the contrib
+directory will be in its new location, not its old one as you'd expect.
+
+
+Jason
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00003" HREF="msg00003.html">Re: I want to move 'contrib' directory up a level</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date Index</A>] [<a href="subjects.html#00002">Subject Index</a>] [<a href="authors.html#00002">Author Index</a>] [<A HREF="threads.html#00002">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date Prev</A>]&nbsp;[<A HREF="msg00003.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00007.html">Thread Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

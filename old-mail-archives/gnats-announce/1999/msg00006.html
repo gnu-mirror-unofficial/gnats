@@ -1,0 +1,189 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: Announcing gnatsweb 2.6 -->
+<!--X-From-R13: "Yraargu V. Qbk" <xrafgveNfragrvap.pbz> -->
+<!--X-Date: 1 Dec 1999 04:48:06 &#45;0000 -->
+<!--X-Message-Id: Pine.LNX.4.10.9911302342060.30718&#45;100000@abraham.senteinc.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Announcing gnatsweb 2.6</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-announce@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00006">Date Index</A>] [<a href="subjects.html#00006">Subject Index</a>] [<a href="authors.html#00006">Author Index</a>] [<A HREF="threads.html#00006">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00005.html">Date Prev</A>]&nbsp;[Date Next]</td>
+      <td>[Thread Prev]&nbsp;[<A HREF="msg00005.html">Thread Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Announcing gnatsweb 2.6</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: bug-gnats at gnu dot org, gnats-announce at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: Announcing gnatsweb 2.6</LI>
+<LI><em>From</em>: "Kenneth H. Cox" &lt;kenstir at senteinc dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 30 Nov 1999 23:42:40 -0500 (EST)</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+Hi folks,
+
+Is it just me or is anyone else thinking they could use a real relational
+database for bug tracking?  Particularly for operations like:
+
+    a. assigning all of Joe's open bugs to Jane
+    b. querying how many open bugs, per developer, etc.
+
+Anyway, I'm still occasionally hacking on gnatsweb, and I made a new
+release.  You can get the latest gnatsweb release at:
+
+    <A  HREF="ftp://ftp.senteinc.com/gnatsweb/gnatsweb-2.6.tar.gz">ftp://ftp.senteinc.com/gnatsweb/gnatsweb-2.6.tar.gz</A>
+
+Here is what has changed since 2.5 (from the ChangeLog):
+
+1999-11-30  Kenneth H. Cox  &lt;kenstir@abraham.senteinc.com&gt;
+
+	* Enhancement: If user does not have cookies enabled, they now get
+	a warning on the Login page.  Previously, you would have to submit
+	the login page before you got the warning, then you would have to
+	go back and resubmit the page.  A little JavaScript goes a long
+	way.
+
+1999-11-27  Kenneth H. Cox  &lt;kenstir@abraham.senteinc.com&gt;
+
+	* Enhancement: If DEFAULT_RELEASE is set in the gnats config file,
+	then it is now used as the default value in new PR's.
+	Patch by Brian Cameron &lt;Brian.Cameron@Eng.Sun.COM&gt;.
+
+	* Bug fix: In "send email" link, include GNATS_ADDR.
+	Patch by Jason Molenda &lt;jsm@cygnus.com&gt;.
+
+	* Enhancement: Reversed the default sort, so that new PR's appear
+	before older ones.  Added some more debug prints.
+	Patch by Tim Riker &lt;TimR@CalderaSystems.com&gt;.
+
+1999-11-18  Kenneth H. Cox  &lt;kenstir@abraham.senteinc.com&gt;
+
+	* New features: Now the site_callback can
+	- supply default values for various things until they are
+	specified and stored in the user's cookies: Reporter's
+	email...(more coming?).  This facilitates that first PR for new
+	people.
+	- print new buttons at top+bottome of main page.
+	- print stuff at the top of individual fields on the sendpr and
+	editpr pages.
+
+	See gnatsweb-site-sente.pl for	examples.
+
+	* Bug fix: The default list of columns displayed for a query was
+	empty; now it isn't.  You can still get the empty list if you
+	explicitly turn off all columns.
+
+==========  gnatsweb 2.6 beta2 released ===================================
+
+1999-11-17  Kenneth H. Cox  &lt;kenstir@abraham.senteinc.com&gt;
+
+	* New feature: Now all links and forms contain the database param,
+	so that you can keep multiple databases open in multiple browser
+	windows.
+
+==========  gnatsweb 2.6 beta released ===================================
+
+1999-11-14  Kenneth H. Cox  &lt;kenstir@abraham.senteinc.com&gt;
+
+	* New feature? Cookies are now stored with path=/.  I don't know
+	if this'll help IE users or not; I actually did it to share
+	cookies between my test web and my main web.  You should still be
+	able to get to your stored queries, and even delete them.
+
+	* New feature: If you follow a URL such as
+	<A  HREF="http://www.x.com/cgi-bin/gnatsweb.pl?cmd=view&amp;database=main&amp;pr=1269">http://www.x.com/cgi-bin/gnatsweb.pl?cmd=view&amp;database=main&amp;pr=1269</A>
+	and you are forced to login, then after logging in you will be
+	redirected to the requested age.  I tried doing this with a
+	redirect but that didn't work; had to use a somewhat ugly
+	zero-delay refresh.  If you can figure that out I'd be grateful.
+
+	* New feature: Split cookies into a global cookie (column
+	preference and email addr) and a db-specific cookie.  That way you
+	don't have to keep typing in different passwords if you change
+	db's.
+
+	* Code reorg: Cleaned up the main proc especially w.r.t. the
+	cookie-setting stuff.  Now all of the preference settings happen
+	at once, and there is only one 'switch' over all of the commands.
+	However, if you don't have cookies enabled I probably broke the
+	detection of this error.
+
+1999-11-13  Kenneth H. Cox  &lt;kenstir@abraham.senteinc.com&gt;
+
+	* New feature: Added a button to delete stored queries.
+	Patch by Robert Lupton the Good &lt;rhl@astro.princeton.edu&gt;.
+
+	* Bug fix (get_mailto_link): MSIE users need special handling in
+	the mailto: link.
+	Patch by &lt;ralph_pursifull@am.exch.hp.com&gt;.
+
+--
+Kenneth H. Cox
+Software Guy
+Sente, Inc.
+
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00006">Date Index</A>] [<a href="subjects.html#00006">Subject Index</a>] [<a href="authors.html#00006">Author Index</a>] [<A HREF="threads.html#00006">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00005.html">Date Prev</A>]&nbsp;[Date Next]</td>
+      <td>[Thread Prev]&nbsp;[<A HREF="msg00005.html">Thread Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

@@ -1,0 +1,140 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: "Exotic" GNATS 4 fields -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 1 Oct 2001 22:24:24 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10110011612380.20677&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20011001234335.00b3efb8@10.10.1.1 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Rick Macdonald - Re: &quot;Exotic&quot; GNATS 4 fields</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date&nbsp;Index</A>] [<a href="subjects.html#00002">Subject&nbsp;Index</a>] [<a href="authors.html#00002">Author&nbsp;Index</a>] [<A HREF="threads.html#00002">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00001.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: &quot;Exotic&quot; GNATS 4 fields</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Yngve Svendsen &lt;yngve dot svendsen at engineer dot online dot no&gt;</li>
+<li><em>Subject</em>: Re: &quot;Exotic&quot; GNATS 4 fields</li>
+<li><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Date</em>: Mon, 1 Oct 2001 16:24:00 -0600 (MDT)</li>
+<li><em>cc</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;, bug-gnats at gnu dot org,       gnats-devel at sources dot redhat dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+On Tue, 2 Oct 2001, Yngve Svendsen wrote:
+
+&gt; I'd like a comment on the following
+&gt; 
+&gt; I am just wrapping up the revised chapter 1 of the GNATS 4 manual and I 
+&gt; noticed that there are several fields in version 4 that don't have 
+&gt; counterparts in standard version 3 installations and which seem to be 
+&gt; somewhat &quot;exotic&quot; (i.e. not of use to the majority of GNATS sites). These are:
+&gt; 
+&gt; &quot;Cases&quot; (I have found no explanation of what it is for)
+&gt; &quot;Keywords&quot; (which seem to have little use as long as there aren't any tools 
+&gt; for indexing the GNATS database apart from gen-index which doesn't seem to 
+&gt; have anything to do with this field)
+&gt; &quot;Quarter&quot; (Not exactly sure what this is -- target quarter for a fix?)
+&gt; &quot;Release-Note&quot;
+&gt; 
+&gt; I assume the latter three amount to what makes GNATS &quot;release-based&quot;.
+
+I've never heard of &quot;Cases&quot; either.
+
+The three fields added with &quot;released-based&quot; in GNATS 3 were
+Date-Required, Quarter and Keywords. In GNATS 3 all three fields are
+indeed added to the index, making them just as usful as any other text or
+date field, although the name and description of Quarter was for one
+particular company.
+
+Release-Note was added as a standard multitext field in GNATS v3.106.
+
+  New PR field &quot;Release-Note:&quot; (multitext)
+
+   The &quot;Release-Note:&quot; field was added for human readable (user
+   friendly) comments about problems or fixes (suitable for
+   incorporation into release notes for a given software
+   distribution).
+
+&gt; I suggest we remove these four fields from the standard dbconfig.in of 
+&gt; GNATS 4 and that we subsequently provide another sample dbconfig file for 
+&gt; those migrating an older release-based GNATS installation.
+
+I guess I don't have much to say about the defaults for a fresh gnats 4
+install. You could remove these 4, or not. 
+
+I haven't looked and how the migration from gnats 3 to gnats 4 is done,
+but people don't want to loose any of their old fields accidentally.
+
+...RickM...
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00001" href="msg00001.html">&quot;Exotic&quot; GNATS 4 fields</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00002">Date&nbsp;Index</A>] [<a href="subjects.html#00002">Subject&nbsp;Index</a>] [<a href="authors.html#00002">Author&nbsp;Index</a>] [<A HREF="threads.html#00002">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00001.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00001.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00003.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,233 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: [PATCH] Need gnatsd command to retrieve multienum separators -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 17 Oct 2001 13:16:24 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011017150854.044e3e10@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20011017135224.00b9e008@mail.trd.clustra.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - [PATCH] Need gnatsd command to retrieve multienum separators</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00049">Date&nbsp;Index</A>] [<a href="subjects.html#00049">Subject&nbsp;Index</a>] [<a href="authors.html#00049">Author&nbsp;Index</a>] [<A HREF="threads.html#00049">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00048.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00050.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00048.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00050.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>[PATCH] Need gnatsd command to retrieve multienum separators</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: [PATCH] Need gnatsd command to retrieve multienum separators</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Wed, 17 Oct 2001 15:16:32 +0200</li>
+<li><em>Cc</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 13:53 17.10.2001 +0200, Yngve Svendsen wrote:
+&gt;We need a gnatsd command which retrieves the the field separators for a 
+&gt;given multienum field. Clients such as Gnatsweb need to know how to submit 
+&gt;a legally separated string of values for such fields.
+&gt;
+&gt;I suggest that we implement a command
+&gt;FSEP field
+&gt;which returns the field separators as set by the separators keyword in the 
+&gt;field definition in the dbconfig file.
+&gt;
+&gt;Anyone care to comment?
+
+Yes, I would :)
+
+The following clutch of patches implements an FSEP command as described above.
+
+- Yngve
+
+
+
+Index: cmds.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/cmds.c,v
+retrieving revision 1.61
+diff -u -p -r1.61 cmds.c
+--- cmds.c      2001/10/14 20:32:22     1.61
++++ cmds.c      2001/10/17 13:07:21
+@@ -1529,6 +1529,45 @@ GNATS_fdsc (int ac, char **av)
+  }
+
+  void
++GNATS_fsep (int ac, char **av)
++{
++  int x;
++
++  if (ac &lt; 1)
++    {
++      chk_nargs (ac, &quot;field name&quot;);
++      return;
++    }
++  for (x = 0; x &lt; ac; x++)
++    {
++      char contchar = (x &lt; (ac - 1)) ? '-' : ' ';
++      FieldIndex fnum = find_field_index (currentDatabase, av[x]);
++      if (fnum != InvalidFieldIndex
++                 &amp;&amp; fieldDefForIndex (fnum)-&gt;datatype == MultiEnum)
++               {
++                 const char *sep = fieldDefForIndex 
+(fnum)-&gt;multiEnumSeparator;
++
++                 if (sep == NULL)
++                       {
++                         sep = &quot;: &quot;;
++                       }
++
++                 printf (&quot;%d%c '%s'\r\n&quot;, CODE_INFORMATION, contchar, sep);
++               }
++         else if (fieldDefForIndex (fnum)-&gt;datatype != MultiEnum)
++               {
++                 printf (&quot;%d%cField `%s' not of type MultiEnum\r\n&quot;,
++                                 CODE_TYPE_NOT_MULTIENUM, contchar, av[x]);
++               }
++      else
++               {
++                 printf (&quot;%d%cNo such field as `%s'\r\n&quot;,
++                                 CODE_INVALID_FIELD_NAME, contchar, av[x]);
++               }
++    }
++}
++
++void
+  GNATS_fvld (int ac, char **av)
+  {
+    FieldIndex fnum;
+@@ -1677,6 +1716,10 @@ GNATS_help (int ac ATTRIBUTE_UNUSED, cha
+           CODE_INFORMATION);
+    printf (&quot;%d-   FDSC &lt;field&gt;            return the description of 
+&lt;field&gt;\r\n&quot;,
+           CODE_INFORMATION);
++  printf (&quot;%d-   FSEP &lt;field&gt;            return the field separators for 
+the\r\n&quot;,
++                 CODE_INFORMATION);
++  printf (&quot;%d-                           MultiEnum field &lt;field&gt;\r\n&quot;,
++                 CODE_INFORMATION);
+    printf (&quot;%d-   FVLD &lt;field&gt;            return a string or regexp 
+describing the\r\n&quot;,
+           CODE_INFORMATION);
+    printf (&quot;%d-                           legal values for &lt;field&gt;\r\n&quot;,
+Index: gnatsd.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/gnatsd.c,v
+retrieving revision 1.42
+diff -u -p -r1.42 gnatsd.c
+--- gnatsd.c    2001/10/14 20:32:22     1.42
++++ gnatsd.c    2001/10/17 13:07:21
+@@ -143,6 +143,8 @@ static Command cmds[] =
+    { &quot;FTYP&quot;, GNATS_ftyp, ACCESS_VIEW, FALSE },
+    /* Return a human-readable description of the field. */
+    { &quot;FDSC&quot;, GNATS_fdsc, ACCESS_VIEW, FALSE },
++  /* Return the separators for field values. */
++  { &quot;FSEP&quot;, GNATS_fsep, ACCESS_VIEW, FALSE },
+    /* Return either a regexp that describes the valid values for the
+       specified field, or a list of valid values (for an enum field). */
+    { &quot;FVLD&quot;, GNATS_fvld, ACCESS_VIEW, TRUE },
+Index: gnatsd.h
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/gnatsd.h,v
+retrieving revision 1.25
+diff -u -p -r1.25 gnatsd.h
+--- gnatsd.h    2001/10/14 20:32:22     1.25
++++ gnatsd.h    2001/10/17 13:07:21
+@@ -101,6 +101,7 @@ extern void GNATS_help (int ac, char **a
+  extern void GNATS_expr (int ac, char **av);
+  extern void GNATS_ftyp (int ac, char **av);
+  extern void GNATS_fdsc (int ac, char **av);
++extern void GNATS_fsep (int ac, char **av);
+  extern void GNATS_fvld (int ac, char **av);
+  extern void GNATS_admv (int ac, char **av);
+  extern void GNATS_editaddr (int ac, char **av);
+Index: pcodes.h
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/pcodes.h,v
+retrieving revision 1.9
+diff -u -p -r1.9 pcodes.h
+--- pcodes.h    2000/03/17 04:31:08     1.9
++++ pcodes.h    2001/10/17 13:07:21
+@@ -52,6 +52,7 @@ Software Foundation, 59 Temple Place - S
+  #define CODE_NO_KERBEROS               420
+  #define CODE_AUTH_TYPE_UNSUP           421
+  #define CODE_NO_ACCESS                 422
++#define CODE_TYPE_NOT_MULTIENUM        423
+  #define CODE_LOCKED_PR                 430
+  #define CODE_GNATS_LOCKED              431
+  #define CODE_GNATS_NOT_LOCKED          432
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00050" href="msg00050.html">Re: [PATCH] Need gnatsd command to retrieve multienum separators</a></strong>
+<ul><li><em>From:</em> Nick Bower</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00048" href="msg00048.html">Need gnatsd command to retrieve multienum separators</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00049">Date&nbsp;Index</A>] [<a href="subjects.html#00049">Subject&nbsp;Index</a>] [<a href="authors.html#00049">Author&nbsp;Index</a>] [<A HREF="threads.html#00049">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00048.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00050.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00048.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00050.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

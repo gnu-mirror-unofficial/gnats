@@ -1,0 +1,145 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: RE: gnatsd output question -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 5 Sep 2001 12:59:24 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.10109050653040.1301&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 003e01c135e8$588d3ae0$a0c809c0@itchy.quintic.bogus -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Rick Macdonald - RE: gnatsd output question</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00100">Date&nbsp;Index</A>] [<a href="subjects.html#00100">Subject&nbsp;Index</a>] [<a href="authors.html#00100">Author&nbsp;Index</a>] [<A HREF="threads.html#00100">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00099.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00101.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00099.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00101.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>RE: gnatsd output question</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Marcus Williams &lt;marcus at quintic dot co dot uk&gt;</li>
+<li><em>Subject</em>: RE: gnatsd output question</li>
+<li><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Date</em>: Wed, 5 Sep 2001 06:59:11 -0600 (MDT)</li>
+<li><em>cc</em>: GNATS Development Mailing List &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+On Wed, 5 Sep 2001, Marcus Williams wrote:
+
+&gt; I'd tend to agree with Rick Macdonald that the lock messages are
+&gt; internal to Gnats so dont need to be displayed (unless they fail).
+&gt; 
+&gt; It may be worth doing something like the FTP specs (RFC 0959?) say and
+&gt; wrap the three messages inside a multiline result so it becomes (from
+&gt; what I remember of the RFC):
+&gt; 
+&gt; subm
+&gt; 211 Ok.
+&gt; .
+&gt; 210- GNATS database is now locked
+&gt; 402- Failure reading header
+&gt; 210- GNATS database is now unlocked
+&gt; 
+&gt; The trailing dash after the result code indicates a multiline
+&gt; continuation. However, this is wrong as well as we're only interested
+&gt; in the 402 in the middle so it probably should be
+&gt; 
+&gt; subm
+&gt; 211 Ok.
+&gt; .
+&gt; 402- GNATS database is now locked
+&gt; 402- Failure reading header
+&gt; 402- GNATS database is now unlocked
+&gt; 
+&gt; Since you can only tell that theres a header error by reading the full
+&gt; message, maybe more error codes should be added so then we can
+&gt; exchange 402 for whatever the code is for &quot;Failure reading header&quot;.
+&gt; The multiline reply is then only for interactive/information purposes.
+
+Well, the multiline is better than three separate ones but I still would
+vote to not show the lock/unlock at all. If a submission fails because the
+internal lock fails, there should still be just one line. Something like
+
+402 - Failure locking GNATS database
+
+Think about a successful submission. Nobody needs to see
+
+210- GNATS database is now locked
+210- PR added
+210- GNATS database is now unlocked
+
+...RickM...
+
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00101" href="msg00101.html">RE: gnatsd output question</a></strong>
+<ul><li><em>From:</em> Jasper O'Malley</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00099" href="msg00099.html">RE: gnatsd output question</a></strong>
+<ul><li><em>From:</em> Marcus Williams</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00100">Date&nbsp;Index</A>] [<a href="subjects.html#00100">Subject&nbsp;Index</a>] [<a href="authors.html#00100">Author&nbsp;Index</a>] [<A HREF="threads.html#00100">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00099.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00101.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00099.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00101.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

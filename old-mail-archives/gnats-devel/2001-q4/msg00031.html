@@ -1,0 +1,166 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: [PATCH]: GNATS 3 encrypted passwords -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 12 Oct 2001 18:07:01 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011012194047.00b4fe48@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - [PATCH]: GNATS 3 encrypted passwords</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00031">Date&nbsp;Index</A>] [<a href="subjects.html#00031">Subject&nbsp;Index</a>] [<a href="authors.html#00031">Author&nbsp;Index</a>] [<A HREF="threads.html#00031">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00030.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00030.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>[PATCH]: GNATS 3 encrypted passwords</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: [PATCH]: GNATS 3 encrypted passwords</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Fri, 12 Oct 2001 20:09:04 +0200</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+The following patch provides encrypted password support in GNATS 3's 
+gnatsd.access file. It should apply cleanly to GNATS 3.113, 3.113.1 and to 
+the latest v3 CVS. This is a simple backport of similar functionality 
+introduced in GNATS 4.
+
+This is a quick-and-dirty modification. Most importantly, it will not 
+compile on systems without crypt support, although there aren't many of 
+those. On systems that support both MD5 and DES (traditional crypt) 
+encryption, this modification provides support for both kinds of passwords..
+
+In gnatsd.access, a password prefixed by $0$ is assumed to be plaintext, 
+and a $1$ prefix denotes an MD5 password. If a password has no prefix, it 
+is assumed to be an ordinary UNIX crypt password. This provides for easy 
+synchronization of GNATS and standard UNIX passwords, admins can simply 
+copy password hashes from the system password file.
+
+Sites that have existing gnatsd.access files with plaintext passwords in 
+them either need to prefix existing passwords with $0$ or convert the 
+passwords to crypt or MD5.
+
+One final gotcha: This has only been tested on Solaris 8, so your mileage 
+may vary.
+
+Yngve Svendsen
+
+
+
+Index: gnatsd.c
+===================================================================
+RCS file: /cvs/gnats/gnats/gnats/gnatsd.c,v
+retrieving revision 1.1.1.2.4.1
+diff -u -p -r1.1.1.2.4.1 gnatsd.c
+--- gnatsd.c	1999/09/21 23:18:39	1.1.1.2.4.1
++++ gnatsd.c	2001/10/12 17:37:52
+@@ -221,6 +221,29 @@ match (line, p, matchcase)
+      return 1;
+  }
+
++/* Return true iff `password' matches `hash'.
++   `hash' is a possibly encrypted password, according to the $?$ 
+convention. */
++static int
++password_match (password, hash)
++     char *password;
++     char *hash;
++{
++  char *encrypted;
++  if (! strncmp (hash, &quot;$0$&quot;, 3))
++    {
++      /* explicit plain-text password */
++      return ! strcmp (password, hash+3);
++    }
++  else
++    {
++      /* DES or MD5 password. If crypt supports MD5, it uses MD5 when
++         the salt starts with $1$. If there's no prefix standard DES
++         is assumed */
++      encrypted = (char *)crypt (password, hash);
++      return encrypted &amp;&amp; ! strcmp (encrypted, hash);
++    }
++}
++
+  char *
+  get_name (host)
+       struct in_addr *host;
+@@ -439,7 +462,7 @@ get_user_access (database, filename, use
+  	continue;
+
+        /* check passwd */
+-      if (!match (passwd, fields[1], 1))
++      if (!password_match (passwd, fields[1]))
+          {
+            access = ACCESS_NONE;
+            break;
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00032" href="msg00032.html">Re: [PATCH]: GNATS 3 encrypted passwords</a></strong>
+<ul><li><em>From:</em> Paul Traina</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00031">Date&nbsp;Index</A>] [<a href="subjects.html#00031">Subject&nbsp;Index</a>] [<a href="authors.html#00031">Author&nbsp;Index</a>] [<A HREF="threads.html#00031">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00030.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00030.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00032.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

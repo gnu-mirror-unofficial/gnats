@@ -1,0 +1,163 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: New dbconfig keyword multi&#45;enumerated&#45;in&#45;file -->
+<!--X-From-R13: Xbunaarf Bbruyznaa <wucNpnyqren.qr> -->
+<!--X-Date: 16 Jul 2001 10:22:24 &#45;0000 -->
+<!--X-Message-Id: 20010716122212.C5834@caldera.de -->
+<!--X-Content-Type: multipart/mixed -->
+<!--X-Reference: 995278212.12378.ezmlm@sources.redhat.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Johannes Poehlmann - New dbconfig keyword multi-enumerated-in-file</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00056">Date&nbsp;Index</A>] [<a href="subjects.html#00056">Subject&nbsp;Index</a>] [<a href="authors.html#00056">Author&nbsp;Index</a>] [<A HREF="threads.html#00056">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00055.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00055.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00072.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>New dbconfig keyword multi-enumerated-in-file</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: gnats-devel at sources dot redhat dot com</li>
+<li><em>Subject</em>: New dbconfig keyword multi-enumerated-in-file</li>
+<li><em>From</em>: Johannes Poehlmann &lt;jhp at caldera dot de&gt;</li>
+<li><em>Date</em>: Mon, 16 Jul 2001 12:22:12 +0200</li>
+<li><em>Organization</em>: Caldera (Deutschland) GmbH</li>
+<li><em>References</em>: &lt;995278212.12378.ezmlm@sources.redhat.com&gt;</li>
+<li><em>Reply-To</em>: Johannes Poehlmann &lt;jhp at caldera dot de&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Hi,
+
+We wanted to have fields of type Multi-Enum where
+the allowed values are stored in an extra file like 
+it is done with the Enumerated-in-File type.
+
+I made a little patch to make this possible.
+
+The patch built and seemed to give reasonable results with query-pr.
+
+How to test: 
+	Take a dbconfig file and replace enumerated-in-file with 
+	multi-enumerated-in-file for a field &quot;FIELD&quot;. 
+	Now query-pr with the options
+	  --field-type=FIELD      --valid-values=FIELD
+	you will see tye MultiEnum and the values from the file.
+
+Todo:
+      Documentation not updated.
+      not tested in full integration
+-- 
+     ______   ___        
+    /  ___/__/  /                 Caldera (Deutschland) GmbH          
+   /  /_/ _  / /__        Naegelsbachstr. 49c, 91052 Erlangen, Germany 
+  /_____/_/ /____/                  <A  HREF="http://www.caldera.de">http://www.caldera.de</A>       
+ ==== /____/ =====   Dipl. Inf. Johannes Poehlmann, mail: jhp@caldera.de
+Caldera OpenLinux    phone: ++49 9131 7192 335, fax: ++49 9131 7192 399
+</pre>
+<pre>
+diff -u -p -r1.32 fconfig.y
+--- fconfig.y	2001/04/15 18:11:51	1.32
++++ fconfig.y	2001/07/16 10:05:18
+@@ -43,6 +43,7 @@
+ %token REQUIRECHANGEREASONTOK READONLYTOK BINARYINDEXTOK RAWTOK
+ %token BADTOK AUXFLAGSTOK PRLISTTOK MAXPRSTOK EDITONLYTOK VIRTUALFORMATTOK
+ %token CATPERMSTOK
++%token MULTI_ENUM_IN_FILE
+ %type &lt;sval&gt; optChangeExpr
+ %type &lt;qstr&gt; QSTRING
+ %type &lt;intval&gt; INTVAL
+@@ -201,6 +202,13 @@ enumType	: ENUM '{' enumcontents '}' {
+ 		}
+ 		| ENUM_IN_FILE '{' enumFileContents '}' {
+ 		    currField-&gt;datatype = Enum;
++		    currField-&gt;defaultSearchType = RegCmp;
++		    initAdmField (currField);
++		}
++
++		/* new: like ENUM_IN_FILE but use type MultiEnum */
++		| MULTI_ENUM_IN_FILE '{' enumFileContents '}' {
++		    currField-&gt;datatype = MultiEnum;
+ 		    currField-&gt;defaultSearchType = RegCmp;
+ 		    initAdmField (currField);
+ 		}
+diff -u -p -r1.21 fconfigl.l
+--- fconfigl.l	2001/04/15 18:11:51	1.21
++++ fconfigl.l	2001/07/16 10:05:18
+@@ -168,6 +168,10 @@ enumerated-in-file {
+   return ENUM_IN_FILE;
+ }
+ 
++multi-enumerated-in-file {
++  return MULTI_ENUM_IN_FILE;
++}
++
+ key {
+   return KEYTOK;
+ }
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00072" href="msg00072.html">Re: New dbconfig keyword multi-enumerated-in-file</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00056">Date&nbsp;Index</A>] [<a href="subjects.html#00056">Subject&nbsp;Index</a>] [<a href="authors.html#00056">Author&nbsp;Index</a>] [<A HREF="threads.html#00056">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00055.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00057.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00055.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00072.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

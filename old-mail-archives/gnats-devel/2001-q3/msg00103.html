@@ -1,0 +1,198 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: gnatsd output question -->
+<!--X-From-R13: "[nex R. Pnhfuxr" <zqoNwhavcre.arg> -->
+<!--X-Date: 5 Sep 2001 20:16:21 &#45;0000 -->
+<!--X-Message-Id: 200109052016.f85KGI069222@merlot.juniper.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 003e01c135e8$588d3ae0$a0c809c0@itchy.quintic.bogus -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Mark D. Baushke - Re: gnatsd output question</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00103">Date&nbsp;Index</A>] [<a href="subjects.html#00103">Subject&nbsp;Index</a>] [<a href="authors.html#00103">Author&nbsp;Index</a>] [<A HREF="threads.html#00103">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00102.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00104.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00102.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00084.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnatsd output question</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;Marcus Williams&quot; &lt;marcus at quintic dot co dot uk&gt;</li>
+<li><em>Subject</em>: Re: gnatsd output question </li>
+<li><em>From</em>: &quot;Mark D. Baushke&quot; &lt;mdb at juniper dot net&gt;</li>
+<li><em>Date</em>: Wed, 05 Sep 2001 13:16:18 -0700</li>
+<li><em>cc</em>: &quot;GNATS Development Mailing List&quot; &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+On Wed, 5 Sep 2001 09:54:17 +0100, &quot;Marcus Williams&quot; &lt;marcus@quintic.co.uk&gt;
+wrote:
+&gt;
+&gt; [snip]
+&gt; 
+&gt; I'd tend to agree with Rick Macdonald that the lock messages are
+&gt; internal to Gnats so dont need to be displayed (unless they fail).
+
+Agreed.
+
+&gt; It may be worth doing something like the FTP specs (RFC 0959?) say and
+&gt; wrap the three messages inside a multiline result so it becomes (from
+&gt; what I remember of the RFC):
+
+Yes, it is RFC 959.
+
+&gt; subm
+&gt; 211 Ok.
+&gt; .
+&gt; 210- GNATS database is now locked
+&gt; 402- Failure reading header
+&gt; 210- GNATS database is now unlocked
+&gt; 
+&gt; The trailing dash after the result code indicates a multiline
+&gt; continuation. However, this is wrong as well as we're only interested
+&gt; in the 402 in the middle so it probably should be
+&gt; 
+&gt; subm
+&gt; 211 Ok.
+&gt; .
+&gt; 402- GNATS database is now locked
+&gt; 402- Failure reading header
+&gt; 402- GNATS database is now unlocked
+&gt; 
+&gt; Since you can only tell that theres a header error by reading the full
+&gt; message, maybe more error codes should be added so then we can
+&gt; exchange 402 for whatever the code is for &quot;Failure reading header&quot;.
+&gt; The multiline reply is then only for interactive/information purposes.
+&gt; 
+&gt; Marcus
+
+Well, that is not really what RFC 959 says.
+
+|      A reply is defined to contain the 3-digit code, followed by Space
+|
+|
+|Postel &amp; Reynolds                                              [Page 35]
+|
+|
+|                                                                        
+|RFC 959                                                     October 1985
+|File Transfer Protocol
+|
+|
+|      &lt;SP&gt;, followed by one line of text (where some maximum line length
+|      has been specified), and terminated by the Telnet end-of-line
+|      code.  There will be cases however, where the text is longer than
+|      a single line.  In these cases the complete text must be bracketed
+|      so the User-process knows when it may stop reading the reply (i.e.
+|      stop processing input on the control connection) and go do other
+|      things.  This requires a special format on the first line to
+|      indicate that more than one line is coming, and another on the
+|      last line to designate it as the last.  At least one of these must
+|      contain the appropriate reply code to indicate the state of the
+|      transaction.  To satisfy all factions, it was decided that both
+|      the first and last line codes should be the same.
+|
+|         Thus the format for multi-line replies is that the first line
+|         will begin with the exact required reply code, followed
+|         immediately by a Hyphen, &quot;-&quot; (also known as Minus), followed by
+|         text.  The last line will begin with the same code, followed
+|         immediately by Space &lt;SP&gt;, optionally some text, and the Telnet
+|         end-of-line code.
+|
+|            For example:
+|                                123-First line
+|                                Second line
+|                                  234 A line beginning with numbers
+|                                123 The last line
+|
+|         The user-process then simply needs to search for the second
+|         occurrence of the same reply code, followed by &lt;SP&gt; (Space), at
+|         the beginning of a line, and ignore all intermediary lines.  If
+|         an intermediary line begins with a 3-digit number, the Server
+|         must pad the front  to avoid confusion.
+
+So, if you want to use this style of semantics, the error number must
+be the same for the first and last lines of the response. The last
+line of the response MUST NOT contain a '-' after the number.
+
+In practice, most servers use the same number- as a prefix for the
+message:
+
+	123-First line
+	123-Second line
+	123-234 a line beginning with numbers
+	123 The last line
+
+So, even if this method were to be adopted, it should probably NOT be
+generating more than one return number as for the database lock and
+unlock steps.
+
+	Enjoy!
+	-- Mark
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00099" href="msg00099.html">RE: gnatsd output question</a></strong>
+<ul><li><em>From:</em> Marcus Williams</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00103">Date&nbsp;Index</A>] [<a href="subjects.html#00103">Subject&nbsp;Index</a>] [<a href="authors.html#00103">Author&nbsp;Index</a>] [<A HREF="threads.html#00103">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00102.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00104.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00102.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00084.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

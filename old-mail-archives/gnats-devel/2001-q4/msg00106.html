@@ -1,0 +1,136 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: Gnats 4.0/Gnatsweb 4.0 migration problems. -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 6 Nov 2001 17:25:59 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011106181920.00b44e10@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 5.1.0.14.2.20011106144956.04936108@mail.trd.clustra.com -->
+<!--X-Reference: 20011106141848.A19049@teapot.netman.dk -->
+<!--X-Reference: 20011106161858.A9248@teapot.netman.dk -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00106">Date&nbsp;Index</A>] [<a href="subjects.html#00106">Subject&nbsp;Index</a>] [<a href="authors.html#00106">Author&nbsp;Index</a>] [<A HREF="threads.html#00106">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00105.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00107.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00105.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00102.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Lars Henriksen &lt;Lars dot Henriksen at netman dot dk&gt;</li>
+<li><em>Subject</em>: Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 06 Nov 2001 18:26:20 +0100</li>
+<li><em>Cc</em>: Gnats development mailing list &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>References</em>: &lt;<a href="msg00101.html">5.1.0.14.2.20011106144956.04936108@mail.trd.clustra.com</a>&gt;&lt;<a href="msg00100.html">20011106141848.A19049@teapot.netman.dk</a>&gt;&lt;<a href="msg00101.html">5.1.0.14.2.20011106144956.04936108@mail.trd.clustra.com</a>&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 16:18 06.11.2001 +0100, Lars Henriksen wrote:
+&gt;Yes. When I enter the Query page from the main page and press &quot;Submit query&quot;
+&gt;without changing any settings, i.e. &quot;any&quot; is selected in all fields, I get
+&gt;the result:
+&gt;
+&gt;3825 matches found
+&gt;( Query executed  Tue Nov  6 15:54:32 2001 )
+&gt;
+&gt;&lt;list of results&gt;
+&gt;
+&gt;But when I select a particular value in a field (it doesn't matter which),
+&gt;I get
+&gt;
+&gt;Return code: 415 - Invalid expression
+
+Hm. We need to get to the bottom of this. Could you do the following:
+
+Look in the gnatsweb.pl file and find the line reading something like this:
+
+$Id: msg00106.html,v 1.1 2001/11/17 03:54:26 hgayosso Exp $
+
+What version number do you see in your copy of Gnatsweb?
+
+
+Then, try accessing Gnatsweb with the debug parameter set to &quot;all&quot;. This is 
+done by accessing Gnatsweb through a URL similar to this:
+<A  HREF="http://hurre.clustra.com/cgi-bin/gnatsweb.pl?debug=all">http://hurre.clustra.com/cgi-bin/gnatsweb.pl?debug=all</A>
+
+You'll get a lot of noise at the top of each page. Navigate to the query 
+page and execute a query which gives the invalid query expression error. 
+The page displayed upon execution of the query contains the complete query 
+conversation between Gnatsweb and GNATS. Save the page and send it to me, 
+and I'll try to figure out what's happening.
+
+- Yngve
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00101" href="msg00101.html">Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</a></strong>
+<ul><li><em>From:</em> Yngve Svendsen</li></ul></li>
+<li><strong><a name="00100" href="msg00100.html">Gnats 4.0/Gnatsweb 4.0 migration problems.</a></strong>
+<ul><li><em>From:</em> Lars Henriksen</li></ul></li>
+<li><strong><a name="00103" href="msg00103.html">Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</a></strong>
+<ul><li><em>From:</em> Lars Henriksen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00106">Date&nbsp;Index</A>] [<a href="subjects.html#00106">Subject&nbsp;Index</a>] [<a href="authors.html#00106">Author&nbsp;Index</a>] [<A HREF="threads.html#00106">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00105.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00107.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00105.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00102.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

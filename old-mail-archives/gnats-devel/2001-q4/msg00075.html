@@ -1,0 +1,143 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: patches for PR 218, index corruption -->
+<!--X-From-R13: "Rvex Pretfgebz" <qvexNwhavcre.arg> -->
+<!--X-Date: 30 Oct 2001 01:38:05 &#45;0000 -->
+<!--X-Message-Id: 5B1CAAC2F0818444BF07B7AD8845E53C0D80D4@ELECTRON.jnpr.net -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Dirk Bergstrom - patches for PR 218, index corruption</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00075">Date&nbsp;Index</A>] [<a href="subjects.html#00075">Subject&nbsp;Index</a>] [<a href="authors.html#00075">Author&nbsp;Index</a>] [<A HREF="threads.html#00075">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00074.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00076.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00074.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00077.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>patches for PR 218, index corruption</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: patches for PR 218, index corruption</li>
+<li><em>From</em>: &quot;Dirk Bergstrom&quot; &lt;dirk at juniper dot net&gt;</li>
+<li><em>Date</em>: Mon, 29 Oct 2001 17:34:56 -0800</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+these patches fix PR 218, &quot;PRs fail to show up in index&quot;.  it turns
+out there were four separate race conditions that could cause index
+corruption.
+
+*) there was a race in the database locking code that allowed two
+ processes to believe that they each had a full db lock.  the code
+ checked to see if the lock file existed, and if it wasn't found, a
+ file was created using creat().  there was a race between the check
+ and the create, and the creat() call wasn't atomic.  changing
+ lockfile creation to open(O_EXCL) fixed this.
+
+*) gnats read in the index before locking the database, but didn't
+ check to see if the index had been modified before writing out it's
+ cached copy.  the race went like this: 
+
+ 0) gnatsd A is finishing up an edit on PR 123...
+ 1) gnatsd B reads index
+ 2) A writes new index, &amp; unlocks DB
+ 3) B locks DB
+ 3) B edits PR 456, modifying index in memory
+ 4) B writes out index from memory
+
+ thus A's changes to the index entry for PR 123 would be lost,
+ overwritten by B's copy of the index.  i modified getFirstPr() so
+ that it always calls checkPRChain() to check mtime of the index on
+ disk before using data in memory; if cached data is stale, the index
+ is re-read.  also added a final check in the writeIndex routine to
+ catch problems and alert the administrator.  this adds a few stat()
+ calls to an edit transaction, which is a small cost.  it has no
+ effect on queries.
+
+*) the PR locking code suffered from the same race as the database
+ lock code.  i applied a similar fix.
+
+*) the append &amp; replace field-editing routines (pr-edit --append &amp;
+--replace options &amp; gnatsd APPN &amp; REPL commands) did not lock the
+ database before editing.  thus, any other process could change the
+ index while they were working.  added code to lock the db before
+ taking either action.
+
+the patches themselves, along with a copy of this message and appropriate changelog entries, are available at this URL:
+
+<A  HREF="http://www.otisbean.com/gnats/race-patch.txt">http://www.otisbean.com/gnats/race-patch.txt</A>
+
+--
+Dirk Bergstrom               dirk@juniper.net
+_____________________________________________
+Juniper Networks Inc.,          Computer Geek
+Tel: 707.433.0564           Fax: 707.433.0769
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00077" href="msg00077.html">Re: patches for PR 218, index corruption</a></strong>
+<ul><li><em>From:</em> Rick Macdonald</li></ul></li>
+<li><strong><a name="00109" href="msg00109.html">Re: patches for PR 218, index corruption</a></strong>
+<ul><li><em>From:</em> Milan Zamazal</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00075">Date&nbsp;Index</A>] [<a href="subjects.html#00075">Subject&nbsp;Index</a>] [<a href="authors.html#00075">Author&nbsp;Index</a>] [<A HREF="threads.html#00075">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00074.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00076.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00074.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00077.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: Re: proclamation of intent -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 23 Aug 1999 18:13:04 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.9908231158010.20253&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 19990823104833.A6147@red.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: proclamation of intent</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00016">Date Index</A>] [<a href="subjects.html#00016">Subject Index</a>] [<a href="authors.html#00016">Author Index</a>] [<A HREF="threads.html#00016">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00015.html">Date Prev</A>]&nbsp;[<A HREF="msg00017.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00013.html">Thread Prev</A>]&nbsp;[<A HREF="msg00018.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: proclamation of intent</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Paul Traina &lt;pst@juniper.net&gt;</LI>
+<LI><em>Subject</em>: Re: proclamation of intent</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm@vsl.com&gt;</LI>
+<LI><em>Date</em>: Mon, 23 Aug 1999 12:10:11 -0600 (MDT)</LI>
+<LI><em>cc</em>: Bob Manson &lt;bmanson@juniper.net&gt;, gnats-devel@sourceware.cygnus.com,       bug-gnats@gnu.org</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Mon, 23 Aug 1999, Paul Traina wrote:
+
+&gt; How about if you drop a branch tag for gnats 3.x in now (in case folks want
+&gt; to do later 3.x releases, and commit a snapshot into the head as 4.0-alpha).
+&gt; This will give Rick and Ken a chance to change their front-ends to work with
+&gt; 4.0's commands, and we'll just screw the old network protocol.
+
+I guess I'll buy that. Just make it the best you can, and we front-end
+writers will go with it.
+
+A few minor comments. I think you already have this issues "done right":
+
+The fields and enums should have human-readable Help strings (multi-line
+allowed?), and these strings need to be available to the client.
+
+I would like that all configuration stuff is read and parsed by GNATS, and
+when sent to the client, it is formatted and written by GNATS (gnatsd)
+such that the client just parses it and doesn't have to check for errors
+for remove comments. By this I mean that GNATS shouldn't just copy a gnats
+admin file to the output (gnats used to do this; I removed a few cases of
+it). This also makes the formatting of the info more consistent for
+parsing by clients.
+
+I think you should send out your proposed format of configuration info
+that will be sent to clients that ask for it. I think TkGnats (me) and
+gnatsweb (Ken and Matt) are the only people using this feature. I'd hate
+for you to code a bunch of stuff only to have us bug you to change it
+afterwards! Tcl and perl are great at parsing, but we might as well make
+it simple for ourselves...
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<UL><LI><STRONG>Follow-Ups</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00018" HREF="msg00018.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> "Tony Parent" &lt;tony.parent@lsil.com&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00020" HREF="msg00020.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00023" HREF="msg00023.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Mike Sutton &lt;mws115@llcoolj.dayton.saic.com&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00011" HREF="msg00011.html">Re: proclamation of intent</A></STRONG>
+<UL><LI><EM>From:</EM> Paul Traina &lt;pst@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00016">Date Index</A>] [<a href="subjects.html#00016">Subject Index</a>] [<a href="authors.html#00016">Author Index</a>] [<A HREF="threads.html#00016">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00015.html">Date Prev</A>]&nbsp;[<A HREF="msg00017.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00013.html">Thread Prev</A>]&nbsp;[<A HREF="msg00018.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

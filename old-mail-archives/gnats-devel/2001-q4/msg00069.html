@@ -1,0 +1,154 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Plan to move to savannah -->
+<!--X-From-R13: [vyna Lnznmny <cqzNmnznmny.bet> -->
+<!--X-Date: 28 Oct 2001 21:34:10 &#45;0000 -->
+<!--X-Message-Id: 87snc3pi45.fsf@blackbird.zamazal.org -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Milan Zamazal - Plan to move to savannah</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00069">Date&nbsp;Index</A>] [<a href="subjects.html#00069">Subject&nbsp;Index</a>] [<a href="authors.html#00069">Author&nbsp;Index</a>] [<A HREF="threads.html#00069">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00068.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00070.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00068.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00080.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Plan to move to savannah</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: GNATS Development Mailing List &lt;gnats-devel at sources dot redhat dot com&gt;</li>
+<li><em>Subject</em>: Plan to move to savannah</li>
+<li><em>From</em>: Milan Zamazal &lt;pdm at zamazal dot org&gt;</li>
+<li><em>Date</em>: 28 Oct 2001 22:30:50 +0100</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+I plan to move the GNATS' development infrastructure to
+savannah.gnu.org.  There is nothing wrong with current Red Hat services,
+but I like the idea of a centralized GNU software site.  Also, using
+savannah may be a bit more handy (and savannah hackers fearlessly run
+GNATS 4 there:-).
+
+I think there is a good time to do the move now, before releasing
+GNATS 4 beta -- doing it later would confuse the contingent new users.
+
+The services to be moved are:
+
+1. CVS repository.
+
+2. Bug tracking system.
+
+3. Web pages?
+
+4. Mailing lists.
+
+Of course, no data should be lost during the move, especially all CVS
+data, complete bug history, and mailing list archives should be
+transfered to the new site.
+
+More details about the particular steps:
+
+1. Moving the CVS archive should be the simplest thing of the all, it
+   only concerns a very limited set of people.  Gnatsweb will be removed
+   from the contrib directory, since it has now its own archive on
+   savannah.  I'm not sure what to do with TkGnats -- Rick, what are
+   your plans about it?  Should it simply remain in the CVS as it is?
+
+2. This is a bit more difficult than moving the CVS.  Users must be
+   redirected to the new site and the Web pages must be updated
+   appropriately.
+
+3. There is already a very simple Web page on www.gnu.org, its most
+   important part is the link to the pages at redhat.com.  I don't think
+   changing this setup is particularly important, it's mostly up to
+   Yngve's decision what he prefers (beware, pages on gnu.org should
+   adhere to GNU standards).
+
+4. The most annoying part.  I'd like to make the move as transparent as
+   possible, i.e. with automatic resubscription and a temporary
+   forwarding on redhat, if possible.  One particular change I'd like to
+   make is to rename the gnats-devel mailing list to `gnats' or
+   something like that.  The reason is that users are confused where to
+   send their user questions.  I think the traffic here is low enough
+   not to split the list now, we can do it later if needed.
+
+I'd like to do 1., 2. and 4. at the same time.
+
+So this is the rough plan.  Please tell me if you have any objections,
+advice or so.  I don't plan to perform the move tomorrow but I also
+don't want to wait with it much.  Unless I receive strong objections
+during the following week, I'll start to talk to both savannah hackers
+and Red Hat's overseers about technical details of the move.
+
+Milan Zamazal
+
+-- 
+Free software is about freedom, not about free beer.  If you care only about
+the latter, you'll end up with no freedom and no free beer.
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00080" href="msg00080.html">Re: Plan to move to savannah</a></strong>
+<ul><li><em>From:</em> Hugo Gayosso</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00069">Date&nbsp;Index</A>] [<a href="subjects.html#00069">Subject&nbsp;Index</a>] [<a href="authors.html#00069">Author&nbsp;Index</a>] [<A HREF="threads.html#00069">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00068.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00070.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00068.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00080.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

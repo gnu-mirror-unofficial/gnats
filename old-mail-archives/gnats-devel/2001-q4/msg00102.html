@@ -1,0 +1,121 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: Gnats 4.0/Gnatsweb 4.0 migration problems. -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 6 Nov 2001 14:07:09 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011106145913.04899c18@mail.trd.clustra.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 20011106141848.A19049@teapot.netman.dk -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00102">Date&nbsp;Index</A>] [<a href="subjects.html#00102">Subject&nbsp;Index</a>] [<a href="authors.html#00102">Author&nbsp;Index</a>] [<A HREF="threads.html#00102">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00101.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00103.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00101.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00104.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Lars Henriksen &lt;Lars dot Henriksen at netman dot dk&gt;,Bug-gnats mailing list &lt;bug-gnats at gnu dot org&gt;</li>
+<li><em>Subject</em>: Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Tue, 06 Nov 2001 15:06:48 +0100</li>
+<li><em>Cc</em>: Gnats development mailing list &lt;gnats-devel at sourceware dot cygnus dot com&gt;</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 14:18 06.11.2001 +0100, Lars Henriksen wrote:
+&gt;1.
+&gt;I do not want to interfere with the existing (production) Gnats installation
+&gt;and may later have to set up several databases. How are the old per database
+&gt;config parameters GNATS_ADDR, GNATS_USER and GNATS_ADMIN set with Gnats 4.0?
+&gt;The brand new gnats/UPGRADING mentions only that GNATS_SITE is obsolete.
+&gt;Section 3.5, &quot;Setting up mail aliases&quot;, tells (like the old manual) only
+&gt;that an alias must exist to redirect incoming PRs.
+
+The UPGRADING still file needs quite a bit of polish.
+
+GNATS apparently no longer needs to know its own mail address since PR 
+submission is by default done by speaking directly to the GNATS network 
+daemon, gnatsd. Thus, GNATS_ADDR is also obsolete. The same applies to 
+GNATS_USER.
+
+GNATS_ADMIN is actually also obsolete, since the mail address for the 
+administrator now comes from the gnats-admin entry in Responsible file, 
+This is less than clear in the manual, and I'll try to fix it.
+
+Yngve Svendsen
+Gnatsweb maintainer
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<ul><li><strong>Follow-Ups</strong>:
+<ul>
+<li><strong><a name="00104" href="msg00104.html">Re: Gnats 4.0/Gnatsweb 4.0 migration problems.</a></strong>
+<ul><li><em>From:</em> Lars Henriksen</li></ul></li>
+</ul></li></ul>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00100" href="msg00100.html">Gnats 4.0/Gnatsweb 4.0 migration problems.</a></strong>
+<ul><li><em>From:</em> Lars Henriksen</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00102">Date&nbsp;Index</A>] [<a href="subjects.html#00102">Subject&nbsp;Index</a>] [<a href="authors.html#00102">Author&nbsp;Index</a>] [<A HREF="threads.html#00102">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00101.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00103.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00101.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00104.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: Re: Emacs edit&#45;pr interface... -->
+<!--X-From-R13: Dvpx [npqbanyq <evpxzNify.pbz> -->
+<!--X-Date: 2 Dec 1999 22:20:10 &#45;0000 -->
+<!--X-Message-Id: Pine.GSO.4.10.9912021513060.11801&#45;100000@sys4 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: 3846A6F0.10AFFF84@fokus.gmd.de -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: Emacs edit-pr interface...</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00013">Date&nbsp;Index</A>] [<a href="subjects.html#00013">Subject&nbsp;Index</a>] [<a href="authors.html#00013">Author&nbsp;Index</a>] [<A HREF="threads.html#00013">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00012.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00014.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00012.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Emacs edit-pr interface...</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Cristian Constantin &lt;constantin at fokus dot gmd dot de&gt;</LI>
+<LI><em>Subject</em>: Re: Emacs edit-pr interface...</LI>
+<LI><em>From</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</LI>
+<LI><em>Date</em>: Thu, 2 Dec 1999 15:18:12 -0700 (MST)</LI>
+<LI><em>cc</em>: gnats-prs at sourceware dot cygnus dot com, gnats-devel at sourceware dot cygnus dot com,       bug-gnats at gnu dot org</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+On Thu, 2 Dec 1999, Cristian Constantin wrote:
+
+&gt; Why does the Emacs (lisp) interface for 'edit-pr' give me the following
+&gt; message:
+&gt; 
+&gt; ______________________
+&gt; cd /usr/local/share/gnats/gnats-db/gnats-adm/
+&gt; nquery-pr --host gnats --user anonymous --passwd guest 
+&gt; nquery-pr: gnats: No such host
+&gt; 
+&gt; query-pr  exited abnormally with code 1 at Thu Dec  2 15:25:59
+&gt; ______________________
+&gt; 
+&gt; I've got to say that the 'normal' edit-pr works all right!
+&gt; 
+&gt; What is 'nquery-pr' and how do you configure it?? (host, passwd and so
+&gt; on?..)
+
+nquery-pr is a batch program that talks to the gnatsd daemon across a
+network. query-pr accesses gnats files directly on disk (or nfs).
+
+These emacs variables are in gnats.el:
+
+(defvar gnats:network-server "gnats"
+  "*If non-nil, names the GNATS network server for remote queries and
+editing.")
+
+(defvar gnats:alias nil
+  "*If non-nil, names the alias assigned to the GNATS database.")
+
+(defvar gnats:userid "anonymous"
+  "*Userid for accessing the GNATS network server for remote queries and
+editing.")
+
+(defvar gnats:password "guest"
+  "*Password for accessing the GNATS network server for remote queries and
+editing.")
+
+
+If you don't have gnatsd set up, I think you would:
+
+(setq gnats:network-server nil)
+
+...RickM...
+
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00011" HREF="msg00011.html">Emacs edit-pr interface...</A></STRONG>
+<UL><LI><EM>From:</EM> Cristian Constantin</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00013">Date&nbsp;Index</A>] [<a href="subjects.html#00013">Subject&nbsp;Index</a>] [<a href="authors.html#00013">Author&nbsp;Index</a>] [<A HREF="threads.html#00013">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00012.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00014.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00012.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00008.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

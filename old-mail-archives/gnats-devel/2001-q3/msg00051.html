@@ -1,0 +1,157 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: Re: Editing PR -->
+<!--X-From-R13: E Dnzrfu <enfunazhNacq.upygrpu.pbz> -->
+<!--X-Date: 14 Jul 2001 12:40:25 &#45;0000 -->
+<!--X-Message-Id: 01071418035800.06631@Ram -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: Pine.GSO.4.10.10107130852010.7538&#45;100000@sys4 -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>S Ramesh - Re: Editing PR</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00051">Date&nbsp;Index</A>] [<a href="subjects.html#00051">Subject&nbsp;Index</a>] [<a href="authors.html#00051">Author&nbsp;Index</a>] [<A HREF="threads.html#00051">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00050.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00052.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00050.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00052.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: Editing PR</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: Rick Macdonald &lt;rickm at vsl dot com&gt;</li>
+<li><em>Subject</em>: Re: Editing PR</li>
+<li><em>From</em>: S Ramesh &lt;rashanmu at npd dot hcltech dot com&gt;</li>
+<li><em>Date</em>: Sat, 14 Jul 2001 18:03:58 +0530</li>
+<li><em>Cc</em>: GNATS &lt;gnats-devel at sourceware dot cygnus dot com&gt;,       Margaret BRIERTON &lt;margaret at retriever dot com dot au&gt;,       rashanmu at npd dot hcltech dot com</li>
+<li><em>Organization</em>: HCL Technologies Ltd.</li>
+<li><em>References</em>: &lt;<a href="msg00048.html">Pine.GSO.4.10.10107130852010.7538-100000@sys4</a>&gt;</li>
+<li><em>Reply-To</em>: rashanmu at npd dot hcltech dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+Hi Rick,
+
+Ur hint helped me a lot. i removed that comment and then in 
+recompiled the code. now i tried with edit-pr. this time it didn't 
+mentioned any PARSE error. it worked fine and it asked for the reason 
+for closing. i given a reason. then when i saw the mail to 
+gnats-admin.. i found a mail named problem with pr-edit. in the 
+message it is like
+
+pr-edit: could not rename /usr/local/share/gnats/gnats-db/test/4: 
+Permission denied
+
+what could be the problem. even when i try to file a PR also it is 
+saying now problem with file-pr and another mail problem with 
+queue-pr.
+
+the message inside queue-pr is like
+
+renamed `gnats9sMJkC' to `.gnats9sMJkC' pending human intervention.   
+
+the message inside file-pr is 
+
+Can't write the PR to /usr/local/share/gnats/gnats-db/Traffic/17.
+
+what could be the problem. i tried with tkgnats, gnatsweb and as well 
+as send-pr and edit-pr everything giving this same problem. somewhere 
+i am missing something... can anybody help me to figure it out.. i 
+will be very much thankful...
+
+THanks
+Ramesh
+
+
+On Friday 13 July 2001 08:24 pm, Rick Macdonald wrote:
+&gt; On Fri, 13 Jul 2001, S Ramesh wrote:
+&gt; &gt; Hi ,
+&gt; &gt;
+&gt; &gt; When i tried to close a PR using edit-pr i opened the PR and
+&gt; &gt; changed the status to closed and saved. it is prompting like
+&gt; &gt;
+&gt; &gt; Hit `return` to fix the following errors, or type \'quit\' to
+&gt; &gt; quit: pr-edit: Couldn't parse the ARRIVAL_DATE date: Tue Jul 10
+&gt; &gt; 12:20:00 IST 2001.
+&gt; &gt;
+&gt; &gt; what could be the reason. The lock file is also not created for
+&gt; &gt; the PR. but when i tired to change the status as closed and when
+&gt; &gt; i submit edit .. its sayiing internal server error.. which i
+&gt; &gt; mentioned the error message in the previous mail. Kinldy help
+&gt; &gt; me.. its urgent.. everything got over for me..except this kind of
+&gt; &gt; configuration. Does anybody have incurred this problem.. if so
+&gt; &gt; kindly help me..
+&gt;
+&gt; Is that gnats 3.x? It's because IST idn't recognised. It's
+&gt; commented out in getdate.c:
+&gt;
+&gt; #if 0
+&gt;     { &quot;ist&quot;,	tZONE,     -HOUR (5.5) },/* Indian Standard */
+&gt; #endif
+&gt;
+&gt; ...RickM...
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<ul><li><strong>References</strong>:
+<ul>
+<li><strong><a name="00048" href="msg00048.html">Re: Editing PR</a></strong>
+<ul><li><em>From:</em> Rick Macdonald</li></ul></li>
+</ul></li></ul>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00051">Date&nbsp;Index</A>] [<a href="subjects.html#00051">Subject&nbsp;Index</a>] [<a href="authors.html#00051">Author&nbsp;Index</a>] [<A HREF="threads.html#00051">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00050.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00052.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00050.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00052.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!-- MHonArc v2.4.3 -->
+<!--X-Subject: Re: gnatsd accepting new PRs -->
+<!--X-From-R13: "Fbal Bnerag" <gbal.cneragNyfvy.pbz> -->
+<!--X-Date: 23 Aug 1999 18:28:59 &#45;0000 -->
+<!--X-Message-Id: 14273.37087.510501.649059@merlin.co.lsil.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: rickm@vsl.com -->
+<!--X-Reference: Pine.GSO.4.10.9908231147140.20253&#45;100000@sys4 -->
+<!--X-Reference: 199908231803.LAA09975@tristam.juniper.net -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Re: gnatsd accepting new PRs</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00017">Date Index</A>] [<a href="subjects.html#00017">Subject Index</a>] [<a href="authors.html#00017">Author Index</a>] [<A HREF="threads.html#00017">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00016.html">Date Prev</A>]&nbsp;[<A HREF="msg00018.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00015.html">Thread Prev</A>]&nbsp;[<A HREF="msg00024.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Re: gnatsd accepting new PRs</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: Bob Manson &lt;bmanson@juniper.net&gt;</LI>
+<LI><em>Subject</em>: Re: gnatsd accepting new PRs </LI>
+<LI><em>From</em>: "Tony Parent" &lt;tony.parent@lsil.com&gt;</LI>
+<LI><em>Date</em>: Mon, 23 Aug 1999 14:25:55 -0400 (EDT)</LI>
+<LI><em>Cc</em>: Rick Macdonald &lt;rickm@vsl.com&gt;, gnats-devel@sourceware.cygnus.com,       bug-gnats@gnu.org</LI>
+<LI><em>References</em>: &lt;rickm@vsl.com&gt;&lt;<A HREF="msg00014.html">Pine.GSO.4.10.9908231147140.20253-100000@sys4</A>&gt;&lt;<A HREF="msg00015.html">199908231803.LAA09975@tristam.juniper.net</A>&gt;</LI>
+<LI><em>Reply-To</em>: Tony.Parent@lsil.com</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+
+On August 23, 1999, Bob Manson wrote:
+&gt; In message &lt;<A HREF="msg00014.html">Pine.GSO.4.10.9908231147140.20253-100000@sys4</A>&gt;, Rick Macdonald writ
+&gt; es:
+&gt; &gt;I don't suppose that this ever got picked up? The patch probably wouldn't
+&gt; &gt;match your new code now.
+&gt; 
+&gt; It's certainly not in the source tree I've been working with, but I
+&gt; suspect it can be made to work without too much trouble.  It may be even
+&gt; easier now, I don't know.  (At least it *should* be easy to implement, so
+&gt; if it's not that needs to be fixed.)
+&gt; 
+&gt; Nothing in the "backend" code calls punt, or I should say "should call
+&gt; punt" so if that was the fundamental problem that's long since been
+&gt; addressed.
+&gt; 						Bob
+
+As I remember it, the problem was that the code in file-pr.c called punt
+(for things like missing fields etc), but punt calls exit. (So if a
+required field was missing, the PR wasn't created.) I had to modify
+the punt code so it wouldn't exit the server if file-pr had an error, but
+simply return to the main loop of the server.
+
+It's probably good that you haven't seen my code, or you would had more
+"crap code" to delete. :-)
+
+-- 
+===========================================================================
+     oO   Tony.Parent@lsil.com      LSI Logic                         __o
+    []&lt;                             2001 Danfield Ct                 -\&lt;,
+      |   (970) 206-5769            Fort Collins, CO 80525          O / O
+===========================================================================
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<UL><LI><STRONG>References</STRONG>:
+<UL>
+<LI><STRONG><A NAME="00014" HREF="msg00014.html">gnatsd accepting new PRs</A></STRONG>
+<UL><LI><EM>From:</EM> Rick Macdonald &lt;rickm@vsl.com&gt;</LI></UL></LI>
+<LI><STRONG><A NAME="00015" HREF="msg00015.html">Re: gnatsd accepting new PRs</A></STRONG>
+<UL><LI><EM>From:</EM> Bob Manson &lt;bmanson@juniper.net&gt;</LI></UL></LI>
+</UL></LI></UL>
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00017">Date Index</A>] [<a href="subjects.html#00017">Subject Index</a>] [<a href="authors.html#00017">Author Index</a>] [<A HREF="threads.html#00017">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00016.html">Date Prev</A>]&nbsp;[<A HREF="msg00018.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00015.html">Thread Prev</A>]&nbsp;[<A HREF="msg00024.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>

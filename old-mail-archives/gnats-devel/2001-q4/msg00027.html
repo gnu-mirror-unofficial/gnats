@@ -1,0 +1,172 @@
+<!-- MHonArc v2.4.9 -->
+<!--X-Subject: GNATS authentication -->
+<!--X-From-R13: Katir Eiraqfra <latir.firaqfraNpyhfgen.pbz> -->
+<!--X-Date: 8 Oct 2001 19:49:54 &#45;0000 -->
+<!--X-Message-Id: 5.1.0.14.2.20011008203521.00bd7200@10.10.1.1 -->
+<!--X-Content-Type: text/plain -->
+<!--X-Reference: F12qzQrOPI1VUX0ykY2000150a8@hotmail.com -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Yngve Svendsen - GNATS authentication</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<!--htdig_noindex-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sources.redhat.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--/htdig_noindex-->
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<!--htdig_noindex-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>GNATS authentication</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<ul>
+<li><em>To</em>: &quot;holly sadeghi&quot; &lt;holly0906 at hotmail dot com&gt;</li>
+<li><em>Subject</em>: GNATS authentication</li>
+<li><em>From</em>: Yngve Svendsen &lt;yngve dot svendsen at clustra dot com&gt;</li>
+<li><em>Date</em>: Mon, 08 Oct 2001 21:45:53 +0200</li>
+<li><em>Cc</em>: bug-gnats at gnu dot org,gnats-devel at sources dot redhat dot com</li>
+</ul>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<hr>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<pre>
+At 11:10 08.10.2001 -0700, holly sadeghi wrote:
+&gt;hi,
+&gt;i was just wondering about the login process of the gnatsweb...
+&gt;i have installed gnatsweb and gnats and everything seems to be working 
+&gt;fine. Except that i or my group can login as anything and type in any 
+&gt;password we want...and the main page will still be shown and PRs can be 
+&gt;created. Why is it that the main page still gets shown with any login and 
+&gt;passwrd? what is the purpose of this page then?
+&gt;what can i do to fix this problem?
+
+(this is long but should answer most questions. I am also posting it to 
+gnats-devel, since there are doubtless people there who will benefit)
+
+This is a consequence of the weak security model employed by GNATS, and 
+this weakness means that the only real benefit of requiring users to log in 
+in a default GNATS 3 setup is that the user name will be used in the 
+Audit-Trail so that tracking of who did what is possible. However, since 
+anyone can pretend to be anyone, this system depens heavily on trust.
+
+A user coming in has his or her access level set as follows:
+
+First, the hostname of the machine the user comes in from is checked in the 
+gnatsd.conf file of the database. This yields a certain access level.
+
+Then the user can authenticate with username and password against the 
+gnatsd.access file. If the user authenticates successfully, the access 
+level in the gnatsd.access file is the one set for this user, but only if 
+this access level is _higher_ than the one set for the user's host. If the 
+user does not authenticate successfully, the access level of the user's 
+host is the one which is set.
+
+Furthermore, since GNATS' original design centres on receiving problem 
+reports by e-mail (in fact, the network functionality with the associated 
+gnats daemon hasn't been complete until GNATS version 4, which hasn't been 
+released yet), submission of problem reports is not a restricted operation.
+
+In GNATS 3 with Gnatsweb 2.x, what you could do would be to set 'view' 
+access in gnatsd.conf for all hosts, then set up user accounts so that 
+users can authenticate to higher access levels. Anyone would still be able 
+to submit new PRs.
+
+Ideally, you should be able to set access level 'none' for all hosts, so 
+users would be required to authenticate in order to do anything. The 
+problem with this is that Gnatsweb has to get a list of available databases 
+before the user can be asked to log in, and that is not possible in GNATS 
+3, since the DBLS command is unavailable when the access level is set to 
+'none'. And still, anyone would be able to submit PRs. The DBLS problem 
+will be fixed in GNATS 4, where there will be a separate access level which 
+allows only the DBLS command to be executed.
+
+Unfortunately, GNATS 4 will not be much improved wrt. to security, except 
+for the DBLS fix. However, we have implemented a workaround in Gnatsweb 4. 
+If you limit access to GNATS so that Gnatsweb is the only available 
+interface, you can require users to authenticate against the web server 
+before they're allowed access to Gnatsweb. Gnatsweb can be configured to 
+pick up the username the user authenticated to the web server with and use 
+that as the GNATS username. Basically, you would have an empty user 
+database in gnatsd.access and an entry in gnatsd.conf saying
+
+localhost:edit:
+
+(assuming the web server runs on the GNATS server machine)
+
+Gnatsweb 4 has a configuration switch which allows you to restrict 
+submission of new PRs only to users who have 'edit access'. To stop 
+unauthenticated submission through other channels in this kind of 
+configuration, you would shut off incoming e-mail to the GNATS server 
+(removing the pertinent mail aliases) since Gnatsweb 4 no longer uses 
+e-mail to communicate with the GNATS server, then remove the send-pr 
+utility from the GNATS server itself. People with user accounts on the 
+GNATS server itself could still submit PRs by telneting from the GNATS 
+server to port 1529 of the same server, then use gnatsd commands for 
+submission. I consider this a minor and unimportant loophole -- a machine 
+running both a GNATS and a web server should really not have any other 
+users than admins. Coupled with web server authentication over SSL, this is 
+a reasonably secure configuration, but one which ditches a lot of GNATS 
+features that are hugely important for many sites.
+
+All in all, GNATS security is messy and weak. I'd like to invite people to 
+air their views on this subject -- perhaps we could end up with a 
+specification for a more robust security and authentication model?
+
+Yngve Svendsen
+
+</pre>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<hr>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<!--htdig_noindex-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00027">Date&nbsp;Index</A>] [<a href="subjects.html#00027">Subject&nbsp;Index</a>] [<a href="authors.html#00027">Author&nbsp;Index</a>] [<A HREF="threads.html#00027">Thread&nbsp;Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00026.html">Date&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Date&nbsp;Next</A>]</td>
+      <td>[<A HREF="msg00026.html">Thread&nbsp;Prev</A>]&nbsp;[<A HREF="msg00028.html">Thread&nbsp;Next</A>]</td>
+  </tr>
+</table>
+<!--/htdig_noindex-->
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</body>
+</html>

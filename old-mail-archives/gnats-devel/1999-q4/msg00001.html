@@ -1,0 +1,123 @@
+<!-- MHonArc v2.4.4 -->
+<!--X-Subject: Common files in gnats updated, gnats&#45;v3 branch created -->
+<!--X-From-R13: Xnfba [byraqn <wfzNpltahf.pbz> -->
+<!--X-Date: 26 Oct 1999 07:35:40 &#45;0000 -->
+<!--X-Message-Id: 19991026003539.A8283@cygnus.com -->
+<!--X-Content-Type: text/plain -->
+<!--X-Head-End-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>Common files in gnats updated, gnats-v3 branch created</TITLE>
+</HEAD>
+<BODY>
+<!--X-Body-Begin-->
+<!--X-User-Header-->
+<p>This is the mail archive of the 
+<tt>gnats-devel@sourceware.cygnus.com</tt>
+mailing list for the <a href="/gnats/">GNATS project</a>.
+
+
+<!--X-User-Header-End-->
+<!--X-TopPNI-->
+<HR>
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00001">Date Index</A>] [<a href="subjects.html#00001">Subject Index</a>] [<a href="authors.html#00001">Author Index</a>] [<A HREF="threads.html#00001">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00000.html">Date Prev</A>]&nbsp;[<A HREF="msg00002.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00006.html">Thread Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-TopPNI-End-->
+<!--X-MsgBody-->
+<!--X-Subject-Header-Begin-->
+<h1>Common files in gnats updated, gnats-v3 branch created</h1>
+<!--X-Subject-Header-End-->
+<!--X-Head-of-Message-->
+<UL>
+<LI><em>To</em>: gnats-devel at sourceware dot cygnus dot com</LI>
+<LI><em>Subject</em>: Common files in gnats updated, gnats-v3 branch created</LI>
+<LI><em>From</em>: Jason Molenda &lt;jsm at cygnus dot com&gt;</LI>
+<LI><em>Date</em>: Tue, 26 Oct 1999 00:35:39 -0700</LI>
+</UL>
+<!--X-Head-of-Message-End-->
+<!--X-Head-Body-Sep-Begin-->
+<HR>
+<!--X-Head-Body-Sep-End-->
+<!--X-Body-of-Message-->
+<PRE>
+I've upgraded the portability support files in gnats.  This means the
+libiberty, config, and include subdirectories.  We had a snapshot of
+these files from around 1997; they are now maintained by the EGCS (now
+gcc) folks and I've imported the gcc 2.95.2 versions of them.
+
+I tested these files on SunOS, Linux, and Solaris 2.6, all with gcc.
+Some ANSIisms have crept into gnats, so I was not able to build it on
+SunOS w/ their pre-ISO C compiler.  I do not consider this to be much
+of a bug--it is becoming pretty clear that we no longer need to support
+pre-ISO C compilers any longer.  Contact me if you have any problems
+with configuring or building these files.
+
+
+I've removed the files in the etc/ subdirectory and I'm millimeters away
+from removing the old texinfo.tex file that is sitting in the texinfo/
+directory so that directory can be removed altogether.  It is currently
+installed along with the .texi files in case there is someone on this
+planet with a Tex installation that doesn't have the texinfo.tex file
+installed already.
+
+
+I've created a gnats-v3 branch; I'll be creating a gnats-3.113 snapshot
+after I go over some more of the error reports against 3.111 and 3.112.
+I will not be adding anything except bug fixes on the v3 line.  The gnats
+4.0-alpha work that Bob is doing is where the attention and energy should
+be going.  If I need further v3 snapshots after 3.113, I'll make them,
+but don't bet on it.  At the end, I want a release-quality "snapshot"
+so those people who can't immediately migrate to the v4 gnats will have
+a good medium-term setup.
+
+As always, the best way to make sure your bug report or submitted patch
+is not lost is to submit a PR to the GNATS gnats database.  Follow this
+URL to access it with gnatsweb; any other front end should work as well
+(database name "gnats", username "guest", password "guest"):
+
+  <A  HREF="http://sourceware.cygnus.com/cgi-bin/gnatsweb.pl?database=gnats&amp;user=guest&amp;password=guest&amp;cmd=login">http://sourceware.cygnus.com/cgi-bin/gnatsweb.pl?database=gnats&amp;user=guest&amp;password=guest&amp;cmd=login</A>
+
+You can follow changes to these PRs at
+	<A  HREF="http://sourceware.cygnus.com/ml/gnats-prs/">http://sourceware.cygnus.com/ml/gnats-prs/</A>
+Or by subscribing to the gnats-prs@sourceware.cygnus.com mailing list.
+
+Jason
+Free the Software!
+</PRE>
+
+<!--X-Body-of-Message-End-->
+<!--X-MsgBody-End-->
+<!--X-Follow-Ups-->
+<HR>
+<!--X-Follow-Ups-End-->
+<!--X-References-->
+<!--X-References-End-->
+<!--X-BotPNI-->
+<table border="0">
+  <tr><th align="left">Index Nav:</th>
+      <td colspan="2">
+        [<A HREF="index.html#00001">Date Index</A>] [<a href="subjects.html#00001">Subject Index</a>] [<a href="authors.html#00001">Author Index</a>] [<A HREF="threads.html#00001">Thread Index</A>]
+      </td>
+  </tr>
+  <tr><th align="left">Message Nav:</th>
+      <td>[<A HREF="msg00000.html">Date Prev</A>]&nbsp;[<A HREF="msg00002.html">Date Next</A>]</td>
+      <td>[<A HREF="msg00006.html">Thread Prev</A>]&nbsp;[<A HREF="msg00000.html">Thread Next</A>]</td>
+  </tr>
+</table>
+
+<!--X-BotPNI-End-->
+<!--X-User-Footer-->
+<!--X-User-Footer-End-->
+</BODY>
+</HTML>
