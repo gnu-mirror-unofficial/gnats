@@ -1,0 +1,210 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD HoTMetaL PRO 6.0::19990601::extensions to HTML 4.0//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+	 <TITLE>GNATS - Decoding MIME e-mail</TITLE><LINK REL="STYLESHEET"
+	 HREF="styles/common.css"> 
+  </HEAD> 
+  <BODY> 
+	 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"> 
+		<TR> 
+		  <TD><A NAME="top"><IMG SRC="images/gnatslogo.png" BORDER="0"
+			 ALT="Gnats" WIDTH="296" HEIGHT="59"></A></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		</TR> 
+	 </TABLE> 
+	 <TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" BGCOLOR="#EEEEEE"
+	  CLASS="sm"> 
+		<TR> 
+		  <TD CLASS="sm"><A HREF="index.html">GNATS</A> &gt; DECODING MIME
+			 E-MAIL</TD> 
+		</TR> 
+	 </TABLE> 
+	 <H2>Handling MIME e-mail messages in GNATS</H2> 
+	 <P>A well-known problem for many users of GNATS is that MIME-ified mail
+		messages are handled badly by GNATS. MIME is a standard way for "rich" content
+		to be transferred by e-mail . This content might consist of arbitrary
+		attachments with content such as images, sounds, executable files or plain
+		text. A typical MIME e-mail message contains a plaintext part first, and then
+		one or more parts containing attachments.</P> 
+	 <P>Currently, GNATS makes no attempt to decode these messages. This is
+		especially noticeable when letters such &aelig;, &ouml;, &szlig;, &aring; etc.
+		are used in the subject field of PRs submitted by e-mail. Such messages get a
+		synopsis containing the rather ugly looking string "=?iso-8859-1?Q?",
+		underscores instead of spaces and the special letters themselves replaced by
+		strings such as =F8, =E8 etc. In the message body, all special characters are
+		replaced by =XX strings. These strings are commonly referred to as <I>quoted
+		printables</I>. Thus, quoted printables will also be present in the Description
+		field of the PR if the message body contained international characters.</P> 
+	 <P>Most modern e-mail clients decode MIME e-mail messages properly,
+		removing the iso string, translating underscores back to spaces and quoted
+		printables to their special letter counterparts. However, GNATS does not
+		contain functionality for this, so e-mail messages are filed directly into the
+		database without any translation.</P> 
+	 <P>Another big problem arises when users submit PRs by e-mail, containing
+		attachments. Those parts of the message that contain binary data is simply
+		dumped as long encoded blocks of data into the PR description, together with
+		whatever plaintext the message might contain.</P> 
+	 <P>The easiest way to solve this is by placing a parser script at the
+		beginning of the line in the GNATS mail alias that pipes messages into
+		queue-pr. The following Perl script uses Perl MIME modules to decode the
+		message. It fully decodes headers and bodies of messages, stripping out parts
+		of a message that are not plain text, decoding those parts and saving them to
+		an archive directory. Separate directories are made to hold the contents of
+		each message. A reference is then inserted into the original message, stating
+		the location of the saved file. The parts of the message that were originally
+		in plaintext get their quoted printables translated and are otherwise left
+		alone.</P> 
+	 <P>In order to use the script below, you need to download and install the
+		following Perl modules on your system. Get the latest versions listed on the
+		following pages:</P> 
+	 <UL> 
+		<LI><A HREF="http://www.cpan.org/authors/id/GAAS/">MIME-Base64</A></LI> 
+		<LI><A HREF="http://www.cpan.org/authors/id/ERYQ/">MIME-tools</A></LI> 
+	 </UL> 
+	 <TABLE BGCOLOR="#EEEEEE" BORDER="0" CELLPADDING="10" CELLSPACING="0"> 
+		<TR> 
+		  <TD> 
+			 <PRE>#!/usr/bin/perl
+#
+# parsemime.pl -- Yngve Svendsen, May 2001
+#
+# Script to decode MIME-encoded mail messages. Fully decodes header
+# fields according to RFC2047. Merges multi-line header fields into
+# single lines. Decodes the message body, saving binary parts to disk.
+# Outputs a new message body, consisting of the plaintext message parts
+# and references detailing the location of the saved stripped-out
+# non-plaintext parts.
+
+use MIME::Parser;
+use File::Basename;
+
+undef $/; # We want to treat everything read from STDIN as one line
+$input = &lt;&gt;;
+$/ = "\n";
+($headers, $body) = split (/\n\n/, $input, 2);
+
+# Split MIME-multipart messages and store the parts in subdirectories
+# under the directory indicated by $output_path. Depending on which
+# mail system your site uses, the directory specified by $output_path might
+# have to have special permissions. If you have qmail, the dir should
+# be owned by the user 'alias'. Sendmail should be content with 'root'
+# as owner.
+my $output_path = '/path/to/archive/directory';
+my ($parsed) = (basename($0))[0];
+my $parser = MIME::Parser-&gt;new();
+
+# Permission mask for output files.
+# These permissions are very lax. Replace with what is appropriate
+# for your system.
+$oldumask = umask 0002;
+
+$parser-&gt;output_under($output_path);
+$parser-&gt;output_prefix($parsed);
+$parser-&gt;output_to_core();
+
+my $entity = $parser-&gt;parse_data($input); 
+# Permissions for the directory containing the output files.
+# These permissions are very lax. Replace with what is appropriate
+# for your system.
+chmod 0775, ($parser-&gt;output_dir);
+
+# Process the headers:
+$procheaders = $headers;
+$procheaders =~ s/\?=\s\n/\?=\n/g; # Lines ending with an encoded-word
+                               # have an extra space at the end. Remove it.
+$procheaders =~ s/\n[ |\t]//g; # Merge multi-line headers into a single line.
+$transheaders = '';
+
+foreach $line (split(/\n/, $procheaders))
+{
+	while ($line =~ m/=\?[^?]+\?(.)\?([^?]*)\?=/)
+	{
+	  $encoding   = $1;
+	  $txt        = $2;
+	  $str_before = $`;
+	  $str_after  = $';
+
+# Base64
+    if ($encoding =~ /b/i)
+    {
+      require MIME::Base64;
+      MIME::Base64-&gt;import(decode_base64);
+      $txt = decode_base64($txt);
+    }
+
+# QP
+    elsif ($encoding =~ /q/i)
+    {
+      require MIME::QuotedPrint;
+      MIME::QuotedPrint-&gt;import(decode_qp);
+      $txt = decode_qp($txt);
+    }
+
+    $line = $str_before . $txt . $str_after;
+  }
+  # The decode above does not do underline-to-space translation:
+  $line =~ tr/_/ /;
+  $transheaders .= $line . "\n";
+}
+
+# Reconstruct the message, made from headers and the MIME text parts
+# we saved earlier. Add references in the message body to the non-text
+# parts that have been stripped out and stored. The purgeable method
+# returns the full path of the files constructed from the different
+# message parts.
+print $transheaders . "\n";
+
+foreach $file ($parser-&gt;filer-&gt;purgeable) {
+    # Strip trailing spaces from filenames:
+    $file =~ /(\S*)\s*$/;
+    $file = $1;
+    if ($file =~ /\.txt\s*$/) {
+        # We have found a plaintext part. Include it in the new body:
+        open PART, $file;
+        while (&lt;PART&gt;) {
+            print;
+        }
+        close PART;
+        # Build list of files included in the new body. We will delete
+        # these files further down.
+        unshift @purgeables, $file;
+    }
+    else {
+        # We have found a non-plaintext part. Add a reference to it in the
+        # new body:
+        print "\n\n** Attachment decoded and saved to \n** $file\n\n";
+    }
+}
+
+# Make the list we built the new list of purgeable files:
+$parser-&gt;filer-&gt;purgeable(\@purgeables);
+# Delete them:
+$parser-&gt;filer-&gt;purge;
+
+umask $oldumask;
+</PRE></TD> 
+		</TR> 
+	 </TABLE> 
+	 <P>Set up the mail alias which receives bug reports to pipe messages
+		through this script before it is piped into queue-pr. Like this (you should
+		modify the path to queue-pr to fit your installation): </P> 
+	 <PRE>| /path-to-script/script.pl | /usr/local/libexec/gnats/queue-pr -q</PRE> 
+	 <P>Warning: Using this filter causes PRs to be stored in the Gnats database
+		in a decoded format which might not be supported properly by all UNIXes.
+		Outgoing mail from GNATS will also be unencoded, possibly resulting in problems
+		when mail is transferred over the Internet. Some mail clients may also have
+		problems with it. In short: your mileage may vary.</P><HR SIZE="1"> 
+	 <TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" BGCOLOR="#EEEEEE"
+	 CLASS="sm"> 
+		<TR> 
+		  <TD CLASS="sm"><A HREF="index.html">GNATS</A> &gt; DECODING MIME
+			 E-MAIL</TD> 
+		</TR> 
+	 </TABLE> 
+	 <DIV CLASS="ps">&nbsp;<BR>First published: Wednesday, 09-May-2001 23:38:00
+		MET DST<BR>Last modified: Wednesday, 09-May-2001 23:38:00 MET DST<BR><A
+		HREF="mailto:yngve.svendsen@clustra.com">yngve.svendsen@clustra.com</A></DIV>
+	 </BODY>
+</HTML>

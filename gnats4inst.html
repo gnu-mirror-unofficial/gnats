@@ -1,0 +1,324 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD HoTMetaL PRO 6.0::19990601::extensions to HTML 4.0//EN" "hmpro6.dtd">
+<HTML> 
+  <HEAD> 
+	 <TITLE>GNATS 4 Installation</TITLE><LINK REL="STYLESHEET"
+	 HREF="styles/common.css"> 
+  </HEAD> 
+  <BODY> 
+	 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"> 
+		<TR> 
+		  <TD><A NAME="top"><IMG SRC="images/gnatslogo.png" BORDER="0"
+			 ALT="Gnats" WIDTH="296" HEIGHT="59"></A><BR>&nbsp;</TD> 
+		</TR> 
+	 </TABLE>
+	 <TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" BGCOLOR="#EEEEEE"
+	  CLASS="sm"> 
+		<TR> 
+		  <TD CLASS="sm"><A HREF="index.html">GNATS</A> &gt; GNATS 4
+			 INSTALLATION</TD> 
+		</TR> 
+	 </TABLE>
+	 <H1>Gnats 4 Installation</H1>
+	 <H3>(minimum survival edition 0.1)</H3> 
+	 <P>These are the minimum of steps needed to install the Gnats 4 version
+		from CVS as of mid-March 2001. The procedure is believed to be workable, but
+		needs a bit more proofreading and testing. Please send any corrections or other
+		suggestions to <A
+		HREF="mailto:yngve.svendsen@clustra.com">yngve.svendsen@clustra.com</A>.</P> 
+	 <H2>Prerequisites</H2> 
+	 <P> If you are installing GNATS on a machine which doesn't have any GNU
+		software installed, you need to begin by getting and installing
+		<A HREF="http://www.gnu.org/software/make/make.html">GNU make</A>. The list of
+		GNU FTP mirror sites is at <A
+		HREF="http://www.gnu.org/order/ftp.html">http://www.gnu.org/order/ftp.html</A>.
+		In order to have the documentation available in Info format (which allows you
+		to read Gnats documentation by way of the 'info' command), you also need to
+		have <A HREF="http://www.texinfo.org">Texinfo</A> installed.</P> 
+	 <H2>Configuring and compiling the software</H2> 
+	 <H3>Getting GNATS 4</H3>
+	 <P>Get the current development version of GNATS 4 from CVS.</P>
+	 <P><TT>cvs -d :pserver:anoncvs@sources.redhat.com:/cvs/gnats
+		login<BR>{enter "anoncvs" as the password}<BR>cvs -z9 -d
+		:pserver:anoncvs@sources.redhat.com:/cvs/gnats co -P gnats</TT></P>
+	 <P>This creates a 'gnats' subdirectory of the current directory, containing
+		the GNATS 4 source code.</P> 
+	 <H3>Change Emacs Lisp directory (optional)</H3> 
+	 <P>You may wish to alter the installation directory for the Emacs lisp
+		files. If your Emacs lisp library is not in
+		'<I>prefix</I>/share/emacs/site-lisp', edit the files
+		<I>srcdir</I>/gnats/Makefile.in and <I>srcdir</I>/send-pr/Makefile.in</P> 
+	 <P>Change the variable '<I>lispdir</I>' from '$(datadir)/emacs/site-lisp'
+		to the directory containing your Emacs lisp library. For information on
+		<I>prefix</I>, see the next section.</P> 
+	 <H3>Configure</H3> 
+	 <P> You can nearly always run configure with the command</P> 
+	 <P><TT>./configure</TT></P> 
+	 <P>and the "Right Thing" happens:</P> 
+	 <UL> 
+		<LI>GNATS is configured in the same directory you unpacked it in.</LI> 
+		<LI>when built, GNATS runs on the machine you're building it on.</LI> 
+		<LI>when installed, files are installed under '/usr/local'.</LI> 
+		<LI>GNATS operates by default behavior (documented elsewhere).</LI> 
+		<LI>all GNATS utilites operate on the default database, assumed to be
+		  located in '/usr/local/com/default', unless you invoke them with the option
+		  <TT>-d databasename</TT> or <TT>--database databasename</TT>.</LI> 
+	 </UL> 
+	 <P>The last point is worth remembering. If you run multiple databases it is
+		a good practice to always specify the databasename explicitly when invoking
+		GNATS utilities manually, even if you want to operate on the default
+		database.</P> 
+	 <P>The most common options for 'configure' are:</P> 
+	 <TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0"> 
+		<TR> 
+		  <TD><TT>configure&nbsp;</TT></TD> 
+		  <TD><TT>[ --prefix=PREFIX ]</TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD><TT>[ --exec-prefix=EXEC-PREFIX ]</TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD><TT>[ --with-gnats-service=SERVICE-NAME ]</TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD><TT>[ --with-gnats-user=USERNAME ]</TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD><TT>[ --with-gnatsd-user-access-file=PATH ]</TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD> <TT>[ --with-gnatsd-host-access-file=PATH ]</TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD><TT>[ --with-gnats-dblist-file=PATH ]</TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD><TT>[ --with-gnats-default-db=PATH ] </TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD><TT>[ --with-kerberos ]</TT></TD> 
+		</TR> 
+		<TR> 
+		  <TD>&nbsp;</TD> 
+		  <TD><TT>[ --with-krb4 ] </TT></TD> 
+		</TR> 
+	 </TABLE> 
+	 <P><TT>--prefix=PREFIX</TT><BR>All host-independent programs and files are
+		to be installed under PREFIX. (Host-dependent programs and files are also
+		installed in PREFIX by default.) The default for PREFIX is '/usr/local'.</P> 
+	 <P><TT>--exec-prefix=EXEC-PREFIX</TT><BR>All host-dependent programs and
+		files are to be installed under EXEC-PREFIX. The default for EXEC-PREFIX is
+		PREFIX.</P> 
+	 <P><TT>--with-gnats-service=SERVICE-NAME</TT><BR>Set SERVICE-NAME to be the
+		GNATS network service. Default name is 'support'.</P> 
+	 <P><TT>--with-gnats-user=USERNAME</TT><BR>Set the username for GNATS from
+		the passwd file to NAME. Default username is 'gnats'.</P> 
+	 <P><TT>--with-gnatsd-user-access-file=PATH</TT><BR>Set global (across all
+		databases) gnatsd access file to PATH. Default is
+		/usr/local/share/gnats/gnatsd.access. Per-database user access permissions are
+		set in a gnatsd.access file in the gnats-adm subdirectory of each database
+		directory.</P> 
+	 <P><TT>--with-gnatsd-host-access-file=PATH</TT><BR>Set global (across all
+		databases) gnatsd access file to PATH. Default is
+		/usr/local/share/gnats/gnatsd_host.access. There is currently no way to specify
+		host access permissions on a per-database basis.</P> 
+	 <P><TT>--with-gnats-dblist-file=PATH</TT><BR>Specify the file containing
+		the list of databases. Default is /usr/local/etc/gnats/databases.</P> 
+	 <P><TT>--with-gnats-default-db=DEFAULT_DB_DIR</TT><BR>Specify the default
+		database directory to use. Default value is /usr/local/com/gnatsdb. Utilities
+		such as send-pr operate on this database when no -d or --databasename is
+		given.</P> 
+	 <P><TT>--with-kerberos</TT><BR>Include code for Kerberos authentication.
+		(Currently undocumented)</P> 
+	 <P><TT>--with-krb4</TT><BR>Support Kerberos 4 (Currently undocumented) </P>
+	 
+	 <P>For a complete list of options supported by configure, run
+		<TT>./configure --help</TT> in the source directory. Complete documentation of
+		configure can be found in the section "Using configure" in Cygnus
+		configure.</P> 
+	 <P>You can build GNATS in a different directory (<I>OBJDIR</I>) from the
+		source code by calling the `configure' program from the new directory, as in
+		</P> 
+	 <P><TT>mkdir OBJDIR<BR>cd OBJDIR<BR>SRCDIR/configure ...</TT></P> 
+	 <P>By default, `make' compiles the programs in the same directory as the
+		sources (<I>SRCDIR</I>). Emacs lisp files are byte-compiled if `make' can find
+		Emacs on your local system.</P> 
+	 <H3>Build</H3> 
+	 <P>Now, we should be ready to run</P> 
+	 <P><TT>make all info</TT></P> 
+	 <P>from the directory where `configure' created a `Makefile' (this is
+		<I>OBJDIR</I> if you used it, otherwise <I>SRCDIR</I>.) These targets
+		indicate:</P> 
+	 <P><TT>all</TT><BR>Compile all programs.</P> 
+	 <P><TT>info</TT><BR>Create `info' files using `makeinfo'.</P> 
+	 <H2> Installing the utilities</H2>
+	 <P>NOTE: Need to document send-pr.conf. Hasn't it been updated to work with
+		the dbconfig file????</P>
+	 <H3>Create the GNATS user</H3> 
+	 <P>The following steps are necessary for a complete installation. You may
+		need `root' access for these. In the steps below, we assume that you ran the
+		pre-build configure without the --with-gnats-user option, so that you GNATS
+		user is named 'gnats'. If you modified the name, substitute for the name
+		'gnats' below as appropriate. </P> 
+	 <P> Create an account for the user named `gnats'. This user must have an
+		entry in the file `/etc/passwd'. If you did a configure with no options, the
+		home directory for this account could be set to /usr/local/com, i.e. the parent
+		directory of the default database directory. If you modified the default
+		database directory name, it is recommended that you use the parent directory of
+		the database directory as the home directory for the gnats user.</P>
+	 <P>Also, the default `PATH' for this user should contain `EXEC-PREFIX/bin'
+		and `EXEC-PREFIX/libexec/gnats'.</P> 
+	 <H3>Install the utilities</H3>
+	 <P>Install the utilities by invoking</P> 
+	 <P><TT>make install install-info</TT></P> 
+	 <P>These targets indicate:</P> 
+	 <P><TT>install</TT><BR>Installs all programs into their configured
+		locations (*note Where GNATS lives: Locations.). </P> 
+	 <P><TT>install-info</TT></P> 
+	 <P>Installs `info' files into their configured locations.</P> 
+	 <P>After you have installed GNATS, you can remove the object files with</P>
+	 
+	 <P><TT>make clean</TT></P>
+	 <H3>Set up Emacs</H3> 
+	 <P>Place the following lines in the file `default.el' in your Emacs lisp
+		library, or instruct your local responsible parties to place the lines in their
+		`.emacs' configuration file: </P> 
+	 <P><TT>(autoload 'edit-pr "gnats"<BR>&nbsp;&nbsp;&nbsp;"Command to edit a
+		problem report." t)<BR>(autoload 'view-pr "gnats"<BR>&nbsp;&nbsp;&nbsp;"Command
+		to view a problem report." t)<BR>(autoload 'unlock-pr
+		"gnats"<BR>&nbsp;&nbsp;&nbsp;"Unlock a problem report." t)<BR>(autoload
+		'query-pr "gnats"<BR>&nbsp;&nbsp;&nbsp;"Command to query information about
+		problem reports." t)<BR>(autoload 'send-pr-mode
+		"send-pr"<BR>&nbsp;&nbsp;&nbsp;"Major mode for sending problem reports."
+		t)<BR>(autoload 'send-pr "send-pr"<BR>&nbsp;&nbsp;&nbsp;"Command to create and
+		send a problem report." t)</TT></P> 
+	 <P>Emacs lisp files are byte-compiled if `make' can find Emacs on your
+		local system.</P> 
+	 <H2>Setting up the database</H2>
+	 <P>For the following steps, log in as the gnats user.</P> 
+	 <P>We begin by initializing the default database with the command 'mkdb'.
+		If you ran the pre-build configure with the --with-gnats-default-db option,
+		substitute the path below for the one you specified:</P>
+	 <P><TT>mkdb /usr/local/com/gnatsdb</TT></P> 
+	 <P>This creates a database named gnatsdb with data directory as specified.
+		mkdb creates the data directory. Three subdirectories of the data directory are
+		created:</P>
+	 <UL>
+		<LI>A directory for the mandatory gnats category "pending".</LI>
+		<LI>A "gnats-queue" directory for queueing new messages to GNATS before
+		  they're processed by file-pr.</LI>
+		<LI>The config directory "gnats-adm". "gnats-adm" is populated with
+		  default config files from the DATADIR/share/gnats/defaults directory.</LI>
+	 </UL> 
+	 <P>NOTE for upgraders from GNATS 3: In order to make a new category, you
+		now only need to add it to the categories file. Category directories are now
+		created on-the-fly, and the mkcat utility is no longer needed. (NOTE doesn't
+		this create problems for the emacs macros????) </P> 
+	 <P>We then set about editing the default database configuration files in
+		/usr/local/com/gnatsdb/gnats-adm.</P> 
+	 <P>Begin with the file 'dbconfig', then edit 'categories', 'responsible'
+		and 'submitters' to match your desired config. You may also want to edit
+		'addresses'. The files 'classes' and 'states' have sensible defaults that
+		should fit most installations.</P>
+	 <P>If you used the <TT>--with-gnats-default-db</TT> option in the pre-build
+		configure to change the location of the default database, you need to edit the
+		databases config file. By default, this file is
+		`/usr/local/etc/gnats/databases', but this is possible to change by using the
+		<TT>--with-gnats-dblist-file</TT> option in the pre-build configure. The entry
+		format is described in the file itself.</P> 
+	 <H3>Set up GNATS cron jobs</H3>
+	 <P>To allow the new user `gnats' access to `cron' and `at', add the name
+		`gnats' to the files `cron.allow' and `at.allow', which normally reside in the
+		directory `/var/spool/cron'. If these files do not exist, make sure `gnats'
+		does not appear in either of the files `cron.deny' and `at.deny' (in the same
+		directory). These files may not exist either, in which case this step is
+		unnecessary.</P> 
+	 <P>Create a `crontab' entry that periodically runs the program `queue-pr'
+		with the `--run' option. For example, to run `queue-pr --run' every ten
+		minutes, create a file called `.mycron' which contains the following line in
+		the home directory of the user `gnats' :</P> 
+	 <P><TT>0,10,20,30,40,50 * * * * EXEC-PREFIX/libexec/gnats/queue-pr
+		--run</TT></P>
+	 <P>Specify the full path name for `queue-pr' as it is installed on your
+		system. On a system with default configuration, the path would be
+		/usr/local/libexec/gnats/queue-pr. Then run </P> 
+	 <P><TT>crontab .mycron</TT></P> 
+	 <P>See the `man' pages for `cron' and `crontab' for details on using
+		`cron'.</P> 
+	 <H2>Setting up mail aliases</H2> 
+	 <P>The following mail aliases must be added on the machine where the GNATS
+		tools are installed. You may need `root' access to add these aliases. Different
+		mail systems have different ways of setting up mail aliases. The following
+		instructions refer to mail systems such as Sendmail, which specify their mail
+		aliases in the file '/etc/aliases'. Consult the documentation for your
+		particular system if the '/etc/aliases' file doesn't exist.</P> 
+	 <UL>
+		<LI>Create an alias for the GNATS administrator. This address should
+		  point to the address of the person in charge of administrating
+		  GNATS:<BR><BR><TT>gnats-admin: ADDRESS</TT></LI>
+		<LI>Create an alias to redirect incoming Problem Reports. This alias
+		  should redirect incoming mail via a "pipe" to the program `queue-pr -q'. For
+		  example, if Problem Reports coming to your site are to arrive at the address
+		  `bugs@your.company.com', create an alias to the effect of:<BR><BR><TT>bugs: "|
+		  EXEC-PREFIX/libexec/gnats/queue-pr -q"</TT><BR><BR>This places incoming Problem
+		  Reports in `DEFAULT_DB_DIR/gnats-queue'. Remember to fill in the full path of
+		  the queue-pr command as appropriate for your system.</LI>
+	 </UL> 
+	 <P> You may also wish to forward a copy of each incoming Problem Report to
+		a log. This can be accomplished with something like:</P> 
+	 <P><TT> bug-queue: "| EXEC-PREFIX/libexec/gnats/queue-pr -q"<BR> bug-log:
+		GNATS_ROOT/gnats-adm/bugs.log<BR>bugs: bug-queue, bug-log</TT></P> 
+	 <P>This configuration archives incoming Problem Reports in the file
+		`GNATS_ROOT/gnats-adm/bug.log', and also feeds them to the program `queue-pr'.
+		(Remember, `bug.log' needs to be world-writable, and should be pruned
+		regularly) </P> 
+	 <P>If you want your users to be able to query the database by mail, use the
+		following alias:</P> 
+	 <P><TT> query-pr: "| EXEC-PREFIX/libexec/gnats/mail-query"</TT></P> 
+	 <P>The `mail-query' program uses `--restricted' to search on the database,
+		and by default only searches for PRs that aren't closed.</P>
+	 <H2>Installing the daemon </H2>
+	 <P>By default, the daemon and clients are set to use port 1529. Add the
+		line</P>
+	 <P><TT>support 1529/tcp # GNATS</TT></P>
+	 <P>to your `/etc/services' file. If you want a different service name or
+		port, you could use the following options for the pre-build configure:</P>
+	 <P><TT>--with-gnats-service=SERVICENAME</TT></P>
+	 <P><TT>--with-gnats-port=PORTNUMBER</TT></P>
+	 <P>In your `inetd.conf' file, add the line</P>
+	 <P><TT>support stream tcp nowait gnats /usr/local/lib/gnats/gnatsd
+		gnatsd</TT></P>
+	 <P>adjusting the path according to your configuration. To make `inetd'
+		start spawning the GNATS daemon when connected on that port, send it a hangup
+		signal (`HUP').</P>
+	 <P>At this point, you'll probably want to set the access permissions of
+		different hosts that are going to be working with your GNATS database. The
+		access permissions can currently only be set on a global scale (across all
+		databases on the GNATS server). The location and name of the global host access
+		configuration file can be set during the pre-build configure as shown above,
+		but by default the file is `/usr/local/share/gnatsd_host.access'. It lists the
+		hosts allowed to access your server and their default access level. The format
+		is reserved for future revision; only the first two fields are actually
+		used:</P>
+	 <P><TT>site.com:view:</TT></P>
+	 <P> Access attempts that are denied are logged to the file that logs syslog
+		messages, usually `/var/adm/messages' or `/var/log/messages'</P><HR SIZE="1"> 
+	 <TABLE BORDER="0" CELLPADDING="1" CELLSPACING="0" BGCOLOR="#EEEEEE"
+	 CLASS="sm"> 
+		<TR> 
+		  <TD CLASS="sm"><A HREF="index.html">GNATS</A> &gt; GNATS 4
+			 INSTALLATION</TD> 
+		</TR> 
+	 </TABLE>
+	 <DIV CLASS="ps">&nbsp;<BR>First published: Saturday, 17-Mar-2001 02:04:10
+		MET<BR>Last modified: Saturday, 17-Mar-2001 02:04:10 MET<BR><A
+		HREF="mailto:yngve.svendsen@clustra.com">yngve.svendsen@clustra.com</A></DIV>
+	 </BODY>
+</HTML>
