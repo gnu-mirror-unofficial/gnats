@@ -1,0 +1,189 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Configure%20and%20make">Configure and make</a>,
+Next:<a rel=next href="Installing-utils.html#Installing%20utils">Installing utils</a>,
+Up:<a rel=up href="Installation.html#Installation">Installation</a>
+<hr><br>
+
+<h3>Configuring and compiling the software</h3>
+
+<ol type=1 start=1>
+<li>First, unpack your distribution.  We provide source code in a <code>tar</code>
+file which was compressed using <code>gzip</code>.  The code can be extracted
+into a directory <var>unpackdir</var> using
+
+<br><pre>cd <var>unpackdir</var>
+gunzip gnats-4.0-prebeta2.tar.gz
+tar xvf gnats-4.0-prebeta2.tar
+</pre>
+
+<p>The sources reside in a directory called <code>gnats-4.0-prebeta2</code>
+when unpacked.  We call this the <dfn>top level</dfn> of the source
+directory, or <dfn>srcdir</dfn>.  The sources for the <small>GNATS</small> tools are in
+the subdirectory <code>gnats-4.0-prebeta2/gnats/*</code>.  Lists of files
+included in the distribution are in each directory in the file
+<code>MANIFEST</code>.
+
+</p><li>As of <small>GNATS</small> version 4, having Emacs installed on the <small>GNATS</small>
+server is no longer a requirement.  If you do not have Emacs installed,
+disregard this step altogether.
+
+<p>You may wish to alter the installation directory for the Emacs lisp
+files.  If your Emacs lisp library is not in
+<code><var>prefix</var>/share/emacs/site-lisp</code>, edit the file
+<code><var>srcdir</var>/gnats/Makefile.in</code>.  Change the variable
+<code>lispdir</code> from <code><var>prefix</var>/emacs/site-lisp</code> to the
+directory containing your Emacs lisp library.  For information on
+<var>prefix</var>, see <a href="prefix.html#prefix"><var>prefix</var></a>.
+
+</p><li>Create an account for the <code>gnats</code> user.  You can actually name this
+user whatever you want to, as long as it is a valid username on your
+system, but we strongly recommend that you call the user <code>gnats</code>. 
+If you do decide to give it some other name, remember to use the option
+<code>--with-gnats-user</code> when running <code>configure</code> below.  Below, we
+will anyway refer to this user by the name <code>gnats</code>.
+
+<p>This user must have an entry in the file <code>/etc/passwd</code>.  As for
+ordinary users, create a standard home directory for the <code>gnats</code>
+user.  The default <code>PATH</code> for this user should contain
+<code><var>exec-prefix</var>/bin</code> and
+<code><var>exec-prefix</var>/libexec/gnats</code>.  The <var>exec-prefix</var> value
+is configurable with the <code>--exec-prefix</code> configure option described
+below, but for standard installations, these two directories correspond
+to <code>/usr/local/bin</code> and <code>/usr/local/libexec/gnats</code>.
+
+</p><li>Run <code>configure</code>.  You can nearly always run <code>configure</code> with
+the simple command
+
+<br><pre>./configure
+</pre>
+
+<p>and the "Right Thing" happens:
+
+<ul>
+<li><small>GNATS</small> is configured in the same directory you unpacked it in;
+
+<li>when built, <small>GNATS</small> runs on the machine you're building it on;
+
+<li>when installed, files are installed under <code>/usr/local</code>
+(see <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>).
+
+<li>all <small>GNATS</small> utilities operate on the <dfn>default database</dfn>, assumed
+to be named <em>default</em> and to be located in
+<code>/usr/local/com/default</code>, unless you invoke the utilities with
+<code>-d</code> <var>databasename</var> or <code>--directory=</code><var>databasename</var>, or
+set the <var>GNATSDB</var> environment variable to point to some other database. 
+</ul>
+
+<p>The most common options to <code>configure</code> are listed below:
+
+<br><pre>configure [ --prefix=<var>prefix</var> ]
+          [ --exec-prefix=<var>exec-prefix</var> ]
+          [ --with-gnats-service=<var>service-name</var> ]
+          [ --with-gnats-user=<var>username</var> ]
+          [ --with-gnatsd-user-access-file=<var>path</var> ]
+          [ --with-gnatsd-host-access-file=<var>path</var> ]
+          [ --with-gnats-dblist-file=<var>path</var> ]
+          [ --with-gnats-default-db=<var>path</var> ]
+          [ --with-kerberos ] [ --with-krb4 ]
+          [ --verbose ]
+</pre>
+
+<dl>
+<dt><code>--prefix=<var>prefix</var></code>
+<dd>All host-independent programs and files are to be installed under
+<var>prefix</var>.  (Host-dependent programs and files are also installed in
+<var>prefix</var> by default.)  The default for <var>prefix</var> is
+<code>/usr/local</code>.  See <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>.
+
+<br><dt><code>--exec-prefix=<var>exec-prefix</var></code>
+<dd>All host-dependent programs and files are to be installed under
+<var>exec-prefix</var>.  The default for <var>exec-prefix</var> is <var>prefix</var>. 
+See <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>.
+
+<br><dt><code>--with-gnats-service=<var>service-name</var></code>
+<dd>Set <var>service-name</var> to be the <small>GNATS</small> network service.  Default
+name is <var>support</var>.
+
+<br><dt><code>--with-gnats-user=<var>username</var></code>
+<dd>Set <var>username</var> to be the user name for <small>GNATS</small>.  Default username
+is <var>gnats</var>.
+
+<br><dt><code>--with-gnatsd-user-access-file=<var>path</var></code>
+<dd>Set global (across all databases) gnatsd user access file to
+<var>path</var>. Default is
+<code><var>/usr/local/etc/gnats/gnatsd.user_access</var></code>.  Per-database
+user access permissions are set in a <code>gnatsd.user_access</code> file in
+the <code>gnats-adm</code> subdirectory of each database.
+
+<br><dt><code>--with-gnatsd-host-access-file=<var>path</var></code>
+<dd>Set global (across all databases) gnatsd host access file to
+<var>path</var>. Default is
+<code>/usr/local/etc/gnats/gnatsd_host.access</code>.  There is currently
+no way to specify host access permissions on a per-database basis.
+
+<br><dt><code>--with-gnats-dblist-file=<var>path</var></code>
+<dd>Specify the file containing the list of databases.
+
+<p>Default is <code><var>prefix</var>/etc/gnats/databases</code>.
+
+<br><dt><code>--with-gnats-default-db=<var>path</var></code>
+<dd>Specify the default database to use when <small>GNATS</small> tools are invoked
+without the <code>-d</code> or <code>--databasename</code> option, and when the
+<var>GNATSDB</var> envrionment variable hasn't been set. Default is
+<code>/<var>prefix</var>/com/gnatsdb</code>.
+
+<br><dt><code>--with-kerberos</code>
+<dd>Include code for Kerberos authentication.
+
+<br><dt><code>--with-krb4</code>
+<dd>Support Kerberos 4.
+
+<br><dt><code>--verbose</code>
+<dd>Give verbose output while <code>configure</code> runs. 
+</dl>
+
+<p><code>configure</code> supports several more options which allow you to
+specify in great detail where files are installed. For a complete list
+of options, run <code>./configure --help</code> in the source directory.
+
+<p>You can build <small>GNATS</small> in a different directory (<var>objdir</var>) from the
+source code by calling the <code>configure</code> program from the new
+directory, as in
+
+<br><pre>mkdir <var>objdir</var>
+cd <var>objdir</var>
+<var>srcdir</var>/configure <small>...</small>
+</pre>
+
+<p>By default, <code>make</code> compiles the programs in the same directory
+as the sources (<var>srcdir</var>).
+
+</p><li>Make sure you have <small>GNU</small> <code>make</code>, then run
+
+<br><pre>make all info
+</pre>
+
+<p>from the directory where <code>configure</code> created a <code>Makefile</code>
+(this is <var>objdir</var> if you used it, otherwise <var>srcdir</var>.)  These
+targets indicate:
+
+<dl>
+<dt><code>all</code>
+<dd>Compile all programs
+
+<br><dt><code>info</code>
+<dd>Create <code>info</code> files using <code>makeinfo</code>. 
+</dl>
+</ol>
+
+</body></html>
+

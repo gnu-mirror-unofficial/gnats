@@ -1,0 +1,80 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="send-pr%20from%20the%20shell">send-pr from the shell</a>,
+Next:<a rel=next href="Submitting-via-e-mail.html#Submitting%20via%20e-mail">Submitting via e-mail</a>,
+Previous:<a rel=previous href="send-pr-in-Emacs.html#send-pr%20in%20Emacs">send-pr in Emacs</a>,
+Up:<a rel=up href="send-pr.html#send-pr">send-pr</a>
+<hr><br>
+
+<h4>Invoking <code>send-pr</code> from the shell</h4>
+
+<br><pre>send-pr [ -b | --batch ]
+        [ -d <var>database</var> | --database <var>database</var> ]
+        [ -f <var>file</var> | --file <var>file</var> ]
+        [ -p | --print ] [ --request-id ]
+        [ -s <var>severity</var> | --severity <var>severity</var> ]
+        [ -V | --version ] [ -h | --help ]
+</pre>
+
+<p>Invoking <code>send-pr</code> with no options assumes that you want to
+submit to the local <small>GNATS</small> database named <var>default</var> and calls
+the editor named in your environment variable <code>EDITOR</code> on a PR
+template for this database.
+
+<dl>
+<dt><code>-b</code>
+<dt><code>--batch</code>
+<dd>Suppresses printing of most of the messages <code>send-pr</code> usually
+prints while running.
+
+<br><dt><code>-d <var>database</var>, --database <var>database</var></code>
+<dd>Specifies the database to which the PR is to be submitted; if no
+database is specified, the local database named <code>default</code> is
+assumed.  This option overrides the database specified in the
+<code>GNATSDB</code> environment variable.  <var>database</var> can also be set
+to a remote database by using the format for <code>GNATSDB</code> described
+in <a href="Environment.html#Environment">Environment variables and <small>GNATS</small> tools</a>.
+
+<br><dt><code>-f <var>problem-report</var></code>
+<dt><code>--file <var>problem-report</var></code>
+<dd>Specifies a file, <var>problem-report</var>, where a completed Problem
+Report or a PR template exists.  <code>send-pr</code> verifies that the
+contents of the file constitute a valid PR and asks you if you want to
+edit it or send it directly.  If the PR text is invalid you will be
+told what is wrong and be given the option to edit it. If
+<var>problem-report</var> is <code>-</code>, <code>send-pr</code> reads from
+standard input.
+
+<br><dt><code>-p</code>
+<dt><code>--print</code>
+<dd>Displays the PR template for the specified database, or if the
+<code>-d</code> or <code>--database</code> options aren't specified, print the
+template for the local <var>default</var> database.  No PR is submitted.
+
+<br><dt><code>--request-id</code>
+<dd>Sends a request for a <code>Submitter-Id</code> to the Support Site.
+
+<br><dt><code>-s <var>severity</var></code>
+<dt><code>--severity <var>severity</var></code>
+<dd>Sets the initial value of the <code>Severity</code> field to <var>severity</var>.
+
+<br><dt><code>-V</code>
+<dt><code>--version</code>
+<dd>Displays the <code>send-pr</code> version number and a usage summary.  No mail
+is sent.
+
+<br><dt><code>-h</code>
+<dt><code>--help</code>
+<dd>Displays a usage summary for <code>send-pr</code>.  No mail is sent. 
+</dl>
+
+</body></html>
+

@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Edit%20controls">Edit controls</a>,
+Next:<a rel=next href="Named-query-definitions.html#Named%20query%20definitions">Named query definitions</a>,
+Previous:<a rel=previous href="Field-datatypes.html#Field%20datatypes">Field datatypes</a>,
+Up:<a rel=up href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>
+<hr><br>
+
+<h4>Edit controls</h4>
+
+<p>The <code>on-change</code> subsection of a <code>fields</code> section specifies one
+or more actions to be performed when the field value is edited by the
+user.  It has the general form
+
+<br><pre>on-change [ "query-expression" ] {
+  [ add-audit-trail ]
+  [ audit-trail-format {
+    format "formatstring"
+    [ fields { "fieldname" ... } ]
+  } ]
+  [ require-change-reason ]
+  [ set-field | append-to-field "fieldname" {
+    "format-string" [ fieldlist ]
+  } ]
+  [ require { "fieldname" ... } ]
+}
+</pre>
+
+<p>The optional <code>query-expression</code> controls whether or not the actions
+in the <code>on-change</code> section are taken.  If the expression fails to
+match, the actions are skipped.
+
+<p>The <code>add-audit-trail</code> option indicates that an entry should be
+appended to the PR's audit-trail when this field is changed.  The format
+of the entry is controlled by the optional <code>audit-trail-format</code>
+section within the field, or by the global <code>audit-trail-format</code>
+section. See <a href="Audit-trail-formats.html#Audit-trail%20formats">Audit-trail formats</a> and <a href="Outgoing-email-formats.html#Outgoing%20email%20formats">Outgoing email formats</a>.
+
+<p>The <code>require-change-reason</code> option specifies that a change reason
+must be present in the PR when this field is edited.  This option only
+makes sense if an audit-trail entry is required, as the change reason is
+otherwise unused.
+
+<p>The <code>set-field</code> and <code>append-to-field</code> options are used to
+change the value of the field <code>fieldname</code> in the PR.  The supplied
+format is used to format the value that will be placed in the field.
+
+<p><code>append-to-field</code> appends the resulting formatted string to the
+existing, while <code>set-field</code> completely replaces the contents.
+
+<p>Any field may be edited by the <code>set-field</code> or
+<code>append-to-field</code> option (the <code>read-only</code> option on a field is
+ignored).  However, the changes are subject to the usual field content
+checks.
+
+<p>The <code>require</code> option specifies that one or more fields must have
+a (non-blank) value when this field is changed.
+
+<p>A field may be enforced to have a (non-blank) value at all times by
+including it in the set of fields required for the initial PR, see
+<a href="Initial-PR-input-fields.html#Initial%20PR%20input%20fields">Initial PR input fields</a>, as well as in the set of fields
+required on change of the field itself.
+
+<p>There is also a global <code>on-change</code> section that is executed once
+for each PR edit.  A typical use for such a section is to set the
+last-modified date of the PR.
+
+</body></html>
+

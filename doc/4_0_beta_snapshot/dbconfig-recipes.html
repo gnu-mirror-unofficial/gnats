@@ -1,0 +1,181 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="dbconfig%20recipes">dbconfig recipes</a>,
+Next:<a rel=next href="Support.html#Support">Support</a>,
+Previous:<a rel=previous href="Regexps.html#Regexps">Regexps</a>,
+Up:<a rel=up href="index.html#Top">Top</a>
+<hr><br>
+
+<h2><code>dbconfig</code> recipes</h2>
+
+<p>The <code>dbconfig</code> file (<a href="dbconfig-file.html#dbconfig%20file">The <code>dbconfig</code> file</a>) is the heart of any <small>GNATS</small> installation.  It contains some
+very powerful machinery, something which this appendix tries to
+illustrate.
+
+<p>We provide a range of examples that are both intended to be useful in
+their own right and to serve as starting points or building blocks for
+your own modifications.
+
+<h5>Provide Gnatsweb URL in initial response</h5>
+
+<p>Sites that have Gnatsweb installed may wish to modify the response
+e-mail which is sent to the submitter of a PR so that it includes a
+URL where the status of the PR can be monitored.  In order to allow
+this, you should first create an entry in <code>gnatsd.user_access</code>
+which allows viewing of PRs in your database
+(See <a href="gnatsd.user_access.html#gnatsd.user_access">The <code>gnatsd.user_access</code> file</a>.)
+
+<p>Next, locate the entry <code>mail-format
+"initial-response-to-submitter"</code> in the <code>dbconfig</code> file of your
+database and add the following <em>before</em> the line reading "The
+individual assigned..." in the <code>body</code> section:
+
+<pre>
+\nYou can follow the status of this report on\n\
+http://hostname/cgi-bin/scriptname?\n\
+cmd=view&database=dbname&user=username&\n\
+password=passwd&pr=%s\n\n\
+</pre>
+
+<p>Substitute <code>hostname</code>, <code>cgi-bin</code> and <code>scriptname</code> as
+appropriate for the setup of your web server.  The part before the
+<code>?</code> would typically look something like
+<code>http://www.example.com/cgi-bin/gnatsweb.pl</code>.  Substitute the
+name of your database for <code>dbname</code>, and the username and password
+of the user with <code>view</code> rights for <code>username</code> and
+<code>passwd</code>.
+
+<p>Next, add a <code>Number</code> to the <code>fields</code> list statement inside
+the <code>body</code> so it reads as follows:
+
+<pre>
+fields { "Category" "Number" "Number" "Responsible"
+         "Category" "Responsible" "Synopsis"
+         "Arrival-Date" }
+</pre>
+
+<h5>State full name of responsible in initial response</h5>
+
+<p>The initial e-mail response to the submitter of a PR identifies the
+responsible person assigned to the PR as follows: "The individual
+assigned to look at your report is: <var>GNATS username</var>".  Some
+sites may wish to modify this so that the full name of the responsible
+person is used instead of the <small>GNATS</small> user name.
+
+<p>The full name is contained in the <code>fullname</code> subfield of the
+user's entry in the <code>responsible</code> file and can be accessed as
+<code>Responsible[fullname]</code> (see <a href="administrative-files.html#administrative%20files">Enumerated field administrative files</a>.)
+
+<p>The change is achieved by editing the <code>dbconfig</code> item
+<code>mail-format "initial-response-to-submitter"</code> and changing the
+<code>fields</code> part of the <code>Body</code> from
+
+<pre>
+fields { "Category" "Number" "Responsible"
+         "Category" "Responsible" "Synopsis"
+         "Arrival-Date" }
+</pre>
+
+<p>to
+
+<pre>
+fields { "Category" "Number" "Responsible[fullname]"
+         "Category" "Responsible" "Synopsis"
+         "Arrival-Date" }
+</pre>
+
+<h5>Append-only Audit-Trail</h5>
+
+<p>The Audit-Trail of a PR is by default editable.  For some
+applications, one might want to make the Audit-Trail append-only, so
+it provides a full and unchangeable case history.  Also by default,
+only certain changes, such as change of state and change of
+responsible gets recorded in the Audit-Trail.  In some cases, it might
+also be convenient to have a way of inserting comments directly into
+the Audit-Trail.
+
+<p>The following procedure creates such an append-only Audit-Trail and
+adds a PR field which makes it possible to register comments in the
+Audit-Trail.
+
+<p>First, add the keyword <code>read-only</code> to the Audit-Trail field
+definition in <code>dbconfig</code>.
+
+<p>Then, add the following field definition to <code>dbconfig</code>:
+
+<pre>
+field "Add-To-Audit-Trail" {
+   description "Add a log entry to the Audit Trail"
+   multitext { default "\n" }
+   on-change  {
+        add-audit-trail
+        audit-trail-format {
+        format "**** Comment added by %s on %s ****\n %s\n\n"
+        fields { "$EditUserEmailAddr" "$CurrentDate" "$NewValue"
+        }
+        }
+    }
+    on-change {
+        set-field "Add-To-Audit-Trail" { "\n" }
+    }
+}
+</pre>
+
+<p><a name="release-based%20support"></a>
+
+<h5>Supporting <small>GNATS</small> "release-based" fields</h5>
+
+<p>When installing <small>GNATS</small> version 3.x, it was possible to choose
+whether to enable three optional fields: <code>Quarter</code>, <code>Keywords</code>
+and <code>Date-Required</code>.  Default installations had these fields
+switched off, and installations which had them were called
+"release-based".
+
+<p>The default <code>dbconfig</code> shipped with <small>GNATS</small> version 4 or newer
+does not have these fields, so if you are upgrading from an old
+release-based system, you need to add the following field definitions to
+your <code>dbconfig</code> file:
+
+<pre>
+field "Quarter" {
+    description "What quarter does the PR fall into?"
+    text
+    query-default inexact-regexp
+    textsearch
+}
+
+field "Keywords" {
+    description "Keywords used to index this PR"
+    text
+    query-default inexact-regexp
+    textsearch
+}
+
+field "Date-Required" {
+    description "Date that the PR must be fixed by"
+    date
+}
+</pre>
+
+<p>A side note: Pre-release versions of <small>GNATS</small> 4 also had a field
+named <code>Cases</code>.  For those who may need it, here is the field
+definition of <code>Cases</code>:
+
+<pre>
+field "Cases" {
+    text
+    query-default inexact-regexp
+    textsearch
+}
+</pre>
+
+</body></html>
+

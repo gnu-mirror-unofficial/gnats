@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Mail%20header%20fields">Mail header fields</a>,
+Next:<a rel=next href="Problem-Report-fields.html#Problem%20Report%20fields">Problem Report fields</a>,
+Previous:<a rel=previous href="Field-datatypes-reference.html#Field%20datatypes%20reference">Field datatypes reference</a>,
+Up:<a rel=up href="Fields.html#Fields">Fields</a>
+<hr><br>
+
+<h4>Mail header fields</h4>
+
+<p>A Problem Report may contain any mail header field described in the
+Internet standard RFC-822.  The <code>send-pr</code> tool can be configured
+either to submit PRs to the support site by e-mail or by talking
+directly to the <code>gnatsd</code> network daemon on the <small>GNATS</small> server. 
+This is also true for other client tools such as Gnatsweb.  Even when
+these tools are set up submit PRs directly to <code>gnatsd</code>, they will
+still include mail header fields that identify the sender and the
+subject in the submitted PR:
+
+<dl>
+<dt><code>To:</code>
+<dd>The mail address for the Support Site, automatically supplied by the
+tool used to submit the PR or by the originator if plain e-mail was
+used.
+
+<br><dt><code>Subject:</code>
+<dd>A terse description of the problem.  This field normally contains the
+same information as the <code>Synopsis</code> field.
+
+<br><dt><code>From:</code>
+<dd>Supplied automatically when PRs are submitted by plain e-mail and when
+well-behaved tools such as <code>send-pr</code> are used; should always
+contain the originator's e-mail address.
+
+<br><dt><code>Reply-To:</code>
+<dd>A return address to which electronic replies can be sent; in most cases,
+the same address as the <code>From:</code> field. 
+</dl>
+
+<p>One of the configurable options for <small>GNATS</small> is whether or not to
+retain <code>Received-By</code> headers, which often consume a lot of
+space and are not often used.  See <a href="dbconfig-file.html#dbconfig%20file">The dbconfig file</a>.
+
+</body></html>
+

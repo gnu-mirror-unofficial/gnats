@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="query-pr">query-pr</a>,
+Next:<a rel=next href="Emacs.html#Emacs">Emacs</a>,
+Previous:<a rel=previous href="edit-pr.html#edit-pr">edit-pr</a>,
+Up:<a rel=up href="GNATS-user-tools.html#GNATS%20user%20tools">GNATS user tools</a>
+<hr><br>
+
+<h3>Querying the database</h3>
+
+<p>Obtain information from the database by using the program
+<code>query-pr</code>. <code>query-pr</code> uses search parameters you provide
+to find matching Problem Reports in the database.  You can invoke
+<code>query-pr</code> from the shell or from within Emacs.  <code>query-pr</code>
+uses the same arguments whether it is invoked from the shell or from
+Emacs.
+
+<p>PRs may be selected via the use of the <code>--expr</code> option, directly by
+number, or by the use of the (now deprecated) field-specific query
+operators.
+
+<p>By default, query options are connected with a logical AND.  For
+example,
+
+<br><pre>query-pr --category=foo --responsible=bar
+</pre>
+
+<p>only prints PRs which have a Category field of <code>foo</code> and a Responsible
+field of <code>bar</code>.
+
+<p>The <code>--or</code> option may be used to connect query options with a logical
+OR. For example,
+
+<br><pre>query-pr --category=baz --or --responsible=blee
+</pre>
+
+<p>prints PRs which have either a Category field of <code>baz</code> or a Responsible
+field of <code>blee</code>.
+
+<p>It should be emphasized, however, that the use of these field-specific
+options is strongly discouraged, since they exist only for compatibility
+with older versions of <small>GNATS</small> and are likely to be deleted in the next
+release.  The expressions specified by the <code>--expr</code> option are much more
+flexible (see below).
+
+<ul>
+<li><a href="Invoking-query-pr.html#Invoking%20query-pr">Invoking query-pr</a>: 
+<li><a href="Formatting-query-pr-output.html#Formatting%20query-pr%20output">Formatting query-pr output</a>: 
+<li><a href="Query-expressions.html#Query%20expressions">Query expressions</a>: 
+<li><a href="Example-queries.html#Example%20queries">Example queries</a>: 
+</ul>
+
+</body></html>
+

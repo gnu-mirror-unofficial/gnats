@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Example%20queries">Example queries</a>,
+Previous:<a rel=previous href="Query-expressions.html#Query%20expressions">Query expressions</a>,
+Up:<a rel=up href="query-pr.html#query-pr">query-pr</a>
+<hr><br>
+
+<h4>Example queries</h4>
+
+<p>The following simple query:
+
+<br><pre>query-pr --expr 'Category~"rats" &amp; State~"analyzed"
+                 &amp; Responsible~"fred"'
+</pre>
+
+<p>yields all PRs in the database which contain the field values:
+
+<br><pre>&gt;Category:     rats         <em>and</em>
+&gt;Responsible:  fred         <em>and</em>
+&gt;State:        analyzed
+</pre>
+
+<p>The following query:
+
+<br><pre>query-pr --expr 'State~"open|analyzed"'
+</pre>
+
+<p>yields all PRs in the database whose <code>State</code> values match either
+<code>open</code> or <code>analyzed</code> (see <a href="Regexps.html#Regexps">Querying using regular expressions</a>.  This search is useful as a daily report that lists all
+Problem Reports which require attention.
+
+<p>The following query:
+
+<br><pre>query-pr --expr 'fieldtype:Text="The quick.*brown fox"'
+</pre>
+
+<p>yields all PRs whose <small>TEXT</small> fields contain the text <code>The quick</code>
+followed by <code>brown fox</code> within the same field. 
+See <a href="Regexps.html#Regexps">Querying using regular expressions</a>, which also contains
+further useful examples of query expressions.
+
+</body></html>
+

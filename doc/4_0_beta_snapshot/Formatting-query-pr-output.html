@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Formatting%20query-pr%20output">Formatting query-pr output</a>,
+Next:<a rel=next href="Query-expressions.html#Query%20expressions">Query expressions</a>,
+Previous:<a rel=previous href="Invoking-query-pr.html#Invoking%20query-pr">Invoking query-pr</a>,
+Up:<a rel=up href="query-pr.html#query-pr">query-pr</a>
+<hr><br>
+
+<h4>Formatting <code>query-pr</code> output</h4>
+
+<p>Printing formats for PRs are in one of three forms:
+
+<dl>
+<dt><var>formatname</var>
+<dd>This is a named format which is described by the database (specifically,
+these formats are described in the <code>dbconfig</code> file associated with the
+database).  The default configuration contains five such formats:
+<code>standard</code>, <code>full</code>, <code>summary</code>, <code>sql</code>, and
+<code>sql2</code>.
+
+<p>The first three are the ones most commonly used when performing queries. 
+standard is the format used by default if no other format is specified.
+
+<p>Use of the latter two are discouraged; they are merely kept for
+historical purposes.  Other named formats may have been added by the
+database administrator.
+
+<br><dt><var>fieldname</var>
+<dd>A single field name may appear here.  Only the contents of this field
+will be displayed.
+
+<br><dt><var>'"printf string" fieldname fieldname ...'</var>
+<dd>This provides a very flexible mechanism for formatting PR output.  (The
+formatting is identical to that provided by the named formats described
+by the database configuration, See <a href="Named-query-definitions.html#Named%20query%20definitions">Named query definitions</a>.  The
+<var>printf string</var> can contain the following % sequences:
+
+<p><code>%[positionalspecifiers]s</code>: Prints the field as a string.  The
+positional specifiers are similar to those of printf, as +, - and digit
+qualifiers can be used to force a particular alignment of the field
+contents.
+
+<p><code>%[positionalspecifiers]S</code>: Similar to <code>%s</code>, except that the
+field contents are terminated at the first space character.
+
+<p><code>%[positionalspecifiers]d</code>: Similar to <code>%s</code>, except that the
+field contents are written as a numeric value.  For integer fields, the
+value is written as a number.  For enumerated fields, the field is
+converted into a numeric equivalent (i.e. if the field can have two
+possible values, the result will be either 1 or 2).  For date fields,
+the value is written as seconds since Jan 1, 1970.
+
+<p><code>%F</code>: The field is written as it would appear within a PR, complete
+with field header.
+
+<p><code>%D</code>: For date fields, the date is written in a standard <small>GNATS</small>
+format.
+
+<p><code>%Q</code>: For date fields, the date is written in an arbitrary "SQL"
+format. 
+</dl>
+
+<p>An example formatted query looks as follows (note that the whole format
+specification should be quoted):
+
+<br><pre>query-pr --format '"%s, %s" Synopsis State'
+</pre>
+
+</body></html>
+

@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="dbconfig%20file">dbconfig file</a>,
+Next:<a rel=next href="Other-config-files.html#Other%20config%20files">Other config files</a>,
+Previous:<a rel=previous href="databases-file.html#databases%20file">databases file</a>,
+Up:<a rel=up href="Management.html#Management">Management</a>
+<hr><br>
+
+<h3>The <code>dbconfig</code> file</h3>
+
+<p>The <code>dbconfig</code> configuration file controls the configuration of a
+<small>GNATS</small> database.  Each database has its own individual copy of this
+file, which is located in the <code>gnats-adm</code> subdirectory of the
+database.
+
+<p>The file consists of standard plain text.  Whitespace is completely
+optional and is ignored. Sets of braces <code>@</code> are used to delimit the
+different sections, and all non-keyword values must be surrounded with
+double quotes.  The values in <code>dbconfig</code> can be changed at any time;
+the new values take effect for all subsequent iterations of <small>GNATS</small>
+tools.
+
+<p>The <code>dbconfig</code> file contains 6 major sections, which must appear in the
+following order:
+
+<ul>
+<li>Overall database configuration
+<li>Individual field configuration
+<li>Named query definitions
+<li>Audit-trail and outgoing email formats
+<li>Index file description
+<li>Initial Problem Report input fields
+</ul>
+
+<p>The different sections are described below.  While reading the following
+sections, it will be useful to refer to the sample <code>dbconfig</code> file
+which is installed when a new database is initialized with the
+<code>mkdb</code> tool.  In fact, the sample file provides a configuration
+that should be usable for a great range of sites, since it reproduces
+the behaviour of the older, less customizable 3.x versions of
+<small>GNATS</small>.
+
+<ul>
+<li><a href="Overall-database-configuration.html#Overall%20database%20configuration">Overall database configuration</a>:  Overall database configuration. 
+<li><a href="Individual-field-configuration.html#Individual%20field%20configuration">Individual field configuration</a>:  Individual field configuration. 
+<li><a href="Field-datatypes.html#Field%20datatypes">Field datatypes</a>:                 Field datatypes. 
+<li><a href="Edit-controls.html#Edit%20controls">Edit controls</a>:                   Trigger on certain edit actions. 
+<li><a href="Named-query-definitions.html#Named%20query%20definitions">Named query definitions</a>:         Define and name standard queries. 
+<li><a href="Audit-trail-formats.html#Audit-trail%20formats">Audit-trail formats</a>:             Specify formatting of the audit-trail. 
+<li><a href="Outgoing-email-formats.html#Outgoing%20email%20formats">Outgoing email formats</a>:          Specify contents and formatting of
+                                   messages sent out by GNATS. 
+<li><a href="Index-file-description.html#Index%20file%20description">Index file description</a>:          Specify the general format and
+                                   contents of the database index. 
+<li><a href="Initial-PR-input-fields.html#Initial%20PR%20input%20fields">Initial PR input fields</a>:         Which fields should be present on
+                                   initial PR entry. 
+</ul>
+
+</body></html>
+

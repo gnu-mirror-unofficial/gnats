@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="gen-index">gen-index</a>,
+Next:<a rel=next href="check-db.html#check-db">check-db</a>,
+Previous:<a rel=previous href="rmcat.html#rmcat">rmcat</a>,
+Up:<a rel=up href="Admin-utils.html#Admin%20utils">Admin utils</a>
+<hr><br>
+
+<h4>Regenerating the index</h4>
+
+<p>If your <code>index</code> file becomes corrupted, or if you need a copy of
+the current index for some reason, use
+
+<br><pre>gen-index [ -n | --numeric ]
+          [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+          [ -o <var>filename</var> | --outfile=<var>filename</var> ]
+          [ -i | --import ] [ -e | --export ]
+          [ -h | --help] [ -V | --version ]
+</pre>
+
+<p>With no options, <code>gen-index</code> generates an index that is sorted by
+the order that the categories appear in the <code>categories</code> file. The
+index is generated in plaintext or binary format according to the value
+of <code>binary-index</code> in the <code>dbconfig</code> file (see <a href="Index-file-description.html#Index%20file%20description">Index file description</a>).  The results are printed to
+standard output.  The options are:
+
+<dl>
+<dt><code>-n</code>
+<dt><code>--numeric</code>
+<dd>Sorts index entries numerically.
+
+<br><dt><code>-d <var>databasename</var></code>
+<dt><code>--database=<var>databasename</var></code>
+<dd>Specifies the database to index.  If this option is left out,
+<code>gen-index</code> attempts to index the database with name taken from the
+the <var>GNATSDB</var> environment variable, and if that is undefined, the
+default database, as set when <small>GNATS</small> was built (usually
+<code>default</code>).
+
+<br><dt><code>-o <var>filename</var></code>
+<dt><code>--outfile=<var>filename</var></code>
+<dd>Places output in <var>filename</var> rather than sending it to standard
+output.
+
+<br><dt><code>-i</code>
+<dt><code>--import</code>
+<dd>Import the existing index file instead of re-indexing the database.
+
+<br><dt><code>-e</code>
+<dt><code>--export</code>
+<dd>Force plaintext output.
+
+<br><dt><code>-h</code>
+<dt><code>--help</code>
+<dd>Prints the usage for <code>gen-index</code>.
+
+<br><dt><code>-V</code>
+<dt><code>--version</code>
+<dd>Prints the version number for <code>gen-index</code>. 
+</dl>
+
+</body></html>
+

@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Other%20Emacs%20commands">Other Emacs commands</a>,
+Next:<a rel=next href="Emacs-customization.html#Emacs%20customization">Emacs customization</a>,
+Previous:<a rel=previous href="dbconfig-mode.html#dbconfig%20mode">dbconfig mode</a>,
+Up:<a rel=up href="Emacs.html#Emacs">Emacs</a>
+<hr><br>
+
+<h4>Other commands</h4>
+
+<dl>
+<dt><kbd>M-x unlock-pr</kbd>
+<dd>Ask for a Problem Report number and unlock that Problem Report.  This
+function is useful if connection to a <small>GNATS</small> server was
+interrupted during an editing operation and further modifications of
+the Problem Report are blocked by a stealth lock.
+
+<br><dt><kbd>M-x unlock-database</kbd>
+<dd>Unlock the whole <small>GNATS</small> database.  This function is useful in
+situations similar to when <code>unlock-pr</code> is used.
+
+<br><dt><kbd>M-x gnats-show-connection</kbd>
+<dd>Show the connection buffer associated with the current buffer.  You
+can view the Emacs communication with <small>GNATSD</small> in it.  This is
+useful when something strange happens during the communication with
+the server, e.g. when sending a Problem Report with <kbd>C-c C-c</kbd> from
+a Problem Report editing buffer. 
+</dl>
+
+</body></html>
+

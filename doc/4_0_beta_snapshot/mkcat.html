@@ -1,0 +1,33 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="mkcat">mkcat</a>,
+Next:<a rel=next href="rmcat.html#rmcat">rmcat</a>,
+Previous:<a rel=previous href="mkdb.html#mkdb">mkdb</a>,
+Up:<a rel=up href="Admin-utils.html#Admin%20utils">Admin utils</a>
+<hr><br>
+
+<h4>Adding a problem category</h4>
+
+<p>To add new categories to the database:
+
+<ol type=1 start=1>
+</p><li>Add a line to for each new category to the <code>categories</code> file in the
+gnats-adm directory of the database. See <a href="categories-file.html#categories%20file">The <code>categories</code> file</a>.
+
+<li>Run <code>mkcat</code> If applicable.  If <code>create-category-dirs</code> is set
+to <code>false</code> in the database <code>dbconfig</code> file, you need to create
+category directories with <code>mkcat</code>.  <code>mkcat</code> creates a
+subdirectory under the database directory for any new categories which
+appear in the <code>categories</code> file.
+</ol>
+
+</body></html>
+

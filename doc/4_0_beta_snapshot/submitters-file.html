@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="submitters%20file">submitters file</a>,
+Next:<a rel=next href="states-file.html#states%20file">states file</a>,
+Previous:<a rel=previous href="responsible-file.html#responsible%20file">responsible file</a>,
+Up:<a rel=up href="Other-config-files.html#Other%20config%20files">Other config files</a>
+<hr><br>
+
+<h4>The <code>submitters</code> file</h4>
+
+<p>This is a database of sites which submit bugs to your support site.  It
+contains six fields delineated by colons.  Lines beginning with <code>#</code>
+will be ignored.
+
+<p>Entries are of the format:
+
+<br><pre><var>submitter-id</var>:<var>name</var>:<var>type</var>:<var>resp-time</var>:<var>contact</var>:<var>notify</var>
+</pre>
+
+<dl>
+<dt><var>submitter-id</var>
+<dd>A unique identifier for a specific site or other entity who submits
+Problem Reports. The first <code>submitter-id</code> listed in the file will
+be the default for PRs that arrive with invalid or empty submitter
+fields.
+
+<br><dt><var>name</var>
+<dd>The full name or a description of this entity.
+
+<br><dt><var>type</var>
+<dd>Optional description for the type of relationship of this submitter to
+your support site.  This could indicate a contract type, a level of
+expertise, etc., or it can remain blank.
+
+<br><dt><var>resp-time</var>
+<dd>Optional quoted response time in <dfn>business hours</dfn>.  If the
+database <code>dbconfig</code> file has the <code>notify-about-expired-prs</code>
+entry set to <var>true</var> (see <a href="Overall-database-configuration.html#Overall%20database%20configuration">Overall database configuration</a>, <small>GNATS</small> will use
+this field to schedule when it should notify the gnats-admin,
+responsible person and submitter contact that the PR wasn't analyzed
+within the agreed response time.  Business hours and business-week
+days are set in the <code>dbconfig</code> file.  For information on
+<code>at-pr</code>, the program which sends out this reminder, see
+<a href="at-pr.html#at-pr">Timely Reminders</a>.
+
+<br><dt><var>contact</var>
+<dd>The name tag of the main <dfn>contact</dfn> at the Support Site for this
+submitter.  This contact should be in the <code>responsible</code> file
+(see <a href="responsible-file.html#responsible%20file">The <code>responsible</code> file</a>).  Incoming bugs
+from <var>submitter</var> are sent to this contact.  Optionally, this field
+can be left blank.
+
+<br><dt><var>notify</var>
+<dd>Any other parties who should receive copies of Problem Reports sent in
+by <var>submitter</var>.  They need not be listed in the <code>responsible</code> file. 
+</dl>
+
+<p>A few example entries in the <code>submitters</code> file:
+
+<br><pre>univ-hell:University of Hades:eternal:3:beelzebub:lucifer
+tta:Telephones and Telegraphs of America:support:720:dave:
+</pre>
+
+<p>In this example, when a PR comes in from the University of Hades (who
+has an eternal contract), it should have <code>univ-hell</code> in its
+<code>Submitter-Id</code> field.  This Problem Report goes to <code>beelzebub</code>
+(who should be in the <code>responsible</code> file), and if it is not
+analyzed within three business hours a reminder message is sent. 
+<code>lucifer</code> also receives a copy of the bug, and a copy of the
+reminder message as well (if it is sent).  When Telephones and
+Telegraphs of America utilizes their support contract and submits a bug,
+a copy is sent only to <code>dave</code>, who has 720 business hours to return
+an analysis before a reminder is sent.
+
+<p>To disable the feature of <small>GNATS</small> which tracks the
+<code>Submitter-Id</code>, simply alter the <code>submitters</code> file to only
+contain one <var>submitter-id</var> value, and instruct your submitters to
+ignore the field.
+
+</body></html>
+

@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="addresses%20file">addresses file</a>,
+Next:<a rel=next href="classes-file.html#classes%20file">classes file</a>,
+Previous:<a rel=previous href="states-file.html#states%20file">states file</a>,
+Up:<a rel=up href="Other-config-files.html#Other%20config%20files">Other config files</a>
+<hr><br>
+
+<h4>The <code>addresses</code> file</h4>
+
+<p>This file contains mappings between submitter IDs and corresponding e-mail
+addresses.
+
+<p>When a PR comes in without a submitter ID (if someone sends unformatted
+e-mail to the PR submission email address), <small>GNATS</small> will try to
+derive the submitter ID from the address in the "From:" header.  The
+entries in this file consist of two fields, separated by a colon:
+
+<br><pre><var>submitter-id</var>:<var>address-fragment</var>
+</pre>
+
+<dl>
+<dt><var><var>submitter-id</var></var>
+<dd>A valid submitter ID
+
+<br><dt><var><var>address-fragment</var></var>
+<dd>Part of, or all of the e-mail address to be matched
+</dl>
+
+<p>Here is an example of an <code>addresses</code> file:
+
+<br><pre># Addresses for Yoyodine Inc
+yoyodine:yoyodine.com
+yoyodine:yoyodine.co.uk
+# Addresses for Foobar Inc.
+foobar1:sales.foobar.com
+foobar2:admin.foobar.com
+foobar3:clark@research.foobar.com
+</pre>
+
+<p><small>GNATS</small> checks each line in the <code>addresses</code> file, comparing
+<var>address-fragment</var> to the end of the "From:" header, until it finds
+a match.  If no match is found, <small>GNATS</small> uses the default submitter ID.
+
+<p>You can only have one address fragment per line, but you can have more than
+one line for a given submitter ID.  An address fragment can be a domain
+(i.e. yoyodine.com), a machine location (admin.foobar.com), or a full e-mail
+address (clark@research.foobar.com).
+
+<p><small>GNATS</small> can match addresses in three e-mail formats:
+
+<dl>
+<dt><code>From: name@address.com</code>
+<dd>The address by itself without a full name, not enclosed in brackets
+
+<br><dt><code>From: Real Person &lt;name@address.com&gt;</code>
+<dd>A full name (optional, with or without quotation marks), followed by the
+address enclosed in angle brackets
+
+<br><dt><code>From: name@address.com (Real Person)</code>
+<dd>An address, followed by a name or comment in parentheses
+</dl>
+
+<p>If <small>GNATS</small> sees other e-mail address formats, it uses the default
+submitter ID.
+
+</body></html>
+

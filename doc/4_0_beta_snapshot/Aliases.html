@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Aliases">Aliases</a>,
+Next:<a rel=next href="Installing-the-daemon.html#Installing%20the%20daemon">Installing the daemon</a>,
+Previous:<a rel=previous href="Setting-up-periodic-jobs.html#Setting%20up%20periodic%20jobs">Setting up periodic jobs</a>,
+Up:<a rel=up href="Installation.html#Installation">Installation</a>
+<hr><br>
+
+<h3>Setting up mail aliases</h3>
+
+<p>The following mail aliases must be added on the machine where the
+<small>GNATS</small> server is installed.  The instructions below are for Sendmail
+or Sendmail-like mail systems.  If these instructions don't fit your
+system, particularly if you do not have an <code>aliases</code> file, ask your
+mail administrator for advice.
+
+<p>The following aliases should be placed in the file
+<code>/etc/aliases</code>. Yoy may need <code>root</code> access to add these
+aliases:
+
+<ul>
+<li>Create an alias for the <small>GNATS</small> administrator.  This address should
+point to the address of the person in charge of administrating
+<small>GNATS</small>:
+
+<br><pre>gnats-admin:  <var>address</var>
+</pre>
+
+<li>Create an alias to redirect incoming Problem Reports.  This alias should
+redirect incoming mail via a <dfn>pipe</dfn> to the program <code>queue-pr&nbsp;-q</code>.  For example, if Problem Reports coming to your site are to arrive
+at the address <code>bugs@your.company.com</code>, create an alias to the
+effect of:
+
+<br><pre>bugs:  "| <var>exec-prefix</var>/libexec/gnats/queue-pr -q"
+</pre>
+
+<p>This places incoming Problem Reports in
+the <code><var>gnats-queue</var></code> directory of your database.  Remember to
+fill in the full path of the <code>queue-pr</code> command as appropriate for
+your installation.
+
+</p><li>You may also wish to forward a copy of each incoming Problem Report to a
+log.  This can be accomplished with something like:
+
+<br><pre>bug-q: "| <var>exec-prefix</var>/libexec/gnats/queue-pr -q"
+bug-log:  /some/path/bugs.log
+bugs:      bug-q, bug-log
+</pre>
+
+<p>This configuration archives incoming Problem Reports in the file
+<code>bug.log</code>, and also feeds them to the program <code>queue-pr</code>. 
+(Remember, <code>bug.log</code> needs to be world-writable, and should be
+pruned regularly; see <a href="Management.html#Management"><small>GNATS</small> Administration</a>.)  In
+order for the log file to protect fully against data loss in case a disk
+runs full, try to place it on a different disk volume than the
+<small>GNATS</small> database.
+
+</p><li>If you want your users to be able to query the database by mail, use the
+following alias:
+
+<br><pre>query-pr: "| <var>exec-prefix</var>/libexec/gnats/mail-query"
+</pre>
+
+<p>The <code>mail-query</code> program uses <code>--restricted</code> to search on the
+database, and by default only searches for PRs that aren't closed
+(see <a href="query-pr.html#query-pr">Querying the database</a>).
+
+</ul>
+
+</body></html>
+

@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Installing%20the%20daemon">Installing the daemon</a>,
+Next:<a rel=next href="Installing-tools.html#Installing%20tools">Installing tools</a>,
+Previous:<a rel=previous href="Aliases.html#Aliases">Aliases</a>,
+Up:<a rel=up href="Installation.html#Installation">Installation</a>
+<hr><br>
+
+<h3>Installing the daemon</h3>
+
+<p>By default, the daemon and clients are set to use port 1529.  Add the line
+
+<br><pre>support		1529/tcp			# GNATS
+</pre>
+
+<p>to your <code>/etc/services</code> file.  If you want a different service
+name, configure <small>GNATS</small> with
+
+<br><pre>--with-gnats-service=<var>servicename</var>
+</pre>
+
+<p>In your <code>inetd.conf</code> file, add the line
+
+<br><pre>support	stream	tcp	nowait	gnats	/usr/local/libexec/gnats/gnatsd gnatsd
+</pre>
+
+<p>adjusting the path accordingly if you used configure options to make
+changes to the defaults.  To make <code>inetd</code> start spawning the
+<small>GNATS</small> daemon when connected on that port, send it a hangup signal
+(<code>HUP</code>).
+
+<p>Some operating systems have replaced <code>inetd</code> with the more modern
+<code>xinetd</code>. Instead of editing <code>inetd.conf</code>, you should create
+the file <code>/etc/xinetd.d/support</code>, containing something like the
+following:
+
+<br><pre>service support
+{
+   disable = no
+   socket_type = stream
+   protocol = tcp
+   wait = no
+   user = gnats
+   server = /usr/local/libexec/gnats/gnatsd
+}
+</pre>
+
+<p>If you specified a different service name when running <code>configure</code>,
+you need to give the file the same name as the service name, and you
+need to adjust the <code>service</code> line above.  If the <code>--prefix</code> or
+<code>--exec-prefix</code> options were passed to <code>configure</code>, adjust the
+<code>server</code> line above, and if you used the <code>--with-gnats-user</code>
+option, adjust the <code>user</code> line.
+
+<p>Then restart <code>xinetd</code> to make the new configuration current.
+
+<p>If you use an Internet superserver different from <code>inetd</code> or
+<code>xinetd</code>, please refer to its documentation for information how
+to configure it.
+
+<p>At this point, you will probably want to set the access permissions of
+the different hosts that are going to be accessing your databases.  The
+access permissions can currently only be set on a global scale (that is,
+across all the databases on a <small>GNATS</small> server).  The location and name
+of the global host access configuration file can be set during the
+pre-build configure as shown above, but by default the file is
+<code>/usr/local/etc/gnats/gnatsd_host.access</code>.  It lists the hosts
+allowed to access your server, and what their default access levels are. 
+Each line in the file denotes one server, or one part of a network
+domain.  There are three fields on each line, but only two are currently
+used.  To grant all hosts from the domain <var>site.com</var> edit access,
+use this line:
+
+<p><var>site.com</var>:<var>edit</var>
+
+<p>If you run a <small>GNATS</small> web interface or similar tool on the same
+machine as the server is running on, you probably want to grant
+<var>localhost</var> edit access:
+
+<p><var>localhost</var>:<var>edit</var>
+
+<p>If you are using Kerberos, the <code>gnatsd_host.access</code> file shows the
+sites that don't require Kerberos authentication.
+
+<p>The third field might in the future be used for things like controlling
+what categories, submitter-id's PRs, etc., can be accessed from that
+site.  Access attempts that are denied are logged to the syslog messages
+file (<code>/var/adm/messages</code> on many systems).
+
+</body></html>
+

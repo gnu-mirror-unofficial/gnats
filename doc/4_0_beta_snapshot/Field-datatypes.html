@@ -1,0 +1,170 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Field%20datatypes">Field datatypes</a>,
+Next:<a rel=next href="Edit-controls.html#Edit%20controls">Edit controls</a>,
+Previous:<a rel=previous href="Individual-field-configuration.html#Individual%20field%20configuration">Individual field configuration</a>,
+Up:<a rel=up href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>
+<hr><br>
+
+<h4>Field datatypes</h4>
+
+<p>Each field description has to contain a datatype declaration which
+describes what data are to be store in the field.  The general format for
+such a declaration is
+
+<dl>
+<dt><code>datatype  [ options ... ]</code>
+<dd></dl>
+
+<p>The available datatypes are:
+
+<dl>
+<dt><code>text  [ matching { "regexp" [ "regexp" ... ] } ]</code>
+<dd>The <code>text</code> datatype is the most commonly used type; it is a
+one-line text string.
+
+<p>If the <code>matching</code> qualifier is present, the data in the field must
+match at least one of the specified regexps.  This provides an easy and
+flexible way to limit what text is allowed in a field.  If no
+<code>matching</code> qualifier is present, no restriction is placed on
+what values may appear in the field.
+
+<br><dt><code>multitext  [ { default "string" } ]</code>
+<dd>The field can contain multiple lines of text.
+
+<p>If the <code>default</code> option is present, the field will default to the
+specified <code>string</code> if the field is not given a value when the PR is
+initially created.  Otherwise, the field will be left empty.
+
+<br><dt><code>enum  {</code>
+<dt><code>  values {</code>
+<dt><code>    "string" [ "string" ... ]</code>
+<dt><code>  }</code>
+<dt><code>  [ default "string" ]</code>
+<dt><code>}</code>
+<dd>Defines an enumerated field, where the values in the PR field must match
+an entry from a list of specified values.  The list of allowed values is
+given with the <code>values</code> option. The <code>values</code> option is
+required for an enumerated field.
+
+<p>If a <code>default</code> option is present, it is used to determine the
+initial value of the field if no entry for the field appears in an
+initial OR (or if the value in the initial PR is not one of the
+acceptable values).  However, the value in the <code>default</code> statement
+is not required to be one of the accepted values; this can be used to
+allow the field to be initially empty, for example.
+
+<p>If no <code>default</code> option is specified, the default value for the
+field is the first value in the <code>values</code> section.
+
+<br><dt><code>multienum  {</code>
+<dt><code>  values {</code>
+<dt><code>    "string" [ "string" ... ]</code>
+<dt><code>  }</code>
+<dt><code>  [ separators "string" ]</code>
+<dt><code>  [ default "string" ]</code>
+<dt><code>}</code>
+<dd>The <code>multienum</code> datatype is similar to the <code>enum</code> datatype,
+except that the field can contain multiple values, separated by one or
+more characters from the <code>separators</code> list.  If no <code>separators</code>
+option is present, the default separators are space (<code> </code>) and colon
+(<code>:</code>).
+
+<p>The values in the <code>default</code> string for this field type should be
+separated by one of the defined separators.  An example clarifies this. 
+If we have a field named <code>ingredients</code> where the default values
+should be <code>sugar</code>, <code>flour</code> and <code>baking powder</code> and the
+separator is a colon <code>:</code>, the following sets these defaults:
+
+<br><pre>default "sugar:flour:baking powder"
+</pre>
+
+<br><dt><code>enumerated-in-file {</code>
+<dt><code>  path "filename"</code>
+<dt><code>  fields {</code>
+<dt><code>    "name" [ "name" ... ]</code>
+<dt><code>  } key "name"</code>
+<dt><code>  [ allow-any-value ]</code>
+<dt><code>}</code>
+<dd><a name="administrative%20files"></a>The <code>enumerated-in-file</code> type is used
+to describe an enumerated field with an associated <dfn>administrative
+file</dfn> which lists the legal values for the field, and may optionally
+contain additional fields that can be examined by query clients or used
+for other internal purposes.  It is similar to the <code>enum</code> datatype,
+except that the list of legal values is stored in a separate file.  An
+example of this kind of field is the built-in Category field with its
+associeted <code>categories</code> administrative file.
+
+<p><code>filename</code> is the name of a file in the <code>gnats-adm</code>
+administrative directory for the database.
+
+<p>The format of the administrative file should be simple ASCII. 
+<dfn>Subfields</dfn> within the file are separated with colons (<code>:</code>). 
+Lines beginning with a hash sign (<code>#</code>) are ignored as comments. 
+Records within the file are separated with newlines.
+
+<p>The <code>field</code> option is used to name the subfields in the
+administrative file.  There must be at least one subfield, which is used
+to list the legal values for the field.  If the administrative file is
+empty (or does not contain any non-empty non-comment lines), the PR
+field must be empty.
+
+<p>The <code>key</code> option is used to designate which field in the
+administrative file should be used to list the legal values for the PR
+field.  The value must match one of the field names in the <code>field</code>
+option.
+
+<p>If the <code>allow-any-value</code> option is present, the value of the PR
+field is not required to appear in the administrative file -- any value
+will be accepted.
+
+<p>Note that there is no <code>default</code> keyword for
+<code>enumerated-in-file</code>.  These fields get their default value from
+the <em>first</em> entry in the associated administrative file.
+
+<br><dt><code>multi-enumerated-in-file {</code>
+<dt><code>  path "filename"</code>
+<dt><code>  fields {</code>
+<dt><code>    "name" [ "name" ... ]</code>
+<dt><code>  } key "name"</code>
+<dt><code>  [ default "string" ]</code>
+<dt><code>  [ allow-any-value ]</code>
+<dt><code>  [ separators "string" ]</code>
+<dt><code>}</code>
+<dd>
+<code>multi-enumerated-in-file</code> is to <code>multienum</code> what
+<code>enumerated-in-file</code> is to <code>enum</code>.  Its options have the
+same meaning as their counterparts in the <code>multienum</code> and
+<code>enumerated-in-file</code> fields.
+
+<p><em>NOTE</em>: Keywords may appear in any sequence, with one exception -
+the <code>separators</code> keyword, if present, has to come last.  This rule
+only applies to fields of type <code>multi-enumerated-in-file</code>.
+
+<br><dt><code>date</code>
+<dd>The <code>date</code> datatype is used to hold dates.  Date fields must either be
+empty or contain a correctly formatted date.
+
+<p>No defaults or other options are available.  The field is left empty if
+no value for the field is given in the initial PR.
+
+<br><dt><code>integer  [ { default "integer" } ]</code>
+<dd>Integer fields are used to hold numbers.  They must either be empty or
+contain a value composed entirely of digits, with an optional leading
+sign.
+
+<p>If the <code>default</code> option is present, the field will have the value
+of <code>integer</code> if the field is not given a value when the PR is
+initially created.  Otherwise, the field will be left empty. 
+</dl>
+
+</body></html>
+

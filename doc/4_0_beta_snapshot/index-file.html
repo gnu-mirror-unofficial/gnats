@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="index%20file">index file</a>,
+Next:<a rel=next href="current-file.html#current%20file">current file</a>,
+Up:<a rel=up href="Admin-files.html#Admin%20files">Admin files</a>
+<hr><br>
+
+<h4>The <code>index</code> file</h4>
+
+<p>The index is used to accelerate searches on the database by
+<code>query-pr</code> and <code>edit-pr</code>.  This file is not created until the
+first PR comes in.  It is then kept up to date by <small>GNATS</small>; you should
+never touch this file.
+
+<p>Searches on subjects contained in the index are much faster than
+searches which depend on data not in the index.  Inexes come in two
+different formats: <dfn>binary</dfn> and <dfn>plain-text</dfn>.  Binary indexes
+are safer, in that they avoid certain problems that may crop up if the
+field separators used by plain-text indexes appear in field data.
+
+<p>A plain-text index contains single-line entries for all PR fields
+except for the multitext fields such as Description, How-To-Repeat,
+etc. Fields are separated by bars (<code>|</code>) except for
+<code>Category</code> and <code>Number</code>, which are separated by a slash
+(<code>/</code>).
+
+<p>Binary indexes are not meant to be human-readable, but they are safer
+than the plain-text variety, in that they avoid certain problems that may
+crop up if the field separators used by plain-text indexes appear in
+field data.
+
+<p>The format of the index for a database is set in the <code>dbconfig</code>
+file. See <a href="Index-file-description.html#Index%20file%20description">Index file description</a>.
+
+<p>Should the <code>index</code> file become corrupted, the <code>gen-index</code>
+utility can be used to regenerate it. See <a href="gen-index.html#gen-index">Regenerating the index</a>.
+
+</body></html>
+

@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Individual%20field%20configuration">Individual field configuration</a>,
+Next:<a rel=next href="Field-datatypes.html#Field%20datatypes">Field datatypes</a>,
+Previous:<a rel=previous href="Overall-database-configuration.html#Overall%20database%20configuration">Overall database configuration</a>,
+Up:<a rel=up href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>
+<hr><br>
+
+<h4>Individual field configuration</h4>
+
+<p>Each type of field in a PR must be described with a <code>field</code> section
+in the <code>dbconfig</code> file.  These sections have the following general
+structure:
+
+<br><pre>field "fieldname" {
+  description "string"
+  [ field-options ... ]
+  datatype [ datatype-options ... ]
+  [ on-change { edit-options ... } ]
+}
+</pre>
+
+<p><code>fieldname</code> is used as the field header in the PR.  The characters <code>&gt;</code>
+and <code>:</code> are used internally as field markers by <small>GNATS</small>, so they must
+not be used in fieldnames.
+
+<p>The order in which the <code>field</code> sections appear in the
+<code>dbconfig</code> file determines the order in which they appear in the PR
+text.  There is no required order, unlike previous versions of <small>GNATS</small>
+-- the Unformatted field and multitext fields may appear anywhere in
+the PR.
+
+<p>The following <code>field-options</code> may be present within a <code>field</code> section:
+
+<dl>
+<dt><code>builtin-name  <var>"name"</var></code>
+<dd>Indicates that this field corresponds to one of the <small>GNATS</small> built-in
+fields.
+
+<p><small>GNATS</small> has several fields which are required to be present in a PR,
+and this option is used to map their external descriptions to their
+internal usage.  The external field names are:
+
+<dl>
+<dt><code>number</code>
+<dd>The PR's unique numeric identifier
+
+<br><dt><code>category</code>
+<dd>The category that the PR falls into
+
+<br><dt><code>synopsis</code>
+<dd>The one-line description of the PR
+
+<br><dt><code>confidential</code>
+<dd>If set to <code>yes</code>, the PR is confidential
+
+<br><dt><code>severity</code>
+<dd>Severity of the problem described by the PR
+
+<br><dt><code>priority</code>
+<dd>Priority of the PR
+
+<br><dt><code>responsible</code>
+<dd>The person responsible for handling the PR
+
+<br><dt><code>state</code>
+<dd>The current state of the PR
+
+<br><dt><code>submitter</code>
+<dd>The user that submitted the PR
+
+<br><dt><code>arrival-date</code>
+<dd>The arrival date of the PR
+
+<br><dt><code>last-modified</code>
+<dd>The date the PR was last modified
+
+<br><dt><code>audit-trail</code>
+<dd>The audit-trail recording changes to the PR
+</dl>
+
+<p>For these built-in fields, a matching field description must appear in
+the <code>dbconfig</code> file. Otherwise, the configuration will be
+considered invalid, and errors will be generated from the <small>GNATS</small>
+clients and gnatsd.
+
+<br><dt><code>description  <var>"description text"</var></code>
+<dd>A one-line human-readable description of the field.  Clients can use
+this string to describe the field in a help dialog.  The string is
+returned from the FDSC command in gnatsd and is also available via the
+<code>--field-description</code> option in <code>query-pr</code>.
+
+<p>This entry must be present in the field description, and there is no
+default value.
+
+<br><dt><code>query-default  <var>exact-regexp | inexact-regexp</var></code>
+<dd>Used to specify the default type of searches performed on this field. 
+This is used when the <code>^</code> search operator appears in a query, and
+is also used for queries in <code>query-pr</code> that use the old
+<code>--field</code> query options.
+
+<p>If the option is not given, the default search is <code>exact-regexp</code>.
+
+<br><dt><code>textsearch</code>
+<dd>If this option is present, the field will be searched when the user
+performs a <code>--text</code> search from <code>query-pr</code>.  The field is
+also flagged as a <code>textsearch</code> field in the set of field flags
+returned by the <code>FIELDFLAGS</code> command in gnatsd.
+
+<p>By default, fields are not marked as <code>textsearch</code> fields.
+
+<br><dt><code>read-only</code>
+<dd>When this option is present, the field contents may not be edited -- they
+must be set when the PR is initially created.  In general, this should
+only be used for fields that are given as internal values rather than
+fields supplied by the user.
+
+<p>By default, editing is allowed. 
+</dl>
+
+</body></html>
+

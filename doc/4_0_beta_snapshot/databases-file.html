@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="databases%20file">databases file</a>,
+Next:<a rel=next href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>,
+Previous:<a rel=previous href="GNATS-configuration.html#GNATS%20configuration">GNATS configuration</a>,
+Up:<a rel=up href="Management.html#Management">Management</a>
+<hr><br>
+
+<h3>The <code>databases</code> file</h3>
+
+<p>The <code>databases</code> configuration file is a site-wide configuration
+file containing the list of <small>GNATS</small> databases that are available
+either on the host itself or remotely over the network, together with
+some parameters associated with each database.
+
+<p>The file contains one line for each database. For databases located on
+the host itself, each line consists of three fields separated by colons:
+
+<p><var>database name:short description of database:path/to/database</var>
+
+<p>The first field is the database name.  This is the name used to identify
+the database when invoking programs such as <code>query-pr</code> or
+<code>send-pr</code>, either by using the <code>--database</code> option of the
+program or by setting the <var>GNATSDB</var> environment variable to the name
+of the database.  The second field is a short human-readable description
+of the database contents, and the final field is the directory where the
+database contents are kept.
+
+<p>For a database that is located across a network, but which should be
+accessible from this host, the entry for the database should look
+like this:
+
+<p><var>database name:short description of database::hostname:port</var>
+
+<p>The first two fields are the same as for local databases, the third
+field is empty (notice the two adjacent <code>:</code> symbols, indicating an
+empty field), the fourth field is the hostname of the remote <small>GNATS</small>
+server, and the fifth field is the port number that the remote
+<small>GNATS</small> is running on.
+
+<p>If <small>GNATS</small> was built with default options, the <code>databases</code> file
+will be located in the <code>/usr/local/etc/gnats</code> directory. 
+However, if the option <code>--with-gnats-dblist-file</code> was used during building
+of <small>GNATS</small>, the <code>databases</code> file has the name and location given
+to this option.  A sample <code>databases</code> file is installed together
+with <small>GNATS</small>.
+
+<p>Note that if you add a new local database, you must create its data
+directory, including appropriate subdirectories and administrative
+files.  This is best done using the <code>mkdb</code> tool, See <a href="mkdb.html#mkdb">mkdb</a>.
+
+</body></html>
+

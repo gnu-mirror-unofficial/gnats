@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="responsible%20file">responsible file</a>,
+Next:<a rel=next href="submitters-file.html#submitters%20file">submitters file</a>,
+Previous:<a rel=previous href="categories-file.html#categories%20file">categories file</a>,
+Up:<a rel=up href="Other-config-files.html#Other%20config%20files">Other config files</a>
+<hr><br>
+
+<h4>The <code>responsible</code> file</h4>
+
+<p>This file contains a list of the responsible parties.  Lines beginning
+with <code>#</code> are ignored.  Each entry contains three fields, separated
+by colons:
+
+<br><pre><var>responsible</var>:<var>full-name</var>:<var>mail-address</var>
+</pre>
+
+<dl>
+<dt><var>responsible</var>
+<dd>A name-tag description of the party in question, such as her or his user
+name, or the name of the group.  This name is listed in the PR in
+the <code>Responsible</code> field.
+
+<br><dt><var>full-name</var>
+<dd>The full name of the party ("Charlotte Bronte"; "Compiler Group").
+
+<br><dt><var>mail-address</var>
+<dd>The full, valid mail address of the party.  This field is only necessary
+if the responsible party has no local mail address or alias. 
+</dl>
+
+<p>A sample <code>responsible</code> listing might be:
+
+<br><pre>ren:Ren Hoek:
+stimpy:Stimpson J. Cat:stimpy@lederhosen.org
+</pre>
+
+<p>Here, <code>ren</code> is a local user.  <code>stimpy</code> is remote, so his full
+address must be specified.
+
+<p>The following entry <em>must</em> be present for <small>GNATS</small> to function:
+
+<br><pre>gnats-admin:GNATS administrator:
+</pre>
+
+<p><code>gnats-admin</code> is usually defined as a mail alias when <small>GNATS</small> is
+installed, so for this purpose <code>gnats-admin</code> is a local address. 
+However, this line can alos be used to redefine the email address of the
+<small>GNATS</small> administrator, by adding the desired address at the end of
+the line.
+
+</body></html>
+

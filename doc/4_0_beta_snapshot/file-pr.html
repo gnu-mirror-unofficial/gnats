@@ -1,0 +1,103 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="file-pr">file-pr</a>,
+Next:<a rel=next href="at-pr.html#at-pr">at-pr</a>,
+Previous:<a rel=previous href="queue-pr.html#queue-pr">queue-pr</a>,
+Up:<a rel=up href="Internal-utils.html#Internal%20utils">Internal utils</a>
+<hr><br>
+
+<h4>Processing incoming traffic</h4>
+
+<p><code>queue-pr</code> hands off queued Problem Reports to <code>file-pr</code> one
+at a time.  <code>file-pr</code> checks each Problem Report for correct
+information in its fields (particularly a correct <code>Category</code>),
+assigns it an identification number, and files it in the database under
+the appropriate category.
+
+<p>If the <code>Category</code> field does not contain a valid category value
+(i.e., matching a line in the <code>categories</code> file; see <a href="categories-file.html#categories%20file">The <code>categories</code> file</a>), the PR is assigned to the default
+category, as set in the <code>dbconfig</code> file.  If there is no default
+category defined, the PR is given a <code>Category</code> value of
+<code>pending</code> and is placed in the <code>pending</code> directory.  The
+<small>GNATS</small> administrator is notified of the unplaceable PR.
+
+<p><code>file-pr</code> assigns the Problem Report an identification number,
+files it in the <small>GNATS</small> database (under the default, if the
+<code>Category</code> field contains an invalid category), and sends
+acknowledgments to appropriate parties.  For the default <small>GNATS</small>
+configuration, the person responsible for that category of problem
+(see <a href="categories-file.html#categories%20file">The <code>categories</code> file</a>) and the person
+responsible for the submitter site where the PR originated
+(see <a href="submitters-file.html#submitters%20file">The <code>submitters</code> file</a>) receive a copy of
+the PR in its entirety.  Optionally, the originator of the PR receives
+an acknowledgment that the PR arrived and was filed (see <a href="GNATS-configuration.html#GNATS%20configuration">Changing your <small>GNATS</small> configuration</a>).
+
+<p>The usage for <code>file-pr</code> is as follows:
+
+<br><pre>file-pr [ -f <var>filename</var> | --file=<var>filename</var> ]
+        [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+	    [ -h | --help ] [ -V | --version ]
+
+       network options:
+        [ -H <var>host</var> | --host=<var>host</var> ]
+        [ -P <var>port</var> | --port=<var>port</var> ]
+        [ -v <var>username</var> | --user=<var>username</var> ]
+        [ -w <var>password</var> | --passwd=<var>password</var> ]
+</pre>
+
+<p><code>file-pr</code> requires no options in order to operate, and takes input
+from standard input (normally, the output of <code>queue-pr&nbsp;-r</code>)
+unless otherwise specified.  The options include:
+
+<dl>
+<dt><code>-f <var>filename</var></code>
+<dt><code>--filename=<var>filename</var></code>
+<dd>Uses <var>filename</var> as input rather than standard input.
+
+<br><dt><code>-d <var>databasename</var></code>
+<dt><code>--database=<var>databasename</var></code>
+<dd>Performs refiling operations on <var>database</var>.  If this option is left
+out, the value of the <var>GNATSDB</var> environment variable is used, and if
+that is undefined, the default database name set when <small>GNATS</small> was
+built is used (usually <code>default</code>).
+
+<br><dt><code>-h</code>
+<dt><code>--help</code>
+<dd>Prints the usage for <code>file-pr</code>.
+
+<br><dt><code>-V</code>
+<dt><code>--version</code>
+<dd>Prints the version number for <code>file-pr</code>. 
+</dl>
+
+<p><code>file-pr</code> can file PRs across a network, talking to a remote
+gnatsd. The following options relate to network access:
+
+<dl>
+<dt><code>-H <var>host</var></code>
+<dt><code>--host=<var>host</var></code>
+<dd>Hostname of the <small>GNATS</small> server.
+
+<br><dt><code>-P <var>port</var></code>
+<dt><code>--port=<var>port</var></code>
+<dd>The port that the <small>GNATS</small> server runs on.
+
+<br><dt><code>-v <var>username</var></code>
+<dt><code>--username=<var>username</var></code>
+<dd>Username used to log into the <small>GNATS</small> server.
+
+<br><dt><code>-w <var>password</var></code>
+<dt><code>--passwd=<var>password</var></code>
+<dd>Password used to log into the <small>GNATS</small> server. 
+</dl>
+
+</body></html>
+

@@ -1,0 +1,210 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Outgoing%20email%20formats">Outgoing email formats</a>,
+Next:<a rel=next href="Index-file-description.html#Index%20file%20description">Index file description</a>,
+Previous:<a rel=previous href="Audit-trail-formats.html#Audit-trail%20formats">Audit-trail formats</a>,
+Up:<a rel=up href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>
+<hr><br>
+
+<h4>Outgoing email formats</h4>
+
+<p>During the life of a PR, <small>GNATS</small> can be configured to send out a
+range of email messages.  When a PR first arrives, an acknowledgment
+message is sent out if the <code>send-submitter-ack</code> parameter above is
+set to <code>true</code>.  Certain edits to the PR may also cause email to be
+sent out to the various parties, and if a PR is deleted, <small>GNATS</small> may
+send notification email.
+
+<p>The formats of the email messages are controlled by <code>mail-format</code>
+sections in the <code>dbconfig</code> file.  The general structure of a
+<code>mail-format</code> section is as follows:
+
+<br><pre>mail-format "format-name" {
+  from-address {
+    [ fixed-address "address" ]
+    [ email-header-name | [ mail-header-name | ... ] ]
+  }
+  to-address {
+    [ fixed-address "address" ]
+    [ "email-header-name" | [ "mail-header-name" | ... ] ]
+  }
+  reply-to {
+    [ fixed-address "address" ]
+    [ "email-header-name" | ... ] | [ "gnats-field-name" | ... ]
+  }
+  header {
+    format "formatstring"
+    [ fields { "fieldname" [ "fieldname" ... ] } ]
+  }
+  body {
+    format "formatstring"
+    [ fields { "fieldname" [ "fieldname" ... ] } ]
+  }
+}
+</pre>
+
+<p><code>gnats</code> recognizes and uses 6 different <code>format-name</code> values:
+
+<dl>
+<dt><code>initial-response-to-submitter</code>
+<dd>Format of the message used when mailing an initial response back to the
+PR submitter.  This message will only be sent if
+<code>send-submitter-ack</code> in the overall database configuration is set
+to <code>true</code>.
+
+<br><dt><code>initial-pr-notification</code>
+<dd>Format of the message sent to the responsible parties when a new PR with
+category different from "pending" arrives.
+
+<br><dt><code>initial-pr-notification-pending</code>
+<dd>Format of the message sent to the responsible parties when a new PR that
+ends up with category "pending" arrives.
+
+<br><dt><code>appended-email-response</code>
+<dd>Format of the notification message sent out when a response to a PR is
+received via email.
+
+<br><dt><code>audit-mail</code>
+<dd>Format of the message sent out when a PR edit generates an Audit-Trail
+entry.
+
+<br><dt><code>deleted-pr-mail</code>
+<dd>Format of the message sent out when a PR is deleted. 
+</dl>
+
+<p>The <code>from-address</code>, <code>to-address</code> and <code>reply-to</code>
+subsections of a mail-format section specify the contents of the <code>To:</code>,
+<code>From:</code> and <code>Reply-To:</code> headers in outgoing email.  There are
+two ways to specify the contents: by using a <code>fixed-address</code>
+specification, or by specifying <code>email-header-name</code>s or
+<code>gnats-field-name</code>s.
+
+<p>When an <code>email-header-name</code> or <code>gnats-field-name</code> value is
+given, <small>GNATS</small> will attempt to extract an email address from the
+specified location.  If several values are given on the same line,
+separated by <code>|</code> characters, <small>GNATS</small> will try to extract an address
+from each location in turn until it finds a header or field which is
+nonempty.  The following example should clarify this:
+
+<br><pre>mail-format "initial-response-to-submitter" {
+  from-address {
+    fixed-address "gnats-admin"
+  }
+  to-addresses {
+    "Reply-To:" | "From:" | "Submitter-Id"
+  } <small>...</small>
+</pre>
+
+<p>This partial <code>mail-format</code> section specifies the format of the
+address headers in the email message that is sent out as an
+acknowledgment of a received PR.  The <code>From:</code> field of the message
+will contain the email address of the <small>GNATS</small> administrator, as
+specified by the <code>gnats-admin</code> line in the <code>responsible</code> file. 
+To fill in the <code>To:</code> header, <small>GNATS</small> will first look for the
+mail header <code>Reply-To:</code> in the PR and use the contents of that, if
+any.  If that header doesn't exist or is empty, it will look for the
+contents of the <code>From:</code> email header, and if that yields nothing,
+it will look for the <small>GNATS</small> <code>Submitter-Id</code> field and use the
+contents of that.
+
+<p>Other email headers to be included in messages sent out by <small>GNATS</small>
+can be specified by <code>header</code> subsections of the <code>mail-header</code>
+section.  <code>formatstring</code> and <code>fieldname</code> are similar to those
+used by the named query format. Each header line must have a newline
+character (<code>\n</code>) at the end.
+
+<p>The email message body is specified in the <code>body</code> subsection of the
+<code>mail-format</code> section. Just as for a <code>header</code> section, the
+<code>body</code> section must contain a <code>formatstring</code> and
+<code>fieldname</code> values.
+
+<p>For some of the formats that <small>GNATS</small> recognizes, special variables
+are available for use. The following table lists the formats that
+provide special variables. See the example below for an illustration of
+how they are used.
+
+<dl>
+<dt><code>appended-email-response</code>
+<dd>
+<dl>
+<dt><code>$MailFrom</code>
+<dd>The From: line of the original message.
+
+<br><dt><code>$MailTo</code>
+<dd>The To: line of the original message.
+
+<br><dt><code>$MailSubject</code>
+<dd>The Subject: line of the original message.
+
+<br><dt><code>$MailCC</code>
+<dd>The CC: line of the original message.
+
+<br><dt><code>$NewAuditTrail</code>
+<dd>The text of the new audit trail entry (corresponds to the body of the
+message). 
+</dl>
+
+<br><dt><code>audit-mail</code>
+<dd>
+<dl>
+<dt><code>$EditUserEmailAddr</code>
+<dd>The email address of the user editing the PR.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the <code>responsible</code>
+file; if not available, user's local address is used.
+
+<br><dt><code>$OldResponsible</code>
+<dd>The previous Responsible field entry, if it was changed.
+
+<br><dt><code>$NewAuditTrail</code>
+<dd>The Audit-Trail: entries that have been appended by the edits. 
+</dl>
+
+<br><dt><code>deleted-pr-mail</code>
+<dd>
+<dl>
+<dt><code>$EditUserEmailAddr</code>
+<dd>The email address of the user deleting the PR.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the <code>responsible</code>
+file; if not available, user's local address is used.
+
+<br><dt><code>$PRNum</code>
+<dd>The number of the PR that was deleted. 
+</dl>
+</dl>
+
+<p>The following example illustrates the use of these special variables:
+
+<br><pre>mail-format "deleted-pr-mail" {
+  from-address {
+    "$EditUserEmailAddr"
+  }
+  to-addresses {
+    fixed-address "gnats-admin"
+  }
+  header {
+    format "Subject: Deleted PR %s\n"
+    fields { "$PRNum" }
+  }
+  body {
+    format "PR %s was deleted by user %s.\n"
+    fields { "$PRNum" "$EditUserEmailAddr" }
+  }
+}
+</pre>
+
+<p>This <code>mail-format</code> section specifies the format of the email
+message that is sent out when a PR is deleted. The <code>From:</code> field is
+set to the email address field of the user who deleted the PR, the
+subject of the message contains the number of the deleted PR, and the
+message body contains both the PR number and the user's email address.
+
+</body></html>
+

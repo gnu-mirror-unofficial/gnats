@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Environment">Environment</a>,
+Next:<a rel=next href="send-pr.html#send-pr">send-pr</a>,
+Up:<a rel=up href="GNATS-user-tools.html#GNATS%20user%20tools">GNATS user tools</a>
+<hr><br>
+
+<h3>Environment variables and <small>GNATS</small> tools</h3>
+
+<p>All the <small>GNATS</small> user tools honor the <code>GNATSDB</code> environment
+variable which is used to determine which database to use.  For a local
+database, it contains the name of the database to access.
+
+<p>For network access via gnatsd, it contains a colon-separated list of
+strings that describe the remote database in the form
+
+<br><pre><var>server:port:databasename:username:password</var>
+</pre>
+
+<p>Any of the fields may be omitted except for <var>server</var>, but at least
+one colon must appear; otherwise, the value is assumed to be the name of
+a local database.
+
+<p>If <code>GNATSDB</code> is not set and no command-line options are used to
+specify the database, it is assumed that the database is local and that
+its name is <code>default</code>.
+
+</body></html>
+

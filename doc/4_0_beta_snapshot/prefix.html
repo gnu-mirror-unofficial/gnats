@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="prefix">prefix</a>,
+Next:<a rel=next href="exec-prefix.html#exec-prefix">exec-prefix</a>,
+Up:<a rel=up href="Locations.html#Locations">Locations</a>
+<hr><br>
+
+<h3><var>prefix</var></h3>
+
+<p><var>prefix</var> corresponds to the variable <code>prefix</code> for
+<code>configure</code>, which passes it on to the <code>Makefile</code> it creates. 
+<var>prefix</var> sets the root installation directory for
+<dfn>host-independent</dfn> files as follows:
+
+<dl>
+<dt>the directory path of the default database
+<dd><code><var>prefix</var>/com</code><br>
+
+<br><dt>site-wide configuration files
+<dd><code><var>prefix</var>/etc/gnats</code><br>
+
+<br><dt><code>man</code> pages
+<dd><code><var>prefix</var>/man</code>
+
+<br><dt><code>info</code> documents
+<dd><code><var>prefix</var>/info</code>
+
+<br><dt><code>include</code> files
+<dd><code><var>prefix</var>/include</code>
+
+<br><dt><em>etc<small>...</small></em>
+<dd></dl>
+
+<p>The default value for <var>prefix</var> is <code>/usr/local</code>, which can
+be changed on the command line to <code>configure</code> using
+
+<br><pre>configure --prefix=<var>prefix</var> <small>...</small>
+</pre>
+
+<p>See <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>.
+
+</body></html>
+

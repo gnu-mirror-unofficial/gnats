@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Emacs%20and%20databases">Emacs and databases</a>,
+Next:<a rel=next href="dbconfig-mode.html#dbconfig%20mode">dbconfig mode</a>,
+Previous:<a rel=previous href="Emacs-editing-buffer.html#Emacs%20editing%20buffer">Emacs editing buffer</a>,
+Up:<a rel=up href="Emacs.html#Emacs">Emacs</a>
+<hr><br>
+
+<h4>Changing the database</h4>
+
+<p>By default, the Emacs interface connects to the default database,
+<a href="databases-file.html#databases%20file">databases file</a>.  If you want to connect to another database, use
+the command <kbd>M-x gnats-change-database</kbd>.  It will ask you for the
+database name to use, server and port it can be accessed on, and your
+login name.
+
+<p>If you want to use the <code>gnatsd</code> command, <a href="gnatsd.html#gnatsd">gnatsd</a>,
+directly, without connecting to a remote server or the localhost
+connection port, provide your local file system full path to
+<code>gnatsd</code> as the server name.  Port number does not matter in
+this case.
+
+<p>If the database requires a password to allow you the access to it, you
+are prompted for the password the first time you connect to the
+database.  If you provide an invalid password, you cannot connect to
+the database anymore and you have to run the <kbd>M-x
+gnats-change-database</kbd> command again.
+
+</body></html>
+

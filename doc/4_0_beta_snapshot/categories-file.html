@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="categories%20file">categories file</a>,
+Next:<a rel=next href="responsible-file.html#responsible%20file">responsible file</a>,
+Up:<a rel=up href="Other-config-files.html#Other%20config%20files">Other config files</a>
+<hr><br>
+
+<h4>The <code>categories</code> file</h4>
+
+<p>The <code>categories</code> file contains a list of problem categories,
+specific to the database, which <small>GNATS</small> tracks.  This file also
+matches responsible people with these categories.  You must edit this
+file initially, creating valid categories.  In most installations,
+<small>GNATS</small> is configured to create directories on disk for valid
+categories automatically as needed (see <a href="Overall-database-configuration.html#Overall%20database%20configuration">Overall database configuration</a>). If <small>GNATS</small> isn't set
+up to do this, you need to run <code>mkcat</code> to create the corresponding
+subdirectories of the database directory. For instructions on running
+<code>mkcat</code>, see <a href="mkcat.html#mkcat">Adding a problem category</a>.
+
+<p>To create a new category, log in as <small>GNATS</small>, add a line to this file,
+and run <code>mkcat</code> if applicable.  Lines beginning with <code>#</code> are
+ignored.
+
+<p>A line in the <code>categories</code> file consists of four fields delimited
+by colons, as follows:
+
+<br><pre><var>category</var>:<var>description</var>:<var>responsible</var>:<var>notify</var>
+</pre>
+
+<dl>
+<dt><var>category</var>
+<dd>A unique category name, made up of text characters.  This name cannot
+contain spaces or any of the following characters:
+
+<br><pre>! $ &amp; * ( ) { } [ ] ` ' " ; : &lt; &gt; ~
+</pre>
+
+<p>Ideally, category names should not contain commas or begin with periods. 
+Each line has a corresponding subdirectory in the database directory.
+
+<br><dt><var>description</var>
+<dd>A terse textual description of the category.
+
+<br><dt><var>responsible</var>
+<dd>The name tag of the party responsible for this category of problems, as
+listed in the <code>responsible</code> file (see <a href="responsible-file.html#responsible%20file">The <code>responsible</code> file</a>).
+
+<br><dt><var>notify</var>
+<dd>One or more other parties which should be notified when a Problem Report
+with this category arrives, such as a project manager, other members of
+the same project, other interested parties, or even log files.  These
+should be separated with commas. 
+</dl>
+
+<p>A good strategy for configuring this file is to have a different
+category for each product your organization supports or wishes to track
+information for.
+
+<br><pre>rock:ROCK program:me:myboss,fred
+stone:STONE utils:barney:fred
+iron:IRON firewall:me:firewall-log
+</pre>
+
+<p>In the above example, the nametags <code>myboss</code>, <code>me</code>,
+<code>fred</code>, and <code>barney</code> must be defined in the <code>responsible</code>
+file (see <a href="responsible-file.html#responsible%20file">The <code>responsible</code> file</a>).
+
+<p>Problem Reports with a category of <code>rock</code> are sent to the local
+mail address (or alias) <code>me</code>, and also sent to the addresses
+<code>myboss</code> and <code>fred</code>.  PRs with a category of <code>stone</code> are
+sent to the local addresses <code>barney</code> and <code>fred</code> only, while
+PRs with the category <code>iron</code> are sent only to <code>me</code>, and are
+also filed in <code>firewall-log</code> (in this case, a mail alias should be set
+up, see <a href="Aliases.html#Aliases">Setting up mail aliases</a>.
+
+<p>If you want to separate PRs in each problem category into specific
+subsets, say <em>documentation</em> and <em>software bugs</em>,
+using the <code>classes</code> file is recommended.  See <a href="classes-file.html#classes%20file">The <code>classes</code> file</a>.
+
+<p>Only one category <em>must</em> be present for <small>GNATS</small> to function:
+
+<br><pre>pending:Non-categorized PRs:gnats-admin:
+</pre>
+
+<p>The <code>pending</code> directory is created automatically when you run
+<code>mkdb</code> to initialize a new database.  (see <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>).
+
+</body></html>
+

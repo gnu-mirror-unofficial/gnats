@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Description%20of%20gnatsd">Description of gnatsd</a>,
+Next:<a rel=next href="gnatsd-options.html#gnatsd%20options">gnatsd options</a>,
+Up:<a rel=up href="gnatsd.html#gnatsd">gnatsd</a>
+<hr><br>
+
+<h3>Description of <code>gnatsd</code></h3>
+
+<p>The <code>gnatsd</code> network daemon is used to service remote <small>GNATS</small>
+requests such as querying PRs, PR creation, deletion, and editing, and
+miscellaneous database queries.  It uses a simple ASCII-based command
+protocol (similar to SMTP or POP3) for communicating with remote
+clients.
+
+<p>It also provides a security model based either on IP-based
+authentication (generally considered very weak) or username/passwords,
+where passwords may be in cleartext, UNIX crypt or MD5 hash format. 
+Access through <code>gnatsd</code> is granted according to certain predefined
+<dfn>access levels</dfn>.  Access levels are further discussed in <a href="Access-Control.html#Access%20Control">Controlling access to databases</a>.  It should be emphasized that
+security has not been a focus of development until now, but future
+versions are expected to address this more thoroughly.
+
+<p>All of the <small>GNATS</small> clients are capable of communicating via the <small>GNATS</small>
+remote protocol to perform their functions.
+
+<p><code>gnatsd</code> is usually started from the inetd facility and should run as
+the <code>gnats</code> user (the actual username of this user is configurable
+during installation, see <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a> for details.)
+
+</body></html>
+

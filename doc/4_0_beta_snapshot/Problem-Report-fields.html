@@ -1,0 +1,276 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Problem%20Report%20fields">Problem Report fields</a>,
+Previous:<a rel=previous href="Mail-header-fields.html#Mail%20header%20fields">Mail header fields</a>,
+Up:<a rel=up href="Fields.html#Fields">Fields</a>
+<hr><br>
+
+<h4>Problem Report fields</h4>
+
+<h4>Field descriptions</h4>
+
+<p>In a standard <small>GNATS</small> installation, certain fields will always be
+present in a Problem Report.  If a PR arrives without one or more of
+these fields, <small>GNATS</small> will add them, and if they have default
+values set by the configuration at the Support Site, they will be
+filled in with these values.  Certain tools such as <code>send-pr</code> are
+set up to provide sensible defaults for most fields
+(see <a href="send-pr.conf-file.html#send-pr.conf%20file">The send-pr.conf configuration file</a>.)
+
+<p>In the list below, the field type (<code>text</code>, <code>multitext</code>,
+<code>enumerated</code>, etc.) is supplied in parantheses.  The different
+field types are explained briefly in <a href="Field-datatypes-reference.html#Field%20datatypes%20reference">Field datatypes reference</a>.
+
+<dl>
+<dt><code>Submitter-Id</code>
+<dd>(<code>enumerated-in-file</code>) A unique identification code assigned by the
+Support Site.  It is used to identify all Problem Reports coming from a
+particular site.  Submitters without a value for this field can invoke
+<code>send-pr</code> with the <code>--request-id</code> option to apply for one from
+the support organization.  Problem Reports from those not affiliated
+with the support organization should use the default value of <code>net</code>
+for this field.
+
+<p>See <a href="submitters-file.html#submitters%20file">The <code>submitters</code> file</a>, for details.
+
+<br><dt><code>Notify-List</code>
+<dd>(<code>text</code>) Comma-separated list of e-mail-addresses of people to
+notify when the PR changes significantly, i.e. when the Audit-Trail
+changes.  This list is independent from the Notify subfield of entries
+in the <code>categories</code> file of the <small>GNATS</small> database.
+
+<br><dt><code>Originator</code>
+<dd>(<code>text</code>) Originator's real name.  Note that the Submitter and
+Originator might not be the same person/entity in all cases.
+
+<br><dt><code>Organization</code>
+<dd>(<code>multitext</code>) The originator's organization.
+
+<br><dt><code>Confidential</code>
+<dd>(<code>enum</code>) Use of this field depends on the originator's relationship
+with the support organization; contractual agreements often have
+provisions for preserving confidentiality.  Conversely, a lack of a
+contract often means that any data provided will not be considered
+confidential.  Submitters should be advised to contact the support
+organization directly if this is an issue.
+
+<p>If the originator's relationship to the support organization provides
+for confidentiality, then if the value of this field is <code>yes</code> the
+support organization treats the PR as confidential; any code samples
+provided are not made publicly available.
+
+<br><dt><code>Synopsis</code>
+<dd>(<code>text</code>) One-line summary of the problem.  <code>send-pr</code> copies
+this information to the <code>Subject</code> line when you submit a Problem
+Report.
+
+<br><dt><code>Severity</code>
+<dd>(<code>enum</code>) The severity of the problem.  By default, accepted
+values include:
+
+<dl>
+<dt><code>critical</code>
+<dd>The product, component or concept is completely non-operational or some
+essential functionality is missing.  No workaround is known.
+
+<br><dt><code>serious</code>
+<dd>The product, component or concept is not working properly or significant
+functionality is missing.  Problems that would otherwise be considered
+<code>critical</code> are usually rated <code>serious</code> when a workaround is
+known.
+
+<br><dt><code>non-critical</code>
+<dd>The product, component or concept is working in general, but lacks
+features, has irritating behavior, does something wrong, or doesn't
+match its documentation. 
+</dl>
+
+<br><dt><code>Priority</code>
+<dd>(<code>enumerated</code>) How soon the originator requires a solution. 
+Accepted values include:
+
+<dl>
+<dt><code>high</code>
+<dd>A solution is needed as soon as possible.
+
+<br><dt><code>medium</code>
+<dd>The problem should be solved in the next release.
+
+<br><dt><code>low</code>
+<dd>The problem should be solved in a future release. 
+</dl>
+
+<br><dt><code>Category</code>
+<dd>(<code>enumerated-in-file</code>) The name of the product, component or
+concept where the problem lies.  The values for this field are defined
+by the Support Site. 
+See <a href="categories-file.html#categories%20file">The <code>categories</code> file</a>, for details.
+
+<br><dt><code>Class</code>
+<dd>(<code>enumerated-in-file</code>) The class of a problem in a default
+<small>GNATS</small> installation can be one of the following:
+
+<dl>
+<dt><code>sw-bug</code>
+<dd>A general product problem.  (<code>sw</code> stands for "software".)
+
+<br><dt><code>doc-bug</code>
+<dd>A problem with the documentation.
+
+<br><dt><code>change-request</code>
+<dd>A request for a change in behavior, etc.
+
+<br><dt><code>support</code>
+<dd>A support problem or question.
+
+<br><dt><code>duplicate (<var>pr-number</var>)</code>
+<dd>Duplicate PR.  <var>pr-number</var> should be the number of the original PR.
+
+<br><dt><code>mistaken</code>
+<dd>No problem, user error or misunderstanding.  This value can only be set
+by tools at the Support Site, since it has no meaning for ordinary
+submitters. 
+</dl>
+
+<p>See <a href="classes-file.html#classes%20file">The <code>classes</code> file</a>, for details.
+
+<br><dt><code>Release</code>
+<dd>(<code>text</code>) Release or version number of the product, component or
+concept.
+
+<br><dt><code>Environment</code>
+<dd>(<code>multitext</code>) Description of the environment where the problem
+occurred: machine architecture, operating system, host and target types,
+libraries, pathnames, etc.
+
+<br><dt><code>Description</code>
+<dd>(<code>multitext</code>) Precise description of the problem.
+
+<br><dt><code>How-To-Repeat</code>
+<dd>(<code>multitext</code>) Example code, input, or activities to reproduce the
+problem.  The support organization uses example code both to reproduce
+the problem and to test whether the problem is fixed.  Include all
+preconditions, inputs, outputs, conditions after the problem, and
+symptoms.  Any additional important information should be included. 
+Include all the details that would be necessary for someone else to
+recreate the problem reported, however obvious.  Sometimes seemingly
+arbitrary or obvious information can point the way toward a solution. 
+See also <a href="Helpful-hints.html#Helpful%20hints">Helpful hints</a>.
+
+<br><dt><code>Fix</code>
+<dd>(<code>multitext</code>) A description of a solution to the problem, or a
+patch which solves the problem.  (This field is most often filled in at
+the Support Site; we provide it to the submitter in case he or she has
+solved the problem.) 
+</dl>
+
+<p><small>GNATS</small> adds the following fields when the PR arrives at the Support
+Site:
+
+<dl>
+<dt><code>Number</code>
+<dd>(<code>enumerated</code>) The incremental identification number for this PR. 
+This is included in the automated reply to the submitter (if that
+feature of <small>GNATS</small> is activated; see <a href="dbconfig-file.html#dbconfig%20file">The <code>dbconfig</code> file</a>).  It is also included in the copy of the PR that
+is sent to the maintainer.
+
+<p>The <code>Number</code> field is often paired with the <code>Category</code> field
+as
+
+<br><pre><var>category</var>/<var>number</var>
+</pre>
+
+<p>in subsequent email messages.  This is <small>GNATS</small>' way of tracking
+followup messages that arrive by mail so that they are filed as part of
+the original PR.
+
+<br><dt><code>State</code>
+<dd>(<code>enumerated</code>) The current state of the PR.  In default <small>GNATS</small>
+installations, accepted values are:
+
+<dl>
+<dt><code>open</code>
+<dd>The PR has been filed and the responsible person notified.
+
+<br><dt><code>analyzed</code>
+<dd>The responsible person has analyzed the problem.
+
+<br><dt><code>feedback</code>
+<dd>The problem has been solved, and the originator has been given a patch
+or other fix.  Support organizations may also choose to temporarily
+"park" PRs that are awaiting further input from the submitter under
+this state.
+
+<br><dt><code>closed</code>
+<dd>The changes have been integrated, documented, and tested, and the
+originator has confirmed that the solution works.
+
+<br><dt><code>suspended</code>
+<dd>Work on the problem has been postponed. 
+</dl>
+
+<p>The initial state of a PR is <code>open</code>.  See <a href="States.html#States">States of Problem Reports</a>.
+
+<br><dt><code>Responsible</code>
+<dd>(<code>text</code>) The person at the Support Site who is responsible for this
+PR. 
+<small>GNATS</small> retrieves this information from the <code>categories</code> file
+(see <a href="categories-file.html#categories%20file">The <code>categories</code> file</a>).
+
+<br><dt><code>Arrival-Date</code>
+<dd>(<code>date</code>) The time that this PR was received by <small>GNATS</small>.  The
+date is provided automatically by <small>GNATS</small>.
+
+<br><dt><code>Date-Required</code>
+<dd>(<code>date</code>) The date by which a fix is required.  This is up to the
+maintainers at the Support Site to determine, so this field is not
+available until after the PR has been submitted.
+
+<br><dt><code>Audit-Trail</code>
+<dd>(<code>multitext</code>) Tracks related electronic mail as well as changes in
+the <code>State</code> and <code>Responsible</code> fields with the sub-fields:
+
+<dl>
+<dt><code>State-Changed-&lt;From&gt;-&lt;To&gt;:&nbsp;<var>oldstate</var>&gt;-&lt;<var>newstate</var></code>
+<dd>The old and new <code>State</code> field values.
+
+<br><dt><code>Responsible-Changed-&lt;From&gt;-&lt;To&gt;:&nbsp;<var>oldresp</var>&gt;-&lt;<var>newresp</var></code>
+<dd>The old and new <code>Responsible</code> field values.
+
+<br><dt><code>State-Changed-By: <var>name</var></code>
+<dt><code>Responsible-Changed-By: <var>name</var></code>
+<dd>The name of the maintainer who effected the change.
+
+<br><dt><code>State-Changed-When: <var>timestamp</var></code>
+<dt><code>Responsible-Changed-When: <var>timestamp</var></code>
+<dd>The time the change was made.
+
+<br><dt><code>State-Changed-Why: <var>reason<small>...</small></var></code>
+<dt><code>Responsible-Changed-Why: <var>reason<small>...</small></var></code>
+<dd>The reason for the change. 
+</dl>
+
+<p>The <code>Audit-Trail</code> field also contains any mail messages received by
+<small>GNATS</small> related to this PR, in the order received.  <small>GNATS</small> needs
+to find a <var>category</var>/<var>number</var> at the beginning of the Subject
+field of received e-mail in order to be able to file it correctly.
+
+<br><dt><code>Unformatted</code>
+<dd>(<code>multitext</code>) Any random text found outside the fields in the
+original Problem Report. 
+</dl>
+
+<p>During a Problem Report's journey from <code>open</code> to <code>closed</code>, two
+more fields, <code>Last-Modified</code> and <code>Closed Date</code> (both of type
+<code>date</code>) will be added.
+
+</body></html>
+

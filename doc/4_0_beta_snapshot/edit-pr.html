@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="edit-pr">edit-pr</a>,
+Next:<a rel=next href="query-pr.html#query-pr">query-pr</a>,
+Previous:<a rel=previous href="send-pr.html#send-pr">send-pr</a>,
+Up:<a rel=up href="GNATS-user-tools.html#GNATS%20user%20tools">GNATS user tools</a>
+<hr><br>
+
+<h3>Editing existing Problem Reports</h3>
+
+<p>Use <code>edit-pr</code> to make changes to existing PRs in the database. 
+This tool can be invoked both from a shell prompt or from within GNU
+Emacs using <code>M-x edit-pr</code>.
+
+<p><code>edit-pr</code> first examines the PR you wish to edit and locks it if it
+is not already locked.  This is to prevent you from editing a PR at the
+same time as another user.  If the PR you wish to edit is already in the
+process of being edited, <code>edit-pr</code> tells you the name of the person
+who owns the lock.
+
+<p>You may edit any non-readonly fields in the database.  We recommend that
+you avoid deleting any information in the <small>TEXT</small> and <small>MULTITEXT</small>
+fields (such as <code>Description</code> and <code>How-To-Repeat</code>
+(see <a href="Fields.html#Fields">Problem Report format</a>).  We also recommend that you
+record the final solution to the problem in the <code>Fix</code> field for
+future reference.  Note that heavily customized installations of
+<small>GNATS</small> may have differently named fields, and sites using such
+installations should provide their own set of routines and instructions
+regarding how PRs should be treated throughout their life span.
+
+<p>After the PR has been edited, it is then resubmitted to the database,
+and the index is updated (see <a href="index-file.html#index%20file">The <code>index</code> file</a>). 
+For information on <code>pr-edit</code>, the main driver for <code>edit-pr</code>,
+see <a href="Internal-utils.html#Internal%20utils">Internal utilities</a>.
+
+<p>If you change a field that requires a reason for the change, such as the
+<code>Responsible</code> or <code>State</code> fields in the default configuration,
+<code>edit-pr</code> prompts you to supply a reason for the change.  A message
+is then appended to the <code>Audit-Trail</code> field of the PR with the
+changed values and the change reason.
+
+<p>Depending on how the database is configured, editing various fields in
+the PR may also cause mail to be sent concerning these changes.  In the
+default configuration, any fields that generate <code>Audit-Trail</code>
+entries will also cause a copy of the new <code>Audit-Trail</code> message to
+be sent.
+
+<ul>
+<li><a href="edit-pr-from-the-shell.html#edit-pr%20from%20the%20shell">edit-pr from the shell</a>:   Invoking <code>edit-pr</code> from the shell
+</ul>
+
+</body></html>
+

@@ -1,0 +1,70 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Audit-trail%20formats">Audit-trail formats</a>,
+Next:<a rel=next href="Outgoing-email-formats.html#Outgoing%20email%20formats">Outgoing email formats</a>,
+Previous:<a rel=previous href="Named-query-definitions.html#Named%20query%20definitions">Named query definitions</a>,
+Up:<a rel=up href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>
+<hr><br>
+
+<h4>Audit-trail formats</h4>
+
+<p>These formats are similar to the named query formats, but they include
+more options.  They are used for formatting audit-trail entries and for
+outgoing email messages.
+
+<p>There is currently only one audit-trail format, defined by the
+<code>audit-trail-format</code> option:
+
+<br><pre>audit-trail-format {
+  format "formatstring"
+  [ fields { "fieldname" [ "fieldname" ... ] } ]
+}
+</pre>
+
+<p>For those fields that require an audit-trail entry, the audit-trail text
+to be appended is formatted as described by this format.  The per-field
+<code>audit-trail-format</code> is used in preference to this one, if it
+exists.
+
+<p><code>formatstring</code> and <code>fieldname</code> are similar to those used by
+the named query format.  <code>fieldname</code> may also be a <dfn>format
+parameter</dfn>, which is a context-specific value.  (Format parameters are
+distinguished from fieldnames by a leading dollar sign (<code>$</code>)).
+
+<p>The following format parameters are defined for
+<code>audit-trail-format</code> entries:
+
+<dl>
+<dt><code>$Fieldname</code>
+<dd>The name of the field for which an audit-trail entry is being created.
+
+<br><dt><code>$OldValue</code>
+<dd>The old value of the field.
+
+<br><dt><code>$NewValue</code>
+<dd>The new field value.
+
+<br><dt><code>$EditUserEmailAddr</code>
+<dd>The email address of the user editing the field.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the <code>responsible</code>
+file; if not available, user's local address is used.
+
+<br><dt><code>$CurrentDate</code>
+<dd>The current date.
+
+<br><dt><code>$ChangeReason</code>
+<dd>The reason for the change; may be blank if no reason was supplied. 
+</dl>
+
+<p>These parameters may be used anywhere a <code>fieldname</code> can appear.
+
+</body></html>
+

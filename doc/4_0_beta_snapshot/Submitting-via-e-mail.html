@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Submitting%20via%20e-mail">Submitting via e-mail</a>,
+Next:<a rel=next href="Helpful-hints.html#Helpful%20hints">Helpful hints</a>,
+Previous:<a rel=previous href="send-pr-from-the-shell.html#send-pr%20from%20the%20shell">send-pr from the shell</a>,
+Up:<a rel=up href="send-pr.html#send-pr">send-pr</a>
+<hr><br>
+
+<h4>Submitting a Problem Report via direct e-mail</h4>
+
+<p>In addition to using <code>send-pr</code>, there is another way to submit a
+problem report.  You can simply send an e-mail message to the PR
+submission e-mail address of the support site (This address should be
+published by the support site.)
+
+<p>When you send unformatted e-mail to this address, <small>GNATS</small> processes
+the message as a new problem report, filling in as many fields from
+defaults as it can:
+
+<dl>
+<dt><code>Synopsis</code>
+<dd>The <code>Synopsis</code> field is filled in by the <code>Subject</code> header of
+the e-mail message.
+
+<br><dt><code>Submitter ID</code>
+<dd><small>GNATS</small> will try to derive the <code>Submitter</code> field from the address
+in the <code>From</code> header of the e-mail.
+
+<br><dt><code>Description</code>
+<dd>All of the text in the body of the e-mail message is put into the
+<code>Description</code> field. 
+</dl>
+
+<p>Other fields, such as <code>Category</code>, <code>Version</code>, <code>Severity</code>,
+etc. are set to default values as defined by the <small>GNATS</small> administrator.
+
+</body></html>
+

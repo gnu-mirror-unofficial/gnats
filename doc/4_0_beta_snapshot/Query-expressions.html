@@ -1,0 +1,162 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Query%20expressions">Query expressions</a>,
+Next:<a rel=next href="Example-queries.html#Example%20queries">Example queries</a>,
+Previous:<a rel=previous href="Formatting-query-pr-output.html#Formatting%20query-pr%20output">Formatting query-pr output</a>,
+Up:<a rel=up href="query-pr.html#query-pr">query-pr</a>
+<hr><br>
+
+<h4>Query expressions</h4>
+
+<p>Query expressions are used to select specific PRs based on their field
+contents.  The general form is
+
+<br><pre>fieldname|"value" operator fieldname|"value" [booleanop ...]
+</pre>
+
+<p><var>value</var> is a literal string or regular expression; it must be
+surrounded by double quotes, otherwise it is interpreted as a fieldname.
+
+<p><var>fieldname</var> is the name of a field in the PR.
+
+<p><var>operator</var> is one of:
+
+<dl>
+<dt><code>=</code>
+<dd>The value of the left-hand side of the expression must exactly match the
+regular expression on the right-hand side of the expression. 
+See <a href="Regexps.html#Regexps">Querying using regular expressions</a>.
+
+<br><dt><code>~</code>
+<dd>Some portion of the left-hand side of the expression must match the
+regular expression on the right-hand side.
+
+<br><dt><code>==</code>
+<dd>The value of the left-hand side must be equal to the value on the
+right-hand side of the expression.
+
+<p>The equality of two values depends on what type of data is stored in the
+field(s) being queried.  For example, when querying a field containing
+integer values, literal strings are interpreted as integers.  The query
+expression
+
+<br><pre>Number == "0123"
+</pre>
+
+<p>is identical to
+
+<br><pre>Number == "123"
+</pre>
+
+<p>as the leading zero is ignored.  If the values were treated as strings
+instead of integers, then the two comparisons would return different
+results.
+
+<br><dt><code>!=</code>
+<dd>The not-equal operator. Produces the opposite result of the == operator.
+
+<br><dt><code>&lt;,&gt;</code>
+<dd>The left-hand side must have a value less than or greater than the
+right-hand side.  Comparisons are done depending on the type of data
+being queried; in particular, integer fields and dates use a numeric
+comparison, and enumerated fields are ordered depending on the numeric
+equivalent of their enumerated values. 
+</dl>
+
+<p><var>booleanop</var> is either <code>|</code> (logical or), or <code>&amp;</code> (logical
+and).  The query expression
+
+<br><pre>Category="baz" | Responsible="blee"
+</pre>
+
+<p>selects all PRs with a Category field of <code>baz</code> or a Responsible
+field of <code>blee</code>.
+
+<p>The not operator <code>!</code> may be used to negate a test:
+
+<br><pre>! Category="foo"
+</pre>
+
+<p>searches for PRs where the category is not equal to the regular
+expression foo.
+
+<p>Parentheses may be used to force a particular interpretation of the
+expression:
+
+<br><pre>!(Category="foo" &amp; Submitter-Id="blaz")
+</pre>
+
+<p>skips PRs where the Category field is equal to <code>foo</code> and the
+Submitter-Id field is equal to <code>blaz</code>.  Parentheses may be nested
+to any arbitrary depth.
+
+<p>Fieldnames can be specified in several ways.  The simplest and most
+obvious is just a name:
+
+<br><pre>Category="foo"
+</pre>
+
+<p>which checks the value of the category field for the value <var>foo</var>.
+
+<p>A fieldname qualifier may be prepended to the name of the field; a colon
+is used to separate the qualifier from the name.  To refer directly to a
+builtin field name:
+
+<br><pre>builtin:Number="123"
+</pre>
+
+<p>In this case, <code>Number</code> is interpreted as the builtin name of the
+field to
+check.  (This is useful if the fields have been renamed.  For further
+discussion of builtin field names, see <a href="dbconfig-file.html#dbconfig%20file">The <code>dbconfig</code> file</a>.
+
+<p>To scan all fields of a particular type, the <var>fieldtype</var> qualifier
+may be
+used:
+
+<br><pre>fieldtype:Text="bar"
+</pre>
+
+<p>This searches all text fields for the regular expression <code>bar</code>.
+
+<p>Note that it is not required that the right-hand side of the expression
+be a literal string.  To query all PRs where the PR has been modified
+since it was closed, the expression
+
+<br><pre>Last-Modified != Closed-Date
+</pre>
+
+<p>will work; for each PR, it compares the value of its Last-Modified field
+against its Closed-Date field, and returns those PRs where the values
+differ.  However, this query will also return all PRs with empty
+Last-Modified or Closed-Date fields.  To further narrow the search:
+
+<br><pre>Last-Modified != Closed-Date &amp; Last-Modified != "" &amp; Closed-Date != ""
+</pre>
+
+<p>In general, comparing fields of two different types (an integer field
+against a date field, for example) will probably not do what you want.
+
+<p>Also, a field specifier may be followed by the name of a subfield in
+braces:
+
+<br><pre>State[type] != "closed"
+</pre>
+
+<p>or even
+
+<br><pre>builtin:State[type] != "closed"
+</pre>
+
+<p>Subfields are further discussed in <a href="dbconfig-file.html#dbconfig%20file">The <code>dbconfig</code> file</a>.
+
+</body></html>
+

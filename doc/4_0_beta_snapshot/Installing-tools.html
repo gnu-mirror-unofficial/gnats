@@ -1,0 +1,144 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Installing%20tools">Installing tools</a>,
+Next:<a rel=next href="Upgrading.html#Upgrading">Upgrading</a>,
+Previous:<a rel=previous href="Installing-the-daemon.html#Installing%20the%20daemon">Installing the daemon</a>,
+Up:<a rel=up href="Installation.html#Installation">Installation</a>
+<hr><br>
+
+<h3>Installing the user tools</h3>
+
+<p>When you install the <small>GNATS</small> utilities, the user tools
+<code>send-pr</code>, <code>query-pr</code> and <code>edit-pr</code> are installed on the
+server machine.  If your machine is part of a network, however, you may
+wish to install the user tools on each machine in the network so that
+responsible parties on those machines can submit new Problem Reports,
+query the database, and edit existing PRs.  In the following discussion,
+machines with the <small>GNATS</small> user tools installed are referred to as
+<dfn>client</dfn> machines.  In general, there are three distinct types of
+client that a <small>GNATS</small> server may have to cater for:
+
+<ul>
+<li>Machines that are on the same local network as the
+<small>GNATS</small> server, i.e. machines that are under the same
+administrative control.
+
+<li>Machines on the general, open Internet.
+
+<li>Machines behind firewalls etc. which deny direct access
+over the network to the <small>GNATS</small> server. 
+</ul>
+
+<p>Each type of client requires a different approach when it comes to
+providing access.
+
+<h4>User tools on a local network</h4>
+
+<p>If all the machines involved reside on the same local network as the
+<small>GNATS</small> server, you can simply share out the directories on the
+server that contain the user tools, by default <code>/usr/local/bin</code> and
+the directory which contains the <code>send-pr.conf</code> configuration file
+(see <a href="send-pr.conf-file.html#send-pr.conf%20file">The send-pr.conf configuration file</a>), by
+default <code>/usr/local/etc/gnats</code>.  If you have a heterogeneous
+environment, i.e. hosts running different operating systems, you need to
+create several shared <small>GNATS</small> installations, one for each platform. 
+The <code>send-pr.conf</code> file is platform-independent, though.
+
+<p>In order to submit a new PR, <code>send-pr</code> would then be invoked as
+follows on the client machines:
+
+<br><pre>send-pr -d <var>hostname:port:database:username:password</var>
+</pre>
+
+<p>Or by first setting the environment variable <code>GNATSDB</code> as follows
+(the exact syntax will vary depending on what shell you use):
+
+<br><pre>export GNATSDB=<var>hostname:port:database:username:password</var>
+</pre>
+
+<p>Then, <code>send-pr</code> can simply be invoked without any options.
+
+<p>The other tools, <code>query-pr</code> and <code>edit-pr</code>, work in similar
+ways, honoring the <code>-d</code> option as well as the <code>GNATSDB</code>
+environment variable.  See <a href="GNATS-user-tools.html#GNATS%20user%20tools">GNATS user tools</a>.
+
+<h4>User tools for remote users</h4>
+
+<p>When client machines reside on the general Internet, both security and
+practical considerations may make it impossible to provide a shared
+installation of the <small>GNATS</small> tools.  In this case, you may choose to
+only provide access through a web interface such as Gnatsweb.  For
+clients that need the <small>GNATS</small> tools, the following needs to be
+carried out on the remote machines:
+
+<ol type=1 start=1>
+</p><li>Configure and build <small>GNATS</small> on the client machine
+
+<li>Configure <code>send-pr</code> on the client machine
+</ol>
+
+<p>You should unpack the distribution and run <code>configure</code> on the
+client machine in the same way as described in <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>.  Note, however, that you
+do not need to create a <code>gnats</code> user on the client and you should
+not use the <code>make all info</code> command to build.  Instead, issue the
+following commands from the top level directory of the source
+distribution:
+
+<br><pre>cd gnats
+make install-tools
+cd ../send-pr
+make all install
+</pre>
+
+<p>This builds and installs the <code>send-pr</code>, <code>query-pr</code> and
+<code>edit-pr</code> tools on the client machine.  You should now configure
+<code>send-pr</code> by editing the <code>send-pr.conf</code> file
+(see <a href="send-pr.conf-file.html#send-pr.conf%20file">The send-pr.conf configuration file</a>.)
+
+<p>Users on the client machine can now either use the send-pr syntax or the
+<code>GNATSDB</code>environment variable described in the previous section.
+
+<p>For sites that need to submit Problem Reports by having send-pr send
+e-mail instead of speaking directly over the network to the <small>GNATS</small>
+server, you need to create a problem report template on the <small>GNATS</small>
+server and have that template copied to a suitable location on the
+client machine (any filename and any location will do, as long as
+<code>send-pr</code> on the client machine can read the file).  On the
+<small>GNATS</small> server, use the command
+
+<br><pre>send-pr -p &gt; <code>filename</code>
+</pre>
+
+<p>The file <code>filename</code> now contains a PR template for your database. 
+Copy this file to the client.  Then edit the <code>send-pr.conf</code> file
+that you created on the client, set the <code>TEMPLATE</code> variable to
+point to the template file (see <a href="send-pr.conf-file.html#send-pr.conf%20file">The send-pr.conf configuration file</a>) and make sure that the <code>MAILPROG</code> and
+<code>MAILADDR</code> varables in <code>send-pr.conf</code> are correctly set.  You
+should now have a working remote tool installation.
+
+<p>For clients that have no direct network access to your <small>GNATS</small>
+server, such as those that are located behind strict firewalls, you
+either need to set up a web interface such as Gnatsweb (provided that
+the firewall lets web traffic through) or use the procedure above which
+sets up <code>send-pr</code> to submit Problem Reports by e-mail.  In order to
+query PRs, users on the remote machines will then have to use the the
+e-mail functionality of <code>query-pr</code> (see <a href="Invoking-query-pr.html#Invoking%20query-pr">Invoking query-pr</a>. 
+Editing PRs by e-mail is not possible, so clients in this group who need
+edit access have to get access through a web interface if possible.
+
+<p>Note that when <code>send-pr</code> is set up to work over e-mail, the
+<code>GNATSDB</code> environment variable and the <code>-d</code> command line
+option have no effect since <code>send-pr</code> is tied to a specific
+database by way of the value of <code>MAILADDR</code> in the
+<code>send-pr.conf</code> file.
+
+</body></html>
+

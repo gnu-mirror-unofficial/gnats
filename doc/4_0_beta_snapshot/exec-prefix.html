@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="exec-prefix">exec-prefix</a>,
+Next:<a rel=next href="gnats-adm.html#gnats-adm">gnats-adm</a>,
+Previous:<a rel=previous href="prefix.html#prefix">prefix</a>,
+Up:<a rel=up href="Locations.html#Locations">Locations</a>
+<hr><br>
+
+<h3><var>exec-prefix</var></h3>
+
+<p><var>exec-prefix</var> corresponds to the variable <code>exec-prefix</code> for
+<code>configure</code>, which passes it on to the <code>Makefile</code> it creates. 
+<var>exec-prefix</var> sets the root installation for
+<dfn>host-dependent</dfn> files as follows:
+
+<dl>
+<dt><small>GNATS</small> user tools
+<dd><code><var>exec-prefix</var>/bin</code>
+
+<br><dt>administrative and support utilities
+<dd><code><var>exec-prefix</var>/libexec/gnats</code>
+
+<br><dt>compiled libraries
+<dd><code><var>exec-prefix</var>/lib</code><br>
+
+<br><dt><em>etc<small>...</small></em>
+<dd></dl>
+
+<p><code>configure</code> supports several more options which allow you to
+specify in great detail where different files are installed.  The
+locations given in this appendix do not take into account highly
+customized installations, but fairly ordinary <small>GNATS</small> installations
+should be covered by the material here.  For a complete list of options
+accepted by <code>configure</code>, run <code>./configure --help</code> in the
+<code>gnats</code> subdirectory of the distribution.
+
+<p>Since most installations are not intended to be distributed around a
+network, the default value for <var>exec-prefix</var> is the value of
+<code>prefix</code>, i.e., <code>/usr/local</code>.  However, using
+<var>exec-prefix</var> saves space when you are installing a package on
+several different platforms for which many files are identical; rather
+than duplicate them for each host, these files can be shared in a common
+repository, and you can use symbolic links on each host to find the
+host-dependent files.
+
+<p>Use <var>exec-prefix</var> in conjunction with <var>prefix</var> to share
+host-independent files, like libraries and <code>info</code> documents.  For
+example:
+
+<br><pre>   <em>for each host:</em>
+configure --prefix=/usr/gnu --exec-prefix=/usr/gnu/H-<var>host</var>
+make all install <small>...</small>
+</pre>
+
+<p>Using this paradigm, all host-dependent binary files are installed into
+<code>/usr/gnu/H-<var>host</var>/bin</code>, while files which do not depend on
+the host type for which they were configured are installed into
+<code>/usr/gnu</code>.
+
+<p>You can then use a different symbolic link for <code>/usr/gnu</code>
+on each host (<code>/usr</code> is usually specific to a particular machine;
+it is always specific to a particular architecture).
+
+<br><pre>  <em>on host-1:</em>
+ln -s /usr/gnu/H-<var>host-1</var> /usr/gnu
+  <em>on host-2:</em>
+ln -s /usr/gnu/H-<var>host-2</var> /usr/gnu
+</pre>
+
+<p>To the end user, then, placing <code>/usr/gnu/bin</code> in her or his
+<code>PATH</code> simply works transparently for each <var>host</var> type.
+
+<p>You can change <var>exec-prefix</var> on the command line to
+<code>configure</code> using
+
+<br><pre>configure --exec-prefix=<var>exec-prefix</var> <small>...</small>
+</pre>
+
+<p>We recommend that you consult <a href="../configure/Using-configure.html#Using%20configure">Using <code>configure</code></a>, before attempting this.
+
+</body></html>
+

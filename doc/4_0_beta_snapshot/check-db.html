@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="check-db">check-db</a>,
+Next:<a rel=next href="gnats-pwconv.html#gnats-pwconv">gnats-pwconv</a>,
+Previous:<a rel=previous href="gen-index.html#gen-index">gen-index</a>,
+Up:<a rel=up href="Admin-utils.html#Admin%20utils">Admin utils</a>
+<hr><br>
+
+<h4>Checking database health</h4>
+
+<p>The <code>check-db</code> script is useful for performing periodic checks on
+database health.  It accepts the following options:
+
+<dl>
+<dt><code>-d <var>databasename</var></code>
+<dt><code>--database=<var>databasename</var></code>
+<dd>Determines the database which to operate on.
+
+<br><dt><code>--all-databases</code>
+<dd>Check all <small>GNATS</small> databases on the system.  This option takes
+precedence over the <code>--database</code> option. 
+</dl>
+
+<p>If no option is given, the default database is checked.
+
+<p>During its operation, <code>check-db</code> first attempts to lock
+<var>database</var>.  If this is not possible, it repeats the locking
+attempts for five minutes; if it fails, it sends a mail message
+notifying the administrator of the failure and exits.
+
+<p>Once the database is locked, the script searches the database for lock
+files that are more than 24 hours old.  Any old lock files are reported
+to the administrator in a mail message.
+
+<p>After checking for old lock files, it calls <code>gen-index</code>
+(see <a href="gen-index.html#gen-index">Regenerating the index</a>) and compares the
+results with the current <code>index</code> file of the database; any
+inconsistencies are reported to the administrators in a mail message.
+
+<p>After checking the index file for inconsistencies, the script unlocks
+the database and exits.
+
+</body></html>
+

@@ -1,0 +1,37 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="mkdb">mkdb</a>,
+Next:<a rel=next href="mkcat.html#mkcat">mkcat</a>,
+Up:<a rel=up href="Admin-utils.html#Admin%20utils">Admin utils</a>
+<hr><br>
+
+<h4>Adding another database</h4>
+
+<p>To initialize a new <small>GNATS</small> database:
+
+<ol type=1 start=1>
+</p><li>Add a line for the new database in the <code>databases</code> file
+(see <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>.
+
+<li>Run <code>mkdb</code>, using
+
+<br><pre>mkdb <var>database</var>
+</pre>
+
+<p>where <var>database</var> is the database you specified in the
+<code>databases</code> file.  <code>mkdb</code> creates the database directory and
+populates it with the directories <code>pending</code>, <code>gnats-queue</code>
+and <code>gnats-adm</code>.  A full set of sample configuration files is
+copied to the <code>gnats-adm</code> directory.
+</ol>
+
+</body></html>
+

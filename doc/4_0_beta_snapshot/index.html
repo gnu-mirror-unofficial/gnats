@@ -1,0 +1,259 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<h1>Keeping Track</h1>
+
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top"></a>
+    <a href="index.html#Top">Overview</a>
+<li><a name="toc_Introduction"></a>
+    <a href="Introduction.html#Introduction">Introducing <small>GNATS</small></a>
+<ul>
+<li><a href="Paradigm.html#Paradigm">The database paradigm</a>
+<li><a href="Flowchart.html#Flowchart">Flowchart of <small>GNATS</small> activities</a>
+<li><a href="States.html#States">States of Problem Reports</a>
+<li><a href="Fields.html#Fields">Problem Report format</a>
+<ul>
+<li><a href="Field-datatypes-reference.html#Field%20datatypes%20reference">Field datatypes reference</a>
+<li><a href="Mail-header-fields.html#Mail%20header%20fields">Mail header fields</a>
+<li><a href="Problem-Report-fields.html#Problem%20Report%20fields">Problem Report fields</a>
+</ul>
+</ul>
+<li><a name="toc_GNATS%20user%20tools"></a>
+    <a href="GNATS-user-tools.html#GNATS%20user%20tools">The <small>GNATS</small> User Tools</a>
+<ul>
+<li><a href="Environment.html#Environment">Environment variables and <small>GNATS</small> tools</a>
+<li><a href="send-pr.html#send-pr">Submitting Problem Reports</a>
+<ul>
+<li><a href="send-pr-from-the-shell.html#send-pr%20from%20the%20shell">Invoking <code>send-pr</code> from the shell</a>
+<li><a href="send-pr-in-Emacs.html#send-pr%20in%20Emacs">Using <code>send-pr</code> from within Emacs</a>
+<li><a href="using-send-pr.html#using%20send-pr">The Problem Report template</a>
+<li><a href="Submitting-via-e-mail.html#Submitting%20via%20e-mail">Submitting a Problem Report via direct e-mail</a>
+<li><a href="Helpful-hints.html#Helpful%20hints">Helpful hints</a>
+</ul>
+<li><a href="edit-pr.html#edit-pr">Editing existing Problem Reports</a>
+<ul>
+<li><a href="edit-pr-from-the-shell.html#edit-pr%20from%20the%20shell">Invoking <code>edit-pr</code> from the shell</a>
+</ul>
+<li><a href="query-pr.html#query-pr">Querying the database</a>
+<ul>
+<li><a href="Invoking-query-pr.html#Invoking%20query-pr">Invoking <code>query-pr</code></a>
+<li><a href="Formatting-query-pr-output.html#Formatting%20query-pr%20output">Formatting <code>query-pr</code> output</a>
+<li><a href="Query-expressions.html#Query%20expressions">Query expressions</a>
+<li><a href="Example-queries.html#Example%20queries">Example queries</a>
+</ul>
+<li><a href="Emacs.html#Emacs">The Emacs interface to <small>GNATS</small></a>
+<ul>
+<li><a href="Emacs-viewing.html#Emacs%20viewing">Viewing Problem Reports</a>
+<li><a href="Emacs-querying.html#Emacs%20querying">Querying Problem Reports</a>
+<li><a href="Emacs-submitting.html#Emacs%20submitting">Submitting new Problem Reports</a>
+<li><a href="Emacs-editing.html#Emacs%20editing">Editing Problem Reports</a>
+<li><a href="Emacs-editing-buffer.html#Emacs%20editing%20buffer">The Problem Report editing buffer</a>
+<li><a href="Emacs-and-databases.html#Emacs%20and%20databases">Changing the database</a>
+<li><a href="dbconfig-mode.html#dbconfig%20mode">dbconfig mode</a>
+<li><a href="Other-Emacs-commands.html#Other%20Emacs%20commands">Other commands</a>
+<li><a href="Emacs-customization.html#Emacs%20customization">Customization</a>
+</ul>
+</ul>
+<li><a name="toc_Installation"></a>
+    <a href="Installation.html#Installation">Installing <small>GNATS</small></a>
+<ul>
+<li><a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>
+<li><a href="Installing-utils.html#Installing%20utils">Installing the utilities</a>
+<li><a href="Setting-up-the-default-database.html#Setting%20up%20the%20default%20database">Installing the default database</a>
+<li><a href="Setting-up-periodic-jobs.html#Setting%20up%20periodic%20jobs">Setting up periodic jobs</a>
+<li><a href="Aliases.html#Aliases">Setting up mail aliases</a>
+<li><a href="Installing-the-daemon.html#Installing%20the%20daemon">Installing the daemon</a>
+<li><a href="Installing-tools.html#Installing%20tools">Installing the user tools</a>
+<ul>
+<li><a href="Installing-tools.html#Installing%20tools">User tools on a local network</a>
+<li><a href="Installing-tools.html#Installing%20tools">User tools for remote users</a>
+</ul>
+<li><a href="Upgrading.html#Upgrading">Upgrading from older versions</a>
+<ul>
+<li><a href="Upgrading.html#Upgrading">Overview</a>
+<li><a href="Upgrading.html#Upgrading">Upgrading</a>
+</ul>
+</ul>
+<li><a name="toc_Management"></a>
+    <a href="Management.html#Management"><small>GNATS</small> Administration</a>
+<ul>
+<li><a href="GNATS-configuration.html#GNATS%20configuration">Overview of <small>GNATS</small> configuration</a>
+<li><a href="databases-file.html#databases%20file">The <code>databases</code> file</a>
+<li><a href="dbconfig-file.html#dbconfig%20file">The <code>dbconfig</code> file</a>
+<ul>
+<li><a href="Overall-database-configuration.html#Overall%20database%20configuration">Overall database configuration</a>
+<li><a href="Individual-field-configuration.html#Individual%20field%20configuration">Individual field configuration</a>
+<li><a href="Field-datatypes.html#Field%20datatypes">Field datatypes</a>
+<li><a href="Edit-controls.html#Edit%20controls">Edit controls</a>
+<li><a href="Named-query-definitions.html#Named%20query%20definitions">Named query definitions</a>
+<li><a href="Audit-trail-formats.html#Audit-trail%20formats">Audit-trail formats</a>
+<li><a href="Outgoing-email-formats.html#Outgoing%20email%20formats">Outgoing email formats</a>
+<li><a href="Index-file-description.html#Index%20file%20description">Index file description</a>
+<li><a href="Initial-PR-input-fields.html#Initial%20PR%20input%20fields">Initial PR input fields</a>
+</ul>
+<li><a href="Other-config-files.html#Other%20config%20files">Other database-specific config files</a>
+<ul>
+<li><a href="categories-file.html#categories%20file">The <code>categories</code> file</a>
+<li><a href="responsible-file.html#responsible%20file">The <code>responsible</code> file</a>
+<li><a href="submitters-file.html#submitters%20file">The <code>submitters</code> file</a>
+<li><a href="states-file.html#states%20file">The <code>states</code> file</a>
+<li><a href="addresses-file.html#addresses%20file">The <code>addresses</code> file</a>
+<li><a href="classes-file.html#classes%20file">The <code>classes</code> file</a>
+</ul>
+<li><a href="send-pr.conf-file.html#send-pr.conf%20file">The <code>send-pr.conf</code> file</a>
+<li><a href="Admin-files.html#Admin%20files">Administrative data files</a>
+<ul>
+<li><a href="index-file.html#index%20file">The <code>index</code> file</a>
+<li><a href="current-file.html#current%20file">The <code>current</code> file</a>
+</ul>
+<li><a href="Admin-utils.html#Admin%20utils">Administrative utilities</a>
+<ul>
+<li><a href="mkdb.html#mkdb">Adding another database</a>
+<li><a href="mkcat.html#mkcat">Adding a problem category</a>
+<li><a href="rmcat.html#rmcat">Removing a problem category</a>
+<li><a href="gen-index.html#gen-index">Regenerating the index</a>
+<li><a href="check-db.html#check-db">Checking database health</a>
+<li><a href="gnats-pwconv.html#gnats-pwconv">Managing user passwords</a>
+</ul>
+<li><a href="Internal-utils.html#Internal%20utils">Internal utilities</a>
+<ul>
+<li><a href="queue-pr.html#queue-pr">Handling incoming traffic</a>
+<li><a href="file-pr.html#file-pr">Processing incoming traffic</a>
+<li><a href="at-pr.html#at-pr">Timely reminders</a>
+<li><a href="pr-edit.html#pr-edit">The <code>edit-pr</code> driver</a>
+<li><a href="diff-prs.html#diff-prs">The <code>diff-prs</code> tool</a>
+<li><a href="pr-age.html#pr-age">The <code>pr-age</code> tool</a>
+</ul>
+</ul>
+<li><a name="toc_Locations"></a>
+    <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>
+<ul>
+<li><a href="prefix.html#prefix"><var>prefix</var></a>
+<li><a href="exec-prefix.html#exec-prefix"><var>exec-prefix</var></a>
+<li><a href="gnats-adm.html#gnats-adm">The <code>gnats-adm</code> directory</a>
+<li><a href="defaults.html#defaults">Default installation locations</a>
+</ul>
+<li><a name="toc_gnatsd"></a>
+    <a href="gnatsd.html#gnatsd">The <small>GNATS</small> network server - <code>gnatsd</code></a>
+<ul>
+<li><a href="Description-of-gnatsd.html#Description%20of%20gnatsd">Description of <code>gnatsd</code></a>
+<li><a href="gnatsd-options.html#gnatsd%20options"><code>gnatsd</code> options</a>
+<li><a href="gnatsd-command-protocol.html#gnatsd%20command%20protocol"><code>gnatsd</code> command protocol</a>
+<li><a href="gnatsd-commands.html#gnatsd%20commands"><code>gnatsd</code> commands</a>
+<li><a href="gnatsd-environment-variables.html#gnatsd%20environment%20variables"><code>gnatsd</code> environment variables</a>
+</ul>
+<li><a name="toc_Access%20Control"></a>
+    <a href="Access-Control.html#Access%20Control">Controlling access to databases</a>
+<ul>
+<li><a href="Overview.html#Overview">Overview</a>
+<li><a href="Overall-gnatsd-access-level.html#Overall%20gnatsd%20access%20level">Overall <code>gnatsd</code> access level</a>
+<li><a href="gnatsd.host_access.html#gnatsd.host_access">Overall access levels per host</a>
+<li><a href="gnatsd.user_access.html#gnatsd.user_access">Access levels per user</a>
+<li><a href="Privileged-gnatsd-commands.html#Privileged%20gnatsd%20commands">Privileged <code>gnatsd</code> commands</a>
+</ul>
+<li><a name="toc_Regexps"></a>
+    <a href="Regexps.html#Regexps">Querying using regular expressions</a>
+<li><a name="toc_dbconfig%20recipes"></a>
+    <a href="dbconfig-recipes.html#dbconfig%20recipes"><code>dbconfig</code> recipes</a>
+<li><a name="toc_Support"></a>
+    <a href="Support.html#Support"><small>GNATS</small> support</a>
+<li><a name="toc_Index"></a>
+    <a href="Index.html#Index">Index</a>
+</ul>
+
+
+<p>
+Node:<a name="Top">Top</a>,
+Next:<a rel=next href="Introduction.html#Introduction">Introduction</a>,
+Up:<a rel=up href="../index.html#dir">(dir)</a>
+<hr><br>
+
+<h2>Overview</h2>
+
+<p>This manual documents <small>GNATS</small>, the <small>GNU</small> Problem Report Management
+System, version 4.0-prebeta2.  <small>GNATS</small> is a bug-tracking tool
+designed for use at a central <dfn>Support Site</dfn>.  Users who experience
+problems use electronic mail, web-based or other clients communicating
+with the <small>GNATS</small> network daemon running at the support site or direct
+database submissions to communicate these problems to <dfn>maintainers</dfn>
+at that Support Site.  <small>GNATS</small> partially automates the tracking of
+these <dfn>Problem Reports</dfn> (<dfn>PR</dfn>s) by:
+
+<ul>
+<li>organizing problem reports into a database and notifying responsible
+parties of suspected bugs;
+
+<li>allowing support personnel and their managers to edit and query
+accumulated bugs; and
+
+<li>providing a reliable archive of problems (and their subsequent
+solutions) with a given program. 
+</ul>
+
+<p><small>GNATS</small> offers many of the same features offered by more generalized
+databases, including editing, querying, and basic reporting.  The
+<small>GNATS</small> database itself is an ordered repository for problem reports;
+each PR receives a unique, incremental <dfn>PR number</dfn> which identifies
+it throughout its lifetime.  For a discussion on the working system
+adopted by <small>GNATS</small>, see <a href="Paradigm.html#Paradigm">The database paradigm</a>.
+
+<p>You can access the submitting, editing, and querying functions of
+<small>GNATS</small> from within <small>GNU</small> Emacs.  See <a href="GNATS-user-tools.html#GNATS%20user%20tools">The <small>GNATS</small> user tools</a>.
+
+<h3>Note on this version of the manual</h3>
+
+<p>This manual is in the process of being revised for version 4 of
+<small>GNATS</small>.  The status of the different sections is as follows:
+
+<ul>
+<li>Chapter 1 <em>Introducing <small>GNATS</small></em>
+<br>Version 4 complete.
+
+<li>Chapter 2 <em>The <small>GNATS</small> User Tools</em>
+<br>Version 4 complete.
+
+<li>Chapter 3 <em>Installing <small>GNATS</small></em>
+<br>Version 4 complete.
+
+<li>Chapter 4 <em><small>GNATS</small> Administration</em>
+<br>Version 4 complete.
+
+<li>Appendix A <em>Where <small>GNATS</small> lives</em>
+<br>Version 4 complete.
+
+<li>Appendix B <em>The <small>GNATS</small> network server - <code>gnatsd</code></em>
+<br>Version 4 complete.
+
+<li>Appendix C <em>Controlling access to databases</em>
+<br>Version 4 complete.
+
+<li>Appendix D <em>Querying using regular expressions</em>
+<br>Version 4 complete.
+
+<li>Appendixes E and F were written specifically for GNATS 4. 
+</ul>
+
+<ul>
+<li><a href="Introduction.html#Introduction">Introduction</a>:           Introducing GNATS. 
+<li><a href="GNATS-user-tools.html#GNATS%20user%20tools">GNATS user tools</a>:       The GNATS user tools. 
+<li><a href="Installation.html#Installation">Installation</a>:           Installing GNATS. 
+<li><a href="Management.html#Management">Management</a>:             GNATS Administration. 
+<li><a href="Locations.html#Locations">Locations</a>:              Where GNATS lives. 
+<li><a href="gnatsd.html#gnatsd">gnatsd</a>:                 The GNATS network server. 
+<li><a href="Access-Control.html#Access%20Control">Access Control</a>:         Controlling access to GNATS databases. 
+<li><a href="Regexps.html#Regexps">Regexps</a>:                Querying using regular expressions. 
+<li><a href="dbconfig-recipes.html#dbconfig%20recipes">dbconfig recipes</a>:       Useful dbconfig tricks. 
+<li><a href="Support.html#Support">Support</a>:                GNATS related sites and mailing lists. 
+<li><a href="Index.html#Index">Index</a>: 
+</ul>
+
+</body></html>
+

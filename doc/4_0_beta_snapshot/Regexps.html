@@ -1,0 +1,175 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Regexps">Regexps</a>,
+Next:<a rel=next href="dbconfig-recipes.html#dbconfig%20recipes">dbconfig recipes</a>,
+Previous:<a rel=previous href="Access-Control.html#Access%20Control">Access Control</a>,
+Up:<a rel=up href="index.html#Top">Top</a>
+<hr><br>
+
+<h2>Querying using regular expressions</h2>
+
+<p>See also <a href="Query-expressions.html#Query%20expressions">Query expressions</a>.
+
+<p>Unfortunately, we do not have room in this manual for a complete
+exposition on regular expressions.  The following is a basic summary of
+some regular expressions you might wish to use.
+
+<p><em>NOTE: When you use query expressions containing regular
+expressions as part of an ordinary query-pr shell command line, you need
+to quote them with <code>''</code>, otherwise the shell will try to interpret
+the special characters used, yielding highly unpredictable results.</em>
+
+<p>See <a href="../regex/Regular-Expression-Syntax.html#Regular%20Expression%20Syntax">Regular Expression Syntax</a>,
+for details on regular expression syntax.  Also see <a href="../emacs/Regexps.html#Regexps">Syntax of Regular Expressions</a>, but beware that the
+syntax for regular expressions in Emacs is slightly different.
+
+<p>All search criteria options to <code>query-pr</code> rely on regular
+expression syntax to construct their search patterns.  For example,
+
+<br><pre>query-pr --expr 'State="open"' --format full
+</pre>
+
+<p>matches all PRs whose <code>State</code> values match with the regular
+expression <code>open</code>.
+
+<p>We can substitute the expression <code>o</code> for <code>open</code>, according
+to <small>GNU</small> regular expression syntax.  This matches all values of
+<code>State</code> which begin with the letter <code>o</code>.
+
+<p>We see that
+
+<br><pre>query-pr --expr 'State="o"' --format full
+</pre>
+
+<p>is equivalent to
+
+<br><pre>query-pr --expr 'State="open"' --format full
+</pre>
+
+<p>in this case, since the only value for <code>State</code> which matches
+the expression <code>o</code> in a standard installation is <code>open</code>. 
+<code>State="o"</code> also matches <code>o</code>, <code>oswald</code>, and even
+<code>oooooo</code>, but none of those values are valid states for a Problem
+Report in default <small>GNATS</small> installations.
+
+<p>We can also use the expression operator <code>|</code> to signify a logical
+<code>OR</code>, such that
+
+<br><pre>query-pr --expr 'State="o|a"' --format full
+</pre>
+
+<p>matches all <code>open</code> or <code>analyzed</code> Problem Reports.
+
+<p>Regular expression syntax considers a regexp token surrounded with
+parentheses, as in <code>(<var>regexp</var>)</code>, to be a <dfn>group</dfn>.  This
+means that <code>(ab)*</code> matches any number (including zero) of
+contiguous instances of <code>ab</code>.  Matches include <code></code>, <code>ab</code>,
+and <code>ababab</code>.
+
+<p>Regular expression syntax considers a regexp token surrounded with
+square brackets, as in <code>[<var>regexp</var>]</code>, to be a <dfn>list</dfn>. 
+This means that <code>Char[(ley)(lene)(broiled)</code> matches any of the
+words <code>Charley</code>, <code>Charlene</code>, or <code>Charbroiled</code> (case is
+significant; <code>charbroiled</code> is not matched).
+
+<p>Using groups and lists, we see that
+
+<br><pre>query-pr --expr 'Category="gcc|gdb|gas"' --format full
+</pre>
+
+<p>is equivalent to
+
+<br><pre>query-pr --expr 'Category="g(cc|db|as)"' --format full
+</pre>
+
+<p>and is also very similar to
+
+<br><pre>query-pr --expr 'Category="g[cda]"' --format full
+</pre>
+
+<p>with the exception that this last search matches any values which begin
+with <code>gc</code>, <code>gd</code>, or <code>ga</code>.
+
+<p>The <code>.</code> character is known as a <dfn>wildcard</dfn>.  <code>.</code> matches
+on any single character.  <code>*</code> matches the previous character
+(except newlines), list, or group any number of times, including zero. 
+Therefore, we can understand <code>.*</code> to mean "match zero or more
+instances of any character."
+
+<br><pre>query-pr --expr 'State=".*a"' --format full
+</pre>
+
+<p>matches all values for <code>State</code> which contain an <code>a</code>.  (These
+include <code>analyzed</code> and <code>feedback</code>.)
+
+<p>Another way to understand what wildcards do is to follow them on their
+search for matching text.  By our syntax, <code>.*</code> matches any
+character any number of times, including zero.  Therefore, <code>.*a</code>
+searches for any group of characters which end with <code>a</code>, ignoring
+the rest of the field.  <code>.*a</code> matches <code>analyzed</code> (stopping at
+the first <code>a</code>) as well as <code>feedback</code>.
+
+<p><em>Note:</em> When using <code>fieldtype:Text</code> or
+<code>fieldtype:Multitext</code> (see <a href="Query-expressions.html#Query%20expressions">Query expressions</a>), you do not have
+to specify the token <code>.*</code> at the beginning of your expression to
+match the entire field.  For the technically minded, this is because
+these queries use <code>re_search</code> rather than <code>re_match</code>. 
+<code>re_match</code> <dfn>anchors</dfn> the search at the beginning of the field,
+while <code>re_search</code> does not anchor the search.
+
+<p>For example, to search in the <code>&gt;Description:</code> field for the text
+
+<br><pre>The defrobulator component returns a nil value.
+</pre>
+
+<p>we can use
+
+<br><pre>query-pr --expr 'fieldtype:Multitext="defrobulator.*nil"' --format full
+</pre>
+
+<p>To also match newlines, we have to include the expression <code>(.|^M)</code>
+instead of just a dot (<code>.</code>).  <code>(.|^M)</code> matches "any single
+character except a newline (<code>.</code>) <em>or</em> (<code>|</code>) any newline
+(<code>^M</code>)."  This means that to search for the text
+
+<br><pre>The defrobulator component enters the bifrabulator routine
+and returns a nil value.
+</pre>
+
+<p>we must use
+
+<br><pre>query-pr --expr 'fieldtype:Multitext="defrobulator(.|^M)*nil"'
+         --format full
+</pre>
+
+<p>To generate the newline character <code>^M</code>, type the following
+depending on your shell:
+
+<dl>
+<dt><code>csh</code>
+<dd><code><em>control</em>-V <em>control</em>-M</code>
+
+<br><dt><code>tcsh</code>
+<dd><code><em>control</em>-V <em>control</em>-J</code>
+
+<br><dt><code>sh (<em>or</em> bash)</code>
+<dd>Use the &lt;RETURN&gt; key, as in
+
+<br><pre>(.|
+)
+</pre>
+</dl>
+
+<p>Again, see <a href="../regex/Regular-Expression-Syntax.html#Regular%20Expression%20Syntax">Regular Expression Syntax</a>, for a much more complete discussion on regular
+expression syntax.
+
+</body></html>
+

@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Setting%20up%20the%20default%20database">Setting up the default database</a>,
+Next:<a rel=next href="Setting-up-periodic-jobs.html#Setting%20up%20periodic%20jobs">Setting up periodic jobs</a>,
+Previous:<a rel=previous href="Installing-utils.html#Installing%20utils">Installing utils</a>,
+Up:<a rel=up href="Installation.html#Installation">Installation</a>
+<hr><br>
+
+<h3>Installing the default database</h3>
+
+<p>For the following steps, log in as the user <code>gnats</code>.
+
+<p>We are now going to initialize the default <small>GNATS</small> database.  Run the
+following command:
+
+<br><pre>mkdb default
+</pre>
+
+<p>This creates a database named <code>default</code>, with all its data stored
+below the directory <code><var>prefix</var>/com/gnatsdb</code>, in a default
+installation this corresponds to <code>/usr/local/com/gnatsdb</code>.  If
+you specified the <code>--with-gnats-default-db</code> option when running
+configure, the default database will be created under the directory you
+specified instead.  <code>mkdb</code> creates the database directory itself,
+together with three different subdirectories<a rel=footnote href="#fn-1"><sup>1</sup></a>:
+
+<ul>
+<li>A directory for the mandatory <small>GNATS</small> category <var>pending</var>.
+
+<li>A <code>gnats-queue</code> directory for queueing new messages to
+<small>GNATS</small> before they are processed by <code>file-pr</code>.
+
+<li>The administrative directory <code>gnats-adm</code>. This directory is
+populated with default configuration files from the
+<code><var>prefix</var>/etc/gnats/defaults</code> directory. 
+</ul>
+
+<p>The next configuration step is to edit the default files copied to the
+database's <code>gnats-adm</code> directory by <code>mkdb</code>.
+
+<p>The default <code>dbconfig</code> file installed by <code>mkdb</code> provides a
+good basis for many <small>GNATS</small> databases. The default file causes
+similar behaviour to the 3.x versions of <small>GNATS</small>. However, even if
+this might be precisely what you want, you should still go through the
+file and check that the default settings suit your needs. 
+See <a href="dbconfig-file.html#dbconfig%20file">The <code>dbconfig</code> file</a>.
+
+<p>Then edit the files <code>categories</code>, <code>responsible</code>, and
+<code>submitters</code> in the <code>gnats-adm</code> directory (see <a href="Other-config-files.html#Other%20config%20files">Other database-specific config files</a>) to reflect your
+local needs.  For special configurations, you may also have to edit the
+<code>states</code> and <code>classes</code> files.
+
+<p>If you used the <code>--with-gnats-default-db</code> option in the pre-build
+configure to change the location of the default database, you need to
+edit the <code>databases</code> config file, see <a href="databases-file.html#databases%20file">The <code>databases file</code></a>.  This file is by default located in the
+<code><var>prefix</var>/etc/gnats</code> directory, but may have been changed
+by the option <code>--with-gnats-dblist-file</code> option during configure.
+
+<hr><h4>Footnotes</h4>
+<ol type="1">
+<li><a name="fn-1"></a>
+<p>Upgraders from
+older versions of <small>GNATS</small> should note that category directories are
+now created ``on-the-fly'' as needed by default.</p>
+
+</ol><hr>
+
+</body></html>
+

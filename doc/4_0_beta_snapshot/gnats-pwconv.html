@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="gnats-pwconv">gnats-pwconv</a>,
+Previous:<a rel=previous href="check-db.html#check-db">check-db</a>,
+Up:<a rel=up href="Admin-utils.html#Admin%20utils">Admin utils</a>
+<hr><br>
+
+<h4>Managing user passwords</h4>
+
+<p>Older versions of <small>GNATS</small>, up to and including version 3.x, stored
+user passwords in plaintext in the <code>gnatsd.user_access</code> files. Version 4
+has the options of storing the password as MD5 or standard DES
+<code>crypt()</code> hashes (as most UNIX versions do in the system password
+files) as well as in plaintext. Since the password strings require a
+prefix to indicate how they are encrypted, one is forced to convert the
+old password files to a new format when upgrading to <small>GNATS</small> version
+4. See <a href="Upgrading.html#Upgrading">Upgrading from older versions</a>.
+
+<p>The <code>gnats-pwconv</code> tool takes care of converting the old password
+files to the new format:
+
+<br><pre>gnats-pwconv [ -c | --crypt ] [ -m | --md5 ] [ -p | --plaintext ]
+         [ -h | --help] [ -V | --version ] <var>INFILE</var> [<var>OUTFILE</var>]
+</pre>
+
+<p>Unless the <code>--version</code> or <code>--help</code> options are given, exactly
+one encryption method must be specified, as well as an input file. The
+output file parameter is optional. If one is not specified, results will
+be printed on standard output.
+
+</body></html>
+

@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="queue-pr">queue-pr</a>,
+Next:<a rel=next href="file-pr.html#file-pr">file-pr</a>,
+Up:<a rel=up href="Internal-utils.html#Internal%20utils">Internal utils</a>
+<hr><br>
+
+<h4>Handling incoming traffic</h4>
+
+<p>The program <code>queue-pr</code> handles traffic coming into <small>GNATS</small>. 
+<code>queue-pr</code> queues incoming Problem Reports in the
+<code>gnats-queue</code> directory of the database, and then periodically (via
+<code>cron</code>) passes them on to <code>file-pr</code> to be filed in the
+<small>GNATS</small> database.  See <a href="Installation.html#Installation">Installing <small>GNATS</small></a>.
+
+<p>The usage for <code>queue-pr</code> is as follows:
+
+<br><pre>queue-pr [ -q | --queue ] [ -r | --run ]
+         [ -f <var>filename</var> | --file=<var>filename</var> ]
+         [ -m <var>kbytes</var> | --max-size=<var>kbytes</var> ]
+         [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+         [ -h | --help] [ -V | --version ]
+</pre>
+
+<p>One of <code>-q</code> or <code>-r</code> (or their longer-named counterparts) must
+be present upon each call to <code>queue-pr</code>.  These options provide
+different functions, as described below.
+
+<dl>
+<dt><code>-q</code>
+<dt><code>--queue</code>
+<dd>Accepts standard input as an incoming mail message, placing this
+message in an incrementally numbered file in the
+<code>gnats-queue</code> directory under the database directory
+(see <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>).
+
+<br><dt><code>-r</code>
+<dt><code>--run</code>
+<dd>Redirects files in the <code>gnats-queue</code> directory into the program
+<code>file-pr</code> one by one.
+
+<br><dt><code>-f <var>filename</var></code>
+<dt><code>--file=<var>filename</var></code>
+<dd>Used with <code>-q</code> (or <code>--queue</code>), accepts the file denoted by
+<var>filename</var> as input rather than reading from standard input.
+
+<br><dt><code>-m <var>kbytes</var></code>
+<dt><code>--max-size=<var>kbytes</var></code>
+<dd>Do not process messages larger then <var>kbytes</var> kilobytes.  Files
+larger than the limit are left for human intervention.
+
+<br><dt><code>-d <var>databasename</var></code>
+<dt><code>--directory=<var>databasename</var></code>
+<dd>Specifies database to operate on.  If this option is left out, the value
+of the <var>GNATSDB</var> environment variable is used, and if that is
+undefined, the default database name set when <small>GNATS</small> was built is
+used (usually <code>default</code>).
+
+<br><dt><code>-h</code>
+<dt><code>--help</code>
+<dd>Prints the usage for <code>gen-index</code>.
+
+<br><dt><code>-V</code>
+<dt><code>--version</code>
+<dd>Prints the version number for <code>gen-index</code>. 
+</dl>
+
+</body></html>
+

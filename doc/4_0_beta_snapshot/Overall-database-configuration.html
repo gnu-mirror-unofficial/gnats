@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Overall%20database%20configuration">Overall database configuration</a>,
+Next:<a rel=next href="Individual-field-configuration.html#Individual%20field%20configuration">Individual field configuration</a>,
+Up:<a rel=up href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>
+<hr><br>
+
+<h4>Overall database configuration</h4>
+
+<p>The overall database options are controlled by settings in the
+<code>database-info</code> section of the <code>dbconfig</code> file.  The following
+is the general format of this section:
+
+<br><pre>database-info {
+  [options]
+}
+</pre>
+
+<p>The following options and values may be used in the <code>database-info</code>
+section:
+
+<dl>
+<dt><code>debug-mode  <var>true | false</var></code>
+<dd>If set to <code>true</code>, the database is placed into debug mode.  This causes all
+outgoing email to be sent to the <dfn>gnats-admin</dfn> user listed in the
+<code>responsible</code> file of the database.  The default value is <code>false</code>.
+
+<br><dt><code>keep-all-received-headers  <var>true | false</var></code>
+<dd>If set to <code>true</code>, all of the Received: headers for PRs submitted
+via email are kept in the PR.  Otherwise, only the first one is kept.  The
+default value is <code>false</code>.
+
+<br><dt><code>notify-about-expired-prs  <var>true | false</var></code>
+<dd>If set to <code>true</code>, notification email about expired PRs is sent via
+the <code>at-pr</code> command.  Otherwise, required times for PR fixes are not
+used.  The default value is <code>false</code>.
+
+<br><dt><code>send-submitter-ack  <var>true | false</var></code>
+<dd>When new PRs are submitted to the database, an acknowledgment email will
+be sent to the submitter of send-submitter-ack is set to <code>true</code>. 
+This is in addition to the normal notification mail to the person(s)
+responsible for the new PR.  The default value is <code>false</code>.
+
+<br><dt><code>libexecdir  <var>"directory"</var></code>
+<dd>Specifies the directory where the <small>GNATS</small> administrative executables
+are located.  In particular, <code>at-pr</code> and <code>mail-pr</code> are invoked
+from this directory.  The default value is the empty string, which is
+unlikely to be useful.
+
+<br><dt><code>business-day-hours  <var>day-start - day-end</var></code>
+<dd>Used to specify the hours that define a business day.  The values are
+inclusive and should be given in 24-hour format, with a dash separating
+them.  <small>GNATS</small> uses these values to determine whether the required
+completion time for a PR has passed.  The default values are 8 for
+<code>day-start</code> and 17 for <code>day-end</code>.
+
+<br><dt><code>business-week-days  <var>week-start - week-end</var></code>
+<dd>Specifies the start and ending days of the business week, where 0 is
+Sunday, 1 is Monday, etc.  The days are inclusive, and the values should
+be given with a dash separating them.  <small>GNATS</small> uses these values to
+determine whether the required completion time for a PR has passed.  The
+default values are 1 for <code>week-start</code> and 5 for <code>week-end</code>.
+
+<br><dt><code>create-category-dirs  <var>true | false</var></code>
+<dd>If set to <code>true</code>, database directories for categories are
+automatically created as needed.  Otherwise, they must be created
+manually (usually with the <code>mkcat</code> script).  It is recommended that
+the default value of <code>true</code> be kept.
+
+<br><dt><code>category-dir-perms  <var>mode</var></code>
+<dd>Standard octal mode-specification specifying the permissions to be set
+on auto-created category directories. Default is <code>0750</code>, yielding
+user read, write and execute, and group read and execute.  Note that
+if you have local users on the <small>GNATS</small> server itself, running for
+instance <code>query-pr</code>, you may need to change the permissions to
+<code>0755</code>. 
+</dl>
+
+</body></html>
+

@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="edit-pr%20from%20the%20shell">edit-pr from the shell</a>,
+Up:<a rel=up href="edit-pr.html#edit-pr">edit-pr</a>
+<hr><br>
+
+<h4>Invoking <code>edit-pr</code> from the shell</h4>
+
+<p>The usage for <code>edit-pr</code> is:
+
+<br><pre>edit-pr [ -V | --version ] [ -h | --help ]
+        [-d <var>database</var> | --database <var>database</var>] <var>PR Number</var>
+</pre>
+
+<p>Network-mode-only options:
+
+<br><pre>         [--host <var>host</var> | -H <var>host</var>] [--port <var>port</var>]
+         [--user <var>user</var> | -v <var>user</var>]
+         [--passwd <var>passwd</var> | -w <var>passwd</var>]
+</pre>
+
+<p>The options have the following meaning:
+
+<dl>
+<dt><code>-h, --help</code>
+<dd>Prints a brief usage message for edit-pr.
+
+<br><dt><code>-V, --version</code>
+<dd>Prints the version number for edit-pr.
+
+<br><dt><code>-d <var>database</var>, --database <var>database</var></code>
+<dd>Specifies the database containing the PR to be edited; if no database is
+specified, the database named <code>default</code> is assumed.  This option
+overrides the database specified in the <code>GNATSDB</code> environment
+variable.
+
+<br><dt><code>--host <var>host</var>, -H <var>host</var></code>
+<dd>Specifies the hostname of the gnatsd server to communicate with.  This
+overrides the value in the <code>GNATSDB</code> environment variable.
+
+<br><dt><code>--port <var>port</var></code>
+<dd>Specifies the port number of the gnatsd server to communicate with. 
+This overrides the value in the <code>GNATSDB</code> environment variable.
+
+<br><dt><code>--user <var>user</var>, -v <var>user</var></code>
+<dd>Specifies the username to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+
+<br><dt><code>--passwd <var>passwd</var>, -w <var>passwd</var></code>
+<dd>Specifies the password to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable. 
+</dl>
+
+<p><code>edit-pr</code> calls the editor specified in your environment variable
+<code>EDITOR</code> on a temporary copy of that PR.  (If you don't have the
+variable <code>EDITOR</code> defined in your environment, the default editor
+<code>vi</code> is used.)
+
+<p>Edit the PR, changing any relevant fields or adding to existing
+information.  When you exit the editor, <code>edit-pr</code> prompts you on
+standard input for a reason if you have changed a field that requires
+specifying a reason for the change.
+
+</body></html>
+

@@ -1,0 +1,38 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="classes%20file">classes file</a>,
+Previous:<a rel=previous href="addresses-file.html#addresses%20file">addresses file</a>,
+Up:<a rel=up href="Other-config-files.html#Other%20config%20files">Other config files</a>
+<hr><br>
+
+<h4>The <code>classes</code> file</h4>
+
+<p>This file lists the possible classes of Problem Reports.  Each line
+consists of a class name, followed by a colon and an optional class type
+name (the class type name is not used for anything in the current
+implementation of <small>GNATS</small>, so it may be left blank.  The <code>class</code>
+and <code>class-type-name</code> fields may only contain alphanumerics,
+<code>-</code>, <code>_</code>, and <code>.</code>, but no other
+characters.
+
+<p>Then comes another colon, followed by an optional one-line
+description of the class.  <small>GNATS</small> itself does not use the class
+description, but external tools such as Gnatsweb and TkGnats may use it. 
+Therefore, a line in this file should at least contain the following:
+
+<br><pre>class::class description
+</pre>
+
+<p>Lines beginning with <code>#</code> will be ignored, and the first listed
+class is the default class for an incoming Problem Report.
+
+</body></html>
+

@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="gnatsd%20environment%20variables">gnatsd environment variables</a>,
+Previous:<a rel=previous href="gnatsd-commands.html#gnatsd%20commands">gnatsd commands</a>,
+Up:<a rel=up href="gnatsd.html#gnatsd">gnatsd</a>
+<hr><br>
+
+<h3><code>gnatsd</code> environment variables</h3>
+
+<p><code>gnatsd</code> supports the <code>GNATSDB</code> environment varable,
+See <a href="Environment.html#Environment">Environment</a>, in almost the same way as the <small>GNATS</small> tools do. 
+This variable is used to determine which database to use.  For a local
+database, it contains the name of the database to
+access. <code>gnatsd</code> cannot service remote databases (though it might
+be interesting if it could) so the database is always assumed to be
+local.
+
+<p>If <code>GNATSDB</code> is not set and the <code>--database</code> option is not
+supplied, it is assumed that the database is local and that its name is
+<code>default</code>.
+
+</body></html>
+

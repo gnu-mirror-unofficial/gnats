@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Privileged%20gnatsd%20commands">Privileged gnatsd commands</a>,
+Previous:<a rel=previous href="gnatsd.user_access.html#gnatsd.user_access">gnatsd.user_access</a>,
+Up:<a rel=up href="Access-Control.html#Access%20Control">Access Control</a>
+<hr><br>
+
+<h3>Privileged <code>gnatsd</code> commands</h3>
+
+<p>Every <code>gnatsd</code> command has a minimum access level attached to
+it.  If your access level is too low for a command, you get this
+response:
+
+<br><pre>  LOCK 12
+  422 You are not authorized to perform this operation (LOCK).
+</pre>
+
+<p>The commands <code>CHDB</code>, <code>USER</code> and <code>QUIT</code> are
+unrestricted.
+
+<p>The <code>DBLS</code> command requires at least <code>listdb</code> access.
+
+<p>A user must have at least <code>edit</code> access for these commands:
+
+<dl>
+<dt><code>LKDB</code>
+<dd>lock the main <small>GNATS</small> database.
+
+<br><dt><code>UNDB</code>
+<dd>unlock the main <small>GNATS</small> database.
+
+<br><dt><code>LOCK <var>PR user pid</var></code>
+<dd>lock <var>PR</var> for <var>user</var> and optional <var>pid</var> and return PR text.
+
+<br><dt><code>UNLK <var>PR</var></code>
+<dd>unlock <var>PR</var>.
+
+<br><dt><code>EDIT <var>PR</var></code>
+<dd>check in edited <var>PR</var>.
+
+<br><dt><code>APPN <var>PR</var> <var>field</var>, REPL <var>PR</var> <var>field</var></code>
+<dd>Appends to or replaces the contents of <var>field</var> in <var>PR</var>. 
+</dl>
+
+<p>The <code>DELETE</code> <var>PR</var> command is special in that it requires
+<code>admin</code> access.
+
+<p>All other commands require <code>view</code> access.
+
+<p><code>edit-pr</code> and <code>query-pr</code> accept the command line arguments
+<code>-v|--user</code> and <code>-w|--passwd</code>.  See <a href="GNATS-user-tools.html#GNATS%20user%20tools">The <small>GNATS</small> User Tools</a>.
+
+</body></html>
+

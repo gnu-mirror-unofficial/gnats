@@ -1,0 +1,77 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="send-pr.conf%20file">send-pr.conf file</a>,
+Next:<a rel=next href="Admin-files.html#Admin%20files">Admin files</a>,
+Previous:<a rel=previous href="Other-config-files.html#Other%20config%20files">Other config files</a>,
+Up:<a rel=up href="Management.html#Management">Management</a>
+<hr><br>
+
+<h3>The <code>send-pr.conf</code> file</h3>
+
+<p>This file contains some default values that need to be known in order
+for <code>send-pr</code> to work properly.  This file needs to be copied to
+all hosts where <code>send-pr</code> will be used.
+
+<p>If <small>GNATS</small> was built with default options, the <code>send-pr.conf</code>
+file should be placed in the <code>/usr/local/etc/gnats</code> directory. 
+However, if the option <code>--sysconfdir</code> was used during building of
+<small>GNATS</small>, the <code>send-pr.conf</code> file resides at the location
+given to this option.
+
+<p>Entries in this file are on the format
+
+<br><pre>variable=<var>value</var>
+</pre>
+
+<p>The valid variables are:
+
+<dl>
+<dt><code>SUBMITTER</code>
+<dd>The default value to be used for the Submitter-Id field when
+<code>send-pr</code> is invoked.
+
+<br><dt><code>DEFAULT_RELEASE</code>
+<dd>The default value to be used for the Release field (only applicable if
+the Release field is defined in the <code>dbconfig</code> file.
+
+<br><dt><code>DEFAULT_ORGANIZATION</code>
+<dd>The default value to be used for the Organization field.  (only
+applicable if the Organization field is defined in the <code>dbconfig</code>
+file.
+
+<br><dt><code>MAILPROG</code>
+<dd>If the <small>GNATS</small> server can't be reached directly over the network,
+i.e. it is behind a firewall or suchlike, <code>send-pr</code> can be set up
+to submit Problem Reports by e-mail.  This is done by setting the
+<code>MAILPROG</code> variable to point to a mailer such as Sendmail.  If
+<code>MAILPROG</code> needs to have the address that the mail is being sent
+to specified on the command line, it should be specified here as well
+(for example, <code>MAILPROG=''mail bugs@foo.bar.com''</code> should work). 
+If Sendmail is used, use <code>MAILPROG=''/usr/lib/sendmail -oi
+-t''</code>.  See also <code>MAILADDR</code> and <code>TEMPLATE</code> below.
+
+<br><dt><code>MAILADDR</code>
+<dd>If using e-mail to submit PRs, this is the address that PRs should be
+sent to.
+
+<br><dt><code>TEMPLATE</code>
+<dd>When invoked, <code>send-pr</code> communicates directly over the network
+with the <small>GNATS</small> server to determine what fields to include in a
+correctly formatted Problem Report so that it can present the user
+with a template.  If the <small>GNATS</small> server can't be reached directly
+over the network, a template must be provided.  Set the
+<code>TEMPLATE</code> variable to point to a template file created on the
+<small>GNATS</small> server by using the command <code>send-pr -p</code>. 
+See <a href="Installing-tools.html#Installing%20tools">Installing the user tools</a>. 
+</dl>
+
+</body></html>
+

@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Emacs%20querying">Emacs querying</a>,
+Next:<a rel=next href="Emacs-submitting.html#Emacs%20submitting">Emacs submitting</a>,
+Previous:<a rel=previous href="Emacs-viewing.html#Emacs%20viewing">Emacs viewing</a>,
+Up:<a rel=up href="Emacs.html#Emacs">Emacs</a>
+<hr><br>
+
+<h4>Querying Problem Reports</h4>
+
+<p>Querying the database is performed by the <kbd>M-x query-pr</kbd> command. 
+The command prompts for the query expression, <a href="Query-expressions.html#Query%20expressions">Query expressions</a>,
+and displays a buffer with the list of the matching Problem Reports.
+
+<p>The list of the Problem Reports is displayed in the <code>summary</code>
+query format, <a href="Formatting-query-pr-output.html#Formatting%20query-pr%20output">Formatting query-pr output</a>.  Currently, the
+display format cannot be changed and it must output each Problem
+Report's number in the first column.
+
+<p>The Problem Report list buffer is put in the view mode, <a href="../emacs/Misc-File-Ops.html#Misc%20File%20Ops">Misc File Ops</a>.  You can use most of the standard view mode
+commands in it.  Additionally, the following special commands are
+available:
+
+<dl>
+<dt><kbd>v</kbd>
+<dt><kbd>RET</kbd>
+<dt><kbd>mouse-2</kbd>
+<dd>View the current Problem Report (<code>gnats-query-view-pr</code>),
+<a href="Emacs-viewing.html#Emacs%20viewing">Emacs viewing</a>.
+
+<br><dt><kbd>e</kbd>
+<dd>Edit the current Problem Report (<code>gnats-query-edit-pr</code>),
+<a href="Emacs-editing.html#Emacs%20editing">Emacs editing</a>.
+
+<br><dt><kbd>g</kbd>
+<dd>Update the Problem Report list (<code>gnats-query-reread</code>).  The last
+performed query is executed again and the buffer is filled with the
+new results.
+
+<br><dt><kbd>G</kbd>
+<dd>Perform new query (<code>query-pr</code>).
+
+<br><dt><kbd>s</kbd>
+<dd>Send new Problem Report (<code>send-pr</code>), <a href="Emacs-submitting.html#Emacs%20submitting">Emacs submitting</a>.
+
+<br><dt><kbd>D</kbd>
+<dd>Change the current database (<code>gnats-change-database</code>), <a href="Emacs-and-databases.html#Emacs%20and%20databases">Emacs and databases</a>.
+
+<br><dt><kbd>q</kbd>
+<dd>Bury buffer, the buffer is put at the end of the list of all buffers. 
+This is useful for quick escape of the buffer, without killing it. 
+</dl>
+
+<p>If the value of the variable <var>gnats-query-reverse-listing</var> is
+non-<code>nil</code>, the listing appears in the reversed order, i.e. with
+the Problem Reports of the highest number first, in the buffer.
+
+<p>Similarly to other <small>GNATS</small> Emacs modes, there is a hook available
+for the Problem Report list.
+
+<dl>
+<dt><code>gnats-query-mode-hook</code>
+<dd>Hook run when <code>gnats-query-mode</code> is entered. 
+</dl>
+
+</body></html>
+

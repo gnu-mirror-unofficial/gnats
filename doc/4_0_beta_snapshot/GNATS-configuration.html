@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="GNATS%20configuration">GNATS configuration</a>,
+Next:<a rel=next href="databases-file.html#databases%20file">databases file</a>,
+Up:<a rel=up href="Management.html#Management">Management</a>
+<hr><br>
+
+<h3>Overview of <small>GNATS</small> configuration</h3>
+
+<p>See <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>.
+
+<p><small>GNATS</small> has two, well, actually three, different kinds of
+configuration file.  The <dfn>site-wide</dfn> configuration files determine
+overall behaviour across all the databases on your machine, while the
+<dfn>database-specific</dfn> configuration files determine how <small>GNATS</small>
+behaves when dealing with a specific database.  In addition, there is
+a single file that needs to be set up for the <code>send-pr</code> tool to
+work properly.  These files can be edited at any time -- the next
+time a <small>GNATS</small> tool is invoked, the new parameters will take
+effect.
+
+<p>These are the site-wide configuration files used by <small>GNATS</small>:
+
+<dl>
+<dt><code>databases</code>
+<dd>Specifies database names and their associated parameters, such as in
+which directory they are located.  This file is used by the <small>GNATS</small>
+clients to determine the location of a database referred to by name. 
+See <a href="databases-file.html#databases%20file">The <code>databases</code> file</a>.
+
+<br><dt><code>defaults</code>
+<dd>This directory contains the set of default per-database configuration
+files used when a new database is created with <code>mkdb</code>.
+
+<br><dt><code>gnatsd.host_access</code>
+<dd>Controls access levels for the different machines that will do lookups
+in the databases on this machine.  See <a href="Access-Control.html#Access%20Control"><small>GNATS</small> access control</a>.
+
+<br><dt><code>gnatsd.user_access</code>
+<dd>Controls user access levels for the databases on this server. The
+settings apply to all databases (there is also a database-specific
+user access level file).  See <a href="Access-Control.html#Access%20Control"><small>GNATS</small> access control</a>. 
+</dl>
+
+<p>The database-specific configuration is determined by the
+following files in the <code>gnats-adm</code> subdirectory of the database
+directory.
+
+<dl>
+<dt><code>dbconfig</code>
+<dd>Controls most aspects of how <small>GNATS</small> behaves when dealing with your
+database.  See <a href="dbconfig-file.html#dbconfig%20file">The <code>dbconfig</code> file</a>.
+
+<br><dt><code>categories</code>
+<dd>The list of categories that <small>GNATS</small> accepts as valid for the
+<code>Category</code> field, and the maintainers responsible for each
+category.  Update this file whenever you have a new category, or
+whenever a category is no longer valid.  You must also update this file
+whenever responsibility for a category changes, or if a maintainer is
+no longer valid.  See <a href="categories-file.html#categories%20file">The <code>categories</code> file</a>.
+
+<br><dt><code>responsible</code>
+<dd>An alias list mapping names to their associated mailing addresses.  The
+names in this list can have multiple email addresses associated with
+them.  If a responsible user does not show up in this list, they are
+assumed to be a user local to the system.  This list is not associated
+with just the responsible user field; all email addresses are mapped
+through this file whenever mail is sent from <small>GNATS</small>. 
+See <a href="responsible-file.html#responsible%20file">The <code>responsible</code> file</a>.
+
+<br><dt><code>submitters</code>
+<dd>Lists sites from whom <small>GNATS</small> accepts Problem Reports.  The existence
+of this file is mandatory, although the feature it provides is not; see
+<a href="submitters-file.html#submitters%20file">The <code>submitters</code> file</a>.
+
+<br><dt><code>addresses</code>
+<dd>Mappings between submitter IDs and submitters' e-mail addresses.  Use of
+this file is optional.  If you get Problem reports where the
+<code>Submitter</code> field is not filled in, <small>GNATS</small> will use entries in
+this file to try to derive the submitter ID from the e-mail headers. 
+See <a href="addresses-file.html#addresses%20file">The <code>addresses</code> file</a>.
+
+<br><dt><code>states</code>
+<dd>Lists the possible states for Problem Reports, typically ranging from
+<dfn>open</dfn> to <dfn>closed</dfn>.  See <a href="addresses-file.html#addresses%20file">The <code>states</code> file</a>.
+
+<br><dt><code>classes</code>
+<dd>Lists the possible classes of Problem Report.  This provides an easy way
+to have "subcategories", for example by setting up classes such as
+<code>sw-bug</code>, <code>doc-bug</code>, <code>change-request</code> etc. 
+See <a href="classes-file.html#classes%20file">The <code>classes</code> file</a>.
+
+<br><dt><code>gnatsd.user_access</code>
+<dd>Specify the access levels for different users to your database. 
+See <a href="Access-Control.html#Access%20Control"><small>GNATS</small> access control</a>.
+
+</dl>
+
+<p>The last file in this menagerie is the <code>send-pr</code> configuration
+file <code>send-pr.conf</code>.  This file contains some defaults that need
+to be known in order for <code>send-pr</code> to work.  The file needs to
+be present on all hosts where <code>send-pr</code> is to be used. 
+See <a href="send-pr.conf-file.html#send-pr.conf%20file">the <code>send-pr.conf</code> file</a>.
+
+</body></html>
+

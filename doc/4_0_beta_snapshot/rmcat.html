@@ -1,0 +1,39 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="rmcat">rmcat</a>,
+Next:<a rel=next href="gen-index.html#gen-index">gen-index</a>,
+Previous:<a rel=previous href="mkcat.html#mkcat">mkcat</a>,
+Up:<a rel=up href="Admin-utils.html#Admin%20utils">Admin utils</a>
+<hr><br>
+
+<h4>Removing a problem category</h4>
+
+<p>To remove a category from the database:
+
+<ol type=1 start=1>
+</p><li>Remove the Problem Reports from the subdirectories corresponding to the
+categories you wish to remove, or assign the PRs to new categories.  All
+PRs for a given category reside in a subdirectory of the database
+directory, with the same name as the category.
+
+<li>Run <code>rmcat</code> using
+
+<br><pre>rmcat <var>category</var> [ <var>category<small>...</small></var> ]
+</pre>
+
+<p>where <var>category</var> is the category you wish to remove.  You can
+specify as many categories as you wish as long as each category has no
+PRs associated with it.  <code>rmcat</code> removes the directory where the
+Problem Reports for that category had been stored.
+</ol>
+
+</body></html>
+

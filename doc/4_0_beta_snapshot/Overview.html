@@ -1,0 +1,59 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Overview">Overview</a>,
+Next:<a rel=next href="Overall-gnatsd-access-level.html#Overall%20gnatsd%20access%20level">Overall gnatsd access level</a>,
+Up:<a rel=up href="Access-Control.html#Access%20Control">Access Control</a>
+<hr><br>
+
+<h3>Overview</h3>
+
+<p><small>GNATS</small> supports granting various levels of access to the <small>GNATS</small>
+databases served by the network daemon, <code>gnatsd</code>.
+
+<p><small>GNATS</small> access can be controlled at these levels:
+
+<dl>
+<dt><code>deny</code>
+<dd>gnatsd closes the connection
+
+<br><dt><code>none</code>
+<dd>no further access until userid and password given
+
+<br><dt><code>listdb</code>
+<dd>only listing of available databases is allowed
+
+<br><dt><code>view</code>
+<dd>query and view PRs with Confidential=no only
+
+<br><dt><code>viewconf</code>
+<dd>query and view PRs with Confidential=yes
+
+<br><dt><code>edit</code>
+<dd>full edit access
+
+<br><dt><code>admin</code>
+<dd>full admin access
+</dl>
+
+<p>These access levels are used in the following settings:
+
+<ul>
+<li>overall gnatsd access level
+
+<li>overall access level set by host name or IP address
+
+<li>overall access level set by userid and password
+
+<li>per-database access level set by userid and password
+</ul>
+
+</body></html>
+

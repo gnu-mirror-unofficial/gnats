@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Fields">Fields</a>,
+Previous:<a rel=previous href="States.html#States">States</a>,
+Up:<a rel=up href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+
+<h3>Problem Report format</h3>
+
+<p>The format of a PR is designed to reflect the nature of <small>GNATS</small> as a
+database.  Information is arranged into <dfn>fields</dfn>, and kept in
+individual records (Problem Reports).
+
+<p>A Problem Report contains two different types of fields: <dfn>Mail
+Header</dfn> fields, which are used by the mail handler for delivery, and
+<dfn>Problem Report</dfn> fields, which contain information relevant to the
+Problem Report and its submitter.  A Problem Report is essentially a
+specially formatted electronic mail message.
+
+<p>Problem Report fields are denoted by a keyword which begins with
+<code>&gt;</code> and ends with <code>:</code>, as in <code>&gt;Confidential:</code>.  Fields
+belong to one of eight data types as listed in <a href="Field-datatypes-reference.html#Field%20datatypes%20reference">Field datatypes reference</a>.  As of version 4 of <small>GNATS</small> all characteristics of
+fields, such as field name, data type, allowed values, permitted
+operations, on-change actions etc. are configurable.
+
+<p>For details, see see <a href="dbconfig-file.html#dbconfig%20file">The <code>dbconfig</code> file</a>.
+
+<h4>Example Problem Report</h4>
+
+<p>The following is an example Problem Report with the fields that would be
+present in a standard <small>GNATS</small> configuration.  Mail headers are at the
+top, followed by <small>GNATS</small> fields, which begin with <code>&gt;</code> and end
+with <code>:</code>.  The <code>Subject:</code> line in the mail header and the
+<code>Synopsis</code> field are usually duplicates of each other.
+
+<br><pre>Message-Id:  <var>message-id</var>
+Date:        <var>date</var>
+From:        <var>address</var>
+Reply-To:    <var>address</var>
+To:          <var>bug-address</var>
+Subject:     <var>subject</var>
+
+&gt;Number:       <var>gnats-id</var>
+&gt;Category:     <var>category</var>
+&gt;Synopsis:     <var>synopsis</var>
+&gt;Confidential: yes <em>or</em> no
+&gt;Severity:     critical, serious, <em>or</em> non-critical
+&gt;Priority:     high, medium <em>or</em> low
+&gt;Responsible:  <var>responsible</var>
+&gt;State:        open, analyzed, suspended, feedback, <em>or</em> closed
+&gt;Class:        sw-bug, doc-bug, change-request, support,
+duplicate, <em>or</em> mistaken
+&gt;Submitter-Id: <var>submitter-id</var>
+&gt;Arrival-Date: <var>date</var>
+&gt;Originator:   <var>name</var>
+&gt;Organization: <var>organization</var>
+&gt;Release:      <var>release</var>
+&gt;Environment:
+   <var>environment</var>
+&gt;Description:
+   <var>description</var>
+&gt;How-To-Repeat:
+   <var>how-to-repeat</var>
+&gt;Fix:
+   <var>fix</var>
+&gt;Audit-Trail:
+<var>appended-messages<small>...</small></var>
+State-Changed-From-To: <var>from</var>-<var>to</var>
+State-Changed-When: <var>date</var>
+State-Changed-Why:
+   <var>reason</var>
+Responsible-Changed-From-To: <var>from</var>-<var>to</var>
+Responsible-Changed-When: <var>date</var>
+Responsible-Changed-Why:
+   <var>reason</var>
+&gt;Unformatted:
+   <var>miscellaneous</var>
+</pre>
+
+<ul>
+<li><a href="Field-datatypes-reference.html#Field%20datatypes%20reference">Field datatypes reference</a>: 
+<li><a href="Mail-header-fields.html#Mail%20header%20fields">Mail header fields</a>: 
+<li><a href="Problem-Report-fields.html#Problem%20Report%20fields">Problem Report fields</a>: 
+</ul>
+
+</body></html>
+

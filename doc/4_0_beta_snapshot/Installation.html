@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Installation">Installation</a>,
+Next:<a rel=next href="Management.html#Management">Management</a>,
+Previous:<a rel=previous href="GNATS-user-tools.html#GNATS%20user%20tools">GNATS user tools</a>,
+Up:<a rel=up href="index.html#Top">Top</a>
+<hr><br>
+
+<h2>Installing <small>GNATS</small></h2>
+
+<p>See also <a href="Locations.html#Locations">Where the tools and utilities reside</a>.
+
+<p>There are several steps you need to follow to fully configure and
+install <small>GNATS</small> on your system.  You need <code>root</code> access in order
+to create a new account for <code>gnats</code> and to install the <small>GNATS</small>
+utilities.  You may need <code>root</code> access on some systems in order to
+set up mail aliases and to allow this new account access to
+<code>cron</code> and <code>at</code>.
+
+<p>If you are updating an older version of <small>GNATS</small> rather than installing
+from scratch, see <a href="Upgrading.html#Upgrading">Upgrading from older versions</a>.
+
+<p><small>GNATS</small> installation relies on two other freely available software
+packages, which should be installed before you go on to configure and
+build <small>GNATS</small>.  These are <small>GNU</small> <code>make</code> and <code>Texinfo</code>
+(version 4.2 or higher).  Both are available from the <small>GNU</small> FTP site at
+&lt;<code>ftp://ftp.gnu.org</code>&gt;.
+
+<p>To build and install <small>GNATS</small>, you must:
+
+<ul>
+<li>Run <code>configure</code>, with correct options if the defaults are
+unsuitable for your site.  See <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>.  Default installation locations are in
+<a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>.
+
+<li>Compile the <small>GNATS</small> programs on your system.  See <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>.
+
+<li>Create an initial database by using the <code>mkdb</code> command. 
+See <a href="Setting-up-the-default-database.html#Setting%20up%20the%20default%20database">Setting up the default database</a>.
+
+<li>Set up periodic jobs, using cron, to handle Problem Reports arriving by
+mail.  See <a href="Setting-up-periodic-jobs.html#Setting%20up%20periodic%20jobs">Setting up periodic jobs</a>.
+
+<li>Set up mail aliases for <small>GNATS</small>.  See <a href="Aliases.html#Aliases">Setting up mail aliases</a>.
+
+<li>Install the <small>GNATS</small> tools and utilities locally, and install the user
+tools (<code>query-pr</code>, <code>edit-pr</code>, <code>send-pr</code>) on every machine
+in your local network.  See <a href="Installing-tools.html#Installing%20tools">Installing the user tools</a>.
+
+<li>Install the <small>GNATS</small> daemon <code>gnatsd</code>.  See <a href="Installing-the-daemon.html#Installing%20the%20daemon">Installing the daemon</a>.
+
+<li>If there are people outside your organization who will be submitting
+PRs or who are supposed to be able to query and/or edit PRs, you may
+need to instruct them to obtain and build the <small>GNATS</small> tools
+<code>query-pr</code>, <code>edit-pr</code> and <code>send-pr</code> for their systems. 
+However, for many sites, setting up a remote access interface to
+<small>GNATS</small>, such as Gnatsweb is a better solution since this requires
+no configuration on the remote side. 
+</ul>
+
+<ul>
+<li><a href="Configure-and-make.html#Configure%20and%20make">Configure and make</a>:                Configuring and compiling the software
+<li><a href="Installing-utils.html#Installing%20utils">Installing utils</a>:                  Installing the utilities
+<li><a href="Setting-up-the-default-database.html#Setting%20up%20the%20default%20database">Setting up the default database</a>:   Setting up the default database
+<li><a href="Setting-up-periodic-jobs.html#Setting%20up%20periodic%20jobs">Setting up periodic jobs</a>:          Setting up periodic jobs
+<li><a href="Aliases.html#Aliases">Aliases</a>:                           Setting up mail aliases
+<li><a href="Installing-the-daemon.html#Installing%20the%20daemon">Installing the daemon</a>:             Installing the daemon
+<li><a href="Installing-tools.html#Installing%20tools">Installing tools</a>:                  Installing the user tools
+<li><a href="Upgrading.html#Upgrading">Upgrading</a>:                         Upgrading from older versions
+</ul>
+
+</body></html>
+

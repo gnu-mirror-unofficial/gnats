@@ -1,0 +1,47 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Setting%20up%20periodic%20jobs">Setting up periodic jobs</a>,
+Next:<a rel=next href="Aliases.html#Aliases">Aliases</a>,
+Previous:<a rel=previous href="Setting-up-the-default-database.html#Setting%20up%20the%20default%20database">Setting up the default database</a>,
+Up:<a rel=up href="Installation.html#Installation">Installation</a>
+<hr><br>
+
+<h3>Setting up periodic jobs</h3>
+
+<p>Allow the new user <code>gnats</code> access to <code>cron</code> and <code>at</code>.  To
+do this, add the name <code>gnats</code> to the files <code>cron.allow</code> and
+<code>at.allow</code>, which normally reside in the directory
+<code>/var/spool/cron</code>.  If these files do not exist, make sure
+<code>gnats</code> does not appear in either of the files <code>cron.deny</code>
+and <code>at.deny</code> (in the same directory).  If you changed the name
+of the <small>GNATS</small> user during configure, remember to substitute as
+appropriate in the previous steps.
+
+<p>Create a <code>crontab</code> entry that periodically runs the program
+<code>queue-pr</code> with the <code>--run</code> option
+(see <a href="queue-pr.html#queue-pr"><code>queue-pr</code></a>).  For example, to run
+<code>queue-pr&nbsp;--run</code> every ten minutes, create a file called
+<code>.mycron</code> in the home directory of the user <code>gnats</code> which
+contains the line:
+
+<br><pre>0,10,20,30,40,50 * * * * <var>exec-prefix</var>/libexec/gnats/queue-pr --run
+</pre>
+
+<p>(Specify the full path name for <code>queue-pr</code>.)  Then run
+
+<br><pre>crontab .mycron
+</pre>
+
+<p>See the <code>man</code> pages for <code>cron</code> and <code>crontab</code> for details
+on using <code>cron</code>.
+
+</body></html>
+

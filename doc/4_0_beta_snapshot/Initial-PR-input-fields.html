@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Initial%20PR%20input%20fields">Initial PR input fields</a>,
+Previous:<a rel=previous href="Index-file-description.html#Index%20file%20description">Index file description</a>,
+Up:<a rel=up href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>
+<hr><br>
+
+<h4>Initial PR input fields</h4>
+
+<p>An <code>initial-entry</code> section in the <code>dbconfig</code> file is used to
+describe which fields should be present on initial PR entry; this is
+used by tools such as send-pr to determine which fields to include in a
+"blank" PR template. An optional <code>require</code> parameter can be
+defined to specify a subset of the <code>intial-entry</code> fields which must
+be assigned a value upon initial creation of the PR.
+
+<p>The general format for the <code>initial-entry</code> section is
+
+<br><pre>initial-entry {
+  fields { "fieldname" [ "fieldname" ... ] }
+  [ require { "fieldname" [ "fieldname" ... ] } ]
+}
+</pre>
+
+</body></html>
+

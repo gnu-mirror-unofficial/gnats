@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Emacs%20editing%20buffer">Emacs editing buffer</a>,
+Next:<a rel=next href="Emacs-and-databases.html#Emacs%20and%20databases">Emacs and databases</a>,
+Previous:<a rel=previous href="Emacs-editing.html#Emacs%20editing">Emacs editing</a>,
+Up:<a rel=up href="Emacs.html#Emacs">Emacs</a>
+<hr><br>
+
+<h4>The Problem Report editing buffer</h4>
+
+<p>When you invoke a Problem Report editing command, the Problem Report
+is put into a special editing buffer.  The Problem Report is formatted
+similarly to the <code>query-pr -F</code> output, <a href="Formatting-query-pr-output.html#Formatting%20query-pr%20output">Formatting query-pr output</a>.  Field identifiers are formatted as
+
+<br><pre>&gt;Field:
+</pre>
+
+<p>with the text of the field following the identifier on the same line
+for single-line fields or starting on the next line for multi-line
+fields.
+
+<p>The Problem Report editing mode tries to prevent you from violating
+the Problem Report format and the constraints put on the possible
+field values.  Generally, you can use usual editing commands, some of
+them have a slightly modified behavior though.  (If you encounter a
+very strange behavior somewhere, please report it as a bug,
+<a href="Support.html#Support">Support</a>.)
+
+<p>You can move between fields easily by pressing the <kbd>TAB</kbd>
+(<code>gnats-next-field</code>) or <kbd>M-TAB</kbd>
+(<code>gnats-previous-field</code>) keys.
+
+<p>The field tags are read-only and you cannot edit them nor delete them. 
+If you want to "remove" a field, just make its value empty.
+
+<p>Editing a field value depends on the type of the edited field,
+<a href="Field-datatypes.html#Field%20datatypes">Field datatypes</a>.  For text fields, you can edit the value
+directly, assuming you preserve the rule about single-line and
+multi-line values mentioned above.
+
+<p>For enumerated fields, you cannot edit the value directly.  You can
+choose it from the list of the allowed values, either from the menu
+popped up by pressing the middle mouse button or from within
+minibuffer by pressing any key on the field's value.  If the pressed
+key matches any of the allowed field values, that value is put as the
+default value after the minibuffer prompt.  You can also cycle through
+the allowed field values directly in the editing buffer using the
+<code>SPACE</code> key.  Enumerated field values are marked by a special
+face to not confuse you; you must have enabled font lock mode to
+benefit from this feature, <a href="../emacs/Font-Lock.html#Font%20Lock">Font Lock</a>.
+
+<p>Some field values can be read-only, you cannot edit them at all.
+
+<p>Once you have edited the Problem Report as needed, you can send it to
+the server with the <kbd>C-c C-c</kbd> command
+(<code>gnats-apply-or-submit</code>).  Successful submission is reported by
+a message and the buffer modification flag in mode line is cleared. 
+Then you can either kill the buffer or continue with further
+modifications.
+
+<dl>
+<dt><code>gnats-edit-mode-hook</code>
+<dd>Hook run when <code>gnats-edit-mode</code> is entered. 
+</dl>
+
+</body></html>
+

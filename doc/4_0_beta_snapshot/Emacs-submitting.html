@@ -1,0 +1,41 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Emacs%20submitting">Emacs submitting</a>,
+Next:<a rel=next href="Emacs-editing.html#Emacs%20editing">Emacs editing</a>,
+Previous:<a rel=previous href="Emacs-querying.html#Emacs%20querying">Emacs querying</a>,
+Up:<a rel=up href="Emacs.html#Emacs">Emacs</a>
+<hr><br>
+
+<h4>Submitting new Problem Reports</h4>
+
+<p>You can submit new Problem Reports with the command <kbd>M-x send-pr</kbd>. 
+The command puts you to the problem editing buffer, <a href="Emacs-editing.html#Emacs%20editing">Emacs editing</a>.  The buffer is prefilled with the initial report fields and
+their default values, if defined.  You can use the usual Problem
+Report editing commands, <a href="Emacs-editing.html#Emacs%20editing">Emacs editing</a>.  When you have filled in
+all the fields, you can send the Problem Report by presing <kbd>C-c
+C-c</kbd>.
+
+<p>If you run <kbd>M-x send-pr</kbd> with a prefix argument, it runs the
+<code>gnats-change-database</code> command before putting you to the editing
+buffer, <a href="Emacs-and-databases.html#Emacs%20and%20databases">Emacs and databases</a>.
+
+<p>You can set the following variables to get some fields pre-filled:
+
+<dl>
+<dt><var>gnats-default-organization</var>
+<dd>Default value of the <code>Organization</code> field used in new Problem Reports.
+
+<br><dt><var>gnats-default-submitter</var>
+<dd>Default value of the <code>Submitter-Id</code> field used in new Problem Reports. 
+</dl>
+
+</body></html>
+

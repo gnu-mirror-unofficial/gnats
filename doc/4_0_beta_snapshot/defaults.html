@@ -1,0 +1,196 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="defaults">defaults</a>,
+Previous:<a rel=previous href="gnats-adm.html#gnats-adm">gnats-adm</a>,
+Up:<a rel=up href="Locations.html#Locations">Locations</a>
+<hr><br>
+
+<h3>Default installation locations</h3>
+
+<dl>
+<dt><var>prefix</var>
+<dd>defaults to <code>/usr/local</code>; change using <code>configure</code>
+(see <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>).
+
+<br><dt><var>exec-prefix</var>
+<dd>defaults to <var>prefix</var>; change using <code>configure</code>
+(see <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>). 
+</dl>
+
+<p><small>GNATS</small> installs tools, utilities, and files into the following
+locations.
+
+<dl>
+
+<br><dt><code><var>exec-prefix</var>/bin</code>
+<dd>
+<dl>
+<dt><code>send-pr</code>
+<dd>See <a href="send-pr.html#send-pr">Submitting Problem Reports</a>. 
+<br><dt><code>edit-pr</code>
+<dd>See <a href="edit-pr.html#edit-pr">Editing existing Problem Reports</a>. 
+<br><dt><code>query-pr</code>
+<dd>See <a href="query-pr.html#query-pr">Querying the database</a>. 
+</dl>
+
+<br><dt><code><var>exec-prefix</var>/libexec/gnats</code>
+<dd>
+<dl>
+<dt><code>at-pr</code>
+<dd>See <a href="at-pr.html#at-pr">Timely reminders</a>.
+
+<br><dt><code>check-db</code>
+<dd>See <a href="check-db.html#check-db">Checking database health</a>.
+
+<br><dt><code>delete-pr</code>
+<dd>Tool for deleting PRs.  Deprecated.  Use the -delete-pr option of
+<code>pr-edit</code> instead (see <a href="pr-edit.html#pr-edit">The edit-pr driver</a>).
+
+<br><dt><code>diff-prs</code>
+<dd>See <a href="diff-prs.html#diff-prs">The <code>diff-prs</code> tool</a>.
+
+<br><dt><code>file-pr</code>
+<dd>See <a href="file-pr.html#file-pr">Interface to pr-edit for filing new PRs</a>.
+
+<br><dt><code>gen-index</code>
+<dd>See <a href="gen-index.html#gen-index">Regenerating the index</a>.
+
+<br><dt><code>gnatsd</code>
+<dd>The <small>GNATS</small> daemon.
+
+<br><dt><code>gnats-pwconv</code>
+<dd>See <a href="gnats-pwconv.html#gnats-pwconv">Converting old password files</a>.
+
+<br><dt><code>mail-query</code>
+<dd>See <a href="Aliases.html#Aliases">Setting up mail aliases</a>.
+
+<br><dt><code>mkcat</code>
+<dd>See <a href="mkcat.html#mkcat">Adding a problem category</a>.
+
+<br><dt><code>mkdb</code>
+<dd>See <a href="mkdb.html#mkdb">Script for creating new databases</a>.
+
+<br><dt><code>pr-age</code>
+<dd>See <a href="pr-age.html#pr-age">The <code>pr-age</code> tool</a>.
+
+<br><dt><code>pr-edit</code>
+<dd>See <a href="pr-edit.html#pr-edit">The main PR processor</a>.
+
+<br><dt><code>queue-pr</code>
+<dd>See <a href="queue-pr.html#queue-pr">Handling incoming traffic</a>.
+
+<br><dt><code>rmcat</code>
+<dd>See <a href="rmcat.html#rmcat">Removing categories</a>. 
+</dl>
+
+<br><dt><code><var>exec-prefix</var>/lib/libiberty.a</code>
+<dd>The <small>GNU</small> <code>libiberty</code> library.
+
+<br><dt><code><var>prefix</var>/etc/gnats</code>
+<dd>
+<dl>
+<dt><code>databases</code>
+<dd>See <a href="databases-file.html#databases%20file">The <code>databases</code> file</a>.
+
+<br><dt><code>defaults</code>
+<dd>See <a href="GNATS-configuration.html#GNATS%20configuration">Overview of <small>GNATS</small> configuration</a>.
+
+<br><dt><code>gnatsd.host_access</code>
+<dd>See <a href="gnatsd.host_access.html#gnatsd.host_access">The <code>gnatsd.host_access</code> file</a>.
+
+<br><dt><code>gnatsd.user_access</code>
+<dd>See <a href="gnatsd.user_access.html#gnatsd.user_access">The <code>gnatsd.user_access</code> file</a>. 
+</dl>
+
+<br><dt><code><var>prefix</var>/share/emacs/site-lisp</code>
+<dd>
+<dl>
+<dt><code>gnats.el</code>
+<dt><code>gnats.elc</code>
+<dd>The Emacs versions of the programs <code>send-pr</code>, <code>query-pr</code>,
+<code>edit-pr</code>, and <code>view-pr</code>.  See <a href="GNATS-user-tools.html#GNATS%20user%20tools">The <small>GNATS</small> user tools</a>.  To change this directory you must change the
+<code>lispdir</code> variable in <code>Makefile.in</code>; see <a href="Configure-and-make.html#Configure%20and%20make">Configuring and compiling the software</a>. 
+</dl>
+
+<br><dt><code><var>prefix</var>/info</code>
+<dd>
+<dl>
+<dt><code>gnats.info</code>
+<dt><code>send-pr.info</code>
+<dd>The <small>GNATS</small> manuals, in a form readable by <code>info</code> (the <small>GNU</small>
+hypertext browser).  See <a href="../infoman/Info.html#Info">Reading GNU Online Documentation</a>. 
+</dl>
+
+<br><dt><code><var>prefix</var>/man/man1</code>
+<dt><code><var>prefix</var>/man/man8</code>
+<dd>
+<dl>
+<dt><code>man</code> pages for all the <small>GNATS</small> tools and utilities.
+<dd>See <a href="GNATS-user-tools.html#GNATS%20user%20tools">The <small>GNATS</small> user tools</a>. 
+</dl>
+
+<br><dt><code>Per-database directory</code>
+<dd>
+<dl>
+<dt><code>gnats-adm</code>
+<dd>Administration and configuration data files that define behaviour of the
+particular database.  The files
+
+<dl>
+<dt><code>categories</code>
+<dd>
+<br><dt><code>submitters</code>
+<dd>
+<br><dt><code>responsible</code>
+<dd>
+<br><dt><code>states</code>
+<dd>
+<br><dt><code>classes</code>
+<dd>
+<br><dt><code>dbconfig</code>
+<dd>
+<br><dt><code>addresses</code>
+<dd>
+<br><dt><code>states</code>
+<dd>
+<br><dt><code>gnatsd.user_access</code>
+<dd>
+<br><dt><code>index</code>
+<dd>(<em>This file is created by <small>GNATS</small>.</em>)
+
+<br><dt><code>current</code>
+<dd>(<em>This file is created by <small>GNATS</small>.</em>)
+</dl>
+
+<p>exist here. 
+See <a href="Other-config-files.html#Other%20config%20files">Other database-specific config files</a>,
+<a href="Admin-files.html#Admin%20files">Administrative data files</a> and <a href="Access-Control.html#Access%20Control">Controlling access to databases</a>.
+
+<br><dt><code>gnats-queue</code>
+<dd>Incoming Problem Reports are queued here until the next iteration of
+<code>queue-pr&nbsp;-r</code> (see <a href="queue-pr.html#queue-pr">Handling incoming traffic</a>).
+
+<br><dt><code>pending</code>
+<dd>If no default category is set, problem reports without a category are
+reassigned to the category <code>pending</code> and placed here pending
+intervention by <small>GNATS</small> administrators. 
+See <a href="Management.html#Management"><small>GNATS</small> administration</a>.
+
+<br><dt><code><var>category</var></code>
+<dd>Each valid category has a corresponding subdirectory in the database. 
+All Problem Reports associated with that category are kept in that
+subdirectory. 
+</dl>
+
+</dl>
+
+</body></html>
+

@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="at-pr">at-pr</a>,
+Next:<a rel=next href="pr-edit.html#pr-edit">pr-edit</a>,
+Previous:<a rel=previous href="file-pr.html#file-pr">file-pr</a>,
+Up:<a rel=up href="Internal-utils.html#Internal%20utils">Internal utils</a>
+<hr><br>
+
+<h4>Timely reminders</h4>
+
+<p><code>at-pr</code> creates a queued job using <code>at</code> which, after an
+allotted <dfn>response time</dfn> is past, checks the PR to see if its state
+has changed from <code>open</code>. When the PR is originally filed,
+<code>file-pr</code> checks the <code>notify-about-expired-prs</code> parameter in
+the <code>dbconfig</code> file. If this parameter is set to <code>true</code>,
+<code>file-pr</code> calls <code>at-pr</code>, which sets up the expiry check.
+
+<p>The <code>submitters</code> file contains the response time for each
+<code>&gt;Submitter-Id:</code> (see <a href="submitters-file.html#submitters%20file">The <code>submitters</code> file</a>).  The time is determined in <dfn>business hours</dfn>, which are
+defined in the database's <code>dbconfig</code> file (see <a href="Overall-database-configuration.html#Overall%20database%20configuration">Overall database configuration</a>).
+
+<p>If the PR is urgent and is still open after the requisite time period
+has passed, <code>at-pr</code> sends a reminder to the <small>GNATS</small>
+administrator, to the maintainer responsible for that submitter, and
+to the maintainer responsible for the PR with the following message:
+
+<br><pre>To: <var>submitter-contact</var> <var>responsible</var> <var>gnats-admin</var>
+Subject: PR <var>gnats-id</var> not analyzed in <var>#hours</var> hours
+
+PR <var>gnats-id</var> was not analyzed within the acknowledgment period
+of <var>#hours</var> business hours.  The pertinent information is:
+
+ Submitter-Id: <var>submitter</var>
+ Originator: <var>full name of the submitter</var>
+ Synopsis: <var>synopsis</var>
+ Person responsible for the PR: <var>responsible</var>
+
+--
+The GNU Problem Report Management System (GNATS)
+</pre>
+
+<p>The PR is <dfn>urgent</dfn> if its priority is <code>critical</code> or if its
+priority is <code>serious</code> and the severity is <code>high</code>.
+
+</body></html>
+

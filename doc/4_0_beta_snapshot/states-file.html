@@ -1,0 +1,79 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="states%20file">states file</a>,
+Next:<a rel=next href="addresses-file.html#addresses%20file">addresses file</a>,
+Previous:<a rel=previous href="submitters-file.html#submitters%20file">submitters file</a>,
+Up:<a rel=up href="Other-config-files.html#Other%20config%20files">Other config files</a>
+<hr><br>
+
+<h4>The <code>states</code> file</h4>
+
+<p>This file lists the possible states for Problem Reports.  Each entry
+has up to three fields, separated by colons.  Lines beginning with
+<code>#</code> will be ignored.
+
+<br><pre><var>state</var>:<var>type</var>:<var>description</var>
+</pre>
+
+<dl>
+<dt><var>state</var>
+<dd>The name of the state.  It may contain alphanumerics as well as
+<code>-</code> (hyphen), <code>_</code> (underscore), or <code>.</code> (period), but no
+other characters.
+
+<br><dt><var>type</var>
+<dd>This is the type of the state.  This field is optional and it may
+contain alphanumerics as well as <code>-</code> (hyphen), <code>_</code>
+(underscore), or <code>.</code> (period), but no other characters.
+
+<p>The concept of the type of a state recognizes that there may for
+instance be several possible states for a Problem Report which
+effectively means that the PR is closed and that there may be certain
+actions that need to be taken when a PR reaches a "closed state". 
+The problem may have been resolved, it might have been decided that
+the problem is unsolvable or simply that it won't be solved.  Some
+organizations may for instance wish to consider the "suspended"
+state as a state of type "closed".
+
+<p>Currently, the only defined state types are "open" and "closed",
+the "open" type isn't currently used for anything while the
+"closed" type is only used to control the Closed-Date field of PRs. 
+Changing the state of a PR to any state of type "closed" will set
+the Closed-Date field with a time stamp and changing the state of a PR
+from one "closed" state to another will leave the Closed-Date field
+as it was.  Changing the state of a PR from any state of type
+"closed" to a non-closed state will clear the Closed-Date field.
+
+<p>The <code>--skip-closed</code> option of <code>query-pr</code> refers to all
+states of type "closed", not to a specific state name of "closed".
+
+<br><dt><var>description</var>
+<dd>This is is an optional one-line description of what the state means. 
+Any character is okay in the description; a newline ends it. 
+<small>GNATS</small> itself does not currently use the description for anything,
+but certain external tools (such as TkGnats and Gnatsweb) look for it,
+so it's a good idea to include one for every state. 
+</dl>
+
+<p>The first state listed will be the state automatically assigned to
+Problem Reports when they arrive; by default this is named "open". 
+The last state listed is the end state for Problem Reports -- one
+should usually assume that a PR in this state is not being actively
+worked on; by default this state is named "closed".  Even if a
+different name has been chosen for this state, <small>GNATS</small> will force
+this state to be of type "closed".
+
+<p>It is recommended that you keep the default names of "open" and
+"closed" for the first and last states respectively, since there may
+be external tools that depend on these names.
+
+</body></html>
+

@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="gnatsd.host_access">gnatsd.host_access</a>,
+Next:<a rel=next href="gnatsd.user_access.html#gnatsd.user_access">gnatsd.user_access</a>,
+Previous:<a rel=previous href="Overall-gnatsd-access-level.html#Overall%20gnatsd%20access%20level">Overall gnatsd access level</a>,
+Up:<a rel=up href="Access-Control.html#Access%20Control">Access Control</a>
+<hr><br>
+
+<h3>Overall access levels per host</h3>
+
+<p>The host access file (by default
+<code>/usr/local/etc/gnats/gnatsd.host_access</code>) controls overall
+access levels on a per-host basis, meaning that settings in this file
+apply across all databases on the server.  Entries in this file are in
+the following format:
+
+<p><var>host:access-level:whatever</var>
+
+<p><var>host</var> is the hostname or IP address of the host contacting
+gnatsd.  Wildcard characters are supported: <code>*</code> matches anything;
+<code>?</code> matches any single character.  By using wildcards, you can
+specify access levels for entire network subnets and domains.
+
+<p>The second field is the access level of <var>host</var>.  The default is
+<code>deny</code>.  If the user's hostname isn't in the file or its access
+level is set to <code>deny</code>, the connection is closed immediately.
+
+<p><small>GNATS</small> currently doesn't make use of the third field. Remember to
+still include the second <code>:</code> on the line if you choose to leave the third
+field empty.
+
+<p>Whenever a <code>CHDB</code> command is processed (or defaulted), the user's
+access level is set to the level for their host, as determined by the
+values in the <code>gnatsd.host_access</code> file.  However, even if a host
+is given the <code>none</code> access level, an individual can still give the
+<code>USER</code> command to possibly gain a higher (but never lower) access
+than is set for their host.  The gnatsd <code>USER</code> command takes two
+arguments: <code>USER &lt;userid&gt; &lt;passwd&gt;</code>.
+
+</body></html>
+

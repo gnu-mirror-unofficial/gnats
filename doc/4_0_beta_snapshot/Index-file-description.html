@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name=description content="Keeping Track">
+<meta name=generator content="makeinfo 4.1">
+<link href="http://texinfo.org/" rel=generator-home>
+</head>
+<body>
+<p>
+Node:<a name="Index%20file%20description">Index file description</a>,
+Next:<a rel=next href="Initial-PR-input-fields.html#Initial%20PR%20input%20fields">Initial PR input fields</a>,
+Previous:<a rel=previous href="Outgoing-email-formats.html#Outgoing%20email%20formats">Outgoing email formats</a>,
+Up:<a rel=up href="dbconfig-file.html#dbconfig%20file">dbconfig file</a>
+<hr><br>
+
+<h4>Index file description</h4>
+
+<p>The <code>index</code> section of the <code>dbconfig</code> file lists the fields
+that appear in the database index.  The index is always keyed by PR
+number.  The general format for the <code>index</code> section is
+
+<br><pre>index {
+  path "file"
+  fields { "fieldname" [ "fieldname" ... ] }
+  binary-index true | false
+  [ separator "symbol" ]
+}
+</pre>
+
+<p>The <code>path</code> parameter gives the name of the index file in the
+<code>gnats-adm</code> directory of the database.  Only one index is allowed
+per database, so only one <code>path</code> entry is allowed.
+
+<p>The <code>fields</code> parameter controls what fields will appear, and in
+what order, in the index.  Fields are listed by their names, separated by
+spaces (<code> </code>).  Fields will appear in the order they are listed.
+
+<p>The <code>binary-index</code> parameter controls whether the index is supposed
+to be in plaintext or binary format.  Binary format is recommended, as it
+avoids potential problems when field separators appear as bona-fide
+field contents.
+
+<p>When plaintext format is used, by setting <code>binary-index false</code>, the
+symbol (<code>|</code>) is used as a field separator in the index, unless
+the optional <code>separator</code> parameter is used to redefine the
+separator character.
+
+</body></html>
+
