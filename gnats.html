@@ -164,8 +164,9 @@
   <tr>
     <td>4.0</td><td>Low</td><td>Remote</td><td>Unlikely</td>
     <td>Note, that although these announcements indicate a possible buffer
-    overflow in calling the <em>syslog()</em>, syslog logging is not enabled by
-    default.  In fact, you must make changes to the source code to enable it.
+    overflow in passing user-supplied data to a call to<em>syslog()</em>.
+    However, such a path has not been found that would pass user-supplied data
+    to the errant call.
       <ul>
       <li><a href="http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html">
 http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html</a>
@@ -401,7 +402,7 @@ cvs diff -up file1 file2 ... &gt; patchfile.out
   Boston, MA 02111, USA</p>
 
   <p>Updated: <!-- timestamp start -->
-   $Date: 2005/02/22 20:48:10 $ $Author: chewie $ 
+   $Date: 2005/02/22 21:05:33 $ $Author: chewie $ 
   <!-- timestamp end --></p>
   <hr>
 </body>
