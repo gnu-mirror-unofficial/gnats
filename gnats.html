@@ -1,76 +1,129 @@
-<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
-<HEAD>
-<TITLE>GNATS - GNU Project - Free Software Foundation (FSF)</TITLE>
-<LINK REV="made" HREF="mailto:webmasters@www.gnu.org">
-</HEAD>
-<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#1F00FF" ALINK="#FF0000" VLINK="#9900DD">
-<H3>GNATS</H3>
-<A HREF="/graphics/agnuhead.html"><IMG SRC="/graphics/gnu-head-sm.jpg"
-ALT=" [image of the Head of a GNU] "
-WIDTH="129" HEIGHT="122"></A>
-<CENTER>
-  <A HREF="#introduction" NAME="TOCintroduction">Introduction</A>
-| <A HREF="#downloading" NAME="TOCdownloading">Get the Software</A>
-</CENTER>
-<P>
-<HR>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+  <head>
+    <title>GNATS - GNU Project - Free Software Foundation (FSF)</title>
+    <link rev="made" href="mailto:webmasters@gnu.org">
+  </head>
 
-<H4><A HREF="#TOCintroduction" NAME="introduction">Introduction to GNATS</A></H4>
-<P>
+  <body>
+    <h1>GNATS</h1>
+    <a href="/graphics/agnuhead.html"><img src="/graphics/gnu-head-sm.jpg" alt=" [image of the Head of a GNU] " width="129" height="122"></a>
 
-<P>
-Any support organization realizes that a large amount of data flows
-back and forth between the maintainers and the users of their products.
-This data often takes the form of problem reports and communication via
-electronic mail.  GNATS addresses the problem of organizing this
-communication by defining a database made up of archived and indexed
-electronic mail messages.
+    <h2>Table of Contents</h2>
+    <menu>
+      <li><a href="#introduction" name="TOCintroduction">Introduction to GNATS</a></li>
+      <li><a href="#downloading" name="TOCdownloading">Downloading GNATS</a></li>
+      <li><a href="#bugreporting" name="TOCbugreporting">Reporting GNATS Bugs</a></li>
+      <li><a href="#otherinfo" name="TOCotherinfo">Other GNATS Resources</a></li>
+    </menu>
 
-<P>
-GNATS was designed as a tool for software maintainers.  It consists
-of several utilities which, when used in concert, formulate and
-administer a database of Problem Reports grouped by site-defined
-"problem categories".  It allows a support organization to keep track
-of problems (hence the term "Problem Report") in an organized fashion.
-Essentially, GNATS acts as an active archive for field-separated
-textual data submitted through electronic mail.
+    
+    <!-- contents -->
 
-<H4><A HREF="#TOCdownloading" NAME="downloading">Downloading GNATS</A></H4>
-<P>
+    
+    <h2><a href="#TOCintroduction" name="introduction">Introduction to GNATS</a></h2>
+    <p>
+      GNU GNATS is a set of tools for tracking bugs reported by users to a
+      central site.  It allows problem report management and communication with
+      users via various means.  GNATS stores all the information about problem
+      reports in its databases and provides tools for querying, editing, and
+      maintenance of the databases.
+    </p>
+    <p>
+      Thanks to its architecture, GNATS is not bound to a single user
+      interface--it can be used via command line, e-mail, Emacs, or a network
+      daemon, usually used with a Web interface.  Together with the fact that
+      all GNATS databases and configuration can be stored in plain text files,
+      it allows easy use and provides good flexibility.  Basically, if the
+      GNATS tools do not provide everything you need, you can add your own
+      additional utilities using standard GNU tools.
+    </p>
 
-GNATS can be found on in the subdirectory <CODE>/gnu/gnats/</CODE> on your favorite
-<A HREF="/prep/ftp.html">GNU mirror</A>. For other ways to 
-obtain GNATS, please read
-<A HREF="/software/software.html#HowToGetSoftware">How to get GNU Software</A>
-<HR>
+    
+    <h2><a href="#TOCdownloading" name="downloading">Downloading GNATS</a></h2>
+    <p>
+      You can download GNATS releases from
+      <a href="ftp://ftp.gnu.org/pub/gnu/gnats/">ftp://ftp.gnu.org/pub/gnu/gnats/</a>.
+    </p>
+    <p>
+      See <a href="#otherinfo">information about other GNATS resources</a> for
+      the location of development code.  There are also available <a
+      href="http://packages.debian.org/gnats">Debian packages</a> of both
+      released and development versions of GNATS.
+    </p>
 
-Return to <A HREF="/home.html">GNU's home page</A>.
+    
+    <h2><a href="#TOCbugreporting" name="bugreporting">Reporting GNATS Bugs</a></h2>
+    <p>
+      Please report GNATS bugs to the <a href="http://sources.redhat.com/cgi-bin/gnatsweb.pl?database=gnats&user=guest&password=guest&cmd=login">GNATS
+        bug tracking system</a> (preferred) or to the e-mail address
+      <a href="mailto:bug-gnats@gnu.org">&lt;bug-gnats@gnu.org&gt;</a>.
+    </p>
 
-<P>
-Please send FSF &amp; GNU inquiries &amp; questions to
+    
+    <h2><a href="#TOCotherinfo" name="otherinfo">Other GNATS Resources</a></h2>
+    <p>
+      Please refer to <a href="http://sources.redhat.com/gnats">the GNATS pages
+        at Red Hat</a> to find more information about GNATS.  Among others, you
+      can find there links to the CVS archive, mailing lists, bug reports,
+      and documentation.  (We plan to move most of that services to GNU
+      servers in the future.)
+    </p>
+    <p>
+      In the future, all GNATS services will be available
+      <a href="http://savannah.gnu.org/projects/gnats">on GNU Savannah</a> and
+      GNATS will serve as the bug tracking system on the server.
+    </p>
+    <p>
+      Except the Emacs interface included directly in the GNATS distribution,
+      there several additional front-ends to GNATS:
+    </p>
+    <dl>
+      <dt><a href="http://sources.redhat.com/gnats">Gnatsweb</a></dt>
+      <dd>Web interface.</dd>
+      <dt><a href="http://www.zamazal.org/software/gnats/gnats2w/">gnats2w</a></dt>
+      <dd>Another Web interface.</dd>
+      <dt><a href="http://sources.redhat.com/gnats">TkGnats</a></dt>
+      <dd>Tk client interface.</dd>
+    </dl>
 
-<A HREF="mailto:gnu@gnu.org"><EM>gnu@gnu.org</EM></A>.
-There are also <A HREF="/home.html#ContactInfo">other ways to contact</A> the FSF.
+    
+    <!-- footer -->
 
-<P>
-Please send comments on these web pages to
-<A HREF="mailto:webmasters@www.gnu.org"><EM>webmasters@www.gnu.org</EM></A>,
-send other questions to
-<A HREF="mailto:gnu@gnu.org"><EM>gnu@gnu.org</EM></A>.
-
-<P>
-Copyright (C) 1998 Free Software Foundation, Inc.,
-59 Temple Place - Suite 330, Boston, MA  02111,  USA
-
-<P>
-Verbatim copying and distribution of this entire article is
-permitted in any medium, provided this notice is preserved.
-<P>
-Updated:
-<!-- hhmts start -->
- 2 Aug 2000 bkuhn
-<!-- hhmts end -->
-<HR>
-</BODY>
-</HTML>
+    
+    <hr>
+    <p>
+      Return to <a href="/home.html">GNU's home page</a>.
+    </p>
+    <p>
+      Please send FSF &amp; GNU inquiries &amp; questions to 
+      <a HREF="mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.
+      There are also <a HREF="/home.html#ContactInfo">other ways to
+        contact</a> the FSF.
+    </p>
+    <p>
+      Please send comments on these web pages to
+      <a HREF="mailto:webmasters@gnu.org"><em>webmasters@gnu.org</em></a>,
+      send other questions to
+      <a HREF="mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.
+    <p>
+      Copyright (C) 2001 Milan Zamazal
+    </p>
+    <p>
+      Verbatim copying and distribution of this entire article is
+      permitted in any medium, provided this notice is preserved.
+    </p>
+    <p>
+      Copyright notice above.<br>
+      Free Software Foundation, Inc.,
+      59 Temple Place - Suite 330, Boston, MA 02111, USA
+    </p>
+    <p>
+      Updated:
+      <!-- timestamp start -->
+      $Date: 2001/05/20 11:09:00 $ $Author: pdm $
+      <!-- timestamp end -->
+    </p>
+    <hr>
+  </body>
+</html>
