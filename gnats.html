@@ -125,14 +125,20 @@
 		<A
 		 HREF="http://ftp.gnu.org/pub/gnu/gnatsweb/">http://ftp.gnu.org/pub/gnu/gnatsweb/</A>.
 		</P> 
-	 <P> Get the current <B>Gnatsweb 4</B> development code as follows: </P> 
-	 <PRE>cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnatsweb login
-(press "enter" when prompted for password)
-cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnatsweb co gnatsweb</PRE> 
-	 <P> Get the current <B>Gnatsweb 2</B> development code as follows:</P> 
-	 <PRE>cvs -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnatsweb login
-(press "enter" when prompted for password)
-cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-v2-branch gnatsweb</PRE>
+	 <P> The current <B>Gnatsweb 4</B> development version is available via
+		CVS only, see the <A
+		HREF="http://savannah.gnu.org/projects/gnatsweb">GNU savannah
+		GNATSWEB project page</A> for the instructions how to get it.
+<pre>
+	cvs -z3 -d:pserver:anoncvs@savannah.gnu.org:/cvsroot/gnatsweb co gnatsweb
+</PRE> 
+		</P> 
+	 <P> Get the current <B>Gnatsweb 2</B> development code using the same
+		 login setup as the <B>Gnatsweb 4</b> branch.  Use this
+		 checkout line instead:</P> 
+<PRE>
+	cvs -z3 -d:pserver:anoncvs@savannah.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-v2-branch gnatsweb
+</PRE>
 
     <!-- *** -->
 	 <H2><A HREF="#TOCdocumentation" NAME="documentation">GNATS
@@ -275,7 +281,7 @@ cvs -z3 -d:pserver:anoncvs@subversions.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-
 		Place - Suite 330, Boston, MA 02111, USA </P> 
 	 <P> Updated:
       <!-- timestamp start -->
-		$Date: 2004/06/16 15:37:29 $ $Author: chewie $
+		$Date: 2004/08/23 17:59:46 $ $Author: chewie $
       <!-- timestamp end -->
 	 </P> <HR> </BODY>
 </HTML>
