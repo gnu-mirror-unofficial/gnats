@@ -133,52 +133,76 @@
   for GNATS</a>.</p><!-- *** -->
   <a href="#TOC" name="downloading" id="downloading">(ToC)</a>
 
-  <h2>Downloading GNATS</h2>
+  <h2>Downloading GNATS and Gnatsweb</h2>
+  <h3>GNATS Stable Branch: 4.0</h3>
+  <p>GNATS versioning follows the a simple <strong>MAJOR.MINOR.PATCH</strong>
+  numbering scheme.  The latest stable branch of GNATS is <strong>4.0</strong>
+  with <strong>4.0.1</strong> being the latest version available.  All version
+  of GNATS are available for download on the <strong>Official GNU FTP
+  Mirror</strong>: <a
+  href="http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</a>.</p>
 
-  <h3>GNATS Stable Version</h3>
-  <p>The latest version of GNATS, <b>4.0.1</b>, is available from <a 
-  href="http://savannah.gnu.org/download/gnats">http://savannah.gnu.org/download/gnats</a>.
-  In the near future, it should be available for download at the official GNU
-  ftp sites: <a href=
-  "http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</a>.</p>
+  <p>The stable branch is also available in the <a
+  href="https://savannah.gnu.org/cvs/?group=gnats">CVS Repository</a> under the
+  branch <strong>gnats-4_0-patches</strong>.  The 4.0.1 release is tagged
+  <strong>gnats-4_0_1</strong>.
 
-  <p>GNATS 4.0.1 fixes a potential security vulnerability as described at the
-  following list of sites.  We strongly recommend you upgrade to 4.0.1, if you
-  are using an older version.
-  <ul>
-    <li><a href="http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html">
+  <p>Binary packages are generally available on various Linux and BSD
+  platforms.  For example, <a href="http://www.debian.org">Debian GNU/Linux</a>
+  carries the latest stable version of GNATS as binary and source <a
+  href="http://packages.debian.org/gnats">packages</a>.</p>
+
+  <h3>Security Announcements</h3>
+  <p class="dashbox">The following table is a compilation of security
+  announcements and potential vulnerabilities to released versions of GNATS.
+  The general recommendation is to upgrade to the latest
+  <strong>stable</strong> released version of GNATS.</p>
+
+  <table>
+  <tr><th>Version(s)</th><th>Severity</th><th>Scope</th><th>Exploitable</th>
+  <th>Details</th></tr>
+  <tr>
+    <td>4.0</td><td>Low</td><th>Remote</th><td>Unlikely</td>
+    <td>Note, that although these announcements indicate a possible buffer
+    overflow in calling the <em>syslog()</em>, syslog logging is not enabled by
+    default.  In fact, you must make changes to the source code to enable it.
+      <ul>
+      <li><a href="http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html">
 http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html</a>
-    <li><a href="http://www.zone-h.org/advisories/read/id=4889">
+      <li><a href="http://www.zone-h.org/advisories/read/id=4889">
 http://www.zone-h.org/advisories/read/id=4889</a>
-    <li><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623">
+      <li><a href="http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623">
 http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623</a>
-    <li><a href="http://www.debian.org/security/2004/dsa-590">
-http://www.debian.org/security/2004/dsa-590</a>
-  </ul></p> 
+      <li><a href="http://www.debian.org/security/2004/dsa-590">
+http://www.debian.org/security/2004/dsa-590</a></ul>
+    </td>
+  </tr>
+  <tr>
+    <td>3.002, 3.113.1, 3.2</td><td>High</td><th>Local</th><td>100%</td>
+    <td>There are multiple vulnerabilities in these versions that result in
+    local root exploits.
+    <ul>
+      <li><a href= "http://www.securityfocus.com/archive/1/326337">Multiple buffer overflow vulnerabilities</a>
+      <li><a href= "patches/index.html">Patches</a>
+    </td>
+  </tr>
+  </table>
 
-  <p class="dashbox">The older stable release 3.113.1 has a security <a
-  href= "http://www.securityfocus.com/archive/1/326337">vulnerability</a>
-  that the GNATS development team has provided patches for
-  on a <a href= "patches/index.html">separate patch page</a>.  If you
-  have the option to, <b>please update to the latest stable version
-  instead</b>.</p>
-
-  <h3>GNATS Development Version</h3>
-  <p>The current development version is available via CVS only, see
-  the <a href="http://savannah.gnu.org/projects/gnats">GNU savannah
-  GNATS project page</a> for the instructions how to get it.</p>
+  <h3>GNATS Development Branch: CVS only</h3>
+  <p>The current development version of GNATS is available via CVS only, which
+  is hosted on the <a href="http://savannah.gnu.org">Savannah</a> web site.
+  See the <a href="https://savannah.gnu.org/cvs/?group=gnats">GNU Savannah
+  GNATS Project Page</a> for the instructions how to use the CVS
+  repository.</p>
 
   <p>See <a href="#otherinfo">information about other GNATS
-  resources</a> for the location of development code. There are
-  also available <a href="http://packages.debian.org/gnats">Debian
-  packages</a> of both released and development versions of
-  GNATS.</p>
+  resources</a> for the location of development code.
 
   <h3>Gnatsweb</h3>
 
-  <p>Gnatsweb, a GNATS web interface, development is hosted in a
-  separate CVS repository at gnu.org. Gnatsweb has two development
-  branches, one for version 2 (which works with GNATS 3.x) and one
+  <p>Gnatsweb, a Perl-based GNATS web interface, development is hosted in a
+  separate CVS repository at gnu.org. Gnatsweb has two development branches,
+  one for version 2 (which works with GNATS 3.x) and one
   for version 4 (which works with GNATS 4).</p>
 
   <p>Released versions of Gnatsweb can be downloaded from <a href=
@@ -215,28 +239,22 @@ http://www.debian.org/security/2004/dsa-590</a>
   <p>Please report GNATS bugs to the e-mail address <a href=
   "mailto:bug-gnats@gnu.org">&lt;bug-gnats@gnu.org&gt;</a>.</p>
 
-  <p>GNATS uses (gasp) GNATS to track problem reports. However, the
-  web interface is currently unavailable. Normally, we've got the
-  Gnatsweb web interface set up so you can <a href=
-  "http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats">browse
-  the database or submit new problem reports</a> there. Use
-  <tt>guest</tt> as both the login name and the password. You can
-  also try out the Gnatsweb interface if you want to see how things
-  look, but please do not submit reports that aren't real. This
-  database is being used by GNATS developers, and is <em>not meant
-  for testing purposes</em>.</p>
+  <p>GNATS uses (gasp) GNATS to track problem reports. A temporary home for the
+  GNATS bug database is available to <a href=
+  "https://skuld.wookimus.net/cgi-bin/gnatsweb.pl?database=gnats">browse or
+  submit new problem reports</a> there. Use "<strong>guest</strong>" as both
+  the <em>login</em> name and the <em>password</em>. You can also try out the
+  Gnatsweb interface if you want to see how things look, but please do not
+  submit reports that aren't real. This database is being used by GNATS
+  developers, and is <em>not meant for testing purposes</em>.</p>
 
-  <p>When you report problems related GNATS itself, <em>please
-  don't forget to provide especially the following
-  information</em>:</p>
+  <p>When you report problems related GNATS itself, <em>please don't forget to
+  provide the following information</em>:</p>
 
   <ul>
     <li>The GNATS version you are using.</li>
-
-    <li>The <em>exact</em> way how to reproduce the bug.</li>
-
+    <li>The <em>exact</em> steps involved to reproduce the bug.</li>
     <li>Your configuration.</li>
-
     <li>If you encounter a compilation or build problem, it is
     especially important to mention the operating system, compiler
     and possibly other build utilities you use.</li>
@@ -372,7 +390,7 @@ cvs diff -up file1 file2 ... &gt; patchfile.out
   other questions to <a href=
   "mailto:gnu@gnu.org"><em>gnu@gnu.org</em></a>.</p>
 
-  <p>Copyright (C) 2003, 2004 Andrew Gray, Yngve Svendsen, Milan
+  <p>Copyright (C) 2003, 2004, 2005 Andrew Gray, Yngve Svendsen, Milan
   Zamazal, and Chad Walstrom</p>
 
   <p>Verbatim copying and distribution of this entire article is
@@ -383,7 +401,7 @@ cvs diff -up file1 file2 ... &gt; patchfile.out
   Boston, MA 02111, USA</p>
 
   <p>Updated: <!-- timestamp start -->
-   $Date: 2004/11/23 16:14:19 $ $Author: chewie $ 
+   $Date: 2005/02/22 20:21:47 $ $Author: chewie $ 
   <!-- timestamp end --></p>
   <hr>
 </body>
