@@ -1,6 +1,9 @@
+/* Guidelines:
+ *   - Use relative font sizes, not absolutes.  Let the user decide
+ *     how large things should be.
+ */
 BODY {
   background-color: #FFFFFF;
-  font-size: 10pt;
 }
 
 P,LI,TH,DT,DD {
@@ -14,21 +17,19 @@ TD {
 
 .ps {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 8pt;
+  font-size: smaller;
 }
 
 .sm {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 9pt;
+  font-size: smaller;
 }
 
 UL {
-  font-size: 10pt;
   font-family: Arial, Helvetica, sans-serif;
 }
 
 LI {
-  font-size: 10pt;
   font-family: Arial, Helvetica, sans-serif;
 }
 
@@ -42,7 +43,6 @@ TABLE.navbar {
 
 H1 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 20pt;
   font-style: normal;
   font-weight: bold;
   color: #000080;
@@ -53,20 +53,18 @@ H1 {
 
 H2 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 14pt;
   font-style: normal;
   font-weight: bold;
-/*  color: #000080; */
   color: white;
   border: 1pt;
   border-style: solid;
   border-color: silver;
-  background-color: blue;
+  background-color: #000080;
 }
 
 .smallsubjectHead {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 9pt;
+  font-size: smaller;
   font-style: normal;
   font-weight: bold;
   color: #000000;
@@ -74,13 +72,12 @@ H2 {
 
 H3 {
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 12pt;
   font-style: normal;
   font-weight: bold;
 }
 
 .nounderline {
-  	text-decoration: none;
+  text-decoration: none;
   background-color: transparent;
 }
 
@@ -101,12 +98,7 @@ A:hover {
 }
 
 .standardtext {
-  font-size: 10pt;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-TT {
-  font-size: 10pt;
 }
 
 .framed {
