@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+<title>addresses file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Other-config-files.html#Other-config-files" title="Other config files">
+<link rel="prev" href="states-file.html#states-file" title="states file">
+<link rel="next" href="classes-file.html#classes-file" title="classes file">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="addresses-file"></a>Next:&nbsp;<a rel="next" accesskey="n" href="classes-file.html#classes-file">classes file</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="states-file.html#states-file">states file</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Other-config-files.html#Other-config-files">Other config files</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.4.5 The <code>addresses</code> file</h4>
+
+<p><a name="index-_0040code_007baddresses_007d-file-325"></a>
+This file contains mappings between submitter IDs and corresponding e-mail
+addresses.
+
+   <p>When a PR comes in without a submitter ID (if someone sends unformatted
+e-mail to the PR submission email address), <span class="sc">gnats</span> will try to
+derive the submitter ID from the address in the "From:" header.  The
+entries in this file consist of two fields, separated by a colon:
+
+<pre class="smallexample">     <var>submitter-id</var>:<var>address-fragment</var>
+</pre>
+   <p class="noindent">
+     <dl>
+<dt><var>submitter-id</var><dd>A valid submitter ID
+
+     <br><dt><var>address-fragment</var><dd>Part of, or all of the e-mail address to be matched
+</dl>
+
+   <p>Here is an example of an <code>addresses</code> file:
+
+<pre class="smallexample">     # Addresses for Yoyodine Inc
+     yoyodine:yoyodine.com
+     yoyodine:yoyodine.co.uk
+     # Addresses for Foobar Inc.
+     foobar1:sales.foobar.com
+     foobar2:admin.foobar.com
+     foobar3:clark@research.foobar.com
+</pre>
+   <p><span class="sc">gnats</span> checks each line in the <code>addresses</code> file, comparing
+<var>address-fragment</var> to the end of the "From:" header, until it finds
+a match.  If no match is found, <span class="sc">gnats</span> uses the default submitter ID.
+
+   <p>You can only have one address fragment per line, but you can have more than
+one line for a given submitter ID.  An address fragment can be a domain
+(i.e. yoyodine.com), a machine location (admin.foobar.com), or a full e-mail
+address (clark@research.foobar.com).
+
+   <p><span class="sc">gnats</span> can match addresses in three e-mail formats:
+
+     <dl>
+<dt><span class="samp">From: name@address.com</span><dd>The address by itself without a full name, not enclosed in brackets
+
+     <br><dt><span class="samp">From: Real Person &lt;name@address.com&gt;</span><dd>A full name (optional, with or without quotation marks), followed by the
+address enclosed in angle brackets
+
+     <br><dt><span class="samp">From: name@address.com (Real Person)</span><dd>An address, followed by a name or comment in parentheses
+</dl>
+
+   <p>If <span class="sc">gnats</span> sees other e-mail address formats, it uses the default
+submitter ID.
+
+   </body></html>
+

@@ -1,0 +1,116 @@
+<html lang="en">
+<head>
+<title>Management - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Installation.html#Installation" title="Installation">
+<link rel="next" href="Locations.html#Locations" title="Locations">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Management"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Locations.html#Locations">Locations</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Installation.html#Installation">Installation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">4 <span class="sc">gnats</span> Administration</h2>
+
+<p><a name="index-administering-_0040sc_007bgnats_007d-234"></a><a name="index-managing-_0040sc_007bgnats_007d-235"></a><a name="index-GNATS-management-236"></a><a name="index-duties-for-_0040code_007bgnats_002dadmin_007d-237"></a>
+In daily usage, <span class="sc">gnats</span> is self-maintaining.  However, there are
+various administrative duties which need to be performed periodically. 
+Also, requirements may change with time, so it may be necessary to
+make changes to the <span class="sc">gnats</span> configuration at some point:
+
+     <dl>
+<dt><em>emptying the </em><code>pending</code><em> directory</em><dd><a name="index-emptying-the-_0040code_007bpending_007d-directory-238"></a>If a Problem Report arrives with a <code>Category</code> value that is
+unrecognized by the <span class="file">categories</span> file, or if that field is missing,
+<span class="sc">gnats</span> places the PR in the <span class="file">pending</span><!-- /@w --> directory
+(see <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>).  PRs
+submitted in free-form by email will always be filed in the
+<span class="file">pending</span><!-- /@w --> directory.  If so configured, <span class="sc">gnats</span> sends a
+notice to the <code>gnats-admin</code> and to the party responsible for that
+submitter (as listed in the <span class="file">submitters</span> file) when this occurs.
+
+     <p>To have these "categoryless" PRs filed correctly, you can then use a
+<span class="sc">gnats</span> tool such as <code>edit-pr</code> to set the correct category of
+each PR in the <span class="file">pending</span> directory.
+
+     <p>In order to protect yourself from problems caused by full disks, you
+should arrange to have all mail that is sent to the <span class="sc">gnats</span> database
+copied to a log file (<a href="Aliases.html#Aliases">Setting up mail aliases</a>).  Then,
+should you run out of disk space, and an empty file ends up in the
+database's <span class="file">pending</span> directory, you need only look in the log file,
+which should still contain the full message that was submitted.
+
+     <br><dt><em>adding another database</em><dd><a name="index-adding-another-database-239"></a><a name="index-_0040code_007bmkdb_007d-240"></a><span class="sc">gnats</span> supports multiple databases.  If you find at some point that
+you need to add another database to your server, the <code>mkdb</code> tool
+does most of the work for you.  See <a href="mkdb.html#mkdb">Adding another database</a>.
+
+     <br><dt><em>adding new categories</em><dd><a name="index-adding-a-problem-category-241"></a><a name="index-_0040code_007bmkcat_007d-242"></a>Most installations of <span class="sc">gnats</span> will only require you to add a new line
+to the <span class="file">categories</span><!-- /@w --> file.  The category directory will then be
+created automatically as needed.  However, if automatic directory
+creation has been switched off in the <span class="file">dbconfig</span> file
+(see <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>), you need to use the
+<span class="file">mkcat</span> program.
+
+     <br><dt><em>removing categories</em><dd><a name="index-removing-a-problem-category-243"></a><a name="index-_0040code_007brmcat_007d-244"></a>To remove a category, you need to make sure the relevant subdirectory is
+empty (in other words, make sure no PRs exist for the category you wish
+to remove).  You can then remove the category listing from the
+<span class="file">categories</span> file, and invoke
+
+     <pre class="smallexample">          rmcat <var>category<small class="dots">...</small></var>
+     </pre>
+     <p class="noindent">to remove <var>category</var> (any number of categories may be specified on
+the command line to <code>rmcat</code>, so long as they abide by the above
+constraints).
+
+     <br><dt><em>adding and removing maintainers</em><dd><a name="index-adding-and-removing-maintainers-245"></a>Edit the <span class="file">responsible</span> file to add a new maintainer or to remove an
+existing maintainer.  See <a href="responsible-file.html#responsible-file">The <code>responsible</code> file</a>.
+
+     <br><dt><em>building a new index</em><dd><a name="index-building-a-new-index-246"></a><a name="index-_0040code_007bgen_002dindex_007d-247"></a>If your index becomes corrupted, or if you wish to generate a new one
+for some reason, use the program <code>gen-index</code>
+(see <a href="gen_002dindex.html#gen_002dindex">Regenerating the index</a>).
+
+     <br><dt><em>pruning log files</em><dd><a name="index-pruning-log-files-248"></a>Log files often grow to unfathomable proportions.  As with gardening, it
+is best to prune these as they grow, lest they take over your disk and
+leave you with no room to gather more Problem Reports.  If you keep log
+files, be sure to keep an eye on them.  (See <a href="Aliases.html#Aliases">Setting up mail aliases</a>.) 
+<!-- "gather ye rosebugs while ye may..." -->
+
+     <br><dt><em>BACKING UP YOUR DATA</em><dd><a name="index-BACK-UP-YOUR-DATA-249"></a>Any database is only useful if its data remains uncorrupted and safe. 
+Performing periodic backups ensures that problems like disk crashes and
+data corruption are reversible.
+
+   </dl>
+
+   <p>See <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="GNATS-configuration.html#GNATS-configuration">GNATS configuration</a>:    Overview of GNATS configuration
+<li><a accesskey="2" href="databases-file.html#databases-file">databases file</a>:         The databases file
+<li><a accesskey="3" href="dbconfig-file.html#dbconfig-file">dbconfig file</a>:          The dbconfig file
+<li><a accesskey="4" href="Other-config-files.html#Other-config-files">Other config files</a>:     Configuration files
+<li><a accesskey="5" href="send_002dpr_002econf-file.html#send_002dpr_002econf-file">send-pr.conf file</a>:      The send-pr.conf file
+<li><a accesskey="6" href="Admin-files.html#Admin-files">Admin files</a>:            Administrative data files
+<li><a accesskey="7" href="Admin-utils.html#Admin-utils">Admin utils</a>:            Administrative utilities
+<li><a accesskey="8" href="Internal-utils.html#Internal-utils">Internal utils</a>:         Internal utilities
+</ul>
+
+   </body></html>
+

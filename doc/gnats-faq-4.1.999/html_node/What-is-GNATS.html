@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+<title>What is GNATS - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="General.html#General" title="General">
+<link rel="next" href="How-to-pronounce-it.html#How-to-pronounce-it" title="How to pronounce it">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="What-is-GNATS"></a>Next:&nbsp;<a rel="next" accesskey="n" href="How-to-pronounce-it.html#How-to-pronounce-it">How to pronounce it</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="General.html#General">General</a>
+<hr><br>
+</div>
+
+<!-- node-name,     next,   previous,  up -->
+<h3 class="section">1.1 What is <span class="sc">gnats</span>?</h3>
+
+<p><span class="sc">gnats</span> is the <span class="sc">gnu</span> problem report management system.  Problem
+report management systems are also known as "bug-tracking systems",
+though the entries need not be bugs (e.g., think of change requests). 
+The acronym stands for "GNats: A Tracking System".
+
+   <p><span class="sc">gnats</span> stores all information about the problem reports at a central
+site, and enables users to access this site by various means, including
+e-mail, WWW, and a network daemon.  New problem reports can be created,
+and existing reports can be queried and updated, by most of these means.
+
+   <p><span class="sc">gnats</span> is widely customizable: Of course you can define report
+categories (is the report about tool A or service B?), responsibles
+(who takes care of this report?), and submitters (is it from customer1
+or from the sales department?).  You can also define possible states
+of a report (open, analyzed, closed, etc.) and classes (software bug,
+documentation bug, change request, <small class="dots">...</small>).
+
+   <p>Starting with <span class="sc">gnats</span> 4.0, you can define your own custom fields, and
+customize many of the built-in fields; you can have fields automatically
+set to a certain value when another field changes its contents (e.g.,
+set a "Closed-Date" field to the current date when the report goes to
+state "closed", and unset it when it goes back from "closed" to
+something else), or when the report is changed at all (e.g., to maintain
+a "Last-Modified" field).
+
+<ul class="menu">
+<li><a accesskey="1" href="User-view.html#User-view">User view</a>:                    Short overview for users
+<li><a accesskey="2" href="Administrator-View.html#Administrator-View">Administrator View</a>:           Short overview for system administrators
+</ul>
+
+   </body></html>
+

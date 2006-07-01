@@ -1,0 +1,57 @@
+<html lang="en">
+<head>
+<title>Description of gnatsd - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="gnatsd.html#gnatsd" title="gnatsd">
+<link rel="next" href="gnatsd-options.html#gnatsd-options" title="gnatsd options">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Description-of-gnatsd"></a>Next:&nbsp;<a rel="next" accesskey="n" href="gnatsd-options.html#gnatsd-options">gnatsd options</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="gnatsd.html#gnatsd">gnatsd</a>
+<hr><br>
+</div>
+
+<h3 class="section">B.1 Description of <code>gnatsd</code></h3>
+
+<p><a name="index-_0040code_007bgnatsd_007d-description-374"></a>
+The <code>gnatsd</code> network daemon is used to service remote <span class="sc">gnats</span>
+requests such as querying PRs, PR creation, deletion, and editing, and
+miscellaneous database queries.  It uses a simple ASCII-based command
+protocol (similar to SMTP or POP3) for communicating with remote
+clients.
+
+   <p>It also provides a security model based either on IP-based
+authentication (generally considered very weak) or username/passwords,
+where passwords may be in cleartext, UNIX crypt or MD5 hash format. 
+Access through <code>gnatsd</code> is granted according to certain predefined
+<dfn>access levels</dfn>.  Access levels are further discussed in <a href="Access-Control.html#Access-Control">Controlling access to databases</a>.  It should be emphasized that
+security has not been a focus of development until now, but future
+versions are expected to address this more thoroughly.
+
+   <p>All of the <span class="sc">gnats</span> clients are capable of communicating via the <span class="sc">gnats</span>
+remote protocol to perform their functions. 
+<!-- XXX Add reference to remote tool installation section here. -->
+
+   <p><code>gnatsd</code> is usually started from the inetd facility and should run as
+the <code>gnats</code> user (the actual username of this user is configurable
+during installation, see <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a> for details.)
+
+   </body></html>
+

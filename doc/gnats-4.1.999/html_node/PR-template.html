@@ -1,0 +1,156 @@
+<html lang="en">
+<head>
+<title>PR template - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="send_002dpr.html#send_002dpr" title="send-pr">
+<link rel="next" href="send_002dpr-in-Emacs.html#send_002dpr-in-Emacs" title="send-pr in Emacs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="PR-template"></a>Next:&nbsp;<a rel="next" accesskey="n" href="send_002dpr-in-Emacs.html#send_002dpr-in-Emacs">send-pr in Emacs</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="send_002dpr.html#send_002dpr">send-pr</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.2.3 The Problem Report template</h4>
+
+<p>Invoking <code>send-pr</code> presents a PR <dfn>template</dfn> with a number of
+fields already filled in with default values for the database you are
+submitting to.  Complete the template as thoroughly as possible to
+make a useful bug report.  Submit only one bug with each PR.
+
+   <p><a name="index-template-117"></a>A template consists of three sections:
+
+     <ul>
+<li>Comments
+<li>Mail Header
+<li><span class="sc">gnats</span> fields
+</ul>
+
+   <p>The <strong>Comments section</strong> at the top of the template contains basic
+instructions for completing the Problem Report, as well as a list of
+valid entries for the <code>Category</code> field.  One (and only one) of
+these values should be placed in the <code>Category</code> field further down
+in the Problem Report.
+
+   <p><a name="index-template-comment-section-118"></a><a name="index-comment-section-in-the-PR-template-119"></a>
+<pre class="smallexample">     SEND-PR: -*- send-pr  -*-
+     SEND-PR: Lines starting with `SEND-PR' will be removed
+     SEND-PR: automatically as well as all comments (the text
+     SEND-PR: below enclosed in `&lt;' and `&gt;').
+     SEND-PR:
+     SEND-PR: Please consult the document `Reporting Problems
+     SEND-PR: Using send-pr' if you are not sure how to fill out
+     SEND-PR: a problem report.
+     SEND-PR:
+     SEND-PR: Choose from the following categories:
+</pre>
+   <p>The comments lines are all preceded by the string <span class="samp">SEND-PR:</span> and
+are erased automatically when the PR is submitted.  The instructional
+comments within <span class="samp">&lt;</span> and <span class="samp">&gt;</span> are also removed.  (Only these
+comments are removed; lines you provide that happen to have those
+characters in them, such as examples of shell-level redirection, are not
+affected.)
+
+   <p>The <strong>Mail Header</strong> section of the template contains a standard
+mail header constructed by <code>send-pr</code>.  <code>send-pr</code> can be set up
+to submit PRs by e-mail or by speaking directly to the <span class="sc">gnats</span>
+server, but since this header is part of the standard format of Problem
+Reports, <code>send-pr</code> includes it even when it is set up to speak
+directly to the server.
+
+   <p><a name="index-mail-header-section-120"></a>
+<pre class="smallexample">     To: <var>PR submission address</var>
+     Subject: <em>complete this field</em>
+     From: <var>your-login</var>@<var>your-site</var>
+     Reply-To: <var>your-login</var>@<var>your-site</var>
+     X-send-pr-version: send-pr 4.1.999
+</pre>
+   <p class="noindent"><code>send-pr</code> automatically completes all the mail header fields except
+the <code>Subject</code> line with default values.  (See <a href="Fields.html#Fields">Problem Report format</a>.)
+
+   <p>The <span class="sc">gnats</span><strong> fields</strong> below the mail header form the bulk of a
+<span class="sc">gnats</span> Problem Report.
+
+   <p>Each field is either automatically completed with valid information
+(such as your <code>Submitter-Id</code>) or contains a one-line instruction
+specifying the information that field requires in order to be correct. 
+For example, the <code>Confidential</code> field expects a value of <span class="samp">yes</span>
+or <span class="samp">no</span>, and the answer must fit on one line; similarly, the
+<code>Synopsis</code> field expects a short synopsis of the problem, which
+must also fit on one line.  Fill out the fields as completely as
+possible.  See <a href="Helpful-hints.html#Helpful-hints">Helpful hints</a>, for suggestions as to
+what kinds of information to include.
+
+   <p>The mechanisms <code>send-pr</code> uses to fill in default values is as
+follows: Your preconfigured <code>Submitter-Id</code> is taken from the local
+<span class="file">send-pr.conf</span> configuration file.  <code>send-pr</code> will set the
+<code>Originator</code> field to the value of the <code>NAME</code> environment
+variable if it has been set; similarly, <code>Organization</code> will be set
+to the value of <code>ORGANIZATION</code>.  If these variables aren't set in
+you environment, <code>send-pr</code> uses the values set in the local
+<span class="file">send-pr.conf</span> configuration file, if that exists.  If not, these
+values are left blank in the template.  <code>send-pr</code> also attempts to
+find out some information about your system and architecture, and places
+this information in the <code>Environment</code> field if it finds any.
+
+   <p>In this example, words in <em>italics</em> are filled in with
+pre-configured information:
+
+   <p><a name="index-_0040code_007bsend_002dpr_007d-fields-121"></a>
+<pre class="smallexample">     &gt;Submitter-Id: <em>your submitter-id</em>
+     &gt;Originator:   <em>your name here</em>
+     &gt;Organization:
+         <em>your organization</em>
+     &gt;Confidential:&lt;[ yes | no ] (one line)&gt;
+     &gt;Synopsis:    &lt;synopsis of the problem (one line)&gt;
+     &gt;Severity:    &lt;[non-critical | serious | critical](one line)&gt;
+     &gt;Priority:    &lt;[ low | medium | high ] (one line)&gt;
+     &gt;Category:    &lt;name of the product (one line)&gt;
+     &gt;Class:       &lt;[sw-bug | doc-bug | change-request | support]&gt;
+     &gt;Release:     &lt;release number (one line)&gt;
+     &gt;Environment:
+              &lt;machine, os, target, libraries (multiple lines)&gt;
+     
+     &gt;Description:
+            &lt;precise description of the problem (multiple lines)&gt;
+     &gt;How-To-Repeat:
+            &lt;code/input/activities to reproduce (multiple lines)&gt;
+     &gt;Fix:
+            &lt;how to correct or work around the problem, if known
+             (multiple lines)&gt;
+</pre>
+   <p><a name="index-_0040code_007bSubmitter_002dId_007d-field-122"></a><a name="index-_0040code_007b_003eSubmitter_002dId_007d-123"></a>When you finish editing the Problem Report, <code>send-pr</code> validates the
+contents and if it looks OK either submits it directly to the
+<span class="sc">gnats</span> server or submits it by mail to the address named in the
+<code>To</code> field in the mail header.
+
+   <p><a name="index-bad-Problem-Reports-124"></a><a name="index-errors-125"></a><a name="index-invalid-Problem-Reports-126"></a>If your PR contains one or more invalid field values, <code>send-pr</code>
+places the PR in a temporary file named <span class="file">/tmp/pbad</span><var>nnnn</var> on
+your machine.  <var>nnnn</var> is the process identification number given
+to your current <code>send-pr</code> session.  If you are running
+<code>send-pr</code> from the shell, you are prompted as to whether or not
+you wish to try editing the same Problem Report again.  If you are
+running <code>send-pr</code> from Emacs, the Problem Report is placed in the
+buffer <span class="samp">*gnats-send*</span><!-- /@w -->; you can edit this file and then submit
+it with <kbd>C-c C-c</kbd>.
+
+<!--  -->
+</body></html>
+

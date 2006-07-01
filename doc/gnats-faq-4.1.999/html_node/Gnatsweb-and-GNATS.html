@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>Gnatsweb and GNATS - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installation.html#Installation" title="Installation">
+<link rel="prev" href="Installation.html#Installation" title="Installation">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Gnatsweb-and-GNATS"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Installation.html#Installation">Installation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installation.html#Installation">Installation</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">2.1 Gnatsweb and <span class="sc">gnats</span> do not like each other.</h3>
+
+<p><b>Q:</b> I have installed <span class="sc">gnats</span> 3.999.x and Gnatsweb 2.9.x, and I
+cannot get them work together.
+
+   <p>Symptoms are that "make test" fails; if Gnatsweb is installed
+nevertheless, it hangs when trying to login into the <span class="sc">gnats</span> server.
+
+   <p><b>A:</b> The versions are incompatible. 
+Gnatsweb 2.9.x is for use with <span class="sc">gnats</span> 3.113.1. 
+With <span class="sc">gnats</span> 3.999.x, you must use Gnatsweb 3.99.x; it is in the
+contrib subdirectory of the <span class="sc">gnats</span> distribution. 
+(<span class="sc">gnats</span> 3.999.x/Gnatsweb 3.99.x were pre-releases of the 4.0
+releases.  As 4.0 is out now, you may consider to upgrade to the
+non-pre versions.)
+
+   <p>For <span class="sc">gnats</span> 4.x, use Gnatsweb 4.0 or greater.
+
+   </body></html>
+

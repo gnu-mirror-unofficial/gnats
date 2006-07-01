@@ -1,0 +1,232 @@
+<html lang="en">
+<head>
+<title>Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="#Top">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<h1 class="settitle">Keeping Track</h1>
+<div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="index.html#Top">Overview</a>
+<li><a name="toc_Introduction" href="Introduction.html#Introduction">1 Introducing <span class="sc">gnats</span></a>
+<ul>
+<li><a href="Paradigm.html#Paradigm">1.1 The database paradigm</a>
+<li><a href="Flowchart.html#Flowchart">1.2 Flowchart of <span class="sc">gnats</span> activities</a>
+<li><a href="States.html#States">1.3 States of Problem Reports</a>
+<li><a href="Fields.html#Fields">1.4 Problem Report format</a>
+<ul>
+<li><a href="Field-datatypes-reference.html#Field-datatypes-reference">1.4.1 Field datatypes reference</a>
+<li><a href="Mail-header-fields.html#Mail-header-fields">1.4.2 Mail header fields</a>
+<li><a href="Problem-Report-fields.html#Problem-Report-fields">1.4.3 Problem Report fields</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_GNATS-user-tools" href="GNATS-user-tools.html#GNATS-user-tools">2 The <span class="sc">gnats</span> User Tools</a>
+<ul>
+<li><a href="Environment.html#Environment">2.1 Environment variables and <span class="sc">gnats</span> tools</a>
+<li><a href="send_002dpr.html#send_002dpr">2.2 Submitting Problem Reports</a>
+<ul>
+<li><a href="send_002dpr-from-the-shell.html#send_002dpr-from-the-shell">2.2.1 Invoking <code>send-pr</code> from the shell</a>
+<li><a href="send_002dpr-in-Emacs.html#send_002dpr-in-Emacs">2.2.2 Using <code>send-pr</code> from within Emacs</a>
+<li><a href="PR-template.html#PR-template">2.2.3 The Problem Report template</a>
+<li><a href="Submitting-via-e_002dmail.html#Submitting-via-e_002dmail">2.2.4 Submitting a Problem Report via direct e-mail</a>
+<li><a href="Helpful-hints.html#Helpful-hints">2.2.5 Helpful hints</a>
+</li></ul>
+<li><a href="edit_002dpr.html#edit_002dpr">2.3 Editing existing Problem Reports</a>
+<ul>
+<li><a href="edit_002dpr-from-the-shell.html#edit_002dpr-from-the-shell">2.3.1 Invoking <code>edit-pr</code> from the shell</a>
+<li><a href="follow_002dup-via-email.html#follow_002dup-via-email">2.3.2 Following up via direct email</a>
+</li></ul>
+<li><a href="query_002dpr.html#query_002dpr">2.4 Querying the database</a>
+<ul>
+<li><a href="Invoking-query_002dpr.html#Invoking-query_002dpr">2.4.1 Invoking <code>query-pr</code></a>
+<li><a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output">2.4.2 Formatting <code>query-pr</code> output</a>
+<li><a href="Query-expressions.html#Query-expressions">2.4.3 Query expressions</a>
+<li><a href="Example-queries.html#Example-queries">2.4.4 Example queries</a>
+</li></ul>
+<li><a href="Emacs.html#Emacs">2.5 The Emacs interface to <span class="sc">gnats</span></a>
+<ul>
+<li><a href="Emacs-viewing.html#Emacs-viewing">2.5.1 Viewing Problem Reports</a>
+<li><a href="Emacs-querying.html#Emacs-querying">2.5.2 Querying Problem Reports</a>
+<li><a href="Emacs-submitting.html#Emacs-submitting">2.5.3 Submitting new Problem Reports</a>
+<li><a href="Emacs-editing.html#Emacs-editing">2.5.4 Editing Problem Reports</a>
+<li><a href="Emacs-editing-buffer.html#Emacs-editing-buffer">2.5.5 The Problem Report editing buffer</a>
+<li><a href="Emacs-and-databases.html#Emacs-and-databases">2.5.6 Changing the database</a>
+<li><a href="dbconfig-mode.html#dbconfig-mode">2.5.7 dbconfig mode</a>
+<li><a href="Other-Emacs-commands.html#Other-Emacs-commands">2.5.8 Other commands</a>
+<li><a href="Emacs-customization.html#Emacs-customization">2.5.9 Customization</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Installation" href="Installation.html#Installation">3 Installing <span class="sc">gnats</span></a>
+<ul>
+<li><a href="Configure-and-make.html#Configure-and-make">3.1 Configuring and compiling the software</a>
+<li><a href="Installing-utils.html#Installing-utils">3.2 Installing the utilities</a>
+<li><a href="Setting-up-the-default-database.html#Setting-up-the-default-database">3.3 Installing the default database</a>
+<li><a href="Setting-up-periodic-jobs.html#Setting-up-periodic-jobs">3.4 Setting up periodic jobs</a>
+<li><a href="Aliases.html#Aliases">3.5 Setting up mail aliases</a>
+<li><a href="Installing-the-daemon.html#Installing-the-daemon">3.6 Installing the daemon</a>
+<li><a href="Installing-tools.html#Installing-tools">3.7 Installing the user tools</a>
+<ul>
+<li><a href="Installing-tools.html#Installing-tools">3.7.1 User tools on a local network</a>
+<li><a href="Installing-tools.html#Installing-tools">3.7.2 User tools for remote users</a>
+</li></ul>
+<li><a href="Upgrading.html#Upgrading">3.8 Upgrading from older versions</a>
+<ul>
+<li><a href="Upgrading.html#Upgrading">3.8.1 Overview</a>
+<li><a href="Upgrading.html#Upgrading">3.8.2 Upgrading</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Management" href="Management.html#Management">4 <span class="sc">gnats</span> Administration</a>
+<ul>
+<li><a href="GNATS-configuration.html#GNATS-configuration">4.1 Overview of <span class="sc">gnats</span> configuration</a>
+<li><a href="databases-file.html#databases-file">4.2 The <code>databases</code> file</a>
+<li><a href="dbconfig-file.html#dbconfig-file">4.3 The <code>dbconfig</code> file</a>
+<ul>
+<li><a href="Overall-database-configuration.html#Overall-database-configuration">4.3.1 Overall database configuration</a>
+<li><a href="Individual-field-configuration.html#Individual-field-configuration">4.3.2 Individual field configuration</a>
+<li><a href="Field-datatypes.html#Field-datatypes">4.3.3 Field datatypes</a>
+<li><a href="Edit-controls.html#Edit-controls">4.3.4 Edit controls</a>
+<li><a href="Named-query-definitions.html#Named-query-definitions">4.3.5 Named query definitions</a>
+<li><a href="Audit_002dtrail-formats.html#Audit_002dtrail-formats">4.3.6 Audit-trail formats</a>
+<li><a href="Outgoing-email-formats.html#Outgoing-email-formats">4.3.7 Outgoing email formats</a>
+<li><a href="Index-file-description.html#Index-file-description">4.3.8 Index file description</a>
+<li><a href="Initial-PR-input-fields.html#Initial-PR-input-fields">4.3.9 Initial PR input fields</a>
+</li></ul>
+<li><a href="Other-config-files.html#Other-config-files">4.4 Other database-specific config files</a>
+<ul>
+<li><a href="categories-file.html#categories-file">4.4.1 The <code>categories</code> file</a>
+<li><a href="responsible-file.html#responsible-file">4.4.2 The <code>responsible</code> file</a>
+<li><a href="submitters-file.html#submitters-file">4.4.3 The <code>submitters</code> file</a>
+<li><a href="states-file.html#states-file">4.4.4 The <code>states</code> file</a>
+<li><a href="addresses-file.html#addresses-file">4.4.5 The <code>addresses</code> file</a>
+<li><a href="classes-file.html#classes-file">4.4.6 The <code>classes</code> file</a>
+</li></ul>
+<li><a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file">4.5 The <span class="file">send-pr.conf</span> file</a>
+<li><a href="Admin-files.html#Admin-files">4.6 Administrative data files</a>
+<ul>
+<li><a href="index-file.html#index-file">4.6.1 The <code>index</code> file</a>
+<li><a href="current-file.html#current-file">4.6.2 The <code>current</code> file</a>
+</li></ul>
+<li><a href="Admin-utils.html#Admin-utils">4.7 Administrative utilities</a>
+<ul>
+<li><a href="mkdb.html#mkdb">4.7.1 Adding another database</a>
+<li><a href="mkcat.html#mkcat">4.7.2 Adding a problem category</a>
+<li><a href="rmcat.html#rmcat">4.7.3 Removing a problem category</a>
+<li><a href="gen_002dindex.html#gen_002dindex">4.7.4 Regenerating the index</a>
+<li><a href="check_002ddb.html#check_002ddb">4.7.5 Checking database health</a>
+<li><a href="gnats_002dpwconv.html#gnats_002dpwconv">4.7.6 Managing user passwords</a>
+</li></ul>
+<li><a href="Internal-utils.html#Internal-utils">4.8 Internal utilities</a>
+<ul>
+<li><a href="queue_002dpr.html#queue_002dpr">4.8.1 Handling incoming traffic</a>
+<li><a href="file_002dpr.html#file_002dpr">4.8.2 Processing incoming traffic</a>
+<li><a href="at_002dpr.html#at_002dpr">4.8.3 Timely reminders</a>
+<li><a href="pr_002dedit.html#pr_002dedit">4.8.4 The <code>edit-pr</code> driver</a>
+<li><a href="diff_002dprs.html#diff_002dprs">4.8.5 The <code>diff-prs</code> tool</a>
+<li><a href="pr_002dage.html#pr_002dage">4.8.6 The <code>pr-age</code> tool</a>
+</li></ul>
+</li></ul>
+<li><a name="toc_Locations" href="Locations.html#Locations">Appendix A Where <span class="sc">gnats</span> lives</a>
+<ul>
+<li><a href="prefix.html#prefix">A.1 <var>prefix</var></a>
+<li><a href="exec_002dprefix.html#exec_002dprefix">A.2 <var>exec-prefix</var></a>
+<li><a href="gnats_002dadm.html#gnats_002dadm">A.3 The <span class="file">gnats-adm</span> directory</a>
+<li><a href="defaults.html#defaults">A.4 Default installation locations</a>
+</li></ul>
+<li><a name="toc_gnatsd" href="gnatsd.html#gnatsd">Appendix B The <span class="sc">gnats</span> network server &ndash; <code>gnatsd</code></a>
+<ul>
+<li><a href="Description-of-gnatsd.html#Description-of-gnatsd">B.1 Description of <code>gnatsd</code></a>
+<li><a href="gnatsd-options.html#gnatsd-options">B.2 <code>gnatsd</code> options</a>
+<li><a href="gnatsd-command-protocol.html#gnatsd-command-protocol">B.3 <code>gnatsd</code> command protocol</a>
+<li><a href="gnatsd-commands.html#gnatsd-commands">B.4 <code>gnatsd</code> commands</a>
+<li><a href="gnatsd-environment-variables.html#gnatsd-environment-variables">B.5 <code>gnatsd</code> environment variables</a>
+</li></ul>
+<li><a name="toc_Access-Control" href="Access-Control.html#Access-Control">Appendix C Controlling access to databases</a>
+<ul>
+<li><a href="Overview.html#Overview">C.1 Overview</a>
+<li><a href="Overall-gnatsd-access-level.html#Overall-gnatsd-access-level">C.2 Overall <code>gnatsd</code> access level</a>
+<li><a href="gnatsd_002ehost_005faccess.html#gnatsd_002ehost_005faccess">C.3 Overall access levels per host</a>
+<li><a href="gnatsd_002euser_005faccess.html#gnatsd_002euser_005faccess">C.4 Access levels per user</a>
+<li><a href="Privileged-gnatsd-commands.html#Privileged-gnatsd-commands">C.5 Privileged <code>gnatsd</code> commands</a>
+</li></ul>
+<li><a name="toc_Regexps" href="Regexps.html#Regexps">Appendix D Querying using regular expressions</a>
+<li><a name="toc_dbconfig-recipes" href="dbconfig-recipes.html#dbconfig-recipes">Appendix E <span class="file">dbconfig</span> recipes</a>
+<li><a name="toc_Support" href="Support.html#Support">Appendix F <span class="sc">gnats</span> support</a>
+<li><a name="toc_Index" href="Index.html#Index">Index</a>
+</li></ul>
+</div>
+
+
+
+<div class="node">
+<p>
+<a name="Top"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Introduction.html#Introduction">Introduction</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
+<hr><br>
+</div>
+
+<h2 class="unnumbered">Overview</h2>
+
+<p><a name="index-overview-to-GNATS-1"></a><a name="index-foreword-2"></a>
+This manual documents <span class="sc">gnats</span>, the <span class="sc">gnu</span> Problem Report Management
+System, version 4.1.999.  <span class="sc">gnats</span> is a bug-tracking tool
+designed for use at a central <dfn>Support Site</dfn>.  Users who experience
+problems use electronic mail, web-based or other clients communicating
+with the <span class="sc">gnats</span> network daemon running at the support site or direct
+database submissions to communicate these problems to <dfn>maintainers</dfn>
+at that Support Site.  <span class="sc">gnats</span> partially automates the tracking of
+these <dfn>Problem Reports</dfn> (<dfn>PR</dfn>s) by:
+
+     <ul>
+<li>organizing problem reports into a database and notifying responsible
+parties of suspected bugs;
+
+     <li>allowing support personnel and their managers to edit and query
+accumulated bugs; and
+
+     <li>providing a reliable archive of problems (and their subsequent
+solutions) with a given program. 
+</ul>
+
+   <p><span class="sc">gnats</span> offers many of the same features offered by more generalized
+databases, including editing, querying, and basic reporting.  The
+<span class="sc">gnats</span> database itself is an ordered repository for problem reports;
+each PR receives a unique, incremental <dfn>PR number</dfn> which identifies
+it throughout its lifetime.  For a discussion on the working system
+adopted by <span class="sc">gnats</span>, see <a href="Paradigm.html#Paradigm">The database paradigm</a>.
+
+   <p>You can access the submitting, editing, and querying functions of
+<span class="sc">gnats</span> from within <span class="sc">gnu</span> Emacs.  See <a href="GNATS-user-tools.html#GNATS-user-tools">The <span class="sc">gnats</span> user tools</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="Introduction.html#Introduction">Introduction</a>:           Introducing GNATS. 
+<li><a accesskey="2" href="GNATS-user-tools.html#GNATS-user-tools">GNATS user tools</a>:       The GNATS user tools. 
+<li><a accesskey="3" href="Installation.html#Installation">Installation</a>:           Installing GNATS. 
+<li><a accesskey="4" href="Management.html#Management">Management</a>:             GNATS Administration. 
+<li><a accesskey="5" href="Locations.html#Locations">Locations</a>:              Where GNATS lives. 
+<li><a accesskey="6" href="gnatsd.html#gnatsd">gnatsd</a>:                 The GNATS network server. 
+<li><a accesskey="7" href="Access-Control.html#Access-Control">Access Control</a>:         Controlling access to GNATS databases. 
+<li><a accesskey="8" href="Regexps.html#Regexps">Regexps</a>:                Querying using regular expressions. 
+<li><a accesskey="9" href="dbconfig-recipes.html#dbconfig-recipes">dbconfig recipes</a>:       Useful dbconfig tricks. 
+<li><a href="Support.html#Support">Support</a>:                GNATS related sites and mailing lists. 
+<li><a href="Index.html#Index">Index</a>
+</ul>
+
+<!-- =============================================================== -->
+</body></html>
+

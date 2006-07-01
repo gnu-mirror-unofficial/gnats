@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+<title>classes file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Other-config-files.html#Other-config-files" title="Other config files">
+<link rel="prev" href="addresses-file.html#addresses-file" title="addresses file">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="classes-file"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="addresses-file.html#addresses-file">addresses file</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Other-config-files.html#Other-config-files">Other config files</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.4.6 The <code>classes</code> file</h4>
+
+<p><a name="index-_0040code_007bclasses_007d-file-326"></a>This file lists the possible classes of Problem Reports.  Each line
+consists of a class name, followed by a colon and an optional class type
+name (the class type name is not used for anything in the current
+implementation of <span class="sc">gnats</span>, so it may be left blank.  The <code>class</code>
+and <code>class-type-name</code> fields may only contain alphanumerics,
+<span class="samp">-</span>, <span class="samp">_</span>, and <span class="samp">.</span>, but no other
+characters.
+
+   <p>Then comes another colon, followed by an optional one-line
+description of the class.  <span class="sc">gnats</span> itself does not use the class
+description, but external tools such as Gnatsweb and TkGnats may use it. 
+Therefore, a line in this file should at least contain the following:
+
+<pre class="smallexample">     class::class description
+</pre>
+   <p>Lines beginning with <span class="samp">#</span> will be ignored, and the first listed
+class is the default class for an incoming Problem Report.
+
+   </body></html>
+

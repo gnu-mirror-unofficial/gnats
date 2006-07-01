@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+<title>Fields - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Introduction.html#Introduction" title="Introduction">
+<link rel="prev" href="States.html#States" title="States">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Fields"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="States.html#States">States</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">1.4 Problem Report format</h3>
+
+<p><a name="index-Problem-Report-format-35"></a><a name="index-format-36"></a><a name="index-database-similarities-37"></a><a name="index-fields-38"></a>
+The format of a PR is designed to reflect the nature of <span class="sc">gnats</span> as a
+database.  Information is arranged into <dfn>fields</dfn>, and kept in
+individual records (Problem Reports).
+
+   <p>A Problem Report contains two different types of fields: <dfn>Mail
+Header</dfn> fields, which are used by the mail handler for delivery, and
+<dfn>Problem Report</dfn> fields, which contain information relevant to the
+Problem Report and its submitter.  A Problem Report is essentially a
+specially formatted electronic mail message.
+
+   <p>Problem Report fields are denoted by a keyword which begins with
+<span class="samp">&gt;</span> and ends with <span class="samp">:</span>, as in <span class="samp">&gt;Confidential:</span>.  Fields
+belong to one of eight data types as listed in <a href="Field-datatypes-reference.html#Field-datatypes-reference">Field datatypes reference</a>.  As of version 4 of <span class="sc">gnats</span> all characteristics of
+fields, such as field name, data type, allowed values, permitted
+operations, on-change actions etc. are configurable.
+
+   <p>For details, see see <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>.
+
+<h4 class="subheading">Example Problem Report</h4>
+
+   <p>The following is an example Problem Report with the fields that would be
+present in a standard <span class="sc">gnats</span> configuration.  Mail headers are at the
+top, followed by <span class="sc">gnats</span> fields, which begin with <span class="samp">&gt;</span> and end
+with <span class="samp">:</span>.  The <span class="samp">Subject:</span> line in the mail header and the
+<code>Synopsis</code> field are usually duplicates of each other.
+
+   <p><a name="index-sample-Problem-Report-39"></a><a name="index-example-Problem-Report-40"></a><a name="index-Problem-Report-template-41"></a><p><table class="cartouche" summary="cartouche" border="1"><tr><td>
+<pre class="smallexample">     Message-Id:  <var>message-id</var>
+     Date:        <var>date</var>
+     From:        <var>address</var>
+     Reply-To:    <var>address</var>
+     To:          <var>bug-address</var>
+     Subject:     <var>subject</var>
+     
+     &gt;Number:       <var>gnats-id</var>
+     &gt;Category:     <var>category</var>
+     &gt;Synopsis:     <var>synopsis</var>
+     &gt;Confidential: yes <em>or</em> no
+     &gt;Severity:     critical, serious, <em>or</em> non-critical
+     &gt;Priority:     high, medium <em>or</em> low
+     &gt;Responsible:  <var>responsible</var>
+     &gt;State:        open, analyzed, suspended, feedback, <em>or</em> closed
+     &gt;Class:        sw-bug, doc-bug, change-request, support,
+     duplicate, <em>or</em> mistaken
+     &gt;Submitter-Id: <var>submitter-id</var>
+     &gt;Arrival-Date: <var>date</var>
+     &gt;Originator:   <var>name</var>
+     &gt;Organization: <var>organization</var>
+     &gt;Release:      <var>release</var>
+     &gt;Environment:
+        <var>environment</var>
+     &gt;Description:
+        <var>description</var>
+     &gt;How-To-Repeat:
+        <var>how-to-repeat</var>
+     &gt;Fix:
+        <var>fix</var>
+     &gt;Audit-Trail:
+     <var>appended-messages<small class="dots">...</small></var>
+     State-Changed-From-To: <var>from</var>-<var>to</var>
+     State-Changed-When: <var>date</var>
+     State-Changed-Why:
+        <var>reason</var>
+     Responsible-Changed-From-To: <var>from</var>-<var>to</var>
+     Responsible-Changed-When: <var>date</var>
+     Responsible-Changed-Why:
+        <var>reason</var>
+     &gt;Unformatted:
+        <var>miscellaneous</var>
+</pre>
+   </td></tr></table>
+
+<ul class="menu">
+<li><a accesskey="1" href="Field-datatypes-reference.html#Field-datatypes-reference">Field datatypes reference</a>
+<li><a accesskey="2" href="Mail-header-fields.html#Mail-header-fields">Mail header fields</a>
+<li><a accesskey="3" href="Problem-Report-fields.html#Problem-Report-fields">Problem Report fields</a>
+</ul>
+
+   </body></html>
+

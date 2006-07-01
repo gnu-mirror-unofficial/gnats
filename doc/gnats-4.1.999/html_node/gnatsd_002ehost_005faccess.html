@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+<title>gnatsd.host_access - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Access-Control.html#Access-Control" title="Access Control">
+<link rel="prev" href="Overall-gnatsd-access-level.html#Overall-gnatsd-access-level" title="Overall gnatsd access level">
+<link rel="next" href="gnatsd_002euser_005faccess.html#gnatsd_002euser_005faccess" title="gnatsd.user_access">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="gnatsd_002ehost_005faccess"></a>Next:&nbsp;<a rel="next" accesskey="n" href="gnatsd_002euser_005faccess.html#gnatsd_002euser_005faccess">gnatsd.user_access</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Overall-gnatsd-access-level.html#Overall-gnatsd-access-level">Overall gnatsd access level</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Access-Control.html#Access-Control">Access Control</a>
+<hr><br>
+</div>
+
+<h3 class="section">C.3 Overall access levels per host</h3>
+
+<p><a name="index-_0040file_007bgnatsd_002ehost_005faccess_007d-382"></a>
+The host access file (by default
+<span class="file">/usr/local/etc/gnats/gnatsd.host_access</span>) controls overall
+access levels on a per-host basis, meaning that settings in this file
+apply across all databases on the server.  Entries in this file are in
+the following format:
+
+   <p><var>host:access-level:whatever</var>
+
+<p class="noindent"><var>host</var> is the hostname or IP address of the host contacting
+gnatsd.  Wildcard characters are supported: <span class="samp">*</span> matches anything;
+<span class="samp">?</span> matches any single character.  By using wildcards, you can
+specify access levels for entire network subnets and domains.  Note
+that when <span class="sc">gnats</span> authenticates hosts, it reads the entries in this
+file in sequence until a match is found.  This means that wildcard
+entries must be placed near the end of the file, otherwise, they
+will override non-wildcard entries appearing after the wildcard
+ones.
+
+   <p>The second field is the access level of <var>host</var>.  The default is
+<code>deny</code>.  If the user's hostname isn't in the file or its access
+level is set to <code>deny</code>, the connection is closed immediately.
+
+   <p><span class="sc">gnats</span> currently doesn't make use of the third field. Remember to
+still include the second <span class="samp">:</span> on the line if you choose to leave the third
+field empty.
+
+   <p>Whenever a <code>CHDB</code> command is processed (or defaulted), the user's
+access level is set to the level for their host, as determined by the
+values in the <span class="file">gnatsd.host_access</span> file.  However, even if a host
+is given the <code>none</code> access level, an individual can still give the
+<code>USER</code> command to possibly gain a higher (but never lower) access
+than is set for their host.  The gnatsd <code>USER</code> command takes two
+arguments: <code>USER &lt;userid&gt; &lt;passwd&gt;</code>.
+
+   </body></html>
+

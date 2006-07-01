@@ -1,0 +1,68 @@
+<html lang="en">
+<head>
+<title>Mail header fields - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Fields.html#Fields" title="Fields">
+<link rel="prev" href="Field-datatypes-reference.html#Field-datatypes-reference" title="Field datatypes reference">
+<link rel="next" href="Problem-Report-fields.html#Problem-Report-fields" title="Problem Report fields">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Mail-header-fields"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Problem-Report-fields.html#Problem-Report-fields">Problem Report fields</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Field-datatypes-reference.html#Field-datatypes-reference">Field datatypes reference</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Fields.html#Fields">Fields</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">1.4.2 Mail header fields</h4>
+
+<p><a name="index-mail-header-fields-42"></a><a name="index-Internet-standard-RFC_002d822-43"></a>
+A Problem Report may contain any mail header field described in the
+Internet standard RFC-822.  The <code>send-pr</code> tool can be configured
+either to submit PRs to the support site by e-mail or by talking
+directly to the <code>gnatsd</code> network daemon on the <span class="sc">gnats</span> server. 
+This is also true for other client tools such as Gnatsweb.  Even when
+these tools are set up submit PRs directly to <code>gnatsd</code>, they will
+still include mail header fields that identify the sender and the
+subject in the submitted PR:
+
+     
+<a name="index-_0040code_007bTo_007d-header-44"></a>
+<dl><dt><code>To:</code><dd>The mail address for the Support Site, automatically supplied by the
+tool used to submit the PR or by the originator if plain e-mail was
+used.
+
+     <p><a name="index-_0040code_007bSubject_007d-header-45"></a><br><dt><code>Subject:</code><dd>A terse description of the problem.  This field normally contains the
+same information as the <code>Synopsis</code> field.
+
+     <p><a name="index-_0040code_007bFrom_007d-header-46"></a><br><dt><code>From:</code><dd>Supplied automatically when PRs are submitted by plain e-mail and when
+well-behaved tools such as <code>send-pr</code> are used; should always
+contain the originator's e-mail address.
+
+     <p><a name="index-_0040code_007bReply_002dTo_007d-header-47"></a><br><dt><code>Reply-To:</code><dd>A return address to which electronic replies can be sent; in most cases,
+the same address as the <code>From:</code> field. 
+</dl>
+
+   <p><a name="index-_0040code_007bReceived_002dBy_007d-headers-48"></a>One of the configurable options for <span class="sc">gnats</span> is whether or not to
+retain <code>Received-By</code><!-- /@w --> headers, which often consume a lot of
+space and are not often used.  See <a href="dbconfig-file.html#dbconfig-file">The dbconfig file</a>.
+
+<!--  -->
+</body></html>
+

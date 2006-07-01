@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+<title>send-pr.conf file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Management.html#Management" title="Management">
+<link rel="prev" href="Other-config-files.html#Other-config-files" title="Other config files">
+<link rel="next" href="Admin-files.html#Admin-files" title="Admin files">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="send_002dpr_002econf-file"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Admin-files.html#Admin-files">Admin files</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Other-config-files.html#Other-config-files">Other config files</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Management.html#Management">Management</a>
+<hr><br>
+</div>
+
+<h3 class="section">4.5 The <span class="file">send-pr.conf</span> file</h3>
+
+<p><a name="index-_0040code_007bsend_002dpr_002econf_007d-file-327"></a>This file contains some default values that need to be known in order
+for <code>send-pr</code> to work properly.  This file needs to be copied to
+all hosts where <code>send-pr</code> will be used.
+
+   <p>If <span class="sc">gnats</span> was built with default options, the <span class="file">send-pr.conf</span>
+file should be placed in the <span class="file">/usr/local/etc/gnats</span><!-- /@w --> directory. 
+However, if the option <code>--sysconfdir</code> was used during building of
+<span class="sc">gnats</span>, the <span class="file">send-pr.conf</span> file resides at the location
+given to this option.
+
+   <p>Entries in this file are on the format
+
+<pre class="smallexample">     variable=<var>value</var>
+</pre>
+   <p>The valid variables are:
+
+     <dl>
+<dt><code>SUBMITTER</code><dd>The default value to be used for the Submitter-Id field when
+<code>send-pr</code> is invoked.
+
+     <br><dt><code>DEFAULT_RELEASE</code><dd>The default value to be used for the Release field (only applicable if
+the Release field is defined in the <span class="file">dbconfig</span> file.
+
+     <br><dt><code>DEFAULT_ORGANIZATION</code><dd>The default value to be used for the Organization field.  (only
+applicable if the Organization field is defined in the <span class="file">dbconfig</span>
+file.
+
+     <br><dt><code>MAILPROG</code><dd>If the <span class="sc">gnats</span> server can't be reached directly over the network,
+i.e. it is behind a firewall or suchlike, <code>send-pr</code> can be set up
+to submit Problem Reports by e-mail.  This is done by setting the
+<code>MAILPROG</code> variable to point to a mailer such as Sendmail.  If
+<code>MAILPROG</code> needs to have the address that the mail is being sent
+to specified on the command line, it should be specified here as well
+(for example, <span class="samp">MAILPROG=''mail bugs@foo.bar.com''</span> should work). 
+If Sendmail is used, use <span class="samp">MAILPROG=''/usr/lib/sendmail -oi
+-t''</span>.  See also <code>MAILADDR</code> and <code>TEMPLATE</code> below.
+
+     <br><dt><code>MAILADDR</code><dd>If using e-mail to submit PRs, this is the address that PRs should be
+sent to.
+
+     <br><dt><code>TEMPLATE</code><dd>When invoked, <code>send-pr</code> communicates directly over the network
+with the <span class="sc">gnats</span> server to determine what fields to include in a
+correctly formatted Problem Report so that it can present the user
+with a template.  If the <span class="sc">gnats</span> server can't be reached directly
+over the network, a template must be provided.  Set the
+<code>TEMPLATE</code> variable to point to a template file created on the
+<span class="sc">gnats</span> server by using the command <span class="command">send-pr -p</span>. 
+See <a href="Installing-tools.html#Installing-tools">Installing the user tools</a>. 
+</dl>
+
+   </body></html>
+

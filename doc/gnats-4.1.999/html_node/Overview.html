@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+<title>Overview - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Access-Control.html#Access-Control" title="Access Control">
+<link rel="next" href="Overall-gnatsd-access-level.html#Overall-gnatsd-access-level" title="Overall gnatsd access level">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Overview"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Overall-gnatsd-access-level.html#Overall-gnatsd-access-level">Overall gnatsd access level</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Access-Control.html#Access-Control">Access Control</a>
+<hr><br>
+</div>
+
+<h3 class="section">C.1 Overview</h3>
+
+<p><span class="sc">gnats</span> supports granting various levels of access to the <span class="sc">gnats</span>
+databases served by the network daemon, <code>gnatsd</code>.
+
+   <p><span class="sc">gnats</span> access can be controlled at these levels:
+
+     <dl>
+<dt><code>deny</code><dd>gnatsd closes the connection
+
+     <br><dt><code>none</code><dd>no further access until userid and password given
+
+     <br><dt><code>listdb</code><dd>only listing of available databases is allowed
+
+     <br><dt><code>view</code><dd>query and view PRs with Confidential=no only
+
+     <br><dt><code>viewconf</code><dd>query and view PRs with Confidential=yes
+
+     <br><dt><code>edit</code><dd>full edit access
+
+     <br><dt><code>admin</code><dd>full admin access
+</dl>
+
+<p class="noindent">These access levels are used in the following settings:
+
+     <ul>
+<li>overall gnatsd access level
+
+     <li>overall access level set by host name or IP address
+
+     <li>overall access level set by userid and password
+
+     <li>per-database access level set by userid and password
+</ul>
+
+   </body></html>
+

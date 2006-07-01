@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+<title>responsible file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Other-config-files.html#Other-config-files" title="Other config files">
+<link rel="prev" href="categories-file.html#categories-file" title="categories file">
+<link rel="next" href="submitters-file.html#submitters-file" title="submitters file">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="responsible-file"></a>Next:&nbsp;<a rel="next" accesskey="n" href="submitters-file.html#submitters-file">submitters file</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="categories-file.html#categories-file">categories file</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Other-config-files.html#Other-config-files">Other config files</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.4.2 The <code>responsible</code> file</h4>
+
+<p><a name="index-_0040code_007bresponsible_007d-file-321"></a>
+This file contains a list of the responsible parties.  Lines beginning
+with <span class="samp">#</span> are ignored.  Each entry contains three fields, separated
+by colons:
+
+<pre class="smallexample">     <var>responsible</var>:<var>full-name</var>:<var>mail-address</var>
+</pre>
+   <p class="noindent">
+     <dl>
+<dt><var>responsible</var><dd>A name-tag description of the party in question, such as her or his user
+name, or the name of the group.  This name is listed in the PR in
+the <code>Responsible</code> field.
+
+     <br><dt><var>full-name</var><dd>The full name of the party (&ldquo;Charlotte Bronte&rdquo;; &ldquo;Compiler Group&rdquo;).
+
+     <br><dt><var>mail-address</var><dd>The full, valid mail address of the party.  This field is only necessary
+if the responsible party has no local mail address or alias. 
+</dl>
+
+<p class="noindent">A sample <span class="file">responsible</span> listing might be:
+
+<pre class="smallexample">     ren:Ren Hoek:
+     stimpy:Stimpson J. Cat:stimpy@lederhosen.org
+</pre>
+   <p class="noindent">Here, <code>ren</code> is a local user.  <code>stimpy</code> is remote, so his full
+address must be specified.
+
+<p class="noindent">The following entry <em>must</em> be present for <span class="sc">gnats</span> to function:
+
+<pre class="smallexample">     gnats-admin:GNATS administrator:
+</pre>
+   <p class="noindent"><code>gnats-admin</code> is usually defined as a mail alias when <span class="sc">gnats</span> is
+installed, so for this purpose <code>gnats-admin</code> is a local address. 
+However, this line can alos be used to redefine the email address of the
+<span class="sc">gnats</span> administrator, by adding the desired address at the end of
+the line.
+
+   </body></html>
+

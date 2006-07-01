@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+<title>queue-pr not available - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="E_002dMail.html#E_002dMail" title="E-Mail">
+<link rel="prev" href="E_002dMail.html#E_002dMail" title="E-Mail">
+<link rel="next" href="Outgoing-mail-bounces.html#Outgoing-mail-bounces" title="Outgoing mail bounces">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="queue_002dpr-not-available"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Outgoing-mail-bounces.html#Outgoing-mail-bounces">Outgoing mail bounces</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="E_002dMail.html#E_002dMail">E-Mail</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="E_002dMail.html#E_002dMail">E-Mail</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">queue-pr not available for sendmail programs</h5>
+
+<p>Your sendmail installation uses <span class="samp">smrsh</span> to check programs that are
+invoked from a mail alias.  <span class="samp">smrsh</span> only allows the execution of
+programs of which it is told that they are save.  To tell it that
+<span class="file">queue-pr</span> is save, create a symbolic link in the directory
+<span class="file">/etc/smrsh</span><!-- /@w --> to <span class="file">queue-pr</span>, like this:
+
+<pre class="smallexample">     mkdir /etc/smrsh	<span class="roman"># if it does not yet exist</span>
+     cd /etc/smrsh
+     ln -s /usr/local/libexec/gnats/queue-pr queue-pr
+</pre>
+   <p class="noindent">Replace <span class="file">/usr/local/libexec/gnats/queue-pr</span><!-- /@w --> by the real path to
+<span class="file">queue-pr</span>.
+
+   </body></html>
+

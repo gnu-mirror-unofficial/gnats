@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+<title>at-pr - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Internal-utils.html#Internal-utils" title="Internal utils">
+<link rel="prev" href="file_002dpr.html#file_002dpr" title="file-pr">
+<link rel="next" href="pr_002dedit.html#pr_002dedit" title="pr-edit">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="at_002dpr"></a>Next:&nbsp;<a rel="next" accesskey="n" href="pr_002dedit.html#pr_002dedit">pr-edit</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="file_002dpr.html#file_002dpr">file-pr</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Internal-utils.html#Internal-utils">Internal utils</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.8.3 Timely reminders</h4>
+
+<p><a name="index-_0040code_007bat_002dpr_007d-352"></a><a name="index-timely-reminders-353"></a><a name="index-automatic-notification-354"></a><a name="index-notification-of-overdue-PRs-355"></a>
+<code>at-pr</code> creates a queued job using <code>at</code> which, after an
+allotted <dfn>response time</dfn> is past, checks the PR to see if its state
+has changed from <span class="samp">open</span>. When the PR is originally filed,
+<code>file-pr</code> checks the <code>notify-about-expired-prs</code> parameter in
+the <span class="file">dbconfig</span> file. If this parameter is set to <code>true</code>,
+<code>file-pr</code> calls <code>at-pr</code>, which sets up the expiry check.
+
+   <p>The <span class="file">submitters</span> file contains the response time for each
+<code>&gt;Submitter-Id:</code><!-- /@w --> (see <a href="submitters-file.html#submitters-file">The <code>submitters</code> file</a>).  The time is determined in <dfn>business hours</dfn>, which are
+defined in the database's <span class="file">dbconfig</span> file (see <a href="Overall-database-configuration.html#Overall-database-configuration">Overall database configuration</a>).
+
+   <p>If the PR is urgent and is still open after the requisite time period
+has passed, <code>at-pr</code> sends a reminder to the <span class="sc">gnats</span>
+administrator, to the maintainer responsible for that submitter, and
+to the maintainer responsible for the PR with the following message:
+
+   <p><a name="index-reminder-message-356"></a><a name="index-_0040code_007bat_002dpr_007d-357"></a>
+<pre class="smallexample">     To: <var>submitter-contact</var> <var>responsible</var> <var>gnats-admin</var>
+     Subject: PR <var>gnats-id</var> not analyzed in <var>#hours</var> hours
+     
+     PR <var>gnats-id</var> was not analyzed within the acknowledgment period
+     of <var>#hours</var> business hours.  The pertinent information is:
+     
+      Submitter-Id: <var>submitter</var>
+      Originator: <var>full name of the submitter</var>
+      Synopsis: <var>synopsis</var>
+      Person responsible for the PR: <var>responsible</var>
+     
+     --
+     The GNU Problem Report Management System (GNATS)
+</pre>
+   <p>The PR is <dfn>urgent</dfn> if its priority is <span class="samp">critical</span> or if its
+priority is <span class="samp">serious</span> and the severity is <span class="samp">high</span>.
+
+   </body></html>
+

@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+<title>gnatsd environment variables - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="gnatsd.html#gnatsd" title="gnatsd">
+<link rel="prev" href="gnatsd-commands.html#gnatsd-commands" title="gnatsd commands">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="gnatsd-environment-variables"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="gnatsd-commands.html#gnatsd-commands">gnatsd commands</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="gnatsd.html#gnatsd">gnatsd</a>
+<hr><br>
+</div>
+
+<h3 class="section">B.5 <code>gnatsd</code> environment variables</h3>
+
+<p><a name="index-_0040code_007bgnatsd_007d-environment-variables-380"></a><a name="index-_0040code_007bGNATSDB_007d-381"></a>
+<code>gnatsd</code> supports the <code>GNATSDB</code> environment varable,
+See <a href="Environment.html#Environment">Environment</a>, in almost the same way as the <span class="sc">gnats</span> tools do. 
+This variable is used to determine which database to use.  For a local
+database, it contains the name of the database to
+access. <code>gnatsd</code> cannot service remote databases (though it might
+be interesting if it could) so the database is always assumed to be
+local.
+
+   <p>If <code>GNATSDB</code> is not set and the <code>--database</code> option is not
+supplied, it is assumed that the database is local and that its name is
+<span class="samp">default</span>.
+
+<!-- =============================================================== -->
+</body></html>
+

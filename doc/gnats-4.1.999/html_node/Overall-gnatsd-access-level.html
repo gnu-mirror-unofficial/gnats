@@ -1,0 +1,53 @@
+<html lang="en">
+<head>
+<title>Overall gnatsd access level - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Access-Control.html#Access-Control" title="Access Control">
+<link rel="prev" href="Overview.html#Overview" title="Overview">
+<link rel="next" href="gnatsd_002ehost_005faccess.html#gnatsd_002ehost_005faccess" title="gnatsd.host_access">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Overall-gnatsd-access-level"></a>Next:&nbsp;<a rel="next" accesskey="n" href="gnatsd_002ehost_005faccess.html#gnatsd_002ehost_005faccess">gnatsd.host_access</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Overview.html#Overview">Overview</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Access-Control.html#Access-Control">Access Control</a>
+<hr><br>
+</div>
+
+<h3 class="section">C.2 Overall <code>gnatsd</code> access level</h3>
+
+<p class="noindent">The overall <code>gnatsd</code> access level is set by starting <code>gnatsd</code>
+with the option
+
+<pre class="example">     <code>-m</code> <var>level</var> or <code>--maximum-access-level</code>=<var>level</var>,
+</pre>
+   <p class="noindent">where <var>level</var> is one of the six access levels listed
+above.  This restricts any access to the <span class="sc">gnats</span> daemon to levels up
+to and including <var>level</var>, regardless of the settings in the access
+control files discussed below.  If this option is left out, any access
+levels set in the access control files will be allowed.
+
+   <p>The discussion below assumes that the pre-build configure of <span class="sc">gnats</span>
+was done without altering the default values for the
+<code>--enable-gnatsd-user-access-file</code> and
+<code>--enable-gnatsd-host-access-file</code> options.  If non-default values
+were given, substitute as appropriate below.
+
+   </body></html>
+

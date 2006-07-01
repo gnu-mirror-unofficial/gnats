@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+<title>edit-pr - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="GNATS-user-tools.html#GNATS-user-tools" title="GNATS user tools">
+<link rel="prev" href="send_002dpr.html#send_002dpr" title="send-pr">
+<link rel="next" href="query_002dpr.html#query_002dpr" title="query-pr">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="edit_002dpr"></a>Next:&nbsp;<a rel="next" accesskey="n" href="query_002dpr.html#query_002dpr">query-pr</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="send_002dpr.html#send_002dpr">send-pr</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="GNATS-user-tools.html#GNATS-user-tools">GNATS user tools</a>
+<hr><br>
+</div>
+
+<h3 class="section">2.3 Editing existing Problem Reports</h3>
+
+<p><a name="index-using-_0040code_007bedit_002dpr_007d-135"></a><a name="index-invoking-_0040code_007bedit_002dpr_007d-136"></a><a name="index-_0040code_007bedit_002dpr_007d-137"></a>
+Use <code>edit-pr</code> to make changes to existing PRs in the database. 
+This tool can be invoked both from a shell prompt or from within GNU
+Emacs using <span class="samp">M-x edit-pr</span>.
+
+   <p><code>edit-pr</code> first examines the PR you wish to edit and locks it if it
+is not already locked.  This is to prevent you from editing a PR at the
+same time as another user.  If the PR you wish to edit is already in the
+process of being edited, <code>edit-pr</code> tells you the name of the person
+who owns the lock.
+
+   <p>You may edit any non-readonly fields in the database.  We recommend that
+you avoid deleting any information in the <span class="sc">Text</span> and <span class="sc">MultiText</span>
+fields (such as <code>Description</code> and <code>How-To-Repeat</code>
+(see <a href="Fields.html#Fields">Problem Report format</a>).  We also recommend that you
+record the final solution to the problem in the <code>Fix</code> field for
+future reference.  Note that heavily customized installations of
+<span class="sc">gnats</span> may have differently named fields, and sites using such
+installations should provide their own set of routines and instructions
+regarding how PRs should be treated throughout their life span.
+
+   <p>After the PR has been edited, it is then resubmitted to the database,
+and the index is updated (see <a href="index-file.html#index-file">The <code>index</code> file</a>). 
+For information on <code>pr-edit</code>, the main driver for <code>edit-pr</code>,
+see <a href="Internal-utils.html#Internal-utils">Internal utilities</a>.
+
+   <p>If you change a field that requires a reason for the change, such as the
+<code>Responsible</code> or <code>State</code> fields in the default configuration,
+<code>edit-pr</code> prompts you to supply a reason for the change.  A message
+is then appended to the <code>Audit-Trail</code> field of the PR with the
+changed values and the change reason.
+
+   <p>Depending on how the database is configured, editing various fields in
+the PR may also cause mail to be sent concerning these changes.  In the
+default configuration, any fields that generate <span class="samp">Audit-Trail</span>
+entries will also cause a copy of the new <span class="samp">Audit-Trail</span> message to
+be sent.
+
+   <p>Mail received at the PR submission email address and recognized by
+<span class="sc">gnats</span> as relating to an existing PR is also appended to the
+<span class="samp">Audit-Trail</span> field, see <a href="follow_002dup-via-email.html#follow_002dup-via-email">follow-up via email</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="edit_002dpr-from-the-shell.html#edit_002dpr-from-the-shell">edit-pr from the shell</a>:   Invoking <code>edit-pr</code> from the shell
+<li><a accesskey="2" href="follow_002dup-via-email.html#follow_002dup-via-email">follow-up via email</a>:  Following up via direct email
+</ul>
+
+   </body></html>
+

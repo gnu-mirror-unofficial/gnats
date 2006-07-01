@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>Named query definitions - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="dbconfig-file.html#dbconfig-file" title="dbconfig file">
+<link rel="prev" href="Edit-controls.html#Edit-controls" title="Edit controls">
+<link rel="next" href="Audit_002dtrail-formats.html#Audit_002dtrail-formats" title="Audit-trail formats">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Named-query-definitions"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Audit_002dtrail-formats.html#Audit_002dtrail-formats">Audit-trail formats</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Edit-controls.html#Edit-controls">Edit controls</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="dbconfig-file.html#dbconfig-file">dbconfig file</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.3.5 Named query definitions</h4>
+
+<p><a name="index-Named-query-definitions-306"></a>
+When queries are performed via <code>query-pr</code>, they can refer to a
+query format described by a <code>query</code> section in the <span class="file">dbconfig</span>
+file:
+
+<pre class="example">     query "queryname" {
+       format "formatstring"
+       [fields { "fieldname" [ "fieldname" ... ] } ]
+     }
+</pre>
+   <p><code>formatstring</code> is as described in <a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output">Formatting query-pr output</a>. 
+It basically contains a string with printf-like % escapes.  The output
+of the query is formatted as specified by this format string.
+
+   <p>The <code>fields</code> option lists the fields to be used with the format
+string.  If the <code>fields</code> option is present without a <code>format</code>
+option, the contents of the listed fields are printed out, separated by
+newlines.
+
+   <p>The named query formats <em>full</em>, <em>standard</em> amd <em>summary</em>
+must be present in the <span class="file">dbconfig</span> file.  <em>full</em> and
+<em>summary</em> correspond to the <code>query-pr</code> options <code>--full</code>
+and <code>--summary</code>, while <em>standard</em> is used when no format
+option is given to <code>query-pr</code>.
+
+   </body></html>
+

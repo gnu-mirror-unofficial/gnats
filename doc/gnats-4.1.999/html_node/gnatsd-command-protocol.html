@@ -1,0 +1,114 @@
+<html lang="en">
+<head>
+<title>gnatsd command protocol - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="gnatsd.html#gnatsd" title="gnatsd">
+<link rel="prev" href="gnatsd-options.html#gnatsd-options" title="gnatsd options">
+<link rel="next" href="gnatsd-commands.html#gnatsd-commands" title="gnatsd commands">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="gnatsd-command-protocol"></a>Next:&nbsp;<a rel="next" accesskey="n" href="gnatsd-commands.html#gnatsd-commands">gnatsd commands</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="gnatsd-options.html#gnatsd-options">gnatsd options</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="gnatsd.html#gnatsd">gnatsd</a>
+<hr><br>
+</div>
+
+<h3 class="section">B.3 <code>gnatsd</code> command protocol</h3>
+
+<p><a name="index-_0040code_007bgnatsd_007d-command-protocol-377"></a>
+Commands are issued to <code>gnatsd</code> as one or more words followed by a
+carriage-return/linefeed pair.  For example, the <code>CHDB</code> (change
+database) command is sent as <span class="samp">CHDB database&lt;CR&gt;&lt;LF&gt;</span> (the
+<code>CRLF</code> will not be explicitly written for future examples.)
+
+   <p>Replies from <code>gnatsd</code> are returned as one or more response lines
+containing a 3-digit numeric code followed by a human-readable string;
+the line is terminated with a <code>&lt;CR&gt;&lt;LF&gt;</code> pair.  For example, one
+possible response to the <code>CHDB</code> command above would be:
+
+<pre class="smallexample">     210 Now accessing GNATS database 'database'.
+</pre>
+   <p>The three-digit code is normally followed by a single ASCII space
+(character 0x20).  However, if additional response lines are to be
+returned from the server, there will be a single dash <span class="samp">-</span> instead
+of the space character after the three-digit code.
+
+   <p>Response code values are divided into ranges.  The first digit reflects
+the general type of response (such as &rdquo;successful&rdquo; or &rdquo;error&rdquo;), and
+the subsequent digits identify the specific type of response.
+
+     <dl>
+<dt><var>Codes 200-299</var><dd>Positive response indicating that the command was successful.  No
+subsequent data will be transmitted with the response.  In particular,
+code 210 (<code>CODE_OK</code>) is used as the positive result code for most
+simple commands.
+
+     <p>Commands that expect additional data from the client (such as
+<code>SUBM</code> or <code>VFLD</code>) use a two-step mechanism for sending the
+data.  The server will respond to the initial command with either a 211
+(<code>CODE_SEND_PR</code>) or 212 (<code>CODE_SEND_TEXT</code>) response line, or
+an error code if an error occurred with the initial command.  The client
+is then expected to send the remaining data using the same quoting
+mechanism as described for server responses in the 300-349 range.  The
+server will then send a final response line to the command.
+
+     <br><dt><var>Codes 300-399</var><dd>Positive response indicating that the query request was successful, and
+that a PR or other data will follow.  Codes 300-349 are used when
+transmitting PRs, and 350-399 are used for other responses.
+
+     <p>Codes in the 300-349 range are followed by a series of
+<code>CRLF</code>-terminated lines containing the command response, usually a
+PR.  The final line of the result is a single period <span class="samp">.</span>.  Result
+lines that begin with a period have an extra period prepended to them.
+
+     <p>Codes in the 350-399 range use a different scheme for sending their
+responses. The three-digit numeric code will be followed by either a
+dash <span class="samp">-</span> or a single space.  If the code is followed by a dash,
+that indicates that another response line will follow.  The final line
+of the response has a single space after the three-digit code.
+
+     <p>In previous versions of the protocol the first line of a
+<code>CODE_INFORMATION</code> (310) response was to be ignored.  This is no
+longer the case.  Instead, any lines marked with code
+<code>CODE_INFORMATION_FILLER</code> (351) are to be ignored.  This allows the
+server to transmit additional headers or other human-readable text that
+can be safely ignored by the clients.
+
+     <br><dt><var>Codes 400-599</var><dd>An error occurred, usually because of invalid command parameters or
+invalid input from the client, missing arguments to the command, or a
+command was issued out of sequence.  The human-readable message
+associated with the response line describes the general problem
+encountered with the command.
+
+     <p>Multiple error messages may be returned from a command; in this case the
+<span class="samp">-</span> continuation character is used on all but the last response
+line.
+
+     <br><dt><var>Codes 600-799</var><dd>An internal error occurred on the server, a timeout occurred reading
+data from the client, or a network failure occurred.  These errors are
+of the &rdquo;this should not occur&rdquo; nature, and retrying the operation may
+resolve the problem.  Fortunately, most <span class="sc">gnats</span> transactions are
+idempotent; unfortunately, locking the database or a PR are not
+repeatable actions (we cannot determine if an existing lock is the one
+we originally requested, or someone else's). 
+</dl>
+
+   </body></html>
+

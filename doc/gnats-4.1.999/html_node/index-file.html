@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+<title>index file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Admin-files.html#Admin-files" title="Admin files">
+<link rel="next" href="current-file.html#current-file" title="current file">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="index-file"></a>Next:&nbsp;<a rel="next" accesskey="n" href="current-file.html#current-file">current file</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Admin-files.html#Admin-files">Admin files</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.6.1 The <code>index</code> file</h4>
+
+<p><a name="index-_0040code_007bindex_007d-file-330"></a>
+The index is used to accelerate searches on the database by
+<code>query-pr</code> and <code>edit-pr</code>.  This file is not created until the
+first PR comes in.  It is then kept up to date by <span class="sc">gnats</span>; you should
+never touch this file.
+
+   <p>Searches on subjects contained in the index are much faster than
+searches which depend on data not in the index.  Inexes come in two
+different formats: <dfn>binary</dfn> and <dfn>plain-text</dfn>.  Binary indexes
+are safer, in that they avoid certain problems that may crop up if the
+field separators used by plain-text indexes appear in field data.
+
+   <p>A plain-text index contains single-line entries for all PR fields
+except for the multitext fields such as Description, How-To-Repeat,
+etc. Fields are separated by bars (<span class="samp">|</span>) except for
+<code>Category</code> and <code>Number</code>, which are separated by a slash
+(<span class="samp">/</span>).
+
+   <p>Binary indexes are not meant to be human-readable, but they are safer
+than the plain-text variety, in that they avoid certain problems that may
+crop up if the field separators used by plain-text indexes appear in
+field data.
+
+   <p>The format of the index for a database is set in the <span class="file">dbconfig</span>
+file. See <a href="Index-file-description.html#Index-file-description">Index file description</a>.
+
+   <p>Should the <span class="file">index</span> file become corrupted, the <code>gen-index</code>
+utility can be used to regenerate it. See <a href="gen_002dindex.html#gen_002dindex">Regenerating the index</a>.
+
+   </body></html>
+

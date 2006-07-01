@@ -1,0 +1,62 @@
+<html lang="en">
+<head>
+<title>Cookies - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Gnatsweb-Login-Questions.html#Gnatsweb-Login-Questions" title="Gnatsweb Login Questions">
+<link rel="prev" href="Login-Not-Remembered.html#Login-Not-Remembered" title="Login Not Remembered">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Cookies"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Login-Not-Remembered.html#Login-Not-Remembered">Login Not Remembered</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Gnatsweb-Login-Questions.html#Gnatsweb-Login-Questions">Gnatsweb Login Questions</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">Gnatsweb and Cookies</h5>
+
+<p><a name="index-cookies-11"></a>
+<b>Q:</b> Wait a moment!  Cookies?  Can I eat them?
+
+   <p><b>A:</b> No, not these.  The cookies about which we are talking here are
+little data packages that a web-server sends to your browser (in our
+case, on behalf of Gnatsweb) and your browser sends them back to the
+server next time.  Modern browsers give you the option to generally
+accept or reject cookies, or to be asked whenever a cookie arrives (some
+even can make this decision based on the web-server).  To learn more
+about cookies, visit, e.g., <a href="http://www.cookiecentral.com/">the Cookie Central</a>.
+
+   <p><b>Q:</b> So, which cookies does Gnatsweb send, and why?
+
+   <p><b>A:</b> Gnatsweb uses a cookie <code>gnatsweb-db-</code><em>database_name</em> to
+store your login information (username, password), and a cookie
+<code>gnatsweb-global</code> to store the <span class="sc">gnats</span> database you are working on,
+your e-mail address (to fill it in for you when you create a new report
+or reply to an existing report), a default list of fields to display in
+search results, and defaults for <code>Submitter-Id</code> and
+<code>Originator</code> fields.
+
+   <p>Gnatsweb also sets a cookie for each "saved query" (named
+<code>gnatsweb-query-</code><em>queryname</em>).
+
+   <p>It is therefore essential that you allow Gnatsweb to set its cookies. 
+For a typical effect of rejecting them, see <a href="Login-Not-Remembered.html#Login-Not-Remembered">Login Not Remembered</a>.
+
+   </body></html>
+

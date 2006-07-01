@@ -1,0 +1,46 @@
+<html lang="en">
+<head>
+<title>Initially Assign Field Values - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Miscellaneous.html#Miscellaneous" title="Miscellaneous">
+<link rel="prev" href="No-New-Reports.html#No-New-Reports" title="No New Reports">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Initially-Assign-Field-Values"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="No-New-Reports.html#No-New-Reports">No New Reports</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Miscellaneous.html#Miscellaneous">Miscellaneous</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">Assigning responsible etc. when entering a report</h5>
+
+<p><b>Q:</b> When entering a new PR, I want to assign a value to some field
+(e.g., <code>Responsible</code>) which is normally assigned by <span class="sc">gnats</span>.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 3.1xx)</b>
+This is not possible in <span class="sc">gnats</span> 3.1xx.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 4.x)</b> This is done by adding the field name (in this
+example, <code>Responsible</code>) to the <code>initial-entry</code><!-- /@w --> item at
+the very end of the <span class="file">dbconfig</span> file.  Gnatsweb will pick this up
+and add a <code>Responsible</code> field to the Create PR form.
+
+   </body></html>
+

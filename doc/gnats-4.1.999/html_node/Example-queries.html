@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+<title>Example queries - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="query_002dpr.html#query_002dpr" title="query-pr">
+<link rel="prev" href="Query-expressions.html#Query-expressions" title="Query expressions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Example-queries"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Query-expressions.html#Query-expressions">Query expressions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="query_002dpr.html#query_002dpr">query-pr</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.4.4 Example queries</h4>
+
+<p><a name="index-example-queries-150"></a>
+The following simple query:
+
+<pre class="smallexample">     query-pr --expr 'Category~"rats" &amp; State~"analyzed"
+                      &amp; Responsible~"fred"'
+</pre>
+   <p class="noindent">yields all PRs in the database which contain the field values:
+
+<pre class="smallexample">     &gt;Category:     rats         <em>and</em>
+     &gt;Responsible:  fred         <em>and</em>
+     &gt;State:        analyzed
+</pre>
+   <p>The following query:
+
+<pre class="smallexample">     query-pr --expr 'State~"open|analyzed"'
+</pre>
+   <p class="noindent">yields all PRs in the database whose <code>State</code> values match either
+<span class="samp">open</span> or <span class="samp">analyzed</span> (see <a href="Regexps.html#Regexps">Querying using regular expressions</a>.  This search is useful as a daily report that lists all
+Problem Reports which require attention.
+
+   <p>The following query:
+
+<pre class="smallexample">     query-pr --expr 'fieldtype:Text="The quick.*brown fox"'
+</pre>
+   <p class="noindent">yields all PRs whose <span class="sc">Text</span> fields contain the text <span class="samp">The quick</span>
+followed by <span class="samp">brown fox</span> within the same field. 
+See <a href="Regexps.html#Regexps">Querying using regular expressions</a>, which also contains
+further useful examples of query expressions.
+
+<!-- *************************************************************************** -->
+</body></html>
+

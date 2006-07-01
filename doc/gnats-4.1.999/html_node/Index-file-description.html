@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>Index file description - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="dbconfig-file.html#dbconfig-file" title="dbconfig file">
+<link rel="prev" href="Outgoing-email-formats.html#Outgoing-email-formats" title="Outgoing email formats">
+<link rel="next" href="Initial-PR-input-fields.html#Initial-PR-input-fields" title="Initial PR input fields">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Index-file-description"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Initial-PR-input-fields.html#Initial-PR-input-fields">Initial PR input fields</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Outgoing-email-formats.html#Outgoing-email-formats">Outgoing email formats</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="dbconfig-file.html#dbconfig-file">dbconfig file</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.3.8 Index file description</h4>
+
+<p><a name="index-Index-file-description-317"></a>
+The <code>index</code> section of the <span class="file">dbconfig</span> file lists the fields
+that appear in the database index.  The index is always keyed by PR
+number.  The general format for the <code>index</code> section is
+
+<pre class="example">     index {
+       path "file"
+       fields { "fieldname" [ "fieldname" ... ] }
+       binary-index true | false
+       [ separator "symbol" ]
+     }
+</pre>
+   <p>The <code>path</code> parameter gives the name of the index file in the
+<span class="file">gnats-adm</span> directory of the database.  Only one index is allowed
+per database, so only one <code>path</code> entry is allowed.
+
+   <p>The <code>fields</code> parameter controls what fields will appear, and in
+what order, in the index.  Fields are listed by their names, separated by
+spaces ( ).  Fields will appear in the order they are listed.
+
+   <p>The <code>binary-index</code> parameter controls whether the index is supposed
+to be in plaintext or binary format.  Binary format is recommended, as it
+avoids potential problems when field separators appear as bona-fide
+field contents.
+
+   <p>When plaintext format is used, by setting <code>binary-index false</code>, the
+symbol (<span class="samp">|</span>) is used as a field separator in the index, unless
+the optional <code>separator</code> parameter is used to redefine the
+separator character.
+
+   </body></html>
+

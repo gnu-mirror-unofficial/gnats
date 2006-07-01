@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+<title>States - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Introduction.html#Introduction" title="Introduction">
+<link rel="prev" href="Flowchart.html#Flowchart" title="Flowchart">
+<link rel="next" href="Fields.html#Fields" title="Fields">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="States"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Fields.html#Fields">Fields</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Flowchart.html#Flowchart">Flowchart</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">1.3 States of Problem Reports</h3>
+
+<p><a name="index-life_002dcycle-of-a-Problem-Report-19"></a><a name="index-states-of-Problem-Reports-20"></a><a name="index-Problem-Report-states-21"></a><a name="index-automatic-notification-22"></a>
+Each PR goes through a defined series of states between origination and
+closure.  By default, the originator of a PR receives notification
+automatically of any state changes.
+
+   <p>Unless your site has customized states (see <a href="../gnats/states-file.html#states-file">states file (gnats)</a>), <span class="sc">gnats</span> uses these states:
+
+     
+<a name="index-_0040emph_007bopen_007d-state-23"></a>
+<a name="index-initial-state-_0028_0040dfn_007bopen_007d_0029-24"></a>
+<a name="index-state_002d_002d_002d_0040dfn_007bopen_007d-25"></a>
+<dl><dt><dfn>open</dfn><dd>The initial state of a Problem Report.  This means the PR has been filed
+and the responsible person(s) notified.
+
+     <p><a name="index-_0040emph_007banalyzed_007d-state-26"></a><a name="index-state_002d_002d_002d_0040dfn_007banalyzed_007d-27"></a><br><dt><dfn>analyzed</dfn><dd>The responsible person has analyzed the problem.  The analysis should
+contain a preliminary evaluation of the problem and an estimate of the
+amount of time and resources necessary to solve the problem.  It should
+also suggest possible workarounds.
+
+     <p><a name="index-_0040emph_007bfeedback_007d-state-28"></a><a name="index-state_002d_002d_002d_0040dfn_007bfeedback_007d-29"></a><br><dt><dfn>feedback</dfn><dd>The problem has been solved, and the originator has been given a patch
+or other fix.  The PR remains in this state until the originator
+acknowledges that the solution works.
+
+     <p><a name="index-_0040emph_007bclosed_007d-state-30"></a><a name="index-state_002d_002d_002d_0040dfn_007bclosed_007d-31"></a><a name="index-final-state-_0028_0040dfn_007bclosed_007d_0029-32"></a><br><dt><dfn>closed</dfn><dd>A Problem Report is closed (&ldquo;the bug stops here&rdquo;) only when any
+changes have been integrated, documented, and tested, and the submitter
+has confirmed the solution.
+
+     <p><a name="index-_0040emph_007bsuspended_007d-state-33"></a><a name="index-state_002d_002d_002d_0040dfn_007bsuspended_007d-34"></a><br><dt><dfn>suspended</dfn><dd>Work on the problem has been postponed.  This happens if a timely
+solution is not possible or is not cost-effective at the present time. 
+The PR continues to exist, though a solution is not being actively
+sought.  If the problem cannot be solved at all, it should be closed
+rather than suspended. 
+</dl>
+
+<!--  -->
+</body></html>
+

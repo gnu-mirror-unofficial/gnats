@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+<title>states file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Other-config-files.html#Other-config-files" title="Other config files">
+<link rel="prev" href="submitters-file.html#submitters-file" title="submitters file">
+<link rel="next" href="addresses-file.html#addresses-file" title="addresses file">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="states-file"></a>Next:&nbsp;<a rel="next" accesskey="n" href="addresses-file.html#addresses-file">addresses file</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="submitters-file.html#submitters-file">submitters file</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Other-config-files.html#Other-config-files">Other config files</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.4.4 The <code>states</code> file</h4>
+
+<p><a name="index-_0040code_007bstates_007d-file-324"></a>
+This file lists the possible states for Problem Reports.  Each entry
+has up to three fields, separated by colons.  Lines beginning with
+<span class="samp">#</span> will be ignored.
+
+<pre class="smallexample">     <var>state</var>:<var>type</var>:<var>description</var>
+</pre>
+   <p class="noindent">
+     <dl>
+<dt><var>state</var><dd>The name of the state.  It may contain alphanumerics as well as
+<span class="samp">-</span> (hyphen), <span class="samp">_</span> (underscore), or <span class="samp">.</span> (period), but no
+other characters.
+
+     <br><dt><var>type</var><dd>This is the type of the state.  This field is optional and it may
+contain alphanumerics as well as <span class="samp">-</span> (hyphen), <span class="samp">_</span>
+(underscore), or <span class="samp">.</span> (period), but no other characters.
+
+     <p>The concept of the type of a state recognizes that there may for
+instance be several possible states for a Problem Report which
+effectively means that the PR is closed and that there may be certain
+actions that need to be taken when a PR reaches a &ldquo;closed state&rdquo;. 
+The problem may have been resolved, it might have been decided that
+the problem is unsolvable or simply that it won't be solved.  Some
+organizations may for instance wish to consider the &ldquo;suspended&rdquo;
+state as a state of type &ldquo;closed&rdquo;.
+
+     <p>Currently, the only defined state types are &ldquo;open&rdquo; and &ldquo;closed&rdquo;,
+the &ldquo;open&rdquo; type isn't currently used for anything while the
+&ldquo;closed&rdquo; type is only used to control the Closed-Date field of PRs. 
+Changing the state of a PR to any state of type &ldquo;closed&rdquo; will set
+the Closed-Date field with a time stamp and changing the state of a PR
+from one &ldquo;closed&rdquo; state to another will leave the Closed-Date field
+as it was.  Changing the state of a PR from any state of type
+&ldquo;closed&rdquo; to a non-closed state will clear the Closed-Date field.
+
+     <p>The <code>--skip-closed</code> option of <code>query-pr</code> refers to all
+states of type &ldquo;closed&rdquo;, not to a specific state name of &ldquo;closed&rdquo;.
+
+     <br><dt><var>description</var><dd>This is is an optional one-line description of what the state means. 
+Any character is okay in the description; a newline ends it. 
+<span class="sc">gnats</span> itself does not currently use the description for anything,
+but certain external tools (such as TkGnats and Gnatsweb) look for it,
+so it's a good idea to include one for every state. 
+</dl>
+
+   <p>The first state listed will be the state automatically assigned to
+Problem Reports when they arrive; by default this is named &ldquo;open&rdquo;. 
+The last state listed is the end state for Problem Reports &mdash; one
+should usually assume that a PR in this state is not being actively
+worked on; by default this state is named &ldquo;closed&rdquo;.  Even if a
+different name has been chosen for this state, <span class="sc">gnats</span> will force
+this state to be of type &ldquo;closed&rdquo;.
+
+   <p>It is recommended that you keep the default names of &ldquo;open&rdquo; and
+&ldquo;closed&rdquo; for the first and last states respectively, since there may
+be external tools that depend on these names.
+
+   </body></html>
+

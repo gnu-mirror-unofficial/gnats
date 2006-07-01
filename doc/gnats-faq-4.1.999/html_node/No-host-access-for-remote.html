@@ -1,0 +1,96 @@
+<html lang="en">
+<head>
+<title>No host access for remote - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Gnatsd-messages.html#Gnatsd-messages" title="Gnatsd messages">
+<link rel="prev" href="No-host-access-for-stdin.html#No-host-access-for-stdin" title="No host access for stdin">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="No-host-access-for-remote"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="No-host-access-for-stdin.html#No-host-access-for-stdin">No host access for stdin</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Gnatsd-messages.html#Gnatsd-messages">Gnatsd messages</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">You are not on the host access list</h5>
+
+<p><b>Q:</b> Gnatsd rejects connections from a remote host with the error
+message <span class="samp">520 You are not on the host access list</span>.
+
+   <p><b>A:</b> Check the file <span class="file">gnatsd.host_access</span><!-- /@w -->; if you are using
+the default locations, this is
+<span class="file">/usr/local/etc/gnats/gnatsd.host_access</span><!-- /@w -->. 
+(If you are still using <span class="sc">gnats</span> 3.xxx, the file is named
+<span class="file">gnatsd.conf</span><!-- /@w -->; its default place is
+<span class="file">/usr/local/etc/gnatsd.conf</span><!-- /@w -->.)
+
+   <p>Each line of the file names a host and its access level, separated by
+colons.  Gnatsd tries the lines in turn to match the remote host, and
+the first line that matches wins.
+
+   <p>The first field specifies the host(s); it may be a host name (like
+<span class="samp">goedel.example.com</span>), a partial domain (like
+<span class="samp">*.example.com</span>), an IP address (like <span class="samp">192.168.1.5</span>), or a
+partial IP address (like <span class="samp">192.168.*</span>).  If it is only <span class="samp">*</span>, it
+matches all hosts.
+
+   <p>Depending on how IP addresses are mapped to hostnames on your gnatsd
+machine, you may be able to omit the domain (like in <span class="samp">goedel</span>). 
+You may even <em>need</em> to omit the domain for some hosts.
+
+   <p>The second field is the access level granted to the remote host.  This
+is usually increased by the access level granted to the user as soon
+as (s)he logs in.
+
+   <p>The third field is currently not used; just leave it empty (but supply
+the colon between the second and the third field).
+
+   <p>Example:
+
+<pre class="example">     <p><table class="cartouche" summary="cartouche" border="1"><tr><td>
+     #
+     # This is a comment
+     #
+     # Grant view access to all hosts with IP addresses
+     # ranging from 192.168.0.0 to 192.168.255.255:
+     192.168.*:view:
+     # Users on host goedel.example.com get (at least) edit access:
+     goedel.example.com:edit:
+     # Users from escher.example.com may view all reports, even
+     # confidential ones:
+     escher.example.com:viewconf:
+     # Users from bach.example.com may only view all non-confidential
+     # reports:
+     bach.example.com:view:
+     # Users from other example.com hosts
+     # only get the access specified for them in gnatsd.user_access:
+     *.example.com:none:
+     # Same for domain our-users.example:
+     *.our-users.example:none:
+     # All other hosts are rejected
+     # without even asking for username and password:
+     *:deny:
+     </td></tr></table>
+</pre>
+   <p>The format is described in detail in the comments at the beginning of
+the file.
+
+   </body></html>
+

@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+<title>Changing Fields - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="General-configuration.html#General-configuration" title="General configuration">
+<link rel="prev" href="Renaming-a-Category.html#Renaming-a-Category" title="Renaming a Category">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Changing-Fields"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Renaming-a-Category.html#Renaming-a-Category">Renaming a Category</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="General-configuration.html#General-configuration">General configuration</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">3.1.3 How do I add, remove, or rename a PR field?</h4>
+
+<p class="noindent"><b>A: (</b><span class="sc">gnats</span><b> 3.1xx)</b> The fields and their names are fixed in
+<span class="sc">gnats</span> 3.1xx, so this is not possible.
+
+<p class="noindent"><b>A: (</b><span class="sc">gnats</span><b> 4.x)</b> Edit the file <span class="file">dbconfig</span> to reflect your
+changes.
+
+   <p>Note that the PR fields with the builtin-names <code>severity</code>,
+<code>priority</code> and <code>state</code> are required if you want automatic
+reminders (<code>notify-about-expired-prs = true</code>).  In this case, the
+file <span class="file">submitters</span> must also contain a response time. 
+<!-- The reminder is filed if: -->
+<!--  "response time" is not -1, and -->
+<!--  @code{notify-about-expired-prs} = true, and -->
+<!--  (@code{severity} = @code{critical}) -->
+<!-- or ( @code{severity} = @code{serious} -->
+<!-- and @code{priority} = @code{high} ) -->
+The <code>severity</code> field is checked for values <code>critical</code> and
+<code>serious</code>, and <code>priority</code> for value <code>high</code>. 
+This is currently not configurable.
+
+   </body></html>
+

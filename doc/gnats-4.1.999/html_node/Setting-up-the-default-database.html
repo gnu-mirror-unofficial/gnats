@@ -1,0 +1,93 @@
+<html lang="en">
+<head>
+<title>Setting up the default database - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installation.html#Installation" title="Installation">
+<link rel="prev" href="Installing-utils.html#Installing-utils" title="Installing utils">
+<link rel="next" href="Setting-up-periodic-jobs.html#Setting-up-periodic-jobs" title="Setting up periodic jobs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Setting-up-the-default-database"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Setting-up-periodic-jobs.html#Setting-up-periodic-jobs">Setting up periodic jobs</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Installing-utils.html#Installing-utils">Installing utils</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installation.html#Installation">Installation</a>
+<hr><br>
+</div>
+
+<h3 class="section">3.3 Installing the default database</h3>
+
+<p>For the following steps, log in as the user <code>gnats</code>.
+
+   <p>We are now going to initialize the default <span class="sc">gnats</span> database.  Run the
+following command:
+
+<pre class="example">     mkdb default
+</pre>
+   <p>This creates a database named <code>default</code>, with all its data stored
+below the directory <var>prefix</var><span class="file">/com/gnatsdb</span><!-- /@w -->, in a default
+installation this corresponds to <span class="file">/usr/local/com/gnatsdb</span><!-- /@w -->.  If
+you specified the <code>--enable-gnats-default-db</code> option when running
+configure, the default database will be created under the directory you
+specified instead.  <code>mkdb</code> creates the database directory itself,
+together with three different subdirectories<a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>:
+
+     <ul>
+<li>A directory for the mandatory <span class="sc">gnats</span> category <var>pending</var>.
+
+     <li>A <span class="file">gnats-queue</span> directory for queueing new messages to
+<span class="sc">gnats</span> before they are processed by <code>file-pr</code>.
+
+     <li>The administrative directory <span class="file">gnats-adm</span>. This directory is
+populated with default configuration files from the
+<var>prefix</var><span class="file">/etc/gnats/defaults</span><!-- /@w --> directory. 
+</ul>
+
+   <p>The next configuration step is to edit the default files copied to the
+database's <span class="file">gnats-adm</span> directory by <code>mkdb</code>.
+
+   <p>The default <span class="file">dbconfig</span> file installed by <code>mkdb</code> provides a
+good basis for many <span class="sc">gnats</span> databases. The default file causes
+similar behaviour to the 3.x versions of <span class="sc">gnats</span>. However, even if
+this might be precisely what you want, you should still go through the
+file and check that the default settings suit your needs. 
+See <a href="dbconfig-file.html#dbconfig-file">The <span class="file">dbconfig</span> file</a>.
+
+   <p>Then edit the files <span class="file">categories</span>, <span class="file">responsible</span>, and
+<span class="file">submitters</span> in the <span class="file">gnats-adm</span><!-- /@w --> directory (see <a href="Other-config-files.html#Other-config-files">Other database-specific config files</a>) to reflect your
+local needs.  For special configurations, you may also have to edit the
+<span class="file">states</span> and <span class="file">classes</span> files.
+
+   <p>If you used the <code>--enable-gnats-default-db</code> option in the pre-build
+configure to change the location of the default database, you need to
+edit the <span class="file">databases</span> config file, see <a href="databases-file.html#databases-file">The <span class="file">databases file</span></a>.  This file is by default located in the
+<var>prefix</var><span class="file">/etc/gnats</span><!-- /@w --> directory, but may have been changed
+by the option <code>--enable-gnats-dblist-file</code> option during configure.
+
+   <p><a name="index-_0040code_007bcron_007d-212"></a><a name="index-_0040code_007bat_007d-213"></a>
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> Upgraders from
+older versions of <span class="sc">gnats</span> should note that category directories are
+now created &ldquo;on-the-fly&rdquo; as needed by default.</p>
+
+   <p><hr></div>
+
+   </body></html>
+

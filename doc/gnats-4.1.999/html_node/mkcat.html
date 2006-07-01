@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+<title>mkcat - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Admin-utils.html#Admin-utils" title="Admin utils">
+<link rel="prev" href="mkdb.html#mkdb" title="mkdb">
+<link rel="next" href="rmcat.html#rmcat" title="rmcat">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="mkcat"></a>Next:&nbsp;<a rel="next" accesskey="n" href="rmcat.html#rmcat">rmcat</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="mkdb.html#mkdb">mkdb</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Admin-utils.html#Admin-utils">Admin utils</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.7.2 Adding a problem category</h4>
+
+<p><a name="index-_0040code_007bmkcat_007d-336"></a><a name="index-adding-a-problem-category-337"></a><a name="index-new-problem-categories-338"></a><a name="index-_0040code_007bcategories_007d-file-339"></a>
+To add new categories to the database:
+
+     <ol type=1 start=1>
+<li>Add a line to for each new category to the <span class="file">categories</span> file in the
+gnats-adm directory of the database. See <a href="categories-file.html#categories-file">The <code>categories</code> file</a>.
+
+     <li>Run <code>mkcat</code> If applicable.  If <code>create-category-dirs</code> is set
+to <code>false</code> in the database <span class="file">dbconfig</span> file, you need to create
+category directories with <code>mkcat</code>.  <code>mkcat</code> creates a
+subdirectory under the database directory for any new categories which
+appear in the <span class="file">categories</span> file.
+        </ol>
+
+   </body></html>
+

@@ -1,0 +1,87 @@
+<html lang="en">
+<head>
+<title>Installing utils - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installation.html#Installation" title="Installation">
+<link rel="prev" href="Configure-and-make.html#Configure-and-make" title="Configure and make">
+<link rel="next" href="Setting-up-the-default-database.html#Setting-up-the-default-database" title="Setting up the default database">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Installing-utils"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Setting-up-the-default-database.html#Setting-up-the-default-database">Setting up the default database</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Configure-and-make.html#Configure-and-make">Configure and make</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installation.html#Installation">Installation</a>
+<hr><br>
+</div>
+
+<h3 class="section">3.2 Installing the utilities</h3>
+
+<p><a name="index-installing-the-utilities-207"></a>
+The following steps are necessary for a complete installation.  You may
+need <code>root</code> access for these.
+
+     <ol type=1 start=1>
+<li>Install the utilities by invoking
+
+     <pre class="smallexample">          make install install-info
+     </pre>
+     <p>These targets indicate:
+
+          <dl>
+<dt><code>install</code><dd>Installs all programs into their configured locations
+(see <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>).
+
+          <br><dt><code>install-info</code><dd>Installs <span class="samp">info</span> files into their configured locations
+(see <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>). 
+</dl>
+
+     <p>After you have installed <span class="sc">gnats</span>, you can remove the object files with
+
+     <pre class="smallexample">          make clean
+     </pre>
+     <p><a name="index-_0040code_007bautoload_007d-commands-208"></a><a name="index-loading-_0040code_007b_002eel_007d-files-209"></a><a name="index-Emacs-functions-210"></a><li>If you do not have Emacs installed on your <span class="sc">gnats</span> server, this step
+should be skipped.
+
+     <p>Place the following lines in the file <span class="file">default.el</span> in your Emacs
+lisp library, or instruct your local responsible parties to place the
+lines in their <span class="file">.emacs</span>:
+
+     <pre class="smallexample">          (autoload 'send-pr "gnats"
+             "Command to create and send a problem report." t)
+          (autoload 'edit-pr "gnats"
+             "Command to edit a problem report." t)
+          (autoload 'view-pr "gnats"
+             "Command to view a problem report." t)
+          (autoload 'query-pr "gnats"
+             "Command to query information about problem reports." t)
+          (autoload 'unlock-pr "gnats"
+             "Unlock a problem report." t)
+          (autoload 'gnats-dbconfig-mode "gnats"
+            "Major mode for editing the `dbconfig' GNATS configuration file." t)
+          (add-to-list 'auto-mode-alist '("\\&lt;dbconfig$" . gnats-dbconfig-mode))
+     </pre>
+     <p><a name="index-prepare-_0040file_007bsend_002dpr_002econf_007d-211"></a><li>If you want people who are logged into the <span class="sc">gnats</span> server itself to
+be able to use the <code>send-pr</code> tool to submit problem reports, you
+need to create a configuration file for <code>send-pr</code> on the server. 
+See <a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file">The send-pr.conf configuration file</a>.
+
+        </ol>
+
+   </body></html>
+

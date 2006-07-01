@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+<title>submitters file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Other-config-files.html#Other-config-files" title="Other config files">
+<link rel="prev" href="responsible-file.html#responsible-file" title="responsible file">
+<link rel="next" href="states-file.html#states-file" title="states file">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="submitters-file"></a>Next:&nbsp;<a rel="next" accesskey="n" href="states-file.html#states-file">states file</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="responsible-file.html#responsible-file">responsible file</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Other-config-files.html#Other-config-files">Other config files</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.4.3 The <code>submitters</code> file</h4>
+
+<p><a name="index-_0040code_007bsubmitters_007d-file-322"></a>
+This is a database of sites which submit bugs to your support site.  It
+contains six fields delineated by colons.  Lines beginning with <span class="samp">#</span>
+will be ignored.
+
+   <p>Entries are of the format:
+
+<pre class="smallexample">     <var>submitter-id</var>:<var>name</var>:<var>type</var>:<var>resp-time</var>:<var>contact</var>:<var>notify</var>
+</pre>
+   <p class="noindent">
+     <dl>
+<dt><var>submitter-id</var><dd>A unique identifier for a specific site or other entity who submits
+Problem Reports. The first <code>submitter-id</code> listed in the file will
+be the default for PRs that arrive with invalid or empty submitter
+fields.
+
+     <br><dt><var>name</var><dd>The full name or a description of this entity.
+
+     <br><dt><var>type</var><dd>Optional description for the type of relationship of this submitter to
+your support site.  This could indicate a contract type, a level of
+expertise, etc., or it can remain blank.
+
+     <br><dt><var>resp-time</var><dd>Optional quoted response time in <dfn>business hours</dfn>.  If the
+database <span class="file">dbconfig</span> file has the <code>notify-about-expired-prs</code>
+entry set to <var>true</var> (see <a href="Overall-database-configuration.html#Overall-database-configuration">Overall database configuration</a>, <span class="sc">gnats</span> will use
+this field to schedule when it should notify the gnats-admin,
+responsible person and submitter contact that the PR wasn't analyzed
+within the agreed response time.  Business hours and business-week
+days are set in the <span class="file">dbconfig</span> file.  For information on
+<code>at-pr</code>, the program which sends out this reminder, see
+<a href="at_002dpr.html#at_002dpr">Timely Reminders</a>.
+
+     <br><dt><var>contact</var><dd>The name tag of the main <dfn>contact</dfn> at the Support Site for this
+submitter.  This contact should be in the <span class="file">responsible</span> file
+(see <a href="responsible-file.html#responsible-file">The <code>responsible</code> file</a>).  Incoming bugs
+from <var>submitter</var> are sent to this contact.  Optionally, this field
+can be left blank.
+
+     <br><dt><var>notify</var><dd>Any other parties who should receive copies of Problem Reports sent in
+by <var>submitter</var>.  They need not be listed in the <span class="file">responsible</span> file. 
+</dl>
+
+   <p>A few example entries in the <span class="file">submitters</span> file:
+
+<pre class="smallexample">     univ-hell:University of Hades:eternal:3:beelzebub:lucifer
+     tta:Telephones and Telegraphs of America:support:720:dave:
+</pre>
+   <p class="noindent">In this example, when a PR comes in from the University of Hades (who
+has an eternal contract), it should have <span class="samp">univ-hell</span> in its
+<code>Submitter-Id</code> field.  This Problem Report goes to <code>beelzebub</code>
+(who should be in the <span class="file">responsible</span> file), and if it is not
+analyzed within three business hours a reminder message is sent. 
+<code>lucifer</code> also receives a copy of the bug, and a copy of the
+reminder message as well (if it is sent).  When Telephones and
+Telegraphs of America utilizes their support contract and submits a bug,
+a copy is sent only to <code>dave</code>, who has 720 business hours to return
+an analysis before a reminder is sent.
+
+   <p><a name="index-disabling-_0040var_007bsubmitter_002did_007d-323"></a>To disable the feature of <span class="sc">gnats</span> which tracks the
+<code>Submitter-Id</code>, simply alter the <span class="file">submitters</span> file to only
+contain one <var>submitter-id</var> value, and instruct your submitters to
+ignore the field.
+
+   </body></html>
+

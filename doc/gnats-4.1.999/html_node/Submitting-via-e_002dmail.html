@@ -1,0 +1,60 @@
+<html lang="en">
+<head>
+<title>Submitting via e-mail - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="send_002dpr.html#send_002dpr" title="send-pr">
+<link rel="prev" href="send_002dpr-from-the-shell.html#send_002dpr-from-the-shell" title="send-pr from the shell">
+<link rel="next" href="Helpful-hints.html#Helpful-hints" title="Helpful hints">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Submitting-via-e_002dmail"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Helpful-hints.html#Helpful-hints">Helpful hints</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="send_002dpr-from-the-shell.html#send_002dpr-from-the-shell">send-pr from the shell</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="send_002dpr.html#send_002dpr">send-pr</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.2.4 Submitting a Problem Report via direct e-mail</h4>
+
+<p><a name="index-Direct-e_002dmail-127"></a><a name="index-Submitting-a-PR-via-e_002dmail-128"></a>In addition to using <code>send-pr</code>, there is another way to submit a
+problem report.  You can simply send an e-mail message to the PR
+submission e-mail address of the support site (This address should be
+published by the support site.)
+
+   <p>When you send unformatted e-mail to this address, <span class="sc">gnats</span> processes
+the message as a new problem report, filling in as many fields from
+defaults as it can:
+
+     <dl>
+<dt><code>Synopsis</code><dd>The <code>Synopsis</code> field is filled in by the <code>Subject</code> header of
+the e-mail message.
+
+     <br><dt><code>Submitter ID</code><dd><span class="sc">gnats</span> will try to derive the <code>Submitter</code> field from the address
+in the <code>From</code> header of the e-mail.
+
+     <br><dt><code>Description</code><dd>All of the text in the body of the e-mail message is put into the
+<code>Description</code> field. 
+</dl>
+
+   <p>Other fields, such as <code>Category</code>, <code>Version</code>, <code>Severity</code>,
+etc. are set to default values as defined by the <span class="sc">gnats</span> administrator.
+
+<!--  -->
+</body></html>
+

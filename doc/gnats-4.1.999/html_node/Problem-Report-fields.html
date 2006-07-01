@@ -1,0 +1,252 @@
+<html lang="en">
+<head>
+<title>Problem Report fields - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Fields.html#Fields" title="Fields">
+<link rel="prev" href="Mail-header-fields.html#Mail-header-fields" title="Mail header fields">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Problem-Report-fields"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Mail-header-fields.html#Mail-header-fields">Mail header fields</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Fields.html#Fields">Fields</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">1.4.3 Problem Report fields</h4>
+
+<p><a name="index-GNATS-database-fields-49"></a><a name="index-field-format-50"></a>
+<!-- FIXME - this node is loooooooooooooooong... -->
+
+   <p>In a standard <span class="sc">gnats</span> installation, certain fields will always be
+present in a Problem Report.  If a PR arrives without one or more of
+these fields, <span class="sc">gnats</span> will add them, and if they have default
+values set by the configuration at the Support Site, they will be
+filled in with these values.  Certain tools such as <code>send-pr</code> are
+set up to provide sensible defaults for most fields
+(see <a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file">The send-pr.conf configuration file</a>.)
+
+   <p>In the list below, the field type (<code>text</code>, <code>multitext</code>,
+<code>enumerated</code>, etc.) is supplied in parantheses.  The different
+field types are explained briefly in <a href="Field-datatypes-reference.html#Field-datatypes-reference">Field datatypes reference</a>.
+
+   <p><a name="index-fields-_002d-list-51"></a><a name="index-GNATS-fields-_002d-list-52"></a>
+     
+<a name="index-_0040code_007bSubmitter_002dId_007d-field-53"></a>
+<dl><dt><code>Submitter-Id</code><dd>(<code>enumerated-in-file</code>) A unique identification code assigned by the
+Support Site.  It is used to identify all Problem Reports coming from a
+particular site.  Submitters without a value for this field can invoke
+<code>send-pr</code> with the <code>--request-id</code> option to apply for one from
+the support organization.  Problem Reports from those not affiliated
+with the support organization should use the default value of <span class="samp">net</span>
+for this field.
+
+     <p>See <a href="submitters-file.html#submitters-file">The <code>submitters</code> file</a>, for details.
+
+     <p><a name="index-_0040code_007bNotify_002dList_007d-field-54"></a><br><dt><code>Notify-List</code><dd>(<code>text</code>) Comma-separated list of e-mail-addresses of people to
+notify when the PR changes significantly, i.e. when the Audit-Trail
+changes.  This list is independent from the Notify subfield of entries
+in the <span class="file">categories</span> file of the <span class="sc">gnats</span> database.
+
+     <p><a name="index-_0040code_007bOriginator_007d-field-55"></a><br><dt><code>Originator</code><dd>(<code>text</code>) Originator's real name.  Note that the Submitter and
+Originator might not be the same person/entity in all cases.
+
+     <p><a name="index-_0040code_007bOrganization_007d-field-56"></a><br><dt><code>Organization</code><dd>(<code>multitext</code>) The originator's organization.
+
+     <p><a name="index-_0040code_007bConfidential_007d-field-57"></a><a name="index-confidentiality-in-PRs-58"></a><a name="index-PR-confidentiality-59"></a><br><dt><code>Confidential</code><dd>(<code>enum</code>) Use of this field depends on the originator's relationship
+with the support organization; contractual agreements often have
+provisions for preserving confidentiality.  Conversely, a lack of a
+contract often means that any data provided will not be considered
+confidential.  Submitters should be advised to contact the support
+organization directly if this is an issue.
+
+     <p>If the originator's relationship to the support organization provides
+for confidentiality, then if the value of this field is <span class="samp">yes</span> the
+support organization treats the PR as confidential; any code samples
+provided are not made publicly available.
+
+     <p><a name="index-_0040code_007bSynopsis_007d-field-60"></a><br><dt><code>Synopsis</code><dd>(<code>text</code>) One-line summary of the problem.  <code>send-pr</code><!-- /@w --> copies
+this information to the <code>Subject</code> line when you submit a Problem
+Report.
+
+     <p><a name="index-_0040code_007bSeverity_007d-field-61"></a><br><dt><code>Severity</code><dd>(<code>enum</code>) The severity of the problem.  By default, accepted
+values include:
+
+          
+<a name="index-_0040emph_007bcritical_007d-severity-problems-62"></a>
+<dl><dt><code>critical</code><dd>The product, component or concept is completely non-operational or some
+essential functionality is missing.  No workaround is known.
+
+          <p><a name="index-_0040emph_007bserious_007d-severity-problems-63"></a><br><dt><code>serious</code><dd>The product, component or concept is not working properly or significant
+functionality is missing.  Problems that would otherwise be considered
+<span class="samp">critical</span> are usually rated <span class="samp">serious</span> when a workaround is
+known.
+
+          <p><a name="index-_0040emph_007bnon_002dcritical_007d-severity-problems-64"></a><br><dt><code>non-critical</code><dd>The product, component or concept is working in general, but lacks
+features, has irritating behavior, does something wrong, or doesn't
+match its documentation. 
+</dl>
+
+     <p><a name="index-_0040code_007bPriority_007d-field-65"></a><br><dt><code>Priority</code><dd>(<code>enumerated</code>) How soon the originator requires a solution. 
+Accepted values include:
+
+          
+<a name="index-_0040emph_007bhigh_007d-priority-problems-66"></a>
+<dl><dt><code>high</code><dd>A solution is needed as soon as possible.
+
+          <p><a name="index-_0040emph_007bmedium_007d-priority-problems-67"></a><br><dt><code>medium</code><dd>The problem should be solved in the next release.
+
+          <p><a name="index-_0040emph_007blow_007d-priority-problems-68"></a><br><dt><code>low</code><dd>The problem should be solved in a future release. 
+</dl>
+
+     <p><a name="index-_0040code_007bCategory_007d-field-69"></a><br><dt><code>Category</code><dd>(<code>enumerated-in-file</code>) The name of the product, component or
+concept where the problem lies.  The values for this field are defined
+by the Support Site. 
+See <a href="categories-file.html#categories-file">The <code>categories</code> file</a>, for details.
+
+     <p><a name="index-_0040code_007bClass_007d-field-70"></a><br><dt><code>Class</code><dd>(<code>enumerated-in-file</code>) The class of a problem in a default
+<span class="sc">gnats</span> installation can be one of the following:
+
+          
+<a name="index-_0040emph_007bsw_002dbug_007d-class-71"></a>
+<dl><dt><code>sw-bug</code><dd>A general product problem.  (<span class="samp">sw</span> stands for &ldquo;software&rdquo;.)
+
+          <p><a name="index-_0040emph_007bdoc_002dbug_007d-class-72"></a><br><dt><code>doc-bug</code><dd>A problem with the documentation.
+
+          <p><a name="index-_0040emph_007bchange_002drequest_007d-class-73"></a><br><dt><code>change-request</code><dd>A request for a change in behavior, etc.
+
+          <p><a name="index-_0040emph_007bsupport_007d-class-74"></a><br><dt><code>support</code><dd>A support problem or question.
+
+          <p><a name="index-_0040emph_007bduplicate_007d-class-75"></a><br><dt><code>duplicate (</code><var>pr-number</var><code>)</code><dd>Duplicate PR.  <var>pr-number</var> should be the number of the original PR.
+
+          <p><a name="index-_0040emph_007bmistaken_007d-class-76"></a><br><dt><code>mistaken</code><dd>No problem, user error or misunderstanding.  This value can only be set
+by tools at the Support Site, since it has no meaning for ordinary
+submitters. 
+</dl>
+
+     <p>See <a href="classes-file.html#classes-file">The <code>classes</code> file</a>, for details.
+
+     <p><a name="index-_0040code_007bRelease_007d-field-77"></a><br><dt><code>Release</code><dd>(<code>text</code>) Release or version number of the product, component or
+concept.
+
+     <p><a name="index-_0040code_007bEnvironment_007d-field-78"></a><br><dt><code>Environment</code><dd>(<code>multitext</code>) Description of the environment where the problem
+occurred: machine architecture, operating system, host and target types,
+libraries, pathnames, etc.
+
+     <p><a name="index-_0040code_007bDescription_007d-field-79"></a><br><dt><code>Description</code><dd>(<code>multitext</code>) Precise description of the problem.
+
+     <p><a name="index-_0040code_007bHow_002dTo_002dRepeat_007d-field-80"></a><br><dt><code>How-To-Repeat</code><dd>(<code>multitext</code>) Example code, input, or activities to reproduce the
+problem.  The support organization uses example code both to reproduce
+the problem and to test whether the problem is fixed.  Include all
+preconditions, inputs, outputs, conditions after the problem, and
+symptoms.  Any additional important information should be included. 
+Include all the details that would be necessary for someone else to
+recreate the problem reported, however obvious.  Sometimes seemingly
+arbitrary or obvious information can point the way toward a solution. 
+See also <a href="Helpful-hints.html#Helpful-hints">Helpful hints</a>.
+
+     <p><a name="index-_0040code_007bFix_007d-field-81"></a><br><dt><code>Fix</code><dd>(<code>multitext</code>) A description of a solution to the problem, or a
+patch which solves the problem.  (This field is most often filled in at
+the Support Site; we provide it to the submitter in case he or she has
+solved the problem.) 
+</dl>
+
+<p class="noindent"><span class="sc">gnats</span> adds the following fields when the PR arrives at the Support
+Site:
+
+     
+<a name="index-_0040code_007bNumber_007d-field-82"></a>
+<dl><dt><code>Number</code><dd>(<code>enumerated</code>) The incremental identification number for this PR. 
+This is included in the automated reply to the submitter (if that
+feature of <span class="sc">gnats</span> is activated; see <a href="dbconfig-file.html#dbconfig-file">The <span class="file">dbconfig</span> file</a>).  It is also included in the copy of the PR that
+is sent to the maintainer.
+
+     <p>The <code>Number</code> field is often paired with the <code>Category</code> field
+as
+
+     <pre class="smallexample">          <var>category</var>/<var>number</var>
+     </pre>
+     <p class="noindent">in subsequent email messages.  This is <span class="sc">gnats</span>' way of tracking
+followup messages that arrive by mail so that they are filed as part of
+the original PR.
+
+     <p><a name="index-_0040code_007bState_007d-field-83"></a><br><dt><code>State</code><dd>(<code>enumerated</code>) The current state of the PR.  In default <span class="sc">gnats</span>
+installations, accepted values are:
+
+          <dl>
+<dt><code>open</code><dd>The PR has been filed and the responsible person notified.
+
+          <br><dt><code>analyzed</code><dd>The responsible person has analyzed the problem.
+
+          <br><dt><code>feedback</code><dd>The problem has been solved, and the originator has been given a patch
+or other fix.  Support organizations may also choose to temporarily
+&rdquo;park&rdquo; PRs that are awaiting further input from the submitter under
+this state.
+
+          <br><dt><code>closed</code><dd>The changes have been integrated, documented, and tested, and the
+originator has confirmed that the solution works.
+
+          <br><dt><code>suspended</code><dd>Work on the problem has been postponed. 
+</dl>
+
+     <p class="noindent">The initial state of a PR is <span class="samp">open</span>.  See <a href="States.html#States">States of Problem Reports</a>.
+
+     <p><a name="index-_0040code_007bResponsible_007d-field-84"></a><br><dt><code>Responsible</code><dd>(<code>text</code>) The person at the Support Site who is responsible for this
+PR. 
+<span class="sc">gnats</span> retrieves this information from the <span class="file">categories</span> file
+(see <a href="categories-file.html#categories-file">The <code>categories</code> file</a>).
+
+     <p><a name="index-_0040code_007bArrival_002dDate_007d-field-85"></a><br><dt><code>Arrival-Date</code><dd>(<code>date</code>) The time that this PR was received by <span class="sc">gnats</span>.  The
+date is provided automatically by <span class="sc">gnats</span>.
+
+     <p><a name="index-_0040code_007bDate_002dRequired_007d-86"></a><a name="index-_0040code_007bDate_002dRequired_007d-field-87"></a><br><dt><code>Date-Required</code><dd>(<code>date</code>) The date by which a fix is required.  This is up to the
+maintainers at the Support Site to determine, so this field is not
+available until after the PR has been submitted.
+
+     <p><a name="index-_0040code_007bAudit_002dTrail_007d-field-88"></a><br><dt><code>Audit-Trail</code><dd>(<code>multitext</code>) Tracks related electronic mail as well as changes in
+the <code>State</code> and <code>Responsible</code> fields with the sub-fields:
+
+          
+<a name="index-_0040code_007bState_002dChanged_002d_003cFrom_003e_002d_003cTo_003e_007d-in-_0040code_007bAudit_002dTrail_007d-89"></a>
+<dl><dt><code>State-Changed-&lt;From&gt;-&lt;To&gt;:&nbsp;</code><var>oldstate</var><code>&gt;-&lt;</code><var>newstate</var><code><!-- /@w --></code><dd>The old and new <code>State</code> field values.
+
+          <p><a name="index-_0040code_007bResponsible_002dChanged_002d_003cFrom_003e_002d_003cTo_003e_007d-in-_0040code_007bAudit_002dTrail_007d-90"></a><br><dt><code>Responsible-Changed-&lt;From&gt;-&lt;To&gt;:&nbsp;</code><var>oldresp</var><code>&gt;-&lt;</code><var>newresp</var><code><!-- /@w --></code><dd>The old and new <code>Responsible</code> field values.
+
+          <p><a name="index-_0040code_007bState_002dChanged_002dBy_007d-in-_0040code_007bAudit_002dTrail_007d-91"></a><a name="index-_0040code_007bResponsible_002dChanged_002dBy_007d-in-_0040code_007bAudit_002dTrail_007d-92"></a><br><dt><code>State-Changed-By: </code><var>name</var><dt><code>Responsible-Changed-By: </code><var>name</var><dd>The name of the maintainer who effected the change.
+
+          <p><a name="index-_0040code_007bState_002dChanged_002dWhen_007d-in-_0040code_007bAudit_002dTrail_007d-93"></a><a name="index-_0040code_007bResponsible_002dChanged_002dWhen_007d-in-_0040code_007bAudit_002dTrail_007d-94"></a><br><dt><code>State-Changed-When: </code><var>timestamp</var><dt><code>Responsible-Changed-When: </code><var>timestamp</var><dd>The time the change was made.
+
+          <p><a name="index-_0040code_007bState_002dChanged_002dWhy_007d-in-_0040code_007bAudit_002dTrail_007d-95"></a><a name="index-_0040code_007bResponsible_002dChanged_002dWhy_007d-in-_0040code_007bAudit_002dTrail_007d-96"></a><br><dt><code>State-Changed-Why: </code><var>reason<small class="dots">...</small></var><dt><code>Responsible-Changed-Why: </code><var>reason<small class="dots">...</small></var><dd>The reason for the change. 
+</dl>
+
+     <p><a name="index-follow_002dup-via-email-97"></a><a name="index-subsequent-mail-98"></a><a name="index-related-mail-99"></a>The <code>Audit-Trail</code> field also contains any mail messages received by
+<span class="sc">gnats</span> related to this PR, in the order received.  <span class="sc">gnats</span> needs
+to find a reference to the PR in the Subject field of received email in
+order to be able to file it correctly, see <a href="follow_002dup-via-email.html#follow_002dup-via-email">Following up via direct email</a>.
+
+     <p><a name="index-_0040code_007bUnformatted_007d-field-100"></a><br><dt><code>Unformatted</code><dd>(<code>multitext</code>) Any random text found outside the fields in the
+original Problem Report. 
+</dl>
+
+   <p>During a Problem Report's journey from <span class="samp">open</span> to <span class="samp">closed</span>, two
+more fields, <code>Last-Modified</code> and <code>Closed Date</code> (both of type
+<code>date</code>) will be added.
+
+<!-- =============================================================== -->
+</body></html>
+

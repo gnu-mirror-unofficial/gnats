@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+<title>exec-prefix - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Locations.html#Locations" title="Locations">
+<link rel="prev" href="prefix.html#prefix" title="prefix">
+<link rel="next" href="gnats_002dadm.html#gnats_002dadm" title="gnats-adm">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="exec_002dprefix"></a>Next:&nbsp;<a rel="next" accesskey="n" href="gnats_002dadm.html#gnats_002dadm">gnats-adm</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="prefix.html#prefix">prefix</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Locations.html#Locations">Locations</a>
+<hr><br>
+</div>
+
+<h3 class="section">A.2 <var>exec-prefix</var></h3>
+
+<p><a name="index-_0040var_007bexec_002dprefix_007d-370"></a>
+<var>exec-prefix</var> corresponds to the variable <span class="samp">exec-prefix</span> for
+<code>configure</code>, which passes it on to the <span class="file">Makefile</span> it creates. 
+<var>exec-prefix</var><!-- /@w --> sets the root installation for
+<dfn>host-dependent</dfn> files as follows:
+
+     <dl>
+<dt><span class="sc">gnats</span> user tools<dd><var>exec-prefix</var><span class="file">/bin</span>
+
+     <br><dt>administrative and support utilities<dd><var>exec-prefix</var><span class="file">/libexec/gnats</span>
+
+     <br><dt>compiled libraries<dd><var>exec-prefix</var><span class="file">/lib</span><br>
+
+     <br><dt><em>etc<small class="dots">...</small></em><dd></dl>
+
+   <p><code>configure</code> supports several more options which allow you to
+specify in great detail where different files are installed.  The
+locations given in this appendix do not take into account highly
+customized installations, but fairly ordinary <span class="sc">gnats</span> installations
+should be covered by the material here.  For a complete list of options
+accepted by <code>configure</code>, run <code>./configure --help</code> in the
+<span class="file">gnats</span> subdirectory of the distribution.
+
+   <p>Since most installations are not intended to be distributed around a
+network, the default value for <var>exec-prefix</var><!-- /@w --> is the value of
+<span class="samp">prefix</span>, i.e., <span class="file">/usr/local</span><!-- /@w -->.  However, using
+<var>exec-prefix</var> saves space when you are installing a package on
+several different platforms for which many files are identical; rather
+than duplicate them for each host, these files can be shared in a common
+repository, and you can use symbolic links on each host to find the
+host-dependent files.
+
+   <p>Use <var>exec-prefix</var> in conjunction with <var>prefix</var> to share
+host-independent files, like libraries and <code>info</code> documents.  For
+example:
+
+<pre class="smallexample">        <em>for each host:</em>
+     configure --prefix=/usr/gnu --exec-prefix=/usr/gnu/H-<var>host</var>
+     make all install ...
+</pre>
+   <p class="noindent">Using this paradigm, all host-dependent binary files are installed into
+<span class="file">/usr/gnu/H-</span><var>host</var><span class="file">/bin</span><!-- /@w -->, while files which do not depend on
+the host type for which they were configured are installed into
+<span class="file">/usr/gnu</span><!-- /@w -->.
+
+   <p>You can then use a different symbolic link for <span class="file">/usr/gnu</span><!-- /@w -->
+on each host (<span class="file">/usr</span> is usually specific to a particular machine;
+it is always specific to a particular architecture).
+
+<pre class="smallexample">       <em>on host-1:</em>
+     ln -s /usr/gnu/H-<var>host-1</var> /usr/gnu
+       <em>on host-2:</em>
+     ln -s /usr/gnu/H-<var>host-2</var> /usr/gnu
+</pre>
+   <p class="noindent">To the end user, then, placing <span class="file">/usr/gnu/bin</span><!-- /@w --> in her or his
+<code>PATH</code> simply works transparently for each <var>host</var> type.
+
+   <p>You can change <var>exec-prefix</var><!-- /@w --> on the command line to
+<code>configure</code> using
+
+<pre class="smallexample">     configure --exec-prefix=<var>exec-prefix</var> ...
+</pre>
+   <p>We recommend that you consult <a href="../configure/Using-configure.html#Using-configure">Using <code>configure</code> (Cygnus configure)</a>, before attempting this.
+
+   </body></html>
+

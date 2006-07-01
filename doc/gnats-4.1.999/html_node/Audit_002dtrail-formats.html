@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+<title>Audit-trail formats - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="dbconfig-file.html#dbconfig-file" title="dbconfig file">
+<link rel="prev" href="Named-query-definitions.html#Named-query-definitions" title="Named query definitions">
+<link rel="next" href="Outgoing-email-formats.html#Outgoing-email-formats" title="Outgoing email formats">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Audit_002dtrail-formats"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Outgoing-email-formats.html#Outgoing-email-formats">Outgoing email formats</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Named-query-definitions.html#Named-query-definitions">Named query definitions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="dbconfig-file.html#dbconfig-file">dbconfig file</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.3.6 Audit-trail formats</h4>
+
+<p><a name="index-Audit_002dtrail-format-307"></a>
+These formats are similar to the named query formats, but they include
+more options.  They are used for formatting audit-trail entries and for
+outgoing email messages.
+
+   <p>There is currently only one audit-trail format, defined by the
+<code>audit-trail-format</code> option:
+
+<pre class="example">     audit-trail-format {
+       format "formatstring"
+       [ fields { "fieldname" [ "fieldname" ... ] } ]
+     }
+</pre>
+   <p>For those fields that require an audit-trail entry, the audit-trail text
+to be appended is formatted as described by this format.  The per-field
+<code>audit-trail-format</code> is used in preference to this one, if it
+exists.
+
+   <p><code>formatstring</code> and <code>fieldname</code> are similar to those used by
+the named query format.  <code>fieldname</code> may also be a <dfn>format
+parameter</dfn>, which is a context-specific value.  (Format parameters are
+distinguished from fieldnames by a leading dollar sign (<span class="samp">$</span>)).
+
+   <p>The following format parameters are defined for
+<code>audit-trail-format</code> entries:
+
+     
+<a name="index-format-parameters-308"></a>
+<dl><dt><code>$Fieldname</code><dd>The name of the field for which an audit-trail entry is being created.
+
+     <br><dt><code>$OldValue</code><dd>The old value of the field.
+
+     <br><dt><code>$NewValue</code><dd>The new field value.
+
+     <br><dt><code>$EditUserEmailAddr</code><dd>The email address of the user editing the field.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the <span class="file">responsible</span>
+file; if not available, user's local address is used.
+
+     <br><dt><code>$CurrentDate</code><dd>The current date.
+
+     <br><dt><code>$ChangeReason</code><dd>The reason for the change; may be blank if no reason was supplied. 
+</dl>
+
+   <p>These parameters may be used anywhere a <code>fieldname</code> can appear.
+
+   </body></html>
+

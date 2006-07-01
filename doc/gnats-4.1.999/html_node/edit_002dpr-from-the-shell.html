@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+<title>edit-pr from the shell - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="edit_002dpr.html#edit_002dpr" title="edit-pr">
+<link rel="next" href="follow_002dup-via-email.html#follow_002dup-via-email" title="follow-up via email">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="edit_002dpr-from-the-shell"></a>Next:&nbsp;<a rel="next" accesskey="n" href="follow_002dup-via-email.html#follow_002dup-via-email">follow-up via email</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="edit_002dpr.html#edit_002dpr">edit-pr</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.3.1 Invoking <code>edit-pr</code> from the shell</h4>
+
+<p><a name="index-_0040code_007bedit_002dpr_007d-from-the-shell-138"></a>
+The usage for <code>edit-pr</code> is:
+
+<pre class="smallexample">     edit-pr [ -V | --version ] [ -h | --help ]
+             [-d <var>database</var> | --database <var>database</var>] <var>PR Number</var>
+</pre>
+   <p class="noindent">Network-mode-only options:
+
+<pre class="smallexample">              [--host <var>host</var> | -H <var>host</var>] [--port <var>port</var>]
+              [--user <var>user</var> | -v <var>user</var>]
+              [--passwd <var>passwd</var> | -w <var>passwd</var>]
+</pre>
+   <p class="noindent">The options have the following meaning:
+
+     <dl>
+<dt><code>-h, --help</code><dd>Prints a brief usage message for edit-pr.
+
+     <br><dt><code>-V, --version</code><dd>Prints the version number for edit-pr.
+
+     <br><dt><code>-d </code><var>database</var><code>, --database </code><var>database</var><dd>Specifies the database containing the PR to be edited; if no database is
+specified, the database named <span class="samp">default</span> is assumed.  This option
+overrides the database specified in the <code>GNATSDB</code> environment
+variable.
+
+     <br><dt><code>--host </code><var>host</var><code>, -H </code><var>host</var><dd>Specifies the hostname of the gnatsd server to communicate with.  This
+overrides the value in the <code>GNATSDB</code> environment variable.
+
+     <br><dt><code>--port </code><var>port</var><dd>Specifies the port number of the gnatsd server to communicate with. 
+This overrides the value in the <code>GNATSDB</code> environment variable.
+
+     <br><dt><code>--user </code><var>user</var><code>, -v </code><var>user</var><dd>Specifies the username to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+
+     <br><dt><code>--passwd </code><var>passwd</var><code>, -w </code><var>passwd</var><dd>Specifies the password to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable. 
+</dl>
+
+   <p><code>edit-pr</code> calls the editor specified in your environment variable
+<code>EDITOR</code> on a temporary copy of that PR.  (If you don't have the
+variable <code>EDITOR</code> defined in your environment, the default editor
+<code>vi</code> is used.)
+
+   <p>Edit the PR, changing any relevant fields or adding to existing
+information.  When you exit the editor, <code>edit-pr</code> prompts you on
+standard input for a reason if you have changed a field that requires
+specifying a reason for the change.
+
+   </body></html>
+

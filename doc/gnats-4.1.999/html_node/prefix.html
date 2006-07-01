@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>prefix - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Locations.html#Locations" title="Locations">
+<link rel="next" href="exec_002dprefix.html#exec_002dprefix" title="exec-prefix">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="prefix"></a>Next:&nbsp;<a rel="next" accesskey="n" href="exec_002dprefix.html#exec_002dprefix">exec-prefix</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Locations.html#Locations">Locations</a>
+<hr><br>
+</div>
+
+<h3 class="section">A.1 <var>prefix</var></h3>
+
+<p><a name="index-_0040var_007bprefix_007d-369"></a>
+<var>prefix</var> corresponds to the variable <span class="samp">prefix</span> for
+<code>configure</code>, which passes it on to the <span class="file">Makefile</span> it creates. 
+<var>prefix</var> sets the root installation directory for
+<dfn>host-independent</dfn> files as follows:
+
+<!-- FIXME - check these -->
+<dl>
+<dt>the directory path of the default database<dd><var>prefix</var><span class="file">/com</span><br>
+
+     <br><dt>site-wide configuration files<dd><var>prefix</var><span class="file">/etc/gnats</span><br>
+
+     <br><dt><code>man</code> pages<dd><var>prefix</var><span class="file">/man</span>
+
+     <br><dt><code>info</code> documents<dd><var>prefix</var><span class="file">/info</span>
+
+     <br><dt><code>include</code> files<dd><var>prefix</var><span class="file">/include</span>
+
+     <br><dt><em>etc<small class="dots">...</small></em><dd></dl>
+
+   <p>The default value for <var>prefix</var> is <span class="file">/usr/local</span><!-- /@w -->, which can
+be changed on the command line to <code>configure</code> using
+
+<pre class="smallexample">     configure --prefix=<var>prefix</var> ...
+</pre>
+   <p class="noindent">See <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a>.
+
+   </body></html>
+

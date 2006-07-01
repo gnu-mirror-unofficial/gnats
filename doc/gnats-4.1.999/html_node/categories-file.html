@@ -1,0 +1,106 @@
+<html lang="en">
+<head>
+<title>categories file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Other-config-files.html#Other-config-files" title="Other config files">
+<link rel="next" href="responsible-file.html#responsible-file" title="responsible file">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="categories-file"></a>Next:&nbsp;<a rel="next" accesskey="n" href="responsible-file.html#responsible-file">responsible file</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Other-config-files.html#Other-config-files">Other config files</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.4.1 The <code>categories</code> file</h4>
+
+<p><a name="index-_0040code_007bcategories_007d-file-319"></a>
+The <span class="file">categories</span> file contains a list of problem categories,
+specific to the database, which <span class="sc">gnats</span> tracks.  This file also
+matches responsible people with these categories.  You must edit this
+file initially, creating valid categories.  In most installations,
+<span class="sc">gnats</span> is configured to create directories on disk for valid
+categories automatically as needed (see <a href="Overall-database-configuration.html#Overall-database-configuration">Overall database configuration</a>). If <span class="sc">gnats</span> isn't set
+up to do this, you need to run <code>mkcat</code> to create the corresponding
+subdirectories of the database directory. For instructions on running
+<code>mkcat</code>, see <a href="mkcat.html#mkcat">Adding a problem category</a>.
+
+   <p>To create a new category, log in as <span class="sc">gnats</span>, add a line to this file,
+and run <code>mkcat</code> if applicable.  Lines beginning with <span class="samp">#</span> are
+ignored.
+
+   <p>A line in the <span class="file">categories</span> file consists of four fields delimited
+by colons, as follows:
+
+<pre class="smallexample">     <var>category</var>:<var>description</var>:<var>responsible</var>:<var>notify</var>
+</pre>
+   <p class="noindent">
+     <dl>
+<dt><var>category</var><dd>A unique category name, made up of text characters.  This name cannot
+contain spaces or any of the following characters:
+
+     <pre class="smallexample">          ! $ &amp; * ( ) { } [ ] ` ' " ; : &lt; &gt; ~
+     </pre>
+     <p class="noindent">Ideally, category names should not contain commas or begin with periods. 
+Each line has a corresponding subdirectory in the database directory.
+
+     <br><dt><var>description</var><dd>A terse textual description of the category.
+
+     <br><dt><var>responsible</var><dd>The name tag of the party responsible for this category of problems, as
+listed in the <span class="file">responsible</span> file (see <a href="responsible-file.html#responsible-file">The <code>responsible</code> file</a>).
+
+     <br><dt><var>notify</var><dd>One or more other parties which should be notified when a Problem Report
+with this category arrives, such as a project manager, other members of
+the same project, other interested parties, or even log files.  These
+should be separated with commas. 
+</dl>
+
+   <p>A good strategy for configuring this file is to have a different
+category for each product your organization supports or wishes to track
+information for.
+
+<pre class="smallexample">     rock:ROCK program:me:myboss,fred
+     stone:STONE utils:barney:fred
+     iron:IRON firewall:me:firewall-log
+</pre>
+   <p>In the above example, the nametags <span class="samp">myboss</span>, <span class="samp">me</span>,
+<span class="samp">fred</span>, and <span class="samp">barney</span> must be defined in the <span class="file">responsible</span>
+file (see <a href="responsible-file.html#responsible-file">The <code>responsible</code> file</a>).
+
+   <p>Problem Reports with a category of <span class="samp">rock</span> are sent to the local
+mail address (or alias) <span class="samp">me</span>, and also sent to the addresses
+<span class="samp">myboss</span> and <span class="samp">fred</span>.  PRs with a category of <span class="samp">stone</span> are
+sent to the local addresses <span class="samp">barney</span> and <span class="samp">fred</span> only, while
+PRs with the category <span class="samp">iron</span> are sent only to <span class="samp">me</span>, and are
+also filed in <code>firewall-log</code> (in this case, a mail alias should be set
+up, see <a href="Aliases.html#Aliases">Setting up mail aliases</a>.
+
+   <p>If you want to separate PRs in each problem category into specific
+subsets, say <em>documentation</em> and <em>software bugs</em>,
+using the <span class="file">classes</span> file is recommended.  See <a href="classes-file.html#classes-file">The <span class="file">classes</span> file</a>.
+
+   <p>Only one category <em>must</em> be present for <span class="sc">gnats</span> to function:
+
+<pre class="smallexample">     pending:Non-categorized PRs:gnats-admin:
+</pre>
+   <p><a name="index-_0040code_007bpending_007d-file-320"></a>The <span class="file">pending</span> directory is created automatically when you run
+<code>mkdb</code> to initialize a new database.  (see <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a>).
+
+   </body></html>
+

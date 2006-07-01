@@ -1,0 +1,65 @@
+<html lang="en">
+<head>
+<title>Upgrading - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="General.html#General" title="General">
+<link rel="prev" href="Bug-Reporting.html#Bug-Reporting" title="Bug Reporting">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Upgrading"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Bug-Reporting.html#Bug-Reporting">Bug Reporting</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="General.html#General">General</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">1.7 Upgrading Considerations</h3>
+
+<p>See <a href="../gnats/Upgrading.html#Upgrading">Upgrading from older versions (Keeping Track)</a> for the upgrade process from 3.x to 4.x.
+
+   <p>If you are running a 3.x version, <em>please consider upgrading to 4.0.</em>
+There are some security concerns about the 3.1xx code that have gone
+with 4.0.  Furthermore, the <span class="sc">gnats</span> 3 branch is not maintained
+anymore due to lack of capacity.
+
+   <p>The default format of the reports has not changed during the transition
+from 3.113.1 to 4.0, though you may add more fields to 4.0 reports (and
+leave out others).  The format of the index file is now binary.
+
+   <p>However, you have to change the e-mail aliases because the meaning of
+the <span class="samp">-d</span> option to the client programs has changed: It took the
+<em>directory</em> of the <span class="sc">gnats</span> database in 3.1xx, and now takes its
+<em>name</em> (plus, it is now installed into the <span class="file">libexec</span> directory
+instead of the <span class="file">lib</span> directory).  I.e., you must change the aliases:
+
+<pre class="smallexample">     # GNATS 3 aliases:
+     ourdb-query: "|/usr/local/lib/gnats/mail-query -d /usr/local/gnats/db2"
+     ourdb-bugs:  "|/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -q"
+</pre>
+   <p>to
+<pre class="smallexample">     # GNATS 4 aliases:
+     ourdb-query: "|/usr/local/libexec/gnats/mail-query -d ourdb"
+     ourdb-bugs:  "|/usr/local/libexec/gnats/queue-pr -d ourdb -q"
+</pre>
+   <p>Also note that the client/server protocol has changed from 3.1xx to
+4.0; you cannot run clients from one version with the server from the
+other version.
+
+   </body></html>
+

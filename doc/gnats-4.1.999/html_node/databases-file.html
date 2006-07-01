@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+<title>databases file - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Management.html#Management" title="Management">
+<link rel="prev" href="GNATS-configuration.html#GNATS-configuration" title="GNATS configuration">
+<link rel="next" href="dbconfig-file.html#dbconfig-file" title="dbconfig file">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="databases-file"></a>Next:&nbsp;<a rel="next" accesskey="n" href="dbconfig-file.html#dbconfig-file">dbconfig file</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="GNATS-configuration.html#GNATS-configuration">GNATS configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Management.html#Management">Management</a>
+<hr><br>
+</div>
+
+<h3 class="section">4.2 The <code>databases</code> file</h3>
+
+<p><a name="index-_0040code_007bdatabases_007d-file-265"></a>
+The <span class="file">databases</span> configuration file is a site-wide configuration
+file containing the list of <span class="sc">gnats</span> databases that are available
+either on the host itself or remotely over the network, together with
+some parameters associated with each database.
+
+   <p>The file contains one line for each database. For databases located on
+the host itself, each line consists of three fields separated by colons:
+
+   <p><var>database name:short description of database:path/to/database</var>
+
+   <p>The first field is the database name.  This is the name used to identify
+the database when invoking programs such as <code>query-pr</code> or
+<code>send-pr</code>, either by using the <code>--database</code> option of the
+program or by setting the <var>GNATSDB</var> environment variable to the name
+of the database.  The second field is a short human-readable description
+of the database contents, and the final field is the directory where the
+database contents are kept.
+
+   <p>For a database that is located across a network, but which should be
+accessible from this host, the entry for the database should look
+like this:
+
+   <p><var>database name:short description of database::hostname:port</var>
+
+   <p>The first two fields are the same as for local databases, the third
+field is empty (notice the two adjacent <span class="samp">:</span> symbols, indicating an
+empty field), the fourth field is the hostname of the remote <span class="sc">gnats</span>
+server, and the fifth field is the port number that the remote
+<span class="sc">gnats</span> is running on.
+
+   <p>If <span class="sc">gnats</span> was built with default options, the <span class="file">databases</span> file
+will be located in the <span class="file">/usr/local/etc/gnats</span><!-- /@w --> directory. 
+However, if the option <code>--enable-gnats-dblist-file</code> was used during building
+of <span class="sc">gnats</span>, the <span class="file">databases</span> file has the name and location given
+to this option.  A sample <span class="file">databases</span> file is installed together
+with <span class="sc">gnats</span>.
+
+   <p>Note that if you add a new local database, you must create its data
+directory, including appropriate subdirectories and administrative
+files.  This is best done using the <code>mkdb</code> tool, See <a href="mkdb.html#mkdb">mkdb</a>.
+
+   </body></html>
+

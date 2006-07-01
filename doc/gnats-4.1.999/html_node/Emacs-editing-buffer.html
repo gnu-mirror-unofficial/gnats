@@ -1,0 +1,90 @@
+<html lang="en">
+<head>
+<title>Emacs editing buffer - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Emacs.html#Emacs" title="Emacs">
+<link rel="prev" href="Emacs-editing.html#Emacs-editing" title="Emacs editing">
+<link rel="next" href="Emacs-and-databases.html#Emacs-and-databases" title="Emacs and databases">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Emacs-editing-buffer"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Emacs-and-databases.html#Emacs-and-databases">Emacs and databases</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Emacs-editing.html#Emacs-editing">Emacs editing</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Emacs.html#Emacs">Emacs</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.5.5 The Problem Report editing buffer</h4>
+
+<p>When you invoke a Problem Report editing command, the Problem Report
+is put into a special editing buffer.  The Problem Report is formatted
+similarly to the <code>query-pr -F</code> output, <a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output">Formatting query-pr output</a>.  Field identifiers are formatted as
+
+<pre class="example">     &gt;Field:
+</pre>
+   <p>with the text of the field following the identifier on the same line
+for single-line fields or starting on the next line for multi-line
+fields.
+
+   <p>The Problem Report editing mode tries to prevent you from violating
+the Problem Report format and the constraints put on the possible
+field values.  Generally, you can use usual editing commands, some of
+them have a slightly modified behavior though.  (If you encounter a
+very strange behavior somewhere, please report it as a bug,
+<a href="Support.html#Support">Support</a>.)
+
+   <p><a name="index-_0040code_007bgnats_002dnext_002dfield_007d-169"></a><a name="index-_0040code_007bgnats_002dprevious_002dfield_007d-170"></a>You can move between fields easily by pressing the <kbd>TAB</kbd>
+(<code>gnats-next-field</code>) or <kbd>M-TAB</kbd>
+(<code>gnats-previous-field</code>) keys.
+
+   <p>The field tags are read-only and you cannot edit them nor delete them. 
+If you want to &ldquo;remove&rdquo; a field, just make its value empty.
+
+   <p>Editing a field value depends on the type of the edited field,
+<a href="Field-datatypes.html#Field-datatypes">Field datatypes</a>.  For text fields, you can edit the value
+directly, assuming you preserve the rule about single-line and
+multi-line values mentioned above.
+
+   <p>For enumerated fields, you cannot edit the value directly.  You can
+choose it from the list of the allowed values, either from the menu
+popped up by pressing the middle mouse button or from within
+minibuffer by pressing any key on the field's value.  If the pressed
+key matches any of the allowed field values, that value is put as the
+default value after the minibuffer prompt.  You can also cycle through
+the allowed field values directly in the editing buffer using the
+<code>SPACE</code> key.  Enumerated field values are marked by a special
+face to not confuse you; you must have enabled font lock mode to
+benefit from this feature, <a href="../emacs/Font-Lock.html#Font-Lock">Font Lock (GNU Emacs)</a>.
+
+   <p>Some field values can be read-only, you cannot edit them at all.
+
+   <p><a name="index-_0040code_007bgnats_002dapply_002dor_002dsubmit_007d-171"></a>Once you have edited the Problem Report as needed, you can send it to
+the server with the <kbd>C-c C-c</kbd> command
+(<code>gnats-apply-or-submit</code>).  Successful submission is reported by
+a message and the buffer modification flag in mode line is cleared. 
+Then you can either kill the buffer or continue with further
+modifications.
+
+     
+<a name="index-_0040code_007bgnats_002dedit_002dmode_002dhook_007d-172"></a>
+<dl><dt><code>gnats-edit-mode-hook</code><dd>Hook run when <code>gnats-edit-mode</code> is entered. 
+</dl>
+
+   </body></html>
+

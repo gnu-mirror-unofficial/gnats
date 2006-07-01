@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>Setting up periodic jobs - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installation.html#Installation" title="Installation">
+<link rel="prev" href="Setting-up-the-default-database.html#Setting-up-the-default-database" title="Setting up the default database">
+<link rel="next" href="Aliases.html#Aliases" title="Aliases">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Setting-up-periodic-jobs"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Aliases.html#Aliases">Aliases</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Setting-up-the-default-database.html#Setting-up-the-default-database">Setting up the default database</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installation.html#Installation">Installation</a>
+<hr><br>
+</div>
+
+<h3 class="section">3.4 Setting up periodic jobs</h3>
+
+<p>Allow the new user <code>gnats</code> access to <code>cron</code> and <code>at</code>.  To
+do this, add the name <code>gnats</code> to the files <span class="file">cron.allow</span><!-- /@w --> and
+<span class="file">at.allow</span><!-- /@w -->, which normally reside in the directory
+<span class="file">/var/spool/cron</span><!-- /@w -->.  If these files do not exist, make sure
+<code>gnats</code> does not appear in either of the files <span class="file">cron.deny</span><!-- /@w -->
+and <span class="file">at.deny</span><!-- /@w --> (in the same directory).  If you changed the name
+of the <span class="sc">gnats</span> user during configure, remember to substitute as
+appropriate in the previous steps.
+
+   <p><a name="index-_0040code_007bcrontab_007d-214"></a>Create a <code>crontab</code> entry that periodically runs the program
+<code>queue-pr</code> with the <span class="samp">--run</span> option
+(see <a href="queue_002dpr.html#queue_002dpr"><code>queue-pr</code></a>).  For example, to run
+<span class="samp">queue-pr&nbsp;--run</span><!-- /@w --> every ten minutes, create a file called
+<span class="file">.mycron</span> in the home directory of the user <code>gnats</code> which
+contains the line:
+
+<pre class="smallexample">     0,10,20,30,40,50 * * * * <var>exec-prefix</var>/libexec/gnats/queue-pr --run
+</pre>
+   <p class="noindent">(Specify the full path name for <code>queue-pr</code>.)  Then run
+
+<pre class="smallexample">     crontab .mycron
+</pre>
+   <p class="noindent">See the <code>man</code> pages for <code>cron</code> and <code>crontab</code> for details
+on using <code>cron</code>.
+
+   </body></html>
+

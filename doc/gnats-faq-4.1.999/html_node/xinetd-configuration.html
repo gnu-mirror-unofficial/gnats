@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+<title>xinetd configuration - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Starting-gnatsd.html#Starting-gnatsd" title="Starting gnatsd">
+<link rel="prev" href="inetd-configuration.html#inetd-configuration" title="inetd configuration">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="xinetd-configuration"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="inetd-configuration.html#inetd-configuration">inetd configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Starting-gnatsd.html#Starting-gnatsd">Starting gnatsd</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">How to configure xinetd to start gnatsd</h5>
+
+<p><a name="index-xinetd-10"></a>
+If your gnatsd will be started by xinetd (the "extended internet
+daemon"), create a file <span class="file">/etc/xinetd.d/support</span><!-- /@w --> with the
+following lines (see <a href="../gnats/Installing-the-daemon.html#Installing-the-daemon">Installing the daemon (Keeping Track)</a>):
+
+<pre class="example">     <p><table class="cartouche" summary="cartouche" border="1"><tr><td>
+     service support
+     {
+             disable     = no
+             socket_type = stream
+             protocol    = tcp
+             wait        = no
+             user        = gnats
+             server      = /usr/local/libexec/gnats/gnatsd
+             server_args = gnatsd
+     }
+     </td></tr></table>
+</pre>
+   <p class="noindent">or add theses lines to your <span class="file">xinetd.conf</span><!-- /@w --> file, whatever is
+appropriate.  The equal signs seem to need spaces around them with
+some versions of xinetd.
+
+   <p>You need to add
+<pre class="smallexample">     support		1529/tcp		# GNATS
+</pre>
+   <p class="noindent">to <span class="file">/etc/services</span><!-- /@w --> (it may be necessary to use tabulator
+characters to separate the fields), and to tell xinetd to reread its
+configuration (<code>kill -HUP </code><em>pid-of-xinetd</em>).
+
+   </body></html>
+

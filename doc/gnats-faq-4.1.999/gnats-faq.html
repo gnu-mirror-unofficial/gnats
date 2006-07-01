@@ -1,0 +1,1388 @@
+<html lang="en">
+<head>
+<title>GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="top" href="#Top">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<h1 class="settitle">GNATS Frequently Asked Questions</h1>
+<div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="#Top"><span class="sc">gnats</span> Frequently Asked Questions</a>
+<li><a name="toc_General" href="#General">1 General Questions</a>
+<ul>
+<li><a href="#What-is-GNATS">1.1 What is <span class="sc">gnats</span>?</a>
+<ul>
+<li><a href="#User-view">1.1.1 How it Works&mdash;User's View</a>
+<li><a href="#Administrator-View">1.1.2 How it Works&mdash;Administrator's View</a>
+</li></ul>
+<li><a href="#How-to-pronounce-it">1.2 How is "<span class="sc">gnats</span>" pronounced?</a>
+<li><a href="#Get-it">1.3 Where do I get it?</a>
+<li><a href="#Versions">1.4 What is the latest version?</a>
+<li><a href="#Mailing-Lists">1.5 Is there a Mailing List?</a>
+<li><a href="#Bug-Reporting">1.6 How do I Report a Bug?</a>
+<li><a href="#Upgrading">1.7 Upgrading Considerations</a>
+</li></ul>
+<li><a name="toc_Installation" href="#Installation">2 Problems during Installation</a>
+<ul>
+<li><a href="#Gnatsweb-and-GNATS">2.1 Gnatsweb and <span class="sc">gnats</span> do not like each other.</a>
+</li></ul>
+<li><a name="toc_Configuration" href="#Configuration">3 Configuration Issues</a>
+<ul>
+<li><a href="#General-configuration">3.1 General Configuration Questions</a>
+<ul>
+<li><a href="#Add-a-database">3.1.1 How do I add a new database?</a>
+<li><a href="#Renaming-a-Category">3.1.2 How do I rename a category?</a>
+<li><a href="#Changing-Fields">3.1.3 How do I add, remove, or rename a PR field?</a>
+</li></ul>
+<li><a href="#Gnatsd">3.2 Gnatsd, the <span class="sc">gnats</span> Daemon</a>
+<ul>
+<li><a href="#Port-Number">3.2.1 Gnatsd Port Number</a>
+<li><a href="#Starting-gnatsd">3.2.2 How to Start Gnatsd</a>
+<li><a href="#Gnatsd-messages">3.2.3 Gnatsd Messages</a>
+</li></ul>
+<li><a href="#E_002dMail">3.3 E-Mail Issues</a>
+<li><a href="#Miscellaneous">3.4 Miscellaneous Configuration Issues</a>
+</li></ul>
+<li><a name="toc_Clients" href="#Clients">4 Client Software</a>
+<ul>
+<li><a href="#Gnatsweb">4.1 Gnatsweb</a>
+<ul>
+<li><a href="#Gnatsweb-Login-Questions">4.1.1 Login Questions</a>
+</li></ul>
+<li><a href="#TkGnats">4.2 TkGnats</a>
+<li><a href="#Emacs-mode">4.3 <span class="sc">gnats</span> Mode for Emacs</a>
+<li><a href="#send_002dpr">4.4 send-pr</a>
+</li></ul>
+<li><a name="toc_Glossary" href="#Glossary">Appendix A Glossary</a>
+<li><a name="toc_Index" href="#Index">Index</a>
+</li></ul>
+</div>
+
+
+
+<div class="node">
+<p><hr>
+<a name="Top"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#General">General</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#dir">(dir)</a>
+<br>
+</div>
+
+<!-- node-name, next,    previous, up -->
+<h2 class="unnumbered"><span class="sc">gnats</span> Frequently Asked Questions</h2>
+
+<p>This document answers some frequently asked questions concerning
+<span class="sc">gnats</span>, the <span class="sc">gnu</span> problem report management system, and related
+software. 
+The most recent version of this FAQ can be found at
+<a href="http://www.gnu.org/software/gnats/doc/faq/gnats-faq.html">http://www.gnu.org/software/gnats/doc/faq/gnats-faq.html</a>.
+
+   <p>The questions and answers have been compiled by
+<a href="mailto:Gnats-FAQ@HA-Schneider.de">Hans-Albert Schneider</a>, mainly
+using the help-gnats mailing list and the <span class="sc">gnats</span> documentation as
+input.  Please report any errors and suggestions to him.
+
+<ul class="menu">
+<li><a accesskey="1" href="#General">General</a>:                      General questions
+<li><a accesskey="2" href="#Installation">Installation</a>:                 Problems during installation
+<li><a accesskey="3" href="#Configuration">Configuration</a>:                Problems with <span class="sc">gnats</span> configuration
+<li><a accesskey="4" href="#Clients">Clients</a>:                      Ways to access a <span class="sc">gnats</span> system
+<li><a accesskey="5" href="#Glossary">Glossary</a>:                     Abbreviations and definitions
+<li><a accesskey="6" href="#Index">Index</a>:                        Important things and where they are referenced
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="General"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Installation">Installation</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Top">Top</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+<br>
+</div>
+
+<!-- node-name, next, previous, up -->
+<h2 class="chapter">1 General Questions</h2>
+
+<ul class="menu">
+<li><a accesskey="1" href="#What-is-GNATS">What is GNATS</a>:                A very short overview
+<li><a accesskey="2" href="#How-to-pronounce-it">How to pronounce it</a>:          Pronunciation: with or without the "G"? 
+<li><a accesskey="3" href="#Get-it">Get it</a>:                       Where to get <span class="sc">gnats</span>
+<li><a accesskey="4" href="#Versions">Versions</a>:                     Which versions are available? 
+<li><a accesskey="5" href="#Mailing-Lists">Mailing Lists</a>:                E-mail discussion lists
+<li><a accesskey="6" href="#Bug-Reporting">Bug Reporting</a>:                How to report a bug
+<li><a accesskey="7" href="#Upgrading">Upgrading</a>:                    Considerations for the 3.x to 4.0 transition
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="What-is-GNATS"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#How-to-pronounce-it">How to pronounce it</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General">General</a>
+<br>
+</div>
+
+<!-- node-name,     next,   previous,  up -->
+<h3 class="section">1.1 What is <span class="sc">gnats</span>?</h3>
+
+<p><span class="sc">gnats</span> is the <span class="sc">gnu</span> problem report management system.  Problem
+report management systems are also known as "bug-tracking systems",
+though the entries need not be bugs (e.g., think of change requests). 
+The acronym stands for "GNats: A Tracking System".
+
+   <p><span class="sc">gnats</span> stores all information about the problem reports at a central
+site, and enables users to access this site by various means, including
+e-mail, WWW, and a network daemon.  New problem reports can be created,
+and existing reports can be queried and updated, by most of these means.
+
+   <p><span class="sc">gnats</span> is widely customizable: Of course you can define report
+categories (is the report about tool A or service B?), responsibles
+(who takes care of this report?), and submitters (is it from customer1
+or from the sales department?).  You can also define possible states
+of a report (open, analyzed, closed, etc.) and classes (software bug,
+documentation bug, change request, <small class="dots">...</small>).
+
+   <p>Starting with <span class="sc">gnats</span> 4.0, you can define your own custom fields, and
+customize many of the built-in fields; you can have fields automatically
+set to a certain value when another field changes its contents (e.g.,
+set a "Closed-Date" field to the current date when the report goes to
+state "closed", and unset it when it goes back from "closed" to
+something else), or when the report is changed at all (e.g., to maintain
+a "Last-Modified" field).
+
+<ul class="menu">
+<li><a accesskey="1" href="#User-view">User view</a>:                    Short overview for users
+<li><a accesskey="2" href="#Administrator-View">Administrator View</a>:           Short overview for system administrators
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="User-view"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Administrator-View">Administrator View</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#What-is-GNATS">What is GNATS</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">1.1.1 How it Works&mdash;User's View</h4>
+
+<p>Users enter their problem reports (PRs) via some front-end.  This
+front-end either directly contacts the <span class="sc">gnats</span> server, or sends the
+report via e-mail.  (The server is available since about version 3.90
+of <span class="sc">gnats</span>).  For an incomplete list of front-ends see <a href="#Clients">Clients</a>.
+
+   <p>Some front-ends (like TkGnats, see <a href="#TkGnats">TkGnats</a>) are capable of
+contacting several <span class="sc">gnats</span> servers, or several problem report
+databases managed by the same <span class="sc">gnats</span> server.
+
+<div class="node">
+<p><hr>
+<a name="Administrator-View"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#User-view">User view</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#What-is-GNATS">What is GNATS</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">1.1.2 How it Works&mdash;Administrator's View</h4>
+
+<p><a name="index-starting-gnatsd-1"></a><a name="index-gnatsd_002c-starting-2"></a>
+The server is started by a super-server like inetd or xinetd.  It has
+a built-in access control mechanism based on IP addresses and
+username/password.
+
+   <p>For users sending their PRs via e-mail, some mail addresses must be
+configured.
+
+<div class="node">
+<p><hr>
+<a name="How-to-pronounce-it"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Get-it">Get it</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#What-is-GNATS">What is GNATS</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General">General</a>
+<br>
+</div>
+
+<!-- node-name,     next,   previous,  up -->
+<h3 class="section">1.2 How is "<span class="sc">gnats</span>" pronounced?</h3>
+
+<p>Q: So, How can I pronounce "<span class="sc">gnats</span>?"  Should I pronounce "G"?
+
+   <p>It has been reported that the original developers pronounced the "G". 
+(This is unlike the little insect called "gnat" where the "G" is not
+pronounced.)
+
+<div class="node">
+<p><hr>
+<a name="Get-it"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Versions">Versions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#How-to-pronounce-it">How to pronounce it</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General">General</a>
+<br>
+</div>
+
+<!-- node-name,  next,     previous,      up -->
+<h3 class="section">1.3 Where do I get it?</h3>
+
+<p>See the <span class="sc">gnats</span> home page at <a href="http://www.gnu.org/software/gnats/">http://www.gnu.org/software/gnats/</a>.
+
+   <p>The current development version is available via CVS only, see the
+<a href="http://savannah.gnu.org/projects/gnats"><span class="sc">gnu</span> savannah <span class="sc">gnats</span> project page</a> for the instructions how to get it.
+
+<div class="node">
+<p><hr>
+<a name="Versions"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Mailing-Lists">Mailing Lists</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Get-it">Get it</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General">General</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">1.4 What is the latest version?</h3>
+
+<p>The version numbers of <span class="sc">gnats</span> 3.x is somewhat confusing, because
+3.1xx is newer than 3.2.
+
+   <p>Version 3.2 was released in 1993 (I never tried it, but it is said to be
+"really broken").  A lot of new features have been added since 3.2,
+including multiple database support and customized fields.  Among the
+contributed software are comprehensive WWW and Tk based front-ends.
+
+   <p>The latest 3.x release is 3.113.1.  It is deprecated due to security
+concerns and lack of maintenance.
+
+   <p><span class="sc">gnats</span> 4.0 was released in August 2003, and 4.1 was released in March 2005. 
+All released versions are available for download at
+<a href="http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</a>.
+
+<div class="node">
+<p><hr>
+<a name="Mailing-Lists"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Bug-Reporting">Bug Reporting</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Versions">Versions</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General">General</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">1.5 Is there a Mailing List?</h3>
+
+<p>Currently, the following <span class="sc">gnats</span> mailing lists exist:
+
+     <ul>
+<li><a href="http://lists.gnu.org/mailman/listinfo/info-gnats">info-gnats@gnu.org</a>
+This is a low volume moderated mailing lists for <span class="sc">gnats</span> related
+announcements, like new releases or important information.
+
+     <li><a href="http://lists.gnu.org/mailman/listinfo/help-gnats">help-gnats@gnu.org</a>
+A low-to-middle volume mailing list where anything related to <span class="sc">gnats</span>
+can be discussed (development, help, questions, suggestions, etc.).
+
+     <li><a href="http://lists.gnu.org/mailman/listinfo/bug-gnats">bug-gnats@gnu.org</a>
+Bug reports can be sent there.  Please note that it's preferred to
+submit bug reports via the bug tracking system (see <a href="#Bug-Reporting">Bug Reporting</a>),
+which automatically mirrors them to this list. 
+</ul>
+
+   <p>Lists that are of interest mainly for the <span class="sc">gnats</span> developers:
+
+     <ul>
+<li><a href="http://lists.gnu.org/mailman/listinfo/gnats-prs">gnats-prs@gnu.org</a>
+Copies of the bug tracking system messages are sent there.  Contrast to
+bug-gnats@gnu.org which only gets new bug reports, this list also gets
+the follow-ups (Whatever goes into <span class="sc">gnats</span>' <code>&gt;Audit-Trail:</code> field).
+
+     <li><a href="http://lists.gnu.org/mailman/listinfo/gnats-commit">gnats-commit@gnu.org</a>
+CVS commit messages are sent there.
+
+     <li><a href="http://lists.gnu.org/mailman/listinfo/gnats-diffs">gnats-diffs@gnu.org</a>
+Diffs of committed files are sent automatically to this address. 
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="Bug-Reporting"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Upgrading">Upgrading</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Mailing-Lists">Mailing Lists</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General">General</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">1.6 How do I Report a Bug?</h3>
+
+<p><a name="index-bug-reporting-3"></a>
+Before reporting a bug, make sure it really is a bug, not a simple
+misunderstanding or a misconfiguration.  Please check the manual and
+this FAQ.  You may also ask for help on the
+<a href="http://lists.gnu.org/mailman/listinfo/help-gnats">help-gnats@gnu.org</a>
+mailing list (you may want to search the list archive first; it is
+available from <a href="http://lists.gnu.org/mailman/listinfo/help-gnats">http://lists.gnu.org/mailman/listinfo/help-gnats</a>).
+
+   <p>If it is a bug, please report it via the bug tracking system.  It
+resides at
+<a href="http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats">http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats</a>. 
+This is a common bug database for <span class="sc">gnats</span>, Gnatsweb and TkGnats. 
+(And, yes, of course: It uses <span class="sc">gnats</span> and Gnatsweb.)
+
+   <p>When you report problems concerning <span class="sc">gnats</span> itself, please do not
+forget to provide especially the following information:
+
+     <ul>
+<li>The <span class="sc">gnats</span> version you are using.  If your problem involves
+Gnatsweb or TkGnats, please also report their versions.
+
+     <li>The <em>exact</em> way how to reproduce the bug.
+
+     <li>Your configuration.
+
+     <li>If you encounter a compilation or build problem, it is especially
+important to mention the operating system, compiler and possibly other
+build utilities you use. 
+</ul>
+
+   <p>Providing this information in the initial report avoids further
+unnecessary communication, saves the limited resources of the
+developers (keep in mind that they are working on <span class="sc">gnats</span> and
+friends in their spare time) and helps to track down and fix the
+problem soon.
+
+<div class="node">
+<p><hr>
+<a name="Upgrading"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#Bug-Reporting">Bug Reporting</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General">General</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">1.7 Upgrading Considerations</h3>
+
+<p>See <a href="gnats.html#Upgrading">Upgrading from older versions (Keeping Track)</a> for the upgrade process from 3.x to 4.x.
+
+   <p>If you are running a 3.x version, <em>please consider upgrading to 4.0.</em>
+There are some security concerns about the 3.1xx code that have gone
+with 4.0.  Furthermore, the <span class="sc">gnats</span> 3 branch is not maintained
+anymore due to lack of capacity.
+
+   <p>The default format of the reports has not changed during the transition
+from 3.113.1 to 4.0, though you may add more fields to 4.0 reports (and
+leave out others).  The format of the index file is now binary.
+
+   <p>However, you have to change the e-mail aliases because the meaning of
+the <span class="samp">-d</span> option to the client programs has changed: It took the
+<em>directory</em> of the <span class="sc">gnats</span> database in 3.1xx, and now takes its
+<em>name</em> (plus, it is now installed into the <span class="file">libexec</span> directory
+instead of the <span class="file">lib</span> directory).  I.e., you must change the aliases:
+
+<pre class="smallexample">     # GNATS 3 aliases:
+     ourdb-query: "|/usr/local/lib/gnats/mail-query -d /usr/local/gnats/db2"
+     ourdb-bugs:  "|/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -q"
+</pre>
+   <p>to
+<pre class="smallexample">     # GNATS 4 aliases:
+     ourdb-query: "|/usr/local/libexec/gnats/mail-query -d ourdb"
+     ourdb-bugs:  "|/usr/local/libexec/gnats/queue-pr -d ourdb -q"
+</pre>
+   <p>Also note that the client/server protocol has changed from 3.1xx to
+4.0; you cannot run clients from one version with the server from the
+other version.
+
+<div class="node">
+<p><hr>
+<a name="Installation"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Configuration">Configuration</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#General">General</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h2 class="chapter">2 Problems during Installation</h2>
+
+<p>As installation and configuration problems often overlap,
+please check also <a href="#Configuration">Configuration</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="#Gnatsweb-and-GNATS">Gnatsweb and GNATS</a>:           Cooperation problems between <span class="sc">gnats</span> and Gnatsweb
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="Gnatsweb-and-GNATS"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#Installation">Installation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Installation">Installation</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">2.1 Gnatsweb and <span class="sc">gnats</span> do not like each other.</h3>
+
+<p><b>Q:</b> I have installed <span class="sc">gnats</span> 3.999.x and Gnatsweb 2.9.x, and I
+cannot get them work together.
+
+   <p>Symptoms are that "make test" fails; if Gnatsweb is installed
+nevertheless, it hangs when trying to login into the <span class="sc">gnats</span> server.
+
+   <p><b>A:</b> The versions are incompatible. 
+Gnatsweb 2.9.x is for use with <span class="sc">gnats</span> 3.113.1. 
+With <span class="sc">gnats</span> 3.999.x, you must use Gnatsweb 3.99.x; it is in the
+contrib subdirectory of the <span class="sc">gnats</span> distribution. 
+(<span class="sc">gnats</span> 3.999.x/Gnatsweb 3.99.x were pre-releases of the 4.0
+releases.  As 4.0 is out now, you may consider to upgrade to the
+non-pre versions.)
+
+   <p>For <span class="sc">gnats</span> 4.x, use Gnatsweb 4.0 or greater.
+
+<div class="node">
+<p><hr>
+<a name="Configuration"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Clients">Clients</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Installation">Installation</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h2 class="chapter">3 Configuration Issues</h2>
+
+<ul class="menu">
+<li><a accesskey="1" href="#General-configuration">General configuration</a>:        General questions about <span class="sc">gnats</span> configuration
+<li><a accesskey="2" href="#Gnatsd">Gnatsd</a>:                       Configuration of the <span class="sc">gnats</span> daemon
+<li><a accesskey="3" href="#E_002dMail">E-Mail</a>:                       Problems with the e-mail interface
+<li><a accesskey="4" href="#Miscellaneous">Miscellaneous</a>:                Other configuration problems
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="General-configuration"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Gnatsd">Gnatsd</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Configuration">Configuration</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">3.1 General Configuration Questions</h3>
+
+<ul class="menu">
+<li><a accesskey="1" href="#Add-a-database">Add a database</a>:               How to create a new database
+<li><a accesskey="2" href="#Renaming-a-Category">Renaming a Category</a>:          How to rename categories
+<li><a accesskey="3" href="#Changing-Fields">Changing Fields</a>:              Add, remove, or rename a PR field
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="Add-a-database"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Renaming-a-Category">Renaming a Category</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General-configuration">General configuration</a>
+<br>
+</div>
+
+<!-- node-name, next, previous, up -->
+<h4 class="subsection">3.1.1 How do I add a new database?</h4>
+
+<p class="noindent"><b>A: (</b><span class="sc">gnats</span><b> 3.1xx)</b>
+(Please consider upgrading to <span class="sc">gnats</span> 4.0 or greater.)
+
+     <ol type=1 start=1>
+<li>Create the base directory for the new database, say
+<span class="file">/usr/local/gnats/db2</span><!-- /@w -->, and make sure it is owned by the
+<span class="sc">gnats</span> user.
+
+     <li>In there, create subdirectories <span class="file">gnats-adm</span><!-- /@w -->,
+<span class="file">gnats-adm/locks</span><!-- /@w -->, and <span class="file">gnats-queue</span><!-- /@w -->,
+and make sure they is owned by the <span class="sc">gnats</span> user.
+
+     <li>Now you need to populate the new <span class="file">gnats-adm</span><!-- /@w --> directory.  The
+easiest way is to copy all files from <span class="file">gnats-db/gnats-adm</span><!-- /@w --> to
+<span class="file">/usr/local/gnats/db2/gnats-adm</span><!-- /@w -->, and edit them to reflect the
+needs of your new database.  Again, make sure they are owned by the
+gnats user.
+
+     <p>Note that there <em>must</em> be a category named <code>pending</code>.  It is
+used when no category is given in a report, and when a report names an
+invalid category.
+
+     <p>Also note that each database needs its own mail address for submissions
+(see also step 8 below), and that you must enter it in the file
+<span class="file">config</span>.
+
+     <li>As the <span class="sc">gnats</span> user,
+run <span class="samp">mkcat --directory=/usr/local/gnats/db2</span> to create the
+directories for the categories.  Remove the files <span class="file">current</span> and
+<span class="file">index</span>, if they exist.
+
+     <li>If the new database is split off of another one, move or copy the
+existing reports to their new location.  This is easiest if the
+categories have the same names as in the original database.  (See
+<a href="#Renaming-a-Category">Renaming a Category</a> if some of them changed names.)
+
+     <p>Run the program <code>gen-index</code> to create the index file
+(see <a href="gnats.html#gen_002dindex">Regenerating the index (Keeping Track)</a>).
+
+     <p>Find the greatest report number and put it (or any larger number)
+into <span class="file">/usr/local/gnats/db2/gnats-adm/current</span>.
+
+     <p><strong>Caution:</strong> E-mail updates to the PRs you moved to the new
+database may still arrive at the old database.  You may want to
+contact everybody who knows about these PRs, asking them to use
+the mail address of the new database when sending a follow-up.
+
+     <li>Now add a line for the new database to <span class="file">gnats-db.conf</span><!-- /@w -->, like
+this:
+
+     <p>	<code>/usr/local/gnats/db2:GreatNewDB</code>
+
+     <p>Gnatsd reads it on startup (and as it is started by inetd, this means
+it becomes effective with the next connection to gnatsd).  Gnatsweb
+(see <a href="#Gnatsweb">Gnatsweb</a>) learns the database list from gnatsd, so it will offer
+you the new database "GreatNewDB" when it is invoked next time.
+
+     <p>If you do not know where <span class="file">gnats-db.conf</span><!-- /@w --> lives, run:
+
+     <p><span class="samp">strings /where/ever/gnatsd | grep gnats-db.conf</span>
+
+     <li>Don't forget to setup a cron job to run through the additional
+<span class="file">gnats-queue</span><!-- /@w -->.  Note that you need to specify the database
+directory to <span class="file">queue-pr</span>, i.e.,
+
+     <p><span class="samp">/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -r</span>
+
+     <p>or, if you prefer the long options,
+
+     <p><span class="samp">/usr/local/lib/gnats/queue-pr --directory=/usr/local/gnats/db2 --run</span>
+
+     <li>Don't forget to create mail aliases for your new database
+(see <a href="gnats.html#Aliases">Setting up mail aliases (Keeping Track)</a>). 
+Take care that the aliases have the right database, e.g.,
+
+     <pre class="smallexample">          GreatNewDB-bugs:  "|/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -q"
+          GreatNewDB-query: "|/usr/local/lib/gnats/mail-query -d /usr/local/gnats/db2"
+     </pre>
+     <p>If you do not want to allow querying the database by mail, omit the
+<span class="samp">GreatNewDB-query</span> alias.
+
+     <p>You usually need the cooperation of a system administrator for this step
+(if you are not a system administrator yourself, of course).
+
+     <p>Make sure that <span class="file">/usr/local/gnats/db2/gnats-adm/config</span> gives the
+correct mail addresses for <var>GNATS_ADDR</var> (this <em>must</em> be
+different for each database) and for <var>GNATS_ADMIN</var> (this is probably
+the same for all databases).
+
+     <pre class="smallexample">          GNATS_ADDR="GreatNewDB-bugs@bugs.example.com"
+          GNATS_ADMIN="gnats-admin@bugs.example.com"
+     </pre>
+     <p>If your <span class="sc">gnats</span> sits behind a firewall and needs to exchange mails
+with the outside world, see also <a href="#Outgoing-mail-bounces">Outgoing mail bounces</a>.
+
+        </ol>
+
+<p class="noindent"><b>A: (</b><span class="sc">gnats</span><b> 4.x)</b> With version 4, this has become much easier
+(see <a href="gnats.html#mkdb">Adding another database (Keeping Track)</a>):
+     <ol type=1 start=1>
+<li>Add a line for the new database to <span class="file">databases</span><!-- /@w -->, like this:
+
+     <p>	<code>GreatNewDB:Our great tools:/usr/local/gnats/db2</code>
+
+     <p>Then, as the <span class="sc">gnats</span> user, run <span class="samp">mkdb GreatNewDB</span> to create the
+database.  Make sure that the directory (in our example,
+<span class="file">/usr/local/gnats/db2</span><!-- /@w -->) can be created by the <span class="sc">gnats</span> user.
+
+     <p>(Note that there <em>must</em> be a database named <code>default</code>.  It
+is used as a fallback by some tools if no database is specified.  You
+need not use it actively, but you should have run <span class="samp">mkdb default</span>.)
+
+     <p>Gnatsd reads the file <span class="file">databases</span><!-- /@w --> on startup (and as it is
+started by inetd, this means it becomes effective with the next
+connection to gnatsd).  Gnatsweb (see <a href="#Gnatsweb">Gnatsweb</a>) learns the
+database list from gnatsd, so it will offer you the new database
+"GreatNewDB" when it is invoked next time.
+
+     <p>If you do not know where <span class="file">databases</span><!-- /@w --> lives, run:
+
+     <p><span class="samp">strings /where/ever/gnatsd | grep databases</span>
+
+     <li>Now, as the <span class="sc">gnats</span> user, edit the files in directory
+<span class="file">/usr/local/gnats/db2/gnats-adm</span><!-- /@w --> to reflect the needs of
+your new database.
+
+     <li>Depending on the settings in the <span class="file">dbconfig</span><!-- /@w --> file of the new
+database, you need not run <code>mkcat</code> anymore in order to
+create new category directories in your database&mdash;<span class="sc">gnats</span> 4
+creates them automatically when they are missing.  See <a href="gnats.html#dbconfig-file">The <code>dbconfig</code> file (Keeping Track)</a>, for details.
+
+     <li>Don't forget to setup a cron job to run through the additional
+<span class="file">gnats-queue</span><!-- /@w -->.  Note that you need to specify the database to
+<span class="file">queue-pr</span>, i.e.,
+
+     <p><span class="samp">/usr/local/libexec/gnats/queue-pr -d GreatNewDB -r</span>
+
+     <p>or, if you prefer the long options,
+
+     <p><span class="samp">/usr/local/libexec/gnats/queue-pr --database=GreatNewDB --run</span>
+
+     <li>Don't forget to create mail aliases for your new database
+(see <a href="gnats.html#Aliases">Setting up mail aliases (Keeping Track)</a>). 
+Take care that the aliases have the right database, e.g.,
+
+     <pre class="smallexample">          GreatNewDB-bugs:  "|/usr/local/libexec/gnats/queue-pr -d GreatNewDB -q"
+          GreatNewDB-query: "|/usr/local/libexec/gnats/mail-query -d GreatNewDB"
+     </pre>
+     <p>If you are updating from <span class="sc">gnats</span> 3.1xx, note that the <span class="samp">-d</span>
+option has changed its meaning: it does not give the directory of the
+database, but its name.  (In case you prefer the long form of the
+option, it is now <span class="samp">--database</span> instead of <span class="samp">--directory</span>.)
+
+     <p>If your <span class="sc">gnats</span> sits behind a firewall and needs to exchange mails
+with the outside world, see also <a href="#Outgoing-mail-bounces">Outgoing mail bounces</a>.
+
+        </ol>
+
+<div class="node">
+<p><hr>
+<a name="Renaming-a-Category"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Changing-Fields">Changing Fields</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Add-a-database">Add a database</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General-configuration">General configuration</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">3.1.2 How do I rename a category?</h4>
+
+<p>Renaming a category requires to touch every PR in that category,
+because each report contains the name of its category.
+
+   <p>To rename category <code>A</code> to <code>B</code>, proceed as follows:
+
+     <ol type=1 start=1>
+<li>Create a new category <code>B</code>.
+
+     <li>Edit every report in category <code>A</code>, changing its category to
+<code>B</code>. 
+This can be done with any <span class="sc">gnats</span> client; check the archives
+of the <span class="sc">help-gnats</span> mailing list for hints about automating
+this step.
+
+     <li>Run <code>gen-index</code> (see <a href="gnats.html#gen_002dindex">Regenerating the index (Keeping Track)</a>) to refresh the <span class="file">index</span> file.
+
+     <li>If you are using <span class="sc">gnats</span> 4 (or planning to upgrade soon), you
+should not remove the category <code>A</code>.  When a follow-up to an
+existing PR arrives via e-mail, <span class="sc">gnats</span> 4.x checks that both
+the category and the PR number indicated in the mail exist (this
+is a sanity check).
+
+     <p>To reduce the risk of new reports being filed to category
+<code>A</code>, change its description in the <span class="file">categories</span> file to
+something like <span class="samp">obsolete, use category </span><code>B</code><span class="samp"> instead</span>.
+
+        </ol>
+
+<div class="node">
+<p><hr>
+<a name="Changing-Fields"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#Renaming-a-Category">Renaming a Category</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#General-configuration">General configuration</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">3.1.3 How do I add, remove, or rename a PR field?</h4>
+
+<p class="noindent"><b>A: (</b><span class="sc">gnats</span><b> 3.1xx)</b> The fields and their names are fixed in
+<span class="sc">gnats</span> 3.1xx, so this is not possible.
+
+<p class="noindent"><b>A: (</b><span class="sc">gnats</span><b> 4.x)</b> Edit the file <span class="file">dbconfig</span> to reflect your
+changes.
+
+   <p>Note that the PR fields with the builtin-names <code>severity</code>,
+<code>priority</code> and <code>state</code> are required if you want automatic
+reminders (<code>notify-about-expired-prs = true</code>).  In this case, the
+file <span class="file">submitters</span> must also contain a response time. 
+<!-- The reminder is filed if: -->
+<!--  "response time" is not -1, and -->
+<!--  @code{notify-about-expired-prs} = true, and -->
+<!--  (@code{severity} = @code{critical}) -->
+<!-- or ( @code{severity} = @code{serious} -->
+<!-- and @code{priority} = @code{high} ) -->
+The <code>severity</code> field is checked for values <code>critical</code> and
+<code>serious</code>, and <code>priority</code> for value <code>high</code>. 
+This is currently not configurable.
+
+<div class="node">
+<p><hr>
+<a name="Gnatsd"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#E_002dMail">E-Mail</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#General-configuration">General configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Configuration">Configuration</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">3.2 Gnatsd, the <span class="sc">gnats</span> Daemon</h3>
+
+<p><a name="index-server_002c-see-gnatsd-4"></a><a name="index-_0040sc_007bgnats_007d-server_002c-see-gnatsd-5"></a><a name="index-gnatsd-6"></a>
+
+<ul class="menu">
+<li><a accesskey="1" href="#Port-Number">Port Number</a>:                  How to connect to gnatsd
+<li><a accesskey="2" href="#Starting-gnatsd">Starting gnatsd</a>:              How to make gnatsd accept connections
+<li><a accesskey="3" href="#Gnatsd-messages">Gnatsd messages</a>:              Some error messages and what they mean
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="Port-Number"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Starting-gnatsd">Starting gnatsd</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsd">Gnatsd</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">3.2.1 Gnatsd Port Number</h4>
+
+<p><a name="index-port-7"></a><a name="index-server-port-8"></a>
+In 3.xxx versions, gnatsd uses port 1529 by default; as this port is
+officially assigned to another application (see the
+<a href="http://www.iana.org/assignments/port-numbers">list of port numbers</a>
+maintained by the <a href="http://www.iana.org/">Internet Assigned Numbers Authority</a>)
+<!-- there is no default port -->
+<!-- anymore in 4.x (you have to create an entry in @w{@file{/etc/services}}). -->
+it will probably change in 4.x.
+
+   <p>If you want/need to run gnatsd on another port, you can change the
+default port at compile time (call <code>configure --help</code> to learn
+about compile time configuration options).  Most clients also accept
+an option or configuration variable to change the port.  Don't forget
+to tell inetd (or xinetd, or whatever super-server you use) to start
+gnatsd on the other port.
+
+<div class="node">
+<p><hr>
+<a name="Starting-gnatsd"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Gnatsd-messages">Gnatsd messages</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Port-Number">Port Number</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsd">Gnatsd</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">3.2.2 How to Start Gnatsd</h4>
+
+<p>Gnatsd is intended to be started by some "super server", like
+<code>inetd</code> or <code>xinetd</code>.  ("Super servers" are sometimes also
+called "super daemons".)
+
+   <p>This is also described in the <span class="sc">gnats</span> manual; see <a href="gnats.html#Installing-the-daemon">Installing the daemon (Keeping Track)</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="#inetd-configuration">inetd configuration</a>:          The traditional super server
+<li><a accesskey="2" href="#xinetd-configuration">xinetd configuration</a>:         Another widespread super server
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="inetd-configuration"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#xinetd-configuration">xinetd configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Starting-gnatsd">Starting gnatsd</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">How to configure inetd to start gnatsd</h5>
+
+<p><a name="index-inetd-9"></a>
+If your gnatsd will be started by inetd (the "internet daemon"),
+add the following entry to your <span class="file">/etc/inetd.conf</span><!-- /@w -->:
+
+<pre class="smallexample">     # port                    userid program
+     support stream tcp nowait gnats /usr/local/libexec/gnats/gnatsd gnatsd
+</pre>
+   <p class="noindent">and to <span class="file">/etc/services</span><!-- /@w -->:
+<pre class="smallexample">     support		1529/tcp		# GNATS
+</pre>
+   <p class="noindent">(You may need to use tabulator characters to separate the fields of
+<span class="file">/etc/services</span><!-- /@w -->.)  Then send inetd a hangup signal
+(<code>kill&nbsp;-HUP&nbsp;</code><em>pid-of-inetd</em><!-- /@w -->).
+
+   <p>You may want to use another port instead of 1529 (see <a href="#Port-Number">Port Number</a>).
+
+<div class="node">
+<p><hr>
+<a name="xinetd-configuration"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#inetd-configuration">inetd configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Starting-gnatsd">Starting gnatsd</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">How to configure xinetd to start gnatsd</h5>
+
+<p><a name="index-xinetd-10"></a>
+If your gnatsd will be started by xinetd (the "extended internet
+daemon"), create a file <span class="file">/etc/xinetd.d/support</span><!-- /@w --> with the
+following lines (see <a href="gnats.html#Installing-the-daemon">Installing the daemon (Keeping Track)</a>):
+
+<pre class="example">     <p><table class="cartouche" summary="cartouche" border="1"><tr><td>
+     service support
+     {
+             disable     = no
+             socket_type = stream
+             protocol    = tcp
+             wait        = no
+             user        = gnats
+             server      = /usr/local/libexec/gnats/gnatsd
+             server_args = gnatsd
+     }
+     </td></tr></table>
+</pre>
+   <p class="noindent">or add theses lines to your <span class="file">xinetd.conf</span><!-- /@w --> file, whatever is
+appropriate.  The equal signs seem to need spaces around them with
+some versions of xinetd.
+
+   <p>You need to add
+<pre class="smallexample">     support		1529/tcp		# GNATS
+</pre>
+   <p class="noindent">to <span class="file">/etc/services</span><!-- /@w --> (it may be necessary to use tabulator
+characters to separate the fields), and to tell xinetd to reread its
+configuration (<code>kill -HUP </code><em>pid-of-xinetd</em>).
+
+<div class="node">
+<p><hr>
+<a name="Gnatsd-messages"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#Starting-gnatsd">Starting gnatsd</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsd">Gnatsd</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">3.2.3 Gnatsd Messages</h4>
+
+<ul class="menu">
+<li><a accesskey="1" href="#No-host-access-for-stdin">No host access for stdin</a>:     Error when starting gnatsd manually
+<li><a accesskey="2" href="#No-host-access-for-remote">No host access for remote</a>:    Cannot connect from another machine
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="No-host-access-for-stdin"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#No-host-access-for-remote">No host access for remote</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsd-messages">Gnatsd messages</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">You are not on the host access list: stdin (stdin)</h5>
+
+<p><b>Q:</b> When starting gnatsd manually (on the command line), I get
+<span class="samp">520 You are not on the host access list: stdin (stdin)</span>.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 3.1xx)</b>
+Gnatsd is not intended to be started manually, but via inetd,
+xinetd, or a similar "super server".  When gnatsd is started this way,
+its stdin and stdout (standard input and standard output streams) are
+connected to a so called "TCP socket" (one end of the network
+connection), and from this socket gnatsd learns the IP address of the
+remote end (and from this it derives the remote host name).  When you
+start gnatsd from the command line, its stdin and stdout are connected
+to the terminal, and thus gnatsd gets a nonsense value.
+
+   <p>You usually need <span class="samp">root</span> privileges in order to change the
+configuration of your "super server".  If you don't have them, contact
+your system administrator.
+
+   <p>See <a href="#Starting-gnatsd">Starting gnatsd</a> for inetd and xinetd configuration.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 4.0)</b>
+This error message should not occur with gnatsd 4.0 anymore, because
+gnatsd can be started from the command line. 
+However, this probably only makes sense for debugging and diagnosing
+problems.  Furthermore, you need to play the part of the client
+program yourself (i.e., you must "speak" the gnatsd client protocol).
+
+<div class="node">
+<p><hr>
+<a name="No-host-access-for-remote"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#No-host-access-for-stdin">No host access for stdin</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsd-messages">Gnatsd messages</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">You are not on the host access list</h5>
+
+<p><b>Q:</b> Gnatsd rejects connections from a remote host with the error
+message <span class="samp">520 You are not on the host access list</span>.
+
+   <p><b>A:</b> Check the file <span class="file">gnatsd.host_access</span><!-- /@w -->; if you are using
+the default locations, this is
+<span class="file">/usr/local/etc/gnats/gnatsd.host_access</span><!-- /@w -->. 
+(If you are still using <span class="sc">gnats</span> 3.xxx, the file is named
+<span class="file">gnatsd.conf</span><!-- /@w -->; its default place is
+<span class="file">/usr/local/etc/gnatsd.conf</span><!-- /@w -->.)
+
+   <p>Each line of the file names a host and its access level, separated by
+colons.  Gnatsd tries the lines in turn to match the remote host, and
+the first line that matches wins.
+
+   <p>The first field specifies the host(s); it may be a host name (like
+<span class="samp">goedel.example.com</span>), a partial domain (like
+<span class="samp">*.example.com</span>), an IP address (like <span class="samp">192.168.1.5</span>), or a
+partial IP address (like <span class="samp">192.168.*</span>).  If it is only <span class="samp">*</span>, it
+matches all hosts.
+
+   <p>Depending on how IP addresses are mapped to hostnames on your gnatsd
+machine, you may be able to omit the domain (like in <span class="samp">goedel</span>). 
+You may even <em>need</em> to omit the domain for some hosts.
+
+   <p>The second field is the access level granted to the remote host.  This
+is usually increased by the access level granted to the user as soon
+as (s)he logs in.
+
+   <p>The third field is currently not used; just leave it empty (but supply
+the colon between the second and the third field).
+
+   <p>Example:
+
+<pre class="example">     <p><table class="cartouche" summary="cartouche" border="1"><tr><td>
+     #
+     # This is a comment
+     #
+     # Grant view access to all hosts with IP addresses
+     # ranging from 192.168.0.0 to 192.168.255.255:
+     192.168.*:view:
+     # Users on host goedel.example.com get (at least) edit access:
+     goedel.example.com:edit:
+     # Users from escher.example.com may view all reports, even
+     # confidential ones:
+     escher.example.com:viewconf:
+     # Users from bach.example.com may only view all non-confidential
+     # reports:
+     bach.example.com:view:
+     # Users from other example.com hosts
+     # only get the access specified for them in gnatsd.user_access:
+     *.example.com:none:
+     # Same for domain our-users.example:
+     *.our-users.example:none:
+     # All other hosts are rejected
+     # without even asking for username and password:
+     *:deny:
+     </td></tr></table>
+</pre>
+   <p>The format is described in detail in the comments at the beginning of
+the file.
+
+<div class="node">
+<p><hr>
+<a name="E_002dMail"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Miscellaneous">Miscellaneous</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Gnatsd">Gnatsd</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Configuration">Configuration</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">3.3 E-Mail Issues</h3>
+
+<ul class="menu">
+<li><a accesskey="1" href="#queue_002dpr-not-available">queue-pr not available</a>:       Sendmail refuses to run queue-pr
+<li><a accesskey="2" href="#Outgoing-mail-bounces">Outgoing mail bounces</a>:        Mail system complains on outgoing mail
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="queue_002dpr-not-available"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Outgoing-mail-bounces">Outgoing mail bounces</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#E_002dMail">E-Mail</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#E_002dMail">E-Mail</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">queue-pr not available for sendmail programs</h5>
+
+<p>Your sendmail installation uses <span class="samp">smrsh</span> to check programs that are
+invoked from a mail alias.  <span class="samp">smrsh</span> only allows the execution of
+programs of which it is told that they are save.  To tell it that
+<span class="file">queue-pr</span> is save, create a symbolic link in the directory
+<span class="file">/etc/smrsh</span><!-- /@w --> to <span class="file">queue-pr</span>, like this:
+
+<pre class="smallexample">     mkdir /etc/smrsh	<span class="roman"># if it does not yet exist</span>
+     cd /etc/smrsh
+     ln -s /usr/local/libexec/gnats/queue-pr queue-pr
+</pre>
+   <p class="noindent">Replace <span class="file">/usr/local/libexec/gnats/queue-pr</span><!-- /@w --> by the real path to
+<span class="file">queue-pr</span>.
+
+<div class="node">
+<p><hr>
+<a name="Outgoing-mail-bounces"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#queue_002dpr-not-available">queue-pr not available</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#E_002dMail">E-Mail</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">Mail from <span class="sc">gnats</span> bounces</h5>
+
+<p>You are getting bounce mails like this:
+
+<pre class="example">        ----- Transcript of session follows -----
+     ... while talking to mail.example.com.:
+     &gt;&gt;&gt; MAIL From:&lt;gnats@mymachine.subdomain.example.com&gt; SIZE=334
+     &lt;&lt;&lt; 501 5.1.8 &lt;gnats@mymachine.subdomain.example.com&gt;...
+           Domain of sender address gnats@mymachine.subdomain.example.com does not exist
+</pre>
+   <p>Probably your <span class="sc">gnats</span> sits behind a firewall, but it needs to
+exchange mails with the world outside the firewall.  Make sure that
+<var>GNATS_ADDR</var> is valid outside.
+
+   <p>This is what probably happens behind the scenes: On its way to the
+outside world, the sender address of the mail gets rewritten to
+something "official" (like <code>Hans-Albert.Schneider@example.com</code>, as
+opposed to <code>me@mymachine.subdomain.example.com</code>).  This is
+especially necessary if the internal hosts are not visible outside.  If
+your outgoing mail gateway still sees the internal address, it complains
+with a message like the above (it has probably checked
+<code>mymachine.subdomain.example.com</code> with your organization's external
+DNS server, which does not know <code>mymachine</code>).
+
+   <p>To solve this problem, get an "official" address for your <span class="sc">gnats</span>
+system, e.g., tool-bugs@example.com, and use that one for
+<var>GNATS_ADDR</var>.
+
+<div class="node">
+<p><hr>
+<a name="Miscellaneous"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#E_002dMail">E-Mail</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Configuration">Configuration</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">3.4 Miscellaneous Configuration Issues</h3>
+
+<ul class="menu">
+<li><a accesskey="1" href="#No-New-Reports">No New Reports</a>:               New reports do not show up in the database
+<li><a accesskey="2" href="#Initially-Assign-Field-Values">Initially Assign Field Values</a>:   If you want to set additional fields when
+                                   entering a report
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="No-New-Reports"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Initially-Assign-Field-Values">Initially Assign Field Values</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Miscellaneous">Miscellaneous</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Miscellaneous">Miscellaneous</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">New reports do not show up in the database</h5>
+
+     <ol type=1 start=1>
+<li>Make sure you have set up the mail aliases for your database(s).  (See
+<a href="#Add-a-database">Add a database</a> and <a href="gnats.html#mkdb">Adding another database (Keeping Track)</a>.)
+
+     <li>Try to send a PR using <span class="samp">send-pr</span>.  If you get error replies,
+investigate the causes.  See <a href="#E_002dMail">E-Mail</a>.
+
+     <li>Does a new file show up in the <span class="file">gnats-queue</span><!-- /@w --> directory of your
+database, with the report as its contents? 
+If it does, make sure you have created the cron job for this database.
+
+     <li>If the report does not show up in the <span class="file">gnats-queue</span><!-- /@w --> of the desired
+database, does it show up in the <span class="file">gnats-queue</span><!-- /@w --> directory of another
+database? 
+In this case, make sure your mail aliases are set up correctly;
+especially, make sure that you have specified the correct
+<span class="samp">--directory</span> option (<span class="samp">--database</span> for <span class="sc">gnats</span> 4.x)
+for each <span class="file">queue-pr</span>.
+
+     </ol>
+
+<div class="node">
+<p><hr>
+<a name="Initially-Assign-Field-Values"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#No-New-Reports">No New Reports</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Miscellaneous">Miscellaneous</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">Assigning responsible etc. when entering a report</h5>
+
+<p><b>Q:</b> When entering a new PR, I want to assign a value to some field
+(e.g., <code>Responsible</code>) which is normally assigned by <span class="sc">gnats</span>.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 3.1xx)</b>
+This is not possible in <span class="sc">gnats</span> 3.1xx.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 4.x)</b> This is done by adding the field name (in this
+example, <code>Responsible</code>) to the <code>initial-entry</code><!-- /@w --> item at
+the very end of the <span class="file">dbconfig</span> file.  Gnatsweb will pick this up
+and add a <code>Responsible</code> field to the Create PR form.
+
+<div class="node">
+<p><hr>
+<a name="Clients"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Glossary">Glossary</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Configuration">Configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h2 class="chapter">4 Client Software</h2>
+
+<p>Several client applications can be found in the <span class="sc">gnats</span> distribution. 
+The most important are Gnatsweb (a WWW interface to <span class="sc">gnats</span>), TkGnats (a
+Tcl/Tk based interface), a <span class="sc">gnats</span> mode for Emacs and XEmacs, and send-pr
+(the traditional command line interface that sends a PR by e-mail).
+
+<ul class="menu">
+<li><a accesskey="1" href="#Gnatsweb">Gnatsweb</a>:                     a WWW interface to <span class="sc">gnats</span>
+<li><a accesskey="2" href="#TkGnats">TkGnats</a>:                      a Tcl/Tk based client
+<li><a accesskey="3" href="#Emacs-mode">Emacs mode</a>:                   for (X)Emacs enthusiasts
+<li><a accesskey="4" href="#send_002dpr">send-pr</a>:                      traditional command line interface
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="Gnatsweb"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#TkGnats">TkGnats</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Clients">Clients</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">4.1 Gnatsweb</h3>
+
+<p>See also <a href="#Gnatsweb-and-GNATS">Gnatsweb and GNATS</a> in the chapter on <a href="#Installation">Installation</a>.
+
+<ul class="menu">
+<li><a accesskey="1" href="#Gnatsweb-Login-Questions">Gnatsweb Login Questions</a>:     Problems logging in to Gnatsweb
+</ul>
+
+<!-- @node General Gnatsweb Questions -->
+<!-- node-name,  next,  previous,  up -->
+<!-- @subsection General Gnatsweb Questions -->
+<div class="node">
+<p><hr>
+<a name="Gnatsweb-Login-Questions"></a>Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsweb">Gnatsweb</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">4.1.1 Login Questions</h4>
+
+<ul class="menu">
+<li><a accesskey="1" href="#What-to-enter">What to enter</a>:                What to enter at login
+<li><a accesskey="2" href="#Login-Not-Remembered">Login Not Remembered</a>:         Reasons why Gnatsweb forgets your login
+<li><a accesskey="3" href="#Cookies">Cookies</a>:                      What Gnatsweb stores in its cookies
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="What-to-enter"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Login-Not-Remembered">Login Not Remembered</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsweb-Login-Questions">Gnatsweb Login Questions</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">What should be entered as login information?</h5>
+
+<p><b>A:</b> If you get an HTML form asking you to enter username, password,
+and database, use what your gnats administrator has told you.  In this
+case, your authentication data is checked with gnatsd's own user
+database.
+
+   <p>If your browser gives you a window asking for username and password (or
+for "credentials"), the authentication is done by the WWW server.  You
+should have got the necessary data either from your gnats administrator,
+or from the webmaster of the site offering Gnatsweb access.
+
+<div class="node">
+<p><hr>
+<a name="Login-Not-Remembered"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Cookies">Cookies</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#What-to-enter">What to enter</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsweb-Login-Questions">Gnatsweb Login Questions</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">Login data are not remembered</h5>
+
+<p><b>Q:</b> After logging in via Gnatsweb, the main screen is displayed,
+but whatever action is selected (whatever button is clicked), the login
+screen gets displayed again.
+
+   <p><b>A:</b> This is usually a problem of cookies getting ignored.  Gnatsweb
+uses cookies to store the login information (see "Gnatsweb and Cookies"
+below).  Configure your web browser to allow the cookies Gnatsweb tries
+to set.
+
+   <p><b>Q:</b> There is not even the main screen, the user immediately gets
+the login screen when trying to log in.  The login data entered is
+correct.  It works fine on another machine and for other users.
+
+   <p><b>A:</b> This has actually been reported only once; but as the effect is
+similar to the previous one, it is included in the FAQ.  It apparently
+was related to very strict security settings, but has not been
+investigated in detail.
+
+<div class="node">
+<p><hr>
+<a name="Cookies"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#Login-Not-Remembered">Login Not Remembered</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Gnatsweb-Login-Questions">Gnatsweb Login Questions</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">Gnatsweb and Cookies</h5>
+
+<p><a name="index-cookies-11"></a>
+<b>Q:</b> Wait a moment!  Cookies?  Can I eat them?
+
+   <p><b>A:</b> No, not these.  The cookies about which we are talking here are
+little data packages that a web-server sends to your browser (in our
+case, on behalf of Gnatsweb) and your browser sends them back to the
+server next time.  Modern browsers give you the option to generally
+accept or reject cookies, or to be asked whenever a cookie arrives (some
+even can make this decision based on the web-server).  To learn more
+about cookies, visit, e.g., <a href="http://www.cookiecentral.com/">the Cookie Central</a>.
+
+   <p><b>Q:</b> So, which cookies does Gnatsweb send, and why?
+
+   <p><b>A:</b> Gnatsweb uses a cookie <code>gnatsweb-db-</code><em>database_name</em> to
+store your login information (username, password), and a cookie
+<code>gnatsweb-global</code> to store the <span class="sc">gnats</span> database you are working on,
+your e-mail address (to fill it in for you when you create a new report
+or reply to an existing report), a default list of fields to display in
+search results, and defaults for <code>Submitter-Id</code> and
+<code>Originator</code> fields.
+
+   <p>Gnatsweb also sets a cookie for each "saved query" (named
+<code>gnatsweb-query-</code><em>queryname</em>).
+
+   <p>It is therefore essential that you allow Gnatsweb to set its cookies. 
+For a typical effect of rejecting them, see <a href="#Login-Not-Remembered">Login Not Remembered</a>.
+
+<div class="node">
+<p><hr>
+<a name="TkGnats"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Emacs-mode">Emacs mode</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Gnatsweb">Gnatsweb</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Clients">Clients</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">4.2 TkGnats</h3>
+
+<p>To be completed.
+
+<div class="node">
+<p><hr>
+<a name="Emacs-mode"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#send_002dpr">send-pr</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#TkGnats">TkGnats</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Clients">Clients</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">4.3 <span class="sc">gnats</span> Mode for Emacs</h3>
+
+<p>The Emacs mode is in the file gnats.el
+
+<ul class="menu">
+<li><a accesskey="1" href="#XEmacs">XEmacs</a>:                       Does it also work for XEmacs? 
+</ul>
+
+<div class="node">
+<p><hr>
+<a name="XEmacs"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#Emacs-mode">Emacs mode</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Emacs-mode">Emacs mode</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">Does it also work for XEmacs?</h5>
+
+<p><b>A: (</b><span class="sc">gnats</span><b> 3.1xx)</b> Yes.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 4.x)</b> Still to be tested.
+
+<div class="node">
+<p><hr>
+<a name="send_002dpr"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#Emacs-mode">Emacs mode</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Clients">Clients</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h3 class="section">4.4 send-pr</h3>
+
+<p>A simple command line tool that sends a report via electronic mail. 
+This is not contributed software, but part of <span class="sc">gnats</span> itself.
+
+   <p>The 3.xxx versions do not support multiple databases.
+
+<!-- You can try to work around this by installing a separate send-pr for -->
+<!-- each database, with the appropriate e-mail address and category list. -->
+<p>To be completed.
+
+<div class="node">
+<p><hr>
+<a name="Glossary"></a>Next:&nbsp;<a rel="next" accesskey="n" href="#Index">Index</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="#Clients">Clients</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+<br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h2 class="appendix">Appendix A Glossary</h2>
+
+     <dl>
+<dt><dfn>cookie</dfn><dd>A chunk of data that a WWW server stores in your browser.  It is sent
+back to the server when you contact it again.  Gnatsweb (see
+<a href="#Gnatsweb">Gnatsweb</a>) uses cookies to store your login information,
+preferences, and named queries.
+
+     <br><dt><dfn>gnats.el</dfn><dd><span class="sc">gnats</span> mode for (X)Emacs.
+
+     <br><dt><dfn>gnatsd</dfn><dd>The <span class="sc">gnats</span> daemon (server program).
+
+     <br><dt><dfn>Gnatsweb</dfn><dd>A WWW interface to <span class="sc">gnats</span>.
+
+     <br><dt><dfn>port</dfn><dd>A communication endpoint of various IP based protocols, notably TCP and
+UDP.  A server program waits for connections ("listens") on a port, and
+a client program connects to this port. 
+<a href="http://www.iana.org/">IANA</a> (the Internet Assigned Numbers
+Authority) maintains a
+<a href="http://www.iana.org/assignments/port-numbers">list of port numbers</a>
+registered for certain purposes.
+
+     <br><dt><dfn>PR</dfn><dd>Short for &ldquo;Problem Report&rdquo;.  An entry in a <span class="sc">gnats</span> database.
+
+     <br><dt><dfn>send-pr</dfn><dd>A command line tool that sends a new report by e-mail.
+
+     <br><dt><dfn>super server</dfn><dd>A super server (sometimes also called "super daemon") is a daemon (=
+UNIX server process) that waits for connections on the ports of various
+server programs and starts the corresponding server when a connection is
+made.  This way, there is only one server process for a set of services
+(instead of one for each service), but each service in the set is
+available to its clients.
+
+     <p>The most common super servers are <code>inetd</code> (the "InterNET Daemon"
+that comes with many UNIX installations) and
+<a href="http://www.xinetd.org">xinetd</a> (the "eXtended InterNET Daemon").
+
+     <br><dt><dfn>TkGnats</dfn><dd>A Tcl/Tk based interface to <span class="sc">gnats</span>. 
+</dl>
+
+<div class="node">
+<p><hr>
+<a name="Index"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="#Glossary">Glossary</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="#Top">Top</a>
+<br>
+</div>
+
+<!-- node-name,    next,  previous,      up -->
+<h2 class="unnumbered">Index</h2>
+
+<ul class="index-cp" compact>
+<li><a href="#index-bug-reporting-3">bug reporting</a>: <a href="#Bug-Reporting">Bug Reporting</a></li>
+<li><a href="#index-cookies-11">cookies</a>: <a href="#Cookies">Cookies</a></li>
+<li><a href="#index-_0040sc_007bgnats_007d-server_002c-see-gnatsd-5"><span class="sc">gnats</span> server, see gnatsd</a>: <a href="#Gnatsd">Gnatsd</a></li>
+<li><a href="#index-gnatsd-6">gnatsd</a>: <a href="#Gnatsd">Gnatsd</a></li>
+<li><a href="#index-gnatsd_002c-starting-2">gnatsd, starting</a>: <a href="#Administrator-View">Administrator View</a></li>
+<li><a href="#index-inetd-9">inetd</a>: <a href="#inetd-configuration">inetd configuration</a></li>
+<li><a href="#index-port-7">port</a>: <a href="#Port-Number">Port Number</a></li>
+<li><a href="#index-server-port-8">server port</a>: <a href="#Port-Number">Port Number</a></li>
+<li><a href="#index-server_002c-see-gnatsd-4">server, see gnatsd</a>: <a href="#Gnatsd">Gnatsd</a></li>
+<li><a href="#index-starting-gnatsd-1">starting gnatsd</a>: <a href="#Administrator-View">Administrator View</a></li>
+<li><a href="#index-xinetd-10">xinetd</a>: <a href="#xinetd-configuration">xinetd configuration</a></li>
+   </ul></body></html>
+

@@ -1,0 +1,141 @@
+<html lang="en">
+<head>
+<title>Individual field configuration - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="dbconfig-file.html#dbconfig-file" title="dbconfig file">
+<link rel="prev" href="Overall-database-configuration.html#Overall-database-configuration" title="Overall database configuration">
+<link rel="next" href="Field-datatypes.html#Field-datatypes" title="Field datatypes">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Individual-field-configuration"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Field-datatypes.html#Field-datatypes">Field datatypes</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Overall-database-configuration.html#Overall-database-configuration">Overall database configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="dbconfig-file.html#dbconfig-file">dbconfig file</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.3.2 Individual field configuration</h4>
+
+<p><a name="index-Individual-field-configuration-277"></a>
+Each type of field in a PR must be described with a <code>field</code> section
+in the <span class="file">dbconfig</span> file.  These sections have the following general
+structure:
+
+<pre class="example">     field "fieldname" {
+       description "string"
+       [ field-options ... ]
+       datatype [ datatype-options ... ]
+       [ on-change { edit-options ... } ]
+     }
+</pre>
+   <p><code>fieldname</code> is used as the field header in the PR.  The characters <code>&gt;</code>
+and <code>:</code> are used internally as field markers by <span class="sc">gnats</span>, so they must
+not be used in fieldnames.
+
+   <p>The order in which the <code>field</code> sections appear in the
+<span class="file">dbconfig</span> file determines the order in which they appear in the PR
+text.  There is no required order, unlike previous versions of <span class="sc">gnats</span>
+&mdash; the Unformatted field and multitext fields may appear anywhere in
+the PR.
+
+   <p>The following <code>field-options</code> may be present within a <code>field</code> section:
+
+     
+<a name="index-_0040code_007bbuiltin_002dname_007d-278"></a>
+<dl><dt><code>builtin-name  </code><var>"name"</var><dd>Indicates that this field corresponds to one of the <span class="sc">gnats</span> built-in
+fields.
+
+     <p><span class="sc">gnats</span> has several fields which are required to be present in a PR,
+and this option is used to map their external descriptions to their
+internal usage.  The external field names are:
+
+          <dl>
+<dt><code>arrival-date</code><dd><a name="index-_0040code_007barrival_002ddate_007d-279"></a>The arrival date of the PR
+
+          <br><dt><code>audit-trail</code><dd><a name="index-_0040code_007baudit_002dtrail_007d-280"></a>The audit-trail recording changes to the PR
+
+          <br><dt><code>category</code><dd><a name="index-_0040code_007bcategory_007d-281"></a>The category that the PR falls into
+
+          <br><dt><code>closed-date</code><dd><a name="index-_0040code_007bclosed_002ddate_007d-282"></a>The date that the PR was closed
+
+          <br><dt><code>confidential</code><dd><a name="index-_0040code_007bconfidential_007d-283"></a>If set to <code>yes</code>, the PR is confidential
+
+          <br><dt><code>description</code><dd><a name="index-_0040code_007bdescription_007d-284"></a>A description of the problem
+
+          <br><dt><code>last-modified</code><dd><a name="index-_0040code_007blast_002dmodified_007d-285"></a>The date the PR was last modified
+
+          <br><dt><code>number</code><dd><a name="index-_0040code_007bnumber_007d-286"></a>The PR's unique numeric identifier
+
+          <br><dt><code>originator</code><dd><a name="index-_0040code_007boriginator_007d-287"></a>The originator of the PR
+
+          <br><dt><code>priority</code><dd><a name="index-_0040code_007bpriority_007d-288"></a>Priority of the PR
+
+          <br><dt><code>responsible</code><dd><a name="index-_0040code_007bresponsible_007d-289"></a>The person responsible for handling the PR
+
+          <br><dt><code>severity</code><dd><a name="index-_0040code_007bseverity_007d-290"></a>Severity of the problem described by the PR
+
+          <br><dt><code>state</code><dd><a name="index-_0040code_007bstate_007d-291"></a>The current state of the PR
+
+          <br><dt><code>submitter-id</code><dd><a name="index-_0040code_007bsubmitter_002did_007d-292"></a>The user that submitted the PR
+
+          <br><dt><code>synopsis</code><dd><a name="index-_0040code_007bsynopsis_007d-293"></a>The one-line description of the PR
+
+          <br><dt><code>unformatted</code><dd><a name="index-_0040code_007bunformatted_007d-294"></a>PR text which cannot be parsed and associated with other fields. 
+</dl>
+
+     <p>For these built-in fields, a matching field description <em>must</em>
+appear in the <span class="file">dbconfig</span> file. Otherwise, the configuration will
+be considered invalid, and errors will be generated from the
+<span class="sc">gnats</span> clients and <code>gnatsd</code>.  We also recommend that you
+leave the actual fieldnames of these fields at their default values
+(i.e. capitalized versions of their built-in names), since some
+clients may depend on these names.
+
+     <br><dt><code>description  </code><var>"description text"</var><dd>A one-line human-readable description of the field.  Clients can use
+this string to describe the field in a help dialog.  The string is
+returned from the FDSC command in gnatsd and is also available via the
+<code>--field-description</code> option in <code>query-pr</code>.
+
+     <p>This entry must be present in the field description, and there is no
+default value.
+
+     <br><dt><code>query-default  </code><var>exact-regexp | inexact-regexp</var><dd>Used to specify the default type of searches performed on this field. 
+This is used when the <code>^</code> search operator appears in a query, and
+is also used for queries in <code>query-pr</code> that use the old
+<code>--field</code> query options.
+
+     <p>If the option is not given, the default search is <code>exact-regexp</code>.
+
+     <br><dt><code>textsearch</code><dd>If this option is present, the field will be searched when the user
+performs a <code>--text</code> search from <code>query-pr</code>.  The field is
+also flagged as a <code>textsearch</code> field in the set of field flags
+returned by the <code>FIELDFLAGS</code> command in gnatsd.
+
+     <p>By default, fields are not marked as <code>textsearch</code> fields.
+
+     <br><dt><code>read-only</code><dd>When this option is present, the field contents may not be edited &mdash; they
+must be set when the PR is initially created.  In general, this should
+only be used for fields that are given as internal values rather than
+fields supplied by the user.
+
+     <p>By default, editing is allowed. 
+</dl>
+
+   </body></html>
+

@@ -1,0 +1,198 @@
+<html lang="en">
+<head>
+<title>dbconfig recipes - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Regexps.html#Regexps" title="Regexps">
+<link rel="next" href="Support.html#Support" title="Support">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="dbconfig-recipes"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Support.html#Support">Support</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Regexps.html#Regexps">Regexps</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="appendix">Appendix E <span class="file">dbconfig</span> recipes</h2>
+
+<p><a name="index-dbconfig-387"></a><a name="index-_0040file_007bdbconfig_007d-recipes-388"></a>
+The <span class="file">dbconfig</span> file (<a href="dbconfig-file.html#dbconfig-file">The <span class="file">dbconfig</span> file</a>) is the heart of any <span class="sc">gnats</span> installation.  It contains some
+very powerful machinery, something which this appendix tries to
+illustrate.
+
+   <p>We provide a range of examples that are both intended to be useful in
+their own right and to serve as starting points or building blocks for
+your own modifications.
+
+<h5 class="subsubheading">Provide Gnatsweb URL in initial response</h5>
+
+<p>Sites that have Gnatsweb installed may wish to modify the response
+e-mail which is sent to the submitter of a PR so that it includes a
+URL where the status of the PR can be monitored.  In order to allow
+this, you should first create an entry in <span class="file">gnatsd.user_access</span>
+which allows viewing of PRs in your database
+(See <a href="gnatsd_002euser_005faccess.html#gnatsd_002euser_005faccess">The <span class="file">gnatsd.user_access</span> file</a>.)
+
+   <p>Next, locate the entry <code>mail-format
+"initial-response-to-submitter"</code> in the <span class="file">dbconfig</span> file of your
+database and add the following <em>before</em> the line reading &ldquo;The
+individual assigned...&rdquo; in the <code>body</code> section:
+
+<pre class="verbatim">
+\nYou can follow the status of this report on\n\
+http://hostname/cgi-bin/scriptname?\n\
+cmd=view&amp;database=dbname&amp;user=username&amp;\n\
+password=passwd&amp;pr=%s\n\n\
+</pre>
+
+<p class="noindent">Substitute <code>hostname</code>, <code>cgi-bin</code> and <code>scriptname</code> as
+appropriate for the setup of your web server.  The part before the
+<span class="samp">?</span> would typically look something like
+<code>http://www.example.com/cgi-bin/gnatsweb.pl</code>.  Substitute the
+name of your database for <code>dbname</code>, and the username and password
+of the user with <code>view</code> rights for <code>username</code> and
+<code>passwd</code>.
+
+<p class="noindent">Next, add a <code>Number</code> to the <code>fields</code> list statement inside
+the <code>body</code> so it reads as follows:
+
+<pre class="verbatim">
+fields { "Category" "Number" "Number" "Responsible"
+         "Category" "Responsible" "Synopsis"
+         "Arrival-Date" }
+</pre>
+
+<h5 class="subsubheading">State full name of responsible in initial response</h5>
+
+<p>The initial e-mail response to the submitter of a PR identifies the
+responsible person assigned to the PR as follows: &ldquo;The individual
+assigned to look at your report is: <var>GNATS username</var>&rdquo;.  Some
+sites may wish to modify this so that the full name of the responsible
+person is used instead of the <span class="sc">gnats</span> user name.
+
+   <p>The full name is contained in the <code>fullname</code> subfield of the
+user's entry in the <span class="file">responsible</span> file and can be accessed as
+<code>Responsible[fullname]</code> (see <a href="administrative-files.html#administrative-files">Enumerated field administrative files</a>.)
+
+   <p>The change is achieved by editing the <span class="file">dbconfig</span> item
+<code>mail-format "initial-response-to-submitter"</code> and changing the
+<code>fields</code> part of the <code>Body</code> from
+
+<pre class="verbatim">
+fields { "Category" "Number" "Responsible"
+         "Category" "Responsible" "Synopsis"
+         "Arrival-Date" }
+</pre>
+
+<p class="noindent">to
+
+<pre class="verbatim">
+fields { "Category" "Number" "Responsible[fullname]"
+         "Category" "Responsible" "Synopsis"
+         "Arrival-Date" }
+</pre>
+
+<h5 class="subsubheading">Append-only Audit-Trail</h5>
+
+<p>The Audit-Trail of a PR is by default editable.  For some
+applications, one might want to make the Audit-Trail append-only, so
+it provides a full and unchangeable case history.  Also by default,
+only certain changes, such as change of state and change of
+responsible gets recorded in the Audit-Trail.  In some cases, it might
+also be convenient to have a way of inserting comments directly into
+the Audit-Trail.
+
+   <p>The following procedure creates such an append-only Audit-Trail and
+adds a PR field which makes it possible to register comments in the
+Audit-Trail.
+
+<p class="noindent">First, add the keyword <code>read-only</code> to the Audit-Trail field
+definition in <span class="file">dbconfig</span>.
+
+<p class="noindent">Then, add the following field definition to <span class="file">dbconfig</span>:
+
+<pre class="verbatim">
+field "Add-To-Audit-Trail" {
+   description "Add a log entry to the Audit Trail"
+   multitext { default "\n" }
+   on-change  {
+        add-audit-trail
+        audit-trail-format {
+        format "**** Comment added by %s on %s ****\n %s\n\n"
+        fields { "$EditUserEmailAddr" "$CurrentDate" "$NewValue"
+        }
+        }
+    }
+    on-change {
+        set-field "Add-To-Audit-Trail" { "\n" }
+    }
+}
+</pre>
+
+   <p><a name="release_002dbased-support"></a>
+
+<h5 class="subsubheading">Supporting <span class="sc">gnats</span> &ldquo;release-based&rdquo; fields</h5>
+
+<p>When installing <span class="sc">gnats</span> version 3.x, it was possible to choose
+whether to enable three optional fields: <code>Quarter</code>, <code>Keywords</code>
+and <code>Date-Required</code>.  Default installations had these fields
+switched off, and installations which had them were called
+&ldquo;release-based&rdquo;.
+
+   <p>The default <span class="file">dbconfig</span> shipped with <span class="sc">gnats</span> version 4 or newer
+does not have these fields, so if you are upgrading from an old
+release-based system, you need to add the following field definitions to
+your <span class="file">dbconfig</span> file:
+
+<pre class="verbatim">
+field "Quarter" {
+    description "What quarter does the PR fall into?"
+    text
+    query-default inexact-regexp
+    textsearch
+}
+
+field "Keywords" {
+    description "Keywords used to index this PR"
+    text
+    query-default inexact-regexp
+    textsearch
+}
+
+field "Date-Required" {
+    description "Date that the PR must be fixed by"
+    date
+}
+</pre>
+
+   <p>A side note: Pre-release versions of <span class="sc">gnats</span> 4 also had a field
+named <code>Cases</code>.  For those who may need it, here is the field
+definition of <code>Cases</code>:
+
+<pre class="verbatim">
+field "Cases" {
+    text
+    query-default inexact-regexp
+    textsearch
+}
+</pre>
+<!-- =============================================================== -->
+
+   </body></html>
+

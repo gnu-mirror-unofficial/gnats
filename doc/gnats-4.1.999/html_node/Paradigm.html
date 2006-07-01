@@ -1,0 +1,130 @@
+<html lang="en">
+<head>
+<title>Paradigm - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Introduction.html#Introduction" title="Introduction">
+<link rel="next" href="Flowchart.html#Flowchart" title="Flowchart">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Paradigm"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Flowchart.html#Flowchart">Flowchart</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Introduction.html#Introduction">Introduction</a>
+<hr><br>
+</div>
+
+<h3 class="section">1.1 The database paradigm</h3>
+
+<p><a name="index-paradigm-6"></a><a name="index-database-paradigm-7"></a><a name="index-why-GNATS-8"></a><a name="index-support-site-9"></a><a name="index-maintenance-10"></a><a name="index-so-what-does-it-do-11"></a>
+It is in your best interest as the maintainer of a body of work to
+organize the feedback you receive on that work, and to make it easy for
+users of your work to report problems and suggestions.
+
+   <p><span class="sc">gnats</span> makes this easy by automatically filing incoming problem
+reports into appropriate places, by notifying responsible parties of the
+existence of the problem and (optionally) sending an acknowledgment to
+the submitter that the report was received, and by making these Problem
+Reports accessible to queries and easily editable.  <span class="sc">gnats</span> is a
+database specialized for a specific task.
+
+   <p><span class="sc">gnats</span> was designed for use at a Support Site that handles a high
+level of problem-related traffic.  It maintains Problem Reports in the
+form of text files with defined <dfn>fields</dfn>
+(see <a href="Fields.html#Fields"><span class="sc">gnats</span> data fields</a>).  The location of the database,
+as well as the categories it accepts as valid, the maintainers for whom
+it provides service, and the submitters from whom it accepts Problem
+Reports, are all definable by the <dfn>Support Site</dfn>. 
+See <a href="Management.html#Management"><span class="sc">gnats</span> administration</a>.
+
+   <p><a name="index-what-is-a-PR-12"></a>Each PR is a separate file within a main repository
+(see <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>).  Editing access to the
+database is regulated to maintain consistency.  To make queries on
+the database faster, an index is kept automatically (see <a href="index-file.html#index-file">The <code>index</code> file</a>).
+
+   <p>We provide several software tools so that users may submit new Problem
+Reports, edit existing Problem Reports, and query the database.
+
+     <ul>
+<li><code>send-pr</code><!-- /@w --> is used by both product maintainers and the end users
+of the products they support to submit PRs to the database.
+
+     <li><code>edit-pr</code><!-- /@w --> is used by maintainers when editing problem
+reports in the database.
+
+     <li>Maintainers, managers and administrators can use <code>query-pr</code><!-- /@w --> to
+make inquiries about individual PRs or groups of PRs.
+
+   </ul>
+
+   <p>Other interfaces to <span class="sc">gnats</span> include Gnatsweb, a web-based tool which
+provides features for submitting and editing PRs and querying the
+database, and TkGnats, a Tcl/Tk-based frontend.  These tools are
+distributed together with <span class="sc">gnats</span>.
+
+   <p><a name="index-GNATS-administrator-13"></a>At the Support Site, a <span class="sc">gnats</span> <dfn>administrator</dfn> is charged with the
+duty of maintaining <span class="sc">gnats</span>.  These duties are discussed in detail in
+<a href="Management.html#Management"><span class="sc">gnats</span> Administration</a>, and generally include
+configuring <span class="sc">gnats</span> for the Support Site, editing PRs that <span class="sc">gnats</span>
+cannot process, pruning log files, setting up new problem categories,
+backing up the database, and distributing <code>send-pr</code> so that others
+may submit Problem Reports.
+
+   <p>Responsibility for a given Problem Report initially depends on the
+category of the problem.  Optionally, an automated reminder can be
+sent to the responsible person if a problem report is neglected for a
+requisite time period.  See <a href="GNATS-configuration.html#GNATS-configuration">Overview of <span class="sc">gnats</span> configuration</a>.
+
+   <p><a name="index-_0040code_007bpending_007d-directory-14"></a><a name="index-unparseable-incoming-PRs-15"></a><a name="index-incoming-PRs-that-_0040sc_007bgnats_007d-cannot-parse-16"></a><span class="sc">gnats</span> does not have the ability to decipher random text. 
+If there is no default category set, any
+problem reports which arrive in a format <span class="sc">gnats</span> does not recognize
+are placed in a separate directory pending investigation by the
+<span class="sc">gnats</span> administrator (see <a href="Management.html#Management"><span class="sc">gnats</span> Administration</a>).
+
+   <p>Once a problem is recorded in the database, work can begin toward a
+solution.  A problem's initial <dfn>state</dfn> type is <dfn>open</dfn>
+(see <a href="States.html#States">States of Problem Reports</a>).  An acknowledgment may be
+sent to the originator of the bug report (depending on whether this
+feature has been switched on in the <span class="sc">gnats</span> configuration). 
+<span class="sc">gnats</span> forwards copies of the report to the party responsible for
+that problem category and to the person responsible for problems
+arriving from that submitter. 
+<!-- (@pxref{Glossary,,Glossary}). -->
+
+   <p>When a problem has been identified, the maintainer can change its state
+to <dfn>analyzed</dfn>, and then to <dfn>feedback</dfn> when a solution is found. 
+<span class="sc">gnats</span> may be configured so that each time the state of a PR
+changes, the submitter of the problem report is notified of the reason
+for the change.  If the party responsible for the PR changes, the
+previous responsible party and the new responsible party receive notice
+of the change.  The change and reason are also recorded in the
+<code>Audit-Trail</code> field of the Problem Report.  (See <a href="edit_002dpr.html#edit_002dpr">Editing existing Problem Reports</a>.  For information on the <code>Audit-Trail</code>
+field, see <a href="Fields.html#Fields">Problem Report format</a>.)
+
+   <p>When the originator of the Problem Report confirms that the solution
+works, the maintainer can change the state to <dfn>closed</dfn>.  If the PR
+cannot be closed, the maintainer can change its state to <dfn>suspended</dfn>
+as a last resort.  (For a more detailed description of the standard
+states, see <a href="States.html#States">States of Problem Reports</a>.)
+
+   <p>It should be emphasized that what we describe here is the default way
+that <span class="sc">gnats</span> works, but as of version 4, <span class="sc">gnats</span> is extremely
+customizable, allowing sites to tailor almost every aspect of its
+behavior.  See for instance <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a> and See <a href="States.html#States">States of Problem Reports</a>.)
+
+   </body></html>
+

@@ -1,0 +1,110 @@
+<html lang="en">
+<head>
+<title>GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="#Top">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<h1 class="settitle">GNATS Frequently Asked Questions</h1>
+<div class="contents">
+<h2>Table of Contents</h2>
+<ul>
+<li><a name="toc_Top" href="index.html#Top"><span class="sc">gnats</span> Frequently Asked Questions</a>
+<li><a name="toc_General" href="General.html#General">1 General Questions</a>
+<ul>
+<li><a href="What-is-GNATS.html#What-is-GNATS">1.1 What is <span class="sc">gnats</span>?</a>
+<ul>
+<li><a href="User-view.html#User-view">1.1.1 How it Works&mdash;User's View</a>
+<li><a href="Administrator-View.html#Administrator-View">1.1.2 How it Works&mdash;Administrator's View</a>
+</li></ul>
+<li><a href="How-to-pronounce-it.html#How-to-pronounce-it">1.2 How is "<span class="sc">gnats</span>" pronounced?</a>
+<li><a href="Get-it.html#Get-it">1.3 Where do I get it?</a>
+<li><a href="Versions.html#Versions">1.4 What is the latest version?</a>
+<li><a href="Mailing-Lists.html#Mailing-Lists">1.5 Is there a Mailing List?</a>
+<li><a href="Bug-Reporting.html#Bug-Reporting">1.6 How do I Report a Bug?</a>
+<li><a href="Upgrading.html#Upgrading">1.7 Upgrading Considerations</a>
+</li></ul>
+<li><a name="toc_Installation" href="Installation.html#Installation">2 Problems during Installation</a>
+<ul>
+<li><a href="Gnatsweb-and-GNATS.html#Gnatsweb-and-GNATS">2.1 Gnatsweb and <span class="sc">gnats</span> do not like each other.</a>
+</li></ul>
+<li><a name="toc_Configuration" href="Configuration.html#Configuration">3 Configuration Issues</a>
+<ul>
+<li><a href="General-configuration.html#General-configuration">3.1 General Configuration Questions</a>
+<ul>
+<li><a href="Add-a-database.html#Add-a-database">3.1.1 How do I add a new database?</a>
+<li><a href="Renaming-a-Category.html#Renaming-a-Category">3.1.2 How do I rename a category?</a>
+<li><a href="Changing-Fields.html#Changing-Fields">3.1.3 How do I add, remove, or rename a PR field?</a>
+</li></ul>
+<li><a href="Gnatsd.html#Gnatsd">3.2 Gnatsd, the <span class="sc">gnats</span> Daemon</a>
+<ul>
+<li><a href="Port-Number.html#Port-Number">3.2.1 Gnatsd Port Number</a>
+<li><a href="Starting-gnatsd.html#Starting-gnatsd">3.2.2 How to Start Gnatsd</a>
+<li><a href="Gnatsd-messages.html#Gnatsd-messages">3.2.3 Gnatsd Messages</a>
+</li></ul>
+<li><a href="E_002dMail.html#E_002dMail">3.3 E-Mail Issues</a>
+<li><a href="Miscellaneous.html#Miscellaneous">3.4 Miscellaneous Configuration Issues</a>
+</li></ul>
+<li><a name="toc_Clients" href="Clients.html#Clients">4 Client Software</a>
+<ul>
+<li><a href="Gnatsweb.html#Gnatsweb">4.1 Gnatsweb</a>
+<ul>
+<li><a href="Gnatsweb-Login-Questions.html#Gnatsweb-Login-Questions">4.1.1 Login Questions</a>
+</li></ul>
+<li><a href="TkGnats.html#TkGnats">4.2 TkGnats</a>
+<li><a href="Emacs-mode.html#Emacs-mode">4.3 <span class="sc">gnats</span> Mode for Emacs</a>
+<li><a href="send_002dpr.html#send_002dpr">4.4 send-pr</a>
+</li></ul>
+<li><a name="toc_Glossary" href="Glossary.html#Glossary">Appendix A Glossary</a>
+<li><a name="toc_Index" href="Index.html#Index">Index</a>
+</li></ul>
+</div>
+
+
+
+<div class="node">
+<p>
+<a name="Top"></a>Next:&nbsp;<a rel="next" accesskey="n" href="General.html#General">General</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="../index.html#dir">(dir)</a>
+<hr><br>
+</div>
+
+<!-- node-name, next,    previous, up -->
+<h2 class="unnumbered"><span class="sc">gnats</span> Frequently Asked Questions</h2>
+
+<p>This document answers some frequently asked questions concerning
+<span class="sc">gnats</span>, the <span class="sc">gnu</span> problem report management system, and related
+software. 
+The most recent version of this FAQ can be found at
+<a href="http://www.gnu.org/software/gnats/doc/faq/gnats-faq.html">http://www.gnu.org/software/gnats/doc/faq/gnats-faq.html</a>.
+
+   <p>The questions and answers have been compiled by
+<a href="mailto:Gnats-FAQ@HA-Schneider.de">Hans-Albert Schneider</a>, mainly
+using the help-gnats mailing list and the <span class="sc">gnats</span> documentation as
+input.  Please report any errors and suggestions to him.
+
+<ul class="menu">
+<li><a accesskey="1" href="General.html#General">General</a>:                      General questions
+<li><a accesskey="2" href="Installation.html#Installation">Installation</a>:                 Problems during installation
+<li><a accesskey="3" href="Configuration.html#Configuration">Configuration</a>:                Problems with <span class="sc">gnats</span> configuration
+<li><a accesskey="4" href="Clients.html#Clients">Clients</a>:                      Ways to access a <span class="sc">gnats</span> system
+<li><a accesskey="5" href="Glossary.html#Glossary">Glossary</a>:                     Abbreviations and definitions
+<li><a accesskey="6" href="Index.html#Index">Index</a>:                        Important things and where they are referenced
+</ul>
+
+   </body></html>
+

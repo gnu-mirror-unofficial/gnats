@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+<title>Overall database configuration - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="dbconfig-file.html#dbconfig-file" title="dbconfig file">
+<link rel="next" href="Individual-field-configuration.html#Individual-field-configuration" title="Individual field configuration">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Overall-database-configuration"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Individual-field-configuration.html#Individual-field-configuration">Individual field configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="dbconfig-file.html#dbconfig-file">dbconfig file</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.3.1 Overall database configuration</h4>
+
+<p><a name="index-Overall-database-configuration-267"></a>
+The overall database options are controlled by settings in the
+<code>database-info</code> section of the <span class="file">dbconfig</span> file.  The following
+is the general format of this section:
+
+<pre class="example">     database-info {
+       [options]
+     }
+</pre>
+   <p>The following options and values may be used in the <code>database-info</code>
+section:
+
+     
+<a name="index-_0040code_007bdebug_002dmode_007d-268"></a>
+<dl><dt><code>debug-mode  </code><var>true | false</var><dd>If set to <code>true</code>, the database is placed into debug mode.  This causes all
+outgoing email to be sent to the <dfn>gnats-admin</dfn> user listed in the
+<span class="file">responsible</span> file of the database.  The default value is <code>false</code>.
+
+     <p><a name="index-_0040code_007bkeep_002dall_002dreceived_002dheaders_007d-269"></a><br><dt><code>keep-all-received-headers  </code><var>true | false</var><dd>If set to <code>true</code>, all of the Received: headers for PRs submitted
+via email are kept in the PR.  Otherwise, only the first one is kept.  The
+default value is <code>false</code>.
+
+     <p><a name="index-_0040code_007bnotify_002dabout_002dexpired_002dprs_007d-270"></a><br><dt><code>notify-about-expired-prs  </code><var>true | false</var><dd>If set to <code>true</code>, notification email about expired PRs is sent via
+the <code>at-pr</code> command.  Otherwise, required times for PR fixes are not
+used.  The default value is <code>false</code>.
+
+     <p><a name="index-_0040code_007bsend_002dsubmitter_002dack_007d-271"></a><br><dt><code>send-submitter-ack  </code><var>true | false</var><dd>When new PRs are submitted to the database, an acknowledgment email will
+be sent to the submitter of send-submitter-ack is set to <code>true</code>. 
+This is in addition to the normal notification mail to the person(s)
+responsible for the new PR.  The default value is <code>false</code>.
+
+     <p><a name="index-_0040code_007blibexecdir_007d-272"></a><br><dt><code>libexecdir  </code><var>"directory"</var><dd>Specifies the directory where the <span class="sc">gnats</span> administrative executables
+are located.  In particular, <code>at-pr</code> and <code>mail-pr</code> are invoked
+from this directory.  The default value is the empty string, which is
+unlikely to be useful.
+
+     <p><a name="index-_0040code_007bbusiness_002dday_002dhours_007d-273"></a><br><dt><code>business-day-hours  </code><var>day-start - day-end</var><dd>Used to specify the hours that define a business day.  The values are
+inclusive and should be given in 24-hour format, with a dash separating
+them.  <span class="sc">gnats</span> uses these values to determine whether the required
+completion time for a PR has passed.  The default values are 8 for
+<code>day-start</code> and 17 for <code>day-end</code>.
+
+     <p><a name="index-_0040code_007bbusiness_002dweek_002ddays_007d-274"></a><br><dt><code>business-week-days  </code><var>week-start - week-end</var><dd>Specifies the start and ending days of the business week, where 0 is
+Sunday, 1 is Monday, etc.  The days are inclusive, and the values should
+be given with a dash separating them.  <span class="sc">gnats</span> uses these values to
+determine whether the required completion time for a PR has passed.  The
+default values are 1 for <code>week-start</code> and 5 for <code>week-end</code>.
+
+     <p><a name="index-_0040code_007bcreate_002dcategory_002ddirs_007d-275"></a><br><dt><code>create-category-dirs  </code><var>true | false</var><dd>If set to <code>true</code>, database directories for categories are
+automatically created as needed.  Otherwise, they must be created
+manually (usually with the <code>mkcat</code> script).  It is recommended that
+the default value of <code>true</code> be kept.
+
+     <p><a name="index-_0040code_007bcategory_002ddir_002dperms_007d-276"></a><br><dt><code>category-dir-perms  </code><var>mode</var><dd>Standard octal mode-specification specifying the permissions to be set
+on auto-created category directories. Default is <code>0750</code>, yielding
+user read, write and execute, and group read and execute.  Note that
+if you have local users on the <span class="sc">gnats</span> server itself, running for
+instance <code>query-pr</code>, you may need to change the permissions to
+<code>0755</code>. 
+</dl>
+
+   </body></html>
+

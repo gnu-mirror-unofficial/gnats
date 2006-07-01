@@ -1,0 +1,49 @@
+<html lang="en">
+<head>
+<title>Initial PR input fields - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="dbconfig-file.html#dbconfig-file" title="dbconfig file">
+<link rel="prev" href="Index-file-description.html#Index-file-description" title="Index file description">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Initial-PR-input-fields"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Index-file-description.html#Index-file-description">Index file description</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="dbconfig-file.html#dbconfig-file">dbconfig file</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.3.9 Initial PR input fields</h4>
+
+<p><a name="index-Initial-PR-input-fields-318"></a>
+An <code>initial-entry</code> section in the <span class="file">dbconfig</span> file is used to
+describe which fields should be present on initial PR entry; this is
+used by tools such as send-pr to determine which fields to include in a
+&ldquo;blank&rdquo; PR template. An optional <code>require</code> parameter can be
+defined to specify a subset of the <code>intial-entry</code> fields which must
+be assigned a value upon initial creation of the PR.
+
+   <p>The general format for the <code>initial-entry</code> section is
+
+<pre class="example">     initial-entry {
+       fields { "fieldname" [ "fieldname" ... ] }
+       [ require { "fieldname" [ "fieldname" ... ] } ]
+     }
+</pre>
+   </body></html>
+

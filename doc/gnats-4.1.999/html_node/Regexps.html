@@ -1,0 +1,177 @@
+<html lang="en">
+<head>
+<title>Regexps - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Access-Control.html#Access-Control" title="Access Control">
+<link rel="next" href="dbconfig-recipes.html#dbconfig-recipes" title="dbconfig recipes">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Regexps"></a>Next:&nbsp;<a rel="next" accesskey="n" href="dbconfig-recipes.html#dbconfig-recipes">dbconfig recipes</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Access-Control.html#Access-Control">Access Control</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="appendix">Appendix D Querying using regular expressions</h2>
+
+<p><a name="index-querying-using-regexps-384"></a><a name="index-regular-expressions-385"></a><a name="index-syntax-of-regexps-386"></a>
+See also <a href="Query-expressions.html#Query-expressions">Query expressions</a>.
+
+   <p>Unfortunately, we do not have room in this manual for a complete
+exposition on regular expressions.  The following is a basic summary of
+some regular expressions you might wish to use.
+
+   <p><em>NOTE: When you use query expressions containing regular
+expressions as part of an ordinary query-pr shell command line, you need
+to quote them with </em><code>''</code><em>, otherwise the shell will try to interpret
+the special characters used, yielding highly unpredictable results.</em>
+
+   <p>See <a href="../regex/Regular-Expression-Syntax.html#Regular-Expression-Syntax">Regular Expression Syntax (Regex)</a>,
+for details on regular expression syntax.  Also see <a href="../emacs/Regexps.html#Regexps">Syntax of Regular Expressions (GNU Emacs Manual)</a>, but beware that the
+syntax for regular expressions in Emacs is slightly different.
+
+   <p>All search criteria options to <code>query-pr</code> rely on regular
+expression syntax to construct their search patterns.  For example,
+
+<pre class="smallexample">     query-pr --expr 'State="open"' --format full
+</pre>
+   <p class="noindent">matches all PRs whose <code>State</code> values match with the regular
+expression <span class="samp">open</span>.
+
+   <p>We can substitute the expression <span class="samp">o</span> for <span class="samp">open</span>, according
+to <span class="sc">gnu</span> regular expression syntax.  This matches all values of
+<code>State</code> which begin with the letter <span class="samp">o</span>.
+
+   <p>We see that
+
+<pre class="smallexample">     query-pr --expr 'State="o"' --format full
+</pre>
+   <p>is equivalent to
+
+<pre class="smallexample">     query-pr --expr 'State="open"' --format full
+</pre>
+   <p class="noindent">in this case, since the only value for <code>State</code> which matches
+the expression <span class="samp">o</span> in a standard installation is <span class="samp">open</span>. 
+<span class="samp">State="o"</span> also matches <span class="samp">o</span>, <span class="samp">oswald</span>, and even
+<span class="samp">oooooo</span>, but none of those values are valid states for a Problem
+Report in default <span class="sc">gnats</span> installations.
+
+   <p>We can also use the expression operator <span class="samp">|</span> to signify a logical
+<code>OR</code>, such that
+
+<pre class="smallexample">     query-pr --expr 'State="o|a"' --format full
+</pre>
+   <p class="noindent">matches all <span class="samp">open</span> or <span class="samp">analyzed</span> Problem Reports.
+
+   <p>Regular expression syntax considers a regexp token surrounded with
+parentheses, as in <span class="samp">(</span><var>regexp</var><span class="samp">)</span><!-- /@w -->, to be a <dfn>group</dfn>.  This
+means that <span class="samp">(ab)*</span><!-- /@w --> matches any number (including zero) of
+contiguous instances of <span class="samp">ab</span>.  Matches include , <span class="samp">ab</span>,
+and <span class="samp">ababab</span>.
+
+   <p>Regular expression syntax considers a regexp token surrounded with
+square brackets, as in <span class="samp">[</span><var>regexp</var><span class="samp">]</span><!-- /@w -->, to be a <dfn>list</dfn>. 
+This means that <span class="samp">Char[(ley)(lene)(broiled)</span><!-- /@w --> matches any of the
+words <span class="samp">Charley</span>, <span class="samp">Charlene</span>, or <span class="samp">Charbroiled</span> (case is
+significant; <span class="samp">charbroiled</span> is not matched).
+
+   <p>Using groups and lists, we see that
+
+<pre class="smallexample">     query-pr --expr 'Category="gcc|gdb|gas"' --format full
+</pre>
+   <p class="noindent">is equivalent to
+
+<pre class="smallexample">     query-pr --expr 'Category="g(cc|db|as)"' --format full
+</pre>
+   <p class="noindent">and is also very similar to
+
+<pre class="smallexample">     query-pr --expr 'Category="g[cda]"' --format full
+</pre>
+   <p class="noindent">with the exception that this last search matches any values which begin
+with <span class="samp">gc</span>, <span class="samp">gd</span>, or <span class="samp">ga</span>.
+
+   <p>The <span class="samp">.</span> character is known as a <dfn>wildcard</dfn>.  <span class="samp">.</span> matches
+on any single character.  <span class="samp">*</span> matches the previous character
+(except newlines), list, or group any number of times, including zero. 
+Therefore, we can understand <span class="samp">.*</span> to mean &ldquo;match zero or more
+instances of any character.&rdquo;
+
+<pre class="smallexample">     query-pr --expr 'State=".*a"' --format full
+</pre>
+   <p class="noindent">matches all values for <code>State</code> which contain an <span class="samp">a</span>.  (These
+include <span class="samp">analyzed</span> and <span class="samp">feedback</span>.)
+
+   <p>Another way to understand what wildcards do is to follow them on their
+search for matching text.  By our syntax, <span class="samp">.*</span> matches any
+character any number of times, including zero.  Therefore, <span class="samp">.*a</span>
+searches for any group of characters which end with <span class="samp">a</span>, ignoring
+the rest of the field.  <span class="samp">.*a</span> matches <span class="samp">analyzed</span> (stopping at
+the first <span class="samp">a</span>) as well as <span class="samp">feedback</span>.
+
+   <p><em>Note:</em> When using <span class="samp">fieldtype:Text</span> or
+<span class="samp">fieldtype:Multitext</span> (see <a href="Query-expressions.html#Query-expressions">Query expressions</a>), you do not have
+to specify the token <span class="samp">.*</span> at the beginning of your expression to
+match the entire field.  For the technically minded, this is because
+these queries use <span class="samp">re_search</span> rather than <span class="samp">re_match</span>. 
+<span class="samp">re_match</span> <dfn>anchors</dfn> the search at the beginning of the field,
+while <span class="samp">re_search</span> does not anchor the search.
+
+   <p>For example, to search in the <code>&gt;Description:</code> field for the text
+
+<pre class="smallexample">     The defrobulator component returns a nil value.
+</pre>
+   <p class="noindent">we can use
+
+<pre class="smallexample">     query-pr --expr 'fieldtype:Multitext="defrobulator.*nil"' --format full
+</pre>
+   <p>To also match newlines, we have to include the expression <span class="samp">(.|^M)</span>
+instead of just a dot (<span class="samp">.</span>).  <span class="samp">(.|^M)</span> matches &ldquo;any single
+character except a newline (<span class="samp">.</span>) <em>or</em> (<span class="samp">|</span>) any newline
+(<span class="samp">^M</span>).&rdquo;  This means that to search for the text
+
+<pre class="smallexample">     The defrobulator component enters the bifrabulator routine
+     and returns a nil value.
+</pre>
+   <p class="noindent">we must use
+
+<pre class="smallexample">     query-pr --expr 'fieldtype:Multitext="defrobulator(.|^M)*nil"'
+              --format full
+</pre>
+   <p>To generate the newline character <span class="samp">^M</span>, type the following
+depending on your shell:
+
+     <dl>
+<dt><code>csh</code><dd><em>control</em><span class="samp">-V </span><em>control</em><span class="samp">-M</span>
+
+     <br><dt><code>tcsh</code><dd><em>control</em><span class="samp">-V </span><em>control</em><span class="samp">-J</span>
+
+     <br><dt><code>sh (</code><em>or</em><code> bash)</code><dd>Use the &lt;RETURN&gt; key, as in
+
+     <pre class="smallexample">          (.|
+          )
+     </pre>
+     </dl>
+
+   <p>Again, see <a href="../regex/Regular-Expression-Syntax.html#Regular-Expression-Syntax">Regular Expression Syntax (Regex)</a>, for a much more complete discussion on regular
+expression syntax.
+
+<!-- =============================================================== -->
+</body></html>
+

@@ -1,0 +1,73 @@
+<html lang="en">
+<head>
+<title>gen-index - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Admin-utils.html#Admin-utils" title="Admin utils">
+<link rel="prev" href="rmcat.html#rmcat" title="rmcat">
+<link rel="next" href="check_002ddb.html#check_002ddb" title="check-db">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="gen_002dindex"></a>Next:&nbsp;<a rel="next" accesskey="n" href="check_002ddb.html#check_002ddb">check-db</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="rmcat.html#rmcat">rmcat</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Admin-utils.html#Admin-utils">Admin utils</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.7.4 Regenerating the index</h4>
+
+<p><a name="index-_0040code_007bgen_002dindex_007d-343"></a><a name="index-_0040code_007bindex_007d-file-344"></a>
+If your <span class="file">index</span> file becomes corrupted, or if you need a copy of
+the current index for some reason, use
+
+<pre class="smallexample">     gen-index [ -n | --numeric ]
+               [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+               [ -o <var>filename</var> | --outfile=<var>filename</var> ]
+               [ -i | --import ] [ -e | --export ]
+               [ -h | --help] [ -V | --version ]
+</pre>
+   <p class="noindent">With no options, <code>gen-index</code> generates an index that is sorted by
+the order that the categories appear in the <span class="file">categories</span> file. The
+index is generated in plaintext or binary format according to the value
+of <code>binary-index</code> in the <span class="file">dbconfig</span> file (see <a href="Index-file-description.html#Index-file-description">Index file description</a>).  The results are printed to
+standard output.  The options are:
+
+     <dl>
+<dt><code>-n</code><dt><code>--numeric</code><dd>Sorts index entries numerically.
+
+     <br><dt><code>-d </code><var>databasename</var><dt><code>--database=</code><var>databasename</var><dd>Specifies the database to index.  If this option is left out,
+<code>gen-index</code> attempts to index the database with name taken from the
+the <var>GNATSDB</var> environment variable, and if that is undefined, the
+default database, as set when <span class="sc">gnats</span> was built (usually
+<code>default</code>).
+
+     <br><dt><code>-o </code><var>filename</var><dt><code>--outfile=</code><var>filename</var><dd>Places output in <var>filename</var> rather than sending it to standard
+output.
+
+     <br><dt><code>-i</code><dt><code>--import</code><dd>Import the existing index file instead of re-indexing the database.
+
+     <br><dt><code>-e</code><dt><code>--export</code><dd>Force plaintext output.
+
+     <br><dt><code>-h</code><dt><code>--help</code><dd>Prints the usage for <code>gen-index</code>.
+
+     <br><dt><code>-V</code><dt><code>--version</code><dd>Prints the version number for <code>gen-index</code>. 
+</dl>
+
+   </body></html>
+

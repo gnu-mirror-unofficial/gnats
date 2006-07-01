@@ -1,0 +1,78 @@
+<html lang="en">
+<head>
+<title>queue-pr - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Internal-utils.html#Internal-utils" title="Internal utils">
+<link rel="next" href="file_002dpr.html#file_002dpr" title="file-pr">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="queue_002dpr"></a>Next:&nbsp;<a rel="next" accesskey="n" href="file_002dpr.html#file_002dpr">file-pr</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Internal-utils.html#Internal-utils">Internal utils</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.8.1 Handling incoming traffic</h4>
+
+<p><a name="index-_0040code_007bqueue_002dpr_007d-348"></a><a name="index-handling-incoming-traffic-349"></a>
+The program <code>queue-pr</code> handles traffic coming into <span class="sc">gnats</span>. 
+<code>queue-pr</code> queues incoming Problem Reports in the
+<span class="file">gnats-queue</span> directory of the database, and then periodically (via
+<code>cron</code>) passes them on to <code>file-pr</code> to be filed in the
+<span class="sc">gnats</span> database.  See <a href="Installation.html#Installation">Installing <span class="sc">gnats</span></a>.
+
+   <p>The usage for <code>queue-pr</code> is as follows:
+
+<pre class="smallexample">     queue-pr [ -q | --queue ] [ -r | --run ]
+              [ -f <var>filename</var> | --file=<var>filename</var> ]
+              [ -m <var>kbytes</var> | --max-size=<var>kbytes</var> ]
+              [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+              [ -h | --help] [ -V | --version ]
+</pre>
+   <p>One of <span class="samp">-q</span> or <span class="samp">-r</span> (or their longer-named counterparts) must
+be present upon each call to <code>queue-pr</code>.  These options provide
+different functions, as described below.
+
+     <dl>
+<dt><code>-q</code><dt><code>--queue</code><dd>Accepts standard input as an incoming mail message, placing this
+message in an incrementally numbered file in the
+<span class="file">gnats-queue</span><!-- /@w --> directory under the database directory
+(see <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>).
+
+     <br><dt><code>-r</code><dt><code>--run</code><dd>Redirects files in the <span class="file">gnats-queue</span> directory into the program
+<code>file-pr</code> one by one.
+
+     <br><dt><code>-f </code><var>filename</var><dt><code>--file=</code><var>filename</var><dd>Used with <span class="samp">-q</span> (or <span class="samp">--queue</span>), accepts the file denoted by
+<var>filename</var> as input rather than reading from standard input.
+
+     <br><dt><code>-m </code><var>kbytes</var><dt><code>--max-size=</code><var>kbytes</var><dd>Do not process messages larger then <var>kbytes</var> kilobytes.  Files
+larger than the limit are left for human intervention.
+
+     <br><dt><code>-d </code><var>databasename</var><dt><code>--directory=</code><var>databasename</var><dd>Specifies database to operate on.  If this option is left out, the value
+of the <var>GNATSDB</var> environment variable is used, and if that is
+undefined, the default database name set when <span class="sc">gnats</span> was built is
+used (usually <code>default</code>).
+
+     <br><dt><code>-h</code><dt><code>--help</code><dd>Prints the usage for <code>gen-index</code>.
+
+     <br><dt><code>-V</code><dt><code>--version</code><dd>Prints the version number for <code>gen-index</code>. 
+</dl>
+
+   </body></html>
+

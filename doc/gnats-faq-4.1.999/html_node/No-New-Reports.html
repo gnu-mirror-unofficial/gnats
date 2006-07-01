@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+<title>No New Reports - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Miscellaneous.html#Miscellaneous" title="Miscellaneous">
+<link rel="prev" href="Miscellaneous.html#Miscellaneous" title="Miscellaneous">
+<link rel="next" href="Initially-Assign-Field-Values.html#Initially-Assign-Field-Values" title="Initially Assign Field Values">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="No-New-Reports"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Initially-Assign-Field-Values.html#Initially-Assign-Field-Values">Initially Assign Field Values</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Miscellaneous.html#Miscellaneous">Miscellaneous</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Miscellaneous.html#Miscellaneous">Miscellaneous</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">New reports do not show up in the database</h5>
+
+     <ol type=1 start=1>
+<li>Make sure you have set up the mail aliases for your database(s).  (See
+<a href="Add-a-database.html#Add-a-database">Add a database</a> and <a href="../gnats/mkdb.html#mkdb">Adding another database (Keeping Track)</a>.)
+
+     <li>Try to send a PR using <span class="samp">send-pr</span>.  If you get error replies,
+investigate the causes.  See <a href="E_002dMail.html#E_002dMail">E-Mail</a>.
+
+     <li>Does a new file show up in the <span class="file">gnats-queue</span><!-- /@w --> directory of your
+database, with the report as its contents? 
+If it does, make sure you have created the cron job for this database.
+
+     <li>If the report does not show up in the <span class="file">gnats-queue</span><!-- /@w --> of the desired
+database, does it show up in the <span class="file">gnats-queue</span><!-- /@w --> directory of another
+database? 
+In this case, make sure your mail aliases are set up correctly;
+especially, make sure that you have specified the correct
+<span class="samp">--directory</span> option (<span class="samp">--database</span> for <span class="sc">gnats</span> 4.x)
+for each <span class="file">queue-pr</span>.
+
+     </ol>
+
+   </body></html>
+

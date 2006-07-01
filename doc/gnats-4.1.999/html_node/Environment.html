@@ -1,0 +1,52 @@
+<html lang="en">
+<head>
+<title>Environment - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="GNATS-user-tools.html#GNATS-user-tools" title="GNATS user tools">
+<link rel="next" href="send_002dpr.html#send_002dpr" title="send-pr">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Environment"></a>Next:&nbsp;<a rel="next" accesskey="n" href="send_002dpr.html#send_002dpr">send-pr</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="GNATS-user-tools.html#GNATS-user-tools">GNATS user tools</a>
+<hr><br>
+</div>
+
+<h3 class="section">2.1 Environment variables and <span class="sc">gnats</span> tools</h3>
+
+<p><a name="index-environment-variables-and-GNATS-tools-103"></a><a name="index-_0040code_007bGNATSDB_007d-104"></a>
+All the <span class="sc">gnats</span> user tools honor the <code>GNATSDB</code> environment
+variable which is used to determine which database to use.  For a local
+database, it contains the name of the database to access.
+
+   <p>For network access via gnatsd, it contains a colon-separated list of
+strings that describe the remote database in the form
+
+<pre class="smalldisplay">     <var>server:port:databasename:username:password</var>
+</pre>
+   <p>Any of the fields may be omitted except for <var>server</var>, but at least
+one colon must appear; otherwise, the value is assumed to be the name of
+a local database.
+
+   <p>If <code>GNATSDB</code> is not set and no command-line options are used to
+specify the database, it is assumed that the database is local and that
+its name is <span class="samp">default</span>.
+
+   </body></html>
+

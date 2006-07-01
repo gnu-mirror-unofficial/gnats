@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>Port Number - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Gnatsd.html#Gnatsd" title="Gnatsd">
+<link rel="next" href="Starting-gnatsd.html#Starting-gnatsd" title="Starting gnatsd">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Port-Number"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Starting-gnatsd.html#Starting-gnatsd">Starting gnatsd</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Gnatsd.html#Gnatsd">Gnatsd</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h4 class="subsection">3.2.1 Gnatsd Port Number</h4>
+
+<p><a name="index-port-7"></a><a name="index-server-port-8"></a>
+In 3.xxx versions, gnatsd uses port 1529 by default; as this port is
+officially assigned to another application (see the
+<a href="http://www.iana.org/assignments/port-numbers">list of port numbers</a>
+maintained by the <a href="http://www.iana.org/">Internet Assigned Numbers Authority</a>)
+<!-- there is no default port -->
+<!-- anymore in 4.x (you have to create an entry in @w{@file{/etc/services}}). -->
+it will probably change in 4.x.
+
+   <p>If you want/need to run gnatsd on another port, you can change the
+default port at compile time (call <code>configure --help</code> to learn
+about compile time configuration options).  Most clients also accept
+an option or configuration variable to change the port.  Don't forget
+to tell inetd (or xinetd, or whatever super-server you use) to start
+gnatsd on the other port.
+
+   </body></html>
+

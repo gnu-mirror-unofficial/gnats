@@ -1,0 +1,242 @@
+<html lang="en">
+<head>
+<title>Invoking query-pr - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="query_002dpr.html#query_002dpr" title="query-pr">
+<link rel="next" href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output" title="Formatting query-pr output">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Invoking-query_002dpr"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output">Formatting query-pr output</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="query_002dpr.html#query_002dpr">query-pr</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.4.1 Invoking <code>query-pr</code></h4>
+
+<p>From the shell, simply type <kbd>query-pr</kbd>, followed by any search
+parameters you wish to exercise.  From Emacs, type <kbd>M-x&nbsp;query-pr</kbd><!-- /@w -->.  <code>query-pr</code> prompts you for search parameters in the
+minibuffer.
+
+   <p><a name="index-_0040code_007bquery_002dpr_007d-by-mail-146"></a><code>query-pr</code> can also be accessed by electronic mail, if your version
+of <span class="sc">gnats</span> is configured for this.  To use this feature, simply send
+mail to the address <span class="samp">query-pr@</span><var>your-site</var><!-- /@w --> with command
+line arguments or options in the <code>Subject</code> line of the mail header. 
+<span class="sc">gnats</span> replies to your mail with the results of your query.  The
+default settings for the <code>query-pr</code> mail server are
+
+   <p><a name="index-the-section-on-query_002dby_002dmail-needs-to-be-relocated-147"></a>
+<pre class="smallexample">     --restricted --state="open|analyzed|feedback|suspended"
+</pre>
+   <p class="noindent">To override the <code>--state</code> parameter, specify
+<code>--state=</code><var>state</var><!-- /@w --> in the <code>Subject</code> line of the mail
+header.  You can not query on confidential Problem Reports by mail.
+
+   <p>The usage for <code>query-pr</code> is:
+
+<pre class="smallexample">     query-pr [--debug | -D] [--help | -h] [--version | -V]
+              [--output <var>file</var> | -o <var>file</var>] [--list-databases]
+              [--list-fields] [--list-input-fields]
+              [--responsible-address <var>name</var>] [--field-type <var>field</var>]
+              [--field-description <var>field</var>]
+              [--field-flags <var>field</var>]
+              [--adm-field <var>field</var>] [--adm-subfield <var>subfield</var>]
+              [--adm-key <var>key</var>]
+              [--valid-values <var>field</var>]
+              [--format <var>format</var> | -f <var>format</var>]
+              [--full | -F] [--summary | -q]
+              [--database <var>database</var> | -d <var>database</var>] [--and | -&amp;]
+              [--or | -|] [--expr <var>expr</var>] [PR Number]
+</pre>
+   <p>Non-network-mode options:
+
+<pre class="smallexample">              [--print-sh-vars] [--print-directory-for-database]
+</pre>
+   <p>Network-mode-only options:
+
+<pre class="smallexample">              [--host <var>host</var> | -H <var>host</var>] [--port <var>port</var>]
+              [--user <var>user</var> | -v <var>user</var>] [--passwd <var>passwd</var> | -w <var>passwd</var>]
+              [--print-server-addr]
+</pre>
+   <p>Deprecated Options:
+<pre class="smallexample">              [--list-categories | -j] [--list-states | -T]
+              [--list-responsible | -k] [--list-submitters | -l]
+              [--category <var>category</var> | -c <var>category</var>]
+              [--synopsis <var>synopsis</var> | -y <var>synopsis</var>]
+              [--confidential <var>confidential</var> | -C <var>confidential</var>]
+              [--multitext <var>multitext</var> | -m <var>multitext</var>]
+              [--originator <var>originator</var> | -O <var>originator</var>]
+              [--release <var>release</var> | -A <var>release</var>]
+              [--class <var>class</var> | -L <var>class</var>] [--cases <var>cases</var> | -E <var>cases</var>]
+              [--quarter <var>quarter</var> | -Q <var>quarter</var>]
+              [--keywords <var>keywords</var> | -K <var>keywords</var>]
+              [--priority <var>priority</var> | -p <var>priority</var>]
+              [--responsible <var>responsible</var> | -r <var>responsible</var>]
+              [--restricted | -R] [--severity <var>severity</var> | -e <var>severity</var>]
+              [--skip-closed | -x] [--sql | -i] [--sql2 | -I]
+              [--state <var>state</var> | -s <var>state</var>]
+              [--submitter <var>submitter</var> | -S <var>submitter</var>]
+              [--text <var>text</var> | -t <var>text</var>]
+              [--required-before <var>date</var> | -u <var>date</var>]
+              [--required-after <var>date</var> | -U <var>date</var>]
+              [--arrived-before <var>date</var> | -b <var>date</var>]
+              [--arrived-after <var>date</var> | -a <var>date</var>]
+              [--modified-before <var>date</var> | -B <var>date</var>]
+              [--modified-after <var>date</var> | -M <var>date</var>]
+              [--closed-before <var>date</var> | -z <var>date</var>]
+              [--closed-after <var>date</var> | -Z <var>date</var>]
+</pre>
+   <p>The options have the following meaning:
+     <dl>
+<dt><code>--help, -h</code><dd>Prints a help message.
+
+     <br><dt><code>--version, -V</code><dd>Displays the program version to stdout.
+
+     <br><dt><code>--output </code><var>file</var><code>, -o </code><var>file</var><dd>The results of the query will be placed in this file.
+
+     <br><dt><code>--database </code><var>database</var><code>, -d </code><var>database</var><dd>Specifies the database to be used for the query.  If no database is
+specified, the database named default is assumed.  (This option
+overrides the database specified in the <code>GNATSDB</code> environment
+variable; see <a href="Environment.html#Environment">Environment</a> for more
+information.)
+
+     <br><dt><code>--list-categories, -j</code><dd>Lists the available PR categories for the selected database.
+
+     <br><dt><code>--list-states, -T</code><dd>Lists the valid PR states for PRs in this database.
+
+     <br><dt><code>--list-responsible, -k</code><dd>Lists the users that appear in the database's responsible list.
+
+     <br><dt><code>--list-submitters, -l</code><dd>Lists the valid submitters for this database. 
+</dl>
+
+   <p>The previous &ndash;list-* options are deprecated and may be removed in
+future releases of <span class="sc">gnats</span>; their functionality can be replaced with
+
+<pre class="smallexample">     query-pr --valid-values <var>field</var>
+</pre>
+   <p class="noindent">where <var>field</var> is one of <code>Category</code>, <code>Class</code>,
+<code>Responsible</code>, <code>Submitter-Id</code>, or <code>State</code>.
+
+     <dl>
+<dt><code>--list-databases</code><dd>Lists the known databases.
+
+     <br><dt><code>--list-fields</code><dd>Lists the entire set of field names for PRs in the selected database.
+
+     <br><dt><code>--list-input-fields</code><dd>Lists the fields that should be provided when creating a new PR for the
+currently-specified database.  The fields are listed in an order that
+would make sense when used in a template or form.
+
+     <br><dt><code>--field-type </code><var>field</var><dd>Returns the data type contained in PR field <var>field</var>.  The current
+set of data types includes <span class="samp">text</span>, <span class="samp">multitext</span>, <span class="samp">enum</span>,
+<span class="samp">multienum</span>, <span class="samp">enumerated-in-file</span>,
+<span class="samp">multi-enumerated-in-file</span>, <span class="samp">date</span> and <span class="samp">integer</span>.
+
+     <br><dt><code>--field-description </code><var>field</var><dd>Returns a human-readable description of the intended purpose of <var>field</var>.
+
+     <br><dt><code>--field-flags </code><var>field</var><dd>Returns the flags set for the field in the <span class="file">dbconfig</span> file
+associated with the database, such as <code>textsearch</code> and
+<code>readonly</code>.  See <a href="Individual-field-configuration.html#Individual-field-configuration">Individual field configuration</a>.
+
+     <br><dt><code>--adm-field </code><var>field</var><dd>Used together with the <code>--adm-key</code> option, this returns a record
+from the administrative file (if any) associated with the field.  For
+more material on administrative files, see <a href="administrative-files.html#administrative-files">Enumerated field administrative files</a>.
+
+     <br><dt><code>--adm-subfield </code><var>subfield</var><dd>Used together with the <code>--adm-field</code> and <code>--adm-key</code> options,
+this returns the contents of a particular subfield from the record
+specified by <code>--adm-field</code> and <code>--adm-key</code>.  Subfields are
+treated in <a href="administrative-files.html#administrative-files">Enumerated field administrative files</a>.
+
+     <br><dt><code>--adm-key </code><var>key</var><dd>Used together with <code>--adm-field</code> to select a record from the
+administrative file associated with the field specified by
+<code>--adm-field</code>.  See <a href="administrative-files.html#administrative-files">Enumerated field administrative files</a>.
+
+     <br><dt><code>--valid-values </code><var>field</var><dd>For fields of type <span class="samp">enum</span>, a list of valid values (one per line) is
+returned.  Otherwise, a regular expression is returned that describes
+the legal values in <var>field</var>.
+
+     <br><dt><code>--responsible-address </code><var>name</var><dd>The mail address of <var>name</var> is returned; <var>name</var> is assumed to be
+a name either appearing in the database's responsible list, or is
+otherwise a user on the system.
+
+     <br><dt><code>--print-sh-vars</code><dd>A set of <span class="file">/bin/sh</span> variables is returned that describe the selected
+database.  They include:
+
+          <dl>
+<dt><code>GNATSDB</code><dd>The name of the currently-selected database.
+
+          <br><dt><code>GNATSDB_VALID</code><dd>Set to 1 if the selected database is valid.
+
+          <br><dt><code>GNATSDBDIR</code><dd>The directory  where  the  database  contents  are
+stored.
+
+          <br><dt><code>DEBUG_MODE</code><dd>Set to 1 if debug mode has been  enabled  for  the
+database.
+
+          <br><dt><code>DEFAULTCATEGORY</code><dd>The default category for PRs in the database.
+
+          <br><dt><code>DEFAULTSTATE</code><dd>The default state for PRs in the database. 
+</dl>
+
+     <br><dt><code>--print-server-addr</code><dd>Prints the information about a remote server database in the format
+suitable for the <code>GNATSDB</code> environment variable.  This option
+works only in the network mode.
+
+     <br><dt><code>--print-directory-for-database</code><dd>Returns the directory where the selected database is located.
+
+     <br><dt><code>--format </code><var>format</var><code>, -f </code><var>format</var><dd>Used to specify the format of the output PRs, See <a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output">Formatting query-pr output</a> for a complete description.
+
+     <br><dt><code>--full, -F</code><dd>When printing PRs, the entre PR is displayed.  This is exactly
+equivalent to
+
+     <pre class="smallexample">          query-pr --format full
+     </pre>
+     <br><dt><code>--summary, -q</code><dd>When printing PRs, a summary format is used.  This is exactly equivalent
+to
+
+     <pre class="smallexample">          query-pr --format <var>summary</var>
+     </pre>
+     <br><dt><code>--debug, -D</code><dd>Enables debugging output for network queries.
+
+     <br><dt><code>--host </code><var>host</var><code>, -H </code><var>host</var><dd>Specifies the hostname of the gnatsd server to communicate with.  This
+overrides the value in the <code>GNATSDB</code> environment variable.
+
+     <br><dt><code>--port </code><var>port</var><dd>Specifies the port number of the gnatsd server to communicate with. 
+This overrides the value in the <code>GNATSDB</code> environment variable.
+
+     <br><dt><code>--user </code><var>user</var><code>, -v </code><var>user</var><dd>Specifies the username to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+
+     <br><dt><code>--passwd </code><var>passwd</var><code>, -w </code><var>passwd</var><dd>Specifies the password to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+
+     <br><dt><code>--and, -&amp;, --or, -|</code><dd>These options are used when connecting multiple query operators
+together.  They specify whether the previous and subsequent options are
+to be logically ANDed or logically ORed.
+
+     <br><dt><code>--expr </code><var>expr</var><dd>Specifies a query expression to use when searching for PRs.  See <a href="Query-expressions.html#Query-expressions">Query expressions</a>. 
+</dl>
+
+   <p>The remaining deprecated options are not described here, since their use
+is fairly obvious and their functionality is completely replaced by the
+use of the <code>--expr</code> option.
+
+   </body></html>
+

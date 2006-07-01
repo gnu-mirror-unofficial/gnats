@@ -1,0 +1,188 @@
+<html lang="en">
+<head>
+<title>Configure and make - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installation.html#Installation" title="Installation">
+<link rel="next" href="Installing-utils.html#Installing-utils" title="Installing utils">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Configure-and-make"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Installing-utils.html#Installing-utils">Installing utils</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installation.html#Installation">Installation</a>
+<hr><br>
+</div>
+
+<h3 class="section">3.1 Configuring and compiling the software</h3>
+
+<p><a name="index-unpacking-the-distribution-186"></a><a name="index-configuring-and-compiling-the-software-187"></a><a name="index-compiling-the-software-188"></a><a name="index-_0040code_007bconfigure_007d-189"></a><a name="index-_0040code_007bmake_007d-190"></a>
+     <ol type=1 start=1>
+<li>First, unpack your distribution.  We provide source code in a <code>tar</code>
+file which was compressed using <code>gzip</code>.  The code can be extracted
+into a directory <var>unpackdir</var> using
+
+     <pre class="smallexample">          cd <var>unpackdir</var>
+          gunzip gnats-4.1.999.tar.gz
+          tar xvf gnats-4.1.999.tar
+     </pre>
+     <p>The sources reside in a directory called <span class="file">gnats-4.1.999</span>
+when unpacked.  We call this the <dfn>top level</dfn> of the source
+directory, or <dfn>srcdir</dfn>.  The sources for the <span class="sc">gnats</span> tools are in
+the subdirectory <span class="file">gnats-4.1.999/gnats/*</span>.  Lists of files
+included in the distribution are in each directory in the file
+<span class="file">MANIFEST</span>.
+
+     <p><a name="index-lisp-file-installation-191"></a><a name="index-Emacs-lisp-file-installation-192"></a><li>As of <span class="sc">gnats</span> version 4, having Emacs installed on the <span class="sc">gnats</span>
+server is no longer a requirement.  If you do not have Emacs installed,
+disregard this step altogether.
+
+     <p>You may wish to alter the installation directory for the Emacs lisp
+files.  If your Emacs lisp library is not in
+<var>prefix</var><span class="file">/share/emacs/site-lisp</span><!-- /@w -->, edit the file
+<var>srcdir</var><code>/gnats/Makefile.in</code>.  Change the variable
+<code>lispdir</code> from <var>prefix</var><span class="file">/emacs/site-lisp</span><!-- /@w --> to the
+directory containing your Emacs lisp library.  For information on
+<var>prefix</var>, see <a href="prefix.html#prefix"><var>prefix</var></a>.
+
+     <li><a name="index-creating-an-account-for-the-_0040sc_007bgnats_007d-user-193"></a>Create an account for the <code>gnats</code> user.  You can actually name this
+user whatever you want to, as long as it is a valid username on your
+system, but we strongly recommend that you call the user <code>gnats</code>. 
+If you do decide to give it some other name, remember to use the option
+<code>--enable-gnats-user</code> when running <code>configure</code> below.  Below, we
+will anyway refer to this user by the name <code>gnats</code>.
+
+     <p>This user must have an entry in the file <span class="file">/etc/passwd</span><!-- /@w -->.  As for
+ordinary users, create a standard home directory for the <code>gnats</code>
+user.  The default <code>PATH</code> for this user should contain
+<var>exec-prefix</var><span class="file">/bin</span><!-- /@w --> and
+<var>exec-prefix</var><span class="file">/libexec/gnats</span><!-- /@w -->.  The <var>exec-prefix</var> value
+is configurable with the <code>--exec-prefix</code> configure option described
+below, but for standard installations, these two directories correspond
+to <span class="file">/usr/local/bin</span><!-- /@w --> and <span class="file">/usr/local/libexec/gnats</span><!-- /@w -->.
+
+     <li>Run <code>configure</code>.  You can nearly always run <code>configure</code> with
+the simple command
+
+     <pre class="example">          ./configure
+     </pre>
+     <p class="noindent">and the &ldquo;Right Thing&rdquo; happens:
+
+          <ul>
+<li><span class="sc">gnats</span> is configured in the same directory you unpacked it in;
+
+          <li>when built, <span class="sc">gnats</span> runs on the machine you're building it on;
+
+          <li>when installed, files are installed under <span class="file">/usr/local</span>
+(see <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>).
+
+          <li>all <span class="sc">gnats</span> utilities operate on the <dfn>default database</dfn>, assumed
+to be named <em>default</em> and to be located in
+<span class="file">/usr/local/com/default</span><!-- /@w -->, unless you invoke the utilities with
+<code>-d</code> <var>databasename</var> or <code>--directory=</code><var>databasename</var>, or
+set the <var>GNATSDB</var> environment variable to point to some other database. 
+</ul>
+
+     <p><a name="index-_0040code_007bconfigure_007d-194"></a>The most common options to <code>configure</code> are listed below:
+
+     <pre class="smallexample">          configure [ --prefix=<var>prefix</var> ]
+                    [ --exec-prefix=<var>exec-prefix</var> ]
+                    [ --enable-gnats-service=<var>service-name</var><!-- /@w --> ]
+                    [ --enable-gnats-user=<var>username</var><!-- /@w --> ]
+                    [ --enable-gnatsd-user-access-file=<var>path</var><!-- /@w --> ]
+                    [ --enable-gnatsd-host-access-file=<var>path</var><!-- /@w --> ]
+                    [ --enable-gnats-dblist-file=<var>path</var><!-- /@w --> ]
+                    [ --enable-gnats-default-db=<var>path</var><!-- /@w --> ]
+                    [ --with-kerberos ] [ --with-krb4 ]
+                    [ --verbose ]
+     </pre>
+          
+<a name="index-_0040var_007bprefix_007d-195"></a>
+<dl><dt><code>--prefix=</code><var>prefix</var><dd>All host-independent programs and files are to be installed under
+<var>prefix</var>.  (Host-dependent programs and files are also installed in
+<var>prefix</var> by default.)  The default for <var>prefix</var> is
+<span class="file">/usr/local</span><!-- /@w -->.  See <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>.
+
+          <p><a name="index-_0040var_007bexec_002dprefix_007d-196"></a><br><dt><code>--exec-prefix=</code><var>exec-prefix</var><dd>All host-dependent programs and files are to be installed under
+<var>exec-prefix</var>.  The default for <var>exec-prefix</var> is <var>prefix</var>. 
+See <a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>.
+
+          <p><a name="index-_002d_002denable_002dgnats_002dservice-197"></a><br><dt><code>--enable-gnats-service=</code><var>service-name</var><code><!-- /@w --></code><dd>Set <var>service-name</var> to be the <span class="sc">gnats</span> network service.  Default
+name is <var>support</var>.
+
+          <p><a name="index-_002d_002denable_002dgnats_002duser-198"></a><br><dt><code>--enable-gnats-user=</code><var>username</var><code><!-- /@w --></code><dd>Set <var>username</var> to be the user name for <span class="sc">gnats</span>.  Default username
+is <var>gnats</var>.
+
+          <p><a name="index-_002d_002denable_002dgnatsd_002duser_002daccess_002dfile-199"></a><br><dt><code>--enable-gnatsd-user-access-file=</code><var>path</var><code><!-- /@w --></code><dd>Set global (across all databases) gnatsd user access file to
+<var>path</var>. Default is
+<var>/usr/local/etc/gnats/gnatsd.user_access</var>.  Per-database
+user access permissions are set in a <span class="file">gnatsd.user_access</span> file in
+the <span class="file">gnats-adm</span> subdirectory of each database.
+
+          <p><a name="index-_002d_002denable_002dgnatsd_002dhost_002daccess_002dfile-200"></a><br><dt><code>--enable-gnatsd-host-access-file=</code><var>path</var><code><!-- /@w --></code><dd>Set global (across all databases) gnatsd host access file to
+<var>path</var>. Default is
+<span class="file">/usr/local/etc/gnats/gnatsd_host.access</span>.  There is currently
+no way to specify host access permissions on a per-database basis.
+
+          <p><a name="index-_002d_002denable_002dgnats_002ddblist_002dfile-201"></a><br><dt><code>--enable-gnats-dblist-file=</code><var>path</var><code><!-- /@w --></code><dd>Specify the file containing the list of databases.
+
+          <p>Default is <var>prefix</var><span class="file">/etc/gnats/databases</span><!-- /@w -->.
+
+          <p><a name="index-_002d_002denable_002dgnats_002ddefault_002ddb-202"></a><br><dt><code>--enable-gnats-default-db=</code><var>path</var><code><!-- /@w --></code><dd>Specify the default database to use when <span class="sc">gnats</span> tools are invoked
+without the <code>-d</code> or <code>--databasename</code> option, and when the
+<var>GNATSDB</var> envrionment variable hasn't been set. Default is
+<span class="file">/</span><var>prefix</var><span class="file">/com/gnatsdb</span>.
+
+          <p><a name="index-_002d_002dwith_002dkerberos-203"></a><br><dt><code>--with-kerberos</code><dd>Include code for Kerberos authentication.
+
+          <p><a name="index-_002d_002dwith_002dkrb4-204"></a><br><dt><code>--with-krb4</code><dd>Support Kerberos 4.
+
+          <br><dt><code>--verbose</code><dd>Give verbose output while <code>configure</code> runs. 
+</dl>
+
+     <p><code>configure</code> supports several more options which allow you to
+specify in great detail where files are installed. For a complete list
+of options, run <code>./configure --help</code> in the source directory.
+
+     <p><a name="index-building-in-a-different-directory-205"></a><a name="index-_0040var_007bobjdir_007d-206"></a>You can build <span class="sc">gnats</span> in a different directory (<var>objdir</var>) from the
+source code by calling the <code>configure</code> program from the new
+directory, as in
+
+     <pre class="smallexample">          mkdir <var>objdir</var>
+          cd <var>objdir</var>
+          <var>srcdir</var>/configure ...
+     </pre>
+     <p>By default, <code>make</code> compiles the programs in the same directory
+as the sources (<var>srcdir</var>).
+
+     <li>Make sure you have <span class="sc">gnu</span> <code>make</code>, then run
+
+     <pre class="smallexample">          make all info
+     </pre>
+     <p class="noindent">from the directory where <code>configure</code> created a <span class="file">Makefile</span>
+(this is <var>objdir</var> if you used it, otherwise <var>srcdir</var>.)  These
+targets indicate:
+
+          <dl>
+<dt><code>all</code><dd>Compile all programs
+
+          <br><dt><code>info</code><dd>Create <span class="samp">info</span> files using <code>makeinfo</code>. 
+</dl>
+     </ol>
+
+   </body></html>
+

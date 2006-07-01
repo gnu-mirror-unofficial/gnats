@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<title>check-db - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Admin-utils.html#Admin-utils" title="Admin utils">
+<link rel="prev" href="gen_002dindex.html#gen_002dindex" title="gen-index">
+<link rel="next" href="gnats_002dpwconv.html#gnats_002dpwconv" title="gnats-pwconv">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="check_002ddb"></a>Next:&nbsp;<a rel="next" accesskey="n" href="gnats_002dpwconv.html#gnats_002dpwconv">gnats-pwconv</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="gen_002dindex.html#gen_002dindex">gen-index</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Admin-utils.html#Admin-utils">Admin utils</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.7.5 Checking database health</h4>
+
+<p><a name="index-_0040code_007bcheck_002ddb_007d-345"></a>
+The <span class="file">check-db</span> script is useful for performing periodic checks on
+database health.  It accepts the following options:
+
+     <dl>
+<dt><code>-d </code><var>databasename</var><dt><code>--database=</code><var>databasename</var><dd>Determines the database which to operate on.
+
+     <br><dt><code>--all-databases</code><dd>Check all <span class="sc">gnats</span> databases on the system.  This option takes
+precedence over the <code>--database</code> option. 
+</dl>
+
+   <p>If no option is given, the default database is checked.
+
+   <p>During its operation, <code>check-db</code> first attempts to lock
+<var>database</var>.  If this is not possible, it repeats the locking
+attempts for five minutes; if it fails, it sends a mail message
+notifying the administrator of the failure and exits.
+
+   <p>Once the database is locked, the script searches the database for lock
+files that are more than 24 hours old.  Any old lock files are reported
+to the administrator in a mail message.
+
+   <p>After checking for old lock files, it calls <code>gen-index</code>
+(see <a href="gen_002dindex.html#gen_002dindex">Regenerating the index</a>) and compares the
+results with the current <span class="file">index</span> file of the database; any
+inconsistencies are reported to the administrators in a mail message.
+
+   <p>After checking the index file for inconsistencies, the script unlocks
+the database and exits.
+
+   </body></html>
+

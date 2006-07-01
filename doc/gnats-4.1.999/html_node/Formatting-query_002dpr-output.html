@@ -1,0 +1,91 @@
+<html lang="en">
+<head>
+<title>Formatting query-pr output - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="query_002dpr.html#query_002dpr" title="query-pr">
+<link rel="prev" href="Invoking-query_002dpr.html#Invoking-query_002dpr" title="Invoking query-pr">
+<link rel="next" href="Query-expressions.html#Query-expressions" title="Query expressions">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Formatting-query_002dpr-output"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Query-expressions.html#Query-expressions">Query expressions</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Invoking-query_002dpr.html#Invoking-query_002dpr">Invoking query-pr</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="query_002dpr.html#query_002dpr">query-pr</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.4.2 Formatting <code>query-pr</code> output</h4>
+
+<p><a name="index-query_002dpr-output-format-148"></a>
+Printing formats for PRs are in one of three forms:
+
+     <dl>
+<dt><var>formatname</var><dd>This is a named format which is described by the database (specifically,
+these formats are described in the <span class="file">dbconfig</span> file associated with the
+database).  The default configuration contains five such formats:
+<span class="samp">standard</span>, <span class="samp">full</span>, <span class="samp">summary</span>, <span class="samp">sql</span>, and
+<span class="samp">sql2</span>.
+
+     <p>The first three are the ones most commonly used when performing queries. 
+standard is the format used by default if no other format is specified.
+
+     <p>Use of the latter two are discouraged; they are merely kept for
+historical purposes.  Other named formats may have been added by the
+database administrator.
+
+     <br><dt><var>fieldname</var><dd>A single field name may appear here.  Only the contents of this field
+will be displayed.
+
+     <br><dt><var>'"printf string" fieldname fieldname ...'</var><dd>This provides a very flexible mechanism for formatting PR output.  (The
+formatting is identical to that provided by the named formats described
+by the database configuration, See <a href="Named-query-definitions.html#Named-query-definitions">Named query definitions</a>.  The
+<var>printf string</var> can contain the following % sequences:
+
+     <p><code>%[positionalspecifiers]s</code>: Prints the field as a string.  The
+positional specifiers are similar to those of printf, as +, - and digit
+qualifiers can be used to force a particular alignment of the field
+contents.
+
+     <p><code>%[positionalspecifiers]S</code>: Similar to <code>%s</code>, except that the
+field contents are terminated at the first space character.
+
+     <p><code>%[positionalspecifiers]d</code>: Similar to <code>%s</code>, except that the
+field contents are written as a numeric value.  For integer fields, the
+value is written as a number.  For enumerated fields, the field is
+converted into a numeric equivalent (i.e. if the field can have two
+possible values, the result will be either 1 or 2).  For date fields,
+the value is written as seconds since Jan 1, 1970.
+
+     <p><code>%F</code>: The field is written as it would appear within a PR, complete
+with field header.
+
+     <p><code>%D</code>: For date fields, the date is written in a standard <span class="sc">gnats</span>
+format.
+
+     <p><code>%Q</code>: For date fields, the date is written in an arbitrary "SQL"
+format. 
+</dl>
+
+   <p>An example formatted query looks as follows (note that the whole format
+specification should be quoted):
+
+<pre class="smallexample">     query-pr --format '"%s, %s" Synopsis State'
+</pre>
+   </body></html>
+

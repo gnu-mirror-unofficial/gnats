@@ -1,0 +1,74 @@
+<html lang="en">
+<head>
+<title>Glossary - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="Clients.html#Clients" title="Clients">
+<link rel="next" href="Index.html#Index" title="Index">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Glossary"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Index.html#Index">Index</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Clients.html#Clients">Clients</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h2 class="appendix">Appendix A Glossary</h2>
+
+     <dl>
+<dt><dfn>cookie</dfn><dd>A chunk of data that a WWW server stores in your browser.  It is sent
+back to the server when you contact it again.  Gnatsweb (see
+<a href="Gnatsweb.html#Gnatsweb">Gnatsweb</a>) uses cookies to store your login information,
+preferences, and named queries.
+
+     <br><dt><dfn>gnats.el</dfn><dd><span class="sc">gnats</span> mode for (X)Emacs.
+
+     <br><dt><dfn>gnatsd</dfn><dd>The <span class="sc">gnats</span> daemon (server program).
+
+     <br><dt><dfn>Gnatsweb</dfn><dd>A WWW interface to <span class="sc">gnats</span>.
+
+     <br><dt><dfn>port</dfn><dd>A communication endpoint of various IP based protocols, notably TCP and
+UDP.  A server program waits for connections ("listens") on a port, and
+a client program connects to this port. 
+<a href="http://www.iana.org/">IANA</a> (the Internet Assigned Numbers
+Authority) maintains a
+<a href="http://www.iana.org/assignments/port-numbers">list of port numbers</a>
+registered for certain purposes.
+
+     <br><dt><dfn>PR</dfn><dd>Short for &ldquo;Problem Report&rdquo;.  An entry in a <span class="sc">gnats</span> database.
+
+     <br><dt><dfn>send-pr</dfn><dd>A command line tool that sends a new report by e-mail.
+
+     <br><dt><dfn>super server</dfn><dd>A super server (sometimes also called "super daemon") is a daemon (=
+UNIX server process) that waits for connections on the ports of various
+server programs and starts the corresponding server when a connection is
+made.  This way, there is only one server process for a set of services
+(instead of one for each service), but each service in the set is
+available to its clients.
+
+     <p>The most common super servers are <code>inetd</code> (the "InterNET Daemon"
+that comes with many UNIX installations) and
+<a href="http://www.xinetd.org">xinetd</a> (the "eXtended InterNET Daemon").
+
+     <br><dt><dfn>TkGnats</dfn><dd>A Tcl/Tk based interface to <span class="sc">gnats</span>. 
+</dl>
+
+   </body></html>
+

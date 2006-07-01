@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+<title>gnatsd options - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="gnatsd.html#gnatsd" title="gnatsd">
+<link rel="prev" href="Description-of-gnatsd.html#Description-of-gnatsd" title="Description of gnatsd">
+<link rel="next" href="gnatsd-command-protocol.html#gnatsd-command-protocol" title="gnatsd command protocol">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="gnatsd-options"></a>Next:&nbsp;<a rel="next" accesskey="n" href="gnatsd-command-protocol.html#gnatsd-command-protocol">gnatsd command protocol</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Description-of-gnatsd.html#Description-of-gnatsd">Description of gnatsd</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="gnatsd.html#gnatsd">gnatsd</a>
+<hr><br>
+</div>
+
+<h3 class="section">B.2 <code>gnatsd</code> options</h3>
+
+<p><a name="index-_0040code_007bgnatsd_007d-options-375"></a>
+The daemon supports the following command-line options:
+
+<pre class="smallexample">     gnatsd [--database database | -d database]
+            [--not-inetd | -n] [--max-access-level <var>level</var> | -m <var>level</var>]
+            [--version | -V] [--help | -h]
+</pre>
+   <p><a name="index-_0040code_007bgnatsd_007d-startup-options-376"></a>
+     <dl>
+<dt><code>-V, --version</code><dd>Prints the program version to stdout and exits.
+
+     <br><dt><code>-h, --help</code><dd>Prints a short help text to stdout and exits.
+
+     <br><dt><code>-d, --database</code><dd>Specifies the default database which is to be serviced by this
+invocation of <code>gnatsd</code>. (The selected database may be changed via
+the <code>CHDB</code> command; the name set with this option is simply the
+default if no <code>CHDB</code> command is issued.)  If no database is
+specified, the database named default is assumed. This option overrides
+the database specified in the <code>GNATSDB</code> environment variable.
+
+     <br><dt><code>-n, --not-inetd</code><dd>As its name suggests, indicates that <code>gnatsd</code> is not being invoked
+from inetd. This can be used when testing <code>gnatsd</code>, or if it is
+being run via ssh or some other mechanism.
+
+     <p>This has the effect of using the local hostname where <code>gnatsd</code> is
+being invoked for authentication purposes, rather than the remote
+address of the connecting client.
+
+     <br><dt><code>--max-access-level, -m</code><dd>Specifies the maximum access level that the connecting client can
+authenticate to.  Authentication is as normal but if the user or host
+authenticates at a higher level, access level is still forced to this
+level.  See <a href="Access-Control.html#Access-Control">Controlling access to databases</a> for
+details on access levels. 
+</dl>
+
+   </body></html>
+

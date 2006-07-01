@@ -1,0 +1,98 @@
+<html lang="en">
+<head>
+<title>Installation - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="prev" href="GNATS-user-tools.html#GNATS-user-tools" title="GNATS user tools">
+<link rel="next" href="Management.html#Management" title="Management">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Installation"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Management.html#Management">Management</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="GNATS-user-tools.html#GNATS-user-tools">GNATS user tools</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="index.html#Top">Top</a>
+<hr><br>
+</div>
+
+<h2 class="chapter">3 Installing <span class="sc">gnats</span></h2>
+
+<!-- This file is included as a chapter in gnats.texi. -->
+<p><a name="index-installing-GNATS-182"></a><a name="index-configuring--GNATS-183"></a><a name="index-setting-up-GNATS-184"></a><a name="index-building-GNATS-185"></a>
+See also <a href="Locations.html#Locations">Where the tools and utilities reside</a>.
+
+   <p>There are several steps you need to follow to fully configure and
+install <span class="sc">gnats</span> on your system.  You need <code>root</code> access in order
+to create a new account for <code>gnats</code> and to install the <span class="sc">gnats</span>
+utilities.  You may need <code>root</code> access on some systems in order to
+set up mail aliases and to allow this new account access to
+<code>cron</code> and <code>at</code>.
+
+   <p>If you are updating an older version of <span class="sc">gnats</span> rather than installing
+from scratch, see <a href="Upgrading.html#Upgrading">Upgrading from older versions</a>.
+
+   <p><span class="sc">gnats</span> installation relies on two other freely available software
+packages, which should be installed before you go on to configure and
+build <span class="sc">gnats</span>.  These are <span class="sc">gnu</span> <code>make</code> and <code>Texinfo</code>
+(version 4.2 or higher).  Both are available from the <span class="sc">gnu</span> FTP site at
+<a href="ftp://ftp.gnu.org">ftp://ftp.gnu.org</a>.
+
+   <p>To build and install <span class="sc">gnats</span>, you must:
+
+     <ul>
+<li>Run <code>configure</code>, with correct options if the defaults are
+unsuitable for your site.  See <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a>.  Default installation locations are in
+<a href="Locations.html#Locations">Where <span class="sc">gnats</span> lives</a>.
+
+     <li>Compile the <span class="sc">gnats</span> programs on your system.  See <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a>.
+
+     <li>Create an initial database by using the <code>mkdb</code> command. 
+See <a href="Setting-up-the-default-database.html#Setting-up-the-default-database">Setting up the default database</a>.
+
+     <li>Set up periodic jobs, using cron, to handle Problem Reports arriving by
+mail.  See <a href="Setting-up-periodic-jobs.html#Setting-up-periodic-jobs">Setting up periodic jobs</a>.
+
+     <li>Set up mail aliases for <span class="sc">gnats</span>.  See <a href="Aliases.html#Aliases">Setting up mail aliases</a>.
+
+     <li>Install the <span class="sc">gnats</span> tools and utilities locally, and install the user
+tools (<code>query-pr</code>, <code>edit-pr</code>, <code>send-pr</code>) on every machine
+in your local network.  See <a href="Installing-tools.html#Installing-tools">Installing the user tools</a>.
+
+     <li>Install the <span class="sc">gnats</span> daemon <span class="file">gnatsd</span>.  See <a href="Installing-the-daemon.html#Installing-the-daemon">Installing the daemon</a>.
+
+     <li>If there are people outside your organization who will be submitting
+PRs or who are supposed to be able to query and/or edit PRs, you may
+need to instruct them to obtain and build the <span class="sc">gnats</span> tools
+<code>query-pr</code>, <code>edit-pr</code> and <code>send-pr</code> for their systems. 
+However, for many sites, setting up a remote access interface to
+<span class="sc">gnats</span>, such as Gnatsweb is a better solution since this requires
+no configuration on the remote side. 
+</ul>
+
+<ul class="menu">
+<li><a accesskey="1" href="Configure-and-make.html#Configure-and-make">Configure and make</a>:                Configuring and compiling the software
+<li><a accesskey="2" href="Installing-utils.html#Installing-utils">Installing utils</a>:                  Installing the utilities
+<li><a accesskey="3" href="Setting-up-the-default-database.html#Setting-up-the-default-database">Setting up the default database</a>:   Setting up the default database
+<li><a accesskey="4" href="Setting-up-periodic-jobs.html#Setting-up-periodic-jobs">Setting up periodic jobs</a>:          Setting up periodic jobs
+<li><a accesskey="5" href="Aliases.html#Aliases">Aliases</a>:                           Setting up mail aliases
+<li><a accesskey="6" href="Installing-the-daemon.html#Installing-the-daemon">Installing the daemon</a>:             Installing the daemon
+<li><a accesskey="7" href="Installing-tools.html#Installing-tools">Installing tools</a>:                  Installing the user tools
+<li><a accesskey="8" href="Upgrading.html#Upgrading">Upgrading</a>:                         Upgrading from older versions
+</ul>
+
+   </body></html>
+

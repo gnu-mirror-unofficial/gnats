@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+<title>Field datatypes reference - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Fields.html#Fields" title="Fields">
+<link rel="next" href="Mail-header-fields.html#Mail-header-fields" title="Mail header fields">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Field-datatypes-reference"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Mail-header-fields.html#Mail-header-fields">Mail header fields</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Fields.html#Fields">Fields</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">1.4.1 Field datatypes reference</h4>
+
+<p>The following is a short reference to the characteristics of the
+different field types.
+
+   <p>For details, see <a href="Field-datatypes.html#Field-datatypes">Field datatypes</a>.
+
+     <dl>
+<dt><code>text</code><dd>A one-line text string.
+
+     <br><dt><code>multitext</code><dd>Multiple lines of text.
+
+     <br><dt><code>enum</code><dd>The value in this field is required to be from a list of specified
+values, defined at the Support Site.
+
+     <p>(See <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>, for details.
+
+     <br><dt><code>multienum</code><dd>Similar to the <code>enum</code> datatype, except that the field can contain
+multiple values.
+
+     <br><dt><code>enumerated-in-file</code><dd>Similar to <code>enum</code>, but the allowed field values are listed in a
+separate file on the <span class="sc">gnats</span> server.
+
+     <br><dt><code>multi-enumerated-in-file</code><dd>Similar to <code>enumerated-in-file</code>, except that the field can contain
+multiple values.
+
+     <br><dt><code>date</code><dd>Used to hold dates.
+
+     <br><dt><code>integer</code><dd>Used to hold integer numbers. 
+</dl>
+
+<!--  -->
+</body></html>
+

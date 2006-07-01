@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+<title>follow-up via email - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="edit_002dpr.html#edit_002dpr" title="edit-pr">
+<link rel="prev" href="edit_002dpr-from-the-shell.html#edit_002dpr-from-the-shell" title="edit-pr from the shell">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="follow_002dup-via-email"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="edit_002dpr-from-the-shell.html#edit_002dpr-from-the-shell">edit-pr from the shell</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="edit_002dpr.html#edit_002dpr">edit-pr</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.3.2 Following up via direct email</h4>
+
+<p><a name="index-follow_002dup-via-email-139"></a><a name="index-subsequent-mail-140"></a><a name="index-related-mail-141"></a>
+If you have some additional information for a PR and for some reason
+do not want to (or cannot) edit the PR directly, you may append
+the information to the Audit-Trail field by mailing it to the PR
+submission address.
+
+   <p>In order for GNATS to be able to recognize the mail as pertaining to an
+existing PR (as opposed to a new PR, see <a href="Submitting-via-e_002dmail.html#Submitting-via-e_002dmail">Submitting via e-mail</a>),
+the Subject mail header field must contain a reference to the PR. 
+GNATS matches the Subject header against the regular expression
+
+<pre class="smallexample">     \&lt;(PR[ \t#/]?|[-[:alnum:]+.]+/)[0-9]+
+</pre>
+   <p class="noindent">to determine whether such a reference is present. Any text may precede
+or follow the reference in the Subject header. If more than one reference
+is present, the first is used and the rest ignored.
+
+   <p>A PR reference matching the regular expression above has two parts. The
+second is the PR number (one or more digits). The first is either the
+capital letters 'PR' optionally followed by a separator character (blank,
+tab, hash mark or forward slash) or the category name followed by a
+forward slash. Following are some examples which match the regular
+expression:
+
+<pre class="smallexample">     PR 123 PR4567 PR#890 gnats/4711
+</pre>
+   <p>The PR number and the category (if present) are checked for existence,
+and if the outcome is positive, the mail is appended to the Audit-Trail
+field of the PR. Note that the PR need not belong to the category because
+PRs may move between categories.
+
+   <p>Outgoing emails sent by GNATS itself may be configured to have a Subject
+header field that refers to the PR in question:
+
+<pre class="smallexample">     Subject: Re: PR <var>category</var>/<var>gnats-id</var>: <var>original message subject</var>
+</pre>
+   <p>This makes it extremely easy to follow up on a PR by replying to such an
+email, see <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a> and the sample,
+default <code>dbconfig</code> file installed by <code>mkdb</code>.
+
+<!--  -->
+</body></html>
+

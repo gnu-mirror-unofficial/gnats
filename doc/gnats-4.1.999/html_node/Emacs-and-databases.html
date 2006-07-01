@@ -1,0 +1,54 @@
+<html lang="en">
+<head>
+<title>Emacs and databases - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Emacs.html#Emacs" title="Emacs">
+<link rel="prev" href="Emacs-editing-buffer.html#Emacs-editing-buffer" title="Emacs editing buffer">
+<link rel="next" href="dbconfig-mode.html#dbconfig-mode" title="dbconfig mode">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Emacs-and-databases"></a>Next:&nbsp;<a rel="next" accesskey="n" href="dbconfig-mode.html#dbconfig-mode">dbconfig mode</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Emacs-editing-buffer.html#Emacs-editing-buffer">Emacs editing buffer</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Emacs.html#Emacs">Emacs</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.5.6 Changing the database</h4>
+
+<p><a name="index-_0040code_007bgnats_002dchange_002ddatabase_007d-173"></a>By default, the Emacs interface connects to the default database,
+<a href="databases-file.html#databases-file">databases file</a>.  If you want to connect to another database, use
+the command <kbd>M-x gnats-change-database</kbd>.  It will ask you for the
+database name to use, server and port it can be accessed on, and your
+login name.
+
+   <p><a name="index-gnatsd_002c-Emacs-174"></a>If you want to use the <span class="command">gnatsd</span> command, <a href="gnatsd.html#gnatsd">gnatsd</a>,
+directly, without connecting to a remote server or the localhost
+connection port, provide your local file system full path to
+<span class="command">gnatsd</span> as the server name.  Port number does not matter in
+this case.
+
+   <p><a name="index-password_002c-Emacs-175"></a>If the database requires a password to allow you the access to it, you
+are prompted for the password the first time you connect to the
+database.  If you provide an invalid password, you cannot connect to
+the database anymore and you have to run the <kbd>M-x
+gnats-change-database</kbd> command again.
+
+   </body></html>
+

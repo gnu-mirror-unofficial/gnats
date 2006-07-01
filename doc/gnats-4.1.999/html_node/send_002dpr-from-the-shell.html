@@ -1,0 +1,83 @@
+<html lang="en">
+<head>
+<title>send-pr from the shell - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="send_002dpr.html#send_002dpr" title="send-pr">
+<link rel="prev" href="send_002dpr-in-Emacs.html#send_002dpr-in-Emacs" title="send-pr in Emacs">
+<link rel="next" href="Submitting-via-e_002dmail.html#Submitting-via-e_002dmail" title="Submitting via e-mail">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="send_002dpr-from-the-shell"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Submitting-via-e_002dmail.html#Submitting-via-e_002dmail">Submitting via e-mail</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="send_002dpr-in-Emacs.html#send_002dpr-in-Emacs">send-pr in Emacs</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="send_002dpr.html#send_002dpr">send-pr</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.2.1 Invoking <code>send-pr</code> from the shell</h4>
+
+<p><a name="index-command-line-options-109"></a><a name="index-invoking-_0040code_007bsend_002dpr_007d-from-the-shell-110"></a><a name="index-shell-invocation-111"></a>
+<pre class="smallexample">     send-pr [ -b | --batch ]
+             [ -d <var>database</var> | --database <var>database</var> ]
+             [ -f <var>file</var> | --file <var>file</var> ]
+             [ -p | --print ] [ --request-id ]
+             [ -s <var>severity</var> | --severity <var>severity</var> ]
+             [ -V | --version ] [ -h | --help ]
+</pre>
+   <p>Invoking <code>send-pr</code> with no options assumes that you want to
+submit to the local <span class="sc">gnats</span> database named <var>default</var> and calls
+the editor named in your environment variable <code>EDITOR</code> on a PR
+template for this database.
+
+     <dl>
+<dt><code>-b</code><dt><code>--batch</code><dd>Suppresses printing of most of the messages <code>send-pr</code> usually
+prints while running.
+
+     <br><dt><code>-d </code><var>database</var><code>, --database </code><var>database</var><dd>Specifies the database to which the PR is to be submitted; if no
+database is specified, the local database named <code>default</code> is
+assumed.  This option overrides the database specified in the
+<code>GNATSDB</code> environment variable.  <var>database</var> can also be set
+to a remote database by using the format for <code>GNATSDB</code> described
+in <a href="Environment.html#Environment">Environment variables and <span class="sc">gnats</span> tools</a>.
+
+     <br><dt><code>-f </code><var>problem-report</var><dt><code>--file </code><var>problem-report</var><dd>Specifies a file, <var>problem-report</var>, where a completed Problem
+Report or a PR template exists.  <code>send-pr</code> verifies that the
+contents of the file constitute a valid PR and asks you if you want to
+edit it or send it directly.  If the PR text is invalid you will be
+told what is wrong and be given the option to edit it. If
+<var>problem-report</var> is <span class="samp">-</span>, <code>send-pr</code><!-- /@w --> reads from
+standard input.
+
+     <br><dt><code>-p</code><dt><code>--print</code><dd>Displays the PR template for the specified database, or if the
+<code>-d</code> or <code>--database</code> options aren't specified, print the
+template for the local <var>default</var> database.  No PR is submitted.
+
+     <br><dt><code>--request-id</code><dd>Sends a request for a <code>Submitter-Id</code> to the Support Site.
+
+     <br><dt><code>-s </code><var>severity</var><dt><code>--severity </code><var>severity</var><dd><a name="index-_0040code_007bsend_002dpr_007d-fields-112"></a>Sets the initial value of the <code>Severity</code> field to <var>severity</var>.
+
+     <br><dt><code>-V</code><dt><code>--version</code><dd>Displays the <code>send-pr</code> version number and a usage summary.  No mail
+is sent.
+
+     <br><dt><code>-h</code><dt><code>--help</code><dd>Displays a usage summary for <code>send-pr</code>.  No mail is sent. 
+</dl>
+
+<!--  -->
+</body></html>
+

@@ -1,0 +1,55 @@
+<html lang="en">
+<head>
+<title>gnats-pwconv - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Admin-utils.html#Admin-utils" title="Admin utils">
+<link rel="prev" href="check_002ddb.html#check_002ddb" title="check-db">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="gnats_002dpwconv"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="check_002ddb.html#check_002ddb">check-db</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Admin-utils.html#Admin-utils">Admin utils</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.7.6 Managing user passwords</h4>
+
+<p><a name="index-_0040code_007bgnats_002dpwconv_007d-346"></a>
+Older versions of <span class="sc">gnats</span>, up to and including version 3.x, stored
+user passwords in plaintext in the <span class="file">gnatsd.user_access</span> files. Version 4
+has the options of storing the password as MD5 or standard DES
+<code>crypt()</code> hashes (as most UNIX versions do in the system password
+files) as well as in plaintext. Since the password strings require a
+prefix to indicate how they are encrypted, one is forced to convert the
+old password files to a new format when upgrading to <span class="sc">gnats</span> version
+4. See <a href="Upgrading.html#Upgrading">Upgrading from older versions</a>.
+
+   <p>The <code>gnats-pwconv</code> tool takes care of converting the old password
+files to the new format:
+
+<pre class="smallexample">     gnats-pwconv [ -c | --crypt ] [ -m | --md5 ] [ -p | --plaintext ]
+              [ -h | --help] [ -V | --version ] <var>INFILE</var> [<var>OUTFILE</var>]
+</pre>
+   <p>Unless the <code>--version</code> or <code>--help</code> options are given, exactly
+one encryption method must be specified, as well as an input file. The
+output file parameter is optional. If one is not specified, results will
+be printed on standard output.
+
+   </body></html>
+

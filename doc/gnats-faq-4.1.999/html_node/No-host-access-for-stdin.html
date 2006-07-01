@@ -1,0 +1,61 @@
+<html lang="en">
+<head>
+<title>No host access for stdin - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Gnatsd-messages.html#Gnatsd-messages" title="Gnatsd messages">
+<link rel="next" href="No-host-access-for-remote.html#No-host-access-for-remote" title="No host access for remote">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="No-host-access-for-stdin"></a>Next:&nbsp;<a rel="next" accesskey="n" href="No-host-access-for-remote.html#No-host-access-for-remote">No host access for remote</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Gnatsd-messages.html#Gnatsd-messages">Gnatsd messages</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">You are not on the host access list: stdin (stdin)</h5>
+
+<p><b>Q:</b> When starting gnatsd manually (on the command line), I get
+<span class="samp">520 You are not on the host access list: stdin (stdin)</span>.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 3.1xx)</b>
+Gnatsd is not intended to be started manually, but via inetd,
+xinetd, or a similar "super server".  When gnatsd is started this way,
+its stdin and stdout (standard input and standard output streams) are
+connected to a so called "TCP socket" (one end of the network
+connection), and from this socket gnatsd learns the IP address of the
+remote end (and from this it derives the remote host name).  When you
+start gnatsd from the command line, its stdin and stdout are connected
+to the terminal, and thus gnatsd gets a nonsense value.
+
+   <p>You usually need <span class="samp">root</span> privileges in order to change the
+configuration of your "super server".  If you don't have them, contact
+your system administrator.
+
+   <p>See <a href="Starting-gnatsd.html#Starting-gnatsd">Starting gnatsd</a> for inetd and xinetd configuration.
+
+   <p><b>A: (</b><span class="sc">gnats</span><b> 4.0)</b>
+This error message should not occur with gnatsd 4.0 anymore, because
+gnatsd can be started from the command line. 
+However, this probably only makes sense for debugging and diagnosing
+problems.  Furthermore, you need to play the part of the client
+program yourself (i.e., you must "speak" the gnatsd client protocol).
+
+   </body></html>
+

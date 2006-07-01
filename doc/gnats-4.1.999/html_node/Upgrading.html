@@ -1,0 +1,197 @@
+<html lang="en">
+<head>
+<title>Upgrading - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Installation.html#Installation" title="Installation">
+<link rel="prev" href="Installing-tools.html#Installing-tools" title="Installing tools">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Upgrading"></a>Previous:&nbsp;<a rel="previous" accesskey="p" href="Installing-tools.html#Installing-tools">Installing tools</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Installation.html#Installation">Installation</a>
+<hr><br>
+</div>
+
+<h3 class="section">3.8 Upgrading from older versions</h3>
+
+<p><a name="index-upgrading-from-older-versions-231"></a>
+The following procedure covers an upgrade from all <span class="sc">gnats</span> 3 versions
+newer than 3.108.  If your installation is an older 3.10x version, or
+even the ancient 3.2 version, you need to review the
+<span class="file">UPGRADING.old</span> file in the <span class="sc">gnats</span> distribution before carrying
+out the steps detailed here.
+
+<h4 class="subsection">3.8.1 Overview</h4>
+
+<p><a name="index-upgrading_002c-overview-232"></a>
+Although almost all of the <span class="sc">gnats</span> internals have been redesigned and
+rewritten for <span class="sc">gnats</span> 4, little has changed in the format and
+structure of the database data.  The only change that needs to be taken
+into account when upgrading is the fact that the database index format
+is binary in a default installation of <span class="sc">gnats</span> 4.  Thus, you will
+need to regenerate your database index by using the <code>gen-index</code>
+tool.  In addition, if your old <span class="sc">gnats</span> installation was so-called
+&ldquo;release-based&rdquo;, you need to make some simple modifications to the
+database setup file <span class="file">dbconfig</span>.  See below for details.
+
+   <p>Apart from building and installing new binaries, the major changes which
+impinge on the upgrade procedure are all on the configuration side.  The
+main database configuration file, <span class="file">dbconfig</span>, is far more complex
+and powerful than the old <span class="file">config</span> file, and while the installation
+process creates a sensible set of default values which are similar to
+<span class="sc">gnats</span> 3.11x's defaults, you still need to migrate any changes you
+may have made to your own local configuration.
+
+   <p>Another aspect which needs consideration are remote submitter sites. 
+Such sites either need to be instructed to upgrade their locally
+installed copies of the <span class="sc">gnats</span> user tools (<code>send-pr</code>,
+<code>edit-pr</code> and <code>query-pr</code>), or they should be given access
+through interfaces such as Gnatsweb.
+
+   <p>Since the <span class="sc">gnats</span> network daemon has been completely reworked, with
+an entirely new command set, all network-based interfaces, such as
+Gnatsweb and TkGnats need to be upgraded to versions that support
+<span class="sc">gnats</span> 4.  The <span class="file">contrib</span> directory of this distribution
+contains some third-party interfaces, and the <span class="file">README</span> file
+contains pointers to where you can obtain the newest versions of these
+tools.
+
+   <p>This document only deals with upgrading <span class="sc">gnats</span> itself.  Third-party
+tools should have separate upgrading instructions in their
+distributions.
+
+<h4 class="subsection">3.8.2 Upgrading</h4>
+
+<p><a name="index-upgrade_002c-procedure-233"></a>
+     <ol type=1 start=1>
+<li>Before you begin, make a backup of your entire <span class="sc">gnats</span> database
+directory hierarchy, the <span class="sc">gnats</span> executables directory and the
+<span class="sc">gnats</span> user tools (<code>send-pr</code>, <code>query-pr</code> etc.)  The
+locations of these may vary, but in a default <span class="sc">gnats</span> 3 installation,
+the database(s) reside under <span class="file">/usr/local/share/gnats</span><!-- /@w -->, the
+executables are located in <span class="file">/usr/local/libexec/gnats</span><!-- /@w --> and the
+user tools reside in <span class="file">/usr/local/bin</span><!-- /@w -->.
+
+     <li>(optional) In order to avoid confusing your users, you may want to
+remove the old <span class="sc">gnats</span> 3 executables and tools, escpecially if you
+plan to install <span class="sc">gnats</span> 4 in a different location than version 3.
+
+     <li>Build and install <span class="sc">gnats</span> 4.  See <a href="Installation.html#Installation">Installing <span class="sc">gnats</span></a>.  It is recommended that you use the
+<code>--enable-gnats-default-db</code><!-- /@w --> option when running <code>configure</code>,
+in order to set the default database to be one of your already existing
+<span class="sc">gnats</span> 3 databases.
+
+     <li>Edit the <span class="sc">gnats</span> <span class="file">databases</span> file and add entries for all your
+old <span class="sc">gnats</span> 3 databases.  In a default <span class="sc">gnats</span> 4 installation
+the file is in <span class="file">/usr/local/etc/gnats</span><!-- /@w -->.  See <a href="databases-file.html#databases-file">The <span class="file">databases</span> file</a>.
+
+     <li>In <span class="sc">gnats</span> 3, the file <span class="file">gnatsd.conf</span> specifies minimum access
+levels for the different hosts accessing the <span class="sc">gnats</span> daemon,
+<code>gnatsd</code>.  There is one <span class="file">gnatsd.conf</span> for each database.  In
+<span class="sc">gnats</span> 4, these files have been replaced by a single file named
+<span class="file">gnatsd.host_access</span> which contains settings that apply across all
+the databases on the server.  This file is located in the same directory
+as the <span class="file">databases</span> file.  You need to combine the host access
+settings from all your <span class="sc">gnats</span> 3 databases and add them to the
+<span class="file">gnatsd.host_access</span> file.  Note that you are no longer able to
+control host access on a per-database basis.  Optionally, you may delete
+the old <span class="file">gnatsd.conf</span> files.  See <a href="Access-Control.html#Access-Control">Controlling access to <span class="sc">gnats</span> databases</a>.
+
+     <li>Next, you need to migrate the settings in the old <span class="file">config</span> files of
+your databases to corresponding <span class="file">dbconfig</span> files.  The database you
+specified with the <code>--enable-gnats-default-db</code><!-- /@w --> configure option
+got a default <span class="file">dbconfig</span> installed.  This default file contains
+field definitions etc. which makes this version of <span class="sc">gnats</span> behave
+almost exactly like older versions.  Copy this default file to the
+<span class="file">gnats-adm</span><!-- /@w --> directories of any other <span class="sc">gnats</span> databases that
+you may have on your host before you proceed to migrate your old
+configuration settings.
+
+     <p>The following is a list of the configuration directives that may be
+present in a <span class="file">config</span> file and their counterparts (if any) in
+<span class="sc">gnats</span> 4.
+
+          <dl>
+<dt><var>GNATS_ADDR</var><dd>This setting has no counterpart in <span class="sc">gnats</span> 4, since <span class="sc">gnats</span> no
+longer needs to know its own mail address.
+
+          <br><dt><var>GNATS_ADMIN</var><dd>This setting is now set in the <span class="file">responsible</span> file in the
+<span class="file">gnats-adm</span><!-- /@w --> directory of your database(s).
+
+          <br><dt><var>GNATS_SITE</var><dd><span class="sc">gnats</span> 4 has no concept of a named `site', so this directive is
+obsolete.
+
+          <br><dt><var>SUBMITTER</var><dd>Obsolete, since it relates to <var>GNATS_SITE</var>.
+
+          <br><dt><var>DEFAULT_RELEASE</var><dt><var>DEFAULT_ORGANIZATION</var><dd>The <span class="sc">gnats</span> 4 <span class="file">dbconfig</span> file has separate configuration
+sections for each defined field.  Field defaults are set with the
+<code>default</code> keyword in these sections.  See <a href="dbconfig-file.html#dbconfig-file">The <span class="file">dbconfig</span> file</a>.
+
+          <br><dt><var>NOTIFY</var><dd>Controlled by the <code>notify-about-expired-prs</code> setting in the
+<span class="file">dbconfig</span> file.
+
+          <br><dt><var>ACKNOWLEDGE</var><dd>Controlled by the <code>send-submitter-ack</code> setting in the
+<span class="file">dbconfig</span> file.
+
+          <br><dt><var>DEFAULT_SUBMITTER</var><dd>The default submitter is now always the first entry in the
+<span class="file">submitters</span> file of your database.
+
+          <br><dt><var>KEEP_RECEIVED_HEADERS</var><dd>Controlled by the <code>keep-all-received-headers</code> setting in the
+<span class="file">dbconfig</span> file.
+
+          <br><dt><var>DEBUG_MODE</var><dd>Controlled by the <code>debug-mode</code> setting in the <span class="file">dbconfig</span> file.
+
+          <br><dt><var>BDAY_START</var><dt><var>BDAY_END</var><dt><var>BWEEK_START</var><dt><var>BWEEK_END</var><dd>Controlled by the settings <code>business-day-hours</code> and
+<code>business-week-days</code> in the <span class="file">dbconfig</span> file.
+
+          <br><dt><var>DEFINE_CATEGORY</var><dd>The default category for PRs that arrive without one is now the first
+category listed in the <span class="file">categories</span> file of your database. 
+</dl>
+
+     <p>After your are done migrating the settings, you may optionally delete
+the old <span class="file">config</span> files.  Since there are many more configuration
+settings available in the <span class="sc">gnats</span> 4 <span class="file">dbconfig</span> file, you should
+take some time to review them all before proceeding.  See <a href="dbconfig-file.html#dbconfig-file">The <span class="file">dbconfig</span> file</a>.
+
+     <p>If your old <span class="sc">gnats</span> installations was release-based, i.e. it included
+the fields Quarter, Keywords and Date-Required, you need to define those
+fields in the <span class="file">dbconfig</span> file by following the instructions in
+<a href="release_002dbased-support.html#release_002dbased-support">Supporting old <span class="sc">gnats</span> &ldquo;release-based&rdquo; fields</a>.
+
+     <li>The file <span class="file">gnatsd.access</span> has been renamed to <span class="file">gnatsd.user_access</span>. 
+Furthermore, <span class="sc">gnats</span> 4 uses a different password format in the
+<span class="file">gnatsd.user_access</span> file than older versions, since it supports
+<code>crypt()</code> and MD5 passwords (see <a href="Access-Control.html#Access-Control">Controlling access to <span class="sc">gnats</span> databases</a>).  You need to translate your old
+<span class="file">gnatsd.user_access</span><!-- /@w --> files to the new format by using the
+<code>gnats-pwconv</code> tool which was installed in the
+<var>EXEC-PREFIX</var><span class="file">/libexec/gnats</span><!-- /@w --> directory, typically
+<span class="file">/usr/local/libexec/gnats</span><!-- /@w -->.  See <a href="gnats_002dpwconv.html#gnats_002dpwconv">Managing user passwords</a>.
+
+     <li>The final step involves regenerating the indexes of your databases.  For
+this, log in as the user <code>gnats</code>.  Then run the <code>gen-index</code>
+command for each of your databases.  See <a href="Admin-utils.html#Admin-utils">Administrative Utilities</a> for details on how to use
+<code>gen-index</code><!-- /@w -->.
+
+     <li>Sit back and enjoy your new <span class="sc">gnats</span> 4 setup...
+        </ol>
+
+<!-- FIXME - anything else? -->
+<!-- =============================================================== -->
+</body></html>
+

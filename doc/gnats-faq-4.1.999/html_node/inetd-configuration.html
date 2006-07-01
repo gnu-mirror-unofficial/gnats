@@ -1,0 +1,51 @@
+<html lang="en">
+<head>
+<title>inetd configuration - GNATS Frequently Asked Questions</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="GNATS Frequently Asked Questions">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Starting-gnatsd.html#Starting-gnatsd" title="Starting gnatsd">
+<link rel="next" href="xinetd-configuration.html#xinetd-configuration" title="xinetd configuration">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="inetd-configuration"></a>Next:&nbsp;<a rel="next" accesskey="n" href="xinetd-configuration.html#xinetd-configuration">xinetd configuration</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Starting-gnatsd.html#Starting-gnatsd">Starting gnatsd</a>
+<hr><br>
+</div>
+
+<!-- node-name,  next,  previous,  up -->
+<h5 class="subsubheading">How to configure inetd to start gnatsd</h5>
+
+<p><a name="index-inetd-9"></a>
+If your gnatsd will be started by inetd (the "internet daemon"),
+add the following entry to your <span class="file">/etc/inetd.conf</span><!-- /@w -->:
+
+<pre class="smallexample">     # port                    userid program
+     support stream tcp nowait gnats /usr/local/libexec/gnats/gnatsd gnatsd
+</pre>
+   <p class="noindent">and to <span class="file">/etc/services</span><!-- /@w -->:
+<pre class="smallexample">     support		1529/tcp		# GNATS
+</pre>
+   <p class="noindent">(You may need to use tabulator characters to separate the fields of
+<span class="file">/etc/services</span><!-- /@w -->.)  Then send inetd a hangup signal
+(<code>kill&nbsp;-HUP&nbsp;</code><em>pid-of-inetd</em><!-- /@w -->).
+
+   <p>You may want to use another port instead of 1529 (see <a href="Port-Number.html#Port-Number">Port Number</a>).
+
+   </body></html>
+

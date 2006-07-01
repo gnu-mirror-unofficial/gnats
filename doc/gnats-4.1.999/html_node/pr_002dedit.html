@@ -1,0 +1,181 @@
+<html lang="en">
+<head>
+<title>pr-edit - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Internal-utils.html#Internal-utils" title="Internal utils">
+<link rel="prev" href="at_002dpr.html#at_002dpr" title="at-pr">
+<link rel="next" href="diff_002dprs.html#diff_002dprs" title="diff-prs">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="pr_002dedit"></a>Next:&nbsp;<a rel="next" accesskey="n" href="diff_002dprs.html#diff_002dprs">diff-prs</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="at_002dpr.html#at_002dpr">at-pr</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Internal-utils.html#Internal-utils">Internal utils</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">4.8.4 The <code>edit-pr</code> driver</h4>
+
+<p><a name="index-_0040code_007bpr_002dedit_007d-358"></a><a name="index-_0040code_007bedit_002dpr_007d-driver-359"></a><a name="index-driver-for-_0040code_007bedit_002dpr_007d-360"></a>
+<code>pr-edit</code> does the background work for <code>edit-pr</code>, including
+error-checking and refiling newly edited Problem Reports, handling file
+and database locks and deletion of PRs.  It can be called interactively,
+though it has no usable editing interface.
+
+   <p>The usage for <code>pr-edit</code> is:
+
+<pre class="smallexample">     pr-edit   [ -l <var>username</var> | --lock=<var>username</var> ] [ -u | --unlockdb ]
+               [ -L | --lockdb ] [ -U | --unlockdb ] [ -c | --check ]
+               [ -C | --check-initial ] [ -s | --submit [ --show-prnum ] ]
+               [ -a <var>field</var> | --append field=<var>field</var> ]
+               [ -r <var>field</var> | --replace=<var>field</var> ] [ --delete-pr ]
+               [ -R <var>reason</var> | --reason=<var>reason</var> ]
+               [ -p <var>process-id</var> | --process=<var>process-id</var> ]
+               [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+               [ -f <var>filename</var> | --filename=<var>filename</var> ]
+               [ -V | --version ]
+               [ -h | --help ] [ -v <var>username</var> | --user=<var>username</var> ]
+               [ -w <var>passwd</var> | --passwd=<var>passwd</var> ]
+               [ -H <var>host</var> | --host=<var>host</var> ]
+               [ -P <var>port</var> | --port=<var>port</var> ]
+               [ -D | --debug ] [ <var>PR number</var> ]
+</pre>
+   <p><a name="index-PR-locks-361"></a><a name="index-locks-362"></a>A <dfn>lock</dfn> is placed on a Problem Report while the PR is being edited. 
+The lock is simply a file in the <span class="file">locks</span> subdirectory of the
+<span class="file">gnats-adm</span> directory of the database, with the name
+<var>gnats-id</var><span class="file">.lock</span><!-- /@w -->, which contains the name of the
+user who created the lock.  <var>user</var> then &ldquo;owns&rdquo; the
+lock, and must remove it before the PR can be locked again, even by the
+same <var>user</var><a rel="footnote" href="#fn-1" name="fnd-1"><sup>1</sup></a>.  If a PR is already
+locked when you attempt to edit it, <code>pr-edit</code> prints an error
+message giving the name of the user who is currently editing the
+PR.
+
+   <p>If you do not specify <var>PR&nbsp;number</var><!-- /@w -->, <code>pr-edit</code> reads from
+standard input.  You must specify <var>PR&nbsp;number</var><!-- /@w --> for the functions
+which affect PR locks, <span class="samp">--lock=</span><var>username</var> and
+<span class="samp">--unlock</span>.
+
+     <dl>
+<dt><code>-L</code><dt><code>--lockdb</code><dd>Locks the database specified with the <code>--database</code> or <code>-d</code>
+option.  No PRs may be edited, created or deleted while the database is
+locked.  This option is generally used when editing the index file.
+
+     <br><dt><code>-U</code><dt><code>--unlockdb</code><dd>Unlocks the specified database.  No check is made that the invoking user
+actually had locked the database in the first place; hence, it is
+possible for anyone to steal a database lock.
+
+     <br><dt><code>-c</code><dt><code>--check</code><dt><code>-C</code><dt><code>--check-initial</code><dd>The <code>--check</code> options are used to verify that a proposed PR's field
+contents are valid.  The PR is read in (either from stdin or a file
+specified with <code>--filename</code>), and its fields are compared against
+the rules specified by the database configuration of the selected
+database.  Warnings are given for enumerated fields whose contents do
+not contain one of the required values or fields that do not match
+required regexps. <code>--check-initial</code> is used to verify initial PRs,
+rather than proposed edits of existing PRs.
+
+     <br><dt><code>-s</code><dt><code>--submit</code><dd>Used to submit a new PR to the database.  The PR is read in and verified
+for content; if the PR is valid as an initial PR, it is then added to
+the database.  If the submission is successful a zero exit code is
+returned.  Otherwise, the reason(s) for the PR being rejected are
+printed, and a non-zero exit code is returned.
+
+     <br><dt><code>--show-prnum</code><dd>This option is used with the <code>--submit</code> option to display the PR
+number associated with the submitted PR. 
+</dl>
+
+<p class="noindent">The following options require a PR number to be given.
+
+     <dl>
+<dt><code>--delete-pr</code><dd>Deletes the specified PR from the database.  The PR must be in a closed
+state, and not locked.  Only the user <em>gnats</em> (or the user name
+specified instead of <em>gnats</em> during the building of <span class="sc">gnats</span>) is
+permitted to delete PRs.
+
+     <br><dt><code>-l </code><var>username</var><dt><code>--lock=</code><var>username</var><dd>Locks the PR.  <var>username</var> is associated with the lock, so the system
+administrator can determine who actually placed the lock on the PR. 
+However, anyone is permitted to remove locks on a PR.  If the optional
+<code>--process</code> or <code>-p</code> option is also given, that process-id is
+associated with the lock.
+
+     <br><dt><code>-u</code><dt><code>--unlock</code><dd>Unlocks the specified PR.
+
+     <br><dt><code>-a </code><var>field</var><dt><code>--append=</code><var>field</var><br><dt><code>-r </code><var>field</var><dt><code>--replace=</code><var>field</var><dd><code>--append</code> and <code>--replace</code> are used to append or replace
+content of a specific field within a PR.  The new field content is read
+in from stdin (or from the file specified with the <code>--filename</code>
+option), and either appended or replaced to the specified field.  The
+field contents are verified for correctness before the PR is rewritten. 
+If the edit is successful, a zero exit status is returned.  If the edit
+failed, a non-zero exit status is returned, and the reasons for the
+failure are printed to stdout.
+
+     <br><dt><code>-R </code><var>reason</var><dt><code>--reason=</code><var>reason</var><dd>Certain PR fields are configured in the database configuration to
+require a short text describing the reason of every change that
+happens to them, See <a href="dbconfig-file.html#dbconfig-file">dbconfig file</a>.  If you edit a problem and
+change any of such fields, you must issue a short text, the
+<var>reason</var> of the change, through this option.  If the option is
+used and no change-reason requiring field is actually changed, the
+option has no effect.
+
+     <br><dt><code>PR number</code><dd>If only a <code>PR number</code> is specified with no other options, a
+replacement PR is read in (either from stdin or the file specified with
+<code>--filename</code>).  If the PR contents are valid and correct, the
+existing PR is replaced with the new PR contents.  If the edit is
+successful, a zero exit status is re turned.  If the edit failed, a
+non-zero exit status is returned, and the reasons for the failure are
+printed to stdout.
+
+     <br><dt><code>-d </code><var>database</var><dt><code>--database=</code><var>database</var><dd>Specifies the database which is to be manipulated.  If no database is
+specified, the default database name set when <span class="sc">gnats</span> was built is
+used (usually <code>default</code>).  This option overrides the database
+specified in the GNATSDB environment variable.
+
+     <br><dt><code>-f </code><var>filename</var><dt><code>--filename=</code><var>filename</var><dd>For actions that require reading in a PR or field content, this
+specifies the name of a file to read.  If <code>--filename</code> is not
+specified, the PR or field content is read in from stdin.
+
+     <br><dt><code>-h</code><dt><code>--help</code><dd>Prints the usage for <code>pr-edit</code>.
+
+     <br><dt><code>-V</code><dt><code>--version</code><dd>Prints the version number for <code>pr-edit</code>. 
+</dl>
+
+<p class="noindent"><code>pr-edit</code> can edit PRs across a network, talking to a
+remote gnatsd. The following options relate to network access:
+
+     <dl>
+<dt><code>-H </code><var>host</var><dt><code>--host=</code><var>host</var><dd>Hostname of the <span class="sc">gnats</span> server.
+
+     <br><dt><code>-P </code><var>port</var><dt><code>--port=</code><var>port</var><dd>The port that the <span class="sc">gnats</span> server runs on.
+
+     <br><dt><code>-v </code><var>username</var><dt><code>--username=</code><var>username</var><dd>Username used to log into the <span class="sc">gnats</span> server.
+
+     <br><dt><code>-w </code><var>password</var><dt><code>--passwd=</code><var>password</var><dd>Password used to log into the <span class="sc">gnats</span> server.
+
+     <br><dt><code>-D</code><dt><code>--debug</code><dd>Used to debug network connections. 
+</dl>
+
+   <div class="footnote">
+<hr>
+<h4>Footnotes</h4><p class="footnote"><small>[<a name="fn-1" href="#fnd-1">1</a>]</small> This approach may seem heavy-handed, but
+it ensures that changes are not overwritten.</p>
+
+   <p><hr></div>
+
+   </body></html>
+

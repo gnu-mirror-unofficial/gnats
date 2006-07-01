@@ -1,0 +1,56 @@
+<html lang="en">
+<head>
+<title>Emacs submitting - Keeping Track</title>
+<meta http-equiv="Content-Type" content="text/html">
+<meta name="description" content="Keeping Track">
+<meta name="generator" content="makeinfo 4.7">
+<link title="Top" rel="start" href="index.html#Top">
+<link rel="up" href="Emacs.html#Emacs" title="Emacs">
+<link rel="prev" href="Emacs-querying.html#Emacs-querying" title="Emacs querying">
+<link rel="next" href="Emacs-editing.html#Emacs-editing" title="Emacs editing">
+<link href="http://www.gnu.org/software/texinfo/" rel="generator-home" title="Texinfo Homepage">
+<meta http-equiv="Content-Style-Type" content="text/css">
+<style type="text/css"><!--
+  pre.display { font-family:inherit }
+  pre.format  { font-family:inherit }
+  pre.smalldisplay { font-family:inherit; font-size:smaller }
+  pre.smallformat  { font-family:inherit; font-size:smaller }
+  pre.smallexample { font-size:smaller }
+  pre.smalllisp    { font-size:smaller }
+  span.sc { font-variant:small-caps }
+  span.roman { font-family: serif; font-weight: normal; } 
+--></style>
+</head>
+<body>
+<div class="node">
+<p>
+<a name="Emacs-submitting"></a>Next:&nbsp;<a rel="next" accesskey="n" href="Emacs-editing.html#Emacs-editing">Emacs editing</a>,
+Previous:&nbsp;<a rel="previous" accesskey="p" href="Emacs-querying.html#Emacs-querying">Emacs querying</a>,
+Up:&nbsp;<a rel="up" accesskey="u" href="Emacs.html#Emacs">Emacs</a>
+<hr><br>
+</div>
+
+<h4 class="subsection">2.5.3 Submitting new Problem Reports</h4>
+
+<p><a name="index-_0040code_007bsend_002dpr_007d-165"></a>You can submit new Problem Reports with the command <kbd>M-x send-pr</kbd>. 
+The command puts you to the problem editing buffer, <a href="Emacs-editing.html#Emacs-editing">Emacs editing</a>.  The buffer is prefilled with the initial report fields and
+their default values, if defined.  You can use the usual Problem
+Report editing commands, <a href="Emacs-editing.html#Emacs-editing">Emacs editing</a>.  When you have filled in
+all the fields, you can send the Problem Report by presing <kbd>C-c
+C-c</kbd>.
+
+   <p>If you run <kbd>M-x send-pr</kbd> with a prefix argument, it runs the
+<code>gnats-change-database</code> command before putting you to the editing
+buffer, <a href="Emacs-and-databases.html#Emacs-and-databases">Emacs and databases</a>.
+
+   <p>You can set the following variables to get some fields pre-filled:
+
+     
+<a name="index-_0040var_007bgnats_002ddefault_002dorganization_007d-166"></a>
+<dl><dt><var>gnats-default-organization</var><dd>Default value of the <span class="samp">Organization</span> field used in new Problem Reports.
+
+     <p><a name="index-_0040var_007bgnats_002ddefault_002dsubmitter_007d-167"></a><br><dt><var>gnats-default-submitter</var><dd>Default value of the <span class="samp">Submitter-Id</span> field used in new Problem Reports. 
+</dl>
+
+   </body></html>
+
