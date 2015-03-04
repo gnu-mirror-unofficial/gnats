@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 3.3 Installing the default database</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 3.3 Installing the default database">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 3.3 Installing the default database">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Setting-up-the-default-database"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Installing-utils.html#Installing-utils" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Setting-up-periodic-jobs.html#Setting-up-periodic-jobs" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Installing-the-default-database"></a>
+<h2 class="section">3.3 Installing the default database</h2>
+
+<p>For the following steps, log in as the user <code>gnats</code>.
+</p>
+<p>We are now going to initialize the default <small>GNATS</small> database.  Run the
+following command:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mkdb default
+</pre></td></tr></table>
+
+<p>This creates a database named <code>default</code>, with all its data stored
+below the directory &lsquo;<tt><var>prefix</var>/com/gnatsdb</tt>&rsquo;, in a default
+installation this corresponds to &lsquo;<tt>/usr/local/com/gnatsdb</tt>&rsquo;.  If
+you specified the <code>--enable-gnats-default-db</code> option when running
+configure, the default database will be created under the directory you
+specified instead.  <code>mkdb</code> creates the database directory itself,
+together with three different subdirectories<a name="DOCF2" href="gnats_fot.html#FOOT2">(2)</a>:
+</p>
+<ul>
+<li> A directory for the mandatory <small>GNATS</small> category <var>pending</var>.
+
+</li><li> A &lsquo;<tt>gnats-queue</tt>&rsquo; directory for queueing new messages to
+<small>GNATS</small> before they are processed by <code>file-pr</code>.
+
+</li><li> The administrative directory &lsquo;<tt>gnats-adm</tt>&rsquo;. This directory is
+populated with default configuration files from the
+&lsquo;<tt><var>prefix</var>/etc/gnats/defaults</tt>&rsquo; directory.
+</li></ul>
+
+<p>The next configuration step is to edit the default files copied to the
+database&rsquo;s &lsquo;<tt>gnats-adm</tt>&rsquo; directory by <code>mkdb</code>.
+</p>
+<p>The default &lsquo;<tt>dbconfig</tt>&rsquo; file installed by <code>mkdb</code> provides a
+good basis for many <small>GNATS</small> databases. The default file causes
+similar behaviour to the 3.x versions of <small>GNATS</small>. However, even if
+this might be precisely what you want, you should still go through the
+file and check that the default settings suit your needs.
+See section <a href="dbconfig-file.html#dbconfig-file">The &lsquo;<tt>dbconfig</tt>&rsquo; file</a>.
+</p>
+<p>Then edit the files &lsquo;<tt>categories</tt>&rsquo;, &lsquo;<tt>responsible</tt>&rsquo;, and
+&lsquo;<tt>submitters</tt>&rsquo; in the &lsquo;<tt>gnats-adm</tt>&rsquo; directory (see section <a href="Other-config-files.html#Other-config-files">Other database-specific config files</a>) to reflect your
+local needs.  For special configurations, you may also have to edit the
+&lsquo;<tt>states</tt>&rsquo; and &lsquo;<tt>classes</tt>&rsquo; files.
+</p>
+<p>If you used the <code>--enable-gnats-default-db</code> option in the pre-build
+configure to change the location of the default database, you need to
+edit the &lsquo;<tt>databases</tt>&rsquo; config file, see <a href="databases-file.html#databases-file">The &lsquo;<tt>databases file</tt>&rsquo;</a>.  This file is by default located in the
+&lsquo;<tt><var>prefix</var>/etc/gnats</tt>&rsquo; directory, but may have been changed
+by the option <code>--enable-gnats-dblist-file</code> option during configure.
+</p>
+<a name="index-cron"></a>
+<a name="index-at"></a>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Installing-utils.html#Installing-utils" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Setting-up-periodic-jobs.html#Setting-up-periodic-jobs" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

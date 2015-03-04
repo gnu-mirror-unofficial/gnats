@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.4 Other database-specific config files</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.4 Other database-specific config files">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.4 Other database-specific config files">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Other-config-files"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="dbconfig-file.html#Initial-PR-input-fields" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#categories-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Other-database_002dspecific-config-files"></a>
+<h2 class="section">4.4 Other database-specific config files</h2>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#categories-file">4.4.1 The <code>categories</code> file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#responsible-file">4.4.2 The <code>responsible</code> file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#submitters-file">4.4.3 The <code>submitters</code> file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#states-file">4.4.4 The <code>states</code> file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#addresses-file">4.4.5 The <code>addresses</code> file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#classes-file">4.4.6 The <code>classes</code> file</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="categories-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Other-config-files" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#responsible-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-categories-file"></a>
+<h3 class="subsection">4.4.1 The <code>categories</code> file</h3>
+<a name="index-categories-file-1"></a>
+
+<p>The &lsquo;<tt>categories</tt>&rsquo; file contains a list of problem categories,
+specific to the database, which <small>GNATS</small> tracks.  This file also
+matches responsible people with these categories.  You must edit this
+file initially, creating valid categories.  In most installations,
+<small>GNATS</small> is configured to create directories on disk for valid
+categories automatically as needed (see section <a href="dbconfig-file.html#Overall-database-configuration">Overall database configuration</a>). If <small>GNATS</small> isn&rsquo;t set
+up to do this, you need to run <code>mkcat</code> to create the corresponding
+subdirectories of the database directory. For instructions on running
+<code>mkcat</code>, see <a href="Admin-utils.html#mkcat">Adding a problem category</a>.
+</p>
+<p>To create a new category, log in as <small>GNATS</small>, add a line to this file,
+and run <code>mkcat</code> if applicable.  Lines beginning with &lsquo;<samp>#</samp>&rsquo; are
+ignored.
+</p>
+<p>A line in the &lsquo;<tt>categories</tt>&rsquo; file consists of four fields delimited
+by colons, as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"><var>category</var>:<var>description</var>:<var>responsible</var>:<var>notify</var>
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dt> <var>category</var></dt>
+<dd><p>A unique category name, made up of text characters.  This name cannot
+contain spaces or any of the following characters:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">! $ &amp; * ( ) { } [ ] ` ' &quot; ; : &lt; &gt; ~
+</pre></td></tr></table>
+
+<p>Ideally, category names should not contain commas or begin with periods.
+Each line has a corresponding subdirectory in the database directory.
+</p>
+</dd>
+<dt> <var>description</var></dt>
+<dd><p>A terse textual description of the category.
+</p>
+</dd>
+<dt> <var>responsible</var></dt>
+<dd><p>The name tag of the party responsible for this category of problems, as
+listed in the &lsquo;<tt>responsible</tt>&rsquo; file (see section <a href="#responsible-file">The <code>responsible</code> file</a>).
+</p>
+</dd>
+<dt> <var>notify</var></dt>
+<dd><p>One or more other parties which should be notified when a Problem Report
+with this category arrives, such as a project manager, other members of
+the same project, other interested parties, or even log files.  These
+should be separated with commas.
+</p></dd>
+</dl>
+
+<p>A good strategy for configuring this file is to have a different
+category for each product your organization supports or wishes to track
+information for.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">rock:ROCK program:me:myboss,fred
+stone:STONE utils:barney:fred
+iron:IRON firewall:me:firewall-log
+</pre></td></tr></table>
+
+<p>In the above example, the nametags &lsquo;<samp>myboss</samp>&rsquo;, &lsquo;<samp>me</samp>&rsquo;,
+&lsquo;<samp>fred</samp>&rsquo;, and &lsquo;<samp>barney</samp>&rsquo; must be defined in the &lsquo;<tt>responsible</tt>&rsquo;
+file (see section <a href="#responsible-file">The <code>responsible</code> file</a>).
+</p>
+<p>Problem Reports with a category of &lsquo;<samp>rock</samp>&rsquo; are sent to the local
+mail address (or alias) &lsquo;<samp>me</samp>&rsquo;, and also sent to the addresses
+&lsquo;<samp>myboss</samp>&rsquo; and &lsquo;<samp>fred</samp>&rsquo;.  PRs with a category of &lsquo;<samp>stone</samp>&rsquo; are
+sent to the local addresses &lsquo;<samp>barney</samp>&rsquo; and &lsquo;<samp>fred</samp>&rsquo; only, while
+PRs with the category &lsquo;<samp>iron</samp>&rsquo; are sent only to &lsquo;<samp>me</samp>&rsquo;, and are
+also filed in <code>firewall-log</code> (in this case, a mail alias should be set
+up, see section <a href="Aliases.html#Aliases">Setting up mail aliases</a>.
+</p>
+<p>If you want to separate PRs in each problem category into specific
+subsets, say <em>documentation</em> and <em>software bugs</em>,
+using the &lsquo;<tt>classes</tt>&rsquo; file is recommended.  See section <a href="#classes-file">The &lsquo;<tt>classes</tt>&rsquo; file</a>.
+</p>
+<p>Only one category <em>must</em> be present for <small>GNATS</small> to function:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">pending:Non-categorized PRs:gnats-admin:
+</pre></td></tr></table>
+
+<a name="index-pending-file"></a>
+<p>The &lsquo;<tt>pending</tt>&rsquo; directory is created automatically when you run
+<code>mkdb</code> to initialize a new database.  (see section <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a>).
+</p>
+<hr size="6">
+<a name="responsible-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#categories-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#submitters-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-responsible-file"></a>
+<h3 class="subsection">4.4.2 The <code>responsible</code> file</h3>
+<a name="index-responsible-file-1"></a>
+
+<p>This file contains a list of the responsible parties.  Lines beginning
+with &lsquo;<samp>#</samp>&rsquo; are ignored.  Each entry contains three fields, separated
+by colons:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"><var>responsible</var>:<var>full-name</var>:<var>mail-address</var>
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dt> <var>responsible</var></dt>
+<dd><p>A name-tag description of the party in question, such as her or his user
+name, or the name of the group.  This name is listed in the PR in
+the <code>Responsible</code> field.
+</p>
+</dd>
+<dt> <var>full-name</var></dt>
+<dd><p>The full name of the party (&ldquo;Charlotte Bronte&rdquo;; &ldquo;Compiler Group&rdquo;).
+</p>
+</dd>
+<dt> <var>mail-address</var></dt>
+<dd><p>The full, valid mail address of the party.  This field is only necessary
+if the responsible party has no local mail address or alias.
+</p></dd>
+</dl>
+
+<p>A sample &lsquo;<tt>responsible</tt>&rsquo; listing might be:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">ren:Ren Hoek:
+stimpy:Stimpson J. Cat:stimpy@lederhosen.org
+</pre></td></tr></table>
+
+<p>Here, <code>ren</code> is a local user.  <code>stimpy</code> is remote, so his full
+address must be specified.
+</p>
+<p>The following entry <em>must</em> be present for <small>GNATS</small> to function:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">gnats-admin:GNATS administrator:
+</pre></td></tr></table>
+
+<p><code>gnats-admin</code> is usually defined as a mail alias when <small>GNATS</small> is
+installed, so for this purpose <code>gnats-admin</code> is a local address.
+However, this line can alos be used to redefine the email address of the
+<small>GNATS</small> administrator, by adding the desired address at the end of
+the line.
+</p>
+<hr size="6">
+<a name="submitters-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#responsible-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#states-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-submitters-file"></a>
+<h3 class="subsection">4.4.3 The <code>submitters</code> file</h3>
+<a name="index-submitters-file-1"></a>
+
+<p>This is a database of sites which submit bugs to your support site.  It
+contains six fields delineated by colons.  Lines beginning with &lsquo;<samp>#</samp>&rsquo;
+will be ignored.
+</p>
+<p>Entries are of the format:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"><var>submitter-id</var>:<var>name</var>:<var>type</var>:<var>resp-time</var>:<var>contact</var>:<var>notify</var>
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dt> <var>submitter-id</var></dt>
+<dd><p>A unique identifier for a specific site or other entity who submits
+Problem Reports. The first <code>submitter-id</code> listed in the file will
+be the default for PRs that arrive with invalid or empty submitter
+fields.
+</p>
+</dd>
+<dt> <var>name</var></dt>
+<dd><p>The full name or a description of this entity.
+</p>
+</dd>
+<dt> <var>type</var></dt>
+<dd><p>Optional description for the type of relationship of this submitter to
+your support site.  This could indicate a contract type, a level of
+expertise, etc., or it can remain blank.
+</p>
+</dd>
+<dt> <var>resp-time</var></dt>
+<dd><p>Optional quoted response time in <em>business hours</em>.  If the
+database &lsquo;<tt>dbconfig</tt>&rsquo; file has the <code>notify-about-expired-prs</code>
+entry set to <var>true</var> (see section <a href="dbconfig-file.html#Overall-database-configuration">Overall database configuration</a>, <small>GNATS</small> will use
+this field to schedule when it should notify the gnats-admin,
+responsible person and submitter contact that the PR wasn&rsquo;t analyzed
+within the agreed response time.  Business hours and business-week
+days are set in the &lsquo;<tt>dbconfig</tt>&rsquo; file.  For information on
+<code>at-pr</code>, the program which sends out this reminder, see
+<a href="Internal-utils.html#at_002dpr">Timely Reminders</a>.
+</p>
+</dd>
+<dt> <var>contact</var></dt>
+<dd><p>The name tag of the main <em>contact</em> at the Support Site for this
+submitter.  This contact should be in the &lsquo;<tt>responsible</tt>&rsquo; file
+(see section <a href="#responsible-file">The <code>responsible</code> file</a>).  Incoming bugs
+from <var>submitter</var> are sent to this contact.  Optionally, this field
+can be left blank.
+</p>
+</dd>
+<dt> <var>notify</var></dt>
+<dd><p>Any other parties who should receive copies of Problem Reports sent in
+by <var>submitter</var>.  They need not be listed in the &lsquo;<tt>responsible</tt>&rsquo; file.
+</p></dd>
+</dl>
+
+<p>A few example entries in the &lsquo;<tt>submitters</tt>&rsquo; file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">univ-hell:University of Hades:eternal:3:beelzebub:lucifer
+tta:Telephones and Telegraphs of America:support:720:dave:
+</pre></td></tr></table>
+
+<p>In this example, when a PR comes in from the University of Hades (who
+has an eternal contract), it should have &lsquo;<samp>univ-hell</samp>&rsquo; in its
+<code>Submitter-Id</code> field.  This Problem Report goes to <code>beelzebub</code>
+(who should be in the &lsquo;<tt>responsible</tt>&rsquo; file), and if it is not
+analyzed within three business hours a reminder message is sent.
+<code>lucifer</code> also receives a copy of the bug, and a copy of the
+reminder message as well (if it is sent).  When Telephones and
+Telegraphs of America utilizes their support contract and submits a bug,
+a copy is sent only to <code>dave</code>, who has 720 business hours to return
+an analysis before a reminder is sent.
+</p>
+<a name="index-disabling-submitter_002did"></a>
+<p>To disable the feature of <small>GNATS</small> which tracks the
+<code>Submitter-Id</code>, simply alter the &lsquo;<tt>submitters</tt>&rsquo; file to only
+contain one <var>submitter-id</var> value, and instruct your submitters to
+ignore the field.
+</p>
+<hr size="6">
+<a name="states-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#submitters-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#addresses-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-states-file"></a>
+<h3 class="subsection">4.4.4 The <code>states</code> file</h3>
+<a name="index-states-file-1"></a>
+
+<p>This file lists the possible states for Problem Reports.  Each entry
+has up to three fields, separated by colons.  Lines beginning with
+&lsquo;<samp>#</samp>&rsquo; will be ignored.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"><var>state</var>:<var>type</var>:<var>description</var>
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dt> <var>state</var></dt>
+<dd><p>The name of the state.  It may contain alphanumerics as well as
+&lsquo;<samp>-</samp>&rsquo; (hyphen), &lsquo;<samp>_</samp>&rsquo; (underscore), or &lsquo;<samp>.</samp>&rsquo; (period), but no
+other characters.
+</p>
+</dd>
+<dt> <var>type</var></dt>
+<dd><p>This is the type of the state.  This field is optional and it may
+contain alphanumerics as well as &lsquo;<samp>-</samp>&rsquo; (hyphen), &lsquo;<samp>_</samp>&rsquo;
+(underscore), or &lsquo;<samp>.</samp>&rsquo; (period), but no other characters.
+</p>
+<p>The concept of the type of a state recognizes that there may for
+instance be several possible states for a Problem Report which
+effectively means that the PR is closed and that there may be certain
+actions that need to be taken when a PR reaches a &ldquo;closed state&rdquo;.
+The problem may have been resolved, it might have been decided that
+the problem is unsolvable or simply that it won&rsquo;t be solved.  Some
+organizations may for instance wish to consider the &ldquo;suspended&rdquo;
+state as a state of type &ldquo;closed&rdquo;.
+</p>
+<p>Currently, the only defined state types are &ldquo;open&rdquo; and &ldquo;closed&rdquo;,
+the &ldquo;open&rdquo; type isn&rsquo;t currently used for anything while the
+&ldquo;closed&rdquo; type is only used to control the Closed-Date field of PRs.
+Changing the state of a PR to any state of type &ldquo;closed&rdquo; will set
+the Closed-Date field with a time stamp and changing the state of a PR
+from one &ldquo;closed&rdquo; state to another will leave the Closed-Date field
+as it was.  Changing the state of a PR from any state of type
+&ldquo;closed&rdquo; to a non-closed state will clear the Closed-Date field.
+</p>
+<p>The <code>--skip-closed</code> option of <code>query-pr</code> refers to all
+states of type &ldquo;closed&rdquo;, not to a specific state name of &ldquo;closed&rdquo;.
+</p>
+</dd>
+<dt> <var>description</var></dt>
+<dd><p>This is is an optional one-line description of what the state means.
+Any character is okay in the description; a newline ends it.
+<small>GNATS</small> itself does not currently use the description for anything,
+but certain external tools (such as TkGnats and Gnatsweb) look for it,
+so it&rsquo;s a good idea to include one for every state.
+</p></dd>
+</dl>
+
+<p>The first state listed will be the state automatically assigned to
+Problem Reports when they arrive; by default this is named &ldquo;open&rdquo;.
+The last state listed is the end state for Problem Reports &mdash; one
+should usually assume that a PR in this state is not being actively
+worked on; by default this state is named &ldquo;closed&rdquo;.  Even if a
+different name has been chosen for this state, <small>GNATS</small> will force
+this state to be of type &ldquo;closed&rdquo;.
+</p>
+<p>It is recommended that you keep the default names of &ldquo;open&rdquo; and
+&ldquo;closed&rdquo; for the first and last states respectively, since there may
+be external tools that depend on these names.
+</p>
+<hr size="6">
+<a name="addresses-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#states-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#classes-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-addresses-file"></a>
+<h3 class="subsection">4.4.5 The <code>addresses</code> file</h3>
+<a name="index-addresses-file-1"></a>
+
+<p>This file contains mappings between submitter IDs and corresponding e-mail 
+addresses.
+</p>
+<p>When a PR comes in without a submitter ID (if someone sends unformatted
+e-mail to the PR submission email address), <small>GNATS</small> will try to
+derive the submitter ID from the address in the &quot;From:&quot; header.  The
+entries in this file consist of two fields, separated by a colon:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"><var>submitter-id</var>:<var>address-fragment</var>
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dt> <var><var>submitter-id</var></var></dt>
+<dd><p>A valid submitter ID
+</p>
+</dd>
+<dt> <var><var>address-fragment</var></var></dt>
+<dd><p>Part of, or all of the e-mail address to be matched
+</p></dd>
+</dl>
+
+<p>Here is an example of an <code>addresses</code> file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"># Addresses for Yoyodine Inc
+yoyodine:yoyodine.com
+yoyodine:yoyodine.co.uk
+# Addresses for Foobar Inc.
+foobar1:sales.foobar.com
+foobar2:admin.foobar.com
+foobar3:clark@research.foobar.com
+</pre></td></tr></table>
+
+<p><small>GNATS</small> checks each line in the <code>addresses</code> file, comparing 
+<var>address-fragment</var> to the end of the &quot;From:&quot; header, until it finds
+a match.  If no match is found, <small>GNATS</small> uses the default submitter ID.
+</p>
+<p>You can only have one address fragment per line, but you can have more than
+one line for a given submitter ID.  An address fragment can be a domain
+(i.e. yoyodine.com), a machine location (admin.foobar.com), or a full e-mail
+address (clark@research.foobar.com).
+</p>
+<p><small>GNATS</small> can match addresses in three e-mail formats:
+</p>
+<dl compact="compact">
+<dt> &lsquo;<samp>From: name@address.com</samp>&rsquo;</dt>
+<dd><p>The address by itself without a full name, not enclosed in brackets
+</p>
+</dd>
+<dt> &lsquo;<samp>From: Real Person &lt;name@address.com&gt;</samp>&rsquo;</dt>
+<dd><p>A full name (optional, with or without quotation marks), followed by the 
+address enclosed in angle brackets
+</p>
+</dd>
+<dt> &lsquo;<samp>From: name@address.com (Real Person)</samp>&rsquo;</dt>
+<dd><p>An address, followed by a name or comment in parentheses
+</p></dd>
+</dl>
+
+<p>If <small>GNATS</small> sees other e-mail address formats, it uses the default
+submitter ID.
+</p>
+<hr size="6">
+<a name="classes-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#addresses-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-classes-file"></a>
+<h3 class="subsection">4.4.6 The <code>classes</code> file</h3>
+<a name="index-classes-file-1"></a>
+<p>This file lists the possible classes of Problem Reports.  Each line
+consists of a class name, followed by a colon and an optional class type
+name (the class type name is not used for anything in the current
+implementation of <small>GNATS</small>, so it may be left blank.  The <code>class</code>
+and <code>class-type-name</code> fields may only contain alphanumerics,
+&lsquo;<samp>-</samp>&rsquo;, &lsquo;<samp>_</samp>&rsquo;, and &lsquo;<samp>.</samp>&rsquo;, but no other
+characters.
+</p>
+<p>Then comes another colon, followed by an optional one-line
+description of the class.  <small>GNATS</small> itself does not use the class
+description, but external tools such as Gnatsweb and TkGnats may use it.
+Therefore, a line in this file should at least contain the following:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">class::class description
+</pre></td></tr></table>
+
+<p>Lines beginning with &lsquo;<samp>#</samp>&rsquo; will be ignored, and the first listed
+class is the default class for an incoming Problem Report.
+</p>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#addresses-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

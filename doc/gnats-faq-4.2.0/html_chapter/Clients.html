@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 4. Client Software</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 4. Client Software">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 4. Client Software">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Clients"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Configuration.html#Miscellaneous" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsweb" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Glossary.html#Glossary" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Client-Software"></a>
+<h1 class="chapter">4. Client Software</h1>
+
+<p>Several client applications can be found in the <small>GNATS</small> distribution.
+The most important are Gnatsweb (a WWW interface to <small>GNATS</small>), TkGnats (a
+Tcl/Tk based interface), a <small>GNATS</small> mode for Emacs and XEmacs, and send-pr
+(the traditional command line interface that sends a PR by e-mail).
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Gnatsweb">4.1 Gnatsweb</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                    a WWW interface to <small>GNATS</small>
+</td></tr>
+<tr><td align="left" valign="top"><a href="#TkGnats">4.2 TkGnats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                     a Tcl/Tk based client
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-mode">4.3 <small>GNATS</small> Mode for Emacs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                  for (X)Emacs enthusiasts
+</td></tr>
+<tr><td align="left" valign="top"><a href="#send_002dpr">4.4 send-pr</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                     traditional command line interface
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Gnatsweb"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Clients" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsweb-Login-Questions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Clients" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Clients" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Glossary.html#Glossary" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Gnatsweb-1"></a>
+<h2 class="section">4.1 Gnatsweb</h2>
+
+<p>See also <a href="Installation.html#Gnatsweb-and-GNATS">Gnatsweb and <small>GNATS</small> do not like each other.</a> in the chapter on <a href="Installation.html#Installation">Problems during Installation</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Gnatsweb-Login-Questions">4.1.1 Login Questions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    Problems logging in to Gnatsweb
+</td></tr>
+</table>
+
+
+
+<hr size="6">
+<a name="Gnatsweb-Login-Questions"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Gnatsweb" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#TkGnats" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Clients" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsweb" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Glossary.html#Glossary" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Login-Questions"></a>
+<h3 class="subsection">4.1.1 Login Questions</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#What-to-enter">&bull; What to enter</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               What to enter at login
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Login-Not-Remembered">&bull; Login Not Remembered</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Reasons why Gnatsweb forgets your login
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Cookies">&bull; Cookies</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                     What Gnatsweb stores in its cookies
+</td></tr>
+</table>
+
+<a name="What-to-enter"></a>
+<a name="What-should-be-entered-as-login-information_003f"></a>
+<h4 class="subsubheading">What should be entered as login information?</h4>
+
+<p><b>A:</b> If you get an HTML form asking you to enter username, password,
+and database, use what your gnats administrator has told you.  In this
+case, your authentication data is checked with gnatsd&rsquo;s own user
+database.
+</p>
+<p>If your browser gives you a window asking for username and password (or
+for &quot;credentials&quot;), the authentication is done by the WWW server.  You
+should have got the necessary data either from your gnats administrator,
+or from the webmaster of the site offering Gnatsweb access.
+</p>
+
+<a name="Login-Not-Remembered"></a>
+<a name="Login-data-are-not-remembered"></a>
+<h4 class="subsubheading">Login data are not remembered</h4>
+
+<p><b>Q:</b> After logging in via Gnatsweb, the main screen is displayed,
+but whatever action is selected (whatever button is clicked), the login
+screen gets displayed again.
+</p>
+<p><b>A:</b> This is usually a problem of cookies getting ignored.  Gnatsweb
+uses cookies to store the login information (see &quot;Gnatsweb and Cookies&quot;
+below).  Configure your web browser to allow the cookies Gnatsweb tries
+to set.
+</p>
+
+<p><b>Q:</b> There is not even the main screen, the user immediately gets
+the login screen when trying to log in.  The login data entered is
+correct.  It works fine on another machine and for other users.
+</p>
+<p><b>A:</b> This has actually been reported only once; but as the effect is
+similar to the previous one, it is included in the FAQ.  It apparently
+was related to very strict security settings, but has not been
+investigated in detail.
+</p>
+
+<a name="Cookies"></a>
+<a name="Gnatsweb-and-Cookies"></a>
+<h4 class="subsubheading">Gnatsweb and Cookies</h4>
+
+<a name="index-cookies"></a>
+
+<p><b>Q:</b> Wait a moment!  Cookies?  Can I eat them?
+</p>
+<p><b>A:</b> No, not these.  The cookies about which we are talking here are
+little data packages that a web-server sends to your browser (in our
+case, on behalf of Gnatsweb) and your browser sends them back to the
+server next time.  Modern browsers give you the option to generally
+accept or reject cookies, or to be asked whenever a cookie arrives (some
+even can make this decision based on the web-server).  To learn more
+about cookies, visit, e.g., <a href="http://www.cookiecentral.com/">the Cookie Central</a>.
+</p>
+
+<p><b>Q:</b> So, which cookies does Gnatsweb send, and why?
+</p>
+<p><b>A:</b> Gnatsweb uses a cookie <code>gnatsweb-db-</code><em>database_name</em> to
+store your login information (username, password), and a cookie
+<code>gnatsweb-global</code> to store the <small>GNATS</small> database you are working on,
+your e-mail address (to fill it in for you when you create a new report
+or reply to an existing report), a default list of fields to display in
+search results, and defaults for <code>Submitter-Id</code> and
+<code>Originator</code> fields.
+</p>
+<p>Gnatsweb also sets a cookie for each &quot;saved query&quot; (named
+<code>gnatsweb-query-</code><em>queryname</em>).
+</p>
+<p>It is therefore essential that you allow Gnatsweb to set its cookies.
+For a typical effect of rejecting them, see <a href="#Login-Not-Remembered">Login Not Remembered</a>.
+</p>
+
+<hr size="6">
+<a name="TkGnats"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Gnatsweb-Login-Questions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-mode" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Clients" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Clients" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Glossary.html#Glossary" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="TkGnats-1"></a>
+<h2 class="section">4.2 TkGnats</h2>
+
+<p>To be completed.
+</p>
+
+<hr size="6">
+<a name="Emacs-mode"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#TkGnats" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Clients" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Clients" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Glossary.html#Glossary" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="GNATS-Mode-for-Emacs"></a>
+<h2 class="section">4.3 <small>GNATS</small> Mode for Emacs</h2>
+
+<p>The Emacs mode is in the file gnats.el
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#XEmacs">&bull; XEmacs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                      Does it also work for XEmacs?
+</td></tr>
+</table>
+
+
+<a name="XEmacs"></a>
+<a name="Does-it-also-work-for-XEmacs_003f"></a>
+<h4 class="subsubheading">Does it also work for XEmacs?</h4>
+
+<p><b>A: (<small>GNATS</small> 3.1xx)</b> Yes.
+</p>
+<p><b>A: (<small>GNATS</small> 4.x)</b> Still to be tested.
+</p>
+
+<hr size="6">
+<a name="send_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-mode" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Glossary.html#Glossary" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Clients" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Clients" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Glossary.html#Glossary" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="send_002dpr-1"></a>
+<h2 class="section">4.4 send-pr</h2>
+
+<p>A simple command line tool that sends a report via electronic mail.
+This is not contributed software, but part of <small>GNATS</small> itself.
+</p>
+<p>The 3.xxx versions do not support multiple databases.
+</p>
+
+
+<p>To be completed.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Clients" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Glossary.html#Glossary" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

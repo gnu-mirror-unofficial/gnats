@@ -1,0 +1,324 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.3.7 Outgoing email formats</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.3.7 Outgoing email formats">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.3.7 Outgoing email formats">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Outgoing-email-formats"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Audit_002dtrail-formats.html#Audit_002dtrail-formats" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Index-file-description.html#Index-file-description" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="dbconfig-file.html#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Outgoing-email-formats-1"></a>
+<h3 class="subsection">4.3.7 Outgoing email formats</h3>
+<a name="index-Outgoing-email-formats"></a>
+
+<p>During the life of a PR, <small>GNATS</small> can be configured to send out a
+range of email messages.  When a PR first arrives, an acknowledgment
+message is sent out if the <code>send-submitter-ack</code> parameter above is
+set to <code>true</code>.  Certain edits to the PR may also cause email to be
+sent out to the various parties, and if a PR is deleted, <small>GNATS</small> may
+send notification email.
+</p>
+<p>The formats of the email messages are controlled by <code>mail-format</code>
+sections in the &lsquo;<tt>dbconfig</tt>&rsquo; file.  The general structure of a
+<code>mail-format</code> section is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mail-format &quot;format-name&quot; {
+&nbsp;&nbsp;from-address {
+&nbsp;&nbsp;&nbsp;&nbsp;[ fixed-address &quot;address&quot; ]
+&nbsp;&nbsp;&nbsp;&nbsp;[ email-header-name | [ mail-header-name | ... ] ]
+&nbsp;&nbsp;}
+&nbsp;&nbsp;to-address {
+&nbsp;&nbsp;&nbsp;&nbsp;[ fixed-address &quot;address&quot; ] 
+&nbsp;&nbsp;&nbsp;&nbsp;[ &quot;email-header-name&quot; | [ &quot;mail-header-name&quot; | ... ] ]
+&nbsp;&nbsp;}
+&nbsp;&nbsp;reply-to {
+&nbsp;&nbsp;&nbsp;&nbsp;[ fixed-address &quot;address&quot; ]
+&nbsp;&nbsp;&nbsp;&nbsp;[ &quot;email-header-name&quot; | ... ] | [ &quot;gnats-field-name&quot; | ... ]
+&nbsp;&nbsp;}
+&nbsp;&nbsp;header {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;formatstring&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;[ fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] } ]
+&nbsp;&nbsp;}
+&nbsp;&nbsp;body {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;formatstring&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;[ fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] } ]
+&nbsp;&nbsp;}
+}
+</pre></td></tr></table>
+
+<p><code>gnats</code> recognizes and uses 6 different <code>format-name</code> values:
+</p>
+<dl compact="compact">
+<dd><a name="index-format_002dname"></a>
+</dd>
+<dt> <code>initial-response-to-submitter</code></dt>
+<dd><a name="index-initial_002dresponse_002dto_002dsubmitter"></a>
+<p>Format of the message used when mailing an initial response back to the
+PR submitter.  This message will only be sent if
+<code>send-submitter-ack</code> in the overall database configuration is set
+to <code>true</code>.
+</p>
+</dd>
+<dt> <code>initial-pr-notification</code></dt>
+<dd><a name="index-initial_002dpr_002dnotification"></a>
+<p>Format of the message sent to the responsible parties when a new PR with
+category different from &ldquo;pending&rdquo; arrives.
+</p>
+</dd>
+<dt> <code>initial-pr-notification-pending</code></dt>
+<dd><a name="index-initial_002dpr_002dnotification_002dpending"></a>
+<p>Format of the message sent to the responsible parties when a new PR that
+ends up with category &ldquo;pending&rdquo; arrives.
+</p>
+</dd>
+<dt> <code>appended-email-response</code></dt>
+<dd><a name="index-appended_002demail_002dresponse"></a>
+<p>Format of the notification message sent out when a response to a PR is
+received via email.
+</p>
+</dd>
+<dt> <code>audit-mail</code></dt>
+<dd><a name="index-audit_002dmail"></a>
+<p>Format of the message sent out when a PR edit generates an Audit-Trail
+entry.
+</p>
+</dd>
+<dt> <code>deleted-pr-mail</code></dt>
+<dd><a name="index-deleted_002dpr_002dmail"></a>
+<p>Format of the message sent out when a PR is deleted.
+</p></dd>
+</dl>
+
+<p>The <code>from-address</code>, <code>to-address</code> and <code>reply-to</code>
+subsections of a mail-format section specify the contents of the <code>To:</code>,
+<code>From:</code> and <code>Reply-To:</code> headers in outgoing email.  There are
+two ways to specify the contents: by using a <code>fixed-address</code>
+specification, or by specifying <code>email-header-name</code>s or
+<code>gnats-field-name</code>s.
+</p>
+<p>When an <code>email-header-name</code> or <code>gnats-field-name</code> value is
+given, <small>GNATS</small> will attempt to extract an email address from the
+specified location.  If several values are given on the same line,
+separated by &lsquo;<samp>|</samp>&rsquo; characters, <small>GNATS</small> will try to extract an address
+from each location in turn until it finds a header or field which is
+nonempty.  The following example should clarify this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mail-format &quot;initial-response-to-submitter&quot; {
+&nbsp;&nbsp;from-address {
+&nbsp;&nbsp;&nbsp;&nbsp;fixed-address &quot;gnats-admin&quot;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;to-addresses {
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;Reply-To:&quot; | &quot;From:&quot; | &quot;Submitter-Id&quot;
+&nbsp;&nbsp;} &hellip;
+</pre></td></tr></table>
+
+<p>This partial <code>mail-format</code> section specifies the format of the
+address headers in the email message that is sent out as an
+acknowledgment of a received PR.  The <code>From:</code> field of the message
+will contain the email address of the <small>GNATS</small> administrator, as
+specified by the <code>gnats-admin</code> line in the &lsquo;<tt>responsible</tt>&rsquo; file.
+To fill in the <code>To:</code> header, <small>GNATS</small> will first look for the
+mail header <code>Reply-To:</code> in the PR and use the contents of that, if
+any.  If that header doesn&rsquo;t exist or is empty, it will look for the
+contents of the <code>From:</code> email header, and if that yields nothing,
+it will look for the <small>GNATS</small> <code>Submitter-Id</code> field and use the
+contents of that.
+</p>
+<p>Other email headers to be included in messages sent out by <small>GNATS</small>
+can be specified by <code>header</code> subsections of the <code>mail-header</code>
+section.  <code>formatstring</code> and <code>fieldname</code> are similar to those
+used by the named query format. Each header line must have a newline
+character (&lsquo;<samp>\n</samp>&rsquo;) at the end.
+</p>
+<p>The email message body is specified in the <code>body</code> subsection of the
+<code>mail-format</code> section. Just as for a <code>header</code> section, the
+<code>body</code> section must contain a <code>formatstring</code> and
+<code>fieldname</code> values.
+</p>
+<p>For some of the formats that <small>GNATS</small> recognizes, special variables
+are available for use. The following table lists the formats that
+provide special variables. See the example below for an illustration of
+how they are used.
+</p>
+<dl compact="compact">
+<dt> <code>appended-email-response</code></dt>
+<dd><dl compact="compact">
+<dt> <code>$MailFrom</code></dt>
+<dd><p>The From: line of the original message.
+</p>
+</dd>
+<dt> <code>$MailTo</code></dt>
+<dd><p>The To: line of the original message.
+</p>
+</dd>
+<dt> <code>$MailSubject</code></dt>
+<dd><p>The Subject: line of the original message.
+</p>
+</dd>
+<dt> <code>$MailCC</code></dt>
+<dd><p>The CC: line of the original message.
+</p>
+</dd>
+<dt> <code>$NewAuditTrail</code></dt>
+<dd><p>The text of the new audit trail entry (corresponds to the body of the
+message).
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code>audit-mail</code></dt>
+<dd><dl compact="compact">
+<dt> <code>$EditUserEmailAddr</code></dt>
+<dd><p>The email address of the user editing the PR.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the &lsquo;<tt>responsible</tt>&rsquo;
+file; if not available, user&rsquo;s local address is used.
+</p>
+</dd>
+<dt> <code>$OldResponsible</code></dt>
+<dd><p>The previous Responsible field entry, if it was changed.
+</p>
+</dd>
+<dt> <code>$NewAuditTrail</code></dt>
+<dd><p>The Audit-Trail: entries that have been appended by the edits.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code>deleted-pr-mail</code></dt>
+<dd><dl compact="compact">
+<dt> <code>$EditUserEmailAddr</code></dt>
+<dd><p>The email address of the user deleting the PR.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the &lsquo;<tt>responsible</tt>&rsquo;
+file; if not available, user&rsquo;s local address is used.
+</p>
+</dd>
+<dt> <code>$PRNum</code></dt>
+<dd><p>The number of the PR that was deleted.
+</p></dd>
+</dl>
+</dd>
+</dl>
+
+<p>The following example illustrates the use of these special variables:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mail-format &quot;deleted-pr-mail&quot; {
+&nbsp;&nbsp;from-address {
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;$EditUserEmailAddr&quot;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;to-addresses {
+&nbsp;&nbsp;&nbsp;&nbsp;fixed-address &quot;gnats-admin&quot;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;header {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;Subject: Deleted PR %s\n&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;fields { &quot;$PRNum&quot; }
+&nbsp;&nbsp;}
+&nbsp;&nbsp;body {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;PR %s was deleted by user %s.\n&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;fields { &quot;$PRNum&quot; &quot;$EditUserEmailAddr&quot; }
+&nbsp;&nbsp;}
+}
+</pre></td></tr></table>
+
+<p>This <code>mail-format</code> section specifies the format of the email
+message that is sent out when a PR is deleted. The <code>From:</code> field is
+set to the email address field of the user who deleted the PR, the
+subject of the message contains the number of the deleted PR, and the
+message body contains both the PR number and the user&rsquo;s email address.
+</p>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Audit_002dtrail-formats.html#Audit_002dtrail-formats" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Index-file-description.html#Index-file-description" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="dbconfig-file.html#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

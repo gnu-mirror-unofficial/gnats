@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 1.1 What is GNATS?</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 1.1 What is GNATS?">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 1.1 What is GNATS?">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="What-is-GNATS"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="General.html#General" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#User-view" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="What-is-GNATS_003f"></a>
+<h2 class="section">1.1 What is <small>GNATS</small>?</h2>
+
+<p><small>GNATS</small> is the <small>GNU</small> problem report management system.  Problem
+report management systems are also known as &quot;bug-tracking systems&quot;,
+though the entries need not be bugs (e.g., think of change requests).
+The acronym stands for &quot;GNats: A Tracking System&quot;.
+</p>
+<p><small>GNATS</small> stores all information about the problem reports at a central
+site, and enables users to access this site by various means, including
+e-mail, WWW, and a network daemon.  New problem reports can be created,
+and existing reports can be queried and updated, by most of these means.
+</p>
+<p><small>GNATS</small> is widely customizable: Of course you can define report
+categories (is the report about tool A or service B?), responsibles
+(who takes care of this report?), and submitters (is it from customer1
+or from the sales department?).  You can also define possible states
+of a report (open, analyzed, closed, etc.) and classes (software bug,
+documentation bug, change request, &hellip;).
+</p>
+<p>Starting with <small>GNATS</small> 4.0, you can define your own custom fields, and
+customize many of the built-in fields; you can have fields automatically
+set to a certain value when another field changes its contents (e.g.,
+set a &quot;Closed-Date&quot; field to the current date when the report goes to
+state &quot;closed&quot;, and unset it when it goes back from &quot;closed&quot; to
+something else), or when the report is changed at all (e.g., to maintain
+a &quot;Last-Modified&quot; field).
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#User-view">1.1.1 How it Works&mdash;User&rsquo;s View</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   Short overview for users
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Administrator-View">1.1.2 How it Works&mdash;Administrator&rsquo;s View</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          Short overview for system administrators
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="User-view"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#What-is-GNATS" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Administrator-View" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#What-is-GNATS" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-it-Works_002d_002d_002dUser_0027s-View"></a>
+<h3 class="subsection">1.1.1 How it Works&mdash;User&rsquo;s View</h3>
+
+<p>Users enter their problem reports (PRs) via some front-end.  This
+front-end either directly contacts the <small>GNATS</small> server, or sends the
+report via e-mail.  (The server is available since about version 3.90
+of <small>GNATS</small>).  For an incomplete list of front-ends see <a href="Clients.html#Clients">Client Software</a>.
+</p>
+<p>Some front-ends (like TkGnats, see <a href="TkGnats.html#TkGnats">TkGnats</a>) are capable of
+contacting several <small>GNATS</small> servers, or several problem report
+databases managed by the same <small>GNATS</small> server.
+</p>
+
+<hr size="6">
+<a name="Administrator-View"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-view" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="How-to-pronounce-it.html#How-to-pronounce-it" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#What-is-GNATS" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-it-Works_002d_002d_002dAdministrator_0027s-View"></a>
+<h3 class="subsection">1.1.2 How it Works&mdash;Administrator&rsquo;s View</h3>
+
+<a name="index-starting-gnatsd"></a>
+<a name="index-gnatsd_002c-starting"></a>
+
+<p>The server is started by a super-server like inetd or xinetd.  It has
+a built-in access control mechanism based on IP addresses and
+username/password.
+</p>
+<p>For users sending their PRs via e-mail, some mail addresses must be
+configured.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-view" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="How-to-pronounce-it.html#How-to-pronounce-it" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#What-is-GNATS" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

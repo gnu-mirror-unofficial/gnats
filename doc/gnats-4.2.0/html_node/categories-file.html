@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.4.1 The categories file</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.4.1 The categories file">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.4.1 The categories file">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="categories-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Other-config-files.html#Other-config-files" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="responsible-file.html#responsible-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Other-config-files.html#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="The-categories-file"></a>
+<h3 class="subsection">4.4.1 The <code>categories</code> file</h3>
+<a name="index-categories-file-1"></a>
+
+<p>The &lsquo;<tt>categories</tt>&rsquo; file contains a list of problem categories,
+specific to the database, which <small>GNATS</small> tracks.  This file also
+matches responsible people with these categories.  You must edit this
+file initially, creating valid categories.  In most installations,
+<small>GNATS</small> is configured to create directories on disk for valid
+categories automatically as needed (see section <a href="Overall-database-configuration.html#Overall-database-configuration">Overall database configuration</a>). If <small>GNATS</small> isn&rsquo;t set
+up to do this, you need to run <code>mkcat</code> to create the corresponding
+subdirectories of the database directory. For instructions on running
+<code>mkcat</code>, see <a href="mkcat.html#mkcat">Adding a problem category</a>.
+</p>
+<p>To create a new category, log in as <small>GNATS</small>, add a line to this file,
+and run <code>mkcat</code> if applicable.  Lines beginning with &lsquo;<samp>#</samp>&rsquo; are
+ignored.
+</p>
+<p>A line in the &lsquo;<tt>categories</tt>&rsquo; file consists of four fields delimited
+by colons, as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"><var>category</var>:<var>description</var>:<var>responsible</var>:<var>notify</var>
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dt> <var>category</var></dt>
+<dd><p>A unique category name, made up of text characters.  This name cannot
+contain spaces or any of the following characters:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">! $ &amp; * ( ) { } [ ] ` ' &quot; ; : &lt; &gt; ~
+</pre></td></tr></table>
+
+<p>Ideally, category names should not contain commas or begin with periods.
+Each line has a corresponding subdirectory in the database directory.
+</p>
+</dd>
+<dt> <var>description</var></dt>
+<dd><p>A terse textual description of the category.
+</p>
+</dd>
+<dt> <var>responsible</var></dt>
+<dd><p>The name tag of the party responsible for this category of problems, as
+listed in the &lsquo;<tt>responsible</tt>&rsquo; file (see section <a href="responsible-file.html#responsible-file">The <code>responsible</code> file</a>).
+</p>
+</dd>
+<dt> <var>notify</var></dt>
+<dd><p>One or more other parties which should be notified when a Problem Report
+with this category arrives, such as a project manager, other members of
+the same project, other interested parties, or even log files.  These
+should be separated with commas.
+</p></dd>
+</dl>
+
+<p>A good strategy for configuring this file is to have a different
+category for each product your organization supports or wishes to track
+information for.
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">rock:ROCK program:me:myboss,fred
+stone:STONE utils:barney:fred
+iron:IRON firewall:me:firewall-log
+</pre></td></tr></table>
+
+<p>In the above example, the nametags &lsquo;<samp>myboss</samp>&rsquo;, &lsquo;<samp>me</samp>&rsquo;,
+&lsquo;<samp>fred</samp>&rsquo;, and &lsquo;<samp>barney</samp>&rsquo; must be defined in the &lsquo;<tt>responsible</tt>&rsquo;
+file (see section <a href="responsible-file.html#responsible-file">The <code>responsible</code> file</a>).
+</p>
+<p>Problem Reports with a category of &lsquo;<samp>rock</samp>&rsquo; are sent to the local
+mail address (or alias) &lsquo;<samp>me</samp>&rsquo;, and also sent to the addresses
+&lsquo;<samp>myboss</samp>&rsquo; and &lsquo;<samp>fred</samp>&rsquo;.  PRs with a category of &lsquo;<samp>stone</samp>&rsquo; are
+sent to the local addresses &lsquo;<samp>barney</samp>&rsquo; and &lsquo;<samp>fred</samp>&rsquo; only, while
+PRs with the category &lsquo;<samp>iron</samp>&rsquo; are sent only to &lsquo;<samp>me</samp>&rsquo;, and are
+also filed in <code>firewall-log</code> (in this case, a mail alias should be set
+up, see section <a href="Aliases.html#Aliases">Setting up mail aliases</a>.
+</p>
+<p>If you want to separate PRs in each problem category into specific
+subsets, say <em>documentation</em> and <em>software bugs</em>,
+using the &lsquo;<tt>classes</tt>&rsquo; file is recommended.  See section <a href="classes-file.html#classes-file">The &lsquo;<tt>classes</tt>&rsquo; file</a>.
+</p>
+<p>Only one category <em>must</em> be present for <small>GNATS</small> to function:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">pending:Non-categorized PRs:gnats-admin:
+</pre></td></tr></table>
+
+<a name="index-pending-file"></a>
+<p>The &lsquo;<tt>pending</tt>&rsquo; directory is created automatically when you run
+<code>mkdb</code> to initialize a new database.  (see section <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a>).
+</p>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Other-config-files.html#Other-config-files" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="responsible-file.html#responsible-file" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Other-config-files.html#Other-config-files" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

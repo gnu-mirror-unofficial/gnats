@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 1.4 Problem Report format</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 1.4 Problem Report format">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 1.4 Problem Report format">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Fields"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="States.html#States" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Field-datatypes-reference.html#Field-datatypes-reference" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Problem-Report-format"></a>
+<h2 class="section">1.4 Problem Report format</h2>
+<a name="index-Problem-Report-format"></a>
+<a name="index-format"></a>
+<a name="index-database-similarities"></a>
+<a name="index-fields"></a>
+
+<p>The format of a PR is designed to reflect the nature of <small>GNATS</small> as a
+database.  Information is arranged into <em>fields</em>, and kept in
+individual records (Problem Reports).
+</p>
+<p>A Problem Report contains two different types of fields: <em>Mail
+Header</em> fields, which are used by the mail handler for delivery, and
+<em>Problem Report</em> fields, which contain information relevant to the
+Problem Report and its submitter.  A Problem Report is essentially a
+specially formatted electronic mail message.
+</p>
+<p>Problem Report fields are denoted by a keyword which begins with
+&lsquo;<samp>&gt;</samp>&rsquo; and ends with &lsquo;<samp>:</samp>&rsquo;, as in &lsquo;<samp>&gt;Confidential:</samp>&rsquo;.  Fields
+belong to one of eight data types as listed in <a href="Field-datatypes-reference.html#Field-datatypes-reference">Field datatypes reference</a>.  As of version 4 of <small>GNATS</small> all characteristics of
+fields, such as field name, data type, allowed values, permitted
+operations, on-change actions etc. are configurable.
+</p>
+<p>For details, see see section <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>.
+<a name="Example-Problem-Report"></a>
+<h3 class="subheading">Example Problem Report</h3>
+</p>
+<p>The following is an example Problem Report with the fields that would be
+present in a standard <small>GNATS</small> configuration.  Mail headers are at the
+top, followed by <small>GNATS</small> fields, which begin with &lsquo;<samp>&gt;</samp>&rsquo; and end
+with &lsquo;<samp>:</samp>&rsquo;.  The &lsquo;<samp>Subject:</samp>&rsquo; line in the mail header and the
+<code>Synopsis</code> field are usually duplicates of each other.
+</p>
+<a name="index-sample-Problem-Report"></a>
+<a name="index-example-Problem-Report"></a>
+<a name="index-Problem-Report-template"></a>
+<table class="cartouche" border="1"><tr><td>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Message-Id:  <var>message-id</var>
+Date:        <var>date</var>
+From:        <var>address</var>
+Reply-To:    <var>address</var>
+To:          <var>bug-address</var>
+Subject:     <var>subject</var>
+
+&gt;Number:       <var>gnats-id</var>
+&gt;Category:     <var>category</var>
+&gt;Synopsis:     <var>synopsis</var>
+&gt;Confidential: yes <em>or</em> no
+&gt;Severity:     critical, serious, <em>or</em> non-critical
+&gt;Priority:     high, medium <em>or</em> low
+&gt;Responsible:  <var>responsible</var>
+&gt;State:        open, analyzed, suspended, feedback, <em>or</em> closed
+&gt;Class:        sw-bug, doc-bug, change-request, support, 
+duplicate, <em>or</em> mistaken
+&gt;Submitter-Id: <var>submitter-id</var>
+&gt;Arrival-Date: <var>date</var>
+&gt;Originator:   <var>name</var>
+&gt;Organization: <var>organization</var>
+&gt;Release:      <var>release</var>
+&gt;Environment:
+   <var>environment</var>
+&gt;Description:
+   <var>description</var>
+&gt;How-To-Repeat:
+   <var>how-to-repeat</var>
+&gt;Fix:
+   <var>fix</var>
+&gt;Audit-Trail:
+<var>appended-messages&hellip;</var>
+State-Changed-From-To: <var>from</var>-<var>to</var>
+State-Changed-When: <var>date</var>
+State-Changed-Why:
+   <var>reason</var>
+Responsible-Changed-From-To: <var>from</var>-<var>to</var>
+Responsible-Changed-When: <var>date</var>
+Responsible-Changed-Why:
+   <var>reason</var>
+&gt;Unformatted:
+   <var>miscellaneous</var>
+</pre></td></tr></table>
+</td></tr></table>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="Field-datatypes-reference.html#Field-datatypes-reference">1.4.1 Field datatypes reference</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="Mail-header-fields.html#Mail-header-fields">1.4.2 Mail header fields</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="Problem-Report-fields.html#Problem-Report-fields">1.4.3 Problem Report fields</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="States.html#States" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Field-datatypes-reference.html#Field-datatypes-reference" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

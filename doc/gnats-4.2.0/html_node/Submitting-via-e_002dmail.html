@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2.2.4 Submitting a Problem Report via direct e-mail</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2.2.4 Submitting a Problem Report via direct e-mail">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2.2.4 Submitting a Problem Report via direct e-mail">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Submitting-via-e_002dmail"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="PR-template.html#PR-template" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Helpful-hints.html#Helpful-hints" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="send_002dpr.html#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Submitting-a-Problem-Report-via-direct-e_002dmail"></a>
+<h3 class="subsection">2.2.4 Submitting a Problem Report via direct e-mail</h3>
+<a name="index-Direct-e_002dmail"></a>
+<a name="index-Submitting-a-PR-via-e_002dmail"></a>
+<p>In addition to using <code>send-pr</code>, there is another way to submit a
+problem report.  You can simply send an e-mail message to the PR
+submission e-mail address of the support site (This address should be
+published by the support site.)
+</p>
+<p>When you send unformatted e-mail to this address, <small>GNATS</small> processes
+the message as a new problem report, filling in as many fields from
+defaults as it can:
+</p>
+<dl compact="compact">
+<dt> <code>Synopsis</code></dt>
+<dd><p>The <code>Synopsis</code> field is filled in by the <code>Subject</code> header of
+the e-mail message.
+</p>
+</dd>
+<dt> <code>Submitter ID</code></dt>
+<dd><p><small>GNATS</small> will try to derive the <code>Submitter</code> field from the address
+in the <code>From</code> header of the e-mail.
+</p>
+</dd>
+<dt> <code>Description</code></dt>
+<dd><p>All of the text in the body of the e-mail message is put into the 
+<code>Description</code> field.
+</p></dd>
+</dl>
+
+<p>Other fields, such as <code>Category</code>, <code>Version</code>, <code>Severity</code>,
+etc. are set to default values as defined by the <small>GNATS</small> administrator.
+</p>
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

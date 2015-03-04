@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 3.6 Installing the daemon</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 3.6 Installing the daemon">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 3.6 Installing the daemon">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Installing-the-daemon"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Aliases.html#Aliases" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installing-tools.html#Installing-tools" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Installing-the-daemon-1"></a>
+<h2 class="section">3.6 Installing the daemon</h2>
+<a name="index-daemon"></a>
+<a name="index-using-GNATS-over-a-network"></a>
+
+<p>By default, the daemon and clients are set to use port 1529.  Add the line
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">support		1529/tcp			# GNATS
+</pre></td></tr></table>
+
+<p>to your &lsquo;<tt>/etc/services</tt>&rsquo; file.  If you want a different service
+name, configure <small>GNATS</small> with
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">--enable-gnats-service=<var>servicename</var>
+</pre></td></tr></table>
+
+<p>In your &lsquo;<tt>inetd.conf</tt>&rsquo; file, add the line
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">support	stream	tcp	nowait	gnats	/usr/local/libexec/gnats/gnatsd gnatsd
+</pre></td></tr></table>
+
+<p>adjusting the path accordingly if you used configure options to make
+changes to the defaults.  To make <code>inetd</code> start spawning the
+<small>GNATS</small> daemon when connected on that port, send it a hangup signal
+(<code>HUP</code>).
+</p>
+<p>Some operating systems have replaced <code>inetd</code> with the more modern
+<code>xinetd</code>. Instead of editing &lsquo;<tt>inetd.conf</tt>&rsquo;, you should create
+the file &lsquo;<tt>/etc/xinetd.d/support</tt>&rsquo;, containing something like the
+following:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">service support
+{
+   disable = no
+   socket_type = stream
+   protocol = tcp
+   wait = no
+   user = gnats
+   server = /usr/local/libexec/gnats/gnatsd
+}
+</pre></td></tr></table>
+
+<p>If you specified a different service name when running <code>configure</code>,
+you need to give the file the same name as the service name, and you
+need to adjust the <code>service</code> line above.  If the <code>--prefix</code> or
+<code>--exec-prefix</code> options were passed to <code>configure</code>, adjust the
+<code>server</code> line above, and if you used the <code>--enable-gnats-user</code>
+option, adjust the <code>user</code> line.
+</p>
+<p>Then restart <code>xinetd</code> to make the new configuration current.
+</p>
+<p>If you use an Internet superserver different from <code>inetd</code> or
+<code>xinetd</code>, please refer to its documentation for information how
+to configure it.
+</p>
+<p>At this point, you will probably want to set the access permissions of
+the different hosts that are going to be accessing your databases.  The
+access permissions can currently only be set on a global scale (that is,
+across all the databases on a <small>GNATS</small> server).  The location and name
+of the global host access configuration file can be set during the
+pre-build configure as shown above, but by default the file is
+&lsquo;<tt>/usr/local/etc/gnats/gnatsd_host.access</tt>&rsquo;.  It lists the hosts
+allowed to access your server, and what their default access levels are.
+Each line in the file denotes one server, or one part of a network
+domain.  There are three fields on each line, but only two are currently
+used.  To grant all hosts from the domain <var>site.com</var> edit access,
+use this line:
+</p>
+<p><var>site.com</var>:<var>edit</var>
+</p>
+<p>If you run a <small>GNATS</small> web interface or similar tool on the same
+machine as the server is running on, you probably want to grant
+<var>localhost</var> edit access:
+</p>
+<p><var>localhost</var>:<var>edit</var>
+</p>
+<p>If you are using Kerberos, the &lsquo;<tt>gnatsd_host.access</tt>&rsquo; file shows the
+sites that don&rsquo;t require Kerberos authentication.
+</p>
+<p>The third field might in the future be used for things like controlling
+what categories, submitter-id&rsquo;s PRs, etc., can be accessed from that
+site.  Access attempts that are denied are logged to the syslog messages
+file (&lsquo;<tt>/var/adm/messages</tt>&rsquo; on many systems).
+</p>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Aliases.html#Aliases" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installing-tools.html#Installing-tools" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

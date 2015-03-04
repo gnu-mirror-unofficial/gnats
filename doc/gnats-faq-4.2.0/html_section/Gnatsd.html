@@ -1,0 +1,356 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 3.2 Gnatsd, the GNATS Daemon</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 3.2 Gnatsd, the GNATS Daemon">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 3.2 Gnatsd, the GNATS Daemon">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Gnatsd"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="General-configuration.html#Changing-Fields" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Port-Number" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Gnatsd_002c-the-GNATS-Daemon"></a>
+<h2 class="section">3.2 Gnatsd, the <small>GNATS</small> Daemon</h2>
+
+<a name="index-server_002c-see-gnatsd"></a>
+<a name="index-GNATS-server_002c-see-gnatsd"></a>
+<a name="index-gnatsd"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Port-Number">3.2.1 Gnatsd Port Number</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                 How to connect to gnatsd
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Starting-gnatsd">3.2.2 How to Start Gnatsd</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             How to make gnatsd accept connections
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Gnatsd-messages">3.2.3 Gnatsd Messages</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             Some error messages and what they mean
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Port-Number"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Starting-gnatsd" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Gnatsd-Port-Number"></a>
+<h3 class="subsection">3.2.1 Gnatsd Port Number</h3>
+
+<a name="index-port"></a>
+<a name="index-server-port"></a>
+
+<p>In 3.xxx versions, gnatsd uses port 1529 by default; as this port is
+officially assigned to another application (see the
+<a href="http://www.iana.org/assignments/port-numbers">list of port numbers</a>
+maintained by the <a href="http://www.iana.org/">Internet Assigned Numbers Authority</a>)
+it will probably change in 4.x.
+</p>
+<p>If you want/need to run gnatsd on another port, you can change the
+default port at compile time (call <code>configure --help</code> to learn
+about compile time configuration options).  Most clients also accept
+an option or configuration variable to change the port.  Don&rsquo;t forget
+to tell inetd (or xinetd, or whatever super-server you use) to start
+gnatsd on the other port.
+</p>
+
+<hr size="6">
+<a name="Starting-gnatsd"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Port-Number" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd-messages" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-to-Start-Gnatsd"></a>
+<h3 class="subsection">3.2.2 How to Start Gnatsd</h3>
+
+<p>Gnatsd is intended to be started by some &quot;super server&quot;, like
+<code>inetd</code> or <code>xinetd</code>.  (&quot;Super servers&quot; are sometimes also
+called &quot;super daemons&quot;.)
+</p>
+<p>This is also described in the <small>GNATS</small> manual; see <a href="../gnats/Installing-the-daemon.html#Installing-the-daemon">(gnats)Installing the daemon</a> section &lsquo;Installing the daemon&rsquo; in <cite>Keeping Track</cite>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#inetd-configuration">&bull; inetd configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         The traditional super server
+</td></tr>
+<tr><td align="left" valign="top"><a href="#xinetd-configuration">&bull; xinetd configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Another widespread super server
+</td></tr>
+</table>
+
+<a name="inetd-configuration"></a>
+<a name="How-to-configure-inetd-to-start-gnatsd"></a>
+<h4 class="subsubheading">How to configure inetd to start gnatsd</h4>
+
+<a name="index-inetd"></a>
+
+<p>If your gnatsd will be started by inetd (the &quot;internet daemon&quot;),
+add the following entry to your &lsquo;<tt>/etc/inetd.conf</tt>&rsquo;:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"># port                    userid program
+support stream tcp nowait gnats /usr/local/libexec/gnats/gnatsd gnatsd
+</pre></td></tr></table>
+
+<p>and to &lsquo;<tt>/etc/services</tt>&rsquo;:
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample">support		1529/tcp		# GNATS
+</pre></td></tr></table>
+
+<p>(You may need to use tabulator characters to separate the fields of
+&lsquo;<tt>/etc/services</tt>&rsquo;.)  Then send inetd a hangup signal
+(<code>kill -HUP <em>pid-of-inetd</em></code>).
+</p>
+<p>You may want to use another port instead of 1529 (see section <a href="#Port-Number">Gnatsd Port Number</a>).
+</p>
+
+
+<a name="xinetd-configuration"></a>
+<a name="How-to-configure-xinetd-to-start-gnatsd"></a>
+<h4 class="subsubheading">How to configure xinetd to start gnatsd</h4>
+
+<a name="index-xinetd"></a>
+
+<p>If your gnatsd will be started by xinetd (the &quot;extended internet
+daemon&quot;), create a file &lsquo;<tt>/etc/xinetd.d/support</tt>&rsquo; with the
+following lines (see <a href="../gnats/Installing-the-daemon.html#Installing-the-daemon">(gnats)Installing the daemon</a> section &lsquo;Installing the daemon&rsquo; in <cite>Keeping Track</cite>):
+</p>
+<table><tr><td>&nbsp;</td><td><table class="cartouche" border="1"><tr><td>
+<pre class="example">service support
+{
+        disable     = no
+        socket_type = stream
+        protocol    = tcp
+        wait        = no
+        user        = gnats
+        server      = /usr/local/libexec/gnats/gnatsd
+        server_args = gnatsd
+}
+</pre></td></tr></table>
+</td></tr></table>
+
+<p>or add theses lines to your &lsquo;<tt>xinetd.conf</tt>&rsquo; file, whatever is
+appropriate.  The equal signs seem to need spaces around them with
+some versions of xinetd.
+</p>
+<p>You need to add
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample">support		1529/tcp		# GNATS
+</pre></td></tr></table>
+
+<p>to &lsquo;<tt>/etc/services</tt>&rsquo; (it may be necessary to use tabulator
+characters to separate the fields), and to tell xinetd to reread its
+configuration (<code>kill -HUP <em>pid-of-xinetd</em></code>).
+</p>
+
+<hr size="6">
+<a name="Gnatsd-messages"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Starting-gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="E_002dMail.html#E_002dMail" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Gnatsd-Messages"></a>
+<h3 class="subsection">3.2.3 Gnatsd Messages</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#No-host-access-for-stdin">&bull; No host access for stdin</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    Error when starting gnatsd manually
+</td></tr>
+<tr><td align="left" valign="top"><a href="#No-host-access-for-remote">&bull; No host access for remote</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">   Cannot connect from another machine
+</td></tr>
+</table>
+
+<a name="No-host-access-for-stdin"></a>
+<a name="You-are-not-on-the-host-access-list_003a-stdin-_0028stdin_0029"></a>
+<h4 class="subsubheading">You are not on the host access list: stdin (stdin)</h4>
+
+<p><b>Q:</b> When starting gnatsd manually (on the command line), I get
+&lsquo;<samp>520 You are not on the host access list: stdin (stdin)</samp>&rsquo;.
+</p>
+<p><b>A: (<small>GNATS</small> 3.1xx)</b>
+Gnatsd is not intended to be started manually, but via inetd,
+xinetd, or a similar &quot;super server&quot;.  When gnatsd is started this way,
+its stdin and stdout (standard input and standard output streams) are
+connected to a so called &quot;TCP socket&quot; (one end of the network
+connection), and from this socket gnatsd learns the IP address of the
+remote end (and from this it derives the remote host name).  When you
+start gnatsd from the command line, its stdin and stdout are connected
+to the terminal, and thus gnatsd gets a nonsense value.
+</p>
+<p>You usually need &lsquo;<samp>root</samp>&rsquo; privileges in order to change the
+configuration of your &quot;super server&quot;.  If you don&rsquo;t have them, contact
+your system administrator.
+</p>
+<p>See <a href="#Starting-gnatsd">How to Start Gnatsd</a> for inetd and xinetd configuration.
+</p>
+
+<p><b>A: (<small>GNATS</small> 4.0)</b>
+This error message should not occur with gnatsd 4.0 anymore, because
+gnatsd can be started from the command line.
+However, this probably only makes sense for debugging and diagnosing
+problems.  Furthermore, you need to play the part of the client
+program yourself (i.e., you must &quot;speak&quot; the gnatsd client protocol).
+</p>
+
+
+<a name="No-host-access-for-remote"></a>
+<a name="You-are-not-on-the-host-access-list"></a>
+<h4 class="subsubheading">You are not on the host access list</h4>
+
+<p><b>Q:</b> Gnatsd rejects connections from a remote host with the error
+message &lsquo;<samp>520 You are not on the host access list</samp>&rsquo;.
+</p>
+<p><b>A:</b> Check the file &lsquo;<tt>gnatsd.host_access</tt>&rsquo;; if you are using
+the default locations, this is
+&lsquo;<tt>/usr/local/etc/gnats/gnatsd.host_access</tt>&rsquo;.
+(If you are still using <small>GNATS</small> 3.xxx, the file is named
+&lsquo;<tt>gnatsd.conf</tt>&rsquo;; its default place is
+&lsquo;<tt>/usr/local/etc/gnatsd.conf</tt>&rsquo;.)
+</p>
+<p>Each line of the file names a host and its access level, separated by
+colons.  Gnatsd tries the lines in turn to match the remote host, and
+the first line that matches wins.
+</p>
+<p>The first field specifies the host(s); it may be a host name (like
+&lsquo;<samp>goedel.example.com</samp>&rsquo;), a partial domain (like
+&lsquo;<samp>*.example.com</samp>&rsquo;), an IP address (like &lsquo;<samp>192.168.1.5</samp>&rsquo;), or a
+partial IP address (like &lsquo;<samp>192.168.*</samp>&rsquo;).  If it is only &lsquo;<samp>*</samp>&rsquo;, it
+matches all hosts.
+</p>
+<p>Depending on how IP addresses are mapped to hostnames on your gnatsd
+machine, you may be able to omit the domain (like in &lsquo;<samp>goedel</samp>&rsquo;).
+You may even <em>need</em> to omit the domain for some hosts.
+</p>
+<p>The second field is the access level granted to the remote host.  This
+is usually increased by the access level granted to the user as soon
+as (s)he logs in.
+</p>
+<p>The third field is currently not used; just leave it empty (but supply
+the colon between the second and the third field).
+</p>
+<p>Example:
+</p>
+<table><tr><td>&nbsp;</td><td><table class="cartouche" border="1"><tr><td>
+<pre class="example">#
+# This is a comment
+#
+# Grant view access to all hosts with IP addresses
+# ranging from 192.168.0.0 to 192.168.255.255:
+192.168.*:view:
+# Users on host goedel.example.com get (at least) edit access:
+goedel.example.com:edit:
+# Users from escher.example.com may view all reports, even
+# confidential ones:
+escher.example.com:viewconf:
+# Users from bach.example.com may only view all non-confidential
+# reports:
+bach.example.com:view:
+# Users from other example.com hosts
+# only get the access specified for them in gnatsd.user_access:
+*.example.com:none:
+# Same for domain our-users.example:
+*.our-users.example:none:
+# All other hosts are rejected
+# without even asking for username and password:
+*:deny:
+</pre></td></tr></table>
+</td></tr></table>
+
+<p>The format is described in detail in the comments at the beginning of
+the file.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Starting-gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="E_002dMail.html#E_002dMail" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

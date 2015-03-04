@@ -1,0 +1,403 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2.4.1 Invoking query-pr</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2.4.1 Invoking query-pr">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2.4.1 Invoking query-pr">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Invoking-query_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="query_002dpr.html#query_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="query_002dpr.html#query_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Invoking-query_002dpr-1"></a>
+<h3 class="subsection">2.4.1 Invoking <code>query-pr</code></h3>
+
+<p>From the shell, simply type <kbd>query-pr</kbd>, followed by any search
+parameters you wish to exercise.  From Emacs, type <kbd>M-x
+query-pr</kbd>.  <code>query-pr</code> prompts you for search parameters in the
+minibuffer.
+</p>
+<a name="index-query_002dpr-by-mail"></a>
+<p><code>query-pr</code> can also be accessed by electronic mail, if your version
+of <small>GNATS</small> is configured for this.  To use this feature, simply send
+mail to the address &lsquo;<samp>query-pr@<var>your-site</var></samp>&rsquo; with command
+line arguments or options in the <code>Subject</code> line of the mail header.
+<small>GNATS</small> replies to your mail with the results of your query.  The
+default settings for the <code>query-pr</code> mail server are
+</p>
+<a name="index-the-section-on-query_002dby_002dmail-needs-to-be-relocated"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">--restricted --state=&quot;open|analyzed|feedback|suspended&quot;
+</pre></td></tr></table>
+
+<p>To override the <code>--state</code> parameter, specify
+<code>--state=<var>state</var></code> in the <code>Subject</code> line of the mail
+header.  You can not query on confidential Problem Reports by mail.
+</p>
+<p>The usage for <code>query-pr</code> is:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr [--debug | -D] [--help | -h] [--version | -V]
+         [--output <var>file</var> | -o <var>file</var>] [--list-databases]
+         [--list-fields] [--list-input-fields]
+         [--responsible-address <var>name</var>] [--field-type <var>field</var>]
+         [--field-description <var>field</var>]
+         [--field-flags <var>field</var>]
+         [--adm-field <var>field</var>] [--adm-subfield <var>subfield</var>]
+         [--adm-key <var>key</var>]
+         [--valid-values <var>field</var>]
+         [--format <var>format</var> | -f <var>format</var>]
+         [--full | -F] [--summary | -q]
+         [--database <var>database</var> | -d <var>database</var>] [--and | -&amp;]
+         [--or | -|] [--expr <var>expr</var>] [PR Number]
+</pre></td></tr></table>
+
+<p>Non-network-mode options:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">         [--print-sh-vars] [--print-directory-for-database]
+</pre></td></tr></table>
+
+<p>Network-mode-only options:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">         [--host <var>host</var> | -H <var>host</var>] [--port <var>port</var>]
+         [--user <var>user</var> | -v <var>user</var>] [--passwd <var>passwd</var> | -w <var>passwd</var>]
+         [--print-server-addr]
+</pre></td></tr></table>
+
+<p>Deprecated Options:
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample">         [--list-categories | -j] [--list-states | -T]
+         [--list-responsible | -k] [--list-submitters | -l]
+         [--category <var>category</var> | -c <var>category</var>]
+         [--synopsis <var>synopsis</var> | -y <var>synopsis</var>]
+         [--confidential <var>confidential</var> | -C <var>confidential</var>]
+         [--multitext <var>multitext</var> | -m <var>multitext</var>]
+         [--originator <var>originator</var> | -O <var>originator</var>]
+         [--release <var>release</var> | -A <var>release</var>]
+         [--class <var>class</var> | -L <var>class</var>] [--cases <var>cases</var> | -E <var>cases</var>]
+         [--quarter <var>quarter</var> | -Q <var>quarter</var>]
+         [--keywords <var>keywords</var> | -K <var>keywords</var>]
+         [--priority <var>priority</var> | -p <var>priority</var>]
+         [--responsible <var>responsible</var> | -r <var>responsible</var>]
+         [--restricted | -R] [--severity <var>severity</var> | -e <var>severity</var>]
+         [--skip-closed | -x] [--sql | -i] [--sql2 | -I]
+         [--state <var>state</var> | -s <var>state</var>]
+         [--submitter <var>submitter</var> | -S <var>submitter</var>]
+         [--text <var>text</var> | -t <var>text</var>]
+         [--required-before <var>date</var> | -u <var>date</var>]
+         [--required-after <var>date</var> | -U <var>date</var>]
+         [--arrived-before <var>date</var> | -b <var>date</var>]
+         [--arrived-after <var>date</var> | -a <var>date</var>]
+         [--modified-before <var>date</var> | -B <var>date</var>]
+         [--modified-after <var>date</var> | -M <var>date</var>]
+         [--closed-before <var>date</var> | -z <var>date</var>]
+         [--closed-after <var>date</var> | -Z <var>date</var>]
+</pre></td></tr></table>
+
+<p>The options have the following meaning:
+</p><dl compact="compact">
+<dt> <code>--help, -h</code></dt>
+<dd><p>Prints a help message.
+</p>
+</dd>
+<dt> <code>--version, -V</code></dt>
+<dd><p>Displays the program version to stdout.
+</p>
+</dd>
+<dt> <code>--output <var>file</var>, -o <var>file</var></code></dt>
+<dd><p>The results of the query will be placed in this file.
+</p>
+</dd>
+<dt> <code>--database <var>database</var>, -d <var>database</var></code></dt>
+<dd><p>Specifies the database to be used for the query.  If no database is
+specified, the database named default is assumed.  (This option
+overrides the database specified in the <code>GNATSDB</code> environment
+variable; see <a href="Environment.html#Environment">Environment variables and <small>GNATS</small> tools</a> for more
+information.)
+</p>
+</dd>
+<dt> <code>--list-categories, -j</code></dt>
+<dd><p>Lists the available PR categories for the selected database.
+</p>
+</dd>
+<dt> <code>--list-states, -T</code></dt>
+<dd><p>Lists the valid PR states for PRs in this database.
+</p>
+</dd>
+<dt> <code>--list-responsible, -k</code></dt>
+<dd><p>Lists the users that appear in the database&rsquo;s responsible list.
+</p>
+</dd>
+<dt> <code>--list-submitters, -l</code></dt>
+<dd><p>Lists the valid submitters for this database.
+</p></dd>
+</dl>
+
+<p>The previous &ndash;list-* options are deprecated and may be removed in
+future releases of <small>GNATS</small>; their functionality can be replaced with
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --valid-values <var>field</var>
+</pre></td></tr></table>
+
+<p>where <var>field</var> is one of <code>Category</code>, <code>Class</code>,
+<code>Responsible</code>, <code>Submitter-Id</code>, or <code>State</code>.
+</p>
+<dl compact="compact">
+<dt> <code>--list-databases</code></dt>
+<dd><p>Lists the known databases.
+</p>
+</dd>
+<dt> <code>--list-fields</code></dt>
+<dd><p>Lists the entire set of field names for PRs in the selected database.
+</p>
+</dd>
+<dt> <code>--list-input-fields</code></dt>
+<dd><p>Lists the fields that should be provided when creating a new PR for the
+currently-specified database.  The fields are listed in an order that
+would make sense when used in a template or form.
+</p>
+</dd>
+<dt> <code>--field-type <var>field</var></code></dt>
+<dd><p>Returns the data type contained in PR field <var>field</var>.  The current
+set of data types includes &lsquo;<samp>text</samp>&rsquo;, &lsquo;<samp>multitext</samp>&rsquo;, &lsquo;<samp>enum</samp>&rsquo;,
+&lsquo;<samp>multienum</samp>&rsquo;, &lsquo;<samp>enumerated-in-file</samp>&rsquo;,
+&lsquo;<samp>multi-enumerated-in-file</samp>&rsquo;, &lsquo;<samp>date</samp>&rsquo; and &lsquo;<samp>integer</samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>--field-description <var>field</var></code></dt>
+<dd><p>Returns a human-readable description of the intended purpose of <var>field</var>.
+</p>
+</dd>
+<dt> <code>--field-flags <var>field</var></code></dt>
+<dd><p>Returns the flags set for the field in the &lsquo;<tt>dbconfig</tt>&rsquo; file
+associated with the database, such as <code>textsearch</code> and
+<code>readonly</code>.  See section <a href="Individual-field-configuration.html#Individual-field-configuration">Individual field configuration</a>.
+</p>
+</dd>
+<dt> <code>--adm-field <var>field</var></code></dt>
+<dd><p>Used together with the <code>--adm-key</code> option, this returns a record
+from the administrative file (if any) associated with the field.  For
+more material on administrative files, see <a href="Field-datatypes.html#administrative-files">Enumerated field administrative files</a>.
+</p>
+</dd>
+<dt> <code>--adm-subfield <var>subfield</var></code></dt>
+<dd><p>Used together with the <code>--adm-field</code> and <code>--adm-key</code> options,
+this returns the contents of a particular subfield from the record
+specified by <code>--adm-field</code> and <code>--adm-key</code>.  Subfields are
+treated in <a href="Field-datatypes.html#administrative-files">Enumerated field administrative files</a>.
+</p>
+</dd>
+<dt> <code>--adm-key <var>key</var></code></dt>
+<dd><p>Used together with <code>--adm-field</code> to select a record from the
+administrative file associated with the field specified by
+<code>--adm-field</code>.  See <a href="Field-datatypes.html#administrative-files">Enumerated field administrative files</a>.
+</p>
+</dd>
+<dt> <code>--valid-values <var>field</var></code></dt>
+<dd><p>For fields of type &lsquo;<samp>enum</samp>&rsquo;, a list of valid values (one per line) is
+returned.  Otherwise, a regular expression is returned that describes
+the legal values in <var>field</var>.
+</p>
+</dd>
+<dt> <code>--responsible-address <var>name</var></code></dt>
+<dd><p>The mail address of <var>name</var> is returned; <var>name</var> is assumed to be
+a name either appearing in the database&rsquo;s responsible list, or is
+otherwise a user on the system.
+</p>
+</dd>
+<dt> <code>--print-sh-vars</code></dt>
+<dd><p>A set of &lsquo;<tt>/bin/sh</tt>&rsquo; variables is returned that describe the selected
+database.  They include:
+</p>
+<dl compact="compact">
+<dt> <code>GNATSDB</code></dt>
+<dd><p>The name of the currently-selected database.
+</p>
+</dd>
+<dt> <code>GNATSDB_VALID</code></dt>
+<dd><p>Set to 1 if the selected database is valid.
+</p>
+</dd>
+<dt> <code>GNATSDBDIR</code></dt>
+<dd><p>The directory  where  the  database  contents  are
+stored.
+</p>
+</dd>
+<dt> <code>DEBUG_MODE</code></dt>
+<dd><p>Set to 1 if debug mode has been  enabled  for  the
+database.
+</p>
+</dd>
+<dt> <code>DEFAULTCATEGORY</code></dt>
+<dd><p>The default category for PRs in the database.
+</p>
+</dd>
+<dt> <code>DEFAULTSTATE</code></dt>
+<dd><p>The default state for PRs in the database.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code>--print-server-addr</code></dt>
+<dd><p>Prints the information about a remote server database in the format
+suitable for the <code>GNATSDB</code> environment variable.  This option
+works only in the network mode.
+</p>
+</dd>
+<dt> <code>--print-directory-for-database</code></dt>
+<dd><p>Returns the directory where the selected database is located.
+</p>
+</dd>
+<dt> <code>--format <var>format</var>, -f <var>format</var></code></dt>
+<dd><p>Used to specify the format of the output PRs, See <a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output">Formatting <code>query-pr</code> output</a> for a complete description.
+</p>
+</dd>
+<dt> <code>--full, -F</code></dt>
+<dd><p>When printing PRs, the entre PR is displayed.  This is exactly
+equivalent to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --format full
+</pre></td></tr></table>
+
+</dd>
+<dt> <code>--summary, -q</code></dt>
+<dd><p>When printing PRs, a summary format is used.  This is exactly equivalent
+to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --format <var>summary</var>
+</pre></td></tr></table>
+
+</dd>
+<dt> <code>--debug, -D</code></dt>
+<dd><p>Enables debugging output for network queries.
+</p>
+</dd>
+<dt> <code>--host <var>host</var>, -H <var>host</var></code></dt>
+<dd><p>Specifies the hostname of the gnatsd server to communicate with.  This
+overrides the value in the <code>GNATSDB</code> environment variable.
+</p>
+</dd>
+<dt> <code>--port <var>port</var></code></dt>
+<dd><p>Specifies the port number of the gnatsd server to communicate with.
+This overrides the value in the <code>GNATSDB</code> environment variable.
+</p>
+</dd>
+<dt> <code>--user <var>user</var>, -v <var>user</var></code></dt>
+<dd><p>Specifies the username to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+</p>
+</dd>
+<dt> <code>--passwd <var>passwd</var>, -w <var>passwd</var></code></dt>
+<dd><p>Specifies the password to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+</p>
+</dd>
+<dt> <code>--and, -&amp;, --or, -|</code></dt>
+<dd><p>These options are used when connecting multiple query operators
+together.  They specify whether the previous and subsequent options are
+to be logically ANDed or logically ORed.
+</p>
+</dd>
+<dt> <code>--expr <var>expr</var></code></dt>
+<dd><p>Specifies a query expression to use when searching for PRs.  See section <a href="Query-expressions.html#Query-expressions">Query expressions</a>.
+</p></dd>
+</dl>
+
+<p>The remaining deprecated options are not described here, since their use
+is fairly obvious and their functionality is completely replaced by the
+use of the <code>--expr</code> option.
+</p>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="query_002dpr.html#query_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="query_002dpr.html#query_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

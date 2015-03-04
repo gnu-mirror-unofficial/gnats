@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.5 The send-pr.conf file</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.5 The send-pr.conf file">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.5 The send-pr.conf file">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="send_002dpr_002econf-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="classes-file.html#classes-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Admin-files.html#Admin-files" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="The-send_002dpr_002econf-file"></a>
+<h2 class="section">4.5 The &lsquo;<tt>send-pr.conf</tt>&rsquo; file</h2>
+<a name="index-send_002dpr_002econf-file"></a>
+<p>This file contains some default values that need to be known in order
+for <code>send-pr</code> to work properly.  This file needs to be copied to
+all hosts where <code>send-pr</code> will be used.
+</p>
+<p>If <small>GNATS</small> was built with default options, the &lsquo;<tt>send-pr.conf</tt>&rsquo;
+file should be placed in the &lsquo;<tt>/usr/local/etc/gnats</tt>&rsquo; directory.
+However, if the option <code>--sysconfdir</code> was used during building of
+<small>GNATS</small>, the &lsquo;<tt>send-pr.conf</tt>&rsquo; file resides at the location
+given to this option.
+</p>
+<p>Entries in this file are on the format
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">variable=<var>value</var>
+</pre></td></tr></table>
+
+<p>The valid variables are:
+</p>
+<dl compact="compact">
+<dt> <code>SUBMITTER</code></dt>
+<dd><p>The default value to be used for the Submitter-Id field when
+<code>send-pr</code> is invoked.
+</p>
+</dd>
+<dt> <code>DEFAULT_RELEASE</code></dt>
+<dd><p>The default value to be used for the Release field (only applicable if
+the Release field is defined in the &lsquo;<tt>dbconfig</tt>&rsquo; file.
+</p>
+</dd>
+<dt> <code>DEFAULT_ORGANIZATION</code></dt>
+<dd><p>The default value to be used for the Organization field.  (only
+applicable if the Organization field is defined in the &lsquo;<tt>dbconfig</tt>&rsquo;
+file.
+</p>
+</dd>
+<dt> <code>MAILPROG</code></dt>
+<dd><p>If the <small>GNATS</small> server can&rsquo;t be reached directly over the network,
+i.e. it is behind a firewall or suchlike, <code>send-pr</code> can be set up
+to submit Problem Reports by e-mail.  This is done by setting the
+<code>MAILPROG</code> variable to point to a mailer such as Sendmail.  If
+<code>MAILPROG</code> needs to have the address that the mail is being sent
+to specified on the command line, it should be specified here as well
+(for example, &lsquo;<samp>MAILPROG=''mail bugs@foo.bar.com''</samp>&rsquo; should work).
+If Sendmail is used, use &lsquo;<samp>MAILPROG=''/usr/lib/sendmail -oi
+-t''</samp>&rsquo;.  See also <code>MAILADDR</code> and <code>TEMPLATE</code> below.
+</p>
+</dd>
+<dt> <code>MAILADDR</code></dt>
+<dd><p>If using e-mail to submit PRs, this is the address that PRs should be
+sent to.
+</p>
+</dd>
+<dt> <code>TEMPLATE</code></dt>
+<dd><p>When invoked, <code>send-pr</code> communicates directly over the network
+with the <small>GNATS</small> server to determine what fields to include in a
+correctly formatted Problem Report so that it can present the user
+with a template.  If the <small>GNATS</small> server can&rsquo;t be reached directly
+over the network, a template must be provided.  Set the
+<code>TEMPLATE</code> variable to point to a template file created on the
+<small>GNATS</small> server by using the command <code>send-pr -p</code>.
+See section <a href="Installing-tools.html#Installing-tools">Installing the user tools</a>.
+</p></dd>
+</dl>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="classes-file.html#classes-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Admin-files.html#Admin-files" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,673 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.8 Internal utilities</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.8 Internal utilities">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.8 Internal utilities">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Internal-utils"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Admin-utils.html#gnats_002dpwconv" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#queue_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Internal-utilities"></a>
+<h2 class="section">4.8 Internal utilities</h2>
+<a name="index-internal-utilities"></a>
+
+<p>These tools are used internally by <small>GNATS</small>.  You should never need to
+run these by hand; however, a complete understanding may help you locate
+problems with the <small>GNATS</small> tools or with your local implementation.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#queue_002dpr">4.8.1 Handling incoming traffic</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#file_002dpr">4.8.2 Processing incoming traffic</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#at_002dpr">4.8.3 Timely reminders</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#pr_002dedit">4.8.4 The <code>edit-pr</code> driver</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">     The edit-pr driver
+</td></tr>
+<tr><td align="left" valign="top"><a href="#diff_002dprs">4.8.5 The <code>diff-prs</code> tool</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#pr_002dage">4.8.6 The <code>pr-age</code> tool</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+</table>
+
+<hr size="6">
+<a name="queue_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Internal-utils" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#file_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Handling-incoming-traffic"></a>
+<h3 class="subsection">4.8.1 Handling incoming traffic</h3>
+<a name="index-queue_002dpr"></a>
+<a name="index-handling-incoming-traffic"></a>
+
+<p>The program <code>queue-pr</code> handles traffic coming into <small>GNATS</small>.
+<code>queue-pr</code> queues incoming Problem Reports in the
+&lsquo;<tt>gnats-queue</tt>&rsquo; directory of the database, and then periodically (via
+<code>cron</code>) passes them on to <code>file-pr</code> to be filed in the
+<small>GNATS</small> database.  See section <a href="Installation.html#Installation">Installing <small>GNATS</small></a>.
+</p>
+<p>The usage for <code>queue-pr</code> is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">queue-pr [ -q | --queue ] [ -r | --run ]
+         [ -f <var>filename</var> | --file=<var>filename</var> ]
+         [ -m <var>kbytes</var> | --max-size=<var>kbytes</var> ]
+         [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+         [ -h | --help] [ -V | --version ]
+</pre></td></tr></table>
+
+<p>One of &lsquo;<samp>-q</samp>&rsquo; or &lsquo;<samp>-r</samp>&rsquo; (or their longer-named counterparts) must
+be present upon each call to <code>queue-pr</code>.  These options provide
+different functions, as described below.
+</p>
+<dl compact="compact">
+<dt> <code>-q</code></dt>
+<dt> <code>--queue</code></dt>
+<dd><p>Accepts standard input as an incoming mail message, placing this
+message in an incrementally numbered file in the
+&lsquo;<tt>gnats-queue</tt>&rsquo; directory under the database directory
+(see section <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>).
+</p>
+</dd>
+<dt> <code>-r</code></dt>
+<dt> <code>--run</code></dt>
+<dd><p>Redirects files in the &lsquo;<tt>gnats-queue</tt>&rsquo; directory into the program
+<code>file-pr</code> one by one.
+</p>
+</dd>
+<dt> <code>-f <var>filename</var></code></dt>
+<dt> <code>--file=<var>filename</var></code></dt>
+<dd><p>Used with &lsquo;<samp>-q</samp>&rsquo; (or &lsquo;<samp>--queue</samp>&rsquo;), accepts the file denoted by
+<var>filename</var> as input rather than reading from standard input.
+</p>
+</dd>
+<dt> <code>-m <var>kbytes</var></code></dt>
+<dt> <code>--max-size=<var>kbytes</var></code></dt>
+<dd><p>Do not process messages larger then <var>kbytes</var> kilobytes.  Files
+larger than the limit are left for human intervention.
+</p>
+</dd>
+<dt> <code>-d <var>databasename</var></code></dt>
+<dt> <code>--directory=<var>databasename</var></code></dt>
+<dd><p>Specifies database to operate on.  If this option is left out, the value
+of the <var>GNATSDB</var> environment variable is used, and if that is
+undefined, the default database name set when <small>GNATS</small> was built is
+used (usually <code>default</code>).
+</p>
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Prints the usage for <code>gen-index</code>.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Prints the version number for <code>gen-index</code>.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="file_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#queue_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#at_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Processing-incoming-traffic"></a>
+<h3 class="subsection">4.8.2 Processing incoming traffic</h3>
+<a name="index-file_002dpr"></a>
+<a name="index-processing-incoming-traffic"></a>
+
+<p><code>queue-pr</code> hands off queued Problem Reports to <code>file-pr</code> one
+at a time.  <code>file-pr</code> checks each Problem Report for correct
+information in its fields (particularly a correct <code>Category</code>),
+assigns it an identification number, and files it in the database under
+the appropriate category.
+</p>
+<p>If the <code>Category</code> field does not contain a valid category value
+(i.e., matching a line in the <code>categories</code> file; see section <a href="Other-config-files.html#categories-file">The <code>categories</code> file</a>), the PR is assigned to the default
+category, as set in the <code>dbconfig</code> file.  If there is no default
+category defined, the PR is given a <code>Category</code> value of
+&lsquo;<samp>pending</samp>&rsquo; and is placed in the &lsquo;<tt>pending</tt>&rsquo; directory.  The
+<small>GNATS</small> administrator is notified of the unplaceable PR.
+</p>
+<p><code>file-pr</code> assigns the Problem Report an identification number,
+files it in the <small>GNATS</small> database (under the default, if the
+<code>Category</code> field contains an invalid category), and sends
+acknowledgments to appropriate parties.  For the default <small>GNATS</small>
+configuration, the person responsible for that category of problem
+(see section <a href="Other-config-files.html#categories-file">The <code>categories</code> file</a>) and the person
+responsible for the submitter site where the PR originated
+(see section <a href="Other-config-files.html#submitters-file">The <code>submitters</code> file</a>) receive a copy of
+the PR in its entirety.  Optionally, the originator of the PR receives
+an acknowledgment that the PR arrived and was filed (see section <a href="GNATS-configuration.html#GNATS-configuration">Changing your <small>GNATS</small> configuration</a>).
+</p>
+<p>The usage for <code>file-pr</code> is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">file-pr [ -f <var>filename</var> | --file=<var>filename</var> ]
+        [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+	    [ -h | --help ] [ -V | --version ]
+ 
+       network options:
+        [ -H <var>host</var> | --host=<var>host</var> ]
+        [ -P <var>port</var> | --port=<var>port</var> ]
+        [ -v <var>username</var> | --user=<var>username</var> ]
+        [ -w <var>password</var> | --passwd=<var>password</var> ]
+</pre></td></tr></table>
+
+<p><code>file-pr</code> requires no options in order to operate, and takes input
+from standard input (normally, the output of &lsquo;<samp>queue-pr -r</samp>&rsquo;)
+unless otherwise specified.  The options include:
+</p>
+<dl compact="compact">
+<dt> <code>-f <var>filename</var></code></dt>
+<dt> <code>--filename=<var>filename</var></code></dt>
+<dd><p>Uses <var>filename</var> as input rather than standard input.
+</p>
+</dd>
+<dt> <code>-d <var>databasename</var></code></dt>
+<dt> <code>--database=<var>databasename</var></code></dt>
+<dd><p>Performs refiling operations on <var>database</var>.  If this option is left
+out, the value of the <var>GNATSDB</var> environment variable is used, and if
+that is undefined, the default database name set when <small>GNATS</small> was
+built is used (usually <code>default</code>).
+</p>
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Prints the usage for <code>file-pr</code>.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Prints the version number for <code>file-pr</code>.
+</p></dd>
+</dl>
+
+<p><code>file-pr</code> can file PRs across a network, talking to a remote
+gnatsd. The following options relate to network access:
+</p>
+<dl compact="compact">
+<dt> <code>-H <var>host</var></code></dt>
+<dt> <code>--host=<var>host</var></code></dt>
+<dd><p>Hostname of the <small>GNATS</small> server.
+</p>
+</dd>
+<dt> <code>-P <var>port</var></code></dt>
+<dt> <code>--port=<var>port</var></code></dt>
+<dd><p>The port that the <small>GNATS</small> server runs on.
+</p>
+</dd>
+<dt> <code>-v <var>username</var></code></dt>
+<dt> <code>--username=<var>username</var></code></dt>
+<dd><p>Username used to log into the <small>GNATS</small> server.
+</p>
+</dd>
+<dt> <code>-w <var>password</var></code></dt>
+<dt> <code>--passwd=<var>password</var></code></dt>
+<dd><p>Password used to log into the <small>GNATS</small> server.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="at_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#file_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#pr_002dedit" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Timely-reminders"></a>
+<h3 class="subsection">4.8.3 Timely reminders</h3>
+<a name="index-at_002dpr"></a>
+<a name="index-timely-reminders"></a>
+<a name="index-automatic-notification-1"></a>
+<a name="index-notification-of-overdue-PRs"></a>
+
+<p><code>at-pr</code> creates a queued job using <code>at</code> which, after an
+allotted <em>response time</em> is past, checks the PR to see if its state
+has changed from &lsquo;<samp>open</samp>&rsquo;. When the PR is originally filed,
+<code>file-pr</code> checks the <code>notify-about-expired-prs</code> parameter in
+the &lsquo;<tt>dbconfig</tt>&rsquo; file. If this parameter is set to <code>true</code>,
+<code>file-pr</code> calls <code>at-pr</code>, which sets up the expiry check.
+</p>
+<p>The &lsquo;<tt>submitters</tt>&rsquo; file contains the response time for each
+<code>&gt;Submitter-Id:</code> (see section <a href="Other-config-files.html#submitters-file">The <code>submitters</code> file</a>).  The time is determined in <em>business hours</em>, which are
+defined in the database&rsquo;s &lsquo;<tt>dbconfig</tt>&rsquo; file (see section <a href="dbconfig-file.html#Overall-database-configuration">Overall database configuration</a>).
+</p>
+<p>If the PR is urgent and is still open after the requisite time period
+has passed, <code>at-pr</code> sends a reminder to the <small>GNATS</small>
+administrator, to the maintainer responsible for that submitter, and
+to the maintainer responsible for the PR with the following message:
+</p>
+<a name="index-reminder-message"></a>
+<a name="index-at_002dpr-1"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">To: <var>submitter-contact</var> <var>responsible</var> <var>gnats-admin</var>
+Subject: PR <var>gnats-id</var> not analyzed in <var>#hours</var> hours
+
+PR <var>gnats-id</var> was not analyzed within the acknowledgment period
+of <var>#hours</var> business hours.  The pertinent information is:
+
+ Submitter-Id: <var>submitter</var>
+ Originator: <var>full name of the submitter</var>
+ Synopsis: <var>synopsis</var>
+ Person responsible for the PR: <var>responsible</var>
+
+--
+The GNU Problem Report Management System (GNATS)
+</pre></td></tr></table>
+
+<p>The PR is <em>urgent</em> if its priority is &lsquo;<samp>critical</samp>&rsquo; or if its
+priority is &lsquo;<samp>serious</samp>&rsquo; and the severity is &lsquo;<samp>high</samp>&rsquo;.
+</p>
+
+<hr size="6">
+<a name="pr_002dedit"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#at_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#diff_002dprs" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-edit_002dpr-driver"></a>
+<h3 class="subsection">4.8.4 The <code>edit-pr</code> driver</h3>
+<a name="index-pr_002dedit"></a>
+<a name="index-edit_002dpr-driver"></a>
+<a name="index-driver-for-edit_002dpr"></a>
+
+<p><code>pr-edit</code> does the background work for <code>edit-pr</code>, including
+error-checking and refiling newly edited Problem Reports, handling file
+and database locks and deletion of PRs.  It can be called interactively,
+though it has no usable editing interface.
+</p>
+<p>The usage for <code>pr-edit</code> is:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">pr-edit   [ -l <var>username</var> | --lock=<var>username</var> ] [ -u | --unlockdb ]
+          [ -L | --lockdb ] [ -U | --unlockdb ] [ -c | --check ]
+          [ -C | --check-initial ] [ -s | --submit [ --show-prnum ] ]
+          [ -a <var>field</var> | --append field=<var>field</var> ]
+          [ -r <var>field</var> | --replace=<var>field</var> ] [ --delete-pr ]
+          [ -R <var>reason</var> | --reason=<var>reason</var> ]
+          [ -p <var>process-id</var> | --process=<var>process-id</var> ]
+          [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+          [ -f <var>filename</var> | --filename=<var>filename</var> ]
+          [ -V | --version ]
+          [ -h | --help ] [ -v <var>username</var> | --user=<var>username</var> ]
+          [ -w <var>passwd</var> | --passwd=<var>passwd</var> ]
+          [ -H <var>host</var> | --host=<var>host</var> ]
+          [ -P <var>port</var> | --port=<var>port</var> ]
+          [ -D | --debug ] [ <var>PR number</var> ]
+</pre></td></tr></table>
+
+<a name="index-PR-locks"></a>
+<a name="index-locks"></a>
+<p>A <em>lock</em> is placed on a Problem Report while the PR is being edited.
+The lock is simply a file in the &lsquo;<tt>locks</tt>&rsquo; subdirectory of the
+&lsquo;<tt>gnats-adm</tt>&rsquo; directory of the database, with the name
+&lsquo;<tt><var>gnats-id</var>.lock</tt>&rsquo;, which contains the name of the
+user who created the lock.  <var>user</var> then &ldquo;owns&rdquo; the
+lock, and must remove it before the PR can be locked again, even by the
+same <var>user</var><a name="DOCF3" href="gnats_fot.html#FOOT3">(3)</a>.  If a PR is already
+locked when you attempt to edit it, <code>pr-edit</code> prints an error
+message giving the name of the user who is currently editing the
+PR.
+</p>
+<p>If you do not specify <var>PR number</var>, <code>pr-edit</code> reads from
+standard input.  You must specify <var>PR number</var> for the functions
+which affect PR locks, &lsquo;<samp>--lock=<var>username</var></samp>&rsquo; and
+&lsquo;<samp>--unlock</samp>&rsquo;.
+</p>
+<dl compact="compact">
+<dt> <code>-L</code></dt>
+<dt> <code>--lockdb</code></dt>
+<dd><p>Locks the database specified with the <code>--database</code> or <code>-d</code>
+option.  No PRs may be edited, created or deleted while the database is
+locked.  This option is generally used when editing the index file.
+</p>
+</dd>
+<dt> <code>-U</code></dt>
+<dt> <code>--unlockdb</code></dt>
+<dd><p>Unlocks the specified database.  No check is made that the invoking user
+actually had locked the database in the first place; hence, it is
+possible for anyone to steal a database lock.
+</p>
+</dd>
+<dt> <code>-c</code></dt>
+<dt> <code>--check</code></dt>
+<dt> <code>-C</code></dt>
+<dt> <code>--check-initial</code></dt>
+<dd><p>The <code>--check</code> options are used to verify that a proposed PR&rsquo;s field
+contents are valid.  The PR is read in (either from stdin or a file
+specified with <code>--filename</code>), and its fields are compared against
+the rules specified by the database configuration of the selected
+database.  Warnings are given for enumerated fields whose contents do
+not contain one of the required values or fields that do not match
+required regexps. <code>--check-initial</code> is used to verify initial PRs,
+rather than proposed edits of existing PRs.
+</p>
+</dd>
+<dt> <code>-s</code></dt>
+<dt> <code>--submit</code></dt>
+<dd><p>Used to submit a new PR to the database.  The PR is read in and verified
+for content; if the PR is valid as an initial PR, it is then added to
+the database.  If the submission is successful a zero exit code is
+returned.  Otherwise, the reason(s) for the PR being rejected are
+printed, and a non-zero exit code is returned.
+</p>
+</dd>
+<dt> <code>--show-prnum</code></dt>
+<dd><p>This option is used with the <code>--submit</code> option to display the PR
+number associated with the submitted PR.
+</p></dd>
+</dl>
+
+<p>The following options require a PR number to be given.
+</p>
+<dl compact="compact">
+<dt> <code>--delete-pr</code></dt>
+<dd><p>Deletes the specified PR from the database.  The PR must be in a closed
+state, and not locked.  Only the user <em>gnats</em> (or the user name
+specified instead of <em>gnats</em> during the building of <small>GNATS</small>) is
+permitted to delete PRs.
+</p>
+</dd>
+<dt> <code>-l <var>username</var></code></dt>
+<dt> <code>--lock=<var>username</var></code></dt>
+<dd><p>Locks the PR.  <var>username</var> is associated with the lock, so the system
+administrator can determine who actually placed the lock on the PR.
+However, anyone is permitted to remove locks on a PR.  If the optional
+<code>--process</code> or <code>-p</code> option is also given, that process-id is
+associated with the lock.
+</p>
+</dd>
+<dt> <code>-u</code></dt>
+<dt> <code>--unlock</code></dt>
+<dd><p>Unlocks the specified PR.
+</p>
+</dd>
+<dt> <code>-a <var>field</var></code></dt>
+<dt> <code>--append=<var>field</var></code></dt>
+<dt> <code>-r <var>field</var></code></dt>
+<dt> <code>--replace=<var>field</var></code></dt>
+<dd><p><code>--append</code> and <code>--replace</code> are used to append or replace
+content of a specific field within a PR.  The new field content is read
+in from stdin (or from the file specified with the <code>--filename</code>
+option), and either appended or replaced to the specified field.  The
+field contents are verified for correctness before the PR is rewritten.
+If the edit is successful, a zero exit status is returned.  If the edit
+failed, a non-zero exit status is returned, and the reasons for the
+failure are printed to stdout.
+</p>
+</dd>
+<dt> <code>-R <var>reason</var></code></dt>
+<dt> <code>--reason=<var>reason</var></code></dt>
+<dd><p>Certain PR fields are configured in the database configuration to
+require a short text describing the reason of every change that
+happens to them, See section <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>.  If you edit a problem and
+change any of such fields, you must issue a short text, the
+<var>reason</var> of the change, through this option.  If the option is
+used and no change-reason requiring field is actually changed, the
+option has no effect.
+</p>
+</dd>
+<dt> <code>PR number</code></dt>
+<dd><p>If only a <code>PR number</code> is specified with no other options, a
+replacement PR is read in (either from stdin or the file specified with
+<code>--filename</code>).  If the PR contents are valid and correct, the
+existing PR is replaced with the new PR contents.  If the edit is
+successful, a zero exit status is re turned.  If the edit failed, a
+non-zero exit status is returned, and the reasons for the failure are
+printed to stdout.
+</p>
+</dd>
+<dt> <code>-d <var>database</var></code></dt>
+<dt> <code>--database=<var>database</var></code></dt>
+<dd><p>Specifies the database which is to be manipulated.  If no database is
+specified, the default database name set when <small>GNATS</small> was built is
+used (usually <code>default</code>).  This option overrides the database
+specified in the GNATSDB environment variable.
+</p>
+</dd>
+<dt> <code>-f <var>filename</var></code></dt>
+<dt> <code>--filename=<var>filename</var></code></dt>
+<dd><p>For actions that require reading in a PR or field content, this
+specifies the name of a file to read.  If <code>--filename</code> is not
+specified, the PR or field content is read in from stdin.
+</p>
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Prints the usage for <code>pr-edit</code>.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Prints the version number for <code>pr-edit</code>.
+</p></dd>
+</dl>
+
+<p><code>pr-edit</code> can edit PRs across a network, talking to a
+remote gnatsd. The following options relate to network access:
+</p>
+<dl compact="compact">
+<dt> <code>-H <var>host</var></code></dt>
+<dt> <code>--host=<var>host</var></code></dt>
+<dd><p>Hostname of the <small>GNATS</small> server.
+</p>
+</dd>
+<dt> <code>-P <var>port</var></code></dt>
+<dt> <code>--port=<var>port</var></code></dt>
+<dd><p>The port that the <small>GNATS</small> server runs on.
+</p>
+</dd>
+<dt> <code>-v <var>username</var></code></dt>
+<dt> <code>--username=<var>username</var></code></dt>
+<dd><p>Username used to log into the <small>GNATS</small> server.
+</p>
+</dd>
+<dt> <code>-w <var>password</var></code></dt>
+<dt> <code>--passwd=<var>password</var></code></dt>
+<dd><p>Password used to log into the <small>GNATS</small> server.
+</p>
+</dd>
+<dt> <code>-D</code></dt>
+<dt> <code>--debug</code></dt>
+<dd><p>Used to debug network connections.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="diff_002dprs"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#pr_002dedit" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#pr_002dage" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-diff_002dprs-tool"></a>
+<h3 class="subsection">4.8.5 The <code>diff-prs</code> tool</h3>
+<a name="index-diff_002dprs"></a>
+
+<p>The <code>diff-prs</code> tool is invoked as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">diff-prs <var>prfile1</var> <var>prfile2</var>
+</pre></td></tr></table>
+
+<p><code>diff-prs</code> simply reads the PRs contained in <var>prfile1</var> and
+<var>prfile2</var> and returns a list of the fields that are different
+between the two.  No output is produced if the PRs are identical.
+</p>
+<hr size="6">
+<a name="pr_002dage"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#diff_002dprs" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-pr_002dage-tool"></a>
+<h3 class="subsection">4.8.6 The <code>pr-age</code> tool</h3>
+<a name="index-pr_002dage"></a>
+<a name="index-age-of-PR"></a>
+
+<p>The <code>pr-age</code> tool reports the time, in days and hours, since the PR
+arrived.  Usage is
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">pr-age  [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+        [ -H <var>host</var> | --host=<var>host</var> ]
+        [ -P <var>port</var> | --port=<var>port</var> ]
+        [ -v <var>username</var> | --user=<var>username</var> ]
+        [ -w <var>password</var> | --passwd=<var>password</var> ]
+        [ -h | --help ] [ -V | --version ]
+</pre></td></tr></table>
+
+<p>For an explanation of the arguments listed above, please refer to the
+usage description for <code>file-pr</code> (<a href="#file_002dpr"><code>file-pr</code></a>).
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#diff_002dprs" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

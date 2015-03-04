@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2.4.3 Query expressions</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2.4.3 Query expressions">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2.4.3 Query expressions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Query-expressions"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Example-queries.html#Example-queries" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="query_002dpr.html#query_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Query-expressions-1"></a>
+<h3 class="subsection">2.4.3 Query expressions</h3>
+<a name="index-query-expressions"></a>
+
+<p>Query expressions are used to select specific PRs based on their field
+contents.  The general form is
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">fieldname|&quot;value&quot; operator fieldname|&quot;value&quot; [booleanop ...]
+</pre></td></tr></table>
+
+<p><var>value</var> is a literal string or regular expression; it must be
+surrounded by double quotes, otherwise it is interpreted as a fieldname.
+</p>
+<p><var>fieldname</var> is the name of a field in the PR.
+</p>
+<p><var>operator</var> is one of:
+</p>
+<dl compact="compact">
+<dt> <code>=</code></dt>
+<dd><p>The value of the left-hand side of the expression must exactly match the
+regular expression on the right-hand side of the expression.
+See section <a href="Regexps.html#Regexps">Querying using regular expressions</a>.
+</p>
+</dd>
+<dt> <code>~</code></dt>
+<dd><p>Some portion of the left-hand side of the expression must match the
+regular expression on the right-hand side.
+</p>
+</dd>
+<dt> <code>==</code></dt>
+<dd><p>The value of the left-hand side must be equal to the value on the
+right-hand side of the expression.
+</p>
+<p>The equality of two values depends on what type of data is stored in the
+field(s) being queried.  For example, when querying a field containing
+integer values, literal strings are interpreted as integers.  The query
+expression
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Number == &quot;0123&quot;
+</pre></td></tr></table>
+
+<p>is identical to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Number == &quot;123&quot;
+</pre></td></tr></table>
+
+<p>as the leading zero is ignored.  If the values were treated as strings
+instead of integers, then the two comparisons would return different
+results.
+</p>
+</dd>
+<dt> <code>!=</code></dt>
+<dd><p>The not-equal operator. Produces the opposite result of the == operator.
+</p>
+</dd>
+<dt> <code>&lt;,&gt;</code></dt>
+<dd><p>The left-hand side must have a value less than or greater than the
+right-hand side.  Comparisons are done depending on the type of data
+being queried; in particular, integer fields and dates use a numeric
+comparison, and enumerated fields are ordered depending on the numeric
+equivalent of their enumerated values.
+</p></dd>
+</dl>
+
+<p><var>booleanop</var> is either &lsquo;<samp>|</samp>&rsquo; (logical or), or &lsquo;<samp>&amp;</samp>&rsquo; (logical
+and).  The query expression
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Category=&quot;baz&quot; | Responsible=&quot;blee&quot;
+</pre></td></tr></table>
+
+<p>selects all PRs with a Category field of &lsquo;<samp>baz</samp>&rsquo; or a Responsible
+field of &lsquo;<samp>blee</samp>&rsquo;.
+</p>
+<p>The not operator &lsquo;<samp>!</samp>&rsquo; may be used to negate a test:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">! Category=&quot;foo&quot;
+</pre></td></tr></table>
+
+<p>searches for PRs where the category is not equal to the regular
+expression foo.
+</p>
+<p>Parentheses may be used to force a particular interpretation of the
+expression:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">!(Category=&quot;foo&quot; &amp; Submitter-Id=&quot;blaz&quot;)
+</pre></td></tr></table>
+
+<p>skips PRs where the Category field is equal to &lsquo;<samp>foo</samp>&rsquo; and the
+Submitter-Id field is equal to &lsquo;<samp>blaz</samp>&rsquo;.  Parentheses may be nested
+to any arbitrary depth.
+</p>
+<p>Fieldnames can be specified in several ways.  The simplest and most
+obvious is just a name:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Category=&quot;foo&quot;
+</pre></td></tr></table>
+
+<p>which checks the value of the category field for the value <var>foo</var>.
+</p>
+<p>A fieldname qualifier may be prepended to the name of the field; a colon
+is used to separate the qualifier from the name.  To refer directly to a
+builtin field name:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">builtin:Number=&quot;123&quot;
+</pre></td></tr></table>
+
+<p>In this case, &lsquo;<samp>Number</samp>&rsquo; is interpreted as the builtin name of the
+field to
+check.  (This is useful if the fields have been renamed.  For further
+discussion of builtin field names, see <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>.
+</p>
+<p>To scan all fields of a particular type, the <var>fieldtype</var> qualifier
+may be
+used:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">fieldtype:Text=&quot;bar&quot;
+</pre></td></tr></table>
+
+<p>This searches all text fields for the regular expression &lsquo;<samp>bar</samp>&rsquo;.
+</p>
+<p>Note that it is not required that the right-hand side of the expression
+be a literal string.  To query all PRs where the PR has been modified
+since it was closed, the expression
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Last-Modified != Closed-Date
+</pre></td></tr></table>
+
+<p>will work; for each PR, it compares the value of its Last-Modified field
+against its Closed-Date field, and returns those PRs where the values
+differ.  However, this query will also return all PRs with empty
+Last-Modified or Closed-Date fields.  To further narrow the search:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Last-Modified != Closed-Date &amp; Last-Modified != &quot;&quot; &amp; Closed-Date != &quot;&quot;
+</pre></td></tr></table>
+
+<p>In general, comparing fields of two different types (an integer field
+against a date field, for example) will probably not do what you want.
+</p>
+<p>Also, a field specifier may be followed by the name of a subfield in
+braces:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">State[type] != &quot;closed&quot;
+</pre></td></tr></table>
+
+<p>or even
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">builtin:State[type] != &quot;closed&quot;
+</pre></td></tr></table>
+
+<p>Subfields are further discussed in <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>.
+</p>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Example-queries.html#Example-queries" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="query_002dpr.html#query_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

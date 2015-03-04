@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: C. Controlling access to databases</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: C. Controlling access to databases">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: C. Controlling access to databases">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Access-Control"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="gnatsd.html#gnatsd-environment-variables" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Overview" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Controlling-access-to-databases"></a>
+<h1 class="appendix">C. Controlling access to databases</h1>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Overview">C.1 Overview</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Overall-gnatsd-access-level">C.2 Overall <code>gnatsd</code> access level</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#gnatsd_002ehost_005faccess">C.3 Overall access levels per host</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">           Per-host access settings
+</td></tr>
+<tr><td align="left" valign="top"><a href="#gnatsd_002euser_005faccess">C.4 Access levels per user</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#Privileged-gnatsd-commands">C.5 Privileged <code>gnatsd</code> commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Overview"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Access-Control" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Overall-gnatsd-access-level" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Overview-2"></a>
+<h2 class="section">C.1 Overview</h2>
+
+<p><small>GNATS</small> supports granting various levels of access to the <small>GNATS</small>
+databases served by the network daemon, <code>gnatsd</code>.
+</p>
+<p><small>GNATS</small> access can be controlled at these levels:
+</p>
+<dl compact="compact">
+<dt> <code>deny</code></dt>
+<dd><p>gnatsd closes the connection
+</p>
+</dd>
+<dt> <code>none</code></dt>
+<dd><p>no further access until userid and password given
+</p>
+</dd>
+<dt> <code>listdb</code></dt>
+<dd><p>only listing of available databases is allowed
+</p>
+</dd>
+<dt> <code>view</code></dt>
+<dd><p>query and view PRs with Confidential=no only
+</p>
+</dd>
+<dt> <code>viewconf</code></dt>
+<dd><p>query and view PRs with Confidential=yes
+</p>
+</dd>
+<dt> <code>edit</code></dt>
+<dd><p>full edit access
+</p>
+</dd>
+<dt> <code>admin</code></dt>
+<dd><p>full admin access
+</p></dd>
+</dl>
+
+<p>These access levels are used in the following settings:
+</p>
+<ul>
+<li> overall gnatsd access level
+
+</li><li> overall access level set by host name or IP address
+
+</li><li> overall access level set by userid and password
+
+</li><li> per-database access level set by userid and password
+</li></ul>
+
+<hr size="6">
+<a name="Overall-gnatsd-access-level"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Overview" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#gnatsd_002ehost_005faccess" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Overall-gnatsd-access-level-1"></a>
+<h2 class="section">C.2 Overall <code>gnatsd</code> access level</h2>
+
+<p>The overall <code>gnatsd</code> access level is set by starting <code>gnatsd</code>
+with the option
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example"><code>-m</code> <var>level</var> or <code>--maximum-access-level</code>=<var>level</var>,
+</pre></td></tr></table>
+
+<p>where <var>level</var> is one of the six access levels listed
+above.  This restricts any access to the <small>GNATS</small> daemon to levels up
+to and including <var>level</var>, regardless of the settings in the access
+control files discussed below.  If this option is left out, any access
+levels set in the access control files will be allowed.
+</p>
+<p>The discussion below assumes that the pre-build configure of <small>GNATS</small>
+was done without altering the default values for the
+<code>--enable-gnatsd-user-access-file</code> and
+<code>--enable-gnatsd-host-access-file</code> options.  If non-default values
+were given, substitute as appropriate below.
+</p>
+<hr size="6">
+<a name="gnatsd_002ehost_005faccess"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Overall-gnatsd-access-level" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#gnatsd_002euser_005faccess" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Overall-access-levels-per-host"></a>
+<h2 class="section">C.3 Overall access levels per host</h2>
+<a name="index-gnatsd_002ehost_005faccess-1"></a>
+
+<p>The host access file (by default
+&lsquo;<tt>/usr/local/etc/gnats/gnatsd.host_access</tt>&rsquo;) controls overall
+access levels on a per-host basis, meaning that settings in this file
+apply across all databases on the server.  Entries in this file are in
+the following format:
+</p>
+<p><var>host:access-level:whatever</var>
+</p>
+<p><var>host</var> is the hostname or IP address of the host contacting
+gnatsd.  Wildcard characters are supported: &lsquo;<samp>*</samp>&rsquo; matches anything;
+&lsquo;<samp>?</samp>&rsquo; matches any single character.  By using wildcards, you can
+specify access levels for entire network subnets and domains.  Note
+that when <small>GNATS</small> authenticates hosts, it reads the entries in this
+file in sequence until a match is found.  This means that wildcard
+entries must be placed near the end of the file, otherwise, they
+will override non-wildcard entries appearing after the wildcard
+ones.
+</p>
+<p>The second field is the access level of <var>host</var>.  The default is
+<code>deny</code>.  If the user&rsquo;s hostname isn&rsquo;t in the file or its access
+level is set to <code>deny</code>, the connection is closed immediately.
+</p>
+<p><small>GNATS</small> currently doesn&rsquo;t make use of the third field. Remember to
+still include the second &lsquo;<samp>:</samp>&rsquo; on the line if you choose to leave the third
+field empty.
+</p>
+<p>Whenever a <code>CHDB</code> command is processed (or defaulted), the user&rsquo;s
+access level is set to the level for their host, as determined by the
+values in the &lsquo;<tt>gnatsd.host_access</tt>&rsquo; file.  However, even if a host
+is given the <code>none</code> access level, an individual can still give the
+<code>USER</code> command to possibly gain a higher (but never lower) access
+than is set for their host.  The gnatsd <code>USER</code> command takes two
+arguments: <code>USER &lt;userid&gt; &lt;passwd&gt;</code>.
+</p>
+<hr size="6">
+<a name="gnatsd_002euser_005faccess"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#gnatsd_002ehost_005faccess" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Privileged-gnatsd-commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Access-levels-per-user"></a>
+<h2 class="section">C.4 Access levels per user</h2>
+<a name="index-gnatsd_002euser_005faccess-1"></a>
+
+<p>Access levels per user can be set both across all databases on the
+server or on a per-database basis.  The &lsquo;<tt>gnatsd.user_access</tt>&rsquo; file
+in a database&rsquo;s &lsquo;<tt>gnats-adm</tt>&rsquo; directory specifies the user access
+rules for that database.  If it doesn&rsquo;t exist, or doesn&rsquo;t contain the
+user name given to <code>gnatsd</code>, then the overall user access file
+(by default &lsquo;<tt>/usr/local/etc/gnats/gnatsd.user_access</tt>&rsquo;)
+specifying the per-user access levels across all the databases on the
+server is checked.
+</p>
+<p>The user access files can only <em>increase</em> the access level
+defined in the host access files for the given host, they can never
+lower it.
+</p>
+<p>If the access level is <code>none</code> after processing the userid and
+password, the connection is closed.
+</p>
+<p>The &lsquo;<tt>gnatsd.user_access</tt>&rsquo; files can contain plain text passwords, in
+such a case they should be owned by the <small>GNATS</small> user with file
+permission 600.
+</p>
+<p>Wildcard characters are supported for the userid and password with
+plain text passwords.  A null string or &lsquo;<samp>*</samp>&rsquo; matches anything;
+&lsquo;<samp>?</samp>&rsquo; matches any one character.  Note that when <small>GNATS</small>
+authenticates users, it reads the entries in this file in sequence
+until a match is found.  This means that wildcard entries must be
+placed near the end of the file, otherwise, they will override
+non-wildcard entries appearing after the wildcard ones.
+</p>
+<p>Entries in the database-specific &lsquo;<tt>gnatsd.user_access</tt>&rsquo; user access file
+in the &lsquo;<tt>gnats-adm</tt>&rsquo; directory of the database have the following
+general format:
+</p>
+<p><var>userid:password:access-level</var>
+</p>
+<p>The overall &lsquo;<tt>gnatsd.user_access</tt>&rsquo; user access file adds a fourth
+<var>databases</var> field:
+</p>
+<p><var>userid:password:access-level:databases</var>
+</p>
+<p><var>password</var> should either be in plain text, DES
+<code>crypt()</code><a name="DOCF4" href="gnats_fot.html#FOOT4">(4)</a> or MD5 hash format<a name="DOCF5" href="gnats_fot.html#FOOT5">(5)</a>.
+</p>
+<p>If the password is in plain text format, it must be prefixed by
+&lsquo;<samp>$0$</samp>&rsquo; and if it is in MD5 format, it needs to be prefixed by the
+string &lsquo;<samp>$1$</samp>&rsquo;.<a name="DOCF6" href="gnats_fot.html#FOOT6">(6)</a> Passwords encrypted by <code>crypt()</code> should have no
+prefix. If no password is given then users can login with an empty
+password string.
+</p>
+<p>A <code>gnats-passwd</code> tool to manage &lsquo;<tt>gnatsd.user_access</tt>&rsquo; files is
+planned.  In the meantime, <code>crypt()</code> passwords can be generated by
+using standard UNIX passwords tools, while MD5 passwords can be
+generated with the following little Perl snippet:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">perl -e 'use Crypt::PasswdMD5 ; print Crypt::PasswdMD5::unix_md5_crypt
+&quot;<var>password</var>&quot; , time() % 100000000'
+</pre></td></tr></table>
+
+<p>If your Perl installation doesn&rsquo;t have the Crypt module
+installed, you need to install it.  On most systems, the following
+command achieves this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">perl -MCPAN -e 'install Crypt::PasswdMD5'
+</pre></td></tr></table>
+
+<p>A tool for conversion of pre-version 4 &lsquo;<tt>gnatsd.user_access</tt>&rsquo; files is
+distributed with <small>GNATS</small> 4.  See section <a href="Management.html#gnats_002dpwconv">Converting old password files</a>.
+</p>
+<p>The <var>access-level</var> field should contain one of the values listed at
+the beginning of this appendix.  This overrides (increases but never
+lowers) the access level given as the default for the user&rsquo;s host in the
+global gnatsd.host_access file.
+</p>
+<p>The following shows an example &lsquo;<tt>gnatsd.user_access</tt>&rsquo; file with
+plain text passwords:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">rickm:$0$ruckm:edit
+pablo:$0$pueblo:view
+*::none
+</pre></td></tr></table>
+
+<p>And this is the same file with MD5-encrypted passwords:
+</p><table><tr><td>&nbsp;</td><td><pre class="example">rickm:$1$92388613$D7ZIYikzTUqd./dODTFrI.:edit
+pablo:$1$92388652$QRfAhIBG5elT.FQjQKhj80:view
+*::none
+</pre></td></tr></table>
+
+<p>In these examples, anybody other than rickm and pablo get
+denied access, assuming that the host access level is also <code>none</code>.
+You could set the catch-all rule at the end to be <code>*::view</code> to
+allow view access to anyone who does not supply a password.  Note the
+important detail that such a rule would allow view access only to
+persons who do not supply a password at all, i.e. if rickm or pablo tries
+to log in but mistypes his password, this rule would not apply and
+they would be denied access entirely.  This is by design, since people
+might be surprised if they suddenly found themselves logged in, but with
+a lower access level than they usually have.
+</p>
+<p>The <var>databases</var> field contains a comma-separated list of database
+names, as defined in the &lsquo;<tt>databases</tt>&rsquo; file (see section <a href="Management.html#databases-file">The <code>databases</code> file</a>.  Wildcard characters are
+supported. The databases listed in this field are the ones to which
+the other settings on the same line will be applied.
+</p>
+<hr size="6">
+<a name="Privileged-gnatsd-commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#gnatsd_002euser_005faccess" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Access-Control" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Privileged-gnatsd-commands-1"></a>
+<h2 class="section">C.5 Privileged <code>gnatsd</code> commands</h2>
+
+<p>Every <code>gnatsd</code> command has a minimum access level attached to
+it.  If your access level is too low for a command, you get this
+response:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">  LOCK 12
+  422 You are not authorized to perform this operation (LOCK).
+</pre></td></tr></table>
+
+<p>The commands <code>CHDB</code>, <code>USER</code> and <code>QUIT</code> are
+unrestricted.
+</p>
+<p>The <code>DBLS</code> command requires at least <code>listdb</code> access.
+</p>
+<p>A user must have at least <code>edit</code> access for these commands:
+</p>
+<dl compact="compact">
+<dt> <code>LKDB</code></dt>
+<dd><p>lock the main <small>GNATS</small> database.
+</p>
+</dd>
+<dt> <code>UNDB</code></dt>
+<dd><p>unlock the main <small>GNATS</small> database.
+</p>
+</dd>
+<dt> <code>LOCK <var>PR user pid</var></code></dt>
+<dd><p>lock <var>PR</var> for <var>user</var> and optional <var>pid</var> and return PR text.
+</p>
+</dd>
+<dt> <code>UNLK <var>PR</var></code></dt>
+<dd><p>unlock <var>PR</var>.
+</p>
+</dd>
+<dt> <code>EDIT <var>PR</var></code></dt>
+<dd><p>check in edited <var>PR</var>.
+</p>
+</dd>
+<dt> <code>APPN <var>PR</var> <var>field</var>, REPL <var>PR</var> <var>field</var></code></dt>
+<dd><p>Appends to or replaces the contents of <var>field</var> in <var>PR</var>.
+</p></dd>
+</dl>
+
+<p>The <code>DELETE</code> <var>PR</var> command is special in that it requires
+<code>admin</code> access.
+</p>
+<p>All other commands require <code>view</code> access.
+</p>
+<p><code>edit-pr</code> and <code>query-pr</code> accept the command line arguments
+<code>-v|--user</code> and <code>-w|--passwd</code>.  See section <a href="GNATS-user-tools.html#GNATS-user-tools">The <small>GNATS</small> User Tools</a>.
+</p>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Access-Control" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

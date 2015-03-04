@@ -1,0 +1,594 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2.5 The Emacs interface to GNATS</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2.5 The Emacs interface to GNATS">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2.5 The Emacs interface to GNATS">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Emacs"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="query_002dpr.html#Example-queries" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-viewing" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-Emacs-interface-to-GNATS"></a>
+<h2 class="section">2.5 The Emacs interface to <small>GNATS</small></h2>
+<a name="index-Emacs"></a>
+
+<p>Emacs interface to <small>GNATS</small> provides basic access to <small>GNATS</small>
+databases, i.e. sending, editing, and querying Problem Reports.  It
+also defines a simple major mode for editing &lsquo;<tt>dbconfig</tt>&rsquo; files.
+</p>
+<p>This section provides an overview of using <small>GNATS</small> with Emacs.  It
+does not describe the use of Emacs itself, for detailed instructions
+on using Emacs, see <a href="../emacs/index.html#Top">(emacs)Top</a> section &lsquo;Top&rsquo; in <cite>GNU Emacs</cite>.  For
+installation instructions of the <small>GNATS</small> Emacs mode, see
+<a href="Installing-utils.html#Installing-utils">Installing the utilities</a>.
+</p>
+<p>Please note the Emacs interface was completely rewritten between
+<small>GNATS</small> 3 and <small>GNATS</small> 4.  It now uses <code>gnatsd</code>,
+<a href="gnatsd.html#gnatsd">The <small>GNATS</small> network server &ndash; <code>gnatsd</code></a>, exclusively for its operations and uses modern Emacs
+features like faces.  Its features are not complete though, you can
+send your suggestions and patches to the appropriate <small>GNATS</small>
+mailing list, <a href="Support.html#Support"><small>GNATS</small> support</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Emacs-viewing">2.5.1 Viewing Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               Viewing PRs by their number.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-querying">2.5.2 Querying Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              Querying the database.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-submitting">2.5.3 Submitting new Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">            Submitting new PRs.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-editing">2.5.4 Editing Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               Editing PRs.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-editing-buffer">2.5.5 The Problem Report editing buffer</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        The editing buffer.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-and-databases">2.5.6 Changing the database</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Changing the working database.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#dbconfig-mode">2.5.7 dbconfig mode</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               Major mode for dbconfig files.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Other-Emacs-commands">2.5.8 Other commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Miscellaneous commands.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-customization">2.5.9 Customization</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Customizing the Emacs interface.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Emacs-viewing"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-querying" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Viewing-Problem-Reports"></a>
+<h3 class="subsection">2.5.1 Viewing Problem Reports</h3>
+
+<a name="index-view_002dpr"></a>
+<p>To view a particular Problem Report, use the command <kbd>M-x
+view-pr</kbd>.  It asks for a Problem Report number and displays that
+Problem Report.
+</p>
+<a name="index-gnats_002dview_002dedit_002dpr"></a>
+<p>The displayed buffer is put in the view mode, <a href="../emacs/Misc-File-Ops.html#Misc-File-Ops">(emacs)Misc File Ops</a> section &lsquo;Misc File Ops&rsquo; in <cite>GNU Emacs</cite>.  If you decide to edit the displayed Problem
+Report, use the command <kbd>e</kbd> (<code>gnats-view-edit-pr</code>).
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002dview_002dmode_002dhook"></a>
+</dd>
+<dt> <code>gnats-view-mode-hook</code></dt>
+<dd><p>Hook run when <code>gnats-view-mode</code> is entered.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-querying"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-viewing" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-submitting" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Querying-Problem-Reports"></a>
+<h3 class="subsection">2.5.2 Querying Problem Reports</h3>
+
+<a name="index-query_002dpr-1"></a>
+<p>Querying the database is performed by the <kbd>M-x query-pr</kbd> command.
+The command prompts for the query expression, <a href="query_002dpr.html#Query-expressions">Query expressions</a>,
+and displays a buffer with the list of the matching Problem Reports.
+</p>
+<p>The list of the Problem Reports is displayed in the &lsquo;<samp>summary</samp>&rsquo;
+query format, <a href="query_002dpr.html#Formatting-query_002dpr-output">Formatting <code>query-pr</code> output</a>.  Currently, the
+display format cannot be changed and it must output each Problem
+Report&rsquo;s number in the first column.
+</p>
+<p>The Problem Report list buffer is put in the view mode, <a href="../emacs/Misc-File-Ops.html#Misc-File-Ops">(emacs)Misc File Ops</a> section &lsquo;Misc File Ops&rsquo; in <cite>GNU Emacs</cite>.  You can use most of the standard view mode
+commands in it.  Additionally, the following special commands are
+available:
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002dquery_002dview_002dpr"></a>
+</dd>
+<dt> <kbd>v</kbd></dt>
+<dt> <kbd>RET</kbd></dt>
+<dt> <kbd>mouse-2</kbd></dt>
+<dd><p>View the current Problem Report (<code>gnats-query-view-pr</code>),
+<a href="#Emacs-viewing">Viewing Problem Reports</a>.
+</p>
+<a name="index-gnats_002dquery_002dedit_002dpr"></a>
+</dd>
+<dt> <kbd>e</kbd></dt>
+<dd><p>Edit the current Problem Report (<code>gnats-query-edit-pr</code>),
+<a href="#Emacs-editing">Editing Problem Reports</a>.
+</p>
+<a name="index-gnats_002dquery_002dreread"></a>
+</dd>
+<dt> <kbd>g</kbd></dt>
+<dd><p>Update the Problem Report list (<code>gnats-query-reread</code>).  The last
+performed query is executed again and the buffer is filled with the
+new results.
+</p>
+<a name="index-query_002dpr-2"></a>
+</dd>
+<dt> <kbd>G</kbd></dt>
+<dd><p>Perform new query (<code>query-pr</code>).
+</p>
+<a name="index-send_002dpr-1"></a>
+</dd>
+<dt> <kbd>s</kbd></dt>
+<dd><p>Send new Problem Report (<code>send-pr</code>), <a href="#Emacs-submitting">Submitting new Problem Reports</a>.
+</p>
+<a name="index-gnats_002dchange_002ddatabase"></a>
+</dd>
+<dt> <kbd>D</kbd></dt>
+<dd><p>Change the current database (<code>gnats-change-database</code>), <a href="#Emacs-and-databases">Changing the database</a>.
+</p>
+<a name="index-bury_002dbuffer"></a>
+</dd>
+<dt> <kbd>q</kbd></dt>
+<dd><p>Bury buffer, the buffer is put at the end of the list of all buffers.
+This is useful for quick escape of the buffer, without killing it.
+</p></dd>
+</dl>
+
+<a name="index-gnats_002dquery_002dreverse_002dlisting"></a>
+<p>If the value of the variable <var>gnats-query-reverse-listing</var> is
+non-<code>nil</code>, the listing appears in the reversed order, i.e. with
+the Problem Reports of the highest number first, in the buffer.
+</p>
+<p>Similarly to other <small>GNATS</small> Emacs modes, there is a hook available
+for the Problem Report list.
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002dquery_002dmode_002dhook"></a>
+</dd>
+<dt> <code>gnats-query-mode-hook</code></dt>
+<dd><p>Hook run when <code>gnats-query-mode</code> is entered.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-submitting"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-querying" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-editing" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Submitting-new-Problem-Reports"></a>
+<h3 class="subsection">2.5.3 Submitting new Problem Reports</h3>
+
+<a name="index-send_002dpr-2"></a>
+<p>You can submit new Problem Reports with the command <kbd>M-x send-pr</kbd>.
+The command puts you to the problem editing buffer, <a href="#Emacs-editing">Editing Problem Reports</a>.  The buffer is prefilled with the initial report fields and
+their default values, if defined.  You can use the usual Problem
+Report editing commands, <a href="#Emacs-editing">Editing Problem Reports</a>.  When you have filled in
+all the fields, you can send the Problem Report by presing <kbd>C-c
+C-c</kbd>.
+</p>
+<p>If you run <kbd>M-x send-pr</kbd> with a prefix argument, it runs the
+<code>gnats-change-database</code> command before putting you to the editing
+buffer, <a href="#Emacs-and-databases">Changing the database</a>.
+</p>
+<p>You can set the following variables to get some fields pre-filled:
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002ddefault_002dorganization"></a>
+</dd>
+<dt> <var>gnats-default-organization</var></dt>
+<dd><p>Default value of the &lsquo;<samp>Organization</samp>&rsquo; field used in new Problem Reports.
+</p>
+<a name="index-gnats_002ddefault_002dsubmitter"></a>
+</dd>
+<dt> <var>gnats-default-submitter</var></dt>
+<dd><p>Default value of the &lsquo;<samp>Submitter-Id</samp>&rsquo; field used in new Problem Reports.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-editing"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-submitting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-editing-buffer" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Editing-Problem-Reports"></a>
+<h3 class="subsection">2.5.4 Editing Problem Reports</h3>
+
+<a name="index-edit_002dpr-1"></a>
+<p>To edit a particular Problem Report, use the command <kbd>M-x
+edit-pr</kbd>.  It asks for a Problem Report number and puts the given
+Problem Report in the editing buffer.  See section <a href="#Emacs-editing-buffer">The Problem Report editing buffer</a>,
+for information how to edit the Problem Report in the buffer and how
+to submit your changes.
+</p>
+<p>Note you can also start editing of a selected Problem Report directly
+from within the viewing buffer, <a href="#Emacs-viewing">Viewing Problem Reports</a>, or the query
+result buffer, <a href="#Emacs-querying">Querying Problem Reports</a>.
+</p>
+
+<hr size="6">
+<a name="Emacs-editing-buffer"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-editing" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-and-databases" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-Problem-Report-editing-buffer"></a>
+<h3 class="subsection">2.5.5 The Problem Report editing buffer</h3>
+
+<p>When you invoke a Problem Report editing command, the Problem Report
+is put into a special editing buffer.  The Problem Report is formatted
+similarly to the <code>query-pr -F</code> output, <a href="query_002dpr.html#Formatting-query_002dpr-output">Formatting <code>query-pr</code> output</a>.  Field identifiers are formatted as
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">&gt;Field:
+</pre></td></tr></table>
+
+<p>with the text of the field following the identifier on the same line
+for single-line fields or starting on the next line for multi-line
+fields.
+</p>
+<p>The Problem Report editing mode tries to prevent you from violating
+the Problem Report format and the constraints put on the possible
+field values.  Generally, you can use usual editing commands, some of
+them have a slightly modified behavior though.  (If you encounter a
+very strange behavior somewhere, please report it as a bug,
+<a href="Support.html#Support"><small>GNATS</small> support</a>.)
+</p>
+<a name="index-gnats_002dnext_002dfield"></a>
+<a name="index-gnats_002dprevious_002dfield"></a>
+<p>You can move between fields easily by pressing the <kbd>TAB</kbd>
+(<code>gnats-next-field</code>) or <kbd>M-TAB</kbd>
+(<code>gnats-previous-field</code>) keys.
+</p>
+<p>The field tags are read-only and you cannot edit them nor delete them.
+If you want to &ldquo;remove&rdquo; a field, just make its value empty.
+</p>
+<p>Editing a field value depends on the type of the edited field,
+<a href="dbconfig-file.html#Field-datatypes">Field datatypes</a>.  For text fields, you can edit the value
+directly, assuming you preserve the rule about single-line and
+multi-line values mentioned above.
+</p>
+<p>For enumerated fields, you cannot edit the value directly.  You can
+choose it from the list of the allowed values, either from the menu
+popped up by pressing the middle mouse button or from within
+minibuffer by pressing any key on the field&rsquo;s value.  If the pressed
+key matches any of the allowed field values, that value is put as the
+default value after the minibuffer prompt.  You can also cycle through
+the allowed field values directly in the editing buffer using the
+<code>SPACE</code> key.  Enumerated field values are marked by a special
+face to not confuse you; you must have enabled font lock mode to
+benefit from this feature, <a href="../emacs/Font-Lock.html#Font-Lock">(emacs)Font Lock</a> section &lsquo;Font Lock&rsquo; in <cite>GNU Emacs</cite>.
+</p>
+<p>Some field values can be read-only, you cannot edit them at all.
+</p>
+<a name="index-gnats_002dapply_002dor_002dsubmit"></a>
+<p>Once you have edited the Problem Report as needed, you can send it to
+the server with the <kbd>C-c C-c</kbd> command
+(<code>gnats-apply-or-submit</code>).  Successful submission is reported by
+a message and the buffer modification flag in mode line is cleared.
+Then you can either kill the buffer or continue with further
+modifications.
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002dedit_002dmode_002dhook"></a>
+</dd>
+<dt> <code>gnats-edit-mode-hook</code></dt>
+<dd><p>Hook run when <code>gnats-edit-mode</code> is entered.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-and-databases"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-editing-buffer" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-mode" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Changing-the-database"></a>
+<h3 class="subsection">2.5.6 Changing the database</h3>
+
+<a name="index-gnats_002dchange_002ddatabase-1"></a>
+<p>By default, the Emacs interface connects to the default database,
+<a href="databases-file.html#databases-file">The <code>databases</code> file</a>.  If you want to connect to another database, use
+the command <kbd>M-x gnats-change-database</kbd>.  It will ask you for the
+database name to use, server and port it can be accessed on, and your
+login name.
+</p>
+<a name="index-gnatsd_002c-Emacs"></a>
+<p>If you want to use the <code>gnatsd</code> command, <a href="gnatsd.html#gnatsd">The <small>GNATS</small> network server &ndash; <code>gnatsd</code></a>,
+directly, without connecting to a remote server or the localhost
+connection port, provide your local file system full path to
+<code>gnatsd</code> as the server name.  Port number does not matter in
+this case.
+</p>
+<a name="index-password_002c-Emacs"></a>
+<p>If the database requires a password to allow you the access to it, you
+are prompted for the password the first time you connect to the
+database.  If you provide an invalid password, you cannot connect to
+the database anymore and you have to run the <kbd>M-x
+gnats-change-database</kbd> command again.
+</p>
+
+<hr size="6">
+<a name="dbconfig-mode"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-and-databases" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-Emacs-commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="dbconfig-mode-1"></a>
+<h3 class="subsection">2.5.7 dbconfig mode</h3>
+
+<a name="index-dbconfig-mode"></a>
+<a name="index-gnats_002ddbconfig_002dmode"></a>
+<p>The Emacs interface defines a simple major mode
+<code>gnats-dbconfig-mode</code> for editing &lsquo;<tt>dbconfig</tt>&rsquo; files,
+<a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>.  It defines basic mode attributes like character
+syntax and font lock keywords, it does not define any special commands
+now.
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002ddbconfig_002dmode_002dhook"></a>
+</dd>
+<dt> <code>gnats-dbconfig-mode-hook</code></dt>
+<dd><p>Hook run when <code>gnats-dbconfig-mode</code> is entered.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Other-Emacs-commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#dbconfig-mode" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-customization" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Other-commands"></a>
+<h3 class="subsection">2.5.8 Other commands</h3>
+
+<dl compact="compact">
+<dd><a name="index-unlock_002dpr"></a>
+</dd>
+<dt> <kbd>M-x unlock-pr</kbd></dt>
+<dd><p>Ask for a Problem Report number and unlock that Problem Report.  This
+function is useful if connection to a <small>GNATS</small> server was
+interrupted during an editing operation and further modifications of
+the Problem Report are blocked by a stealth lock.
+</p>
+<a name="index-unlock_002ddatabase"></a>
+</dd>
+<dt> <kbd>M-x unlock-database</kbd></dt>
+<dd><p>Unlock the whole <small>GNATS</small> database.  This function is useful in
+situations similar to when <code>unlock-pr</code> is used.
+</p>
+<a name="index-gnats_002dshow_002dconnection"></a>
+</dd>
+<dt> <kbd>M-x gnats-show-connection</kbd></dt>
+<dd><p>Show the connection buffer associated with the current buffer.  You
+can view the Emacs communication with <small>GNATSD</small> in it.  This is
+useful when something strange happens during the communication with
+the server, e.g. when sending a Problem Report with <kbd>C-c C-c</kbd> from
+a Problem Report editing buffer.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-customization"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Other-Emacs-commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Customization"></a>
+<h3 class="subsection">2.5.9 Customization</h3>
+
+<p>All the user variables can be customized in the customization group
+<code>gnats</code>, <a href="../emacs/Easy-customization.html#Easy-customization">(emacs)Easy customization</a> section &lsquo;Easy customization&rsquo; in <cite>GNU Emacs</cite>.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Other-Emacs-commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

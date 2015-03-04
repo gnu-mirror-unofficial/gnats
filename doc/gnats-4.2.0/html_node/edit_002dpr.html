@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2.3 Editing existing Problem Reports</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2.3 Editing existing Problem Reports">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2.3 Editing existing Problem Reports">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="edit_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Helpful-hints.html#Helpful-hints" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="edit_002dpr-from-the-shell.html#edit_002dpr-from-the-shell" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Editing-existing-Problem-Reports"></a>
+<h2 class="section">2.3 Editing existing Problem Reports</h2>
+<a name="index-using-edit_002dpr"></a>
+<a name="index-invoking-edit_002dpr"></a>
+<a name="index-edit_002dpr"></a>
+
+<p>Use <code>edit-pr</code> to make changes to existing PRs in the database.
+This tool can be invoked both from a shell prompt or from within GNU
+Emacs using &lsquo;<samp>M-x edit-pr</samp>&rsquo;.
+</p>
+<p><code>edit-pr</code> first examines the PR you wish to edit and locks it if it
+is not already locked.  This is to prevent you from editing a PR at the
+same time as another user.  If the PR you wish to edit is already in the
+process of being edited, <code>edit-pr</code> tells you the name of the person
+who owns the lock.
+</p>
+<p>You may edit any non-readonly fields in the database.  We recommend that
+you avoid deleting any information in the <small>TEXT</small> and <small>MULTITEXT</small>
+fields (such as <code>Description</code> and <code>How-To-Repeat</code>
+(see section <a href="Fields.html#Fields">Problem Report format</a>).  We also recommend that you
+record the final solution to the problem in the <code>Fix</code> field for
+future reference.  Note that heavily customized installations of
+<small>GNATS</small> may have differently named fields, and sites using such
+installations should provide their own set of routines and instructions
+regarding how PRs should be treated throughout their life span.
+</p>
+<p>After the PR has been edited, it is then resubmitted to the database,
+and the index is updated (see section <a href="index-file.html#index-file">The <code>index</code> file</a>).
+For information on <code>pr-edit</code>, the main driver for <code>edit-pr</code>,
+see <a href="Internal-utils.html#Internal-utils">Internal utilities</a>.
+</p>
+<p>If you change a field that requires a reason for the change, such as the
+<code>Responsible</code> or <code>State</code> fields in the default configuration,
+<code>edit-pr</code> prompts you to supply a reason for the change.  A message
+is then appended to the <code>Audit-Trail</code> field of the PR with the
+changed values and the change reason.
+</p>
+<p>Depending on how the database is configured, editing various fields in
+the PR may also cause mail to be sent concerning these changes.  In the
+default configuration, any fields that generate &lsquo;<samp>Audit-Trail</samp>&rsquo;
+entries will also cause a copy of the new &lsquo;<samp>Audit-Trail</samp>&rsquo; message to
+be sent.
+</p>
+<p>Mail received at the PR submission email address and recognized by
+<small>GNATS</small> as relating to an existing PR is also appended to the
+&lsquo;<samp>Audit-Trail</samp>&rsquo; field, see <a href="follow_002dup-via-email.html#follow_002dup-via-email">Following up via direct email</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="edit_002dpr-from-the-shell.html#edit_002dpr-from-the-shell">2.3.1 Invoking <code>edit-pr</code> from the shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="follow_002dup-via-email.html#follow_002dup-via-email">2.3.2 Following up via direct email</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Helpful-hints.html#Helpful-hints" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="edit_002dpr-from-the-shell.html#edit_002dpr-from-the-shell" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

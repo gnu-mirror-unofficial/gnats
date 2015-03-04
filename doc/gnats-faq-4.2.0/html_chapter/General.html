@@ -1,0 +1,486 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 1. General Questions</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 1. General Questions">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 1. General Questions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="General"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#What-is-GNATS" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="General-Questions"></a>
+<h1 class="chapter">1. General Questions</h1>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#What-is-GNATS">1.1 What is <small>GNATS</small>?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               A very short overview
+</td></tr>
+<tr><td align="left" valign="top"><a href="#How-to-pronounce-it">1.2 How is &quot;<small>GNATS</small>&quot; pronounced?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Pronunciation: with or without the &quot;G&quot;?
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Get-it">1.3 Where do I get it?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                      Where to get <small>GNATS</small>
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Versions">1.4 What is the latest version?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                    Which versions are available?
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Mailing-Lists">1.5 Is there a Mailing List?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               E-mail discussion lists
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Bug-Reporting">1.6 How do I Report a Bug?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               How to report a bug
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Upgrading">1.7 Upgrading Considerations</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   Considerations for the 3.x to 4.0 transition
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="What-is-GNATS"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#General" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#User-view" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="What-is-GNATS_003f"></a>
+<h2 class="section">1.1 What is <small>GNATS</small>?</h2>
+
+<p><small>GNATS</small> is the <small>GNU</small> problem report management system.  Problem
+report management systems are also known as &quot;bug-tracking systems&quot;,
+though the entries need not be bugs (e.g., think of change requests).
+The acronym stands for &quot;GNats: A Tracking System&quot;.
+</p>
+<p><small>GNATS</small> stores all information about the problem reports at a central
+site, and enables users to access this site by various means, including
+e-mail, WWW, and a network daemon.  New problem reports can be created,
+and existing reports can be queried and updated, by most of these means.
+</p>
+<p><small>GNATS</small> is widely customizable: Of course you can define report
+categories (is the report about tool A or service B?), responsibles
+(who takes care of this report?), and submitters (is it from customer1
+or from the sales department?).  You can also define possible states
+of a report (open, analyzed, closed, etc.) and classes (software bug,
+documentation bug, change request, &hellip;).
+</p>
+<p>Starting with <small>GNATS</small> 4.0, you can define your own custom fields, and
+customize many of the built-in fields; you can have fields automatically
+set to a certain value when another field changes its contents (e.g.,
+set a &quot;Closed-Date&quot; field to the current date when the report goes to
+state &quot;closed&quot;, and unset it when it goes back from &quot;closed&quot; to
+something else), or when the report is changed at all (e.g., to maintain
+a &quot;Last-Modified&quot; field).
+</p>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#User-view">1.1.1 How it Works&mdash;User&rsquo;s View</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                   Short overview for users
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Administrator-View">1.1.2 How it Works&mdash;Administrator&rsquo;s View</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          Short overview for system administrators
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="User-view"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#What-is-GNATS" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Administrator-View" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#What-is-GNATS" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-it-Works_002d_002d_002dUser_0027s-View"></a>
+<h3 class="subsection">1.1.1 How it Works&mdash;User&rsquo;s View</h3>
+
+<p>Users enter their problem reports (PRs) via some front-end.  This
+front-end either directly contacts the <small>GNATS</small> server, or sends the
+report via e-mail.  (The server is available since about version 3.90
+of <small>GNATS</small>).  For an incomplete list of front-ends see <a href="Clients.html#Clients">Client Software</a>.
+</p>
+<p>Some front-ends (like TkGnats, see <a href="Clients.html#TkGnats">TkGnats</a>) are capable of
+contacting several <small>GNATS</small> servers, or several problem report
+databases managed by the same <small>GNATS</small> server.
+</p>
+
+<hr size="6">
+<a name="Administrator-View"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-view" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#How-to-pronounce-it" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#What-is-GNATS" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-it-Works_002d_002d_002dAdministrator_0027s-View"></a>
+<h3 class="subsection">1.1.2 How it Works&mdash;Administrator&rsquo;s View</h3>
+
+<a name="index-starting-gnatsd"></a>
+<a name="index-gnatsd_002c-starting"></a>
+
+<p>The server is started by a super-server like inetd or xinetd.  It has
+a built-in access control mechanism based on IP addresses and
+username/password.
+</p>
+<p>For users sending their PRs via e-mail, some mail addresses must be
+configured.
+</p>
+
+<hr size="6">
+<a name="How-to-pronounce-it"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Administrator-View" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Get-it" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-is-_0022GNATS_0022-pronounced_003f"></a>
+<h2 class="section">1.2 How is &quot;<small>GNATS</small>&quot; pronounced?</h2>
+
+<p>Q: So, How can I pronounce &quot;<small>GNATS</small>?&quot;  Should I pronounce &quot;G&quot;?
+</p>
+<p>It has been reported that the original developers pronounced the &quot;G&quot;.
+(This is unlike the little insect called &quot;gnat&quot; where the &quot;G&quot; is not
+pronounced.)
+</p>
+
+<hr size="6">
+<a name="Get-it"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#How-to-pronounce-it" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Versions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Where-do-I-get-it_003f"></a>
+<h2 class="section">1.3 Where do I get it?</h2>
+
+<p>See the <small>GNATS</small> home page at <a href="http://www.gnu.org/software/gnats/">http://www.gnu.org/software/gnats/</a>.
+</p>
+<p>The current development version is available via CVS only, see the
+<a href="http://savannah.gnu.org/projects/gnats"><small>GNU</small> savannah <small>GNATS</small> project page</a> for the instructions how to get it.
+</p>
+
+<hr size="6">
+<a name="Versions"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Get-it" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Mailing-Lists" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="What-is-the-latest-version_003f"></a>
+<h2 class="section">1.4 What is the latest version?</h2>
+
+<p>The version numbers of <small>GNATS</small> 3.x is somewhat confusing, because
+3.1xx is newer than 3.2.
+</p>
+<p>Version 3.2 was released in 1993 (I never tried it, but it is said to be
+&quot;really broken&quot;).  A lot of new features have been added since 3.2,
+including multiple database support and customized fields.  Among the
+contributed software are comprehensive WWW and Tk based front-ends.
+</p>
+<p>The latest 3.x release is 3.113.1.  It is deprecated due to security
+concerns and lack of maintenance.
+</p>
+<p><small>GNATS</small> 4.0 was released in August 2003, and 4.1 was released in March 2005.
+All released versions are available for download at
+<a href="http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</a>.
+</p>
+
+<hr size="6">
+<a name="Mailing-Lists"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Versions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Bug-Reporting" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Is-there-a-Mailing-List_003f"></a>
+<h2 class="section">1.5 Is there a Mailing List?</h2>
+
+<p>Currently, the following <small>GNATS</small> mailing lists exist:
+</p>
+<ul>
+<li> <a href="http://lists.gnu.org/mailman/listinfo/info-gnats">info-gnats@gnu.org</a>
+This is a low volume moderated mailing lists for <small>GNATS</small> related
+announcements, like new releases or important information.
+
+</li><li> <a href="http://lists.gnu.org/mailman/listinfo/help-gnats">help-gnats@gnu.org</a>
+A low-to-middle volume mailing list where anything related to <small>GNATS</small>
+can be discussed (development, help, questions, suggestions, etc.).
+
+</li><li> <a href="http://lists.gnu.org/mailman/listinfo/bug-gnats">bug-gnats@gnu.org</a>
+Bug reports can be sent there.  Please note that it&rsquo;s preferred to
+submit bug reports via the bug tracking system (see section <a href="#Bug-Reporting">How do I Report a Bug?</a>),
+which automatically mirrors them to this list.
+</li></ul>
+
+<p>Lists that are of interest mainly for the <small>GNATS</small> developers:
+</p>
+<ul>
+<li> <a href="http://lists.gnu.org/mailman/listinfo/gnats-prs">gnats-prs@gnu.org</a>
+Copies of the bug tracking system messages are sent there.  Contrast to
+bug-gnats@gnu.org which only gets new bug reports, this list also gets
+the follow-ups (Whatever goes into <small>GNATS</small>&rsquo; <code>&gt;Audit-Trail:</code> field).
+
+</li><li> <a href="http://lists.gnu.org/mailman/listinfo/gnats-commit">gnats-commit@gnu.org</a>
+CVS commit messages are sent there.
+
+</li><li> <a href="http://lists.gnu.org/mailman/listinfo/gnats-diffs">gnats-diffs@gnu.org</a>
+Diffs of committed files are sent automatically to this address.
+</li></ul>
+
+
+<hr size="6">
+<a name="Bug-Reporting"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Mailing-Lists" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Upgrading" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-do-I-Report-a-Bug_003f"></a>
+<h2 class="section">1.6 How do I Report a Bug?</h2>
+<a name="index-bug-reporting"></a>
+
+<p>Before reporting a bug, make sure it really is a bug, not a simple
+misunderstanding or a misconfiguration.  Please check the manual and
+this FAQ.  You may also ask for help on the
+<a href="http://lists.gnu.org/mailman/listinfo/help-gnats">help-gnats@gnu.org</a>
+mailing list (you may want to search the list archive first; it is
+available from <a href="http://lists.gnu.org/mailman/listinfo/help-gnats">http://lists.gnu.org/mailman/listinfo/help-gnats</a>).
+</p>
+<p>If it is a bug, please report it via the bug tracking system.  It
+resides at
+<a href="http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats">http://bugs.gnu.org/cgi-bin/gnatsweb.pl?database=gnats</a>.
+This is a common bug database for <small>GNATS</small>, Gnatsweb and TkGnats.
+(And, yes, of course: It uses <small>GNATS</small> and Gnatsweb.)
+</p>
+<p>When you report problems concerning <small>GNATS</small> itself, please do not
+forget to provide especially the following information:
+</p>
+<ul>
+<li>
+The <small>GNATS</small> version you are using.  If your problem involves
+Gnatsweb or TkGnats, please also report their versions.
+
+</li><li>
+The <em>exact</em> way how to reproduce the bug.
+
+</li><li>
+Your configuration.
+
+</li><li>
+If you encounter a compilation or build problem, it is especially
+important to mention the operating system, compiler and possibly other
+build utilities you use.
+</li></ul>
+
+<p>Providing this information in the initial report avoids further
+unnecessary communication, saves the limited resources of the
+developers (keep in mind that they are working on <small>GNATS</small> and
+friends in their spare time) and helps to track down and fix the
+problem soon.
+</p>
+
+<hr size="6">
+<a name="Upgrading"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Bug-Reporting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Upgrading-Considerations"></a>
+<h2 class="section">1.7 Upgrading Considerations</h2>
+
+<p>See <a href="../gnats/Upgrading.html#Upgrading">(gnats)Upgrading</a> section &lsquo;Upgrading from older versions&rsquo; in <cite>Keeping Track</cite> for the upgrade process from 3.x to 4.x.
+</p>
+<p>If you are running a 3.x version, <em>please consider upgrading to 4.0.</em>
+There are some security concerns about the 3.1xx code that have gone
+with 4.0.  Furthermore, the <small>GNATS</small> 3 branch is not maintained
+anymore due to lack of capacity.
+</p>
+
+<p>The default format of the reports has not changed during the transition
+from 3.113.1 to 4.0, though you may add more fields to 4.0 reports (and
+leave out others).  The format of the index file is now binary.
+</p>
+
+<p>However, you have to change the e-mail aliases because the meaning of
+the &lsquo;<samp>-d</samp>&rsquo; option to the client programs has changed: It took the
+<em>directory</em> of the <small>GNATS</small> database in 3.1xx, and now takes its
+<em>name</em> (plus, it is now installed into the &lsquo;<tt>libexec</tt>&rsquo; directory
+instead of the &lsquo;<tt>lib</tt>&rsquo; directory).  I.e., you must change the aliases:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"># GNATS 3 aliases:
+ourdb-query: &quot;|/usr/local/lib/gnats/mail-query -d /usr/local/gnats/db2&quot;
+ourdb-bugs:  &quot;|/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -q&quot;
+</pre></td></tr></table>
+<p>to
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample"># GNATS 4 aliases:
+ourdb-query: &quot;|/usr/local/libexec/gnats/mail-query -d ourdb&quot;
+ourdb-bugs:  &quot;|/usr/local/libexec/gnats/queue-pr -d ourdb -q&quot;
+</pre></td></tr></table>
+
+
+<p>Also note that the client/server protocol has changed from 3.1xx to
+4.0; you cannot run clients from one version with the server from the
+other version.
+</p>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

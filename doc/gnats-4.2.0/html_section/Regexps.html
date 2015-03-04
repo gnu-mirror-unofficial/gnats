@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: D. Querying using regular expressions</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: D. Querying using regular expressions">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: D. Querying using regular expressions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Regexps"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Privileged-gnatsd-commands.html#Privileged-gnatsd-commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="dbconfig-recipes.html#dbconfig-recipes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Access-Control.html#Access-Control" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="dbconfig-recipes.html#dbconfig-recipes" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Querying-using-regular-expressions"></a>
+<h1 class="appendix">D. Querying using regular expressions</h1>
+<a name="index-querying-using-regexps"></a>
+<a name="index-regular-expressions"></a>
+<a name="index-syntax-of-regexps"></a>
+
+<p>See also <a href="query_002dpr.html#Query-expressions">Query expressions</a>.
+</p>
+<p>Unfortunately, we do not have room in this manual for a complete
+exposition on regular expressions.  The following is a basic summary of
+some regular expressions you might wish to use.
+</p>
+<p><em>NOTE: When you use query expressions containing regular
+expressions as part of an ordinary query-pr shell command line, you need
+to quote them with <code>''</code>, otherwise the shell will try to interpret
+the special characters used, yielding highly unpredictable results.</em>
+</p>
+<p>See <a href="../regex/Regular-Expression-Syntax.html#Regular-Expression-Syntax">(regex)Regular Expression Syntax</a> section &lsquo;Regular Expression Syntax&rsquo; in <cite>Regex</cite>,
+for details on regular expression syntax.  Also see <a href="../emacs/Regexps.html#Regexps">(emacs)Regexps</a> section &lsquo;Syntax of Regular Expressions&rsquo; in <cite>GNU Emacs Manual</cite>, but beware that the
+syntax for regular expressions in Emacs is slightly different.
+</p>
+<p>All search criteria options to <code>query-pr</code> rely on regular
+expression syntax to construct their search patterns.  For example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'State=&quot;open&quot;' --format full
+</pre></td></tr></table>
+
+<p>matches all PRs whose <code>State</code> values match with the regular
+expression &lsquo;<samp>open</samp>&rsquo;.
+</p>
+<p>We can substitute the expression &lsquo;<samp>o</samp>&rsquo; for &lsquo;<samp>open</samp>&rsquo;, according
+to <small>GNU</small> regular expression syntax.  This matches all values of
+<code>State</code> which begin with the letter &lsquo;<samp>o</samp>&rsquo;.
+</p>
+<p>We see that
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'State=&quot;o&quot;' --format full
+</pre></td></tr></table>
+
+<p>is equivalent to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'State=&quot;open&quot;' --format full
+</pre></td></tr></table>
+
+<p>in this case, since the only value for <code>State</code> which matches
+the expression &lsquo;<samp>o</samp>&rsquo; in a standard installation is &lsquo;<samp>open</samp>&rsquo;.
+&lsquo;<samp>State=&quot;o&quot;</samp>&rsquo; also matches &lsquo;<samp>o</samp>&rsquo;, &lsquo;<samp>oswald</samp>&rsquo;, and even
+&lsquo;<samp>oooooo</samp>&rsquo;, but none of those values are valid states for a Problem
+Report in default <small>GNATS</small> installations.
+</p>
+<p>We can also use the expression operator &lsquo;<samp>|</samp>&rsquo; to signify a logical
+<code>OR</code>, such that
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'State=&quot;o|a&quot;' --format full
+</pre></td></tr></table>
+
+<p>matches all &lsquo;<samp>open</samp>&rsquo; or &lsquo;<samp>analyzed</samp>&rsquo; Problem Reports.
+</p>
+<p>Regular expression syntax considers a regexp token surrounded with
+parentheses, as in &lsquo;<samp>(<var>regexp</var>)</samp>&rsquo;, to be a <em>group</em>.  This
+means that &lsquo;<samp>(ab)*</samp>&rsquo; matches any number (including zero) of
+contiguous instances of &lsquo;<samp>ab</samp>&rsquo;.  Matches include &lsquo;<samp></samp>&rsquo;, &lsquo;<samp>ab</samp>&rsquo;,
+and &lsquo;<samp>ababab</samp>&rsquo;.
+</p>
+<p>Regular expression syntax considers a regexp token surrounded with
+square brackets, as in &lsquo;<samp>[<var>regexp</var>]</samp>&rsquo;, to be a <em>list</em>.
+This means that &lsquo;<samp>Char[(ley)(lene)(broiled)</samp>&rsquo; matches any of the
+words &lsquo;<samp>Charley</samp>&rsquo;, &lsquo;<samp>Charlene</samp>&rsquo;, or &lsquo;<samp>Charbroiled</samp>&rsquo; (case is
+significant; &lsquo;<samp>charbroiled</samp>&rsquo; is not matched).
+</p>
+<p>Using groups and lists, we see that
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'Category=&quot;gcc|gdb|gas&quot;' --format full
+</pre></td></tr></table>
+
+<p>is equivalent to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'Category=&quot;g(cc|db|as)&quot;' --format full
+</pre></td></tr></table>
+
+<p>and is also very similar to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'Category=&quot;g[cda]&quot;' --format full
+</pre></td></tr></table>
+
+<p>with the exception that this last search matches any values which begin
+with &lsquo;<samp>gc</samp>&rsquo;, &lsquo;<samp>gd</samp>&rsquo;, or &lsquo;<samp>ga</samp>&rsquo;.
+</p>
+<p>The &lsquo;<samp>.</samp>&rsquo; character is known as a <em>wildcard</em>.  &lsquo;<samp>.</samp>&rsquo; matches
+on any single character.  &lsquo;<samp>*</samp>&rsquo; matches the previous character
+(except newlines), list, or group any number of times, including zero.
+Therefore, we can understand &lsquo;<samp>.*</samp>&rsquo; to mean &ldquo;match zero or more
+instances of any character.&rdquo;
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'State=&quot;.*a&quot;' --format full
+</pre></td></tr></table>
+
+<p>matches all values for <code>State</code> which contain an &lsquo;<samp>a</samp>&rsquo;.  (These
+include &lsquo;<samp>analyzed</samp>&rsquo; and &lsquo;<samp>feedback</samp>&rsquo;.)
+</p>
+<p>Another way to understand what wildcards do is to follow them on their
+search for matching text.  By our syntax, &lsquo;<samp>.*</samp>&rsquo; matches any
+character any number of times, including zero.  Therefore, &lsquo;<samp>.*a</samp>&rsquo;
+searches for any group of characters which end with &lsquo;<samp>a</samp>&rsquo;, ignoring
+the rest of the field.  &lsquo;<samp>.*a</samp>&rsquo; matches &lsquo;<samp>analyzed</samp>&rsquo; (stopping at
+the first &lsquo;<samp>a</samp>&rsquo;) as well as &lsquo;<samp>feedback</samp>&rsquo;.
+</p>
+<p><em>Note:</em> When using &lsquo;<samp>fieldtype:Text</samp>&rsquo; or
+&lsquo;<samp>fieldtype:Multitext</samp>&rsquo; (see section <a href="query_002dpr.html#Query-expressions">Query expressions</a>), you do not have
+to specify the token &lsquo;<samp>.*</samp>&rsquo; at the beginning of your expression to
+match the entire field.  For the technically minded, this is because
+these queries use &lsquo;<samp>re_search</samp>&rsquo; rather than &lsquo;<samp>re_match</samp>&rsquo;.
+&lsquo;<samp>re_match</samp>&rsquo; <em>anchors</em> the search at the beginning of the field,
+while &lsquo;<samp>re_search</samp>&rsquo; does not anchor the search.
+</p>
+<p>For example, to search in the <code>&gt;Description:</code> field for the text
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">The defrobulator component returns a nil value.
+</pre></td></tr></table>
+
+<p>we can use
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'fieldtype:Multitext=&quot;defrobulator.*nil&quot;' --format full
+</pre></td></tr></table>
+
+<p>To also match newlines, we have to include the expression &lsquo;<samp>(.|^M)</samp>&rsquo;
+instead of just a dot (&lsquo;<samp>.</samp>&rsquo;).  &lsquo;<samp>(.|^M)</samp>&rsquo; matches &ldquo;any single
+character except a newline (&lsquo;<samp>.</samp>&rsquo;) <em>or</em> (&lsquo;<samp>|</samp>&rsquo;) any newline
+(&lsquo;<samp>^M</samp>&rsquo;).&rdquo;  This means that to search for the text
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">The defrobulator component enters the bifrabulator routine
+and returns a nil value.
+</pre></td></tr></table>
+
+<p>we must use
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'fieldtype:Multitext=&quot;defrobulator(.|^M)*nil&quot;'
+         --format full
+</pre></td></tr></table>
+
+<p>To generate the newline character &lsquo;<samp>^M</samp>&rsquo;, type the following
+depending on your shell:
+</p>
+<dl compact="compact">
+<dt> <code>csh</code></dt>
+<dd><p>&lsquo;<samp><em>control</em>-V <em>control</em>-M</samp>&rsquo;
+</p>
+</dd>
+<dt> <code>tcsh</code></dt>
+<dd><p>&lsquo;<samp><em>control</em>-V <em>control</em>-J</samp>&rsquo;
+</p>
+</dd>
+<dt> <code>sh (<em>or</em> bash)</code></dt>
+<dd><p>Use the &lt;RETURN&gt; key, as in
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">(.|
+)
+</pre></td></tr></table>
+</dd>
+</dl>
+
+<p>Again, see <a href="../regex/Regular-Expression-Syntax.html#Regular-Expression-Syntax">(regex)Regular Expression Syntax</a> section &lsquo;Regular Expression Syntax&rsquo; in <cite>Regex</cite>, for a much more complete discussion on regular
+expression syntax.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Privileged-gnatsd-commands.html#Privileged-gnatsd-commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="dbconfig-recipes.html#dbconfig-recipes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Access-Control.html#Access-Control" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="dbconfig-recipes.html#dbconfig-recipes" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

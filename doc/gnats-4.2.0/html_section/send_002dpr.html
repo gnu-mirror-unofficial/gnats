@@ -1,0 +1,538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2.2 Submitting Problem Reports</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2.2 Submitting Problem Reports">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2.2 Submitting Problem Reports">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="send_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Environment.html#Environment" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr-from-the-shell" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Submitting-Problem-Reports"></a>
+<h2 class="section">2.2 Submitting Problem Reports</h2>
+<a name="index-send_002dpr"></a>
+<a name="index-using-send_002dpr"></a>
+<a name="index-invoking-send_002dpr"></a>
+<a name="index-reporting-problems-with-send_002dpr"></a>
+
+<p>Use <code>send-pr</code> to submit Problem Reports to the database.
+<code>send-pr</code> is a shell script which composes a template for
+submitters to complete.
+</p>
+<p>You can invoke <code>send-pr</code> from a shell prompt, or from within
+<small>GNU</small> Emacs using &lsquo;<samp>M-x send-pr</samp>&rsquo; (see section <a href="Emacs.html#Emacs-submitting">Submitting Problem Reports from Emacs</a>.)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#PR-template">2.2.3 The Problem Report template</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#send_002dpr-in-Emacs">2.2.2 Using <code>send-pr</code> from within Emacs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          Using send-pr from within Emacs
+</td></tr>
+<tr><td align="left" valign="top"><a href="#send_002dpr-from-the-shell">2.2.1 Invoking <code>send-pr</code> from the shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    Invoking send-pr from the shell
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Submitting-via-e_002dmail">2.2.4 Submitting a Problem Report via direct e-mail</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#Helpful-hints">2.2.5 Helpful hints</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="send_002dpr-from-the-shell"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#send_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr-in-Emacs" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Invoking-send_002dpr-from-the-shell"></a>
+<h3 class="subsection">2.2.1 Invoking <code>send-pr</code> from the shell</h3>
+<a name="index-command-line-options"></a>
+<a name="index-invoking-send_002dpr-from-the-shell"></a>
+<a name="index-shell-invocation"></a>
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">send-pr [ -b | --batch ]
+        [ -d <var>database</var> | --database <var>database</var> ]
+        [ -f <var>file</var> | --file <var>file</var> ]
+        [ -p | --print ] [ --request-id ]
+        [ -s <var>severity</var> | --severity <var>severity</var> ]
+        [ -V | --version ] [ -h | --help ]
+</pre></td></tr></table>
+
+<p>Invoking <code>send-pr</code> with no options assumes that you want to
+submit to the local <small>GNATS</small> database named <var>default</var> and calls
+the editor named in your environment variable <code>EDITOR</code> on a PR
+template for this database.
+</p>
+<dl compact="compact">
+<dt> <code>-b</code></dt>
+<dt> <code>--batch</code></dt>
+<dd><p>Suppresses printing of most of the messages <code>send-pr</code> usually
+prints while running.
+</p>
+</dd>
+<dt> <code>-d <var>database</var>, --database <var>database</var></code></dt>
+<dd><p>Specifies the database to which the PR is to be submitted; if no
+database is specified, the local database named <code>default</code> is
+assumed.  This option overrides the database specified in the
+<code>GNATSDB</code> environment variable.  <var>database</var> can also be set
+to a remote database by using the format for <code>GNATSDB</code> described
+in <a href="Environment.html#Environment">Environment variables and <small>GNATS</small> tools</a>.
+</p>
+</dd>
+<dt> <code>-f <var>problem-report</var></code></dt>
+<dt> <code>--file <var>problem-report</var></code></dt>
+<dd><p>Specifies a file, <var>problem-report</var>, where a completed Problem
+Report or a PR template exists.  <code>send-pr</code> verifies that the
+contents of the file constitute a valid PR and asks you if you want to
+edit it or send it directly.  If the PR text is invalid you will be
+told what is wrong and be given the option to edit it. If
+<var>problem-report</var> is &lsquo;<samp>-</samp>&rsquo;, <code>send-pr</code> reads from
+standard input.
+</p>
+</dd>
+<dt> <code>-p</code></dt>
+<dt> <code>--print</code></dt>
+<dd><p>Displays the PR template for the specified database, or if the
+<code>-d</code> or <code>--database</code> options aren&rsquo;t specified, print the
+template for the local <var>default</var> database.  No PR is submitted.
+</p>
+</dd>
+<dt> <code>--request-id</code></dt>
+<dd><p>Sends a request for a <code>Submitter-Id</code> to the Support Site.
+</p>
+</dd>
+<dt> <code>-s <var>severity</var></code></dt>
+<dt> <code>--severity <var>severity</var></code></dt>
+<dd><a name="index-send_002dpr-fields"></a>
+<p>Sets the initial value of the <code>Severity</code> field to <var>severity</var>.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Displays the <code>send-pr</code> version number and a usage summary.  No mail
+is sent.
+</p>
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Displays a usage summary for <code>send-pr</code>.  No mail is sent.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="send_002dpr-in-Emacs"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#send_002dpr-from-the-shell" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#PR-template" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Using-send_002dpr-from-within-Emacs"></a>
+<h3 class="subsection">2.2.2 Using <code>send-pr</code> from within Emacs</h3>
+<a name="index-using-send_002dpr-from-within-Emacs"></a>
+<a name="index-send_002dpr-within-Emacs"></a>
+<a name="index-invoking-send_002dpr-from-Emacs"></a>
+<a name="index-interactive-interface"></a>
+
+<p>You can use an interactive <code>send-pr</code> interface from within <small>GNU</small>
+Emacs to fill out your Problem Report.  We recommend that you
+familiarize yourself with Emacs before using this feature
+(see <a href="../emacs/Introduction.html#Introduction">(emacs)Introduction</a> section &lsquo;Introduction&rsquo; in <cite>GNU Emacs</cite>).
+</p>
+<p>Call <code>send-pr</code> with &lsquo;<samp>M-x send-pr</samp>&rsquo;.<a name="DOCF1" href="gnats_fot.html#FOOT1">(1)</a>  <code>send-pr</code> responds
+with a preconfigured Problem Report template.  The Emacs interface is
+described in more detail in a separate section, See section <a href="Emacs.html#Emacs">The Emacs interface to <small>GNATS</small></a>.
+</p>
+<hr size="6">
+<a name="PR-template"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#send_002dpr-in-Emacs" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Submitting-via-e_002dmail" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-Problem-Report-template"></a>
+<h3 class="subsection">2.2.3 The Problem Report template</h3>
+
+<p>Invoking <code>send-pr</code> presents a PR <em>template</em> with a number of
+fields already filled in with default values for the database you are
+submitting to.  Complete the template as thoroughly as possible to
+make a useful bug report.  Submit only one bug with each PR.
+</p>
+<a name="index-template"></a>
+<p>A template consists of three sections:
+</p>
+<ul>
+<li> Comments
+</li><li> Mail Header
+</li><li> <small>GNATS</small> fields
+</li></ul>
+
+<p>The <strong>Comments section</strong> at the top of the template contains basic
+instructions for completing the Problem Report, as well as a list of
+valid entries for the <code>Category</code> field.  One (and only one) of
+these values should be placed in the <code>Category</code> field further down
+in the Problem Report.
+</p>
+<a name="index-template-comment-section"></a>
+<a name="index-comment-section-in-the-PR-template"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">SEND-PR: -*- send-pr  -*-
+SEND-PR: Lines starting with `SEND-PR' will be removed
+SEND-PR: automatically as well as all comments (the text 
+SEND-PR: below enclosed in `&lt;' and `&gt;').
+SEND-PR: 
+SEND-PR: Please consult the document `Reporting Problems 
+SEND-PR: Using send-pr' if you are not sure how to fill out
+SEND-PR: a problem report.
+SEND-PR:
+SEND-PR: Choose from the following categories:
+</pre></td></tr></table>
+
+
+<p>The comments lines are all preceded by the string &lsquo;<samp>SEND-PR:</samp>&rsquo; and
+are erased automatically when the PR is submitted.  The instructional
+comments within &lsquo;<samp>&lt;</samp>&rsquo; and &lsquo;<samp>&gt;</samp>&rsquo; are also removed.  (Only these
+comments are removed; lines you provide that happen to have those
+characters in them, such as examples of shell-level redirection, are not
+affected.)
+</p>
+<p>The <strong>Mail Header</strong> section of the template contains a standard
+mail header constructed by <code>send-pr</code>.  <code>send-pr</code> can be set up
+to submit PRs by e-mail or by speaking directly to the <small>GNATS</small>
+server, but since this header is part of the standard format of Problem
+Reports, <code>send-pr</code> includes it even when it is set up to speak
+directly to the server.
+</p>
+<a name="index-mail-header-section"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">To: <var>PR submission address</var>
+Subject: <em>complete this field</em>
+From: <var>your-login</var>@<var>your-site</var>
+Reply-To: <var>your-login</var>@<var>your-site</var>
+X-send-pr-version: send-pr 4.2.0
+</pre></td></tr></table>
+
+<p><code>send-pr</code> automatically completes all the mail header fields except
+the <code>Subject</code> line with default values.  (See section <a href="Fields.html#Fields">Problem Report format</a>.)
+</p>
+<p>The <strong><small>GNATS</small> fields</strong> below the mail header form the bulk of a
+<small>GNATS</small> Problem Report.
+</p>
+<p>Each field is either automatically completed with valid information
+(such as your <code>Submitter-Id</code>) or contains a one-line instruction
+specifying the information that field requires in order to be correct.
+For example, the <code>Confidential</code> field expects a value of &lsquo;<samp>yes</samp>&rsquo;
+or &lsquo;<samp>no</samp>&rsquo;, and the answer must fit on one line; similarly, the
+<code>Synopsis</code> field expects a short synopsis of the problem, which
+must also fit on one line.  Fill out the fields as completely as
+possible.  See section <a href="#Helpful-hints">Helpful hints</a>, for suggestions as to
+what kinds of information to include.
+</p>
+<p>The mechanisms <code>send-pr</code> uses to fill in default values is as
+follows: Your preconfigured <code>Submitter-Id</code> is taken from the local
+&lsquo;<tt>send-pr.conf</tt>&rsquo; configuration file.  <code>send-pr</code> will set the
+<code>Originator</code> field to the value of the <code>NAME</code> environment
+variable if it has been set; similarly, <code>Organization</code> will be set
+to the value of <code>ORGANIZATION</code>.  If these variables aren&rsquo;t set in
+you environment, <code>send-pr</code> uses the values set in the local
+&lsquo;<tt>send-pr.conf</tt>&rsquo; configuration file, if that exists.  If not, these
+values are left blank in the template.  <code>send-pr</code> also attempts to
+find out some information about your system and architecture, and places
+this information in the <code>Environment</code> field if it finds any.
+</p>
+<p>In this example, words in <em>italics</em> are filled in with
+pre-configured information:
+</p>
+<a name="index-send_002dpr-fields-1"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">&gt;Submitter-Id: <em>your submitter-id</em>
+&gt;Originator:   <em>your name here</em>
+&gt;Organization:  
+    <em>your organization</em>
+&gt;Confidential:&lt;[ yes | no ] (one line)&gt;
+&gt;Synopsis:    &lt;synopsis of the problem (one line)&gt;
+&gt;Severity:    &lt;[non-critical | serious | critical](one line)&gt;
+&gt;Priority:    &lt;[ low | medium | high ] (one line)&gt;
+&gt;Category:    &lt;name of the product (one line)&gt;
+&gt;Class:       &lt;[sw-bug | doc-bug | change-request | support]&gt;
+&gt;Release:     &lt;release number (one line)&gt;
+&gt;Environment:
+         &lt;machine, os, target, libraries (multiple lines)&gt;
+
+&gt;Description:
+       &lt;precise description of the problem (multiple lines)&gt;
+&gt;How-To-Repeat:
+       &lt;code/input/activities to reproduce (multiple lines)&gt;
+&gt;Fix:
+       &lt;how to correct or work around the problem, if known 
+        (multiple lines)&gt;
+</pre></td></tr></table>
+
+<a name="index-Submitter_002dId-field-1"></a>
+<a name="index-_003eSubmitter_002dId"></a>
+<p>When you finish editing the Problem Report, <code>send-pr</code> validates the
+contents and if it looks OK either submits it directly to the
+<small>GNATS</small> server or submits it by mail to the address named in the
+<code>To</code> field in the mail header.
+</p>
+<a name="index-bad-Problem-Reports"></a>
+<a name="index-errors"></a>
+<a name="index-invalid-Problem-Reports"></a>
+<p>If your PR contains one or more invalid field values, <code>send-pr</code>
+places the PR in a temporary file named &lsquo;<tt>/tmp/pbad<var>nnnn</var></tt>&rsquo; on
+your machine.  <var>nnnn</var> is the process identification number given
+to your current <code>send-pr</code> session.  If you are running
+<code>send-pr</code> from the shell, you are prompted as to whether or not
+you wish to try editing the same Problem Report again.  If you are
+running <code>send-pr</code> from Emacs, the Problem Report is placed in the
+buffer &lsquo;<samp>*gnats-send*</samp>&rsquo;; you can edit this file and then submit
+it with <kbd>C-c C-c</kbd>.
+</p>
+<hr size="6">
+<a name="Submitting-via-e_002dmail"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#PR-template" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Helpful-hints" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Submitting-a-Problem-Report-via-direct-e_002dmail"></a>
+<h3 class="subsection">2.2.4 Submitting a Problem Report via direct e-mail</h3>
+<a name="index-Direct-e_002dmail"></a>
+<a name="index-Submitting-a-PR-via-e_002dmail"></a>
+<p>In addition to using <code>send-pr</code>, there is another way to submit a
+problem report.  You can simply send an e-mail message to the PR
+submission e-mail address of the support site (This address should be
+published by the support site.)
+</p>
+<p>When you send unformatted e-mail to this address, <small>GNATS</small> processes
+the message as a new problem report, filling in as many fields from
+defaults as it can:
+</p>
+<dl compact="compact">
+<dt> <code>Synopsis</code></dt>
+<dd><p>The <code>Synopsis</code> field is filled in by the <code>Subject</code> header of
+the e-mail message.
+</p>
+</dd>
+<dt> <code>Submitter ID</code></dt>
+<dd><p><small>GNATS</small> will try to derive the <code>Submitter</code> field from the address
+in the <code>From</code> header of the e-mail.
+</p>
+</dd>
+<dt> <code>Description</code></dt>
+<dd><p>All of the text in the body of the e-mail message is put into the 
+<code>Description</code> field.
+</p></dd>
+</dl>
+
+<p>Other fields, such as <code>Category</code>, <code>Version</code>, <code>Severity</code>,
+etc. are set to default values as defined by the <small>GNATS</small> administrator.
+</p>
+<hr size="6">
+<a name="Helpful-hints"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Submitting-via-e_002dmail" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="edit_002dpr.html#edit_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Helpful-hints-1"></a>
+<h3 class="subsection">2.2.5 Helpful hints</h3>
+<a name="index-helpful-hints"></a>
+<a name="index-Using-and-Porting-GNU-CC"></a>
+<a name="index-effective-problem-reporting"></a>
+<a name="index-kinds-of-helpful-information"></a>
+<a name="index-information-to-submit"></a>
+<a name="index-Report-all-the-facts_0021"></a>
+
+<p>There is no orthodox standard for submitting effective bug reports,
+though you might do well to consult the section on submitting bugs for
+<small>GNU</small> <code>gcc</code> in <a href="../gcc/Bugs.html#Bugs">(gcc)Bugs</a> section &lsquo;Reporting Bugs&rsquo; in <cite>Using and Porting GNU CC</cite>, by Richard Stallman.  This section contains
+instructions on what kinds of information to include and what kinds of
+mistakes to avoid.
+</p>
+<p>In general, common sense (assuming such an animal exists) dictates the
+kind of information that would be most helpful in tracking down and
+resolving problems in software.  
+</p><ul>
+<li> 
+Include anything <em>you</em> would want to know if you were looking at
+the report from the other end.  There&rsquo;s no need to include every minute
+detail about your environment, although anything that might be different
+from someone else&rsquo;s environment should be included (your path, for
+instance).
+
+</li><li> 
+Narratives are often useful, given a certain degree of restraint.  If a
+person responsible for a bug can see that A was executed, and then B and
+then C, knowing that sequence of events might trigger the realization of
+an intermediate step that was missing, or an extra step that might have
+changed the environment enough to cause a visible problem.  Again,
+restraint is always in order (&ldquo;I set the build running, went to get a
+cup of coffee (Columbian, cream but no sugar), talked to Sheila on the
+phone, and then THIS happened&hellip;&rdquo;) but be sure to include anything
+relevant.
+
+</li><li> 
+Richard Stallman writes, &ldquo;The fundamental principle of reporting bugs
+usefully is this: <strong>report all the facts</strong>.  If you are not sure
+whether to state a fact or leave it out, state it!&rdquo;  This holds true
+across all problem reporting systems, for computer software or social
+injustice or motorcycle maintenance.  It is especially important in the
+software field due to the major differences seemingly insignificant
+changes can make (a changed variable, a missing semicolon, etc.).
+
+</li><li>
+Submit only <em>one</em> problem with each Problem Report.  If you have
+multiple problems, use multiple PRs.  This aids in tracking each problem
+and also in analyzing the problems associated with a given program.
+
+</li><li>
+It never hurts to do a little research to find out if the bug you&rsquo;ve
+found has already been reported.  Most software releases contain lists
+of known bugs in the Release Notes which come with the software; see
+your system administrator if you don&rsquo;t have a copy of these.
+
+</li><li>
+The more closely a PR adheres to the standard format, the less
+interaction is required by a database administrator to route the
+information to the proper place.  Keep in mind that anything that
+requires human interaction also requires time that might be better spent
+in actually fixing the problem.  It is therefore in everyone&rsquo;s best
+interest that the information contained in a PR be as correct as
+possible (in both format and content) at the time of submission.
+</li></ul>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Submitting-via-e_002dmail" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="edit_002dpr.html#edit_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

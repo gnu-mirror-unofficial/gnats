@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: B.1 Description of gnatsd</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: B.1 Description of gnatsd">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: B.1 Description of gnatsd">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Description-of-gnatsd"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd-options.html#gnatsd-options" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Access-Control.html#Access-Control" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Description-of-gnatsd-1"></a>
+<h2 class="section">B.1 Description of <code>gnatsd</code></h2>
+<a name="index-gnatsd-description"></a>
+
+<p>The <code>gnatsd</code> network daemon is used to service remote <small>GNATS</small>
+requests such as querying PRs, PR creation, deletion, and editing, and
+miscellaneous database queries.  It uses a simple ASCII-based command
+protocol (similar to SMTP or POP3) for communicating with remote
+clients.
+</p>
+<p>It also provides a security model based either on IP-based
+authentication (generally considered very weak) or username/passwords,
+where passwords may be in cleartext, UNIX crypt or MD5 hash format.
+Access through <code>gnatsd</code> is granted according to certain predefined
+<em>access levels</em>.  Access levels are further discussed in <a href="Access-Control.html#Access-Control">Controlling access to databases</a>.  It should be emphasized that
+security has not been a focus of development until now, but future
+versions are expected to address this more thoroughly.
+</p>
+<p>All of the <small>GNATS</small> clients are capable of communicating via the <small>GNATS</small>
+remote protocol to perform their functions.
+</p>
+<p><code>gnatsd</code> is usually started from the inetd facility and should run as
+the <code>gnats</code> user (the actual username of this user is configurable
+during installation, see section <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a> for details.)
+</p>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd-options.html#gnatsd-options" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Access-Control.html#Access-Control" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

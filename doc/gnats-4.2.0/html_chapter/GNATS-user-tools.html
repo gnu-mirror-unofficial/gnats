@@ -1,0 +1,2072 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2. The GNATS User Tools</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2. The GNATS User Tools">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2. The GNATS User Tools">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="GNATS-user-tools"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Introduction.html#Problem-Report-fields" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Environment" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-GNATS-User-Tools"></a>
+<h1 class="chapter">2. The <small>GNATS</small> User Tools</h1>
+<a name="index-usage-for-the-GNATS-user-tools"></a>
+<a name="index-invoking-the-GNATS-user-tools"></a>
+
+<p>This chapter describes the user tools distributed with <small>GNATS</small>.  The
+<small>GNATS</small> administrative and internal tools are described in
+<a href="Management.html#Management"><small>GNATS</small> Administration</a>. The user tools provide
+facilities for initial submission, querying and editing of Problem
+Reports:
+</p>
+<dl compact="compact">
+<dt> <code>send-pr</code></dt>
+<dd><p>Used by anyone who has a problem with a body of work to submit a report
+of the problem to the maintainers of that work
+(see section <a href="#send_002dpr">Submitting Problem Reports</a>).
+</p>
+</dd>
+<dt> <code>query-pr</code></dt>
+<dd><p>Used to query the <small>GNATS</small> database (see section <a href="#query_002dpr">Querying the database</a>).
+</p>
+</dd>
+<dt> <code>edit-pr</code></dt>
+<dd><p>Used to edit Problem Reports (to record new data, to change the
+responsible party, etc.) (see section <a href="#edit_002dpr">Editing existing Problem Reports</a>).
+</p></dd>
+</dl>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Environment">2.1 Environment variables and <small>GNATS</small> tools</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">       Environment variables and GNATS tools
+</td></tr>
+<tr><td align="left" valign="top"><a href="#send_002dpr">2.2 Submitting Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#edit_002dpr">2.3 Editing existing Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#query_002dpr">2.4 Querying the database</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs">2.5 The Emacs interface to <small>GNATS</small></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             The Emacs interface
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Environment"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Environment-variables-and-GNATS-tools"></a>
+<h2 class="section">2.1 Environment variables and <small>GNATS</small> tools</h2>
+<a name="index-environment-variables-and-GNATS-tools"></a>
+<a name="index-GNATSDB"></a>
+
+<p>All the <small>GNATS</small> user tools honor the <code>GNATSDB</code> environment
+variable which is used to determine which database to use.  For a local
+database, it contains the name of the database to access.
+</p>
+<p>For network access via gnatsd, it contains a colon-separated list of
+strings that describe the remote database in the form
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smalldisplay"><var>server:port:databasename:username:password</var>
+</pre></td></tr></table>
+
+<p>Any of the fields may be omitted except for <var>server</var>, but at least
+one colon must appear; otherwise, the value is assumed to be the name of
+a local database.
+</p>
+<p>If <code>GNATSDB</code> is not set and no command-line options are used to
+specify the database, it is assumed that the database is local and that
+its name is &lsquo;<samp>default</samp>&rsquo;.
+</p>
+<hr size="6">
+<a name="send_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Environment" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr-from-the-shell" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Submitting-Problem-Reports"></a>
+<h2 class="section">2.2 Submitting Problem Reports</h2>
+<a name="index-send_002dpr"></a>
+<a name="index-using-send_002dpr"></a>
+<a name="index-invoking-send_002dpr"></a>
+<a name="index-reporting-problems-with-send_002dpr"></a>
+
+<p>Use <code>send-pr</code> to submit Problem Reports to the database.
+<code>send-pr</code> is a shell script which composes a template for
+submitters to complete.
+</p>
+<p>You can invoke <code>send-pr</code> from a shell prompt, or from within
+<small>GNU</small> Emacs using &lsquo;<samp>M-x send-pr</samp>&rsquo; (see section <a href="#Emacs-submitting">Submitting Problem Reports from Emacs</a>.)
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#PR-template">2.2.3 The Problem Report template</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#send_002dpr-in-Emacs">2.2.2 Using <code>send-pr</code> from within Emacs</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">          Using send-pr from within Emacs
+</td></tr>
+<tr><td align="left" valign="top"><a href="#send_002dpr-from-the-shell">2.2.1 Invoking <code>send-pr</code> from the shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    Invoking send-pr from the shell
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Submitting-via-e_002dmail">2.2.4 Submitting a Problem Report via direct e-mail</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#Helpful-hints">2.2.5 Helpful hints</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="send_002dpr-from-the-shell"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#send_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr-in-Emacs" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Invoking-send_002dpr-from-the-shell"></a>
+<h3 class="subsection">2.2.1 Invoking <code>send-pr</code> from the shell</h3>
+<a name="index-command-line-options"></a>
+<a name="index-invoking-send_002dpr-from-the-shell"></a>
+<a name="index-shell-invocation"></a>
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">send-pr [ -b | --batch ]
+        [ -d <var>database</var> | --database <var>database</var> ]
+        [ -f <var>file</var> | --file <var>file</var> ]
+        [ -p | --print ] [ --request-id ]
+        [ -s <var>severity</var> | --severity <var>severity</var> ]
+        [ -V | --version ] [ -h | --help ]
+</pre></td></tr></table>
+
+<p>Invoking <code>send-pr</code> with no options assumes that you want to
+submit to the local <small>GNATS</small> database named <var>default</var> and calls
+the editor named in your environment variable <code>EDITOR</code> on a PR
+template for this database.
+</p>
+<dl compact="compact">
+<dt> <code>-b</code></dt>
+<dt> <code>--batch</code></dt>
+<dd><p>Suppresses printing of most of the messages <code>send-pr</code> usually
+prints while running.
+</p>
+</dd>
+<dt> <code>-d <var>database</var>, --database <var>database</var></code></dt>
+<dd><p>Specifies the database to which the PR is to be submitted; if no
+database is specified, the local database named <code>default</code> is
+assumed.  This option overrides the database specified in the
+<code>GNATSDB</code> environment variable.  <var>database</var> can also be set
+to a remote database by using the format for <code>GNATSDB</code> described
+in <a href="#Environment">Environment variables and <small>GNATS</small> tools</a>.
+</p>
+</dd>
+<dt> <code>-f <var>problem-report</var></code></dt>
+<dt> <code>--file <var>problem-report</var></code></dt>
+<dd><p>Specifies a file, <var>problem-report</var>, where a completed Problem
+Report or a PR template exists.  <code>send-pr</code> verifies that the
+contents of the file constitute a valid PR and asks you if you want to
+edit it or send it directly.  If the PR text is invalid you will be
+told what is wrong and be given the option to edit it. If
+<var>problem-report</var> is &lsquo;<samp>-</samp>&rsquo;, <code>send-pr</code> reads from
+standard input.
+</p>
+</dd>
+<dt> <code>-p</code></dt>
+<dt> <code>--print</code></dt>
+<dd><p>Displays the PR template for the specified database, or if the
+<code>-d</code> or <code>--database</code> options aren&rsquo;t specified, print the
+template for the local <var>default</var> database.  No PR is submitted.
+</p>
+</dd>
+<dt> <code>--request-id</code></dt>
+<dd><p>Sends a request for a <code>Submitter-Id</code> to the Support Site.
+</p>
+</dd>
+<dt> <code>-s <var>severity</var></code></dt>
+<dt> <code>--severity <var>severity</var></code></dt>
+<dd><a name="index-send_002dpr-fields"></a>
+<p>Sets the initial value of the <code>Severity</code> field to <var>severity</var>.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Displays the <code>send-pr</code> version number and a usage summary.  No mail
+is sent.
+</p>
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Displays a usage summary for <code>send-pr</code>.  No mail is sent.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="send_002dpr-in-Emacs"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#send_002dpr-from-the-shell" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#PR-template" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Using-send_002dpr-from-within-Emacs"></a>
+<h3 class="subsection">2.2.2 Using <code>send-pr</code> from within Emacs</h3>
+<a name="index-using-send_002dpr-from-within-Emacs"></a>
+<a name="index-send_002dpr-within-Emacs"></a>
+<a name="index-invoking-send_002dpr-from-Emacs"></a>
+<a name="index-interactive-interface"></a>
+
+<p>You can use an interactive <code>send-pr</code> interface from within <small>GNU</small>
+Emacs to fill out your Problem Report.  We recommend that you
+familiarize yourself with Emacs before using this feature
+(see <a href="../emacs/Introduction.html#Introduction">(emacs)Introduction</a> section &lsquo;Introduction&rsquo; in <cite>GNU Emacs</cite>).
+</p>
+<p>Call <code>send-pr</code> with &lsquo;<samp>M-x send-pr</samp>&rsquo;.<a name="DOCF1" href="gnats_fot.html#FOOT1">(1)</a>  <code>send-pr</code> responds
+with a preconfigured Problem Report template.  The Emacs interface is
+described in more detail in a separate section, See section <a href="#Emacs">The Emacs interface to <small>GNATS</small></a>.
+</p>
+<hr size="6">
+<a name="PR-template"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#send_002dpr-in-Emacs" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Submitting-via-e_002dmail" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-Problem-Report-template"></a>
+<h3 class="subsection">2.2.3 The Problem Report template</h3>
+
+<p>Invoking <code>send-pr</code> presents a PR <em>template</em> with a number of
+fields already filled in with default values for the database you are
+submitting to.  Complete the template as thoroughly as possible to
+make a useful bug report.  Submit only one bug with each PR.
+</p>
+<a name="index-template"></a>
+<p>A template consists of three sections:
+</p>
+<ul>
+<li> Comments
+</li><li> Mail Header
+</li><li> <small>GNATS</small> fields
+</li></ul>
+
+<p>The <strong>Comments section</strong> at the top of the template contains basic
+instructions for completing the Problem Report, as well as a list of
+valid entries for the <code>Category</code> field.  One (and only one) of
+these values should be placed in the <code>Category</code> field further down
+in the Problem Report.
+</p>
+<a name="index-template-comment-section"></a>
+<a name="index-comment-section-in-the-PR-template"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">SEND-PR: -*- send-pr  -*-
+SEND-PR: Lines starting with `SEND-PR' will be removed
+SEND-PR: automatically as well as all comments (the text 
+SEND-PR: below enclosed in `&lt;' and `&gt;').
+SEND-PR: 
+SEND-PR: Please consult the document `Reporting Problems 
+SEND-PR: Using send-pr' if you are not sure how to fill out
+SEND-PR: a problem report.
+SEND-PR:
+SEND-PR: Choose from the following categories:
+</pre></td></tr></table>
+
+
+<p>The comments lines are all preceded by the string &lsquo;<samp>SEND-PR:</samp>&rsquo; and
+are erased automatically when the PR is submitted.  The instructional
+comments within &lsquo;<samp>&lt;</samp>&rsquo; and &lsquo;<samp>&gt;</samp>&rsquo; are also removed.  (Only these
+comments are removed; lines you provide that happen to have those
+characters in them, such as examples of shell-level redirection, are not
+affected.)
+</p>
+<p>The <strong>Mail Header</strong> section of the template contains a standard
+mail header constructed by <code>send-pr</code>.  <code>send-pr</code> can be set up
+to submit PRs by e-mail or by speaking directly to the <small>GNATS</small>
+server, but since this header is part of the standard format of Problem
+Reports, <code>send-pr</code> includes it even when it is set up to speak
+directly to the server.
+</p>
+<a name="index-mail-header-section"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">To: <var>PR submission address</var>
+Subject: <em>complete this field</em>
+From: <var>your-login</var>@<var>your-site</var>
+Reply-To: <var>your-login</var>@<var>your-site</var>
+X-send-pr-version: send-pr 4.2.0
+</pre></td></tr></table>
+
+<p><code>send-pr</code> automatically completes all the mail header fields except
+the <code>Subject</code> line with default values.  (See section <a href="Introduction.html#Fields">Problem Report format</a>.)
+</p>
+<p>The <strong><small>GNATS</small> fields</strong> below the mail header form the bulk of a
+<small>GNATS</small> Problem Report.
+</p>
+<p>Each field is either automatically completed with valid information
+(such as your <code>Submitter-Id</code>) or contains a one-line instruction
+specifying the information that field requires in order to be correct.
+For example, the <code>Confidential</code> field expects a value of &lsquo;<samp>yes</samp>&rsquo;
+or &lsquo;<samp>no</samp>&rsquo;, and the answer must fit on one line; similarly, the
+<code>Synopsis</code> field expects a short synopsis of the problem, which
+must also fit on one line.  Fill out the fields as completely as
+possible.  See section <a href="#Helpful-hints">Helpful hints</a>, for suggestions as to
+what kinds of information to include.
+</p>
+<p>The mechanisms <code>send-pr</code> uses to fill in default values is as
+follows: Your preconfigured <code>Submitter-Id</code> is taken from the local
+&lsquo;<tt>send-pr.conf</tt>&rsquo; configuration file.  <code>send-pr</code> will set the
+<code>Originator</code> field to the value of the <code>NAME</code> environment
+variable if it has been set; similarly, <code>Organization</code> will be set
+to the value of <code>ORGANIZATION</code>.  If these variables aren&rsquo;t set in
+you environment, <code>send-pr</code> uses the values set in the local
+&lsquo;<tt>send-pr.conf</tt>&rsquo; configuration file, if that exists.  If not, these
+values are left blank in the template.  <code>send-pr</code> also attempts to
+find out some information about your system and architecture, and places
+this information in the <code>Environment</code> field if it finds any.
+</p>
+<p>In this example, words in <em>italics</em> are filled in with
+pre-configured information:
+</p>
+<a name="index-send_002dpr-fields-1"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">&gt;Submitter-Id: <em>your submitter-id</em>
+&gt;Originator:   <em>your name here</em>
+&gt;Organization:  
+    <em>your organization</em>
+&gt;Confidential:&lt;[ yes | no ] (one line)&gt;
+&gt;Synopsis:    &lt;synopsis of the problem (one line)&gt;
+&gt;Severity:    &lt;[non-critical | serious | critical](one line)&gt;
+&gt;Priority:    &lt;[ low | medium | high ] (one line)&gt;
+&gt;Category:    &lt;name of the product (one line)&gt;
+&gt;Class:       &lt;[sw-bug | doc-bug | change-request | support]&gt;
+&gt;Release:     &lt;release number (one line)&gt;
+&gt;Environment:
+         &lt;machine, os, target, libraries (multiple lines)&gt;
+
+&gt;Description:
+       &lt;precise description of the problem (multiple lines)&gt;
+&gt;How-To-Repeat:
+       &lt;code/input/activities to reproduce (multiple lines)&gt;
+&gt;Fix:
+       &lt;how to correct or work around the problem, if known 
+        (multiple lines)&gt;
+</pre></td></tr></table>
+
+<a name="index-Submitter_002dId-field-1"></a>
+<a name="index-_003eSubmitter_002dId"></a>
+<p>When you finish editing the Problem Report, <code>send-pr</code> validates the
+contents and if it looks OK either submits it directly to the
+<small>GNATS</small> server or submits it by mail to the address named in the
+<code>To</code> field in the mail header.
+</p>
+<a name="index-bad-Problem-Reports"></a>
+<a name="index-errors"></a>
+<a name="index-invalid-Problem-Reports"></a>
+<p>If your PR contains one or more invalid field values, <code>send-pr</code>
+places the PR in a temporary file named &lsquo;<tt>/tmp/pbad<var>nnnn</var></tt>&rsquo; on
+your machine.  <var>nnnn</var> is the process identification number given
+to your current <code>send-pr</code> session.  If you are running
+<code>send-pr</code> from the shell, you are prompted as to whether or not
+you wish to try editing the same Problem Report again.  If you are
+running <code>send-pr</code> from Emacs, the Problem Report is placed in the
+buffer &lsquo;<samp>*gnats-send*</samp>&rsquo;; you can edit this file and then submit
+it with <kbd>C-c C-c</kbd>.
+</p>
+<hr size="6">
+<a name="Submitting-via-e_002dmail"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#PR-template" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Helpful-hints" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Submitting-a-Problem-Report-via-direct-e_002dmail"></a>
+<h3 class="subsection">2.2.4 Submitting a Problem Report via direct e-mail</h3>
+<a name="index-Direct-e_002dmail"></a>
+<a name="index-Submitting-a-PR-via-e_002dmail"></a>
+<p>In addition to using <code>send-pr</code>, there is another way to submit a
+problem report.  You can simply send an e-mail message to the PR
+submission e-mail address of the support site (This address should be
+published by the support site.)
+</p>
+<p>When you send unformatted e-mail to this address, <small>GNATS</small> processes
+the message as a new problem report, filling in as many fields from
+defaults as it can:
+</p>
+<dl compact="compact">
+<dt> <code>Synopsis</code></dt>
+<dd><p>The <code>Synopsis</code> field is filled in by the <code>Subject</code> header of
+the e-mail message.
+</p>
+</dd>
+<dt> <code>Submitter ID</code></dt>
+<dd><p><small>GNATS</small> will try to derive the <code>Submitter</code> field from the address
+in the <code>From</code> header of the e-mail.
+</p>
+</dd>
+<dt> <code>Description</code></dt>
+<dd><p>All of the text in the body of the e-mail message is put into the 
+<code>Description</code> field.
+</p></dd>
+</dl>
+
+<p>Other fields, such as <code>Category</code>, <code>Version</code>, <code>Severity</code>,
+etc. are set to default values as defined by the <small>GNATS</small> administrator.
+</p>
+<hr size="6">
+<a name="Helpful-hints"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Submitting-via-e_002dmail" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#edit_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Helpful-hints-1"></a>
+<h3 class="subsection">2.2.5 Helpful hints</h3>
+<a name="index-helpful-hints"></a>
+<a name="index-Using-and-Porting-GNU-CC"></a>
+<a name="index-effective-problem-reporting"></a>
+<a name="index-kinds-of-helpful-information"></a>
+<a name="index-information-to-submit"></a>
+<a name="index-Report-all-the-facts_0021"></a>
+
+<p>There is no orthodox standard for submitting effective bug reports,
+though you might do well to consult the section on submitting bugs for
+<small>GNU</small> <code>gcc</code> in <a href="../gcc/Bugs.html#Bugs">(gcc)Bugs</a> section &lsquo;Reporting Bugs&rsquo; in <cite>Using and Porting GNU CC</cite>, by Richard Stallman.  This section contains
+instructions on what kinds of information to include and what kinds of
+mistakes to avoid.
+</p>
+<p>In general, common sense (assuming such an animal exists) dictates the
+kind of information that would be most helpful in tracking down and
+resolving problems in software.  
+</p><ul>
+<li> 
+Include anything <em>you</em> would want to know if you were looking at
+the report from the other end.  There&rsquo;s no need to include every minute
+detail about your environment, although anything that might be different
+from someone else&rsquo;s environment should be included (your path, for
+instance).
+
+</li><li> 
+Narratives are often useful, given a certain degree of restraint.  If a
+person responsible for a bug can see that A was executed, and then B and
+then C, knowing that sequence of events might trigger the realization of
+an intermediate step that was missing, or an extra step that might have
+changed the environment enough to cause a visible problem.  Again,
+restraint is always in order (&ldquo;I set the build running, went to get a
+cup of coffee (Columbian, cream but no sugar), talked to Sheila on the
+phone, and then THIS happened&hellip;&rdquo;) but be sure to include anything
+relevant.
+
+</li><li> 
+Richard Stallman writes, &ldquo;The fundamental principle of reporting bugs
+usefully is this: <strong>report all the facts</strong>.  If you are not sure
+whether to state a fact or leave it out, state it!&rdquo;  This holds true
+across all problem reporting systems, for computer software or social
+injustice or motorcycle maintenance.  It is especially important in the
+software field due to the major differences seemingly insignificant
+changes can make (a changed variable, a missing semicolon, etc.).
+
+</li><li>
+Submit only <em>one</em> problem with each Problem Report.  If you have
+multiple problems, use multiple PRs.  This aids in tracking each problem
+and also in analyzing the problems associated with a given program.
+
+</li><li>
+It never hurts to do a little research to find out if the bug you&rsquo;ve
+found has already been reported.  Most software releases contain lists
+of known bugs in the Release Notes which come with the software; see
+your system administrator if you don&rsquo;t have a copy of these.
+
+</li><li>
+The more closely a PR adheres to the standard format, the less
+interaction is required by a database administrator to route the
+information to the proper place.  Keep in mind that anything that
+requires human interaction also requires time that might be better spent
+in actually fixing the problem.  It is therefore in everyone&rsquo;s best
+interest that the information contained in a PR be as correct as
+possible (in both format and content) at the time of submission.
+</li></ul>
+
+<hr size="6">
+<a name="edit_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Helpful-hints" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#edit_002dpr-from-the-shell" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Editing-existing-Problem-Reports"></a>
+<h2 class="section">2.3 Editing existing Problem Reports</h2>
+<a name="index-using-edit_002dpr"></a>
+<a name="index-invoking-edit_002dpr"></a>
+<a name="index-edit_002dpr"></a>
+
+<p>Use <code>edit-pr</code> to make changes to existing PRs in the database.
+This tool can be invoked both from a shell prompt or from within GNU
+Emacs using &lsquo;<samp>M-x edit-pr</samp>&rsquo;.
+</p>
+<p><code>edit-pr</code> first examines the PR you wish to edit and locks it if it
+is not already locked.  This is to prevent you from editing a PR at the
+same time as another user.  If the PR you wish to edit is already in the
+process of being edited, <code>edit-pr</code> tells you the name of the person
+who owns the lock.
+</p>
+<p>You may edit any non-readonly fields in the database.  We recommend that
+you avoid deleting any information in the <small>TEXT</small> and <small>MULTITEXT</small>
+fields (such as <code>Description</code> and <code>How-To-Repeat</code>
+(see section <a href="Introduction.html#Fields">Problem Report format</a>).  We also recommend that you
+record the final solution to the problem in the <code>Fix</code> field for
+future reference.  Note that heavily customized installations of
+<small>GNATS</small> may have differently named fields, and sites using such
+installations should provide their own set of routines and instructions
+regarding how PRs should be treated throughout their life span.
+</p>
+<p>After the PR has been edited, it is then resubmitted to the database,
+and the index is updated (see section <a href="Management.html#index-file">The <code>index</code> file</a>).
+For information on <code>pr-edit</code>, the main driver for <code>edit-pr</code>,
+see <a href="Management.html#Internal-utils">Internal utilities</a>.
+</p>
+<p>If you change a field that requires a reason for the change, such as the
+<code>Responsible</code> or <code>State</code> fields in the default configuration,
+<code>edit-pr</code> prompts you to supply a reason for the change.  A message
+is then appended to the <code>Audit-Trail</code> field of the PR with the
+changed values and the change reason.
+</p>
+<p>Depending on how the database is configured, editing various fields in
+the PR may also cause mail to be sent concerning these changes.  In the
+default configuration, any fields that generate &lsquo;<samp>Audit-Trail</samp>&rsquo;
+entries will also cause a copy of the new &lsquo;<samp>Audit-Trail</samp>&rsquo; message to
+be sent.
+</p>
+<p>Mail received at the PR submission email address and recognized by
+<small>GNATS</small> as relating to an existing PR is also appended to the
+&lsquo;<samp>Audit-Trail</samp>&rsquo; field, see <a href="#follow_002dup-via-email">Following up via direct email</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#edit_002dpr-from-the-shell">2.3.1 Invoking <code>edit-pr</code> from the shell</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#follow_002dup-via-email">2.3.2 Following up via direct email</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+</table>
+
+<hr size="6">
+<a name="edit_002dpr-from-the-shell"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#edit_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#follow_002dup-via-email" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#edit_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Invoking-edit_002dpr-from-the-shell"></a>
+<h3 class="subsection">2.3.1 Invoking <code>edit-pr</code> from the shell</h3>
+<a name="index-edit_002dpr-from-the-shell"></a>
+
+<p>The usage for <code>edit-pr</code> is:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">edit-pr [ -V | --version ] [ -h | --help ]
+        [-d <var>database</var> | --database <var>database</var>] <var>PR Number</var>
+</pre></td></tr></table>
+
+<p>Network-mode-only options:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">         [--host <var>host</var> | -H <var>host</var>] [--port <var>port</var>]
+         [--user <var>user</var> | -v <var>user</var>]
+         [--passwd <var>passwd</var> | -w <var>passwd</var>]
+</pre></td></tr></table>
+
+<p>The options have the following meaning:
+</p>
+<dl compact="compact">
+<dt> <code>-h, --help</code></dt>
+<dd><p>Prints a brief usage message for edit-pr.
+</p>
+</dd>
+<dt> <code>-V, --version</code></dt>
+<dd><p>Prints the version number for edit-pr.
+</p>
+</dd>
+<dt> <code>-d <var>database</var>, --database <var>database</var></code></dt>
+<dd><p>Specifies the database containing the PR to be edited; if no database is
+specified, the database named &lsquo;<samp>default</samp>&rsquo; is assumed.  This option
+overrides the database specified in the <code>GNATSDB</code> environment
+variable.
+</p>
+</dd>
+<dt> <code>--host <var>host</var>, -H <var>host</var></code></dt>
+<dd><p>Specifies the hostname of the gnatsd server to communicate with.  This
+overrides the value in the <code>GNATSDB</code> environment variable.
+</p>
+</dd>
+<dt> <code>--port <var>port</var></code></dt>
+<dd><p>Specifies the port number of the gnatsd server to communicate with.
+This overrides the value in the <code>GNATSDB</code> environment variable.
+</p>
+</dd>
+<dt> <code>--user <var>user</var>, -v <var>user</var></code></dt>
+<dd><p>Specifies the username to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+</p>
+</dd>
+<dt> <code>--passwd <var>passwd</var>, -w <var>passwd</var></code></dt>
+<dd><p>Specifies the password to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+</p></dd>
+</dl>
+
+<p><code>edit-pr</code> calls the editor specified in your environment variable
+<code>EDITOR</code> on a temporary copy of that PR.  (If you don&rsquo;t have the
+variable <code>EDITOR</code> defined in your environment, the default editor
+<code>vi</code> is used.)
+</p>
+<p>Edit the PR, changing any relevant fields or adding to existing
+information.  When you exit the editor, <code>edit-pr</code> prompts you on
+standard input for a reason if you have changed a field that requires
+specifying a reason for the change.
+</p>
+<hr size="6">
+<a name="follow_002dup-via-email"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#edit_002dpr-from-the-shell" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#query_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#edit_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Following-up-via-direct-email"></a>
+<h3 class="subsection">2.3.2 Following up via direct email</h3>
+<a name="index-follow_002dup-via-email-1"></a>
+<a name="index-subsequent-mail-1"></a>
+<a name="index-related-mail-1"></a>
+
+<p>If you have some additional information for a PR and for some reason
+do not want to (or cannot) edit the PR directly, you may append
+the information to the Audit-Trail field by mailing it to the PR
+submission address.
+</p>
+<p>In order for GNATS to be able to recognize the mail as pertaining to an
+existing PR (as opposed to a new PR, see <a href="#Submitting-via-e_002dmail">Submitting a Problem Report via direct e-mail</a>),
+the Subject mail header field must contain a reference to the PR.
+GNATS matches the Subject header against the regular expression
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">\&lt;(PR[ \t#/]?|[-[:alnum:]+.]+/)[0-9]+
+</pre></td></tr></table>
+
+<p>to determine whether such a reference is present. Any text may precede
+or follow the reference in the Subject header. If more than one reference
+is present, the first is used and the rest ignored.
+</p>
+<p>A PR reference matching the regular expression above has two parts. The
+second is the PR number (one or more digits). The first is either the
+capital letters &rsquo;PR&rsquo; optionally followed by a separator character (blank,
+tab, hash mark or forward slash) or the category name followed by a
+forward slash. Following are some examples which match the regular
+expression:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">PR 123 PR4567 PR#890 gnats/4711
+</pre></td></tr></table>
+
+<p>The PR number and the category (if present) are checked for existence,
+and if the outcome is positive, the mail is appended to the Audit-Trail
+field of the PR. Note that the PR need not belong to the category because
+PRs may move between categories.
+</p>
+<p>Outgoing emails sent by GNATS itself may be configured to have a Subject
+header field that refers to the PR in question:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Subject: Re: PR <var>category</var>/<var>gnats-id</var>: <var>original message subject</var>
+</pre></td></tr></table>
+
+<p>This makes it extremely easy to follow up on a PR by replying to such an
+email, see <a href="Management.html#dbconfig-file">The <code>dbconfig</code> file</a> and the sample,
+default <code>dbconfig</code> file installed by <code>mkdb</code>.
+</p>
+<hr size="6">
+<a name="query_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#follow_002dup-via-email" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Invoking-query_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Querying-the-database"></a>
+<h2 class="section">2.4 Querying the database</h2>
+<a name="index-using-query_002dpr"></a>
+<a name="index-invoking-query_002dpr"></a>
+<a name="index-query_002dpr"></a>
+<a name="index-querying-individual-problem-reports"></a>
+
+<p>Obtain information from the database by using the program
+<code>query-pr</code>. <code>query-pr</code> uses search parameters you provide
+to find matching Problem Reports in the database.  You can invoke
+<code>query-pr</code> from the shell or from within Emacs.  <code>query-pr</code>
+uses the same arguments whether it is invoked from the shell or from
+Emacs.
+</p>
+<p>PRs may be selected via the use of the <code>--expr</code> option, directly by
+number, or by the use of the (now deprecated) field-specific query
+operators.
+</p>
+<p>By default, query options are connected with a logical AND.  For
+example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --category=foo --responsible=bar
+</pre></td></tr></table>
+
+<p>only prints PRs which have a Category field of &lsquo;<samp>foo</samp>&rsquo; and a Responsible
+field of &lsquo;<samp>bar</samp>&rsquo;.
+</p>
+<p>The <code>--or</code> option may be used to connect query options with a logical
+OR. For example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --category=baz --or --responsible=blee
+</pre></td></tr></table>
+
+<p>prints PRs which have either a Category field of &lsquo;<samp>baz</samp>&rsquo; or a Responsible
+field of &lsquo;<samp>blee</samp>&rsquo;.
+</p>
+<p>It should be emphasized, however, that the use of these field-specific
+options is strongly discouraged, since they exist only for compatibility
+with older versions of <small>GNATS</small> and are likely to be deleted in the next
+release.  The expressions specified by the <code>--expr</code> option are much more
+flexible (see below).
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Invoking-query_002dpr">2.4.1 Invoking <code>query-pr</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Formatting-query_002dpr-output">2.4.2 Formatting <code>query-pr</code> output</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Query-expressions">2.4.3 Query expressions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Example-queries">2.4.4 Example queries</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Invoking-query_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#query_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Formatting-query_002dpr-output" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#query_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Invoking-query_002dpr-1"></a>
+<h3 class="subsection">2.4.1 Invoking <code>query-pr</code></h3>
+
+<p>From the shell, simply type <kbd>query-pr</kbd>, followed by any search
+parameters you wish to exercise.  From Emacs, type <kbd>M-x
+query-pr</kbd>.  <code>query-pr</code> prompts you for search parameters in the
+minibuffer.
+</p>
+<a name="index-query_002dpr-by-mail"></a>
+<p><code>query-pr</code> can also be accessed by electronic mail, if your version
+of <small>GNATS</small> is configured for this.  To use this feature, simply send
+mail to the address &lsquo;<samp>query-pr@<var>your-site</var></samp>&rsquo; with command
+line arguments or options in the <code>Subject</code> line of the mail header.
+<small>GNATS</small> replies to your mail with the results of your query.  The
+default settings for the <code>query-pr</code> mail server are
+</p>
+<a name="index-the-section-on-query_002dby_002dmail-needs-to-be-relocated"></a>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">--restricted --state=&quot;open|analyzed|feedback|suspended&quot;
+</pre></td></tr></table>
+
+<p>To override the <code>--state</code> parameter, specify
+<code>--state=<var>state</var></code> in the <code>Subject</code> line of the mail
+header.  You can not query on confidential Problem Reports by mail.
+</p>
+<p>The usage for <code>query-pr</code> is:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr [--debug | -D] [--help | -h] [--version | -V]
+         [--output <var>file</var> | -o <var>file</var>] [--list-databases]
+         [--list-fields] [--list-input-fields]
+         [--responsible-address <var>name</var>] [--field-type <var>field</var>]
+         [--field-description <var>field</var>]
+         [--field-flags <var>field</var>]
+         [--adm-field <var>field</var>] [--adm-subfield <var>subfield</var>]
+         [--adm-key <var>key</var>]
+         [--valid-values <var>field</var>]
+         [--format <var>format</var> | -f <var>format</var>]
+         [--full | -F] [--summary | -q]
+         [--database <var>database</var> | -d <var>database</var>] [--and | -&amp;]
+         [--or | -|] [--expr <var>expr</var>] [PR Number]
+</pre></td></tr></table>
+
+<p>Non-network-mode options:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">         [--print-sh-vars] [--print-directory-for-database]
+</pre></td></tr></table>
+
+<p>Network-mode-only options:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">         [--host <var>host</var> | -H <var>host</var>] [--port <var>port</var>]
+         [--user <var>user</var> | -v <var>user</var>] [--passwd <var>passwd</var> | -w <var>passwd</var>]
+         [--print-server-addr]
+</pre></td></tr></table>
+
+<p>Deprecated Options:
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample">         [--list-categories | -j] [--list-states | -T]
+         [--list-responsible | -k] [--list-submitters | -l]
+         [--category <var>category</var> | -c <var>category</var>]
+         [--synopsis <var>synopsis</var> | -y <var>synopsis</var>]
+         [--confidential <var>confidential</var> | -C <var>confidential</var>]
+         [--multitext <var>multitext</var> | -m <var>multitext</var>]
+         [--originator <var>originator</var> | -O <var>originator</var>]
+         [--release <var>release</var> | -A <var>release</var>]
+         [--class <var>class</var> | -L <var>class</var>] [--cases <var>cases</var> | -E <var>cases</var>]
+         [--quarter <var>quarter</var> | -Q <var>quarter</var>]
+         [--keywords <var>keywords</var> | -K <var>keywords</var>]
+         [--priority <var>priority</var> | -p <var>priority</var>]
+         [--responsible <var>responsible</var> | -r <var>responsible</var>]
+         [--restricted | -R] [--severity <var>severity</var> | -e <var>severity</var>]
+         [--skip-closed | -x] [--sql | -i] [--sql2 | -I]
+         [--state <var>state</var> | -s <var>state</var>]
+         [--submitter <var>submitter</var> | -S <var>submitter</var>]
+         [--text <var>text</var> | -t <var>text</var>]
+         [--required-before <var>date</var> | -u <var>date</var>]
+         [--required-after <var>date</var> | -U <var>date</var>]
+         [--arrived-before <var>date</var> | -b <var>date</var>]
+         [--arrived-after <var>date</var> | -a <var>date</var>]
+         [--modified-before <var>date</var> | -B <var>date</var>]
+         [--modified-after <var>date</var> | -M <var>date</var>]
+         [--closed-before <var>date</var> | -z <var>date</var>]
+         [--closed-after <var>date</var> | -Z <var>date</var>]
+</pre></td></tr></table>
+
+<p>The options have the following meaning:
+</p><dl compact="compact">
+<dt> <code>--help, -h</code></dt>
+<dd><p>Prints a help message.
+</p>
+</dd>
+<dt> <code>--version, -V</code></dt>
+<dd><p>Displays the program version to stdout.
+</p>
+</dd>
+<dt> <code>--output <var>file</var>, -o <var>file</var></code></dt>
+<dd><p>The results of the query will be placed in this file.
+</p>
+</dd>
+<dt> <code>--database <var>database</var>, -d <var>database</var></code></dt>
+<dd><p>Specifies the database to be used for the query.  If no database is
+specified, the database named default is assumed.  (This option
+overrides the database specified in the <code>GNATSDB</code> environment
+variable; see <a href="#Environment">Environment variables and <small>GNATS</small> tools</a> for more
+information.)
+</p>
+</dd>
+<dt> <code>--list-categories, -j</code></dt>
+<dd><p>Lists the available PR categories for the selected database.
+</p>
+</dd>
+<dt> <code>--list-states, -T</code></dt>
+<dd><p>Lists the valid PR states for PRs in this database.
+</p>
+</dd>
+<dt> <code>--list-responsible, -k</code></dt>
+<dd><p>Lists the users that appear in the database&rsquo;s responsible list.
+</p>
+</dd>
+<dt> <code>--list-submitters, -l</code></dt>
+<dd><p>Lists the valid submitters for this database.
+</p></dd>
+</dl>
+
+<p>The previous &ndash;list-* options are deprecated and may be removed in
+future releases of <small>GNATS</small>; their functionality can be replaced with
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --valid-values <var>field</var>
+</pre></td></tr></table>
+
+<p>where <var>field</var> is one of <code>Category</code>, <code>Class</code>,
+<code>Responsible</code>, <code>Submitter-Id</code>, or <code>State</code>.
+</p>
+<dl compact="compact">
+<dt> <code>--list-databases</code></dt>
+<dd><p>Lists the known databases.
+</p>
+</dd>
+<dt> <code>--list-fields</code></dt>
+<dd><p>Lists the entire set of field names for PRs in the selected database.
+</p>
+</dd>
+<dt> <code>--list-input-fields</code></dt>
+<dd><p>Lists the fields that should be provided when creating a new PR for the
+currently-specified database.  The fields are listed in an order that
+would make sense when used in a template or form.
+</p>
+</dd>
+<dt> <code>--field-type <var>field</var></code></dt>
+<dd><p>Returns the data type contained in PR field <var>field</var>.  The current
+set of data types includes &lsquo;<samp>text</samp>&rsquo;, &lsquo;<samp>multitext</samp>&rsquo;, &lsquo;<samp>enum</samp>&rsquo;,
+&lsquo;<samp>multienum</samp>&rsquo;, &lsquo;<samp>enumerated-in-file</samp>&rsquo;,
+&lsquo;<samp>multi-enumerated-in-file</samp>&rsquo;, &lsquo;<samp>date</samp>&rsquo; and &lsquo;<samp>integer</samp>&rsquo;.
+</p>
+</dd>
+<dt> <code>--field-description <var>field</var></code></dt>
+<dd><p>Returns a human-readable description of the intended purpose of <var>field</var>.
+</p>
+</dd>
+<dt> <code>--field-flags <var>field</var></code></dt>
+<dd><p>Returns the flags set for the field in the &lsquo;<tt>dbconfig</tt>&rsquo; file
+associated with the database, such as <code>textsearch</code> and
+<code>readonly</code>.  See section <a href="Management.html#Individual-field-configuration">Individual field configuration</a>.
+</p>
+</dd>
+<dt> <code>--adm-field <var>field</var></code></dt>
+<dd><p>Used together with the <code>--adm-key</code> option, this returns a record
+from the administrative file (if any) associated with the field.  For
+more material on administrative files, see <a href="Management.html#administrative-files">Enumerated field administrative files</a>.
+</p>
+</dd>
+<dt> <code>--adm-subfield <var>subfield</var></code></dt>
+<dd><p>Used together with the <code>--adm-field</code> and <code>--adm-key</code> options,
+this returns the contents of a particular subfield from the record
+specified by <code>--adm-field</code> and <code>--adm-key</code>.  Subfields are
+treated in <a href="Management.html#administrative-files">Enumerated field administrative files</a>.
+</p>
+</dd>
+<dt> <code>--adm-key <var>key</var></code></dt>
+<dd><p>Used together with <code>--adm-field</code> to select a record from the
+administrative file associated with the field specified by
+<code>--adm-field</code>.  See <a href="Management.html#administrative-files">Enumerated field administrative files</a>.
+</p>
+</dd>
+<dt> <code>--valid-values <var>field</var></code></dt>
+<dd><p>For fields of type &lsquo;<samp>enum</samp>&rsquo;, a list of valid values (one per line) is
+returned.  Otherwise, a regular expression is returned that describes
+the legal values in <var>field</var>.
+</p>
+</dd>
+<dt> <code>--responsible-address <var>name</var></code></dt>
+<dd><p>The mail address of <var>name</var> is returned; <var>name</var> is assumed to be
+a name either appearing in the database&rsquo;s responsible list, or is
+otherwise a user on the system.
+</p>
+</dd>
+<dt> <code>--print-sh-vars</code></dt>
+<dd><p>A set of &lsquo;<tt>/bin/sh</tt>&rsquo; variables is returned that describe the selected
+database.  They include:
+</p>
+<dl compact="compact">
+<dt> <code>GNATSDB</code></dt>
+<dd><p>The name of the currently-selected database.
+</p>
+</dd>
+<dt> <code>GNATSDB_VALID</code></dt>
+<dd><p>Set to 1 if the selected database is valid.
+</p>
+</dd>
+<dt> <code>GNATSDBDIR</code></dt>
+<dd><p>The directory  where  the  database  contents  are
+stored.
+</p>
+</dd>
+<dt> <code>DEBUG_MODE</code></dt>
+<dd><p>Set to 1 if debug mode has been  enabled  for  the
+database.
+</p>
+</dd>
+<dt> <code>DEFAULTCATEGORY</code></dt>
+<dd><p>The default category for PRs in the database.
+</p>
+</dd>
+<dt> <code>DEFAULTSTATE</code></dt>
+<dd><p>The default state for PRs in the database.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code>--print-server-addr</code></dt>
+<dd><p>Prints the information about a remote server database in the format
+suitable for the <code>GNATSDB</code> environment variable.  This option
+works only in the network mode.
+</p>
+</dd>
+<dt> <code>--print-directory-for-database</code></dt>
+<dd><p>Returns the directory where the selected database is located.
+</p>
+</dd>
+<dt> <code>--format <var>format</var>, -f <var>format</var></code></dt>
+<dd><p>Used to specify the format of the output PRs, See <a href="#Formatting-query_002dpr-output">Formatting <code>query-pr</code> output</a> for a complete description.
+</p>
+</dd>
+<dt> <code>--full, -F</code></dt>
+<dd><p>When printing PRs, the entre PR is displayed.  This is exactly
+equivalent to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --format full
+</pre></td></tr></table>
+
+</dd>
+<dt> <code>--summary, -q</code></dt>
+<dd><p>When printing PRs, a summary format is used.  This is exactly equivalent
+to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --format <var>summary</var>
+</pre></td></tr></table>
+
+</dd>
+<dt> <code>--debug, -D</code></dt>
+<dd><p>Enables debugging output for network queries.
+</p>
+</dd>
+<dt> <code>--host <var>host</var>, -H <var>host</var></code></dt>
+<dd><p>Specifies the hostname of the gnatsd server to communicate with.  This
+overrides the value in the <code>GNATSDB</code> environment variable.
+</p>
+</dd>
+<dt> <code>--port <var>port</var></code></dt>
+<dd><p>Specifies the port number of the gnatsd server to communicate with.
+This overrides the value in the <code>GNATSDB</code> environment variable.
+</p>
+</dd>
+<dt> <code>--user <var>user</var>, -v <var>user</var></code></dt>
+<dd><p>Specifies the username to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+</p>
+</dd>
+<dt> <code>--passwd <var>passwd</var>, -w <var>passwd</var></code></dt>
+<dd><p>Specifies the password to login with when connecting to the gnatsd
+server.  This overrides the value in the <code>GNATSDB</code> environment
+variable.
+</p>
+</dd>
+<dt> <code>--and, -&amp;, --or, -|</code></dt>
+<dd><p>These options are used when connecting multiple query operators
+together.  They specify whether the previous and subsequent options are
+to be logically ANDed or logically ORed.
+</p>
+</dd>
+<dt> <code>--expr <var>expr</var></code></dt>
+<dd><p>Specifies a query expression to use when searching for PRs.  See section <a href="#Query-expressions">Query expressions</a>.
+</p></dd>
+</dl>
+
+<p>The remaining deprecated options are not described here, since their use
+is fairly obvious and their functionality is completely replaced by the
+use of the <code>--expr</code> option.
+</p>
+<hr size="6">
+<a name="Formatting-query_002dpr-output"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Invoking-query_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Query-expressions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#query_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Formatting-query_002dpr-output-1"></a>
+<h3 class="subsection">2.4.2 Formatting <code>query-pr</code> output</h3>
+<a name="index-query_002dpr-output-format"></a>
+
+<p>Printing formats for PRs are in one of three forms:
+</p>
+<dl compact="compact">
+<dt> <var>formatname</var></dt>
+<dd><p>This is a named format which is described by the database (specifically,
+these formats are described in the &lsquo;<tt>dbconfig</tt>&rsquo; file associated with the
+database).  The default configuration contains five such formats:
+&lsquo;<samp>standard</samp>&rsquo;, &lsquo;<samp>full</samp>&rsquo;, &lsquo;<samp>summary</samp>&rsquo;, &lsquo;<samp>sql</samp>&rsquo;, and
+&lsquo;<samp>sql2</samp>&rsquo;.
+</p>
+<p>The first three are the ones most commonly used when performing queries.
+standard is the format used by default if no other format is specified.
+</p>
+<p>Use of the latter two are discouraged; they are merely kept for
+historical purposes.  Other named formats may have been added by the
+database administrator.
+</p>
+</dd>
+<dt> <var>fieldname</var></dt>
+<dd><p>A single field name may appear here.  Only the contents of this field
+will be displayed.
+</p>
+</dd>
+<dt> <var>&rsquo;&quot;printf string&quot; fieldname fieldname ...&rsquo;</var></dt>
+<dd><p>This provides a very flexible mechanism for formatting PR output.  (The
+formatting is identical to that provided by the named formats described
+by the database configuration, See section <a href="Management.html#Named-query-definitions">Named query definitions</a>.  The
+<var>printf string</var> can contain the following % sequences:
+</p>
+<p><code>%[positionalspecifiers]s</code>: Prints the field as a string.  The
+positional specifiers are similar to those of printf, as +, - and digit
+qualifiers can be used to force a particular alignment of the field
+contents.
+</p>
+<p><code>%[positionalspecifiers]S</code>: Similar to <code>%s</code>, except that the
+field contents are terminated at the first space character.
+</p>
+<p><code>%[positionalspecifiers]d</code>: Similar to <code>%s</code>, except that the
+field contents are written as a numeric value.  For integer fields, the
+value is written as a number.  For enumerated fields, the field is
+converted into a numeric equivalent (i.e. if the field can have two
+possible values, the result will be either 1 or 2).  For date fields,
+the value is written as seconds since Jan 1, 1970.
+</p>
+<p><code>%F</code>: The field is written as it would appear within a PR, complete
+with field header.
+</p>
+<p><code>%D</code>: For date fields, the date is written in a standard <small>GNATS</small>
+format.
+</p>
+<p><code>%Q</code>: For date fields, the date is written in an arbitrary &quot;SQL&quot;
+format.
+</p></dd>
+</dl>
+
+<p>An example formatted query looks as follows (note that the whole format
+specification should be quoted):
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --format '&quot;%s, %s&quot; Synopsis State'
+</pre></td></tr></table>
+
+<hr size="6">
+<a name="Query-expressions"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Formatting-query_002dpr-output" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Example-queries" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#query_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Query-expressions-1"></a>
+<h3 class="subsection">2.4.3 Query expressions</h3>
+<a name="index-query-expressions"></a>
+
+<p>Query expressions are used to select specific PRs based on their field
+contents.  The general form is
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">fieldname|&quot;value&quot; operator fieldname|&quot;value&quot; [booleanop ...]
+</pre></td></tr></table>
+
+<p><var>value</var> is a literal string or regular expression; it must be
+surrounded by double quotes, otherwise it is interpreted as a fieldname.
+</p>
+<p><var>fieldname</var> is the name of a field in the PR.
+</p>
+<p><var>operator</var> is one of:
+</p>
+<dl compact="compact">
+<dt> <code>=</code></dt>
+<dd><p>The value of the left-hand side of the expression must exactly match the
+regular expression on the right-hand side of the expression.
+See section <a href="Regexps.html#Regexps">Querying using regular expressions</a>.
+</p>
+</dd>
+<dt> <code>~</code></dt>
+<dd><p>Some portion of the left-hand side of the expression must match the
+regular expression on the right-hand side.
+</p>
+</dd>
+<dt> <code>==</code></dt>
+<dd><p>The value of the left-hand side must be equal to the value on the
+right-hand side of the expression.
+</p>
+<p>The equality of two values depends on what type of data is stored in the
+field(s) being queried.  For example, when querying a field containing
+integer values, literal strings are interpreted as integers.  The query
+expression
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Number == &quot;0123&quot;
+</pre></td></tr></table>
+
+<p>is identical to
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Number == &quot;123&quot;
+</pre></td></tr></table>
+
+<p>as the leading zero is ignored.  If the values were treated as strings
+instead of integers, then the two comparisons would return different
+results.
+</p>
+</dd>
+<dt> <code>!=</code></dt>
+<dd><p>The not-equal operator. Produces the opposite result of the == operator.
+</p>
+</dd>
+<dt> <code>&lt;,&gt;</code></dt>
+<dd><p>The left-hand side must have a value less than or greater than the
+right-hand side.  Comparisons are done depending on the type of data
+being queried; in particular, integer fields and dates use a numeric
+comparison, and enumerated fields are ordered depending on the numeric
+equivalent of their enumerated values.
+</p></dd>
+</dl>
+
+<p><var>booleanop</var> is either &lsquo;<samp>|</samp>&rsquo; (logical or), or &lsquo;<samp>&amp;</samp>&rsquo; (logical
+and).  The query expression
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Category=&quot;baz&quot; | Responsible=&quot;blee&quot;
+</pre></td></tr></table>
+
+<p>selects all PRs with a Category field of &lsquo;<samp>baz</samp>&rsquo; or a Responsible
+field of &lsquo;<samp>blee</samp>&rsquo;.
+</p>
+<p>The not operator &lsquo;<samp>!</samp>&rsquo; may be used to negate a test:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">! Category=&quot;foo&quot;
+</pre></td></tr></table>
+
+<p>searches for PRs where the category is not equal to the regular
+expression foo.
+</p>
+<p>Parentheses may be used to force a particular interpretation of the
+expression:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">!(Category=&quot;foo&quot; &amp; Submitter-Id=&quot;blaz&quot;)
+</pre></td></tr></table>
+
+<p>skips PRs where the Category field is equal to &lsquo;<samp>foo</samp>&rsquo; and the
+Submitter-Id field is equal to &lsquo;<samp>blaz</samp>&rsquo;.  Parentheses may be nested
+to any arbitrary depth.
+</p>
+<p>Fieldnames can be specified in several ways.  The simplest and most
+obvious is just a name:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Category=&quot;foo&quot;
+</pre></td></tr></table>
+
+<p>which checks the value of the category field for the value <var>foo</var>.
+</p>
+<p>A fieldname qualifier may be prepended to the name of the field; a colon
+is used to separate the qualifier from the name.  To refer directly to a
+builtin field name:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">builtin:Number=&quot;123&quot;
+</pre></td></tr></table>
+
+<p>In this case, &lsquo;<samp>Number</samp>&rsquo; is interpreted as the builtin name of the
+field to
+check.  (This is useful if the fields have been renamed.  For further
+discussion of builtin field names, see <a href="Management.html#dbconfig-file">The <code>dbconfig</code> file</a>.
+</p>
+<p>To scan all fields of a particular type, the <var>fieldtype</var> qualifier
+may be
+used:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">fieldtype:Text=&quot;bar&quot;
+</pre></td></tr></table>
+
+<p>This searches all text fields for the regular expression &lsquo;<samp>bar</samp>&rsquo;.
+</p>
+<p>Note that it is not required that the right-hand side of the expression
+be a literal string.  To query all PRs where the PR has been modified
+since it was closed, the expression
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Last-Modified != Closed-Date
+</pre></td></tr></table>
+
+<p>will work; for each PR, it compares the value of its Last-Modified field
+against its Closed-Date field, and returns those PRs where the values
+differ.  However, this query will also return all PRs with empty
+Last-Modified or Closed-Date fields.  To further narrow the search:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">Last-Modified != Closed-Date &amp; Last-Modified != &quot;&quot; &amp; Closed-Date != &quot;&quot;
+</pre></td></tr></table>
+
+<p>In general, comparing fields of two different types (an integer field
+against a date field, for example) will probably not do what you want.
+</p>
+<p>Also, a field specifier may be followed by the name of a subfield in
+braces:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">State[type] != &quot;closed&quot;
+</pre></td></tr></table>
+
+<p>or even
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">builtin:State[type] != &quot;closed&quot;
+</pre></td></tr></table>
+
+<p>Subfields are further discussed in <a href="Management.html#dbconfig-file">The <code>dbconfig</code> file</a>.
+</p>
+
+<hr size="6">
+<a name="Example-queries"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Query-expressions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#query_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Example-queries-1"></a>
+<h3 class="subsection">2.4.4 Example queries</h3>
+<a name="index-example-queries"></a>
+
+<p>The following simple query:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'Category~&quot;rats&quot; &amp; State~&quot;analyzed&quot;
+                 &amp; Responsible~&quot;fred&quot;'
+</pre></td></tr></table>
+
+<p>yields all PRs in the database which contain the field values:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">&gt;Category:     rats         <em>and</em>
+&gt;Responsible:  fred         <em>and</em>
+&gt;State:        analyzed
+</pre></td></tr></table>
+
+<p>The following query:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'State~&quot;open|analyzed&quot;'
+</pre></td></tr></table>
+
+<p>yields all PRs in the database whose <code>State</code> values match either
+&lsquo;<samp>open</samp>&rsquo; or &lsquo;<samp>analyzed</samp>&rsquo; (see section <a href="Regexps.html#Regexps">Querying using regular expressions</a>.  This search is useful as a daily report that lists all
+Problem Reports which require attention.
+</p>
+<p>The following query:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --expr 'fieldtype:Text=&quot;The quick.*brown fox&quot;'
+</pre></td></tr></table>
+
+<p>yields all PRs whose <small>TEXT</small> fields contain the text &lsquo;<samp>The quick</samp>&rsquo;
+followed by &lsquo;<samp>brown fox</samp>&rsquo; within the same field.
+See section <a href="Regexps.html#Regexps">Querying using regular expressions</a>, which also contains
+further useful examples of query expressions.
+</p>
+
+
+<hr size="6">
+<a name="Emacs"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Example-queries" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-viewing" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-Emacs-interface-to-GNATS"></a>
+<h2 class="section">2.5 The Emacs interface to <small>GNATS</small></h2>
+<a name="index-Emacs"></a>
+
+<p>Emacs interface to <small>GNATS</small> provides basic access to <small>GNATS</small>
+databases, i.e. sending, editing, and querying Problem Reports.  It
+also defines a simple major mode for editing &lsquo;<tt>dbconfig</tt>&rsquo; files.
+</p>
+<p>This section provides an overview of using <small>GNATS</small> with Emacs.  It
+does not describe the use of Emacs itself, for detailed instructions
+on using Emacs, see <a href="../emacs/index.html#Top">(emacs)Top</a> section &lsquo;Top&rsquo; in <cite>GNU Emacs</cite>.  For
+installation instructions of the <small>GNATS</small> Emacs mode, see
+<a href="Installation.html#Installing-utils">Installing the utilities</a>.
+</p>
+<p>Please note the Emacs interface was completely rewritten between
+<small>GNATS</small> 3 and <small>GNATS</small> 4.  It now uses <code>gnatsd</code>,
+<a href="gnatsd.html#gnatsd">The <small>GNATS</small> network server &ndash; <code>gnatsd</code></a>, exclusively for its operations and uses modern Emacs
+features like faces.  Its features are not complete though, you can
+send your suggestions and patches to the appropriate <small>GNATS</small>
+mailing list, <a href="Support.html#Support"><small>GNATS</small> support</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Emacs-viewing">2.5.1 Viewing Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               Viewing PRs by their number.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-querying">2.5.2 Querying Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              Querying the database.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-submitting">2.5.3 Submitting new Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">            Submitting new PRs.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-editing">2.5.4 Editing Problem Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               Editing PRs.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-editing-buffer">2.5.5 The Problem Report editing buffer</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        The editing buffer.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-and-databases">2.5.6 Changing the database</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Changing the working database.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#dbconfig-mode">2.5.7 dbconfig mode</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               Major mode for dbconfig files.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Other-Emacs-commands">2.5.8 Other commands</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Miscellaneous commands.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Emacs-customization">2.5.9 Customization</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Customizing the Emacs interface.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Emacs-viewing"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-querying" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Viewing-Problem-Reports"></a>
+<h3 class="subsection">2.5.1 Viewing Problem Reports</h3>
+
+<a name="index-view_002dpr"></a>
+<p>To view a particular Problem Report, use the command <kbd>M-x
+view-pr</kbd>.  It asks for a Problem Report number and displays that
+Problem Report.
+</p>
+<a name="index-gnats_002dview_002dedit_002dpr"></a>
+<p>The displayed buffer is put in the view mode, <a href="../emacs/Misc-File-Ops.html#Misc-File-Ops">(emacs)Misc File Ops</a> section &lsquo;Misc File Ops&rsquo; in <cite>GNU Emacs</cite>.  If you decide to edit the displayed Problem
+Report, use the command <kbd>e</kbd> (<code>gnats-view-edit-pr</code>).
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002dview_002dmode_002dhook"></a>
+</dd>
+<dt> <code>gnats-view-mode-hook</code></dt>
+<dd><p>Hook run when <code>gnats-view-mode</code> is entered.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-querying"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-viewing" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-submitting" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Querying-Problem-Reports"></a>
+<h3 class="subsection">2.5.2 Querying Problem Reports</h3>
+
+<a name="index-query_002dpr-1"></a>
+<p>Querying the database is performed by the <kbd>M-x query-pr</kbd> command.
+The command prompts for the query expression, <a href="#Query-expressions">Query expressions</a>,
+and displays a buffer with the list of the matching Problem Reports.
+</p>
+<p>The list of the Problem Reports is displayed in the &lsquo;<samp>summary</samp>&rsquo;
+query format, <a href="#Formatting-query_002dpr-output">Formatting <code>query-pr</code> output</a>.  Currently, the
+display format cannot be changed and it must output each Problem
+Report&rsquo;s number in the first column.
+</p>
+<p>The Problem Report list buffer is put in the view mode, <a href="../emacs/Misc-File-Ops.html#Misc-File-Ops">(emacs)Misc File Ops</a> section &lsquo;Misc File Ops&rsquo; in <cite>GNU Emacs</cite>.  You can use most of the standard view mode
+commands in it.  Additionally, the following special commands are
+available:
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002dquery_002dview_002dpr"></a>
+</dd>
+<dt> <kbd>v</kbd></dt>
+<dt> <kbd>RET</kbd></dt>
+<dt> <kbd>mouse-2</kbd></dt>
+<dd><p>View the current Problem Report (<code>gnats-query-view-pr</code>),
+<a href="#Emacs-viewing">Viewing Problem Reports</a>.
+</p>
+<a name="index-gnats_002dquery_002dedit_002dpr"></a>
+</dd>
+<dt> <kbd>e</kbd></dt>
+<dd><p>Edit the current Problem Report (<code>gnats-query-edit-pr</code>),
+<a href="#Emacs-editing">Editing Problem Reports</a>.
+</p>
+<a name="index-gnats_002dquery_002dreread"></a>
+</dd>
+<dt> <kbd>g</kbd></dt>
+<dd><p>Update the Problem Report list (<code>gnats-query-reread</code>).  The last
+performed query is executed again and the buffer is filled with the
+new results.
+</p>
+<a name="index-query_002dpr-2"></a>
+</dd>
+<dt> <kbd>G</kbd></dt>
+<dd><p>Perform new query (<code>query-pr</code>).
+</p>
+<a name="index-send_002dpr-1"></a>
+</dd>
+<dt> <kbd>s</kbd></dt>
+<dd><p>Send new Problem Report (<code>send-pr</code>), <a href="#Emacs-submitting">Submitting new Problem Reports</a>.
+</p>
+<a name="index-gnats_002dchange_002ddatabase"></a>
+</dd>
+<dt> <kbd>D</kbd></dt>
+<dd><p>Change the current database (<code>gnats-change-database</code>), <a href="#Emacs-and-databases">Changing the database</a>.
+</p>
+<a name="index-bury_002dbuffer"></a>
+</dd>
+<dt> <kbd>q</kbd></dt>
+<dd><p>Bury buffer, the buffer is put at the end of the list of all buffers.
+This is useful for quick escape of the buffer, without killing it.
+</p></dd>
+</dl>
+
+<a name="index-gnats_002dquery_002dreverse_002dlisting"></a>
+<p>If the value of the variable <var>gnats-query-reverse-listing</var> is
+non-<code>nil</code>, the listing appears in the reversed order, i.e. with
+the Problem Reports of the highest number first, in the buffer.
+</p>
+<p>Similarly to other <small>GNATS</small> Emacs modes, there is a hook available
+for the Problem Report list.
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002dquery_002dmode_002dhook"></a>
+</dd>
+<dt> <code>gnats-query-mode-hook</code></dt>
+<dd><p>Hook run when <code>gnats-query-mode</code> is entered.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-submitting"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-querying" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-editing" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Submitting-new-Problem-Reports"></a>
+<h3 class="subsection">2.5.3 Submitting new Problem Reports</h3>
+
+<a name="index-send_002dpr-2"></a>
+<p>You can submit new Problem Reports with the command <kbd>M-x send-pr</kbd>.
+The command puts you to the problem editing buffer, <a href="#Emacs-editing">Editing Problem Reports</a>.  The buffer is prefilled with the initial report fields and
+their default values, if defined.  You can use the usual Problem
+Report editing commands, <a href="#Emacs-editing">Editing Problem Reports</a>.  When you have filled in
+all the fields, you can send the Problem Report by presing <kbd>C-c
+C-c</kbd>.
+</p>
+<p>If you run <kbd>M-x send-pr</kbd> with a prefix argument, it runs the
+<code>gnats-change-database</code> command before putting you to the editing
+buffer, <a href="#Emacs-and-databases">Changing the database</a>.
+</p>
+<p>You can set the following variables to get some fields pre-filled:
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002ddefault_002dorganization"></a>
+</dd>
+<dt> <var>gnats-default-organization</var></dt>
+<dd><p>Default value of the &lsquo;<samp>Organization</samp>&rsquo; field used in new Problem Reports.
+</p>
+<a name="index-gnats_002ddefault_002dsubmitter"></a>
+</dd>
+<dt> <var>gnats-default-submitter</var></dt>
+<dd><p>Default value of the &lsquo;<samp>Submitter-Id</samp>&rsquo; field used in new Problem Reports.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-editing"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-submitting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-editing-buffer" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Editing-Problem-Reports"></a>
+<h3 class="subsection">2.5.4 Editing Problem Reports</h3>
+
+<a name="index-edit_002dpr-1"></a>
+<p>To edit a particular Problem Report, use the command <kbd>M-x
+edit-pr</kbd>.  It asks for a Problem Report number and puts the given
+Problem Report in the editing buffer.  See section <a href="#Emacs-editing-buffer">The Problem Report editing buffer</a>,
+for information how to edit the Problem Report in the buffer and how
+to submit your changes.
+</p>
+<p>Note you can also start editing of a selected Problem Report directly
+from within the viewing buffer, <a href="#Emacs-viewing">Viewing Problem Reports</a>, or the query
+result buffer, <a href="#Emacs-querying">Querying Problem Reports</a>.
+</p>
+
+<hr size="6">
+<a name="Emacs-editing-buffer"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-editing" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-and-databases" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-Problem-Report-editing-buffer"></a>
+<h3 class="subsection">2.5.5 The Problem Report editing buffer</h3>
+
+<p>When you invoke a Problem Report editing command, the Problem Report
+is put into a special editing buffer.  The Problem Report is formatted
+similarly to the <code>query-pr -F</code> output, <a href="#Formatting-query_002dpr-output">Formatting <code>query-pr</code> output</a>.  Field identifiers are formatted as
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">&gt;Field:
+</pre></td></tr></table>
+
+<p>with the text of the field following the identifier on the same line
+for single-line fields or starting on the next line for multi-line
+fields.
+</p>
+<p>The Problem Report editing mode tries to prevent you from violating
+the Problem Report format and the constraints put on the possible
+field values.  Generally, you can use usual editing commands, some of
+them have a slightly modified behavior though.  (If you encounter a
+very strange behavior somewhere, please report it as a bug,
+<a href="Support.html#Support"><small>GNATS</small> support</a>.)
+</p>
+<a name="index-gnats_002dnext_002dfield"></a>
+<a name="index-gnats_002dprevious_002dfield"></a>
+<p>You can move between fields easily by pressing the <kbd>TAB</kbd>
+(<code>gnats-next-field</code>) or <kbd>M-TAB</kbd>
+(<code>gnats-previous-field</code>) keys.
+</p>
+<p>The field tags are read-only and you cannot edit them nor delete them.
+If you want to &ldquo;remove&rdquo; a field, just make its value empty.
+</p>
+<p>Editing a field value depends on the type of the edited field,
+<a href="Management.html#Field-datatypes">Field datatypes</a>.  For text fields, you can edit the value
+directly, assuming you preserve the rule about single-line and
+multi-line values mentioned above.
+</p>
+<p>For enumerated fields, you cannot edit the value directly.  You can
+choose it from the list of the allowed values, either from the menu
+popped up by pressing the middle mouse button or from within
+minibuffer by pressing any key on the field&rsquo;s value.  If the pressed
+key matches any of the allowed field values, that value is put as the
+default value after the minibuffer prompt.  You can also cycle through
+the allowed field values directly in the editing buffer using the
+<code>SPACE</code> key.  Enumerated field values are marked by a special
+face to not confuse you; you must have enabled font lock mode to
+benefit from this feature, <a href="../emacs/Font-Lock.html#Font-Lock">(emacs)Font Lock</a> section &lsquo;Font Lock&rsquo; in <cite>GNU Emacs</cite>.
+</p>
+<p>Some field values can be read-only, you cannot edit them at all.
+</p>
+<a name="index-gnats_002dapply_002dor_002dsubmit"></a>
+<p>Once you have edited the Problem Report as needed, you can send it to
+the server with the <kbd>C-c C-c</kbd> command
+(<code>gnats-apply-or-submit</code>).  Successful submission is reported by
+a message and the buffer modification flag in mode line is cleared.
+Then you can either kill the buffer or continue with further
+modifications.
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002dedit_002dmode_002dhook"></a>
+</dd>
+<dt> <code>gnats-edit-mode-hook</code></dt>
+<dd><p>Hook run when <code>gnats-edit-mode</code> is entered.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-and-databases"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-editing-buffer" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-mode" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Changing-the-database"></a>
+<h3 class="subsection">2.5.6 Changing the database</h3>
+
+<a name="index-gnats_002dchange_002ddatabase-1"></a>
+<p>By default, the Emacs interface connects to the default database,
+<a href="Management.html#databases-file">The <code>databases</code> file</a>.  If you want to connect to another database, use
+the command <kbd>M-x gnats-change-database</kbd>.  It will ask you for the
+database name to use, server and port it can be accessed on, and your
+login name.
+</p>
+<a name="index-gnatsd_002c-Emacs"></a>
+<p>If you want to use the <code>gnatsd</code> command, <a href="gnatsd.html#gnatsd">The <small>GNATS</small> network server &ndash; <code>gnatsd</code></a>,
+directly, without connecting to a remote server or the localhost
+connection port, provide your local file system full path to
+<code>gnatsd</code> as the server name.  Port number does not matter in
+this case.
+</p>
+<a name="index-password_002c-Emacs"></a>
+<p>If the database requires a password to allow you the access to it, you
+are prompted for the password the first time you connect to the
+database.  If you provide an invalid password, you cannot connect to
+the database anymore and you have to run the <kbd>M-x
+gnats-change-database</kbd> command again.
+</p>
+
+<hr size="6">
+<a name="dbconfig-mode"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Emacs-and-databases" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Other-Emacs-commands" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="dbconfig-mode-1"></a>
+<h3 class="subsection">2.5.7 dbconfig mode</h3>
+
+<a name="index-dbconfig-mode"></a>
+<a name="index-gnats_002ddbconfig_002dmode"></a>
+<p>The Emacs interface defines a simple major mode
+<code>gnats-dbconfig-mode</code> for editing &lsquo;<tt>dbconfig</tt>&rsquo; files,
+<a href="Management.html#dbconfig-file">The <code>dbconfig</code> file</a>.  It defines basic mode attributes like character
+syntax and font lock keywords, it does not define any special commands
+now.
+</p>
+<dl compact="compact">
+<dd><a name="index-gnats_002ddbconfig_002dmode_002dhook"></a>
+</dd>
+<dt> <code>gnats-dbconfig-mode-hook</code></dt>
+<dd><p>Hook run when <code>gnats-dbconfig-mode</code> is entered.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Other-Emacs-commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#dbconfig-mode" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs-customization" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Other-commands"></a>
+<h3 class="subsection">2.5.8 Other commands</h3>
+
+<dl compact="compact">
+<dd><a name="index-unlock_002dpr"></a>
+</dd>
+<dt> <kbd>M-x unlock-pr</kbd></dt>
+<dd><p>Ask for a Problem Report number and unlock that Problem Report.  This
+function is useful if connection to a <small>GNATS</small> server was
+interrupted during an editing operation and further modifications of
+the Problem Report are blocked by a stealth lock.
+</p>
+<a name="index-unlock_002ddatabase"></a>
+</dd>
+<dt> <kbd>M-x unlock-database</kbd></dt>
+<dd><p>Unlock the whole <small>GNATS</small> database.  This function is useful in
+situations similar to when <code>unlock-pr</code> is used.
+</p>
+<a name="index-gnats_002dshow_002dconnection"></a>
+</dd>
+<dt> <kbd>M-x gnats-show-connection</kbd></dt>
+<dd><p>Show the connection buffer associated with the current buffer.  You
+can view the Emacs communication with <small>GNATSD</small> in it.  This is
+useful when something strange happens during the communication with
+the server, e.g. when sending a Problem Report with <kbd>C-c C-c</kbd> from
+a Problem Report editing buffer.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<a name="Emacs-customization"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Other-Emacs-commands" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Emacs" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Customization"></a>
+<h3 class="subsection">2.5.9 Customization</h3>
+
+<p>All the user variables can be customized in the customization group
+<code>gnats</code>, <a href="../emacs/Easy-customization.html#Easy-customization">(emacs)Easy customization</a> section &lsquo;Easy customization&rsquo; in <cite>GNU Emacs</cite>.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

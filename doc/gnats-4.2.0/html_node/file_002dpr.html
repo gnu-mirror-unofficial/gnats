@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.8.2 Processing incoming traffic</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.8.2 Processing incoming traffic">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.8.2 Processing incoming traffic">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="file_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="queue_002dpr.html#queue_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="at_002dpr.html#at_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Internal-utils.html#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Processing-incoming-traffic"></a>
+<h3 class="subsection">4.8.2 Processing incoming traffic</h3>
+<a name="index-file_002dpr"></a>
+<a name="index-processing-incoming-traffic"></a>
+
+<p><code>queue-pr</code> hands off queued Problem Reports to <code>file-pr</code> one
+at a time.  <code>file-pr</code> checks each Problem Report for correct
+information in its fields (particularly a correct <code>Category</code>),
+assigns it an identification number, and files it in the database under
+the appropriate category.
+</p>
+<p>If the <code>Category</code> field does not contain a valid category value
+(i.e., matching a line in the <code>categories</code> file; see section <a href="categories-file.html#categories-file">The <code>categories</code> file</a>), the PR is assigned to the default
+category, as set in the <code>dbconfig</code> file.  If there is no default
+category defined, the PR is given a <code>Category</code> value of
+&lsquo;<samp>pending</samp>&rsquo; and is placed in the &lsquo;<tt>pending</tt>&rsquo; directory.  The
+<small>GNATS</small> administrator is notified of the unplaceable PR.
+</p>
+<p><code>file-pr</code> assigns the Problem Report an identification number,
+files it in the <small>GNATS</small> database (under the default, if the
+<code>Category</code> field contains an invalid category), and sends
+acknowledgments to appropriate parties.  For the default <small>GNATS</small>
+configuration, the person responsible for that category of problem
+(see section <a href="categories-file.html#categories-file">The <code>categories</code> file</a>) and the person
+responsible for the submitter site where the PR originated
+(see section <a href="submitters-file.html#submitters-file">The <code>submitters</code> file</a>) receive a copy of
+the PR in its entirety.  Optionally, the originator of the PR receives
+an acknowledgment that the PR arrived and was filed (see section <a href="GNATS-configuration.html#GNATS-configuration">Changing your <small>GNATS</small> configuration</a>).
+</p>
+<p>The usage for <code>file-pr</code> is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">file-pr [ -f <var>filename</var> | --file=<var>filename</var> ]
+        [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+	    [ -h | --help ] [ -V | --version ]
+ 
+       network options:
+        [ -H <var>host</var> | --host=<var>host</var> ]
+        [ -P <var>port</var> | --port=<var>port</var> ]
+        [ -v <var>username</var> | --user=<var>username</var> ]
+        [ -w <var>password</var> | --passwd=<var>password</var> ]
+</pre></td></tr></table>
+
+<p><code>file-pr</code> requires no options in order to operate, and takes input
+from standard input (normally, the output of &lsquo;<samp>queue-pr -r</samp>&rsquo;)
+unless otherwise specified.  The options include:
+</p>
+<dl compact="compact">
+<dt> <code>-f <var>filename</var></code></dt>
+<dt> <code>--filename=<var>filename</var></code></dt>
+<dd><p>Uses <var>filename</var> as input rather than standard input.
+</p>
+</dd>
+<dt> <code>-d <var>databasename</var></code></dt>
+<dt> <code>--database=<var>databasename</var></code></dt>
+<dd><p>Performs refiling operations on <var>database</var>.  If this option is left
+out, the value of the <var>GNATSDB</var> environment variable is used, and if
+that is undefined, the default database name set when <small>GNATS</small> was
+built is used (usually <code>default</code>).
+</p>
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Prints the usage for <code>file-pr</code>.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Prints the version number for <code>file-pr</code>.
+</p></dd>
+</dl>
+
+<p><code>file-pr</code> can file PRs across a network, talking to a remote
+gnatsd. The following options relate to network access:
+</p>
+<dl compact="compact">
+<dt> <code>-H <var>host</var></code></dt>
+<dt> <code>--host=<var>host</var></code></dt>
+<dd><p>Hostname of the <small>GNATS</small> server.
+</p>
+</dd>
+<dt> <code>-P <var>port</var></code></dt>
+<dt> <code>--port=<var>port</var></code></dt>
+<dd><p>The port that the <small>GNATS</small> server runs on.
+</p>
+</dd>
+<dt> <code>-v <var>username</var></code></dt>
+<dt> <code>--username=<var>username</var></code></dt>
+<dd><p>Username used to log into the <small>GNATS</small> server.
+</p>
+</dd>
+<dt> <code>-w <var>password</var></code></dt>
+<dt> <code>--passwd=<var>password</var></code></dt>
+<dd><p>Password used to log into the <small>GNATS</small> server.
+</p></dd>
+</dl>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="queue_002dpr.html#queue_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="at_002dpr.html#at_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Internal-utils.html#Internal-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

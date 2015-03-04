@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2.2.1 Invoking send-pr from the shell</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2.2.1 Invoking send-pr from the shell">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2.2.1 Invoking send-pr from the shell">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="send_002dpr-from-the-shell"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="send_002dpr.html#send_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="send_002dpr-in-Emacs.html#send_002dpr-in-Emacs" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="send_002dpr.html#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Invoking-send_002dpr-from-the-shell"></a>
+<h3 class="subsection">2.2.1 Invoking <code>send-pr</code> from the shell</h3>
+<a name="index-command-line-options"></a>
+<a name="index-invoking-send_002dpr-from-the-shell"></a>
+<a name="index-shell-invocation"></a>
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">send-pr [ -b | --batch ]
+        [ -d <var>database</var> | --database <var>database</var> ]
+        [ -f <var>file</var> | --file <var>file</var> ]
+        [ -p | --print ] [ --request-id ]
+        [ -s <var>severity</var> | --severity <var>severity</var> ]
+        [ -V | --version ] [ -h | --help ]
+</pre></td></tr></table>
+
+<p>Invoking <code>send-pr</code> with no options assumes that you want to
+submit to the local <small>GNATS</small> database named <var>default</var> and calls
+the editor named in your environment variable <code>EDITOR</code> on a PR
+template for this database.
+</p>
+<dl compact="compact">
+<dt> <code>-b</code></dt>
+<dt> <code>--batch</code></dt>
+<dd><p>Suppresses printing of most of the messages <code>send-pr</code> usually
+prints while running.
+</p>
+</dd>
+<dt> <code>-d <var>database</var>, --database <var>database</var></code></dt>
+<dd><p>Specifies the database to which the PR is to be submitted; if no
+database is specified, the local database named <code>default</code> is
+assumed.  This option overrides the database specified in the
+<code>GNATSDB</code> environment variable.  <var>database</var> can also be set
+to a remote database by using the format for <code>GNATSDB</code> described
+in <a href="Environment.html#Environment">Environment variables and <small>GNATS</small> tools</a>.
+</p>
+</dd>
+<dt> <code>-f <var>problem-report</var></code></dt>
+<dt> <code>--file <var>problem-report</var></code></dt>
+<dd><p>Specifies a file, <var>problem-report</var>, where a completed Problem
+Report or a PR template exists.  <code>send-pr</code> verifies that the
+contents of the file constitute a valid PR and asks you if you want to
+edit it or send it directly.  If the PR text is invalid you will be
+told what is wrong and be given the option to edit it. If
+<var>problem-report</var> is &lsquo;<samp>-</samp>&rsquo;, <code>send-pr</code> reads from
+standard input.
+</p>
+</dd>
+<dt> <code>-p</code></dt>
+<dt> <code>--print</code></dt>
+<dd><p>Displays the PR template for the specified database, or if the
+<code>-d</code> or <code>--database</code> options aren&rsquo;t specified, print the
+template for the local <var>default</var> database.  No PR is submitted.
+</p>
+</dd>
+<dt> <code>--request-id</code></dt>
+<dd><p>Sends a request for a <code>Submitter-Id</code> to the Support Site.
+</p>
+</dd>
+<dt> <code>-s <var>severity</var></code></dt>
+<dt> <code>--severity <var>severity</var></code></dt>
+<dd><a name="index-send_002dpr-fields"></a>
+<p>Sets the initial value of the <code>Severity</code> field to <var>severity</var>.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Displays the <code>send-pr</code> version number and a usage summary.  No mail
+is sent.
+</p>
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Displays a usage summary for <code>send-pr</code>.  No mail is sent.
+</p></dd>
+</dl>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="send_002dpr.html#send_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="send_002dpr-in-Emacs.html#send_002dpr-in-Emacs" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="send_002dpr.html#send_002dpr" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

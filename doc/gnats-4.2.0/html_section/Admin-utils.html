@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.7 Administrative utilities</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.7 Administrative utilities">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.7 Administrative utilities">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Admin-utils"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Admin-files.html#current-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#mkdb" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Administrative-utilities"></a>
+<h2 class="section">4.7 Administrative utilities</h2>
+<a name="index-administrative-utilities"></a>
+
+<p>These tools are used by the <small>GNATS</small> administrator as part of the
+periodic maintenance and configuration of <small>GNATS</small>.
+See section <a href="Management.html#Management"><small>GNATS</small> Administration</a>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#mkdb">4.7.1 Adding another database</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#mkcat">4.7.2 Adding a problem category</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#rmcat">4.7.3 Removing a problem category</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#gen_002dindex">4.7.4 Regenerating the index</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#check_002ddb">4.7.5 Checking database health</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#gnats_002dpwconv">4.7.6 Managing user passwords</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+</table>
+
+<hr size="6">
+<a name="mkdb"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Admin-utils" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#mkcat" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Admin-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Adding-another-database"></a>
+<h3 class="subsection">4.7.1 Adding another database</h3>
+<a name="index-mkdb-1"></a>
+<a name="index-initializing-a-database"></a>
+<a name="index-new-database"></a>
+
+<p>To initialize a new <small>GNATS</small> database:
+</p>
+<ol>
+<li>
+Add a line for the new database in the &lsquo;<tt>databases</tt>&rsquo; file
+(see section <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>.
+
+</li><li>
+Run <code>mkdb</code>, using
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">mkdb <var>database</var>
+</pre></td></tr></table>
+
+<p>where <var>database</var> is the database you specified in the
+&lsquo;<tt>databases</tt>&rsquo; file.  <code>mkdb</code> creates the database directory and
+populates it with the directories &lsquo;<tt>pending</tt>&rsquo;, &lsquo;<tt>gnats-queue</tt>&rsquo;
+and &lsquo;<tt>gnats-adm</tt>&rsquo;.  A full set of sample configuration files is
+copied to the &lsquo;<tt>gnats-adm</tt>&rsquo; directory.
+</p></li></ol>
+
+<hr size="6">
+<a name="mkcat"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#mkdb" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#rmcat" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Admin-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Adding-a-problem-category"></a>
+<h3 class="subsection">4.7.2 Adding a problem category</h3>
+<a name="index-mkcat-1"></a>
+<a name="index-adding-a-problem-category-1"></a>
+<a name="index-new-problem-categories"></a>
+<a name="index-categories-file-2"></a>
+
+<p>To add new categories to the database:
+</p>
+<ol>
+<li> 
+Add a line to for each new category to the &lsquo;<tt>categories</tt>&rsquo; file in the
+gnats-adm directory of the database. See section <a href="Other-config-files.html#categories-file">The <code>categories</code> file</a>.
+
+</li><li>
+Run <code>mkcat</code> If applicable.  If <code>create-category-dirs</code> is set
+to <code>false</code> in the database &lsquo;<tt>dbconfig</tt>&rsquo; file, you need to create
+category directories with <code>mkcat</code>.  <code>mkcat</code> creates a
+subdirectory under the database directory for any new categories which
+appear in the &lsquo;<tt>categories</tt>&rsquo; file.
+</li></ol>
+
+<hr size="6">
+<a name="rmcat"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#mkcat" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#gen_002dindex" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Admin-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Removing-a-problem-category"></a>
+<h3 class="subsection">4.7.3 Removing a problem category</h3>
+<a name="index-rmcat-1"></a>
+<a name="index-removing-a-problem-category-1"></a>
+<a name="index-categories-file-3"></a>
+
+<p>To remove a category from the database:
+</p>
+<ol>
+<li>
+Remove the Problem Reports from the subdirectories corresponding to the
+categories you wish to remove, or assign the PRs to new categories.  All
+PRs for a given category reside in a subdirectory of the database
+directory, with the same name as the category.
+
+</li><li>
+Run <code>rmcat</code> using
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">rmcat <var>category</var> [ <var>category&hellip;</var> ]
+</pre></td></tr></table>
+
+<p>where <var>category</var> is the category you wish to remove.  You can
+specify as many categories as you wish as long as each category has no
+PRs associated with it.  <code>rmcat</code> removes the directory where the
+Problem Reports for that category had been stored.
+</p></li></ol>
+
+
+<hr size="6">
+<a name="gen_002dindex"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#rmcat" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#check_002ddb" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Admin-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Regenerating-the-index"></a>
+<h3 class="subsection">4.7.4 Regenerating the index</h3>
+<a name="index-gen_002dindex-1"></a>
+<a name="index-index-file-1"></a>
+
+<p>If your &lsquo;<tt>index</tt>&rsquo; file becomes corrupted, or if you need a copy of
+the current index for some reason, use
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">gen-index [ -n | --numeric ]
+          [ -d <var>databasename</var> | --database=<var>databasename</var> ]
+          [ -o <var>filename</var> | --outfile=<var>filename</var> ]
+          [ -i | --import ] [ -e | --export ]
+          [ -h | --help] [ -V | --version ]
+</pre></td></tr></table>
+
+<p>With no options, <code>gen-index</code> generates an index that is sorted by
+the order that the categories appear in the &lsquo;<tt>categories</tt>&rsquo; file. The
+index is generated in plaintext or binary format according to the value
+of <code>binary-index</code> in the &lsquo;<tt>dbconfig</tt>&rsquo; file (see section <a href="dbconfig-file.html#Index-file-description">Index file description</a>).  The results are printed to
+standard output.  The options are:
+</p>
+<dl compact="compact">
+<dt> <code>-n</code></dt>
+<dt> <code>--numeric</code></dt>
+<dd><p>Sorts index entries numerically.
+</p>
+</dd>
+<dt> <code>-d <var>databasename</var></code></dt>
+<dt> <code>--database=<var>databasename</var></code></dt>
+<dd><p>Specifies the database to index.  If this option is left out,
+<code>gen-index</code> attempts to index the database with name taken from the
+the <var>GNATSDB</var> environment variable, and if that is undefined, the
+default database, as set when <small>GNATS</small> was built (usually
+<code>default</code>).
+</p>
+</dd>
+<dt> <code>-o <var>filename</var></code></dt>
+<dt> <code>--outfile=<var>filename</var></code></dt>
+<dd><p>Places output in <var>filename</var> rather than sending it to standard
+output.
+</p>
+</dd>
+<dt> <code>-i</code></dt>
+<dt> <code>--import</code></dt>
+<dd><p>Import the existing index file instead of re-indexing the database.
+</p>
+</dd>
+<dt> <code>-e</code></dt>
+<dt> <code>--export</code></dt>
+<dd><p>Force plaintext output.
+</p>
+</dd>
+<dt> <code>-h</code></dt>
+<dt> <code>--help</code></dt>
+<dd><p>Prints the usage for <code>gen-index</code>.
+</p>
+</dd>
+<dt> <code>-V</code></dt>
+<dt> <code>--version</code></dt>
+<dd><p>Prints the version number for <code>gen-index</code>.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="check_002ddb"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#gen_002dindex" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#gnats_002dpwconv" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Admin-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Checking-database-health"></a>
+<h3 class="subsection">4.7.5 Checking database health</h3>
+<a name="index-check_002ddb"></a>
+
+<p>The &lsquo;<tt>check-db</tt>&rsquo; script is useful for performing periodic checks on
+database health.  It accepts the following options:
+</p>
+<dl compact="compact">
+<dt> <code>-d <var>databasename</var></code></dt>
+<dt> <code>--database=<var>databasename</var></code></dt>
+<dd><p>Determines the database which to operate on.
+</p>
+</dd>
+<dt> <code>--all-databases</code></dt>
+<dd><p>Check all <small>GNATS</small> databases on the system.  This option takes
+precedence over the <code>--database</code> option.
+</p></dd>
+</dl>
+
+<p>If no option is given, the default database is checked.
+</p>
+<p>During its operation, <code>check-db</code> first attempts to lock
+<var>database</var>.  If this is not possible, it repeats the locking
+attempts for five minutes; if it fails, it sends a mail message
+notifying the administrator of the failure and exits.
+</p>
+<p>Once the database is locked, the script searches the database for lock
+files that are more than 24 hours old.  Any old lock files are reported
+to the administrator in a mail message.
+</p>
+<p>After checking for old lock files, it calls <code>gen-index</code>
+(see section <a href="#gen_002dindex">Regenerating the index</a>) and compares the
+results with the current &lsquo;<tt>index</tt>&rsquo; file of the database; any
+inconsistencies are reported to the administrators in a mail message.
+</p> 
+<p>After checking the index file for inconsistencies, the script unlocks
+the database and exits.
+</p>
+<hr size="6">
+<a name="gnats_002dpwconv"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#check_002ddb" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Internal-utils.html#Internal-utils" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Admin-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Managing-user-passwords"></a>
+<h3 class="subsection">4.7.6 Managing user passwords</h3>
+<a name="index-gnats_002dpwconv"></a>
+
+<p>Older versions of <small>GNATS</small>, up to and including version 3.x, stored
+user passwords in plaintext in the &lsquo;<tt>gnatsd.user_access</tt>&rsquo; files. Version 4
+has the options of storing the password as MD5 or standard DES
+<code>crypt()</code> hashes (as most UNIX versions do in the system password
+files) as well as in plaintext. Since the password strings require a
+prefix to indicate how they are encrypted, one is forced to convert the
+old password files to a new format when upgrading to <small>GNATS</small> version
+4. See section <a href="Upgrading.html#Upgrading">Upgrading from older versions</a>.
+</p>
+<p>The <code>gnats-pwconv</code> tool takes care of converting the old password
+files to the new format:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">gnats-pwconv [ -c | --crypt ] [ -m | --md5 ] [ -p | --plaintext ]
+         [ -h | --help] [ -V | --version ] <var>INFILE</var> [<var>OUTFILE</var>]
+</pre></td></tr></table>
+
+<p>Unless the <code>--version</code> or <code>--help</code> options are given, exactly
+one encryption method must be specified, as well as an input file. The
+output file parameter is optional. If one is not specified, results will
+be printed on standard output.
+</p>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#check_002ddb" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Internal-utils.html#Internal-utils" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Admin-utils" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

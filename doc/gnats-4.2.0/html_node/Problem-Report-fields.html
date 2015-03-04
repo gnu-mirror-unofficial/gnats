@@ -1,0 +1,468 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 1.4.3 Problem Report fields</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 1.4.3 Problem Report fields">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 1.4.3 Problem Report fields">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Problem-Report-fields"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Mail-header-fields.html#Mail-header-fields" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Fields.html#Fields" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Problem-Report-fields-1"></a>
+<h3 class="subsection">1.4.3 Problem Report fields</h3>
+<a name="index-GNATS-database-fields"></a>
+<a name="index-field-format"></a>
+
+
+<p>In a standard <small>GNATS</small> installation, certain fields will always be
+present in a Problem Report.  If a PR arrives without one or more of
+these fields, <small>GNATS</small> will add them, and if they have default
+values set by the configuration at the Support Site, they will be
+filled in with these values.  Certain tools such as <code>send-pr</code> are
+set up to provide sensible defaults for most fields
+(see section <a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file">The send-pr.conf configuration file</a>.)
+</p>
+<p>In the list below, the field type (<code>text</code>, <code>multitext</code>,
+<code>enumerated</code>, etc.) is supplied in parantheses.  The different
+field types are explained briefly in <a href="Field-datatypes-reference.html#Field-datatypes-reference">Field datatypes reference</a>.
+</p>
+<a name="index-fields-_002d-list"></a>
+<a name="index-GNATS-fields-_002d-list"></a>
+<dl compact="compact">
+<dd><a name="index-Submitter_002dId-field"></a>
+</dd>
+<dt> <code>Submitter-Id</code></dt>
+<dd><p>(<code>enumerated-in-file</code>) A unique identification code assigned by the
+Support Site.  It is used to identify all Problem Reports coming from a
+particular site.  Submitters without a value for this field can invoke
+<code>send-pr</code> with the <code>--request-id</code> option to apply for one from
+the support organization.  Problem Reports from those not affiliated
+with the support organization should use the default value of &lsquo;<samp>net</samp>&rsquo;
+for this field.
+</p>
+<p>See section <a href="submitters-file.html#submitters-file">The <code>submitters</code> file</a>, for details.
+</p>
+<a name="index-Notify_002dList-field"></a>
+</dd>
+<dt> <code>Notify-List</code></dt>
+<dd><p>(<code>text</code>) Comma-separated list of e-mail-addresses of people to
+notify when the PR changes significantly, i.e. when the Audit-Trail
+changes.  This list is independent from the Notify subfield of entries
+in the &lsquo;<tt>categories</tt>&rsquo; file of the <small>GNATS</small> database.
+</p>
+<a name="index-Originator-field"></a>
+</dd>
+<dt> <code>Originator</code></dt>
+<dd><p>(<code>text</code>) Originator&rsquo;s real name.  Note that the Submitter and
+Originator might not be the same person/entity in all cases.
+</p>
+<a name="index-Organization-field"></a>
+</dd>
+<dt> <code>Organization</code></dt>
+<dd><p>(<code>multitext</code>) The originator&rsquo;s organization.
+</p>
+<a name="index-Confidential-field"></a>
+<a name="index-confidentiality-in-PRs"></a>
+<a name="index-PR-confidentiality"></a>
+</dd>
+<dt> <code>Confidential</code></dt>
+<dd><p>(<code>enum</code>) Use of this field depends on the originator&rsquo;s relationship
+with the support organization; contractual agreements often have
+provisions for preserving confidentiality.  Conversely, a lack of a
+contract often means that any data provided will not be considered
+confidential.  Submitters should be advised to contact the support
+organization directly if this is an issue.
+</p>
+<p>If the originator&rsquo;s relationship to the support organization provides
+for confidentiality, then if the value of this field is &lsquo;<samp>yes</samp>&rsquo; the
+support organization treats the PR as confidential; any code samples
+provided are not made publicly available.
+</p>
+<a name="index-Synopsis-field"></a>
+</dd>
+<dt> <code>Synopsis</code></dt>
+<dd><p>(<code>text</code>) One-line summary of the problem.  <code>send-pr</code> copies
+this information to the <code>Subject</code> line when you submit a Problem
+Report.
+</p>
+<a name="index-Severity-field"></a>
+</dd>
+<dt> <code>Severity</code></dt>
+<dd><p>(<code>enum</code>) The severity of the problem.  By default, accepted
+values include:
+</p>
+<dl compact="compact">
+<dd><a name="index-critical-severity-problems"></a>
+</dd>
+<dt> <code>critical</code>  </dt>
+<dd><p>The product, component or concept is completely non-operational or some
+essential functionality is missing.  No workaround is known.
+</p>
+<a name="index-serious-severity-problems"></a>
+</dd>
+<dt> <code>serious</code></dt>
+<dd><p>The product, component or concept is not working properly or significant
+functionality is missing.  Problems that would otherwise be considered
+&lsquo;<samp>critical</samp>&rsquo; are usually rated &lsquo;<samp>serious</samp>&rsquo; when a workaround is
+known.
+</p>
+<a name="index-non_002dcritical-severity-problems"></a>
+</dd>
+<dt> <code>non-critical</code></dt>
+<dd><p>The product, component or concept is working in general, but lacks
+features, has irritating behavior, does something wrong, or doesn&rsquo;t
+match its documentation.
+</p></dd>
+</dl>
+
+<a name="index-Priority-field"></a>
+</dd>
+<dt> <code>Priority</code></dt>
+<dd><p>(<code>enumerated</code>) How soon the originator requires a solution.
+Accepted values include:
+</p>
+<dl compact="compact">
+<dd><a name="index-high-priority-problems"></a>
+</dd>
+<dt> <code>high</code></dt>
+<dd><p>A solution is needed as soon as possible.
+</p>
+<a name="index-medium-priority-problems"></a>
+</dd>
+<dt> <code>medium</code></dt>
+<dd><p>The problem should be solved in the next release.
+</p>
+<a name="index-low-priority-problems"></a>
+</dd>
+<dt> <code>low</code></dt>
+<dd><p>The problem should be solved in a future release.
+</p></dd>
+</dl>
+
+<a name="index-Category-field"></a>
+</dd>
+<dt> <code>Category</code></dt>
+<dd><p>(<code>enumerated-in-file</code>) The name of the product, component or
+concept where the problem lies.  The values for this field are defined
+by the Support Site.
+See section <a href="categories-file.html#categories-file">The <code>categories</code> file</a>, for details.
+</p>
+<a name="index-Class-field"></a>
+</dd>
+<dt> <code>Class</code></dt>
+<dd><p>(<code>enumerated-in-file</code>) The class of a problem in a default
+<small>GNATS</small> installation can be one of the following:
+</p>
+<dl compact="compact">
+<dd><a name="index-sw_002dbug-class"></a>
+</dd>
+<dt> <code>sw-bug</code></dt>
+<dd><p>A general product problem.  (&lsquo;<samp>sw</samp>&rsquo; stands for &ldquo;software&rdquo;.)
+</p>
+<a name="index-doc_002dbug-class"></a>
+</dd>
+<dt> <code>doc-bug</code></dt>
+<dd><p>A problem with the documentation.
+</p>
+<a name="index-change_002drequest-class"></a>
+</dd>
+<dt> <code>change-request</code></dt>
+<dd><p>A request for a change in behavior, etc.
+</p>
+<a name="index-support-class"></a>
+</dd>
+<dt> <code>support</code></dt>
+<dd><p>A support problem or question.
+</p>
+<a name="index-duplicate-class"></a>
+</dd>
+<dt> <code>duplicate (<var>pr-number</var>)</code></dt>
+<dd><p>Duplicate PR.  <var>pr-number</var> should be the number of the original PR.
+</p>
+<a name="index-mistaken-class"></a>
+</dd>
+<dt> <code>mistaken</code>  </dt>
+<dd><p>No problem, user error or misunderstanding.  This value can only be set
+by tools at the Support Site, since it has no meaning for ordinary
+submitters.
+</p></dd>
+</dl>
+
+<p>See section <a href="classes-file.html#classes-file">The <code>classes</code> file</a>, for details.
+</p>
+<a name="index-Release-field"></a>
+</dd>
+<dt> <code>Release</code></dt>
+<dd><p>(<code>text</code>) Release or version number of the product, component or
+concept.
+</p>
+<a name="index-Environment-field"></a>
+</dd>
+<dt> <code>Environment</code></dt>
+<dd><p>(<code>multitext</code>) Description of the environment where the problem
+occurred: machine architecture, operating system, host and target types,
+libraries, pathnames, etc.
+</p>
+<a name="index-Description-field"></a>
+</dd>
+<dt> <code>Description</code></dt>
+<dd><p>(<code>multitext</code>) Precise description of the problem.
+</p>
+<a name="index-How_002dTo_002dRepeat-field"></a>
+</dd>
+<dt> <code>How-To-Repeat</code></dt>
+<dd><p>(<code>multitext</code>) Example code, input, or activities to reproduce the
+problem.  The support organization uses example code both to reproduce
+the problem and to test whether the problem is fixed.  Include all
+preconditions, inputs, outputs, conditions after the problem, and
+symptoms.  Any additional important information should be included.
+Include all the details that would be necessary for someone else to
+recreate the problem reported, however obvious.  Sometimes seemingly
+arbitrary or obvious information can point the way toward a solution.
+See also <a href="Helpful-hints.html#Helpful-hints">Helpful hints</a>.
+</p>
+<a name="index-Fix-field"></a>
+</dd>
+<dt> <code>Fix</code></dt>
+<dd><p>(<code>multitext</code>) A description of a solution to the problem, or a
+patch which solves the problem.  (This field is most often filled in at
+the Support Site; we provide it to the submitter in case he or she has
+solved the problem.)
+</p></dd>
+</dl>
+
+<p><small>GNATS</small> adds the following fields when the PR arrives at the Support
+Site:
+</p>
+<dl compact="compact">
+<dd><a name="index-Number-field"></a>
+</dd>
+<dt> <code>Number</code></dt>
+<dd><p>(<code>enumerated</code>) The incremental identification number for this PR.
+This is included in the automated reply to the submitter (if that
+feature of <small>GNATS</small> is activated; see section <a href="dbconfig-file.html#dbconfig-file">The &lsquo;<tt>dbconfig</tt>&rsquo; file</a>).  It is also included in the copy of the PR that
+is sent to the maintainer.
+</p>
+<p>The <code>Number</code> field is often paired with the <code>Category</code> field
+as
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"><var>category</var>/<var>number</var>
+</pre></td></tr></table>
+
+<p>in subsequent email messages.  This is <small>GNATS</small>&rsquo; way of tracking
+followup messages that arrive by mail so that they are filed as part of
+the original PR.
+</p>
+<a name="index-State-field"></a>
+</dd>
+<dt> <code>State</code></dt>
+<dd><p>(<code>enumerated</code>) The current state of the PR.  In default <small>GNATS</small>
+installations, accepted values are:
+</p>
+<dl compact="compact">
+<dt> <code>open</code></dt>
+<dd><p>The PR has been filed and the responsible person notified.
+</p>
+</dd>
+<dt> <code>analyzed</code></dt>
+<dd><p>The responsible person has analyzed the problem.
+</p>
+</dd>
+<dt> <code>feedback</code></dt>
+<dd><p>The problem has been solved, and the originator has been given a patch
+or other fix.  Support organizations may also choose to temporarily
+&rdquo;park&rdquo; PRs that are awaiting further input from the submitter under
+this state.
+</p>
+</dd>
+<dt> <code>closed</code></dt>
+<dd><p>The changes have been integrated, documented, and tested, and the
+originator has confirmed that the solution works.
+</p>
+</dd>
+<dt> <code>suspended</code></dt>
+<dd><p>Work on the problem has been postponed.
+</p></dd>
+</dl>
+
+<p>The initial state of a PR is &lsquo;<samp>open</samp>&rsquo;.  See section <a href="States.html#States">States of Problem Reports</a>.
+</p>
+<a name="index-Responsible-field"></a>
+</dd>
+<dt> <code>Responsible</code></dt>
+<dd><p>(<code>text</code>) The person at the Support Site who is responsible for this
+PR.
+<small>GNATS</small> retrieves this information from the &lsquo;<tt>categories</tt>&rsquo; file
+(see section <a href="categories-file.html#categories-file">The <code>categories</code> file</a>).
+</p>
+<a name="index-Arrival_002dDate-field"></a>
+</dd>
+<dt> <code>Arrival-Date</code></dt>
+<dd><p>(<code>date</code>) The time that this PR was received by <small>GNATS</small>.  The
+date is provided automatically by <small>GNATS</small>.
+</p>
+<a name="index-Date_002dRequired"></a>
+<a name="index-Date_002dRequired-field"></a>
+</dd>
+<dt> <code>Date-Required</code></dt>
+<dd><p>(<code>date</code>) The date by which a fix is required.  This is up to the
+maintainers at the Support Site to determine, so this field is not
+available until after the PR has been submitted.
+</p>
+<a name="index-Audit_002dTrail-field"></a>
+</dd>
+<dt> <code>Audit-Trail</code></dt>
+<dd><p>(<code>multitext</code>) Tracks related electronic mail as well as changes in
+the <code>State</code> and <code>Responsible</code> fields with the sub-fields:
+</p>
+<dl compact="compact">
+<dd><a name="index-State_002dChanged_002d_003cFrom_003e_002d_003cTo_003e-in-Audit_002dTrail"></a>
+</dd>
+<dt> <code>State-Changed-&lt;From&gt;-&lt;To&gt;: <var>oldstate</var>&gt;-&lt;<var>newstate</var></code></dt>
+<dd><p>The old and new <code>State</code> field values.
+</p>
+<a name="index-Responsible_002dChanged_002d_003cFrom_003e_002d_003cTo_003e-in-Audit_002dTrail"></a>
+</dd>
+<dt> <code>Responsible-Changed-&lt;From&gt;-&lt;To&gt;: <var>oldresp</var>&gt;-&lt;<var>newresp</var></code></dt>
+<dd><p>The old and new <code>Responsible</code> field values.
+</p>
+<a name="index-State_002dChanged_002dBy-in-Audit_002dTrail"></a>
+<a name="index-Responsible_002dChanged_002dBy-in-Audit_002dTrail"></a>
+</dd>
+<dt> <code>State-Changed-By: <var>name</var></code></dt>
+<dt> <code>Responsible-Changed-By: <var>name</var></code></dt>
+<dd><p>The name of the maintainer who effected the change.
+</p>
+<a name="index-State_002dChanged_002dWhen-in-Audit_002dTrail"></a>
+<a name="index-Responsible_002dChanged_002dWhen-in-Audit_002dTrail"></a>
+</dd>
+<dt> <code>State-Changed-When: <var>timestamp</var></code></dt>
+<dt> <code>Responsible-Changed-When: <var>timestamp</var></code></dt>
+<dd><p>The time the change was made.
+</p>
+<a name="index-State_002dChanged_002dWhy-in-Audit_002dTrail"></a>
+<a name="index-Responsible_002dChanged_002dWhy-in-Audit_002dTrail"></a>
+</dd>
+<dt> <code>State-Changed-Why: <var>reason&hellip;</var></code></dt>
+<dt> <code>Responsible-Changed-Why: <var>reason&hellip;</var></code></dt>
+<dd><p>The reason for the change.
+</p></dd>
+</dl>
+
+<a name="index-follow_002dup-via-email"></a>
+<a name="index-subsequent-mail"></a>
+<a name="index-related-mail"></a>
+<p>The <code>Audit-Trail</code> field also contains any mail messages received by
+<small>GNATS</small> related to this PR, in the order received.  <small>GNATS</small> needs
+to find a reference to the PR in the Subject field of received email in
+order to be able to file it correctly, see <a href="follow_002dup-via-email.html#follow_002dup-via-email">Following up via direct email</a>.
+</p>
+<a name="index-Unformatted-field"></a>
+</dd>
+<dt> <code>Unformatted</code></dt>
+<dd><p>(<code>multitext</code>) Any random text found outside the fields in the
+original Problem Report.
+</p></dd>
+</dl>
+
+<p>During a Problem Report&rsquo;s journey from &lsquo;<samp>open</samp>&rsquo; to &lsquo;<samp>closed</samp>&rsquo;, two
+more fields, <code>Last-Modified</code> and <code>Closed Date</code> (both of type
+<code>date</code>) will be added.
+</p>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Mail-header-fields.html#Mail-header-fields" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Fields.html#Fields" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 3.1 General Configuration Questions</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 3.1 General Configuration Questions">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 3.1 General Configuration Questions">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="General-configuration"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Add-a-database" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="General-Configuration-Questions"></a>
+<h2 class="section">3.1 General Configuration Questions</h2>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Add-a-database">3.1.1 How do I add a new database?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              How to create a new database
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Renaming-a-Category">3.1.2 How do I rename a category?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         How to rename categories
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Changing-Fields">3.1.3 How do I add, remove, or rename a PR field?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             Add, remove, or rename a PR field
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Add-a-database"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#General-configuration" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Renaming-a-Category" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-do-I-add-a-new-database_003f"></a>
+<h3 class="subsection">3.1.1 How do I add a new database?</h3>
+
+<p><b>A: (<small>GNATS</small> 3.1xx)</b> 
+(Please consider upgrading to <small>GNATS</small> 4.0 or greater.)
+</p>
+<ol>
+<li>
+Create the base directory for the new database, say
+&lsquo;<tt>/usr/local/gnats/db2</tt>&rsquo;, and make sure it is owned by the
+<small>GNATS</small> user.
+
+</li><li>
+In there, create subdirectories &lsquo;<tt>gnats-adm</tt>&rsquo;,
+&lsquo;<tt>gnats-adm/locks</tt>&rsquo;, and &lsquo;<tt>gnats-queue</tt>&rsquo;,
+and make sure they is owned by the <small>GNATS</small> user.
+
+</li><li>
+Now you need to populate the new &lsquo;<tt>gnats-adm</tt>&rsquo; directory.  The
+easiest way is to copy all files from &lsquo;<tt>gnats-db/gnats-adm</tt>&rsquo; to
+&lsquo;<tt>/usr/local/gnats/db2/gnats-adm</tt>&rsquo;, and edit them to reflect the
+needs of your new database.  Again, make sure they are owned by the
+gnats user.
+
+<p>Note that there <em>must</em> be a category named <code>pending</code>.  It is
+used when no category is given in a report, and when a report names an
+invalid category.
+</p>
+<p>Also note that each database needs its own mail address for submissions
+(see also step 8 below), and that you must enter it in the file
+&lsquo;<tt>config</tt>&rsquo;.
+</p>
+</li><li>
+As the <small>GNATS</small> user, 
+run &lsquo;<samp>mkcat --directory=/usr/local/gnats/db2</samp>&rsquo; to create the
+directories for the categories.  Remove the files &lsquo;<tt>current</tt>&rsquo; and
+&lsquo;<tt>index</tt>&rsquo;, if they exist.
+
+</li><li>
+If the new database is split off of another one, move or copy the
+existing reports to their new location.  This is easiest if the
+categories have the same names as in the original database.  (See
+<a href="#Renaming-a-Category">How do I rename a category?</a> if some of them changed names.)
+
+<p>Run the program <code>gen-index</code> to create the index file
+(see <a href="../gnats/gen_002dindex.html#gen_002dindex">(gnats)gen-index</a> section &lsquo;Regenerating the index&rsquo; in <cite>Keeping Track</cite>).
+</p>
+<p>Find the greatest report number and put it (or any larger number)
+into &lsquo;<tt>/usr/local/gnats/db2/gnats-adm/current</tt>&rsquo;.
+</p>
+<p><strong>Caution:</strong> E-mail updates to the PRs you moved to the new
+database may still arrive at the old database.  You may want to
+contact everybody who knows about these PRs, asking them to use
+the mail address of the new database when sending a follow-up.
+</p>
+</li><li>
+Now add a line for the new database to &lsquo;<tt>gnats-db.conf</tt>&rsquo;, like
+this:
+
+<p>	<code>/usr/local/gnats/db2:GreatNewDB</code>
+</p>
+<p>Gnatsd reads it on startup (and as it is started by inetd, this means
+it becomes effective with the next connection to gnatsd).  Gnatsweb
+(see <a href="Gnatsweb.html#Gnatsweb">Gnatsweb</a>) learns the database list from gnatsd, so it will offer
+you the new database &quot;GreatNewDB&quot; when it is invoked next time.
+</p>
+<p>If you do not know where &lsquo;<tt>gnats-db.conf</tt>&rsquo; lives, run:
+</p>
+<p>&lsquo;<samp>strings /where/ever/gnatsd | grep gnats-db.conf</samp>&rsquo;
+</p>
+</li><li>
+Don&rsquo;t forget to setup a cron job to run through the additional
+&lsquo;<tt>gnats-queue</tt>&rsquo;.  Note that you need to specify the database
+directory to &lsquo;<tt>queue-pr</tt>&rsquo;, i.e.,
+
+<p>&lsquo;<samp>/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -r</samp>&rsquo;
+</p>
+<p>or, if you prefer the long options,
+</p>
+<p>&lsquo;<samp>/usr/local/lib/gnats/queue-pr --directory=/usr/local/gnats/db2 --run</samp>&rsquo;
+</p>
+
+</li><li>
+Don&rsquo;t forget to create mail aliases for your new database
+(see <a href="../gnats/Aliases.html#Aliases">(gnats)Aliases</a> section &lsquo;Setting up mail aliases&rsquo; in <cite>Keeping Track</cite>).
+Take care that the aliases have the right database, e.g.,
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">GreatNewDB-bugs:  &quot;|/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -q&quot;
+GreatNewDB-query: &quot;|/usr/local/lib/gnats/mail-query -d /usr/local/gnats/db2&quot;
+</pre></td></tr></table>
+
+<p>If you do not want to allow querying the database by mail, omit the
+&lsquo;<samp>GreatNewDB-query</samp>&rsquo; alias.
+</p>
+<p>You usually need the cooperation of a system administrator for this step
+(if you are not a system administrator yourself, of course).
+</p>
+
+<p>Make sure that &lsquo;<tt>/usr/local/gnats/db2/gnats-adm/config</tt>&rsquo; gives the
+correct mail addresses for <var>GNATS_ADDR</var> (this <em>must</em> be
+different for each database) and for <var>GNATS_ADMIN</var> (this is probably
+the same for all databases).
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">GNATS_ADDR=&quot;GreatNewDB-bugs@bugs.example.com&quot;
+GNATS_ADMIN=&quot;gnats-admin@bugs.example.com&quot;
+</pre></td></tr></table>
+
+<p>If your <small>GNATS</small> sits behind a firewall and needs to exchange mails
+with the outside world, see also <a href="E_002dMail.html#Outgoing-mail-bounces">Outgoing mail bounces</a>.
+</p>
+</li></ol>
+
+<p><b>A: (<small>GNATS</small> 4.x)</b> With version 4, this has become much easier
+(see <a href="../gnats/mkdb.html#mkdb">(gnats)mkdb</a> section &lsquo;Adding another database&rsquo; in <cite>Keeping Track</cite>):
+</p><ol>
+<li>
+Add a line for the new database to &lsquo;<tt>databases</tt>&rsquo;, like this:
+
+<p>	<code>GreatNewDB:Our great tools:/usr/local/gnats/db2</code>
+</p>
+<p>Then, as the <small>GNATS</small> user, run &lsquo;<samp>mkdb GreatNewDB</samp>&rsquo; to create the
+database.  Make sure that the directory (in our example,
+&lsquo;<tt>/usr/local/gnats/db2</tt>&rsquo;) can be created by the <small>GNATS</small> user.
+</p>
+<p>(Note that there <em>must</em> be a database named <code>default</code>.  It
+is used as a fallback by some tools if no database is specified.  You
+need not use it actively, but you should have run &lsquo;<samp>mkdb default</samp>&rsquo;.)
+</p>
+
+<p>Gnatsd reads the file &lsquo;<tt>databases</tt>&rsquo; on startup (and as it is
+started by inetd, this means it becomes effective with the next
+connection to gnatsd).  Gnatsweb (see <a href="Gnatsweb.html#Gnatsweb">Gnatsweb</a>) learns the
+database list from gnatsd, so it will offer you the new database
+&quot;GreatNewDB&quot; when it is invoked next time.
+</p>
+<p>If you do not know where &lsquo;<tt>databases</tt>&rsquo; lives, run:
+</p>
+<p>&lsquo;<samp>strings /where/ever/gnatsd | grep databases</samp>&rsquo;
+</p>
+</li><li>
+Now, as the <small>GNATS</small> user, edit the files in directory
+&lsquo;<tt>/usr/local/gnats/db2/gnats-adm</tt>&rsquo; to reflect the needs of
+your new database.
+
+</li><li>
+Depending on the settings in the &lsquo;<tt>dbconfig</tt>&rsquo; file of the new
+database, you need not run <code>mkcat</code> anymore in order to
+create new category directories in your database&mdash;<small>GNATS</small> 4
+creates them automatically when they are missing.  See <a href="../gnats/dbconfig-file.html#dbconfig-file">(gnats)dbconfig file</a> section &lsquo;The <code>dbconfig</code> file&rsquo; in <cite>Keeping Track</cite>, for details.
+
+</li><li>
+Don&rsquo;t forget to setup a cron job to run through the additional
+&lsquo;<tt>gnats-queue</tt>&rsquo;.  Note that you need to specify the database to
+&lsquo;<tt>queue-pr</tt>&rsquo;, i.e.,
+
+<p>&lsquo;<samp>/usr/local/libexec/gnats/queue-pr -d GreatNewDB -r</samp>&rsquo;
+</p>
+<p>or, if you prefer the long options,
+</p>
+<p>&lsquo;<samp>/usr/local/libexec/gnats/queue-pr --database=GreatNewDB --run</samp>&rsquo;
+</p>
+
+</li><li>
+Don&rsquo;t forget to create mail aliases for your new database
+(see <a href="../gnats/Aliases.html#Aliases">(gnats)Aliases</a> section &lsquo;Setting up mail aliases&rsquo; in <cite>Keeping Track</cite>).
+Take care that the aliases have the right database, e.g.,
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">GreatNewDB-bugs:  &quot;|/usr/local/libexec/gnats/queue-pr -d GreatNewDB -q&quot;
+GreatNewDB-query: &quot;|/usr/local/libexec/gnats/mail-query -d GreatNewDB&quot;
+</pre></td></tr></table>
+
+<p>If you are updating from <small>GNATS</small> 3.1xx, note that the &lsquo;<samp>-d</samp>&rsquo;
+option has changed its meaning: it does not give the directory of the
+database, but its name.  (In case you prefer the long form of the
+option, it is now &lsquo;<samp>--database</samp>&rsquo; instead of &lsquo;<samp>--directory</samp>&rsquo;.)
+</p>
+<p>If your <small>GNATS</small> sits behind a firewall and needs to exchange mails
+with the outside world, see also <a href="E_002dMail.html#Outgoing-mail-bounces">Outgoing mail bounces</a>.
+</p>
+</li></ol>
+
+
+<hr size="6">
+<a name="Renaming-a-Category"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Add-a-database" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Changing-Fields" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-do-I-rename-a-category_003f"></a>
+<h3 class="subsection">3.1.2 How do I rename a category?</h3>
+
+<p>Renaming a category requires to touch every PR in that category,
+because each report contains the name of its category.
+</p>
+<p>To rename category <code>A</code> to <code>B</code>, proceed as follows:
+</p>
+<ol>
+<li>
+Create a new category <code>B</code>.
+
+</li><li>
+Edit every report in category <code>A</code>, changing its category to
+<code>B</code>.
+This can be done with any <small>GNATS</small> client; check the archives
+of the <small>HELP-GNATS</small> mailing list for hints about automating
+this step.
+
+</li><li>
+Run <code>gen-index</code> (see <a href="../gnats/gen_002dindex.html#gen_002dindex">(gnats)gen-index</a> section &lsquo;Regenerating the index&rsquo; in <cite>Keeping Track</cite>) to refresh the &lsquo;<tt>index</tt>&rsquo; file.
+
+</li><li>
+If you are using <small>GNATS</small> 4 (or planning to upgrade soon), you
+should not remove the category <code>A</code>.  When a follow-up to an
+existing PR arrives via e-mail, <small>GNATS</small> 4.x checks that both
+the category and the PR number indicated in the mail exist (this
+is a sanity check).
+
+<p>To reduce the risk of new reports being filed to category
+<code>A</code>, change its description in the &lsquo;<tt>categories</tt>&rsquo; file to
+something like &lsquo;<samp>obsolete, use category <code>B</code> instead</samp>&rsquo;.
+</p>
+</li></ol>
+
+<hr size="6">
+<a name="Changing-Fields"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Renaming-a-Category" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Gnatsd.html#Gnatsd" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-do-I-add_002c-remove_002c-or-rename-a-PR-field_003f"></a>
+<h3 class="subsection">3.1.3 How do I add, remove, or rename a PR field?</h3>
+
+<p><b>A: (<small>GNATS</small> 3.1xx)</b> The fields and their names are fixed in
+<small>GNATS</small> 3.1xx, so this is not possible.
+</p>
+<p><b>A: (<small>GNATS</small> 4.x)</b> Edit the file &lsquo;<tt>dbconfig</tt>&rsquo; to reflect your
+changes.
+</p>
+<p>Note that the PR fields with the builtin-names <code>severity</code>,
+<code>priority</code> and <code>state</code> are required if you want automatic
+reminders (<code>notify-about-expired-prs = true</code>).  In this case, the
+file &lsquo;<tt>submitters</tt>&rsquo; must also contain a response time.
+The <code>severity</code> field is checked for values <code>critical</code> and
+<code>serious</code>, and <code>priority</code> for value <code>high</code>.
+This is currently not configurable.
+</p>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Renaming-a-Category" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Gnatsd.html#Gnatsd" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.3.6 Audit-trail formats</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.3.6 Audit-trail formats">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.3.6 Audit-trail formats">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Audit_002dtrail-formats"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Named-query-definitions.html#Named-query-definitions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Outgoing-email-formats.html#Outgoing-email-formats" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="dbconfig-file.html#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Audit_002dtrail-formats-1"></a>
+<h3 class="subsection">4.3.6 Audit-trail formats</h3>
+<a name="index-Audit_002dtrail-format"></a>
+
+<p>These formats are similar to the named query formats, but they include
+more options.  They are used for formatting audit-trail entries and for
+outgoing email messages.
+</p>
+<p>There is currently only one audit-trail format, defined by the
+<code>audit-trail-format</code> option:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">audit-trail-format {
+&nbsp;&nbsp;format &quot;formatstring&quot;
+&nbsp;&nbsp;[ fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] } ]
+}
+</pre></td></tr></table>
+
+<p>For those fields that require an audit-trail entry, the audit-trail text
+to be appended is formatted as described by this format.  The per-field
+<code>audit-trail-format</code> is used in preference to this one, if it
+exists.
+</p>
+<p><code>formatstring</code> and <code>fieldname</code> are similar to those used by
+the named query format.  <code>fieldname</code> may also be a <em>format
+parameter</em>, which is a context-specific value.  (Format parameters are
+distinguished from fieldnames by a leading dollar sign (&lsquo;<samp>$</samp>&rsquo;)).
+</p>
+<p>The following format parameters are defined for
+<code>audit-trail-format</code> entries:
+</p>
+<dl compact="compact">
+<dd><a name="index-format-parameters"></a>
+</dd>
+<dt> <code>$Fieldname</code></dt>
+<dd><p>The name of the field for which an audit-trail entry is being created.
+</p>
+</dd>
+<dt> <code>$OldValue</code></dt>
+<dd><p>The old value of the field.
+</p>
+</dd>
+<dt> <code>$NewValue</code></dt>
+<dd><p>The new field value.
+</p>
+</dd>
+<dt> <code>$EditUserEmailAddr</code></dt>
+<dd><p>The email address of the user editing the field.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the &lsquo;<tt>responsible</tt>&rsquo;
+file; if not available, user&rsquo;s local address is used.
+</p>
+</dd>
+<dt> <code>$CurrentDate</code></dt>
+<dd><p>The current date.
+</p>
+</dd>
+<dt> <code>$ChangeReason</code></dt>
+<dd><p>The reason for the change; may be blank if no reason was supplied.
+</p></dd>
+</dl>
+
+<p>These parameters may be used anywhere a <code>fieldname</code> can appear.
+</p>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Named-query-definitions.html#Named-query-definitions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Outgoing-email-formats.html#Outgoing-email-formats" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="dbconfig-file.html#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

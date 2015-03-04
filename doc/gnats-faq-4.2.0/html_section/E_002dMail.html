@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 3.3 E-Mail Issues</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 3.3 E-Mail Issues">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 3.3 E-Mail Issues">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="E_002dMail"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Gnatsd.html#Gnatsd-messages" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Miscellaneous.html#Miscellaneous" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="E_002dMail-Issues"></a>
+<h2 class="section">3.3 E-Mail Issues</h2>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#queue_002dpr-not-available">&bull; queue-pr not available</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">      Sendmail refuses to run queue-pr
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Outgoing-mail-bounces">&bull; Outgoing mail bounces</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">       Mail system complains on outgoing mail
+</td></tr>
+</table>
+
+<a name="queue_002dpr-not-available"></a>
+<a name="queue_002dpr-not-available-for-sendmail-programs"></a>
+<h4 class="subsubheading">queue-pr not available for sendmail programs</h4>
+
+<p>Your sendmail installation uses &lsquo;<samp>smrsh</samp>&rsquo; to check programs that are
+invoked from a mail alias.  &lsquo;<samp>smrsh</samp>&rsquo; only allows the execution of
+programs of which it is told that they are save.  To tell it that
+&lsquo;<tt>queue-pr</tt>&rsquo; is save, create a symbolic link in the directory
+&lsquo;<tt>/etc/smrsh</tt>&rsquo; to &lsquo;<tt>queue-pr</tt>&rsquo;, like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">mkdir /etc/smrsh	<span class="roman"># if it does not yet exist</span>
+cd /etc/smrsh
+ln -s /usr/local/libexec/gnats/queue-pr queue-pr
+</pre></td></tr></table>
+
+<p>Replace &lsquo;<tt>/usr/local/libexec/gnats/queue-pr</tt>&rsquo; by the real path to
+&lsquo;<tt>queue-pr</tt>&rsquo;.
+</p>
+
+<a name="Outgoing-mail-bounces"></a>
+<a name="Mail-from-GNATS-bounces"></a>
+<h4 class="subsubheading">Mail from <small>GNATS</small> bounces</h4>
+
+<p>You are getting bounce mails like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">   ----- Transcript of session follows -----
+... while talking to mail.example.com.:
+&gt;&gt;&gt; MAIL From:&lt;gnats@mymachine.subdomain.example.com&gt; SIZE=334
+&lt;&lt;&lt; 501 5.1.8 &lt;gnats@mymachine.subdomain.example.com&gt;...
+      Domain of sender address gnats@mymachine.subdomain.example.com does not exist
+</pre></td></tr></table>
+
+<p>Probably your <small>GNATS</small> sits behind a firewall, but it needs to
+exchange mails with the world outside the firewall.  Make sure that
+<var>GNATS_ADDR</var> is valid outside.
+</p>
+<p>This is what probably happens behind the scenes: On its way to the
+outside world, the sender address of the mail gets rewritten to
+something &quot;official&quot; (like <code>Hans-Albert.Schneider@example.com</code>, as
+opposed to <code>me@mymachine.subdomain.example.com</code>).  This is
+especially necessary if the internal hosts are not visible outside.  If
+your outgoing mail gateway still sees the internal address, it complains
+with a message like the above (it has probably checked
+<code>mymachine.subdomain.example.com</code> with your organization&rsquo;s external
+DNS server, which does not know <code>mymachine</code>).
+</p>
+<p>To solve this problem, get an &quot;official&quot; address for your <small>GNATS</small>
+system, e.g., tool-bugs@example.com, and use that one for
+<var>GNATS_ADDR</var>.
+</p>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Gnatsd.html#Gnatsd-messages" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Miscellaneous.html#Miscellaneous" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

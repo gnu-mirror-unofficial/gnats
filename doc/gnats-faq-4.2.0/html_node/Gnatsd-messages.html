@@ -1,0 +1,197 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 3.2.3 Gnatsd Messages</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 3.2.3 Gnatsd Messages">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 3.2.3 Gnatsd Messages">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Gnatsd-messages"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Starting-gnatsd.html#Starting-gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="E_002dMail.html#E_002dMail" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Gnatsd.html#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Gnatsd-Messages"></a>
+<h3 class="subsection">3.2.3 Gnatsd Messages</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#No-host-access-for-stdin">&bull; No host access for stdin</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    Error when starting gnatsd manually
+</td></tr>
+<tr><td align="left" valign="top"><a href="#No-host-access-for-remote">&bull; No host access for remote</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">   Cannot connect from another machine
+</td></tr>
+</table>
+
+<a name="No-host-access-for-stdin"></a>
+<a name="You-are-not-on-the-host-access-list_003a-stdin-_0028stdin_0029"></a>
+<h4 class="subsubheading">You are not on the host access list: stdin (stdin)</h4>
+
+<p><b>Q:</b> When starting gnatsd manually (on the command line), I get
+&lsquo;<samp>520 You are not on the host access list: stdin (stdin)</samp>&rsquo;.
+</p>
+<p><b>A: (<small>GNATS</small> 3.1xx)</b>
+Gnatsd is not intended to be started manually, but via inetd,
+xinetd, or a similar &quot;super server&quot;.  When gnatsd is started this way,
+its stdin and stdout (standard input and standard output streams) are
+connected to a so called &quot;TCP socket&quot; (one end of the network
+connection), and from this socket gnatsd learns the IP address of the
+remote end (and from this it derives the remote host name).  When you
+start gnatsd from the command line, its stdin and stdout are connected
+to the terminal, and thus gnatsd gets a nonsense value.
+</p>
+<p>You usually need &lsquo;<samp>root</samp>&rsquo; privileges in order to change the
+configuration of your &quot;super server&quot;.  If you don&rsquo;t have them, contact
+your system administrator.
+</p>
+<p>See <a href="Starting-gnatsd.html#Starting-gnatsd">How to Start Gnatsd</a> for inetd and xinetd configuration.
+</p>
+
+<p><b>A: (<small>GNATS</small> 4.0)</b>
+This error message should not occur with gnatsd 4.0 anymore, because
+gnatsd can be started from the command line.
+However, this probably only makes sense for debugging and diagnosing
+problems.  Furthermore, you need to play the part of the client
+program yourself (i.e., you must &quot;speak&quot; the gnatsd client protocol).
+</p>
+
+
+<a name="No-host-access-for-remote"></a>
+<a name="You-are-not-on-the-host-access-list"></a>
+<h4 class="subsubheading">You are not on the host access list</h4>
+
+<p><b>Q:</b> Gnatsd rejects connections from a remote host with the error
+message &lsquo;<samp>520 You are not on the host access list</samp>&rsquo;.
+</p>
+<p><b>A:</b> Check the file &lsquo;<tt>gnatsd.host_access</tt>&rsquo;; if you are using
+the default locations, this is
+&lsquo;<tt>/usr/local/etc/gnats/gnatsd.host_access</tt>&rsquo;.
+(If you are still using <small>GNATS</small> 3.xxx, the file is named
+&lsquo;<tt>gnatsd.conf</tt>&rsquo;; its default place is
+&lsquo;<tt>/usr/local/etc/gnatsd.conf</tt>&rsquo;.)
+</p>
+<p>Each line of the file names a host and its access level, separated by
+colons.  Gnatsd tries the lines in turn to match the remote host, and
+the first line that matches wins.
+</p>
+<p>The first field specifies the host(s); it may be a host name (like
+&lsquo;<samp>goedel.example.com</samp>&rsquo;), a partial domain (like
+&lsquo;<samp>*.example.com</samp>&rsquo;), an IP address (like &lsquo;<samp>192.168.1.5</samp>&rsquo;), or a
+partial IP address (like &lsquo;<samp>192.168.*</samp>&rsquo;).  If it is only &lsquo;<samp>*</samp>&rsquo;, it
+matches all hosts.
+</p>
+<p>Depending on how IP addresses are mapped to hostnames on your gnatsd
+machine, you may be able to omit the domain (like in &lsquo;<samp>goedel</samp>&rsquo;).
+You may even <em>need</em> to omit the domain for some hosts.
+</p>
+<p>The second field is the access level granted to the remote host.  This
+is usually increased by the access level granted to the user as soon
+as (s)he logs in.
+</p>
+<p>The third field is currently not used; just leave it empty (but supply
+the colon between the second and the third field).
+</p>
+<p>Example:
+</p>
+<table><tr><td>&nbsp;</td><td><table class="cartouche" border="1"><tr><td>
+<pre class="example">#
+# This is a comment
+#
+# Grant view access to all hosts with IP addresses
+# ranging from 192.168.0.0 to 192.168.255.255:
+192.168.*:view:
+# Users on host goedel.example.com get (at least) edit access:
+goedel.example.com:edit:
+# Users from escher.example.com may view all reports, even
+# confidential ones:
+escher.example.com:viewconf:
+# Users from bach.example.com may only view all non-confidential
+# reports:
+bach.example.com:view:
+# Users from other example.com hosts
+# only get the access specified for them in gnatsd.user_access:
+*.example.com:none:
+# Same for domain our-users.example:
+*.our-users.example:none:
+# All other hosts are rejected
+# without even asking for username and password:
+*:deny:
+</pre></td></tr></table>
+</td></tr></table>
+
+<p>The format is described in detail in the comments at the beginning of
+the file.
+</p>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Starting-gnatsd.html#Starting-gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="E_002dMail.html#E_002dMail" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Gnatsd.html#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: A. Glossary</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: A. Glossary">
+<meta name="keywords" content="GNATS Frequently Asked Questions: A. Glossary">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Glossary"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Clients.html#send_002dpr" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Glossary-1"></a>
+<h1 class="appendix">A. Glossary</h1>
+
+<dl compact="compact">
+<dt> <em>cookie</em></dt>
+<dd><p>A chunk of data that a WWW server stores in your browser.  It is sent
+back to the server when you contact it again.  Gnatsweb (see
+<a href="Clients.html#Gnatsweb">Gnatsweb</a>) uses cookies to store your login information,
+preferences, and named queries.
+</p>
+</dd>
+<dt> <em>gnats.el</em></dt>
+<dd><p><small>GNATS</small> mode for (X)Emacs.
+</p>
+</dd>
+<dt> <em>gnatsd</em></dt>
+<dd><p>The <small>GNATS</small> daemon (server program).
+</p>
+</dd>
+<dt> <em>Gnatsweb</em></dt>
+<dd><p>A WWW interface to <small>GNATS</small>.
+</p>
+</dd>
+<dt> <em>port</em></dt>
+<dd><p>A communication endpoint of various IP based protocols, notably TCP and
+UDP.  A server program waits for connections (&quot;listens&quot;) on a port, and
+a client program connects to this port.
+<a href="http://www.iana.org/">IANA</a> (the Internet Assigned Numbers
+Authority) maintains a
+<a href="http://www.iana.org/assignments/port-numbers">list of port numbers</a>
+registered for certain purposes.
+</p>
+</dd>
+<dt> <em>PR</em></dt>
+<dd><p>Short for &ldquo;Problem Report&rdquo;.  An entry in a <small>GNATS</small> database.
+</p>
+</dd>
+<dt> <em>send-pr</em></dt>
+<dd><p>A command line tool that sends a new report by e-mail.
+</p>
+</dd>
+<dt> <em>super server</em></dt>
+<dd><p>A super server (sometimes also called &quot;super daemon&quot;) is a daemon (=
+UNIX server process) that waits for connections on the ports of various
+server programs and starts the corresponding server when a connection is
+made.  This way, there is only one server process for a set of services
+(instead of one for each service), but each service in the set is
+available to its clients.
+</p>
+<p>The most common super servers are <code>inetd</code> (the &quot;InterNET Daemon&quot;
+that comes with many UNIX installations) and
+<a href="http://www.xinetd.org">xinetd</a> (the &quot;eXtended InterNET Daemon&quot;).
+</p>
+</dd>
+<dt> <em>TkGnats</em></dt>
+<dd><p>A Tcl/Tk based interface to <small>GNATS</small>.
+</p></dd>
+</dl>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Clients.html#Clients" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

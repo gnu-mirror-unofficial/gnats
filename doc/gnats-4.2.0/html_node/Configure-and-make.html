@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 3.1 Configuring and compiling the software</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 3.1 Configuring and compiling the software">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 3.1 Configuring and compiling the software">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Configure-and-make"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Installation.html#Installation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installing-utils.html#Installing-utils" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Configuring-and-compiling-the-software"></a>
+<h2 class="section">3.1 Configuring and compiling the software</h2>
+<a name="index-unpacking-the-distribution"></a>
+<a name="index-configuring-and-compiling-the-software"></a>
+<a name="index-compiling-the-software"></a>
+<a name="index-configure"></a>
+<a name="index-make"></a>
+
+<ol>
+<li>
+First, unpack your distribution.  We provide source code in a <code>tar</code>
+file which was compressed using <code>gzip</code>.  The code can be extracted
+into a directory <var>unpackdir</var> using
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">cd <var>unpackdir</var>
+gunzip gnats-4.2.0.tar.gz
+tar xvf gnats-4.2.0.tar
+</pre></td></tr></table>
+
+<p>The sources reside in a directory called &lsquo;<tt>gnats-4.2.0</tt>&rsquo;
+when unpacked.  We call this the <em>top level</em> of the source
+directory, or <em>srcdir</em>.  The sources for the <small>GNATS</small> tools are in
+the subdirectory &lsquo;<tt>gnats-4.2.0/gnats/*</tt>&rsquo;.  Lists of files
+included in the distribution are in each directory in the file
+&lsquo;<tt>MANIFEST</tt>&rsquo;.
+</p>
+<a name="index-lisp-file-installation"></a>
+<a name="index-Emacs-lisp-file-installation"></a>
+</li><li>
+As of <small>GNATS</small> version 4, having Emacs installed on the <small>GNATS</small>
+server is no longer a requirement.  If you do not have Emacs installed,
+disregard this step altogether.
+
+<p>You may wish to alter the installation directory for the Emacs lisp
+files.  If your Emacs lisp library is not in
+&lsquo;<tt><var>prefix</var>/share/emacs/site-lisp</tt>&rsquo;, edit the file
+<code><var>srcdir</var>/gnats/Makefile.in</code>.  Change the variable
+<code>lispdir</code> from &lsquo;<tt><var>prefix</var>/emacs/site-lisp</tt>&rsquo; to the
+directory containing your Emacs lisp library.  For information on
+<var>prefix</var>, see <a href="prefix.html#prefix"><var>prefix</var></a>.
+</p>
+</li><li>
+<a name="index-creating-an-account-for-the-GNATS-user"></a>
+Create an account for the <code>gnats</code> user.  You can actually name this
+user whatever you want to, as long as it is a valid username on your
+system, but we strongly recommend that you call the user <code>gnats</code>.
+If you do decide to give it some other name, remember to use the option
+<code>--enable-gnats-user</code> when running <code>configure</code> below.  Below, we
+will anyway refer to this user by the name <code>gnats</code>.
+
+<p>This user must have an entry in the file &lsquo;<tt>/etc/passwd</tt>&rsquo;.  As for
+ordinary users, create a standard home directory for the <code>gnats</code>
+user.  The default <code>PATH</code> for this user should contain
+&lsquo;<tt><var>exec-prefix</var>/bin</tt>&rsquo; and
+&lsquo;<tt><var>exec-prefix</var>/libexec/gnats</tt>&rsquo;.  The <var>exec-prefix</var> value
+is configurable with the <code>--exec-prefix</code> configure option described
+below, but for standard installations, these two directories correspond
+to &lsquo;<tt>/usr/local/bin</tt>&rsquo; and &lsquo;<tt>/usr/local/libexec/gnats</tt>&rsquo;.
+</p>
+</li><li>
+Run <code>configure</code>.  You can nearly always run <code>configure</code> with
+the simple command
+
+<table><tr><td>&nbsp;</td><td><pre class="example">./configure
+</pre></td></tr></table>
+
+<p>and the &ldquo;Right Thing&rdquo; happens:
+</p>
+<ul>
+<li>
+<small>GNATS</small> is configured in the same directory you unpacked it in;
+
+</li><li>
+when built, <small>GNATS</small> runs on the machine you&rsquo;re building it on;
+
+</li><li>
+when installed, files are installed under &lsquo;<tt>/usr/local</tt>&rsquo;
+(see section <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>).
+
+</li><li>
+all <small>GNATS</small> utilities operate on the <em>default database</em>, assumed
+to be named <em>default</em> and to be located in
+&lsquo;<tt>/usr/local/com/default</tt>&rsquo;, unless you invoke the utilities with
+<code>-d</code> <var>databasename</var> or <code>--directory=</code><var>databasename</var>, or
+set the <var>GNATSDB</var> environment variable to point to some other database.
+</li></ul>
+
+<a name="index-configure-1"></a>
+<p>The most common options to <code>configure</code> are listed below:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">configure [ --prefix=<var>prefix</var> ]
+          [ --exec-prefix=<var>exec-prefix</var> ]
+          [ --enable-gnats-service=<var>service-name</var> ]
+          [ --enable-gnats-user=<var>username</var> ]
+          [ --enable-gnatsd-user-access-file=<var>path</var> ]
+          [ --enable-gnatsd-host-access-file=<var>path</var> ]
+          [ --enable-gnats-dblist-file=<var>path</var> ]
+          [ --enable-gnats-default-db=<var>path</var> ]
+          [ --with-kerberos ] [ --with-krb4 ]
+          [ --verbose ]
+</pre></td></tr></table>
+
+<dl compact="compact">
+<dd><a name="index-prefix"></a>
+</dd>
+<dt> <code>--prefix=<var>prefix</var></code></dt>
+<dd><p>All host-independent programs and files are to be installed under
+<var>prefix</var>.  (Host-dependent programs and files are also installed in
+<var>prefix</var> by default.)  The default for <var>prefix</var> is
+&lsquo;<tt>/usr/local</tt>&rsquo;.  See section <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>.
+</p>
+<a name="index-exec_002dprefix"></a>
+</dd>
+<dt> <code>--exec-prefix=<var>exec-prefix</var></code></dt>
+<dd><p>All host-dependent programs and files are to be installed under
+<var>exec-prefix</var>.  The default for <var>exec-prefix</var> is <var>prefix</var>.
+See section <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>.
+</p>
+<a name="index-_002d_002denable_002dgnats_002dservice"></a>
+</dd>
+<dt> <code>--enable-gnats-service=<var>service-name</var></code></dt>
+<dd><p>Set <var>service-name</var> to be the <small>GNATS</small> network service.  Default
+name is <var>support</var>.
+</p>
+<a name="index-_002d_002denable_002dgnats_002duser"></a>
+</dd>
+<dt> <code>--enable-gnats-user=<var>username</var></code></dt>
+<dd><p>Set <var>username</var> to be the user name for <small>GNATS</small>.  Default username
+is <var>gnats</var>.
+</p>
+<a name="index-_002d_002denable_002dgnatsd_002duser_002daccess_002dfile"></a>
+</dd>
+<dt> <code>--enable-gnatsd-user-access-file=<var>path</var></code></dt>
+<dd><p>Set global (across all databases) gnatsd user access file to
+<var>path</var>. Default is
+&lsquo;<tt><var>/usr/local/etc/gnats/gnatsd.user_access</var></tt>&rsquo;.  Per-database
+user access permissions are set in a &lsquo;<tt>gnatsd.user_access</tt>&rsquo; file in
+the &lsquo;<tt>gnats-adm</tt>&rsquo; subdirectory of each database.
+</p>
+<a name="index-_002d_002denable_002dgnatsd_002dhost_002daccess_002dfile"></a>
+</dd>
+<dt> <code>--enable-gnatsd-host-access-file=<var>path</var></code></dt>
+<dd><p>Set global (across all databases) gnatsd host access file to
+<var>path</var>. Default is
+&lsquo;<tt>/usr/local/etc/gnats/gnatsd_host.access</tt>&rsquo;.  There is currently
+no way to specify host access permissions on a per-database basis.
+</p>
+<a name="index-_002d_002denable_002dgnats_002ddblist_002dfile"></a>
+</dd>
+<dt> <code>--enable-gnats-dblist-file=<var>path</var></code></dt>
+<dd><p>Specify the file containing the list of databases.
+</p>
+<p>Default is &lsquo;<tt><var>prefix</var>/etc/gnats/databases</tt>&rsquo;.
+</p>
+<a name="index-_002d_002denable_002dgnats_002ddefault_002ddb"></a>
+</dd>
+<dt> <code>--enable-gnats-default-db=<var>path</var></code></dt>
+<dd><p>Specify the default database to use when <small>GNATS</small> tools are invoked
+without the <code>-d</code> or <code>--databasename</code> option, and when the
+<var>GNATSDB</var> envrionment variable hasn&rsquo;t been set. Default is
+&lsquo;<tt>/<var>prefix</var>/com/gnatsdb</tt>&rsquo;.
+</p>
+<a name="index-_002d_002dwith_002dkerberos"></a>
+</dd>
+<dt> <code>--with-kerberos</code></dt>
+<dd><p>Include code for Kerberos authentication.
+</p>
+<a name="index-_002d_002dwith_002dkrb4"></a>
+</dd>
+<dt> <code>--with-krb4</code></dt>
+<dd><p>Support Kerberos 4.
+</p>
+</dd>
+<dt> <code>--verbose</code></dt>
+<dd><p>Give verbose output while <code>configure</code> runs.
+</p></dd>
+</dl>
+
+<p><code>configure</code> supports several more options which allow you to
+specify in great detail where files are installed. For a complete list
+of options, run <code>./configure --help</code> in the source directory.
+</p>
+<a name="index-building-in-a-different-directory"></a>
+<a name="index-objdir"></a>
+<p>You can build <small>GNATS</small> in a different directory (<var>objdir</var>) from the
+source code by calling the <code>configure</code> program from the new
+directory, as in
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">mkdir <var>objdir</var>
+cd <var>objdir</var>
+<var>srcdir</var>/configure &hellip;
+</pre></td></tr></table>
+
+<p>By default, <code>make</code> compiles the programs in the same directory
+as the sources (<var>srcdir</var>).
+</p>
+</li><li>
+Make sure you have <small>GNU</small> <code>make</code>, then run 
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">make all info
+</pre></td></tr></table>
+
+<p>from the directory where <code>configure</code> created a &lsquo;<tt>Makefile</tt>&rsquo;
+(this is <var>objdir</var> if you used it, otherwise <var>srcdir</var>.)  These
+targets indicate:
+</p>
+<dl compact="compact">
+<dt> <code>all</code></dt>
+<dd><p>Compile all programs
+</p>
+</dd>
+<dt> <code>info</code></dt>
+<dd><p>Create &lsquo;<samp>info</samp>&rsquo; files using <code>makeinfo</code>.
+</p></dd>
+</dl>
+</li></ol>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Installation.html#Installation" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installing-utils.html#Installing-utils" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

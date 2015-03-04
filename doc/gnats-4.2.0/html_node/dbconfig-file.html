@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.3 The dbconfig file</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.3 The dbconfig file">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.3 The dbconfig file">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="dbconfig-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="databases-file.html#databases-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Overall-database-configuration.html#Overall-database-configuration" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="The-dbconfig-file"></a>
+<h2 class="section">4.3 The <code>dbconfig</code> file</h2>
+<a name="index-dbconfig-file-1"></a>
+
+<p>The &lsquo;<tt>dbconfig</tt>&rsquo; configuration file controls the configuration of a
+<small>GNATS</small> database.  Each database has its own individual copy of this
+file, which is located in the &lsquo;<tt>gnats-adm</tt>&rsquo; subdirectory of the
+database.
+</p>
+<p>The file consists of standard plain text.  Whitespace is completely
+optional and is ignored. Sets of braces &lsquo;<samp>@</samp>&rsquo; are used to delimit the
+different sections, and all non-keyword values must be surrounded with
+double quotes.  The values in &lsquo;<tt>dbconfig</tt>&rsquo; can be changed at any time;
+the new values take effect for all subsequent iterations of <small>GNATS</small>
+tools.
+</p>
+<p>The &lsquo;<tt>dbconfig</tt>&rsquo; file contains 6 major sections, which must appear in the
+following order:
+</p>
+<ul>
+<li> Overall database configuration
+</li><li> Individual field configuration
+</li><li> Named query definitions
+</li><li> Audit-trail and outgoing email formats
+</li><li> Index file description
+</li><li> Initial Problem Report input fields
+</li></ul>
+
+<p>The different sections are described below.  While reading the following
+sections, it will be useful to refer to the sample &lsquo;<tt>dbconfig</tt>&rsquo; file
+which is installed when a new database is initialized with the
+<code>mkdb</code> tool.  In fact, the sample file provides a configuration
+that should be usable for a great range of sites, since it reproduces
+the behaviour of the older, less customizable 3.x versions of
+<small>GNATS</small>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="Overall-database-configuration.html#Overall-database-configuration">4.3.1 Overall database configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="Individual-field-configuration.html#Individual-field-configuration">4.3.2 Individual field configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="Field-datatypes.html#Field-datatypes">4.3.3 Field datatypes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="Edit-controls.html#Edit-controls">4.3.4 Edit controls</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                  Trigger on certain edit actions.
+</td></tr>
+<tr><td align="left" valign="top"><a href="Named-query-definitions.html#Named-query-definitions">4.3.5 Named query definitions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Define and name standard queries.
+</td></tr>
+<tr><td align="left" valign="top"><a href="Audit_002dtrail-formats.html#Audit_002dtrail-formats">4.3.6 Audit-trail formats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">            Specify formatting of the audit-trail.
+</td></tr>
+<tr><td align="left" valign="top"><a href="Outgoing-email-formats.html#Outgoing-email-formats">4.3.7 Outgoing email formats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Specify contents and formatting of
+                                   messages sent out by GNATS.
+</td></tr>
+<tr><td align="left" valign="top"><a href="Index-file-description.html#Index-file-description">4.3.8 Index file description</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Specify the general format and
+                                   contents of the database index.
+</td></tr>
+<tr><td align="left" valign="top"><a href="Initial-PR-input-fields.html#Initial-PR-input-fields">4.3.9 Initial PR input fields</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Which fields should be present on
+                                   initial PR entry.
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="databases-file.html#databases-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Overall-database-configuration.html#Overall-database-configuration" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 3.7 Installing the user tools</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 3.7 Installing the user tools">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 3.7 Installing the user tools">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Installing-tools"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Installing-the-daemon.html#Installing-the-daemon" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#User-tools-on-a-local-network" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Installing-the-user-tools"></a>
+<h2 class="section">3.7 Installing the user tools</h2>
+<a name="index-networks"></a>
+<a name="index-using-GNATS-over-a-network-1"></a>
+<a name="index-configuring-GNATS-on-a-network"></a>
+
+<p>When you install the <small>GNATS</small> utilities, the user tools
+<code>send-pr</code>, <code>query-pr</code> and <code>edit-pr</code> are installed on the
+server machine.  If your machine is part of a network, however, you may
+wish to install the user tools on each machine in the network so that
+responsible parties on those machines can submit new Problem Reports,
+query the database, and edit existing PRs.  In the following discussion,
+machines with the <small>GNATS</small> user tools installed are referred to as
+<em>client</em> machines.  In general, there are three distinct types of
+client that a <small>GNATS</small> server may have to cater for:
+</p>
+<ul class="toc">
+<li>- Machines that are on the same local network as the
+<small>GNATS</small> server, i.e. machines that are under the same
+administrative control.
+
+</li><li>- Machines on the general, open Internet.
+
+</li><li>- Machines behind firewalls etc. which deny direct access
+over the network to the <small>GNATS</small> server.
+</li></ul>
+
+<p>Each type of client requires a different approach when it comes to
+providing access.
+</p>
+<hr size="6">
+<a name="User-tools-on-a-local-network"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Installing-tools" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#User-tools-for-remote-users" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installing-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.7.1 User tools on a local network</h3>
+<a name="index-using-GNATS-over-a-local-network"></a>
+<a name="index-configuring-GNATS-on-a-local-network"></a>
+
+<p>If all the machines involved reside on the same local network as the
+<small>GNATS</small> server, you can simply share out the directories on the
+server that contain the user tools, by default &lsquo;<tt>/usr/local/bin</tt>&rsquo; and
+the directory which contains the &lsquo;<tt>send-pr.conf</tt>&rsquo; configuration file
+(see section <a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file">The send-pr.conf configuration file</a>), by
+default &lsquo;<tt>/usr/local/etc/gnats</tt>&rsquo;.  If you have a heterogeneous
+environment, i.e. hosts running different operating systems, you need to
+create several shared <small>GNATS</small> installations, one for each platform.
+The &lsquo;<tt>send-pr.conf</tt>&rsquo; file is platform-independent, though.
+</p>
+<p>In order to submit a new PR, <code>send-pr</code> would then be invoked as
+follows on the client machines:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">send-pr -d <var>hostname:port:database:username:password</var>
+</pre></td></tr></table>
+
+<p>Or by first setting the environment variable <code>GNATSDB</code> as follows
+(the exact syntax will vary depending on what shell you use):
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">export GNATSDB=<var>hostname:port:database:username:password</var>
+</pre></td></tr></table>
+
+<p>Then, <code>send-pr</code> can simply be invoked without any options.
+</p>
+<p>The other tools, <code>query-pr</code> and <code>edit-pr</code>, work in similar
+ways, honoring the <code>-d</code> option as well as the <code>GNATSDB</code>
+environment variable.  See section <a href="GNATS-user-tools.html#GNATS-user-tools">The <small>GNATS</small> User Tools</a>.
+</p>
+<hr size="6">
+<a name="User-tools-for-remote-users"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-tools-on-a-local-network" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Upgrading.html#Upgrading" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installing-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<h3 class="subsection">3.7.2 User tools for remote users</h3>
+<a name="index-using-GNATS-remotely"></a>
+<a name="index-configuring-GNATS-for-remote-users"></a>
+
+<p>When client machines reside on the general Internet, both security and
+practical considerations may make it impossible to provide a shared
+installation of the <small>GNATS</small> tools.  In this case, you may choose to
+only provide access through a web interface such as Gnatsweb.  For
+clients that need the <small>GNATS</small> tools, the following needs to be
+carried out on the remote machines:
+</p>
+<ol>
+<li> Configure and build <small>GNATS</small> on the client machine
+
+</li><li> Configure <code>send-pr</code> on the client machine
+</li></ol>
+
+<p>You should unpack the distribution and run <code>configure</code> on the
+client machine in the same way as described in <a href="Configure-and-make.html#Configure-and-make">Configuring and compiling the software</a>.  Note, however, that you
+do not need to create a <code>gnats</code> user on the client and you should
+not use the <code>make all info</code> command to build.  Instead, issue the
+following commands from the top level directory of the source
+distribution:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">cd gnats
+make install-tools
+cd ../send-pr
+make all install
+</pre></td></tr></table>
+
+<p>This builds and installs the <code>send-pr</code>, <code>query-pr</code> and
+<code>edit-pr</code> tools on the client machine.  You should now configure
+<code>send-pr</code> by editing the &lsquo;<tt>send-pr.conf</tt>&rsquo; file
+(see section <a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file">The send-pr.conf configuration file</a>.)
+</p>
+<p>Users on the client machine can now either use the send-pr syntax or the
+<code>GNATSDB</code>environment variable described in the previous section.
+</p>
+<p>For sites that need to submit Problem Reports by having send-pr send
+e-mail instead of speaking directly over the network to the <small>GNATS</small>
+server, you need to create a problem report template on the <small>GNATS</small>
+server and have that template copied to a suitable location on the
+client machine (any filename and any location will do, as long as
+<code>send-pr</code> on the client machine can read the file).  On the
+<small>GNATS</small> server, use the command
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">send-pr -p &gt; &lsquo;<tt>filename</tt>&rsquo;
+</pre></td></tr></table>
+
+<p>The file &lsquo;<tt>filename</tt>&rsquo; now contains a PR template for your database.
+Copy this file to the client.  Then edit the &lsquo;<tt>send-pr.conf</tt>&rsquo; file
+that you created on the client, set the <code>TEMPLATE</code> variable to
+point to the template file (see section <a href="send_002dpr_002econf-file.html#send_002dpr_002econf-file">The send-pr.conf configuration file</a>) and make sure that the <code>MAILPROG</code> and
+<code>MAILADDR</code> varables in &lsquo;<tt>send-pr.conf</tt>&rsquo; are correctly set.  You
+should now have a working remote tool installation.
+</p>
+<p>For clients that have no direct network access to your <small>GNATS</small>
+server, such as those that are located behind strict firewalls, you
+either need to set up a web interface such as Gnatsweb (provided that
+the firewall lets web traffic through) or use the procedure above which
+sets up <code>send-pr</code> to submit Problem Reports by e-mail.  In order to
+query PRs, users on the remote machines will then have to use the the
+e-mail functionality of <code>query-pr</code> (see section <a href="query_002dpr.html#Invoking-query_002dpr">Invoking <code>query-pr</code></a>.
+Editing PRs by e-mail is not possible, so clients in this group who need
+edit access have to get access through a web interface if possible.
+</p>
+<p>Note that when <code>send-pr</code> is set up to work over e-mail, the
+<code>GNATSDB</code> environment variable and the <code>-d</code> command line
+option have no effect since <code>send-pr</code> is tied to a specific
+database by way of the value of <code>MAILADDR</code> in the
+&lsquo;<tt>send-pr.conf</tt>&rsquo; file.
+</p>
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#User-tools-on-a-local-network" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Upgrading.html#Upgrading" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Installing-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

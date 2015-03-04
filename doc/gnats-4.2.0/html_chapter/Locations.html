@@ -1,0 +1,540 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: A. Where GNATS lives</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: A. Where GNATS lives">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: A. Where GNATS lives">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Locations"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Management.html#pr_002dage" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#prefix" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Where-GNATS-lives"></a>
+<h1 class="appendix">A. Where <small>GNATS</small> lives</h1>
+<a name="index-locations"></a>
+<a name="index-where-GNATS-lives"></a>
+<a name="index-default-installation-locations"></a>
+
+<p>We use a few conventions when referring to the installation structure
+<small>GNATS</small> uses.  These values are adjustable when you build and install
+<small>GNATS</small> (see section <a href="Installation.html#Installation">Installing <small>GNATS</small></a>).
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#prefix">A.1 <var>prefix</var></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                      
+</td></tr>
+<tr><td align="left" valign="top"><a href="#exec_002dprefix">A.2 <var>exec-prefix</var></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                 
+</td></tr>
+<tr><td align="left" valign="top"><a href="#gnats_002dadm">A.3 The &lsquo;<tt>gnats-adm</tt>&rsquo; directory</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                  
+</td></tr>
+<tr><td align="left" valign="top"><a href="#defaults">A.4 Default installation locations</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+</table>
+
+<hr size="6">
+<a name="prefix"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Locations" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#exec_002dprefix" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Locations" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Locations" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="prefix-1"></a>
+<h2 class="section">A.1 <var>prefix</var></h2>
+<a name="index-prefix-1"></a>
+
+<p><var>prefix</var> corresponds to the variable &lsquo;<samp>prefix</samp>&rsquo; for
+<code>configure</code>, which passes it on to the &lsquo;<tt>Makefile</tt>&rsquo; it creates.
+<var>prefix</var> sets the root installation directory for
+<em>host-independent</em> files as follows:
+</p>
+<dl compact="compact">
+<dt> the directory path of the default database</dt>
+<dd><p>&lsquo;<tt><var>prefix</var>/com</tt>&rsquo;<br>
+</p>
+</dd>
+<dt> site-wide configuration files</dt>
+<dd><p>&lsquo;<tt><var>prefix</var>/etc/gnats</tt>&rsquo;<br>
+</p>
+</dd>
+<dt> <code>man</code> pages</dt>
+<dd><p>&lsquo;<tt><var>prefix</var>/man</tt>&rsquo;
+</p>
+</dd>
+<dt> <code>info</code> documents</dt>
+<dd><p>&lsquo;<tt><var>prefix</var>/info</tt>&rsquo;
+</p>
+</dd>
+<dt> <code>include</code> files</dt>
+<dd><p>&lsquo;<tt><var>prefix</var>/include</tt>&rsquo;
+</p>
+</dd>
+<dt> <em>etc&hellip;</em></dt>
+</dl>
+
+<p>The default value for <var>prefix</var> is &lsquo;<tt>/usr/local</tt>&rsquo;, which can
+be changed on the command line to <code>configure</code> using
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">configure --prefix=<var>prefix</var> &hellip;
+</pre></td></tr></table>
+
+<p>See section <a href="Installation.html#Configure-and-make">Configuring and compiling the software</a>.
+</p>
+<hr size="6">
+<a name="exec_002dprefix"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#prefix" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#gnats_002dadm" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Locations" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Locations" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="exec_002dprefix-1"></a>
+<h2 class="section">A.2 <var>exec-prefix</var></h2>
+<a name="index-exec_002dprefix-1"></a>
+
+<p><var>exec-prefix</var> corresponds to the variable &lsquo;<samp>exec-prefix</samp>&rsquo; for
+<code>configure</code>, which passes it on to the &lsquo;<tt>Makefile</tt>&rsquo; it creates.
+<var>exec-prefix</var> sets the root installation for
+<em>host-dependent</em> files as follows:
+</p>
+<dl compact="compact">
+<dt> <small>GNATS</small> user tools</dt>
+<dd><p>&lsquo;<tt><var>exec-prefix</var>/bin</tt>&rsquo;
+</p>
+</dd>
+<dt> administrative and support utilities</dt>
+<dd><p>&lsquo;<tt><var>exec-prefix</var>/libexec/gnats</tt>&rsquo;
+</p>
+</dd>
+<dt> compiled libraries </dt>
+<dd><p>&lsquo;<tt><var>exec-prefix</var>/lib</tt>&rsquo;<br>
+</p>
+</dd>
+<dt> <em>etc&hellip;</em></dt>
+</dl>
+
+<p><code>configure</code> supports several more options which allow you to
+specify in great detail where different files are installed.  The
+locations given in this appendix do not take into account highly
+customized installations, but fairly ordinary <small>GNATS</small> installations
+should be covered by the material here.  For a complete list of options
+accepted by <code>configure</code>, run <code>./configure --help</code> in the
+&lsquo;<tt>gnats</tt>&rsquo; subdirectory of the distribution.
+</p>
+<p>Since most installations are not intended to be distributed around a
+network, the default value for <var>exec-prefix</var> is the value of
+&lsquo;<samp>prefix</samp>&rsquo;, i.e., &lsquo;<tt>/usr/local</tt>&rsquo;.  However, using
+<var>exec-prefix</var> saves space when you are installing a package on
+several different platforms for which many files are identical; rather
+than duplicate them for each host, these files can be shared in a common
+repository, and you can use symbolic links on each host to find the
+host-dependent files.
+</p>
+<p>Use <var>exec-prefix</var> in conjunction with <var>prefix</var> to share
+host-independent files, like libraries and <code>info</code> documents.  For
+example:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">   <em>for each host:</em>
+configure --prefix=/usr/gnu --exec-prefix=/usr/gnu/H-<var>host</var>
+make all install &hellip;
+</pre></td></tr></table>
+
+<p>Using this paradigm, all host-dependent binary files are installed into
+&lsquo;<tt>/usr/gnu/H-<var>host</var>/bin</tt>&rsquo;, while files which do not depend on
+the host type for which they were configured are installed into
+&lsquo;<tt>/usr/gnu</tt>&rsquo;.
+</p>
+<p>You can then use a different symbolic link for &lsquo;<tt>/usr/gnu</tt>&rsquo;
+on each host (&lsquo;<tt>/usr</tt>&rsquo; is usually specific to a particular machine;
+it is always specific to a particular architecture).
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">  <em>on host-1:</em>
+ln -s /usr/gnu/H-<var>host-1</var> /usr/gnu
+  <em>on host-2:</em>
+ln -s /usr/gnu/H-<var>host-2</var> /usr/gnu
+</pre></td></tr></table>
+
+<p>To the end user, then, placing &lsquo;<tt>/usr/gnu/bin</tt>&rsquo; in her or his
+<code>PATH</code> simply works transparently for each <var>host</var> type.
+</p>
+<p>You can change <var>exec-prefix</var> on the command line to
+<code>configure</code> using
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">configure --exec-prefix=<var>exec-prefix</var> &hellip;
+</pre></td></tr></table>
+
+<p>We recommend that you consult <a href="../configure/Using-configure.html#Using-configure">(configure)Using configure</a> section &lsquo;Using <code>configure</code>&rsquo; in <cite>Cygnus configure</cite>, before attempting this.
+</p>
+<hr size="6">
+<a name="gnats_002dadm"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#exec_002dprefix" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#defaults" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Locations" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Locations" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-gnats_002dadm-directory"></a>
+<h2 class="section">A.3 The &lsquo;<tt>gnats-adm</tt>&rsquo; directory</h2>
+<a name="index-gnats_002dadm"></a>
+
+<p>Each <small>GNATS</small> database located on a server has its own directory, as
+listed in the &lsquo;<tt>databases</tt>&rsquo; (see section <a href="Management.html#databases-file">The <code>databases</code> file</a> and given when the <code>mkdb</code> utility is invoked
+to initialize the database (see section <a href="Management.html#mkdb">Initializing a new database</a>).
+This directory has several subdirectories, one of which is named
+&lsquo;<tt>gnats-adm</tt>&rsquo;.  This directory contains all configuration files
+related to this specific database, including the &lsquo;<tt>categories</tt>&rsquo;,
+&lsquo;<tt>submitters</tt>&rsquo;, &lsquo;<tt>responsible</tt>&rsquo;, &lsquo;<tt>states</tt>&rsquo;, &lsquo;<tt>classes</tt>&rsquo;,
+&lsquo;<tt>dbconfig</tt>&rsquo;, &lsquo;<tt>addresses</tt>&rsquo;, &lsquo;<tt>states</tt>&rsquo; and
+&lsquo;<tt>gnatsd.user_access</tt>&rsquo;, as well as two
+files generated and maintained by <small>GNATS</small>, &lsquo;<tt>index</tt>&rsquo; and
+&lsquo;<tt>current</tt>&rsquo;.
+</p>
+<hr size="6">
+<a name="defaults"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#gnats_002dadm" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Locations" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Locations" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Default-installation-locations"></a>
+<h2 class="section">A.4 Default installation locations</h2>
+<a name="index-default-installation-locations-1"></a>
+
+<dl compact="compact">
+<dt> <var>prefix</var></dt>
+<dd><p>defaults to &lsquo;<tt>/usr/local</tt>&rsquo;; change using <code>configure</code>
+(see section <a href="Installation.html#Configure-and-make">Configuring and compiling the software</a>).
+</p>
+</dd>
+<dt> <var>exec-prefix</var></dt>
+<dd><p>defaults to <var>prefix</var>; change using <code>configure</code>
+(see section <a href="Installation.html#Configure-and-make">Configuring and compiling the software</a>).
+</p></dd>
+</dl>
+
+<p><small>GNATS</small> installs tools, utilities, and files into the following
+locations.
+</p>
+<dl compact="compact">
+<dt> <code><var>exec-prefix</var>/bin</code></dt>
+<dd>
+<dl compact="compact">
+<dt> <code>send-pr</code></dt>
+<dd><p>See section <a href="GNATS-user-tools.html#send_002dpr">Submitting Problem Reports</a>.
+</p></dd>
+<dt> <code>edit-pr</code></dt>
+<dd><p>See section <a href="GNATS-user-tools.html#edit_002dpr">Editing existing Problem Reports</a>.
+</p></dd>
+<dt> <code>query-pr</code></dt>
+<dd><p>See section <a href="GNATS-user-tools.html#query_002dpr">Querying the database</a>.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code><var>exec-prefix</var>/libexec/gnats</code></dt>
+<dd>
+<dl compact="compact">
+<dt> <code>at-pr</code></dt>
+<dd><p>See section <a href="Management.html#at_002dpr">Timely reminders</a>.
+</p>
+</dd>
+<dt> <code>check-db</code></dt>
+<dd><p>See section <a href="Management.html#check_002ddb">Checking database health</a>.
+</p>
+</dd>
+<dt> <code>delete-pr</code></dt>
+<dd><p>Tool for deleting PRs.  Deprecated.  Use the &ndash;delete-pr option of
+<code>pr-edit</code> instead (see section <a href="Management.html#pr_002dedit">The edit-pr driver</a>).
+</p>
+</dd>
+<dt> <code>diff-prs</code></dt>
+<dd><p>See section <a href="Management.html#diff_002dprs">The <code>diff-prs</code> tool</a>.
+</p>
+</dd>
+<dt> <code>file-pr</code></dt>
+<dd><p>See section <a href="Management.html#file_002dpr">Interface to pr-edit for filing new PRs</a>.
+</p>
+</dd>
+<dt> <code>gen-index</code></dt>
+<dd><p>See section <a href="Management.html#gen_002dindex">Regenerating the index</a>.
+</p>
+</dd>
+<dt> <code>gnatsd</code></dt>
+<dd><p>The <small>GNATS</small> daemon.
+</p>
+</dd>
+<dt> <code>gnats-pwconv</code></dt>
+<dd><p>See section <a href="Management.html#gnats_002dpwconv">Converting old password files</a>.
+</p>
+</dd>
+<dt> <code>mail-query</code></dt>
+<dd><p>See section <a href="Installation.html#Aliases">Setting up mail aliases</a>.
+</p>
+</dd>
+<dt> <code>mkcat</code></dt>
+<dd><p>See section <a href="Management.html#mkcat">Adding a problem category</a>.
+</p>
+</dd>
+<dt> <code>mkdb</code></dt>
+<dd><p>See section <a href="Management.html#mkdb">Script for creating new databases</a>.
+</p>
+</dd>
+<dt> <code>pr-age</code></dt>
+<dd><p>See section <a href="Management.html#pr_002dage">The <code>pr-age</code> tool</a>.
+</p>
+</dd>
+<dt> <code>pr-edit</code></dt>
+<dd><p>See section <a href="Management.html#pr_002dedit">The main PR processor</a>.
+</p>
+</dd>
+<dt> <code>queue-pr</code></dt>
+<dd><p>See section <a href="Management.html#queue_002dpr">Handling incoming traffic</a>.
+</p>
+</dd>
+<dt> <code>rmcat</code></dt>
+<dd><p>See section <a href="Management.html#rmcat">Removing categories</a>.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code><var>exec-prefix</var>/lib/libiberty.a</code></dt>
+<dd><p>The <small>GNU</small> <code>libiberty</code> library.
+</p>
+</dd>
+<dt> <code><var>prefix</var>/etc/gnats</code></dt>
+<dd>
+<dl compact="compact">
+<dt> &lsquo;<tt>databases</tt>&rsquo;</dt>
+<dd><p>See section <a href="Management.html#databases-file">The &lsquo;<tt>databases</tt>&rsquo; file</a>.
+</p>
+</dd>
+<dt> &lsquo;<tt>defaults</tt>&rsquo;</dt>
+<dd><p>See section <a href="Management.html#GNATS-configuration">Overview of <small>GNATS</small> configuration</a>.
+</p>
+</dd>
+<dt> &lsquo;<tt>gnatsd.host_access</tt>&rsquo;</dt>
+<dd><p>See section <a href="Access-Control.html#gnatsd_002ehost_005faccess">The &lsquo;<tt>gnatsd.host_access</tt>&rsquo; file</a>.
+</p>
+</dd>
+<dt> &lsquo;<tt>gnatsd.user_access</tt>&rsquo;</dt>
+<dd><p>See section <a href="Access-Control.html#gnatsd_002euser_005faccess">The &lsquo;<tt>gnatsd.user_access</tt>&rsquo; file</a>.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code><var>prefix</var>/share/emacs/site-lisp</code></dt>
+<dd>
+<dl compact="compact">
+<dt> &lsquo;<tt>gnats.el</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>gnats.elc</tt>&rsquo;</dt>
+<dd><p>The Emacs versions of the programs <code>send-pr</code>, <code>query-pr</code>,
+<code>edit-pr</code>, and <code>view-pr</code>.  See section <a href="GNATS-user-tools.html#GNATS-user-tools">The <small>GNATS</small> user tools</a>.  To change this directory you must change the
+<code>lispdir</code> variable in &lsquo;<tt>Makefile.in</tt>&rsquo;; see <a href="Installation.html#Configure-and-make">Configuring and compiling the software</a>.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code><var>prefix</var>/info</code></dt>
+<dd>
+<dl compact="compact">
+<dt> &lsquo;<tt>gnats.info</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>send-pr.info</tt>&rsquo;</dt>
+<dd><p>The <small>GNATS</small> manuals, in a form readable by <code>info</code> (the <small>GNU</small>
+hypertext browser).  See <a href="../infoman/Info.html#Info">(infoman)Info</a> section &lsquo;Reading GNU Online Documentation&rsquo; in <cite>GNU Online Documentation</cite>.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code><var>prefix</var>/man/man1</code></dt>
+<dt> <code><var>prefix</var>/man/man8</code></dt>
+<dd>
+<dl compact="compact">
+<dt> <code>man</code> pages for all the <small>GNATS</small> tools and utilities.</dt>
+<dd><p>See section <a href="GNATS-user-tools.html#GNATS-user-tools">The <small>GNATS</small> user tools</a>.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code>Per-database directory</code></dt>
+<dd>
+<dl compact="compact">
+<dt> &lsquo;<tt>gnats-adm</tt>&rsquo;</dt>
+<dd><p>Administration and configuration data files that define behaviour of the
+particular database.  The files
+</p>
+<dl compact="compact">
+<dt> &lsquo;<tt>categories</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>submitters</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>responsible</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>states</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>classes</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>dbconfig</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>addresses</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>states</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>gnatsd.user_access</tt>&rsquo;</dt>
+<dt> &lsquo;<tt>index</tt>&rsquo;</dt>
+<dd><p>(<em>This file is created by <small>GNATS</small>.</em>)
+</p>
+</dd>
+<dt> &lsquo;<tt>current</tt>&rsquo;</dt>
+<dd><p>(<em>This file is created by <small>GNATS</small>.</em>)
+</p></dd>
+</dl>
+
+<p>exist here.
+See section <a href="Management.html#Other-config-files">Other database-specific config files</a>,
+<a href="Management.html#Admin-files">Administrative data files</a> and <a href="Access-Control.html#Access-Control">Controlling access to databases</a>.
+</p>
+</dd>
+<dt> &lsquo;<tt>gnats-queue</tt>&rsquo;</dt>
+<dd><p>Incoming Problem Reports are queued here until the next iteration of
+&lsquo;<samp>queue-pr -r</samp>&rsquo; (see section <a href="Management.html#queue_002dpr">Handling incoming traffic</a>).
+</p>
+</dd>
+<dt> &lsquo;<tt>pending</tt>&rsquo;</dt>
+<dd><p>If no default category is set, problem reports without a category are
+reassigned to the category &lsquo;<samp>pending</samp>&rsquo; and placed here pending
+intervention by <small>GNATS</small> administrators.
+See section <a href="Management.html#Management"><small>GNATS</small> administration</a>.
+</p>
+</dd>
+<dt> &lsquo;<tt><var>category</var></tt>&rsquo;</dt>
+<dd><p>Each valid category has a corresponding subdirectory in the database.
+All Problem Reports associated with that category are kept in that
+subdirectory.
+</p></dd>
+</dl>
+
+</dd>
+</dl>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Locations" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

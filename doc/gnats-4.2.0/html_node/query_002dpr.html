@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 2.4 Querying the database</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 2.4 Querying the database">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 2.4 Querying the database">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="query_002dpr"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="follow_002dup-via-email.html#follow_002dup-via-email" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Invoking-query_002dpr.html#Invoking-query_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Querying-the-database"></a>
+<h2 class="section">2.4 Querying the database</h2>
+<a name="index-using-query_002dpr"></a>
+<a name="index-invoking-query_002dpr"></a>
+<a name="index-query_002dpr"></a>
+<a name="index-querying-individual-problem-reports"></a>
+
+<p>Obtain information from the database by using the program
+<code>query-pr</code>. <code>query-pr</code> uses search parameters you provide
+to find matching Problem Reports in the database.  You can invoke
+<code>query-pr</code> from the shell or from within Emacs.  <code>query-pr</code>
+uses the same arguments whether it is invoked from the shell or from
+Emacs.
+</p>
+<p>PRs may be selected via the use of the <code>--expr</code> option, directly by
+number, or by the use of the (now deprecated) field-specific query
+operators.
+</p>
+<p>By default, query options are connected with a logical AND.  For
+example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --category=foo --responsible=bar
+</pre></td></tr></table>
+
+<p>only prints PRs which have a Category field of &lsquo;<samp>foo</samp>&rsquo; and a Responsible
+field of &lsquo;<samp>bar</samp>&rsquo;.
+</p>
+<p>The <code>--or</code> option may be used to connect query options with a logical
+OR. For example,
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">query-pr --category=baz --or --responsible=blee
+</pre></td></tr></table>
+
+<p>prints PRs which have either a Category field of &lsquo;<samp>baz</samp>&rsquo; or a Responsible
+field of &lsquo;<samp>blee</samp>&rsquo;.
+</p>
+<p>It should be emphasized, however, that the use of these field-specific
+options is strongly discouraged, since they exist only for compatibility
+with older versions of <small>GNATS</small> and are likely to be deleted in the next
+release.  The expressions specified by the <code>--expr</code> option are much more
+flexible (see below).
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="Invoking-query_002dpr.html#Invoking-query_002dpr">2.4.1 Invoking <code>query-pr</code></a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output">2.4.2 Formatting <code>query-pr</code> output</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="Query-expressions.html#Query-expressions">2.4.3 Query expressions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+<tr><td align="left" valign="top"><a href="Example-queries.html#Example-queries">2.4.4 Example queries</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">
+</td></tr>
+</table>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="follow_002dup-via-email.html#follow_002dup-via-email" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Invoking-query_002dpr.html#Invoking-query_002dpr" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

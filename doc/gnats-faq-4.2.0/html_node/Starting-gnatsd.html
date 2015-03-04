@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 3.2.2 How to Start Gnatsd</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 3.2.2 How to Start Gnatsd">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 3.2.2 How to Start Gnatsd">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Starting-gnatsd"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Port-Number.html#Port-Number" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Gnatsd-messages.html#Gnatsd-messages" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Gnatsd.html#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="How-to-Start-Gnatsd"></a>
+<h3 class="subsection">3.2.2 How to Start Gnatsd</h3>
+
+<p>Gnatsd is intended to be started by some &quot;super server&quot;, like
+<code>inetd</code> or <code>xinetd</code>.  (&quot;Super servers&quot; are sometimes also
+called &quot;super daemons&quot;.)
+</p>
+<p>This is also described in the <small>GNATS</small> manual; see <a href="../gnats/Installing-the-daemon.html#Installing-the-daemon">(gnats)Installing the daemon</a> section &lsquo;Installing the daemon&rsquo; in <cite>Keeping Track</cite>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#inetd-configuration">&bull; inetd configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         The traditional super server
+</td></tr>
+<tr><td align="left" valign="top"><a href="#xinetd-configuration">&bull; xinetd configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Another widespread super server
+</td></tr>
+</table>
+
+<a name="inetd-configuration"></a>
+<a name="How-to-configure-inetd-to-start-gnatsd"></a>
+<h4 class="subsubheading">How to configure inetd to start gnatsd</h4>
+
+<a name="index-inetd"></a>
+
+<p>If your gnatsd will be started by inetd (the &quot;internet daemon&quot;),
+add the following entry to your &lsquo;<tt>/etc/inetd.conf</tt>&rsquo;:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"># port                    userid program
+support stream tcp nowait gnats /usr/local/libexec/gnats/gnatsd gnatsd
+</pre></td></tr></table>
+
+<p>and to &lsquo;<tt>/etc/services</tt>&rsquo;:
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample">support		1529/tcp		# GNATS
+</pre></td></tr></table>
+
+<p>(You may need to use tabulator characters to separate the fields of
+&lsquo;<tt>/etc/services</tt>&rsquo;.)  Then send inetd a hangup signal
+(<code>kill -HUP <em>pid-of-inetd</em></code>).
+</p>
+<p>You may want to use another port instead of 1529 (see section <a href="Port-Number.html#Port-Number">Gnatsd Port Number</a>).
+</p>
+
+
+<a name="xinetd-configuration"></a>
+<a name="How-to-configure-xinetd-to-start-gnatsd"></a>
+<h4 class="subsubheading">How to configure xinetd to start gnatsd</h4>
+
+<a name="index-xinetd"></a>
+
+<p>If your gnatsd will be started by xinetd (the &quot;extended internet
+daemon&quot;), create a file &lsquo;<tt>/etc/xinetd.d/support</tt>&rsquo; with the
+following lines (see <a href="../gnats/Installing-the-daemon.html#Installing-the-daemon">(gnats)Installing the daemon</a> section &lsquo;Installing the daemon&rsquo; in <cite>Keeping Track</cite>):
+</p>
+<table><tr><td>&nbsp;</td><td><table class="cartouche" border="1"><tr><td>
+<pre class="example">service support
+{
+        disable     = no
+        socket_type = stream
+        protocol    = tcp
+        wait        = no
+        user        = gnats
+        server      = /usr/local/libexec/gnats/gnatsd
+        server_args = gnatsd
+}
+</pre></td></tr></table>
+</td></tr></table>
+
+<p>or add theses lines to your &lsquo;<tt>xinetd.conf</tt>&rsquo; file, whatever is
+appropriate.  The equal signs seem to need spaces around them with
+some versions of xinetd.
+</p>
+<p>You need to add
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample">support		1529/tcp		# GNATS
+</pre></td></tr></table>
+
+<p>to &lsquo;<tt>/etc/services</tt>&rsquo; (it may be necessary to use tabulator
+characters to separate the fields), and to tell xinetd to reread its
+configuration (<code>kill -HUP <em>pid-of-xinetd</em></code>).
+</p>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Port-Number.html#Port-Number" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Gnatsd-messages.html#Gnatsd-messages" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Gnatsd.html#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

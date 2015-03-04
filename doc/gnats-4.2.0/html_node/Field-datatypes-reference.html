@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 1.4.1 Field datatypes reference</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 1.4.1 Field datatypes reference">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 1.4.1 Field datatypes reference">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Field-datatypes-reference"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Fields.html#Fields" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Mail-header-fields.html#Mail-header-fields" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Fields.html#Fields" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="Field-datatypes-reference-1"></a>
+<h3 class="subsection">1.4.1 Field datatypes reference</h3>
+
+<p>The following is a short reference to the characteristics of the
+different field types.
+</p>
+<p>For details, see <a href="Field-datatypes.html#Field-datatypes">Field datatypes</a>.
+</p>
+<dl compact="compact">
+<dt> <code>text</code></dt>
+<dd><p>A one-line text string.
+</p>
+</dd>
+<dt> <code>multitext</code></dt>
+<dd><p>Multiple lines of text.
+</p>
+</dd>
+<dt> <code>enum</code></dt>
+<dd><p>The value in this field is required to be from a list of specified
+values, defined at the Support Site.
+</p>
+<p>(See section <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a>, for details.
+</p>
+</dd>
+<dt> <code>multienum</code></dt>
+<dd><p>Similar to the <code>enum</code> datatype, except that the field can contain
+multiple values.
+</p>
+</dd>
+<dt> <code>enumerated-in-file</code></dt>
+<dd><p>Similar to <code>enum</code>, but the allowed field values are listed in a
+separate file on the <small>GNATS</small> server.
+</p>
+</dd>
+<dt> <code>multi-enumerated-in-file</code></dt>
+<dd><p>Similar to <code>enumerated-in-file</code>, except that the field can contain
+multiple values.
+</p>
+</dd>
+<dt> <code>date</code></dt>
+<dd><p>Used to hold dates.
+</p>
+</dd>
+<dt> <code>integer</code></dt>
+<dd><p>Used to hold integer numbers.
+</p></dd>
+</dl>
+
+<hr size="1">
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

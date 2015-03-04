@@ -102,6 +102,10 @@
 
   <h2>GNATS News</h2>
 
+  <p><b>February 28, 2015:</b> GNATS 4.2.0 has been released! (<a href=
+  "#downloading">Download</a>) This is considered the new stable
+  branch of GNATS.</p>
+
   <p><b>March 6, 2005:</b> GNATS 4.1.0 has been released! (<a href=
   "#downloading">Download</a>) This is considered the new stable
   branch of GNATS.</p>
@@ -187,21 +191,21 @@
 	 a call to <em>syslog()</em>, a path which would allow this
 	 hole to be exploited has not been found.
 
-        <ul>
-          <li><a href=
-          "http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html">
-          http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html</a></li>
+	<ul>
+	  <li><a href=
+	  "http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html">
+	  http://lists.gnu.org/archive/html/bug-gnats/2004-06/msg00028.html</a></li>
 
-          <li><a href=
-          "http://www.zone-h.org/advisories/read/id=4889">http://www.zone-h.org/advisories/read/id=4889</a></li>
+	  <li><a href=
+	  "http://www.zone-h.org/advisories/read/id=4889">http://www.zone-h.org/advisories/read/id=4889</a></li>
 
-          <li><a href=
-          "http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623">
-          http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623</a></li>
+	  <li><a href=
+	  "http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623">
+	  http://cve.mitre.org/cgi-bin/cvename.cgi?name=CAN-2004-0623</a></li>
 
-          <li><a href=
-          "http://www.debian.org/security/2004/dsa-590">http://www.debian.org/security/2004/dsa-590</a></li>
-        </ul>
+	  <li><a href=
+	  "http://www.debian.org/security/2004/dsa-590">http://www.debian.org/security/2004/dsa-590</a></li>
+	</ul>
       </td>
     </tr>
 
@@ -215,17 +219,17 @@
       <td>100%</td>
 
       <td>
-        There are multiple vulnerabilities in these versions that
-        result in local root exploits. Note: these versions are no
-        longer maintained.
+	There are multiple vulnerabilities in these versions that
+	result in local root exploits. Note: these versions are no
+	longer maintained.
 
-        <ul>
-          <li><a href=
-          "http://www.securityfocus.com/archive/1/326337">Multiple
-          buffer overflow vulnerabilities</a></li>
+	<ul>
+	  <li><a href=
+	  "http://www.securityfocus.com/archive/1/326337">Multiple
+	  buffer overflow vulnerabilities</a></li>
 
-          <li><a href="patches/index.html">Patches</a></li>
-        </ul>
+	  <li><a href="patches/index.html">Patches</a></li>
+	</ul>
       </td>
     </tr>
   </table><a href="#TOC" name="downloading" id=
@@ -233,20 +237,20 @@
 
   <h2>Downloading GNATS and Gnatsweb</h2>
 
-  <h3>GNATS Stable Branch: 4.1</h3>
+  <h3>GNATS Stable Branch: 4.2</h3>
 
   <p>GNATS versioning follows a simple
   <strong>MAJOR.MINOR.PATCH</strong> numbering scheme. The latest
-  stable branch of GNATS is <strong>4.1</strong> with
-  <strong>4.1.0</strong> being the latest version available. All
+  stable branch of GNATS is <strong>4.2</strong> with
+  <strong>4.2.0</strong> being the latest version available. All
   version of GNATS are available for download on the
   <strong>Official GNU FTP Mirror</strong>: <a href=
   "http://ftp.gnu.org/pub/gnu/gnats/">http://ftp.gnu.org/pub/gnu/gnats/</a>.</p>
 
   <p>The stable branch is also available in the <a href=
   "https://savannah.gnu.org/cvs/?group=gnats">CVS Repository</a>
-  under the branch <strong>gnats-4_1-branch</strong>. The 4.1.0
-  release is tagged <strong>gnats-4_1_0-release</strong>.</p>
+  under the branch <strong>gnats-4_2-branch</strong>. The 4.1.0
+  release is tagged <strong>gnats-4_2_0-release</strong>.</p>
 
   <p>Binary packages are generally available on various Linux and
   BSD platforms. For example, <a href=
@@ -281,14 +285,14 @@
   "http://savannah.gnu.org/projects/gnatsweb">GNU savannah GNATSWEB
   project page</a> for the instructions how to get it.</p>
   <pre>
-        cvs -z3 -d:pserver:anoncvs@cvs.savannah.gnu.org:/cvsroot/gnatsweb co gnatsweb
+	cvs -z3 -d:pserver:anoncvs@cvs.savannah.gnu.org:/cvsroot/gnatsweb co gnatsweb
 </pre>
 
   <p>Get the current <b>Gnatsweb 2</b> development code using the
   same login setup as the <b>Gnatsweb 4</b> branch. Use this
   checkout line instead:</p>
   <pre>
-        cvs -z3 -d:pserver:anoncvs@cvs.savannah.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-v2-branch gnatsweb
+	cvs -z3 -d:pserver:anoncvs@cvs.savannah.gnu.org:/cvsroot/gnatsweb co -r gnatsweb-v2-branch gnatsweb
 </pre><!-- *** -->
   <a href="#TOC" name="documentation" id="documentation">(ToC)</a>
 
@@ -297,35 +301,23 @@
   <p>The official manuals are distributed with the source code and
   available under the <a href="doc">doc</a> subdirectory.  The
   following documentation versions are available:
-	<a href="doc/gnats-4.1.999">4.1.999(CVS Snapshot)</a>,
+	<a href="doc/gnats-4.2.0">4.2.0</a>,
 	<a href="doc/4_0_beta_snapshot">4.0 Beta Snapshot</a>,
 	<a href="doc/3_113_1">3.113.1</a>.
 
   <p>There is also an FAQ compiled by Hans-Albert Schneider, also
   available under the <a href="doc">doc</a> subdirectory.   The
   following document versions are available:
-	  <a href= "doc/gnats-faq-4.1.999">4.1.999(CVS Snapshot)</a>,
+	  <a href= "doc/gnats-faq-4.2.0">4.2.0</a>,
 	  <a href= "doc/faq/gnats-faq.html">4.1.0</a>.
 
   <p><a href="#TOC" name="bugreporting" id="bugreporting">(ToC)</a>
 
   <h2>Reporting GNATS Bugs</h2>
 
-  <p>GNATS uses (gasp) GNATS to track problem reports. A temporary
-  home for the GNATS bug database is available at <a href=
-  "http://gnats.wookimus.net">http://gnats.wookimus.net</a> to
+  <p>Please report bugs through the email list.
   <a href=
-  "http://gnats.wookimus.net/cgi-bin/gnatsweb.pl?database=gnats">browse
-  or submit new problem reports</a>. Use "<strong>guest</strong>"
-  as both the <em>login</em> name and the <em>password</em>. This
-  is the Gnatsweb interface, so you can see how things look, but
-  please do not submit reports that aren't real. This database is
-  being used by GNATS developers, and is <em>not meant for testing
-  purposes</em>.</p>
-
-  <p>An alternative method to submit bug reports is through email at
-  <a href=
-  "mailto:bug-gnats@gnats.wookimus.net">bug-gnats@gnats.wookimus.net</a>.</p>
+  "mailto:bug-gnats@gnu.org">bug-gnats@gnu.org</a>.</p>
 
   <p>When you report problems related GNATS itself, <em>please
   don't forget to provide the following information</em>:</p>
@@ -352,15 +344,7 @@
   "http://mail.gnu.org/mailman/listinfo/gnats-prs">gnats-prs
   mailing list</a>.</p><!-- *** -->
 
-  <p>We encourage the use of <a href=
-  "mailto:bug-gnats@gnats.wookimus.net">bug-gnats@gnats.wookimus.net</a>
-  for discussions about specific bugs, but for "out-of-band"
-  discussions, sending patches or attachments, <a href=
-  "mailto:bug-gnats@gnu.org">&lt;bug-gnats@gnu.org&gt;</a> can be
-  used. Previously, this address "fed" the bug tracking system, but
-  this has proven to be a confusing practice.</p><a href="#TOC"
-  name="mailinglists" id="mailinglists">(ToC)</a>
-
+  <a href="#TOC"  name="mailinglists" id="mailinglists">(ToC)</a>
   <h2>GNATS Mailing Lists</h2>
 
   <p>Archives and instructions for subscribing to the the different
@@ -513,7 +497,7 @@ cvs diff -up file1 file2 ... &gt; patchfile.out
   Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA</p>
 
   <p>Updated: <!-- timestamp start -->
-   $Date: 2006/11/23 08:42:52 $ $Author: ramprasadb $ 
+   $Date: 2015/03/04 02:47:04 $ $Author: chewie $
   <!-- timestamp end --></p>
   <hr>
 </body>

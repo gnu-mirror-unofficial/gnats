@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: E. dbconfig recipes</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: E. dbconfig recipes">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: E. dbconfig recipes">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="dbconfig-recipes"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Support.html#Support" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Support.html#Support" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="dbconfig-recipes-1"></a>
+<h1 class="appendix">E. &lsquo;<tt>dbconfig</tt>&rsquo; recipes</h1>
+<a name="index-dbconfig"></a>
+<a name="index-dbconfig-recipes"></a>
+
+<p>The &lsquo;<tt>dbconfig</tt>&rsquo; file (<a href="dbconfig-file.html#dbconfig-file">The &lsquo;<tt>dbconfig</tt>&rsquo; file</a>) is the heart of any <small>GNATS</small> installation.  It contains some
+very powerful machinery, something which this appendix tries to
+illustrate.
+</p>
+<p>We provide a range of examples that are both intended to be useful in
+their own right and to serve as starting points or building blocks for
+your own modifications.
+</p>
+<a name="Provide-Gnatsweb-URL-in-initial-response"></a>
+<h4 class="subsubheading">Provide Gnatsweb URL in initial response</h4>
+
+<p>Sites that have Gnatsweb installed may wish to modify the response
+e-mail which is sent to the submitter of a PR so that it includes a
+URL where the status of the PR can be monitored.  In order to allow
+this, you should first create an entry in &lsquo;<tt>gnatsd.user_access</tt>&rsquo;
+which allows viewing of PRs in your database
+(See section <a href="gnatsd_002euser_005faccess.html#gnatsd_002euser_005faccess">The &lsquo;<tt>gnatsd.user_access</tt>&rsquo; file</a>.)
+</p>
+<p>Next, locate the entry <code>mail-format
+&quot;initial-response-to-submitter&quot;</code> in the &lsquo;<tt>dbconfig</tt>&rsquo; file of your
+database and add the following <em>before</em> the line reading &ldquo;The
+individual assigned...&rdquo; in the <code>body</code> section:
+</p>
+<pre class="verbatim">\nYou can follow the status of this report on\n\
+http://hostname/cgi-bin/scriptname?\n\
+cmd=view&amp;database=dbname&amp;user=username&amp;\n\
+password=passwd&amp;pr=%s\n\n\
+</pre>
+<p>Substitute <code>hostname</code>, <code>cgi-bin</code> and <code>scriptname</code> as
+appropriate for the setup of your web server.  The part before the
+&lsquo;<samp>?</samp>&rsquo; would typically look something like
+<code>http://www.example.com/cgi-bin/gnatsweb.pl</code>.  Substitute the
+name of your database for <code>dbname</code>, and the username and password
+of the user with <code>view</code> rights for <code>username</code> and
+<code>passwd</code>.
+</p>
+<p>Next, add a <code>Number</code> to the <code>fields</code> list statement inside
+the <code>body</code> so it reads as follows:
+</p>
+<pre class="verbatim">fields { &quot;Category&quot; &quot;Number&quot; &quot;Number&quot; &quot;Responsible&quot;
+         &quot;Category&quot; &quot;Responsible&quot; &quot;Synopsis&quot;
+         &quot;Arrival-Date&quot; }
+</pre>
+<a name="State-full-name-of-responsible-in-initial-response"></a>
+<h4 class="subsubheading">State full name of responsible in initial response</h4>
+
+<p>The initial e-mail response to the submitter of a PR identifies the
+responsible person assigned to the PR as follows: &ldquo;The individual
+assigned to look at your report is: <var>GNATS username</var>&rdquo;.  Some
+sites may wish to modify this so that the full name of the responsible
+person is used instead of the <small>GNATS</small> user name.
+</p>
+<p>The full name is contained in the <code>fullname</code> subfield of the
+user&rsquo;s entry in the &lsquo;<tt>responsible</tt>&rsquo; file and can be accessed as
+<code>Responsible[fullname]</code> (see <a href="Field-datatypes.html#administrative-files">Enumerated field administrative files</a>.)
+</p>
+<p>The change is achieved by editing the &lsquo;<tt>dbconfig</tt>&rsquo; item
+<code>mail-format &quot;initial-response-to-submitter&quot;</code> and changing the
+<code>fields</code> part of the <code>Body</code> from
+</p>
+<pre class="verbatim">fields { &quot;Category&quot; &quot;Number&quot; &quot;Responsible&quot;
+         &quot;Category&quot; &quot;Responsible&quot; &quot;Synopsis&quot;
+         &quot;Arrival-Date&quot; }
+</pre>
+<p>to
+</p>
+<pre class="verbatim">fields { &quot;Category&quot; &quot;Number&quot; &quot;Responsible[fullname]&quot;
+         &quot;Category&quot; &quot;Responsible&quot; &quot;Synopsis&quot;
+         &quot;Arrival-Date&quot; }
+</pre>
+<a name="Append_002donly-Audit_002dTrail"></a>
+<h4 class="subsubheading">Append-only Audit-Trail</h4>
+
+<p>The Audit-Trail of a PR is by default editable.  For some
+applications, one might want to make the Audit-Trail append-only, so
+it provides a full and unchangeable case history.  Also by default,
+only certain changes, such as change of state and change of
+responsible gets recorded in the Audit-Trail.  In some cases, it might
+also be convenient to have a way of inserting comments directly into
+the Audit-Trail.
+</p>
+<p>The following procedure creates such an append-only Audit-Trail and
+adds a PR field which makes it possible to register comments in the
+Audit-Trail.
+</p>
+<p>First, add the keyword <code>read-only</code> to the Audit-Trail field
+definition in &lsquo;<tt>dbconfig</tt>&rsquo;.
+</p>
+<p>Then, add the following field definition to &lsquo;<tt>dbconfig</tt>&rsquo;:
+</p>
+<pre class="verbatim">field &quot;Add-To-Audit-Trail&quot; {
+   description &quot;Add a log entry to the Audit Trail&quot;
+   multitext { default &quot;\n&quot; }
+   on-change  {
+        add-audit-trail
+        audit-trail-format {
+        format &quot;**** Comment added by %s on %s ****\n %s\n\n&quot;
+        fields { &quot;$EditUserEmailAddr&quot; &quot;$CurrentDate&quot; &quot;$NewValue&quot;
+        }
+        }
+    }
+    on-change {
+        set-field &quot;Add-To-Audit-Trail&quot; { &quot;\n&quot; }
+    }
+}
+</pre>
+<p><a name="release_002dbased-support"></a>
+<a name="Supporting-GNATS-_0060_0060release_002dbased_0027_0027-fields"></a>
+<h4 class="subsubheading">Supporting <small>GNATS</small> &ldquo;release-based&rdquo; fields</h4>
+</p>
+<p>When installing <small>GNATS</small> version 3.x, it was possible to choose
+whether to enable three optional fields: <code>Quarter</code>, <code>Keywords</code>
+and <code>Date-Required</code>.  Default installations had these fields
+switched off, and installations which had them were called
+&ldquo;release-based&rdquo;.
+</p>
+<p>The default &lsquo;<tt>dbconfig</tt>&rsquo; shipped with <small>GNATS</small> version 4 or newer
+does not have these fields, so if you are upgrading from an old
+release-based system, you need to add the following field definitions to
+your &lsquo;<tt>dbconfig</tt>&rsquo; file:
+</p>
+<pre class="verbatim">field &quot;Quarter&quot; {
+    description &quot;What quarter does the PR fall into?&quot;
+    text
+    query-default inexact-regexp
+    textsearch
+}
+
+field &quot;Keywords&quot; {
+    description &quot;Keywords used to index this PR&quot;
+    text
+    query-default inexact-regexp
+    textsearch
+}
+
+field &quot;Date-Required&quot; {
+    description &quot;Date that the PR must be fixed by&quot;
+    date
+}
+</pre>
+<p>A side note: Pre-release versions of <small>GNATS</small> 4 also had a field
+named <code>Cases</code>.  For those who may need it, here is the field
+definition of <code>Cases</code>:
+</p>
+<pre class="verbatim">field &quot;Cases&quot; {
+    text
+    query-default inexact-regexp
+    textsearch
+}
+</pre>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Support.html#Support" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Regexps.html#Regexps" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Support.html#Support" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

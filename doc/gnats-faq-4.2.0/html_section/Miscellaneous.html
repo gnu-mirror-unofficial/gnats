@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 3.4 Miscellaneous Configuration Issues</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 3.4 Miscellaneous Configuration Issues">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 3.4 Miscellaneous Configuration Issues">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Miscellaneous"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="E_002dMail.html#E_002dMail" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Miscellaneous-Configuration-Issues"></a>
+<h2 class="section">3.4 Miscellaneous Configuration Issues</h2>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#No-New-Reports">&bull; No New Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              New reports do not show up in the database
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Initially-Assign-Field-Values">&bull; Initially Assign Field Values</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  If you want to set additional fields when
+                                   entering a report
+</td></tr>
+</table>
+
+<a name="No-New-Reports"></a>
+<a name="New-reports-do-not-show-up-in-the-database"></a>
+<h4 class="subsubheading">New reports do not show up in the database</h4>
+
+<ol>
+<li>
+Make sure you have set up the mail aliases for your database(s).  (See
+<a href="General-configuration.html#Add-a-database">How do I add a new database?</a> and <a href="../gnats/mkdb.html#mkdb">(gnats)mkdb</a> section &lsquo;Adding another database&rsquo; in <cite>Keeping Track</cite>.)
+
+</li><li>
+Try to send a PR using &lsquo;<samp>send-pr</samp>&rsquo;.  If you get error replies,
+investigate the causes.  See <a href="E_002dMail.html#E_002dMail">E-Mail Issues</a>.
+
+</li><li>
+Does a new file show up in the &lsquo;<tt>gnats-queue</tt>&rsquo; directory of your
+database, with the report as its contents?
+If it does, make sure you have created the cron job for this database.
+
+</li><li>
+If the report does not show up in the &lsquo;<tt>gnats-queue</tt>&rsquo; of the desired
+database, does it show up in the &lsquo;<tt>gnats-queue</tt>&rsquo; directory of another
+database?
+In this case, make sure your mail aliases are set up correctly;
+especially, make sure that you have specified the correct
+&lsquo;<samp>--directory</samp>&rsquo; option (&lsquo;<samp>--database</samp>&rsquo; for <small>GNATS</small> 4.x)
+for each &lsquo;<tt>queue-pr</tt>&rsquo;.
+
+</li></ol>
+
+
+<a name="Initially-Assign-Field-Values"></a>
+<a name="Assigning-responsible-etc_002e-when-entering-a-report"></a>
+<h4 class="subsubheading">Assigning responsible etc. when entering a report</h4>
+
+<p><b>Q:</b> When entering a new PR, I want to assign a value to some field
+(e.g., <code>Responsible</code>) which is normally assigned by <small>GNATS</small>.
+</p>
+<p><b>A: (<small>GNATS</small> 3.1xx)</b>
+This is not possible in <small>GNATS</small> 3.1xx.
+</p>
+<p><b>A: (<small>GNATS</small> 4.x)</b> This is done by adding the field name (in this
+example, <code>Responsible</code>) to the <code>initial-entry</code> item at
+the very end of the &lsquo;<tt>dbconfig</tt>&rsquo; file.  Gnatsweb will pick this up
+and add a <code>Responsible</code> field to the Create PR form.
+</p>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="E_002dMail.html#E_002dMail" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Configuration.html#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

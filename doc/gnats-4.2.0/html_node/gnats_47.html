@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 3.8.2 Upgrading</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 3.8.2 Upgrading">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 3.8.2 Upgrading">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Upgrading-1"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="gnats_46.html#Overview-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Upgrading.html#Upgrading" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<h3 class="subsection">3.8.2 Upgrading</h3>
+<a name="index-upgrade_002c-procedure"></a>
+
+<ol>
+<li>
+Before you begin, make a backup of your entire <small>GNATS</small> database
+directory hierarchy, the <small>GNATS</small> executables directory and the
+<small>GNATS</small> user tools (<code>send-pr</code>, <code>query-pr</code> etc.)  The
+locations of these may vary, but in a default <small>GNATS</small> 3 installation,
+the database(s) reside under &lsquo;<tt>/usr/local/share/gnats</tt>&rsquo;, the
+executables are located in &lsquo;<tt>/usr/local/libexec/gnats</tt>&rsquo; and the
+user tools reside in &lsquo;<tt>/usr/local/bin</tt>&rsquo;.
+
+</li><li>
+(optional) In order to avoid confusing your users, you may want to
+remove the old <small>GNATS</small> 3 executables and tools, escpecially if you
+plan to install <small>GNATS</small> 4 in a different location than version 3.
+
+</li><li>
+Build and install <small>GNATS</small> 4.  See section <a href="Installation.html#Installation">Installing <small>GNATS</small></a>.  It is recommended that you use the
+<code>--enable-gnats-default-db</code> option when running <code>configure</code>,
+in order to set the default database to be one of your already existing
+<small>GNATS</small> 3 databases.
+
+</li><li>
+Edit the <small>GNATS</small> &lsquo;<tt>databases</tt>&rsquo; file and add entries for all your
+old <small>GNATS</small> 3 databases.  In a default <small>GNATS</small> 4 installation
+the file is in &lsquo;<tt>/usr/local/etc/gnats</tt>&rsquo;.  See section <a href="databases-file.html#databases-file">The &lsquo;<tt>databases</tt>&rsquo; file</a>.
+
+</li><li>
+In <small>GNATS</small> 3, the file &lsquo;<tt>gnatsd.conf</tt>&rsquo; specifies minimum access
+levels for the different hosts accessing the <small>GNATS</small> daemon,
+<code>gnatsd</code>.  There is one &lsquo;<tt>gnatsd.conf</tt>&rsquo; for each database.  In
+<small>GNATS</small> 4, these files have been replaced by a single file named
+&lsquo;<tt>gnatsd.host_access</tt>&rsquo; which contains settings that apply across all
+the databases on the server.  This file is located in the same directory
+as the &lsquo;<tt>databases</tt>&rsquo; file.  You need to combine the host access
+settings from all your <small>GNATS</small> 3 databases and add them to the
+&lsquo;<tt>gnatsd.host_access</tt>&rsquo; file.  Note that you are no longer able to
+control host access on a per-database basis.  Optionally, you may delete
+the old &lsquo;<tt>gnatsd.conf</tt>&rsquo; files.  See section <a href="Access-Control.html#Access-Control">Controlling access to <small>GNATS</small> databases</a>.
+
+</li><li>
+Next, you need to migrate the settings in the old &lsquo;<tt>config</tt>&rsquo; files of
+your databases to corresponding &lsquo;<tt>dbconfig</tt>&rsquo; files.  The database you
+specified with the <code>--enable-gnats-default-db</code> configure option
+got a default &lsquo;<tt>dbconfig</tt>&rsquo; installed.  This default file contains
+field definitions etc. which makes this version of <small>GNATS</small> behave
+almost exactly like older versions.  Copy this default file to the
+&lsquo;<tt>gnats-adm</tt>&rsquo; directories of any other <small>GNATS</small> databases that
+you may have on your host before you proceed to migrate your old
+configuration settings.
+
+<p>The following is a list of the configuration directives that may be
+present in a &lsquo;<tt>config</tt>&rsquo; file and their counterparts (if any) in
+<small>GNATS</small> 4.
+</p>
+<dl compact="compact">
+<dt> <var>GNATS_ADDR</var></dt>
+<dd><p>This setting has no counterpart in <small>GNATS</small> 4, since <small>GNATS</small> no
+longer needs to know its own mail address.
+</p>
+</dd>
+<dt> <var>GNATS_ADMIN</var></dt>
+<dd><p>This setting is now set in the &lsquo;<tt>responsible</tt>&rsquo; file in the
+&lsquo;<tt>gnats-adm</tt>&rsquo; directory of your database(s).
+</p>
+</dd>
+<dt> <var>GNATS_SITE</var></dt>
+<dd><p><small>GNATS</small> 4 has no concept of a named &lsquo;site&rsquo;, so this directive is
+obsolete.
+</p>
+</dd>
+<dt> <var>SUBMITTER</var></dt>
+<dd><p>Obsolete, since it relates to <var>GNATS_SITE</var>.
+</p>
+</dd>
+<dt> <var>DEFAULT_RELEASE</var></dt>
+<dt> <var>DEFAULT_ORGANIZATION</var></dt>
+<dd><p>The <small>GNATS</small> 4 &lsquo;<tt>dbconfig</tt>&rsquo; file has separate configuration
+sections for each defined field.  Field defaults are set with the
+<code>default</code> keyword in these sections.  See section <a href="dbconfig-file.html#dbconfig-file">The &lsquo;<tt>dbconfig</tt>&rsquo; file</a>.
+</p>
+</dd>
+<dt> <var>NOTIFY</var></dt>
+<dd><p>Controlled by the <code>notify-about-expired-prs</code> setting in the
+&lsquo;<tt>dbconfig</tt>&rsquo; file.
+</p>
+</dd>
+<dt> <var>ACKNOWLEDGE</var></dt>
+<dd><p>Controlled by the <code>send-submitter-ack</code> setting in the
+&lsquo;<tt>dbconfig</tt>&rsquo; file.
+</p>
+</dd>
+<dt> <var>DEFAULT_SUBMITTER</var></dt>
+<dd><p>The default submitter is now always the first entry in the
+&lsquo;<tt>submitters</tt>&rsquo; file of your database.
+</p>
+</dd>
+<dt> <var>KEEP_RECEIVED_HEADERS</var></dt>
+<dd><p>Controlled by the <code>keep-all-received-headers</code> setting in the
+&lsquo;<tt>dbconfig</tt>&rsquo; file.
+</p>
+</dd>
+<dt> <var>DEBUG_MODE</var></dt>
+<dd><p>Controlled by the <code>debug-mode</code> setting in the &lsquo;<tt>dbconfig</tt>&rsquo; file.
+</p>
+</dd>
+<dt> <var>BDAY_START</var></dt>
+<dt> <var>BDAY_END</var></dt>
+<dt> <var>BWEEK_START</var></dt>
+<dt> <var>BWEEK_END</var></dt>
+<dd><p>Controlled by the settings <code>business-day-hours</code> and
+<code>business-week-days</code> in the &lsquo;<tt>dbconfig</tt>&rsquo; file.
+</p>
+</dd>
+<dt> <var>DEFINE_CATEGORY</var></dt>
+<dd><p>The default category for PRs that arrive without one is now the first
+category listed in the &lsquo;<tt>categories</tt>&rsquo; file of your database.
+</p></dd>
+</dl>
+
+<p>After your are done migrating the settings, you may optionally delete
+the old &lsquo;<tt>config</tt>&rsquo; files.  Since there are many more configuration
+settings available in the <small>GNATS</small> 4 &lsquo;<tt>dbconfig</tt>&rsquo; file, you should
+take some time to review them all before proceeding.  See section <a href="dbconfig-file.html#dbconfig-file">The &lsquo;<tt>dbconfig</tt>&rsquo; file</a>.
+</p>
+<p>If your old <small>GNATS</small> installations was release-based, i.e. it included
+the fields Quarter, Keywords and Date-Required, you need to define those
+fields in the &lsquo;<tt>dbconfig</tt>&rsquo; file by following the instructions in
+<a href="dbconfig-recipes.html#release_002dbased-support">Supporting old <small>GNATS</small> &ldquo;release-based&rdquo; fields</a>.
+</p>
+</li><li>
+The file &lsquo;<tt>gnatsd.access</tt>&rsquo; has been renamed to &lsquo;<tt>gnatsd.user_access</tt>&rsquo;.
+Furthermore, <small>GNATS</small> 4 uses a different password format in the
+&lsquo;<tt>gnatsd.user_access</tt>&rsquo; file than older versions, since it supports
+<code>crypt()</code> and MD5 passwords (see section <a href="Access-Control.html#Access-Control">Controlling access to <small>GNATS</small> databases</a>).  You need to translate your old
+&lsquo;<tt>gnatsd.user_access</tt>&rsquo; files to the new format by using the
+<code>gnats-pwconv</code> tool which was installed in the
+&lsquo;<tt><var>EXEC-PREFIX</var>/libexec/gnats</tt>&rsquo; directory, typically
+&lsquo;<tt>/usr/local/libexec/gnats</tt>&rsquo;.  See section <a href="gnats_002dpwconv.html#gnats_002dpwconv">Managing user passwords</a>.
+
+</li><li>
+The final step involves regenerating the indexes of your databases.  For
+this, log in as the user <code>gnats</code>.  Then run the <code>gen-index</code>
+command for each of your databases.  See <a href="Admin-utils.html#Admin-utils">Administrative Utilities</a> for details on how to use
+<code>gen-index</code>.
+
+</li><li>
+Sit back and enjoy your new <small>GNATS</small> 4 setup...
+</li></ol>
+
+
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="gnats_46.html#Overview-1" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Upgrading.html#Upgrading" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

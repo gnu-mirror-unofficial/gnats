@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 1.1 The database paradigm</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 1.1 The database paradigm">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 1.1 The database paradigm">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Paradigm"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Flowchart.html#Flowchart" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="The-database-paradigm"></a>
+<h2 class="section">1.1 The database paradigm</h2>
+<a name="index-paradigm"></a>
+<a name="index-database-paradigm"></a>
+<a name="index-why-GNATS"></a>
+<a name="index-support-site"></a>
+<a name="index-maintenance"></a>
+<a name="index-so-what-does-it-do"></a>
+
+<p>It is in your best interest as the maintainer of a body of work to
+organize the feedback you receive on that work, and to make it easy for
+users of your work to report problems and suggestions.
+</p>
+<p><small>GNATS</small> makes this easy by automatically filing incoming problem
+reports into appropriate places, by notifying responsible parties of the
+existence of the problem and (optionally) sending an acknowledgment to
+the submitter that the report was received, and by making these Problem
+Reports accessible to queries and easily editable.  <small>GNATS</small> is a
+database specialized for a specific task.
+</p>
+<p><small>GNATS</small> was designed for use at a Support Site that handles a high
+level of problem-related traffic.  It maintains Problem Reports in the
+form of text files with defined <em>fields</em>
+(see section <a href="Fields.html#Fields"><small>GNATS</small> data fields</a>).  The location of the database,
+as well as the categories it accepts as valid, the maintainers for whom
+it provides service, and the submitters from whom it accepts Problem
+Reports, are all definable by the <em>Support Site</em>.
+See section <a href="Management.html#Management"><small>GNATS</small> administration</a>.
+</p>
+<a name="index-what-is-a-PR"></a>
+<p>Each PR is a separate file within a main repository
+(see section <a href="Locations.html#Locations">Where <small>GNATS</small> lives</a>).  Editing access to the
+database is regulated to maintain consistency.  To make queries on
+the database faster, an index is kept automatically (see section <a href="index-file.html#index-file">The <code>index</code> file</a>).
+</p>
+<p>We provide several software tools so that users may submit new Problem
+Reports, edit existing Problem Reports, and query the database.
+</p>
+<ul>
+<li> 
+<code>send-pr</code> is used by both product maintainers and the end users
+of the products they support to submit PRs to the database.
+
+</li><li> 
+<code>edit-pr</code> is used by maintainers when editing problem
+reports in the database.
+
+</li><li> 
+Maintainers, managers and administrators can use <code>query-pr</code> to
+make inquiries about individual PRs or groups of PRs.  
+
+</li></ul>
+
+<p>Other interfaces to <small>GNATS</small> include Gnatsweb, a web-based tool which
+provides features for submitting and editing PRs and querying the
+database, and TkGnats, a Tcl/Tk-based frontend.  These tools are
+distributed together with <small>GNATS</small>.
+</p>
+<a name="index-GNATS-administrator"></a>
+<p>At the Support Site, a <small>GNATS</small> <em>administrator</em> is charged with the
+duty of maintaining <small>GNATS</small>.  These duties are discussed in detail in
+<a href="Management.html#Management"><small>GNATS</small> Administration</a>, and generally include
+configuring <small>GNATS</small> for the Support Site, editing PRs that <small>GNATS</small>
+cannot process, pruning log files, setting up new problem categories,
+backing up the database, and distributing <code>send-pr</code> so that others
+may submit Problem Reports.
+</p>
+<p>Responsibility for a given Problem Report initially depends on the
+category of the problem.  Optionally, an automated reminder can be
+sent to the responsible person if a problem report is neglected for a
+requisite time period.  See section <a href="GNATS-configuration.html#GNATS-configuration">Overview of <small>GNATS</small> configuration</a>.
+</p>
+<a name="index-pending-directory"></a>
+<a name="index-unparseable-incoming-PRs"></a>
+<a name="index-incoming-PRs-that-GNATS-cannot-parse"></a>
+<p><small>GNATS</small> does not have the ability to decipher random text.
+If there is no default category set, any
+problem reports which arrive in a format <small>GNATS</small> does not recognize
+are placed in a separate directory pending investigation by the
+<small>GNATS</small> administrator (see section <a href="Management.html#Management"><small>GNATS</small> Administration</a>).
+</p>
+<p>Once a problem is recorded in the database, work can begin toward a
+solution.  A problem&rsquo;s initial <em>state</em> type is <em>open</em>
+(see section <a href="States.html#States">States of Problem Reports</a>).  An acknowledgment may be
+sent to the originator of the bug report (depending on whether this
+feature has been switched on in the <small>GNATS</small> configuration).
+<small>GNATS</small> forwards copies of the report to the party responsible for
+that problem category and to the person responsible for problems
+arriving from that submitter.
+</p>
+<p>When a problem has been identified, the maintainer can change its state
+to <em>analyzed</em>, and then to <em>feedback</em> when a solution is found.
+<small>GNATS</small> may be configured so that each time the state of a PR
+changes, the submitter of the problem report is notified of the reason
+for the change.  If the party responsible for the PR changes, the
+previous responsible party and the new responsible party receive notice
+of the change.  The change and reason are also recorded in the
+<code>Audit-Trail</code> field of the Problem Report.  (See section <a href="edit_002dpr.html#edit_002dpr">Editing existing Problem Reports</a>.  For information on the <code>Audit-Trail</code>
+field, see <a href="Fields.html#Fields">Problem Report format</a>.)
+</p>
+<p>When the originator of the Problem Report confirms that the solution
+works, the maintainer can change the state to <em>closed</em>.  If the PR
+cannot be closed, the maintainer can change its state to <em>suspended</em>
+as a last resort.  (For a more detailed description of the standard
+states, see <a href="States.html#States">States of Problem Reports</a>.)
+</p>
+<p>It should be emphasized that what we describe here is the default way
+that <small>GNATS</small> works, but as of version 4, <small>GNATS</small> is extremely
+customizable, allowing sites to tailor almost every aspect of its
+behavior.  See for instance <a href="dbconfig-file.html#dbconfig-file">The <code>dbconfig</code> file</a> and See section <a href="States.html#States">States of Problem Reports</a>.)
+</p>
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Flowchart.html#Flowchart" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Introduction.html#Introduction" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="GNATS-user-tools.html#GNATS-user-tools" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

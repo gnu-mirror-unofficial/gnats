@@ -1,0 +1,1171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: 4.3 The dbconfig file</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: 4.3 The dbconfig file">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: 4.3 The dbconfig file">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="dbconfig-file"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="databases-file.html#databases-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Overall-database-configuration" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="The-dbconfig-file"></a>
+<h2 class="section">4.3 The <code>dbconfig</code> file</h2>
+<a name="index-dbconfig-file-1"></a>
+
+<p>The &lsquo;<tt>dbconfig</tt>&rsquo; configuration file controls the configuration of a
+<small>GNATS</small> database.  Each database has its own individual copy of this
+file, which is located in the &lsquo;<tt>gnats-adm</tt>&rsquo; subdirectory of the
+database.
+</p>
+<p>The file consists of standard plain text.  Whitespace is completely
+optional and is ignored. Sets of braces &lsquo;<samp>@</samp>&rsquo; are used to delimit the
+different sections, and all non-keyword values must be surrounded with
+double quotes.  The values in &lsquo;<tt>dbconfig</tt>&rsquo; can be changed at any time;
+the new values take effect for all subsequent iterations of <small>GNATS</small>
+tools.
+</p>
+<p>The &lsquo;<tt>dbconfig</tt>&rsquo; file contains 6 major sections, which must appear in the
+following order:
+</p>
+<ul>
+<li> Overall database configuration
+</li><li> Individual field configuration
+</li><li> Named query definitions
+</li><li> Audit-trail and outgoing email formats
+</li><li> Index file description
+</li><li> Initial Problem Report input fields
+</li></ul>
+
+<p>The different sections are described below.  While reading the following
+sections, it will be useful to refer to the sample &lsquo;<tt>dbconfig</tt>&rsquo; file
+which is installed when a new database is initialized with the
+<code>mkdb</code> tool.  In fact, the sample file provides a configuration
+that should be usable for a great range of sites, since it reproduces
+the behaviour of the older, less customizable 3.x versions of
+<small>GNATS</small>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Overall-database-configuration">4.3.1 Overall database configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#Individual-field-configuration">4.3.2 Individual field configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#Field-datatypes">4.3.3 Field datatypes</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top"></td></tr>
+<tr><td align="left" valign="top"><a href="#Edit-controls">4.3.4 Edit controls</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                  Trigger on certain edit actions.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Named-query-definitions">4.3.5 Named query definitions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Define and name standard queries.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Audit_002dtrail-formats">4.3.6 Audit-trail formats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">            Specify formatting of the audit-trail.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Outgoing-email-formats">4.3.7 Outgoing email formats</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Specify contents and formatting of
+                                   messages sent out by GNATS.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Index-file-description">4.3.8 Index file description</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         Specify the general format and
+                                   contents of the database index.
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Initial-PR-input-fields">4.3.9 Initial PR input fields</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Which fields should be present on
+                                   initial PR entry.
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Overall-database-configuration"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#dbconfig-file" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Individual-field-configuration" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Overall-database-configuration-1"></a>
+<h3 class="subsection">4.3.1 Overall database configuration</h3>
+<a name="index-Overall-database-configuration"></a>
+
+<p>The overall database options are controlled by settings in the
+<code>database-info</code> section of the &lsquo;<tt>dbconfig</tt>&rsquo; file.  The following
+is the general format of this section:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">database-info {
+  [options]
+}
+</pre></td></tr></table>
+
+<p>The following options and values may be used in the <code>database-info</code>
+section:
+</p>
+<dl compact="compact">
+<dd><a name="index-debug_002dmode"></a>
+</dd>
+<dt> <code>debug-mode&nbsp;&nbsp;<var>true | false</var></code></dt>
+<dd><p>If set to <code>true</code>, the database is placed into debug mode.  This causes all
+outgoing email to be sent to the <em>gnats-admin</em> user listed in the
+&lsquo;<tt>responsible</tt>&rsquo; file of the database.  The default value is <code>false</code>.
+</p>
+<a name="index-keep_002dall_002dreceived_002dheaders"></a>
+</dd>
+<dt> <code>keep-all-received-headers&nbsp;&nbsp;<var>true | false</var></code></dt>
+<dd><p>If set to <code>true</code>, all of the Received: headers for PRs submitted
+via email are kept in the PR.  Otherwise, only the first one is kept.  The
+default value is <code>false</code>.
+</p>
+<a name="index-notify_002dabout_002dexpired_002dprs"></a>
+</dd>
+<dt> <code>notify-about-expired-prs&nbsp;&nbsp;<var>true | false</var></code></dt>
+<dd><p>If set to <code>true</code>, notification email about expired PRs is sent via
+the <code>at-pr</code> command.  Otherwise, required times for PR fixes are not
+used.  The default value is <code>false</code>.
+</p>
+<a name="index-send_002dsubmitter_002dack"></a>
+</dd>
+<dt> <code>send-submitter-ack&nbsp;&nbsp;<var>true | false</var></code></dt>
+<dd><p>When new PRs are submitted to the database, an acknowledgment email will
+be sent to the submitter of send-submitter-ack is set to <code>true</code>.
+This is in addition to the normal notification mail to the person(s)
+responsible for the new PR.  The default value is <code>false</code>.
+</p>
+<a name="index-libexecdir"></a>
+</dd>
+<dt> <code>libexecdir&nbsp;&nbsp;<var>&quot;directory&quot;</var></code></dt>
+<dd><p>Specifies the directory where the <small>GNATS</small> administrative executables
+are located.  In particular, <code>at-pr</code> and <code>mail-pr</code> are invoked
+from this directory.  The default value is the empty string, which is
+unlikely to be useful.
+</p>
+<a name="index-business_002dday_002dhours"></a>
+</dd>
+<dt> <code>business-day-hours&nbsp;&nbsp;<var>day-start - day-end</var></code></dt>
+<dd><p>Used to specify the hours that define a business day.  The values are
+inclusive and should be given in 24-hour format, with a dash separating
+them.  <small>GNATS</small> uses these values to determine whether the required
+completion time for a PR has passed.  The default values are 8 for
+<code>day-start</code> and 17 for <code>day-end</code>.
+</p>
+<a name="index-business_002dweek_002ddays"></a>
+</dd>
+<dt> <code>business-week-days&nbsp;&nbsp;<var>week-start - week-end</var></code></dt>
+<dd><p>Specifies the start and ending days of the business week, where 0 is
+Sunday, 1 is Monday, etc.  The days are inclusive, and the values should
+be given with a dash separating them.  <small>GNATS</small> uses these values to
+determine whether the required completion time for a PR has passed.  The
+default values are 1 for <code>week-start</code> and 5 for <code>week-end</code>.
+</p>
+<a name="index-create_002dcategory_002ddirs"></a>
+</dd>
+<dt> <code>create-category-dirs&nbsp;&nbsp;<var>true | false</var></code></dt>
+<dd><p>If set to <code>true</code>, database directories for categories are
+automatically created as needed.  Otherwise, they must be created
+manually (usually with the <code>mkcat</code> script).  It is recommended that
+the default value of <code>true</code> be kept.
+</p>
+<a name="index-category_002ddir_002dperms"></a>
+</dd>
+<dt> <code>category-dir-perms&nbsp;&nbsp;<var>mode</var></code></dt>
+<dd><p>Standard octal mode-specification specifying the permissions to be set
+on auto-created category directories. Default is <code>0750</code>, yielding
+user read, write and execute, and group read and execute.  Note that
+if you have local users on the <small>GNATS</small> server itself, running for
+instance <code>query-pr</code>, you may need to change the permissions to
+<code>0755</code>.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="Individual-field-configuration"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Overall-database-configuration" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Field-datatypes" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Individual-field-configuration-1"></a>
+<h3 class="subsection">4.3.2 Individual field configuration</h3>
+<a name="index-Individual-field-configuration"></a>
+
+<p>Each type of field in a PR must be described with a <code>field</code> section
+in the &lsquo;<tt>dbconfig</tt>&rsquo; file.  These sections have the following general
+structure:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">field &quot;fieldname&quot; {
+  description &quot;string&quot;
+  [ field-options ... ]
+  datatype [ datatype-options ... ]
+  [ on-change { edit-options ... } ]
+}
+</pre></td></tr></table>
+
+<p><code>fieldname</code> is used as the field header in the PR.  The characters <code>&gt;</code>
+and <code>:</code> are used internally as field markers by <small>GNATS</small>, so they must
+not be used in fieldnames.
+</p>
+<p>The order in which the <code>field</code> sections appear in the
+&lsquo;<tt>dbconfig</tt>&rsquo; file determines the order in which they appear in the PR
+text.  There is no required order, unlike previous versions of <small>GNATS</small>
+&mdash; the Unformatted field and multitext fields may appear anywhere in
+the PR.
+</p>
+<p>The following <code>field-options</code> may be present within a <code>field</code> section:
+</p>
+<dl compact="compact">
+<dd><a name="index-builtin_002dname"></a>
+</dd>
+<dt> <code>builtin-name&nbsp;&nbsp;<var>&quot;name&quot;</var></code></dt>
+<dd><p>Indicates that this field corresponds to one of the <small>GNATS</small> built-in
+fields.
+</p>
+<p><small>GNATS</small> has several fields which are required to be present in a PR,
+and this option is used to map their external descriptions to their
+internal usage.  The external field names are:
+</p>
+<dl compact="compact">
+<dt> <code>arrival-date</code></dt>
+<dd><a name="index-arrival_002ddate"></a>
+<p>The arrival date of the PR
+</p>
+</dd>
+<dt> <code>audit-trail</code></dt>
+<dd><a name="index-audit_002dtrail"></a>
+<p>The audit-trail recording changes to the PR
+</p>
+</dd>
+<dt> <code>category</code></dt>
+<dd><a name="index-category"></a>
+<p>The category that the PR falls into
+</p>
+</dd>
+<dt> <code>closed-date</code></dt>
+<dd><a name="index-closed_002ddate"></a>
+<p>The date that the PR was closed
+</p>
+</dd>
+<dt> <code>confidential</code></dt>
+<dd><a name="index-confidential"></a>
+<p>If set to <code>yes</code>, the PR is confidential
+</p>
+</dd>
+<dt> <code>description</code></dt>
+<dd><a name="index-description"></a>
+<p>A description of the problem
+</p>
+</dd>
+<dt> <code>last-modified</code></dt>
+<dd><a name="index-last_002dmodified"></a>
+<p>The date the PR was last modified
+</p>
+</dd>
+<dt> <code>number</code></dt>
+<dd><a name="index-number"></a>
+<p>The PR&rsquo;s unique numeric identifier
+</p>
+</dd>
+<dt> <code>originator</code></dt>
+<dd><a name="index-originator"></a>
+<p>The originator of the PR
+</p>
+</dd>
+<dt> <code>priority</code></dt>
+<dd><a name="index-priority"></a>
+<p>Priority of the PR
+</p>
+</dd>
+<dt> <code>responsible</code></dt>
+<dd><a name="index-responsible"></a>
+<p>The person responsible for handling the PR
+</p>
+</dd>
+<dt> <code>severity</code></dt>
+<dd><a name="index-severity"></a>
+<p>Severity of the problem described by the PR
+</p>
+</dd>
+<dt> <code>state</code></dt>
+<dd><a name="index-state"></a>
+<p>The current state of the PR
+</p>
+</dd>
+<dt> <code>submitter-id</code></dt>
+<dd><a name="index-submitter_002did"></a>
+<p>The user that submitted the PR
+</p>
+</dd>
+<dt> <code>synopsis</code></dt>
+<dd><a name="index-synopsis"></a>
+<p>The one-line description of the PR
+</p>
+</dd>
+<dt> <code>unformatted</code></dt>
+<dd><a name="index-unformatted"></a>
+<p>PR text which cannot be parsed and associated with other fields.
+</p></dd>
+</dl>
+
+<p>For these built-in fields, a matching field description <em>must</em>
+appear in the &lsquo;<tt>dbconfig</tt>&rsquo; file. Otherwise, the configuration will
+be considered invalid, and errors will be generated from the
+<small>GNATS</small> clients and <code>gnatsd</code>.  We also recommend that you
+leave the actual fieldnames of these fields at their default values
+(i.e. capitalized versions of their built-in names), since some
+clients may depend on these names.
+</p>
+</dd>
+<dt> <code>description&nbsp;&nbsp;<var>&quot;description text&quot;</var></code></dt>
+<dd><p>A one-line human-readable description of the field.  Clients can use
+this string to describe the field in a help dialog.  The string is
+returned from the FDSC command in gnatsd and is also available via the
+<code>--field-description</code> option in <code>query-pr</code>.
+</p>
+<p>This entry must be present in the field description, and there is no
+default value.
+</p>
+</dd>
+<dt> <code>query-default&nbsp;&nbsp;<var>exact-regexp | inexact-regexp</var></code></dt>
+<dd><p>Used to specify the default type of searches performed on this field.
+This is used when the <code>^</code> search operator appears in a query, and 
+is also used for queries in <code>query-pr</code> that use the old
+<code>--field</code> query options.
+</p>
+<p>If the option is not given, the default search is <code>exact-regexp</code>.
+</p>
+</dd>
+<dt> <code>textsearch</code></dt>
+<dd><p>If this option is present, the field will be searched when the user
+performs a <code>--text</code> search from <code>query-pr</code>.  The field is
+also flagged as a <code>textsearch</code> field in the set of field flags
+returned by the <code>FIELDFLAGS</code> command in gnatsd.
+</p>
+<p>By default, fields are not marked as <code>textsearch</code> fields.
+</p>
+</dd>
+<dt> <code>read-only</code></dt>
+<dd><p>When this option is present, the field contents may not be edited &mdash; they
+must be set when the PR is initially created.  In general, this should
+only be used for fields that are given as internal values rather than
+fields supplied by the user.
+</p>
+<p>By default, editing is allowed.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="Field-datatypes"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Individual-field-configuration" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Edit-controls" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Field-datatypes-1"></a>
+<h3 class="subsection">4.3.3 Field datatypes</h3>
+<a name="index-Field-datatypes"></a>
+<p>Each field description has to contain a datatype declaration which
+describes what data are to be store in the field.  The general format for
+such a declaration is
+</p>
+<dl compact="compact">
+<dd><a name="index-datatype"></a>
+</dd>
+<dt> <code>datatype&nbsp;&nbsp;[ options ... ]</code></dt>
+</dl>
+
+<p>The available datatypes are:
+</p>
+<dl compact="compact">
+<dd><a name="index-text"></a>
+</dd>
+<dt> <code>text&nbsp;&nbsp;[ matching { &quot;regexp&quot; [ &quot;regexp&quot; ... ] } ]</code></dt>
+<dd><p>The <code>text</code> datatype is the most commonly used type; it is a
+one-line text string.
+</p>
+<p>If the <code>matching</code> qualifier is present, the data in the field must
+match at least one of the specified regexps.  This provides an easy and
+flexible way to limit what text is allowed in a field.  If no
+<code>matching</code> qualifier is present, no restriction is placed on
+what values may appear in the field.
+</p>
+<a name="index-multitext"></a>
+</dd>
+<dt> <code>multitext&nbsp;&nbsp;[ { default &quot;string&quot; } ]</code></dt>
+<dd><p>The field can contain multiple lines of text.
+</p>
+<p>If the <code>default</code> option is present, the field will default to the
+specified <code>string</code> if the field is not given a value when the PR is
+initially created.  Otherwise, the field will be left empty.
+</p>
+<a name="index-enum"></a>
+</dd>
+<dt> <code>enum&nbsp;&nbsp;{</code></dt>
+<dt> <code>&nbsp;&nbsp;values {</code></dt>
+<dt> <code>&nbsp;&nbsp;&nbsp;&nbsp;&quot;string&quot; [ &quot;string&quot; ... ]</code></dt>
+<dt> <code>&nbsp;&nbsp;}</code></dt>
+<dt> <code>&nbsp;&nbsp;[ default &quot;string&quot; ]</code></dt>
+<dt> <code>}</code></dt>
+<dd><p>Defines an enumerated field, where the values in the PR field must match
+an entry from a list of specified values.  The list of allowed values is
+given with the <code>values</code> option. The <code>values</code> option is
+required for an enumerated field.
+</p>
+<p>If a <code>default</code> option is present, it is used to determine the
+initial value of the field if no entry for the field appears in an
+initial OR (or if the value in the initial PR is not one of the
+acceptable values).  However, the value in the <code>default</code> statement
+is not required to be one of the accepted values; this can be used to
+allow the field to be initially empty, for example.
+</p>
+<p>If no <code>default</code> option is specified, the default value for the
+field is the first value in the <code>values</code> section.
+</p>
+<a name="index-multienum"></a>
+</dd>
+<dt> <code>multienum&nbsp;&nbsp;{</code></dt>
+<dt> <code>&nbsp;&nbsp;values {</code></dt>
+<dt> <code>&nbsp;&nbsp;&nbsp;&nbsp;&quot;string&quot; [ &quot;string&quot; ... ]</code></dt>
+<dt> <code>&nbsp;&nbsp;}</code></dt>
+<dt> <code>&nbsp;&nbsp;[ separators &quot;string&quot; ]</code></dt>
+<dt> <code>&nbsp;&nbsp;[ default &quot;string&quot; ]</code></dt>
+<dt> <code>}</code></dt>
+<dd><p>The <code>multienum</code> datatype is similar to the <code>enum</code> datatype,
+except that the field can contain multiple values, separated by one or
+more characters from the <code>separators</code> list.  If no <code>separators</code>
+option is present, the default separators are space (&lsquo;<samp> </samp>&rsquo;) and colon
+(&lsquo;<samp>:</samp>&rsquo;).
+</p>
+<p>The values in the <code>default</code> string for this field type should be
+separated by one of the defined separators.  An example clarifies this.
+If we have a field named <code>ingredients</code> where the default values
+should be &lsquo;<samp>sugar</samp>&rsquo;, &lsquo;<samp>flour</samp>&rsquo; and &lsquo;<samp>baking powder</samp>&rsquo; and the
+separator is a colon &lsquo;<samp>:</samp>&rsquo;, the following sets these defaults:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">default &quot;sugar:flour:baking powder&quot;
+</pre></td></tr></table>
+
+<a name="index-enumerated_002din_002dfile"></a>
+</dd>
+<dt> <code>enumerated-in-file&nbsp;{</code></dt>
+<dt> <code>&nbsp;&nbsp;path &quot;filename&quot;</code></dt>
+<dt> <code>&nbsp;&nbsp;fields {</code></dt>
+<dt> <code>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot; [ &quot;name&quot; ... ]</code></dt>
+<dt> <code>&nbsp;&nbsp;} key &quot;name&quot;</code></dt>
+<dt> <code>&nbsp;&nbsp;[ allow-any-value ]</code></dt>
+<dt> <code>}</code></dt>
+<dd><p><a name="administrative-files"></a>The <code>enumerated-in-file</code> type is used
+to describe an enumerated field with an associated <em>administrative
+file</em> which lists the legal values for the field, and may optionally
+contain additional fields that can be examined by query clients or used
+for other internal purposes.  It is similar to the <code>enum</code> datatype,
+except that the list of legal values is stored in a separate file.  An
+example of this kind of field is the built-in Category field with its
+associeted &lsquo;<tt>categories</tt>&rsquo; administrative file.
+</p>
+<p><code>filename</code> is the name of a file in the &lsquo;<tt>gnats-adm</tt>&rsquo;
+administrative directory for the database.
+</p>
+<p>The format of the administrative file should be simple ASCII.
+<em>Subfields</em> within the file are separated with colons (&lsquo;<samp>:</samp>&rsquo;).
+Lines beginning with a hash sign (&lsquo;<samp>#</samp>&rsquo;) are ignored as comments.
+Records within the file are separated with newlines.
+</p>
+<p>The <code>field</code> option is used to name the subfields in the
+administrative file.  There must be at least one subfield, which is used
+to list the legal values for the field.  If the administrative file is
+empty (or does not contain any non-empty non-comment lines), the PR
+field must be empty.
+</p>
+<p>The <code>key</code> option is used to designate which field in the
+administrative file should be used to list the legal values for the PR
+field.  The value must match one of the field names in the <code>field</code>
+option.
+</p>
+<p>If the <code>allow-any-value</code> option is present, the value of the PR
+field is not required to appear in the administrative file &mdash; any value
+will be accepted.
+</p>
+<p>Note that there is no <code>default</code> keyword for
+<code>enumerated-in-file</code>.  These fields get their default value from
+the <em>first</em> entry in the associated administrative file.
+</p>
+<a name="index-multi_002denumerated_002din_002dfile"></a>
+</dd>
+<dt> <code>multi-enumerated-in-file&nbsp;{</code></dt>
+<dt> <code>&nbsp;&nbsp;path &quot;filename&quot;</code></dt>
+<dt> <code>&nbsp;&nbsp;fields {</code></dt>
+<dt> <code>&nbsp;&nbsp;&nbsp;&nbsp;&quot;name&quot; [ &quot;name&quot; ... ]</code></dt>
+<dt> <code>&nbsp;&nbsp;} key &quot;name&quot;</code></dt>
+<dt> <code>&nbsp;&nbsp;[ default &quot;string&quot; ]</code></dt>
+<dt> <code>&nbsp;&nbsp;[ allow-any-value ]</code></dt>
+<dt> <code>&nbsp;&nbsp;[ separators &quot;string&quot; ]</code></dt>
+<dt> <code>}</code></dt>
+<dd>
+<p><code>multi-enumerated-in-file</code> is to <code>multienum</code> what
+<code>enumerated-in-file</code> is to <code>enum</code>.  Its options have the
+same meaning as their counterparts in the <code>multienum</code> and
+<code>enumerated-in-file</code> fields.
+</p>
+<p><em>NOTE</em>: Keywords may appear in any sequence, with one exception &ndash;
+the <code>separators</code> keyword, if present, has to come last.  This rule
+only applies to fields of type <code>multi-enumerated-in-file</code>.
+</p>
+<a name="index-date"></a>
+</dd>
+<dt> <code>date</code></dt>
+<dd><p>The <code>date</code> datatype is used to hold dates.  Date fields must either be
+empty or contain a correctly formatted date.
+</p>
+<p>No defaults or other options are available.  The field is left empty if
+no value for the field is given in the initial PR.
+</p>
+<a name="index-integer"></a>
+</dd>
+<dt> <code>integer&nbsp;&nbsp;[ { default &quot;integer&quot; } ]</code></dt>
+<dd><p>Integer fields are used to hold numbers.  They must either be empty or
+contain a value composed entirely of digits, with an optional leading
+sign.
+</p>
+<p>If the <code>default</code> option is present, the field will have the value
+of <code>integer</code> if the field is not given a value when the PR is
+initially created.  Otherwise, the field will be left empty.
+</p></dd>
+</dl>
+
+<hr size="6">
+<a name="Edit-controls"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Field-datatypes" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Named-query-definitions" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Edit-controls-1"></a>
+<h3 class="subsection">4.3.4 Edit controls</h3>
+<a name="index-edit-controls"></a>
+
+<p>The <code>on-change</code> subsection of a <code>fields</code> section specifies one
+or more actions to be performed when the field value is edited by the
+user.  It has the general form
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">on-change [ &quot;query-expression&quot; ] {
+&nbsp;&nbsp;[ add-audit-trail ]
+&nbsp;&nbsp;[ audit-trail-format {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;formatstring&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;[ fields { &quot;fieldname&quot; ... } ]
+&nbsp;&nbsp;} ]
+&nbsp;&nbsp;[ require-change-reason ]
+&nbsp;&nbsp;[ set-field | append-to-field &quot;fieldname&quot; {
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;format-string&quot; [ fieldlist ]
+&nbsp;&nbsp;} ]
+&nbsp;&nbsp;[ require { &quot;fieldname&quot; ... } ]
+}
+</pre></td></tr></table>
+
+<p>The optional <code>query-expression</code> controls whether or not the actions
+in the <code>on-change</code> section are taken.  If the expression fails to
+match, the actions are skipped.
+</p>
+<p>The <code>add-audit-trail</code> option indicates that an entry should be
+appended to the PR&rsquo;s audit-trail when this field is changed.  The format
+of the entry is controlled by the optional <code>audit-trail-format</code>
+section within the field, or by the global <code>audit-trail-format</code>
+section. See <a href="#Audit_002dtrail-formats">Audit-trail formats</a> and <a href="#Outgoing-email-formats">Outgoing email formats</a>.
+</p>
+<p>The <code>require-change-reason</code> option specifies that a change reason
+must be present in the PR when this field is edited.  This option only
+makes sense if an audit-trail entry is required, as the change reason is
+otherwise unused.
+</p>
+<p>The <code>set-field</code> and <code>append-to-field</code> options are used to
+change the value of the field <code>fieldname</code> in the PR.  The supplied
+format is used to format the value that will be placed in the field.
+</p>
+<p><code>append-to-field</code> appends the resulting formatted string to the
+existing, while <code>set-field</code> completely replaces the contents.
+</p>
+<p>Any field may be edited by the <code>set-field</code> or
+<code>append-to-field</code> option (the <code>read-only</code> option on a field is
+ignored).  However, the changes are subject to the usual field content
+checks.
+</p>
+<p>The <code>require</code> option specifies that one or more fields must have
+a (non-blank) value when this field is changed.
+</p>
+<p>A field may be enforced to have a (non-blank) value at all times by
+including it in the set of fields required for the initial PR, see
+<a href="#Initial-PR-input-fields">Initial PR input fields</a>, as well as in the set of fields
+required on change of the field itself.
+</p>
+<p>There is also a global <code>on-change</code> section that is executed once
+for each PR edit.  A typical use for such a section is to set the
+last-modified date of the PR.
+</p>
+<hr size="6">
+<a name="Named-query-definitions"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Edit-controls" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Audit_002dtrail-formats" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Named-query-definitions-1"></a>
+<h3 class="subsection">4.3.5 Named query definitions</h3>
+<a name="index-Named-query-definitions"></a>
+
+<p>When queries are performed via <code>query-pr</code>, they can refer to a
+query format described by a <code>query</code> section in the &lsquo;<tt>dbconfig</tt>&rsquo;
+file:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">query &quot;queryname&quot; {
+&nbsp;&nbsp;format &quot;formatstring&quot;
+&nbsp;&nbsp;[fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] } ]
+}
+</pre></td></tr></table>
+
+<p><code>formatstring</code> is as described in <a href="query_002dpr.html#Formatting-query_002dpr-output">Formatting <code>query-pr</code> output</a>.
+It basically contains a string with printf-like % escapes.  The output
+of the query is formatted as specified by this format string.
+</p>
+<p>The <code>fields</code> option lists the fields to be used with the format
+string.  If the <code>fields</code> option is present without a <code>format</code>
+option, the contents of the listed fields are printed out, separated by
+newlines.
+</p>
+<p>The named query formats <em>full</em>, <em>standard</em> amd <em>summary</em>
+must be present in the &lsquo;<tt>dbconfig</tt>&rsquo; file.  <em>full</em> and
+<em>summary</em> correspond to the <code>query-pr</code> options <code>--full</code>
+and <code>--summary</code>, while <em>standard</em> is used when no format
+option is given to <code>query-pr</code>.
+</p>
+<hr size="6">
+<a name="Audit_002dtrail-formats"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Named-query-definitions" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Outgoing-email-formats" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Audit_002dtrail-formats-1"></a>
+<h3 class="subsection">4.3.6 Audit-trail formats</h3>
+<a name="index-Audit_002dtrail-format"></a>
+
+<p>These formats are similar to the named query formats, but they include
+more options.  They are used for formatting audit-trail entries and for
+outgoing email messages.
+</p>
+<p>There is currently only one audit-trail format, defined by the
+<code>audit-trail-format</code> option:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">audit-trail-format {
+&nbsp;&nbsp;format &quot;formatstring&quot;
+&nbsp;&nbsp;[ fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] } ]
+}
+</pre></td></tr></table>
+
+<p>For those fields that require an audit-trail entry, the audit-trail text
+to be appended is formatted as described by this format.  The per-field
+<code>audit-trail-format</code> is used in preference to this one, if it
+exists.
+</p>
+<p><code>formatstring</code> and <code>fieldname</code> are similar to those used by
+the named query format.  <code>fieldname</code> may also be a <em>format
+parameter</em>, which is a context-specific value.  (Format parameters are
+distinguished from fieldnames by a leading dollar sign (&lsquo;<samp>$</samp>&rsquo;)).
+</p>
+<p>The following format parameters are defined for
+<code>audit-trail-format</code> entries:
+</p>
+<dl compact="compact">
+<dd><a name="index-format-parameters"></a>
+</dd>
+<dt> <code>$Fieldname</code></dt>
+<dd><p>The name of the field for which an audit-trail entry is being created.
+</p>
+</dd>
+<dt> <code>$OldValue</code></dt>
+<dd><p>The old value of the field.
+</p>
+</dd>
+<dt> <code>$NewValue</code></dt>
+<dd><p>The new field value.
+</p>
+</dd>
+<dt> <code>$EditUserEmailAddr</code></dt>
+<dd><p>The email address of the user editing the field.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the &lsquo;<tt>responsible</tt>&rsquo;
+file; if not available, user&rsquo;s local address is used.
+</p>
+</dd>
+<dt> <code>$CurrentDate</code></dt>
+<dd><p>The current date.
+</p>
+</dd>
+<dt> <code>$ChangeReason</code></dt>
+<dd><p>The reason for the change; may be blank if no reason was supplied.
+</p></dd>
+</dl>
+
+<p>These parameters may be used anywhere a <code>fieldname</code> can appear.
+</p>
+<hr size="6">
+<a name="Outgoing-email-formats"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Audit_002dtrail-formats" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Index-file-description" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Outgoing-email-formats-1"></a>
+<h3 class="subsection">4.3.7 Outgoing email formats</h3>
+<a name="index-Outgoing-email-formats"></a>
+
+<p>During the life of a PR, <small>GNATS</small> can be configured to send out a
+range of email messages.  When a PR first arrives, an acknowledgment
+message is sent out if the <code>send-submitter-ack</code> parameter above is
+set to <code>true</code>.  Certain edits to the PR may also cause email to be
+sent out to the various parties, and if a PR is deleted, <small>GNATS</small> may
+send notification email.
+</p>
+<p>The formats of the email messages are controlled by <code>mail-format</code>
+sections in the &lsquo;<tt>dbconfig</tt>&rsquo; file.  The general structure of a
+<code>mail-format</code> section is as follows:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mail-format &quot;format-name&quot; {
+&nbsp;&nbsp;from-address {
+&nbsp;&nbsp;&nbsp;&nbsp;[ fixed-address &quot;address&quot; ]
+&nbsp;&nbsp;&nbsp;&nbsp;[ email-header-name | [ mail-header-name | ... ] ]
+&nbsp;&nbsp;}
+&nbsp;&nbsp;to-address {
+&nbsp;&nbsp;&nbsp;&nbsp;[ fixed-address &quot;address&quot; ] 
+&nbsp;&nbsp;&nbsp;&nbsp;[ &quot;email-header-name&quot; | [ &quot;mail-header-name&quot; | ... ] ]
+&nbsp;&nbsp;}
+&nbsp;&nbsp;reply-to {
+&nbsp;&nbsp;&nbsp;&nbsp;[ fixed-address &quot;address&quot; ]
+&nbsp;&nbsp;&nbsp;&nbsp;[ &quot;email-header-name&quot; | ... ] | [ &quot;gnats-field-name&quot; | ... ]
+&nbsp;&nbsp;}
+&nbsp;&nbsp;header {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;formatstring&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;[ fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] } ]
+&nbsp;&nbsp;}
+&nbsp;&nbsp;body {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;formatstring&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;[ fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] } ]
+&nbsp;&nbsp;}
+}
+</pre></td></tr></table>
+
+<p><code>gnats</code> recognizes and uses 6 different <code>format-name</code> values:
+</p>
+<dl compact="compact">
+<dd><a name="index-format_002dname"></a>
+</dd>
+<dt> <code>initial-response-to-submitter</code></dt>
+<dd><a name="index-initial_002dresponse_002dto_002dsubmitter"></a>
+<p>Format of the message used when mailing an initial response back to the
+PR submitter.  This message will only be sent if
+<code>send-submitter-ack</code> in the overall database configuration is set
+to <code>true</code>.
+</p>
+</dd>
+<dt> <code>initial-pr-notification</code></dt>
+<dd><a name="index-initial_002dpr_002dnotification"></a>
+<p>Format of the message sent to the responsible parties when a new PR with
+category different from &ldquo;pending&rdquo; arrives.
+</p>
+</dd>
+<dt> <code>initial-pr-notification-pending</code></dt>
+<dd><a name="index-initial_002dpr_002dnotification_002dpending"></a>
+<p>Format of the message sent to the responsible parties when a new PR that
+ends up with category &ldquo;pending&rdquo; arrives.
+</p>
+</dd>
+<dt> <code>appended-email-response</code></dt>
+<dd><a name="index-appended_002demail_002dresponse"></a>
+<p>Format of the notification message sent out when a response to a PR is
+received via email.
+</p>
+</dd>
+<dt> <code>audit-mail</code></dt>
+<dd><a name="index-audit_002dmail"></a>
+<p>Format of the message sent out when a PR edit generates an Audit-Trail
+entry.
+</p>
+</dd>
+<dt> <code>deleted-pr-mail</code></dt>
+<dd><a name="index-deleted_002dpr_002dmail"></a>
+<p>Format of the message sent out when a PR is deleted.
+</p></dd>
+</dl>
+
+<p>The <code>from-address</code>, <code>to-address</code> and <code>reply-to</code>
+subsections of a mail-format section specify the contents of the <code>To:</code>,
+<code>From:</code> and <code>Reply-To:</code> headers in outgoing email.  There are
+two ways to specify the contents: by using a <code>fixed-address</code>
+specification, or by specifying <code>email-header-name</code>s or
+<code>gnats-field-name</code>s.
+</p>
+<p>When an <code>email-header-name</code> or <code>gnats-field-name</code> value is
+given, <small>GNATS</small> will attempt to extract an email address from the
+specified location.  If several values are given on the same line,
+separated by &lsquo;<samp>|</samp>&rsquo; characters, <small>GNATS</small> will try to extract an address
+from each location in turn until it finds a header or field which is
+nonempty.  The following example should clarify this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mail-format &quot;initial-response-to-submitter&quot; {
+&nbsp;&nbsp;from-address {
+&nbsp;&nbsp;&nbsp;&nbsp;fixed-address &quot;gnats-admin&quot;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;to-addresses {
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;Reply-To:&quot; | &quot;From:&quot; | &quot;Submitter-Id&quot;
+&nbsp;&nbsp;} &hellip;
+</pre></td></tr></table>
+
+<p>This partial <code>mail-format</code> section specifies the format of the
+address headers in the email message that is sent out as an
+acknowledgment of a received PR.  The <code>From:</code> field of the message
+will contain the email address of the <small>GNATS</small> administrator, as
+specified by the <code>gnats-admin</code> line in the &lsquo;<tt>responsible</tt>&rsquo; file.
+To fill in the <code>To:</code> header, <small>GNATS</small> will first look for the
+mail header <code>Reply-To:</code> in the PR and use the contents of that, if
+any.  If that header doesn&rsquo;t exist or is empty, it will look for the
+contents of the <code>From:</code> email header, and if that yields nothing,
+it will look for the <small>GNATS</small> <code>Submitter-Id</code> field and use the
+contents of that.
+</p>
+<p>Other email headers to be included in messages sent out by <small>GNATS</small>
+can be specified by <code>header</code> subsections of the <code>mail-header</code>
+section.  <code>formatstring</code> and <code>fieldname</code> are similar to those
+used by the named query format. Each header line must have a newline
+character (&lsquo;<samp>\n</samp>&rsquo;) at the end.
+</p>
+<p>The email message body is specified in the <code>body</code> subsection of the
+<code>mail-format</code> section. Just as for a <code>header</code> section, the
+<code>body</code> section must contain a <code>formatstring</code> and
+<code>fieldname</code> values.
+</p>
+<p>For some of the formats that <small>GNATS</small> recognizes, special variables
+are available for use. The following table lists the formats that
+provide special variables. See the example below for an illustration of
+how they are used.
+</p>
+<dl compact="compact">
+<dt> <code>appended-email-response</code></dt>
+<dd><dl compact="compact">
+<dt> <code>$MailFrom</code></dt>
+<dd><p>The From: line of the original message.
+</p>
+</dd>
+<dt> <code>$MailTo</code></dt>
+<dd><p>The To: line of the original message.
+</p>
+</dd>
+<dt> <code>$MailSubject</code></dt>
+<dd><p>The Subject: line of the original message.
+</p>
+</dd>
+<dt> <code>$MailCC</code></dt>
+<dd><p>The CC: line of the original message.
+</p>
+</dd>
+<dt> <code>$NewAuditTrail</code></dt>
+<dd><p>The text of the new audit trail entry (corresponds to the body of the
+message).
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code>audit-mail</code></dt>
+<dd><dl compact="compact">
+<dt> <code>$EditUserEmailAddr</code></dt>
+<dd><p>The email address of the user editing the PR.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the &lsquo;<tt>responsible</tt>&rsquo;
+file; if not available, user&rsquo;s local address is used.
+</p>
+</dd>
+<dt> <code>$OldResponsible</code></dt>
+<dd><p>The previous Responsible field entry, if it was changed.
+</p>
+</dd>
+<dt> <code>$NewAuditTrail</code></dt>
+<dd><p>The Audit-Trail: entries that have been appended by the edits.
+</p></dd>
+</dl>
+
+</dd>
+<dt> <code>deleted-pr-mail</code></dt>
+<dd><dl compact="compact">
+<dt> <code>$EditUserEmailAddr</code></dt>
+<dd><p>The email address of the user deleting the PR.  Set by the
+<code>EDITADDR</code> <code>gnatsd</code> command or from the &lsquo;<tt>responsible</tt>&rsquo;
+file; if not available, user&rsquo;s local address is used.
+</p>
+</dd>
+<dt> <code>$PRNum</code></dt>
+<dd><p>The number of the PR that was deleted.
+</p></dd>
+</dl>
+</dd>
+</dl>
+
+<p>The following example illustrates the use of these special variables:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">mail-format &quot;deleted-pr-mail&quot; {
+&nbsp;&nbsp;from-address {
+&nbsp;&nbsp;&nbsp;&nbsp;&quot;$EditUserEmailAddr&quot;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;to-addresses {
+&nbsp;&nbsp;&nbsp;&nbsp;fixed-address &quot;gnats-admin&quot;
+&nbsp;&nbsp;}
+&nbsp;&nbsp;header {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;Subject: Deleted PR %s\n&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;fields { &quot;$PRNum&quot; }
+&nbsp;&nbsp;}
+&nbsp;&nbsp;body {
+&nbsp;&nbsp;&nbsp;&nbsp;format &quot;PR %s was deleted by user %s.\n&quot;
+&nbsp;&nbsp;&nbsp;&nbsp;fields { &quot;$PRNum&quot; &quot;$EditUserEmailAddr&quot; }
+&nbsp;&nbsp;}
+}
+</pre></td></tr></table>
+
+<p>This <code>mail-format</code> section specifies the format of the email
+message that is sent out when a PR is deleted. The <code>From:</code> field is
+set to the email address field of the user who deleted the PR, the
+subject of the message contains the number of the deleted PR, and the
+message body contains both the PR number and the user&rsquo;s email address.
+</p>
+<hr size="6">
+<a name="Index-file-description"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Outgoing-email-formats" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Initial-PR-input-fields" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Index-file-description-1"></a>
+<h3 class="subsection">4.3.8 Index file description</h3>
+<a name="index-Index-file-description"></a>
+
+<p>The <code>index</code> section of the &lsquo;<tt>dbconfig</tt>&rsquo; file lists the fields
+that appear in the database index.  The index is always keyed by PR
+number.  The general format for the <code>index</code> section is
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">index {
+&nbsp;&nbsp;path &quot;file&quot;
+&nbsp;&nbsp;fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] }
+&nbsp;&nbsp;binary-index true | false
+&nbsp;&nbsp;[ separator &quot;symbol&quot; ]
+}
+</pre></td></tr></table>
+
+<p>The <code>path</code> parameter gives the name of the index file in the
+&lsquo;<tt>gnats-adm</tt>&rsquo; directory of the database.  Only one index is allowed
+per database, so only one <code>path</code> entry is allowed.
+</p>
+<p>The <code>fields</code> parameter controls what fields will appear, and in
+what order, in the index.  Fields are listed by their names, separated by
+spaces (&lsquo;<samp> </samp>&rsquo;).  Fields will appear in the order they are listed.
+</p>
+<p>The <code>binary-index</code> parameter controls whether the index is supposed
+to be in plaintext or binary format.  Binary format is recommended, as it
+avoids potential problems when field separators appear as bona-fide
+field contents.
+</p>
+<p>When plaintext format is used, by setting <code>binary-index false</code>, the
+symbol (&lsquo;<samp>|</samp>&rsquo;) is used as a field separator in the index, unless
+the optional <code>separator</code> parameter is used to redefine the
+separator character.
+</p>
+<hr size="6">
+<a name="Initial-PR-input-fields"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Index-file-description" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Other-config-files.html#Other-config-files" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Initial-PR-input-fields-1"></a>
+<h3 class="subsection">4.3.9 Initial PR input fields</h3>
+<a name="index-Initial-PR-input-fields"></a>
+
+<p>An <code>initial-entry</code> section in the &lsquo;<tt>dbconfig</tt>&rsquo; file is used to
+describe which fields should be present on initial PR entry; this is
+used by tools such as send-pr to determine which fields to include in a
+&ldquo;blank&rdquo; PR template. An optional <code>require</code> parameter can be
+defined to specify a subset of the <code>intial-entry</code> fields which must
+be assigned a value upon initial creation of the PR.
+</p>
+<p>The general format for the <code>initial-entry</code> section is
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">initial-entry {
+&nbsp;&nbsp;fields { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] }
+&nbsp;&nbsp;[ require { &quot;fieldname&quot; [ &quot;fieldname&quot; ... ] } ]
+}
+</pre></td></tr></table>
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Index-file-description" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Other-config-files.html#Other-config-files" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Management.html#Management" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#dbconfig-file" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Locations.html#Locations" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 1.7 Upgrading Considerations</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 1.7 Upgrading Considerations">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 1.7 Upgrading Considerations">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Upgrading"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Bug-Reporting.html#Bug-Reporting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Upgrading-Considerations"></a>
+<h2 class="section">1.7 Upgrading Considerations</h2>
+
+<p>See <a href="../gnats/Upgrading.html#Upgrading">(gnats)Upgrading</a> section &lsquo;Upgrading from older versions&rsquo; in <cite>Keeping Track</cite> for the upgrade process from 3.x to 4.x.
+</p>
+<p>If you are running a 3.x version, <em>please consider upgrading to 4.0.</em>
+There are some security concerns about the 3.1xx code that have gone
+with 4.0.  Furthermore, the <small>GNATS</small> 3 branch is not maintained
+anymore due to lack of capacity.
+</p>
+
+<p>The default format of the reports has not changed during the transition
+from 3.113.1 to 4.0, though you may add more fields to 4.0 reports (and
+leave out others).  The format of the index file is now binary.
+</p>
+
+<p>However, you have to change the e-mail aliases because the meaning of
+the &lsquo;<samp>-d</samp>&rsquo; option to the client programs has changed: It took the
+<em>directory</em> of the <small>GNATS</small> database in 3.1xx, and now takes its
+<em>name</em> (plus, it is now installed into the &lsquo;<tt>libexec</tt>&rsquo; directory
+instead of the &lsquo;<tt>lib</tt>&rsquo; directory).  I.e., you must change the aliases:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"># GNATS 3 aliases:
+ourdb-query: &quot;|/usr/local/lib/gnats/mail-query -d /usr/local/gnats/db2&quot;
+ourdb-bugs:  &quot;|/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -q&quot;
+</pre></td></tr></table>
+<p>to
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample"># GNATS 4 aliases:
+ourdb-query: &quot;|/usr/local/libexec/gnats/mail-query -d ourdb&quot;
+ourdb-bugs:  &quot;|/usr/local/libexec/gnats/queue-pr -d ourdb -q&quot;
+</pre></td></tr></table>
+
+
+<p>Also note that the client/server protocol has changed from 3.1xx to
+4.0; you cannot run clients from one version with the server from the
+other version.
+</p>
+
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Bug-Reporting.html#Bug-Reporting" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="General.html#General" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Next chapter"> &gt;&gt; </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

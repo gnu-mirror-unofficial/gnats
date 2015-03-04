@@ -1,0 +1,869 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>GNATS Frequently Asked Questions: 3. Configuration Issues</title>
+
+<meta name="description" content="GNATS Frequently Asked Questions: 3. Configuration Issues">
+<meta name="keywords" content="GNATS Frequently Asked Questions: 3. Configuration Issues">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="Configuration"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="Installation.html#Gnatsweb-and-GNATS" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-configuration" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="Installation.html#Installation" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Configuration-Issues"></a>
+<h1 class="chapter">3. Configuration Issues</h1>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#General-configuration">3.1 General Configuration Questions</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">       General questions about <small>GNATS</small> configuration
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Gnatsd">3.2 Gnatsd, the <small>GNATS</small> Daemon</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                      Configuration of the <small>GNATS</small> daemon
+</td></tr>
+<tr><td align="left" valign="top"><a href="#E_002dMail">3.3 E-Mail Issues</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                      Problems with the e-mail interface
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Miscellaneous">3.4 Miscellaneous Configuration Issues</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">               Other configuration problems
+</td></tr>
+</table>
+
+
+<hr size="6">
+<a name="General-configuration"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Configuration" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Add-a-database" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="General-Configuration-Questions"></a>
+<h2 class="section">3.1 General Configuration Questions</h2>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Add-a-database">3.1.1 How do I add a new database?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              How to create a new database
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Renaming-a-Category">3.1.2 How do I rename a category?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         How to rename categories
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Changing-Fields">3.1.3 How do I add, remove, or rename a PR field?</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             Add, remove, or rename a PR field
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Add-a-database"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#General-configuration" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Renaming-a-Category" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-do-I-add-a-new-database_003f"></a>
+<h3 class="subsection">3.1.1 How do I add a new database?</h3>
+
+<p><b>A: (<small>GNATS</small> 3.1xx)</b> 
+(Please consider upgrading to <small>GNATS</small> 4.0 or greater.)
+</p>
+<ol>
+<li>
+Create the base directory for the new database, say
+&lsquo;<tt>/usr/local/gnats/db2</tt>&rsquo;, and make sure it is owned by the
+<small>GNATS</small> user.
+
+</li><li>
+In there, create subdirectories &lsquo;<tt>gnats-adm</tt>&rsquo;,
+&lsquo;<tt>gnats-adm/locks</tt>&rsquo;, and &lsquo;<tt>gnats-queue</tt>&rsquo;,
+and make sure they is owned by the <small>GNATS</small> user.
+
+</li><li>
+Now you need to populate the new &lsquo;<tt>gnats-adm</tt>&rsquo; directory.  The
+easiest way is to copy all files from &lsquo;<tt>gnats-db/gnats-adm</tt>&rsquo; to
+&lsquo;<tt>/usr/local/gnats/db2/gnats-adm</tt>&rsquo;, and edit them to reflect the
+needs of your new database.  Again, make sure they are owned by the
+gnats user.
+
+<p>Note that there <em>must</em> be a category named <code>pending</code>.  It is
+used when no category is given in a report, and when a report names an
+invalid category.
+</p>
+<p>Also note that each database needs its own mail address for submissions
+(see also step 8 below), and that you must enter it in the file
+&lsquo;<tt>config</tt>&rsquo;.
+</p>
+</li><li>
+As the <small>GNATS</small> user, 
+run &lsquo;<samp>mkcat --directory=/usr/local/gnats/db2</samp>&rsquo; to create the
+directories for the categories.  Remove the files &lsquo;<tt>current</tt>&rsquo; and
+&lsquo;<tt>index</tt>&rsquo;, if they exist.
+
+</li><li>
+If the new database is split off of another one, move or copy the
+existing reports to their new location.  This is easiest if the
+categories have the same names as in the original database.  (See
+<a href="#Renaming-a-Category">How do I rename a category?</a> if some of them changed names.)
+
+<p>Run the program <code>gen-index</code> to create the index file
+(see <a href="../gnats/gen_002dindex.html#gen_002dindex">(gnats)gen-index</a> section &lsquo;Regenerating the index&rsquo; in <cite>Keeping Track</cite>).
+</p>
+<p>Find the greatest report number and put it (or any larger number)
+into &lsquo;<tt>/usr/local/gnats/db2/gnats-adm/current</tt>&rsquo;.
+</p>
+<p><strong>Caution:</strong> E-mail updates to the PRs you moved to the new
+database may still arrive at the old database.  You may want to
+contact everybody who knows about these PRs, asking them to use
+the mail address of the new database when sending a follow-up.
+</p>
+</li><li>
+Now add a line for the new database to &lsquo;<tt>gnats-db.conf</tt>&rsquo;, like
+this:
+
+<p>	<code>/usr/local/gnats/db2:GreatNewDB</code>
+</p>
+<p>Gnatsd reads it on startup (and as it is started by inetd, this means
+it becomes effective with the next connection to gnatsd).  Gnatsweb
+(see <a href="Clients.html#Gnatsweb">Gnatsweb</a>) learns the database list from gnatsd, so it will offer
+you the new database &quot;GreatNewDB&quot; when it is invoked next time.
+</p>
+<p>If you do not know where &lsquo;<tt>gnats-db.conf</tt>&rsquo; lives, run:
+</p>
+<p>&lsquo;<samp>strings /where/ever/gnatsd | grep gnats-db.conf</samp>&rsquo;
+</p>
+</li><li>
+Don&rsquo;t forget to setup a cron job to run through the additional
+&lsquo;<tt>gnats-queue</tt>&rsquo;.  Note that you need to specify the database
+directory to &lsquo;<tt>queue-pr</tt>&rsquo;, i.e.,
+
+<p>&lsquo;<samp>/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -r</samp>&rsquo;
+</p>
+<p>or, if you prefer the long options,
+</p>
+<p>&lsquo;<samp>/usr/local/lib/gnats/queue-pr --directory=/usr/local/gnats/db2 --run</samp>&rsquo;
+</p>
+
+</li><li>
+Don&rsquo;t forget to create mail aliases for your new database
+(see <a href="../gnats/Aliases.html#Aliases">(gnats)Aliases</a> section &lsquo;Setting up mail aliases&rsquo; in <cite>Keeping Track</cite>).
+Take care that the aliases have the right database, e.g.,
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">GreatNewDB-bugs:  &quot;|/usr/local/lib/gnats/queue-pr -d /usr/local/gnats/db2 -q&quot;
+GreatNewDB-query: &quot;|/usr/local/lib/gnats/mail-query -d /usr/local/gnats/db2&quot;
+</pre></td></tr></table>
+
+<p>If you do not want to allow querying the database by mail, omit the
+&lsquo;<samp>GreatNewDB-query</samp>&rsquo; alias.
+</p>
+<p>You usually need the cooperation of a system administrator for this step
+(if you are not a system administrator yourself, of course).
+</p>
+
+<p>Make sure that &lsquo;<tt>/usr/local/gnats/db2/gnats-adm/config</tt>&rsquo; gives the
+correct mail addresses for <var>GNATS_ADDR</var> (this <em>must</em> be
+different for each database) and for <var>GNATS_ADMIN</var> (this is probably
+the same for all databases).
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">GNATS_ADDR=&quot;GreatNewDB-bugs@bugs.example.com&quot;
+GNATS_ADMIN=&quot;gnats-admin@bugs.example.com&quot;
+</pre></td></tr></table>
+
+<p>If your <small>GNATS</small> sits behind a firewall and needs to exchange mails
+with the outside world, see also <a href="#Outgoing-mail-bounces">Outgoing mail bounces</a>.
+</p>
+</li></ol>
+
+<p><b>A: (<small>GNATS</small> 4.x)</b> With version 4, this has become much easier
+(see <a href="../gnats/mkdb.html#mkdb">(gnats)mkdb</a> section &lsquo;Adding another database&rsquo; in <cite>Keeping Track</cite>):
+</p><ol>
+<li>
+Add a line for the new database to &lsquo;<tt>databases</tt>&rsquo;, like this:
+
+<p>	<code>GreatNewDB:Our great tools:/usr/local/gnats/db2</code>
+</p>
+<p>Then, as the <small>GNATS</small> user, run &lsquo;<samp>mkdb GreatNewDB</samp>&rsquo; to create the
+database.  Make sure that the directory (in our example,
+&lsquo;<tt>/usr/local/gnats/db2</tt>&rsquo;) can be created by the <small>GNATS</small> user.
+</p>
+<p>(Note that there <em>must</em> be a database named <code>default</code>.  It
+is used as a fallback by some tools if no database is specified.  You
+need not use it actively, but you should have run &lsquo;<samp>mkdb default</samp>&rsquo;.)
+</p>
+
+<p>Gnatsd reads the file &lsquo;<tt>databases</tt>&rsquo; on startup (and as it is
+started by inetd, this means it becomes effective with the next
+connection to gnatsd).  Gnatsweb (see <a href="Clients.html#Gnatsweb">Gnatsweb</a>) learns the
+database list from gnatsd, so it will offer you the new database
+&quot;GreatNewDB&quot; when it is invoked next time.
+</p>
+<p>If you do not know where &lsquo;<tt>databases</tt>&rsquo; lives, run:
+</p>
+<p>&lsquo;<samp>strings /where/ever/gnatsd | grep databases</samp>&rsquo;
+</p>
+</li><li>
+Now, as the <small>GNATS</small> user, edit the files in directory
+&lsquo;<tt>/usr/local/gnats/db2/gnats-adm</tt>&rsquo; to reflect the needs of
+your new database.
+
+</li><li>
+Depending on the settings in the &lsquo;<tt>dbconfig</tt>&rsquo; file of the new
+database, you need not run <code>mkcat</code> anymore in order to
+create new category directories in your database&mdash;<small>GNATS</small> 4
+creates them automatically when they are missing.  See <a href="../gnats/dbconfig-file.html#dbconfig-file">(gnats)dbconfig file</a> section &lsquo;The <code>dbconfig</code> file&rsquo; in <cite>Keeping Track</cite>, for details.
+
+</li><li>
+Don&rsquo;t forget to setup a cron job to run through the additional
+&lsquo;<tt>gnats-queue</tt>&rsquo;.  Note that you need to specify the database to
+&lsquo;<tt>queue-pr</tt>&rsquo;, i.e.,
+
+<p>&lsquo;<samp>/usr/local/libexec/gnats/queue-pr -d GreatNewDB -r</samp>&rsquo;
+</p>
+<p>or, if you prefer the long options,
+</p>
+<p>&lsquo;<samp>/usr/local/libexec/gnats/queue-pr --database=GreatNewDB --run</samp>&rsquo;
+</p>
+
+</li><li>
+Don&rsquo;t forget to create mail aliases for your new database
+(see <a href="../gnats/Aliases.html#Aliases">(gnats)Aliases</a> section &lsquo;Setting up mail aliases&rsquo; in <cite>Keeping Track</cite>).
+Take care that the aliases have the right database, e.g.,
+
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">GreatNewDB-bugs:  &quot;|/usr/local/libexec/gnats/queue-pr -d GreatNewDB -q&quot;
+GreatNewDB-query: &quot;|/usr/local/libexec/gnats/mail-query -d GreatNewDB&quot;
+</pre></td></tr></table>
+
+<p>If you are updating from <small>GNATS</small> 3.1xx, note that the &lsquo;<samp>-d</samp>&rsquo;
+option has changed its meaning: it does not give the directory of the
+database, but its name.  (In case you prefer the long form of the
+option, it is now &lsquo;<samp>--database</samp>&rsquo; instead of &lsquo;<samp>--directory</samp>&rsquo;.)
+</p>
+<p>If your <small>GNATS</small> sits behind a firewall and needs to exchange mails
+with the outside world, see also <a href="#Outgoing-mail-bounces">Outgoing mail bounces</a>.
+</p>
+</li></ol>
+
+
+<hr size="6">
+<a name="Renaming-a-Category"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Add-a-database" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Changing-Fields" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-do-I-rename-a-category_003f"></a>
+<h3 class="subsection">3.1.2 How do I rename a category?</h3>
+
+<p>Renaming a category requires to touch every PR in that category,
+because each report contains the name of its category.
+</p>
+<p>To rename category <code>A</code> to <code>B</code>, proceed as follows:
+</p>
+<ol>
+<li>
+Create a new category <code>B</code>.
+
+</li><li>
+Edit every report in category <code>A</code>, changing its category to
+<code>B</code>.
+This can be done with any <small>GNATS</small> client; check the archives
+of the <small>HELP-GNATS</small> mailing list for hints about automating
+this step.
+
+</li><li>
+Run <code>gen-index</code> (see <a href="../gnats/gen_002dindex.html#gen_002dindex">(gnats)gen-index</a> section &lsquo;Regenerating the index&rsquo; in <cite>Keeping Track</cite>) to refresh the &lsquo;<tt>index</tt>&rsquo; file.
+
+</li><li>
+If you are using <small>GNATS</small> 4 (or planning to upgrade soon), you
+should not remove the category <code>A</code>.  When a follow-up to an
+existing PR arrives via e-mail, <small>GNATS</small> 4.x checks that both
+the category and the PR number indicated in the mail exist (this
+is a sanity check).
+
+<p>To reduce the risk of new reports being filed to category
+<code>A</code>, change its description in the &lsquo;<tt>categories</tt>&rsquo; file to
+something like &lsquo;<samp>obsolete, use category <code>B</code> instead</samp>&rsquo;.
+</p>
+</li></ol>
+
+<hr size="6">
+<a name="Changing-Fields"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Renaming-a-Category" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#General-configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-do-I-add_002c-remove_002c-or-rename-a-PR-field_003f"></a>
+<h3 class="subsection">3.1.3 How do I add, remove, or rename a PR field?</h3>
+
+<p><b>A: (<small>GNATS</small> 3.1xx)</b> The fields and their names are fixed in
+<small>GNATS</small> 3.1xx, so this is not possible.
+</p>
+<p><b>A: (<small>GNATS</small> 4.x)</b> Edit the file &lsquo;<tt>dbconfig</tt>&rsquo; to reflect your
+changes.
+</p>
+<p>Note that the PR fields with the builtin-names <code>severity</code>,
+<code>priority</code> and <code>state</code> are required if you want automatic
+reminders (<code>notify-about-expired-prs = true</code>).  In this case, the
+file &lsquo;<tt>submitters</tt>&rsquo; must also contain a response time.
+The <code>severity</code> field is checked for values <code>critical</code> and
+<code>serious</code>, and <code>priority</code> for value <code>high</code>.
+This is currently not configurable.
+</p>
+
+<hr size="6">
+<a name="Gnatsd"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Changing-Fields" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Port-Number" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Gnatsd_002c-the-GNATS-Daemon"></a>
+<h2 class="section">3.2 Gnatsd, the <small>GNATS</small> Daemon</h2>
+
+<a name="index-server_002c-see-gnatsd"></a>
+<a name="index-GNATS-server_002c-see-gnatsd"></a>
+<a name="index-gnatsd"></a>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#Port-Number">3.2.1 Gnatsd Port Number</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">                 How to connect to gnatsd
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Starting-gnatsd">3.2.2 How to Start Gnatsd</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             How to make gnatsd accept connections
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Gnatsd-messages">3.2.3 Gnatsd Messages</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">             Some error messages and what they mean
+</td></tr>
+</table>
+
+<hr size="6">
+<a name="Port-Number"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Starting-gnatsd" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Gnatsd-Port-Number"></a>
+<h3 class="subsection">3.2.1 Gnatsd Port Number</h3>
+
+<a name="index-port"></a>
+<a name="index-server-port"></a>
+
+<p>In 3.xxx versions, gnatsd uses port 1529 by default; as this port is
+officially assigned to another application (see the
+<a href="http://www.iana.org/assignments/port-numbers">list of port numbers</a>
+maintained by the <a href="http://www.iana.org/">Internet Assigned Numbers Authority</a>)
+it will probably change in 4.x.
+</p>
+<p>If you want/need to run gnatsd on another port, you can change the
+default port at compile time (call <code>configure --help</code> to learn
+about compile time configuration options).  Most clients also accept
+an option or configuration variable to change the port.  Don&rsquo;t forget
+to tell inetd (or xinetd, or whatever super-server you use) to start
+gnatsd on the other port.
+</p>
+
+<hr size="6">
+<a name="Starting-gnatsd"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Port-Number" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd-messages" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="How-to-Start-Gnatsd"></a>
+<h3 class="subsection">3.2.2 How to Start Gnatsd</h3>
+
+<p>Gnatsd is intended to be started by some &quot;super server&quot;, like
+<code>inetd</code> or <code>xinetd</code>.  (&quot;Super servers&quot; are sometimes also
+called &quot;super daemons&quot;.)
+</p>
+<p>This is also described in the <small>GNATS</small> manual; see <a href="../gnats/Installing-the-daemon.html#Installing-the-daemon">(gnats)Installing the daemon</a> section &lsquo;Installing the daemon&rsquo; in <cite>Keeping Track</cite>.
+</p>
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#inetd-configuration">&bull; inetd configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">         The traditional super server
+</td></tr>
+<tr><td align="left" valign="top"><a href="#xinetd-configuration">&bull; xinetd configuration</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">        Another widespread super server
+</td></tr>
+</table>
+
+<a name="inetd-configuration"></a>
+<a name="How-to-configure-inetd-to-start-gnatsd"></a>
+<h4 class="subsubheading">How to configure inetd to start gnatsd</h4>
+
+<a name="index-inetd"></a>
+
+<p>If your gnatsd will be started by inetd (the &quot;internet daemon&quot;),
+add the following entry to your &lsquo;<tt>/etc/inetd.conf</tt>&rsquo;:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample"># port                    userid program
+support stream tcp nowait gnats /usr/local/libexec/gnats/gnatsd gnatsd
+</pre></td></tr></table>
+
+<p>and to &lsquo;<tt>/etc/services</tt>&rsquo;:
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample">support		1529/tcp		# GNATS
+</pre></td></tr></table>
+
+<p>(You may need to use tabulator characters to separate the fields of
+&lsquo;<tt>/etc/services</tt>&rsquo;.)  Then send inetd a hangup signal
+(<code>kill -HUP <em>pid-of-inetd</em></code>).
+</p>
+<p>You may want to use another port instead of 1529 (see section <a href="#Port-Number">Gnatsd Port Number</a>).
+</p>
+
+
+<a name="xinetd-configuration"></a>
+<a name="How-to-configure-xinetd-to-start-gnatsd"></a>
+<h4 class="subsubheading">How to configure xinetd to start gnatsd</h4>
+
+<a name="index-xinetd"></a>
+
+<p>If your gnatsd will be started by xinetd (the &quot;extended internet
+daemon&quot;), create a file &lsquo;<tt>/etc/xinetd.d/support</tt>&rsquo; with the
+following lines (see <a href="../gnats/Installing-the-daemon.html#Installing-the-daemon">(gnats)Installing the daemon</a> section &lsquo;Installing the daemon&rsquo; in <cite>Keeping Track</cite>):
+</p>
+<table><tr><td>&nbsp;</td><td><table class="cartouche" border="1"><tr><td>
+<pre class="example">service support
+{
+        disable     = no
+        socket_type = stream
+        protocol    = tcp
+        wait        = no
+        user        = gnats
+        server      = /usr/local/libexec/gnats/gnatsd
+        server_args = gnatsd
+}
+</pre></td></tr></table>
+</td></tr></table>
+
+<p>or add theses lines to your &lsquo;<tt>xinetd.conf</tt>&rsquo; file, whatever is
+appropriate.  The equal signs seem to need spaces around them with
+some versions of xinetd.
+</p>
+<p>You need to add
+</p><table><tr><td>&nbsp;</td><td><pre class="smallexample">support		1529/tcp		# GNATS
+</pre></td></tr></table>
+
+<p>to &lsquo;<tt>/etc/services</tt>&rsquo; (it may be necessary to use tabulator
+characters to separate the fields), and to tell xinetd to reread its
+configuration (<code>kill -HUP <em>pid-of-xinetd</em></code>).
+</p>
+
+<hr size="6">
+<a name="Gnatsd-messages"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Starting-gnatsd" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#E_002dMail" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Gnatsd-Messages"></a>
+<h3 class="subsection">3.2.3 Gnatsd Messages</h3>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#No-host-access-for-stdin">&bull; No host access for stdin</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">    Error when starting gnatsd manually
+</td></tr>
+<tr><td align="left" valign="top"><a href="#No-host-access-for-remote">&bull; No host access for remote</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">   Cannot connect from another machine
+</td></tr>
+</table>
+
+<a name="No-host-access-for-stdin"></a>
+<a name="You-are-not-on-the-host-access-list_003a-stdin-_0028stdin_0029"></a>
+<h4 class="subsubheading">You are not on the host access list: stdin (stdin)</h4>
+
+<p><b>Q:</b> When starting gnatsd manually (on the command line), I get
+&lsquo;<samp>520 You are not on the host access list: stdin (stdin)</samp>&rsquo;.
+</p>
+<p><b>A: (<small>GNATS</small> 3.1xx)</b>
+Gnatsd is not intended to be started manually, but via inetd,
+xinetd, or a similar &quot;super server&quot;.  When gnatsd is started this way,
+its stdin and stdout (standard input and standard output streams) are
+connected to a so called &quot;TCP socket&quot; (one end of the network
+connection), and from this socket gnatsd learns the IP address of the
+remote end (and from this it derives the remote host name).  When you
+start gnatsd from the command line, its stdin and stdout are connected
+to the terminal, and thus gnatsd gets a nonsense value.
+</p>
+<p>You usually need &lsquo;<samp>root</samp>&rsquo; privileges in order to change the
+configuration of your &quot;super server&quot;.  If you don&rsquo;t have them, contact
+your system administrator.
+</p>
+<p>See <a href="#Starting-gnatsd">How to Start Gnatsd</a> for inetd and xinetd configuration.
+</p>
+
+<p><b>A: (<small>GNATS</small> 4.0)</b>
+This error message should not occur with gnatsd 4.0 anymore, because
+gnatsd can be started from the command line.
+However, this probably only makes sense for debugging and diagnosing
+problems.  Furthermore, you need to play the part of the client
+program yourself (i.e., you must &quot;speak&quot; the gnatsd client protocol).
+</p>
+
+
+<a name="No-host-access-for-remote"></a>
+<a name="You-are-not-on-the-host-access-list"></a>
+<h4 class="subsubheading">You are not on the host access list</h4>
+
+<p><b>Q:</b> Gnatsd rejects connections from a remote host with the error
+message &lsquo;<samp>520 You are not on the host access list</samp>&rsquo;.
+</p>
+<p><b>A:</b> Check the file &lsquo;<tt>gnatsd.host_access</tt>&rsquo;; if you are using
+the default locations, this is
+&lsquo;<tt>/usr/local/etc/gnats/gnatsd.host_access</tt>&rsquo;.
+(If you are still using <small>GNATS</small> 3.xxx, the file is named
+&lsquo;<tt>gnatsd.conf</tt>&rsquo;; its default place is
+&lsquo;<tt>/usr/local/etc/gnatsd.conf</tt>&rsquo;.)
+</p>
+<p>Each line of the file names a host and its access level, separated by
+colons.  Gnatsd tries the lines in turn to match the remote host, and
+the first line that matches wins.
+</p>
+<p>The first field specifies the host(s); it may be a host name (like
+&lsquo;<samp>goedel.example.com</samp>&rsquo;), a partial domain (like
+&lsquo;<samp>*.example.com</samp>&rsquo;), an IP address (like &lsquo;<samp>192.168.1.5</samp>&rsquo;), or a
+partial IP address (like &lsquo;<samp>192.168.*</samp>&rsquo;).  If it is only &lsquo;<samp>*</samp>&rsquo;, it
+matches all hosts.
+</p>
+<p>Depending on how IP addresses are mapped to hostnames on your gnatsd
+machine, you may be able to omit the domain (like in &lsquo;<samp>goedel</samp>&rsquo;).
+You may even <em>need</em> to omit the domain for some hosts.
+</p>
+<p>The second field is the access level granted to the remote host.  This
+is usually increased by the access level granted to the user as soon
+as (s)he logs in.
+</p>
+<p>The third field is currently not used; just leave it empty (but supply
+the colon between the second and the third field).
+</p>
+<p>Example:
+</p>
+<table><tr><td>&nbsp;</td><td><table class="cartouche" border="1"><tr><td>
+<pre class="example">#
+# This is a comment
+#
+# Grant view access to all hosts with IP addresses
+# ranging from 192.168.0.0 to 192.168.255.255:
+192.168.*:view:
+# Users on host goedel.example.com get (at least) edit access:
+goedel.example.com:edit:
+# Users from escher.example.com may view all reports, even
+# confidential ones:
+escher.example.com:viewconf:
+# Users from bach.example.com may only view all non-confidential
+# reports:
+bach.example.com:view:
+# Users from other example.com hosts
+# only get the access specified for them in gnatsd.user_access:
+*.example.com:none:
+# Same for domain our-users.example:
+*.our-users.example:none:
+# All other hosts are rejected
+# without even asking for username and password:
+*:deny:
+</pre></td></tr></table>
+</td></tr></table>
+
+<p>The format is described in detail in the comments at the beginning of
+the file.
+</p>
+
+<hr size="6">
+<a name="E_002dMail"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Gnatsd-messages" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Miscellaneous" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="E_002dMail-Issues"></a>
+<h2 class="section">3.3 E-Mail Issues</h2>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#queue_002dpr-not-available">&bull; queue-pr not available</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">      Sendmail refuses to run queue-pr
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Outgoing-mail-bounces">&bull; Outgoing mail bounces</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">       Mail system complains on outgoing mail
+</td></tr>
+</table>
+
+<a name="queue_002dpr-not-available"></a>
+<a name="queue_002dpr-not-available-for-sendmail-programs"></a>
+<h4 class="subsubheading">queue-pr not available for sendmail programs</h4>
+
+<p>Your sendmail installation uses &lsquo;<samp>smrsh</samp>&rsquo; to check programs that are
+invoked from a mail alias.  &lsquo;<samp>smrsh</samp>&rsquo; only allows the execution of
+programs of which it is told that they are save.  To tell it that
+&lsquo;<tt>queue-pr</tt>&rsquo; is save, create a symbolic link in the directory
+&lsquo;<tt>/etc/smrsh</tt>&rsquo; to &lsquo;<tt>queue-pr</tt>&rsquo;, like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="smallexample">mkdir /etc/smrsh	<span class="roman"># if it does not yet exist</span>
+cd /etc/smrsh
+ln -s /usr/local/libexec/gnats/queue-pr queue-pr
+</pre></td></tr></table>
+
+<p>Replace &lsquo;<tt>/usr/local/libexec/gnats/queue-pr</tt>&rsquo; by the real path to
+&lsquo;<tt>queue-pr</tt>&rsquo;.
+</p>
+
+<a name="Outgoing-mail-bounces"></a>
+<a name="Mail-from-GNATS-bounces"></a>
+<h4 class="subsubheading">Mail from <small>GNATS</small> bounces</h4>
+
+<p>You are getting bounce mails like this:
+</p>
+<table><tr><td>&nbsp;</td><td><pre class="example">   ----- Transcript of session follows -----
+... while talking to mail.example.com.:
+&gt;&gt;&gt; MAIL From:&lt;gnats@mymachine.subdomain.example.com&gt; SIZE=334
+&lt;&lt;&lt; 501 5.1.8 &lt;gnats@mymachine.subdomain.example.com&gt;...
+      Domain of sender address gnats@mymachine.subdomain.example.com does not exist
+</pre></td></tr></table>
+
+<p>Probably your <small>GNATS</small> sits behind a firewall, but it needs to
+exchange mails with the world outside the firewall.  Make sure that
+<var>GNATS_ADDR</var> is valid outside.
+</p>
+<p>This is what probably happens behind the scenes: On its way to the
+outside world, the sender address of the mail gets rewritten to
+something &quot;official&quot; (like <code>Hans-Albert.Schneider@example.com</code>, as
+opposed to <code>me@mymachine.subdomain.example.com</code>).  This is
+especially necessary if the internal hosts are not visible outside.  If
+your outgoing mail gateway still sees the internal address, it complains
+with a message like the above (it has probably checked
+<code>mymachine.subdomain.example.com</code> with your organization&rsquo;s external
+DNS server, which does not know <code>mymachine</code>).
+</p>
+<p>To solve this problem, get an &quot;official&quot; address for your <small>GNATS</small>
+system, e.g., tool-bugs@example.com, and use that one for
+<var>GNATS_ADDR</var>.
+</p>
+
+
+<hr size="6">
+<a name="Miscellaneous"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#E_002dMail" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="#Configuration" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<a name="Miscellaneous-Configuration-Issues"></a>
+<h2 class="section">3.4 Miscellaneous Configuration Issues</h2>
+
+<table class="menu" border="0" cellspacing="0">
+<tr><td align="left" valign="top"><a href="#No-New-Reports">&bull; No New Reports</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">              New reports do not show up in the database
+</td></tr>
+<tr><td align="left" valign="top"><a href="#Initially-Assign-Field-Values">&bull; Initially Assign Field Values</a></td><td>&nbsp;&nbsp;</td><td align="left" valign="top">  If you want to set additional fields when
+                                   entering a report
+</td></tr>
+</table>
+
+<a name="No-New-Reports"></a>
+<a name="New-reports-do-not-show-up-in-the-database"></a>
+<h4 class="subsubheading">New reports do not show up in the database</h4>
+
+<ol>
+<li>
+Make sure you have set up the mail aliases for your database(s).  (See
+<a href="#Add-a-database">How do I add a new database?</a> and <a href="../gnats/mkdb.html#mkdb">(gnats)mkdb</a> section &lsquo;Adding another database&rsquo; in <cite>Keeping Track</cite>.)
+
+</li><li>
+Try to send a PR using &lsquo;<samp>send-pr</samp>&rsquo;.  If you get error replies,
+investigate the causes.  See <a href="#E_002dMail">E-Mail Issues</a>.
+
+</li><li>
+Does a new file show up in the &lsquo;<tt>gnats-queue</tt>&rsquo; directory of your
+database, with the report as its contents?
+If it does, make sure you have created the cron job for this database.
+
+</li><li>
+If the report does not show up in the &lsquo;<tt>gnats-queue</tt>&rsquo; of the desired
+database, does it show up in the &lsquo;<tt>gnats-queue</tt>&rsquo; directory of another
+database?
+In this case, make sure your mail aliases are set up correctly;
+especially, make sure that you have specified the correct
+&lsquo;<samp>--directory</samp>&rsquo; option (&lsquo;<samp>--database</samp>&rsquo; for <small>GNATS</small> 4.x)
+for each &lsquo;<tt>queue-pr</tt>&rsquo;.
+
+</li></ol>
+
+
+<a name="Initially-Assign-Field-Values"></a>
+<a name="Assigning-responsible-etc_002e-when-entering-a-report"></a>
+<h4 class="subsubheading">Assigning responsible etc. when entering a report</h4>
+
+<p><b>Q:</b> When entering a new PR, I want to assign a value to some field
+(e.g., <code>Responsible</code>) which is normally assigned by <small>GNATS</small>.
+</p>
+<p><b>A: (<small>GNATS</small> 3.1xx)</b>
+This is not possible in <small>GNATS</small> 3.1xx.
+</p>
+<p><b>A: (<small>GNATS</small> 4.x)</b> This is done by adding the field name (in this
+example, <code>Responsible</code>) to the <code>initial-entry</code> item at
+the very end of the &lsquo;<tt>dbconfig</tt>&rsquo; file.  Gnatsweb will pick this up
+and add a <code>Responsible</code> field to the Create PR form.
+</p>
+
+
+<hr size="6">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="#Configuration" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="Clients.html#Clients" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats-faq.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats-faq_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>

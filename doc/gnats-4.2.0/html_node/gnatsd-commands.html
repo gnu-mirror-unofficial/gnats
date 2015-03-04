@@ -1,0 +1,770 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html401/loose.dtd">
+<html>
+<!-- This manual is for GNU GNATS
+(version 4.2.0, 8 August 2006),
+the GNU Bug Tracking System.
+
+Copyright C 1993, 1995, 2001, 2002, 2003, 2006 Free Software Foundation, Inc.
+
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 1.2 or
+any later version published by the Free Software Foundation; with no
+Invariant Sections, with the Front-Cover Texts being "A GNU Manual,"
+and with the Back-Cover Texts as in (a) below.  A copy of the license
+is included in the section entitled "GNU Free Documentation
+License."
+
+(a) The FSF's Back-Cover Text is: "You have freedom to copy and
+modify this GNU Manual, like GNU software.  Copies published by the
+Free Software Foundation raise funds for GNU development."
+
+ -->
+<!-- Created on March 3, 2015 by texi2html 1.82
+texi2html was written by: 
+            Lionel Cons <Lionel.Cons@cern.ch> (original author)
+            Karl Berry  <karl@freefriends.org>
+            Olaf Bachmann <obachman@mathematik.uni-kl.de>
+            and many others.
+Maintained by: Many creative people.
+Send bugs and suggestions to <texi2html-bug@nongnu.org>
+-->
+<head>
+<title>Keeping Track: GNU GNATS No value for VERSION: B.4 gnatsd commands</title>
+
+<meta name="description" content="Keeping Track: GNU GNATS No value for VERSION: B.4 gnatsd commands">
+<meta name="keywords" content="Keeping Track: GNU GNATS No value for VERSION: B.4 gnatsd commands">
+<meta name="resource-type" content="document">
+<meta name="distribution" content="global">
+<meta name="Generator" content="texi2html 1.82">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+<!--
+a.summary-letter {text-decoration: none}
+blockquote.smallquotation {font-size: smaller}
+pre.display {font-family: serif}
+pre.format {font-family: serif}
+pre.menu-comment {font-family: serif}
+pre.menu-preformatted {font-family: serif}
+pre.smalldisplay {font-family: serif; font-size: smaller}
+pre.smallexample {font-size: smaller}
+pre.smallformat {font-family: serif; font-size: smaller}
+pre.smalllisp {font-size: smaller}
+span.roman {font-family:serif; font-weight:normal;}
+span.sansserif {font-family:sans-serif; font-weight:normal;}
+ul.toc {list-style: none}
+-->
+</style>
+
+
+</head>
+
+<body lang="en" bgcolor="#FFFFFF" text="#000000" link="#0000FF" vlink="#800080" alink="#FF0000">
+
+<a name="gnatsd-commands"></a>
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="gnatsd-command-protocol.html#gnatsd-command-protocol" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd-environment-variables.html#gnatsd-environment-variables" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Access-Control.html#Access-Control" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<hr size="1">
+<a name="gnatsd-commands-1"></a>
+<h2 class="section">B.4 <code>gnatsd</code> commands</h2>
+<a name="index-gnatsd-commands"></a>
+<a name="index-gnatsd-commands-1"></a>
+
+<p>Note that the set of <small>GNATS</small> commands and their responses is somewhat
+inconsistent and is very much in flux.  At present the <small>GNATS</small>
+clients are rather simple-minded and not very strict about processing
+responses.  For example, if the server were to issue a code 300
+(<code>CODE_PR_READY</code>) response to a <code>CHDB</code> command, the client
+would happily expect to see a PR appear (and would print it out if one
+was sent).
+</p>
+<p>It is thus suggested that any clients that use the <small>GNATS</small> protocol
+be equally flexible about the way received responses are handled; in
+particular, only the first digit of the response code should be assumed
+to be meaningful, although subsequent digits are needed in some cases
+(codes 300-399).  No attempt should be made to parse the message strings
+on error response lines; they are only intended to be read by humans,
+and will be changed on a regular basis.
+</p>
+<p>Almost every command may result in the response 440
+(<code>CODE_CMD_ERROR</code>).  This indicates that there was a problem with
+the command arguments, usually because of insufficient or too many
+arguments being specified.
+</p>
+<p>Access to most <code>gnatsd</code> commands requires a certain <em>access
+level</em>.  For details of this, see <a href="Privileged-gnatsd-commands.html#Privileged-gnatsd-commands">Privileged <code>gnatsd</code> commands</a>.
+</p>
+<dl compact="compact">
+<dt> <code>USER [<var>userid</var> <var>password</var>]</code></dt>
+<dd><p>Specifies the userid and password for database access.  Either both a
+username and password must be specified, or they both may be omitted; in
+the latter case, the current access level is returned.
+</p>
+<p>The possible server responses are:
+</p>
+<p><code>350 (CODE_INFORMATION)</code>
+<br>The current access level is specified.
+</p>
+<p><code>422 (CODE_NO_ACCESS)</code>
+<br>A matching username and password could not be found.
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>A matching username and password was found, and the login was
+successful.
+</p>
+</dd>
+<dt> <code>QUIT</code></dt>
+<dd><p>Requests that the connection be closed. Possible responses:
+</p>
+<p><code>201 (CODE_CLOSING)</code>
+<br>Normal exit.
+</p>
+<p>The <code>QUIT</code> command has the dubious distinction of being the only command
+that cannot fail.
+</p>
+</dd>
+<dt> <code>LIST <var>list type</var></code></dt>
+<dd><p>Describes various aspects of the database.  The lists are returned as a
+list of records, one per line.  Each line may contain a number of
+colon-separated fields.
+</p>
+<p>Possible values for <var>list type</var> include
+</p>
+<p><code>Categories</code>
+<br>Describes the legal categories for the database.
+</p>
+<p><code>Submitters</code>
+<br>Describes the set of submitters for the database.
+</p>
+<p><code>Responsible</code>
+<br>Lists the names in the responsible administrative file, including
+their full names and email addresses.
+</p>
+<p><code>States</code>
+<br>Lists the states listed in the state administrative file, including
+the state type (usually blank for most states; the closed state has a
+special type).
+</p>
+<p><code>FieldNames</code>
+<br>Lists the entire set of PR fields.
+</p>
+<p><code>InitialInputFields</code>
+<br>Lists the fields that <em>should</em> be present when a PR is
+initially entered.
+</p>
+<p><code>InitialRequiredFields</code>
+<br>Lists fields that <em>have</em> to be present and nonempty when a PR
+is initially entered (fields containing only blank characters such as
+spaces or newlines are considered empty.)
+</p>
+<p><code>Databases</code>
+<br>Lists the set of databases.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>301 (CODE_TEXT_READY)</code>
+<br>Normal response, followed by the records making up the list as
+described above.
+</p>
+<p><code>416 (CODE_INVALID_LIST)</code>
+<br>The requested list does not exist.
+</p>
+</dd>
+<dt> <code>FTYP <var>field</var> [<var>field</var> ...]</code></dt>
+<dd><p>Describes the type of data held in the field(s) specified with the
+command.  The currently defined data types are:
+</p>
+<p><code>Text</code>
+<br>A plain text field, containing exactly one line.
+</p>
+<p><code>MultiText</code>
+<br>A text field possibly containing multiple lines of text.
+</p>
+<p><code>Enum</code>
+<br>An enumerated data field; the value is restricted to one entry out of
+a list of values associated with the field.
+</p>
+<p><code>MultiEnum</code>
+<br>The field contains one or more enumerated values.  Values are
+separated with spaces or colons &lsquo;<samp>:</samp>&rsquo;.
+</p>
+<p><code>Integer</code>
+<br>The field contains an integer value, possibly signed.
+</p>
+<p><code>Date</code>
+<br>The field contains a date.
+</p>
+<p><code>TextWithRegex</code>
+<br>The value in the field must match one or more regular expressions
+associated with the field.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>350 (CODE_INFORMATION)</code>
+<br>The normal response; the supplied text is the data type.
+</p>
+<p><code>410 (CODE_INVALID_FIELD_NAME)</code>
+<br>The specified field does not exist.
+</p>
+<p>If multiple field names were given, multiple response lines will be
+sent, one for each field, using the standard continuation protocol; each
+response except the last will have a dash &lsquo;<samp>-</samp>&rsquo; immedately after the
+response code.
+</p>
+</dd>
+<dt> <code>FTYPINFO <var>field</var> <var>property</var></code></dt>
+<dd>
+<p>Provides field-type-related information.  Currently, only the property
+&lsquo;<samp>separators</samp>&rsquo; for MultiEnum fields is supported.  When
+&lsquo;<samp>separators</samp>&rsquo; is specified, the possible return codes are:
+</p>
+<p><code>350 (CODE_INFORMATION)</code>
+A proper MultiEnum <var>field</var> was specified and the returned text is
+the string of separators specified for the field in the dbconfig file
+(see section <a href="Field-datatypes.html#Field-datatypes">Field datatypes</a>) quoted in <code>'</code>&rsquo;s.
+</p>
+<p><code>435 (CODE_INVALID_FTYPE_PROPERTY)</code>
+The &lsquo;<samp>separators</samp>&rsquo; property is not defined for this field, i.e.  the
+specified <var>field</var> is not of type MultiEnum.
+</p>
+<p>Currently, specifying a different property than &lsquo;<samp>separators</samp>&rsquo;
+results in return code 435 as above.
+</p>
+</dd>
+<dt> <code>FDSC <var>field</var> [<var>field</var> ... ]</code></dt>
+<dd><p>Returns a human-readable description of the listed field(s).  The
+possible responses are:
+</p>
+<p><code>350 (CODE_INFORMATION)</code>
+The normal response; the supplied text is the field description.
+</p>
+<p><code>410 (CODE_INVALID_FIELD_NAME)</code>
+The specified field does not exist.
+</p>
+<p>Like the <code>FVLD</code> command, the standard continuation protocol will be
+used if multiple fields were specified with the command.
+</p>
+</dd>
+<dt> <code>FIELDFLAGS <var>field</var> [<var>field</var> ... ]</code></dt>
+<dd><p>Returns a set of flags describing the specified field(s).  The possible
+responses are either
+</p>
+<p><code>410 (CODE_INVALID_FIELD_NAME)</code>
+<br>meaning that the specified field is invalid or nonexistent, or
+</p>
+<p><code>350 (CODE_INFORMATION)</code>
+<br>which contains the set of flags for the field.  The flags may be
+blank, which indicate that no special flags have been set for this
+field.
+</p>
+<p>Like the <code>FDSC</code> and <code>FTYP</code> commands, multiple field names may
+be listed with the command, and a response line will be returned for
+each one in the order that the fields appear on the command line.
+</p>
+<p>The flags include:
+</p>
+<p><code>textsearch</code>
+<br>The field will be searched when a text field search is requested.
+</p>
+<p><code>allowAnyValue</code>
+<br>For fields that contain enumerated values, any legal value may be used
+in the field, not just ones that appear in the enumerated list.
+</p>
+<p><code>requireChangeReason</code>
+<br>If the field is edited, a reason for the change must be supplied in
+the new PR text describing the reason for the change. The reason must be
+supplied as a multitext PR field in the new PR whose name is
+<code>field-Changed-Why</code> (where <code>field</code> is the name of the field
+being edited).
+</p>
+<p><code>readonly</code>
+<br>The field is read-only, and cannot be edited.
+</p>
+</dd>
+<dt> <code>FVLD <var>field</var></code></dt>
+<dd><br><p>Returns one or more regular expressions or strings that describe the
+valid types of data that can be placed in field.  Exactly what is
+returned is dependent on the type of data that can be stored in the
+field.  For most fields a regular expression is returned; for enumerated
+fields, the returned values are the list of legal strings that can be
+held in the field.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>301 (CODE_TEXT_READY)</code>
+<br>The normal response, which is followed by the list of regexps or
+strings.
+</p>
+<p><code>410 (CODE_INVALID_FIELD_NAME)</code>
+The specified field does not exist.
+</p>
+</dd>
+<dt> <code>VFLD <var>field</var></code></dt>
+<dd><p><code>VFLD</code> can be used to validate a given value for a field in the
+database.  The client issues the <code>VFLD</code> command with the name of
+the field to validate as an argument.  The server will either respond
+with <code>212 (CODE_SEND_TEXT)</code>, or <code>410
+(CODE_INVALID_FIELD_NAME)</code> if the specified field does not exist.
+</p>
+<p>Once the <code>212</code> response is received from the server, the client
+should then send the line(s) of text to be validated, using the normal
+quoting mechanism described for PRs.  The final line of text is followed
+by a line containing a single period, again as when sending PR text.
+</p>
+<p>The server will then either respond with <code>210 (CODE_OK)</code>,
+indicating that the text is acceptable, or one or more error codes
+describing the problems with the field contents.
+</p>
+</dd>
+<dt> <code>INPUTDEFAULT <var>field</var> [<var>field</var> ... ]</code></dt>
+<dd><p>Returns the suggested default value for a field when a PR is initially
+created.  The possible responses are either <code>410
+(CODE_INVALID_FIELD_NAME)</code>, meaning that the specified field is invalid
+or nonexistent, or <code>350 (CODE_INFORMATION)</code> which contains the
+default value for the field.
+</p>
+<p>Like the <code>FDSC</code> and <code>FTYP</code> commands, multiple field names may
+be listed with the command, and a response line will be returned for
+each one in the order that the fields appear on the command line.
+</p>
+</dd>
+<dt> <code>RSET</code></dt>
+<dd><p>Used to reset the internal server state.  The current query expression
+is cleared, and the index of PRs may be reread if it has been updated
+since the start of the session.  The possible responses are:
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>The state has been reset.
+</p>
+<p><code>440 (CODE_CMD_ERROR)</code>
+<br>One or more arguments were supplied to the command.
+</p>
+<p><code>6xx (internal error)</code>
+<br>There were problems resetting the state (usually because the index could
+not be reread).  The session will be immediately terminated.
+</p>
+</dd>
+<dt> <code>LKDB</code></dt>
+<dd><p>Locks the main <small>GNATS</small> database.  No subsequent database locks will
+succeed until the lock is removed.  Sessions that attempt to write to
+the database will fail.  The possible responses are:
+</p>
+<p><code>200 (CODE_OK)</code>
+The lock has been established.
+</p>
+<p><code>440 (CODE_CMD_ERROR)</code>
+One or more arguments were supplied to the command.
+</p>
+<p><code>431 (CODE_GNATS_LOCKED)</code>
+The database is already locked, and the lock could not be obtained after
+10 seconds.
+</p>
+<p><code>6xx (internal error)</code>
+An internal error occurred, usually because of permission or other
+filesystem-related problems. The lock may or may not have been
+established.
+</p>
+</dd>
+<dt> <code>UNDB</code></dt>
+<dd>
+<p>Unlocks the database.  Any session may steal a database lock; no
+checking of any sort is done.  The possible responses are:
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>The lock has been removed.
+</p>
+<p><code>432 (CODE_GNATS_NOT_LOCKED)</code>
+<br>The database was not locked.
+</p>
+<p><code>440 (CODE_CMD_ERROR)</code>
+<br>One or more arguments were supplied to the command.
+</p>
+<p><code>6xx (internal error)</code>
+<br>The database lock could not be removed, usually because of permissions
+or other filesystem-related issues.
+</p>
+</dd>
+<dt> <code>LOCK <var>PR user</var> [<var>pid</var>]</code></dt>
+<dd><p>Locks the specified <var>PR</var>, marking the lock with the <var>user</var> name
+and the optional <var>pid</var>. (No checking is done that the <var>user</var> or
+<var>pid</var> arguments are valid or meaningful; they are simply treated as
+strings.)
+</p>
+<p>The <code>EDIT</code> command requires that the PR be locked before it may be
+successfully executed.  However, it does not require that the lock is
+owned by the editing session, so the usefulness of the lock is simply as
+an advisory measure.
+</p>
+<p>The <code>APPN</code> and <code>REPL</code> commands lock the PR as part of the
+editing process, and they do not require that the PR be locked before
+they are invoked.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>440 (CODE_CMD_ERROR)</code>
+<br>Insufficient or too many arguments were specified to the command.
+</p>
+<p><code>300 (CODE_PR_READY)</code>
+<br>The lock was successfully obtained; the text of the PR (using the
+standard quoting mechanism for PRs) follows.
+</p>
+<p><code>400 (CODE_NONEXISTENT_PR)</code>
+<br>The PR specified does not exist.
+</p>
+<p><code>430 (CODE_LOCKED_PR)</code>
+<br>The PR is already locked by another session.
+</p>
+<p><code>6xx (internal error)</code>
+<br>The PR lock could not be created, usually because of permissions or
+other filesystem-related issues.
+</p>
+</dd>
+<dt> <code>UNLK <var>PR</var></code></dt>
+<dd><p>Unlocks <var>PR</var>.  Any user may unlock a PR, as no checking is done to
+determine if the requesting session owns the lock.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>440 (CODE_CMD_ERROR)</code>
+<br>Insufficient or too many arguments were specified to the command.
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>The PR was successfully unlocked.
+</p>
+<p><code>433 (CODE_PR_NOT_LOCKED)</code>
+<br>The PR was not locked.
+</p>
+<p><code>6xx (internal error)</code>
+<br>The PR could not be unlocked, usually because of permission or other
+filesystem-related problems.
+</p>
+</dd>
+<dt> <code>DELETE <var>PR</var></code></dt>
+<dd><p>Deletes the specified <var>PR</var>. The user making the request must have
+admin privileges (see section <a href="Access-Control.html#Access-Control">Controlling access to databases</a>).  If successful, the PR is removed from the filesystem and
+the index file; a gap will be left in the numbering sequence for PRs.
+No checks are made that the PR is closed.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>The PR was successfully deleted.
+</p>
+<p><code>422 (CODE_NO_ACCESS)</code>
+<br>The user requesting the delete does not have admin privileges.
+</p>
+<p><code>430 (CODE_LOCKED_PR)</code>
+<br>The PR is locked by another session.
+</p>
+<p><code>431 (CODE_GNATS_LOCKED)</code>
+<br>The database has been locked, and no PRs may be updated until the lock
+is cleared.
+</p>
+<p><code>6xx (internal error)</code>
+<br>The PR could not be successfully deleted, usually because of
+permission or other filesystem-related problems.
+</p>
+</dd>
+<dt> <code>CHEK [initial]</code></dt>
+<dd><p>Used to check the text of an entire PR for errors.  Unlike the
+<code>VFLD</code> command, it accepts an entire PR at once instead of the
+contents of an individual field.
+</p>
+<p>The <code>initial</code> argument indicates that the PR text to be checked is
+for a PR that will be newly created, rather than an edit or replacement
+of an existing PR.
+</p>
+<p>After the <code>CHEK</code> command is issued, the server will respond with
+either a <code>440 (CODE_CMD_ERROR)</code> response indicating that the
+command arguments were incorrect, or a <code>211 (CODE_SEND_PR)</code>
+response code will be sent.
+</p>
+<p>Once the <code>211</code> response is received from the server, the client
+should send the PR using the normal PR quoting mechanism; the final line
+of the PR is then followed by a line containing a single period, as
+usual.
+</p>
+<p>The server will then respond with either a <code>200 (CODE_OK)</code>
+response, indicating there were no problems with the supplied text, or
+one or more error codes listing the problems with the PR.
+</p>
+</dd>
+<dt> <code>EDIT <var>PR</var></code></dt>
+<dd><p>Verifies the replacement text for <var>PR</var>.  If the command is
+successful, the contents of <var>PR</var> are completely replaced with the
+supplied text.  The PR must previously have been locked with the
+<code>LOCK</code> command.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>431 (CODE_GNATS_LOCKED)</code>
+<br>The database has been locked, and no PRs may be updated until the lock
+is cleared.
+</p>
+<p><code>433 (CODE_PR_NOT_LOCKED)</code>
+<br>The PR was not previously locked with the <code>LOCK</code> command.
+</p>
+<p><code>400 (CODE_NONEXISTENT_PR)</code>
+<br>The specified PR does not currently exist.  The <code>SUBM</code> command
+should be used to create new PRs.
+</p>
+<p><code>211 (CODE_SEND_PR)</code>
+<br>The client should now transmit the replacement PR text using the
+normal PR quoting mechanism.  After the PR has been sent, the server
+will respond with either <code>200 (CODE_OK)</code> indicating that the edit
+was successful, or one or more error codes listing problems either with
+the replacement PR text or errors encountered while updating the PR file
+or index.
+</p>
+</dd>
+<dt> <code>EDITADDR <var>address</var></code></dt>
+<dd><p>Sets the e-mail address of the person communicating with
+<code>gnatsd</code>.  The command requires at least the <code>edit</code> access
+level.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>The address was successfully set.
+</p>
+<p><code>440 (CODE_CMD_ERROR)</code>
+<br>Invalid number of arguments were supplied.
+</p>
+</dd>
+<dt> <code>APPN <var>PR</var> <var>field</var></code></dt>
+<dt> <code>REPL <var>PR</var> <var>field</var></code></dt>
+<dd><p>Appends to or replaces the contents of <var>field</var> in <var>PR</var> with the
+supplied text.  The command returns a <code>201 (CODE_SEND_TEXT)</code>
+response; the client should then transmit the new field contents using
+the standard PR quoting mechanism.  After the server has read the new
+contents, it then attempts to make the requested change to the PR.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>The PR field was successfully changed.
+</p>
+<p><code>400 (CODE_NONEXISTENT_PR)</code>
+<br>The PR specified does not exist.
+</p>
+<p><code>410 (CODE_INVALID_FIELD_NAME)</code>
+<br>The specified field does not exist.
+</p>
+<p><code>402 (CODE_UNREADABLE_PR)</code>
+<br>The PR could not be read.
+</p>
+<p><code>431 (CODE_GNATS_LOCKED)</code>
+<br>The database has been locked, and no PRs may be updated until the lock
+is cleared.
+</p>
+<p><code>430 (CODE_LOCKED_PR)</code>
+<br>The PR is locked, and may not be altered until the lock is cleared.
+</p>
+<p><code>413 (CODE_INVALID_FIELD_CONTENTS)</code>
+<br>The supplied (or resulting) field contents are not valid for the
+field.
+</p>
+<p><code>6xx (internal error)</code>
+<br>An internal error occurred, usually because of permission or other
+filesystem-related problems.  The PR may or may not have been altered.
+</p>
+</dd>
+<dt> <code>SUBM</code></dt>
+<dd><p>Submits a new PR into the database.  The supplied text is verified for
+correctness, and if no problems are found a new PR is created.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>431 (CODE_GNATS_LOCKED)</code>
+<br>The database has been locked, and no PRs may be submitted until the
+lock is cleared.
+</p>
+<p><code>211 (CODE_SEND_PR)</code>
+<br>The client should now transmit the new PR text using the normal
+quoting mechanism.  After the PR has been sent, the server will respond
+with either <code>351 (CODE_INFORMATION_FILLER)</code> and
+<code>350 (CODE_INFORMATION)</code> responses indicating that the new PR
+has been created and supplying the number assigned to it, or one or
+more error codes listing problems with the new PR text.
+</p>
+</dd>
+<dt> <code>CHDB <var>database</var></code></dt>
+<dd><p>Switches the current database to the name specified in the command.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>422 (CODE_NO_ACCESS)</code>
+<br>The user does not have permission to access the requested database.
+</p>
+<p><code>417 (CODE_INVALID_DATABASE)</code>
+<br>The database specified does not exist, or one or more configuration
+errors in the database were encountered.
+</p>
+<p><code>220 (CODE_OK)</code>
+<br>The current database is now <var>database</var>.  Any operations performed
+will now be applied to <var>database</var>.
+</p>
+</dd>
+<dt> <code>DBLS</code></dt>
+<dd><p>Lists the known set of databases.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>6xx (internal error)</code>
+<br>An internal error was encountered while trying to obtain the list of
+available databases, usually due to lack of permissions or other
+filesystem-related problems, or the list of databases is empty.
+</p>
+<p><code>301 (CODE_TEXT_READY)</code>
+<br>The list of databases follows, one per line, using the standard
+quoting mechanism.  Only the database names are sent.
+</p>
+<p>The <code>gnatsd</code> access level &lsquo;<samp>listdb</samp>&rsquo; denies access until the
+user has authenticated with the USER command.  The only other command
+available at this access level is <code>DBLS</code>.  This access level
+provides a way for a site to secure its <small>GNATS</small> databases while still
+providing a way for client tools to obtain a list of the databases for
+use on login screens etc.  See section <a href="Access-Control.html#Access-Control">Controlling access to databases</a>.
+</p>
+</dd>
+<dt> <code>DBDESC <var>database</var></code></dt>
+<dd><p>Returns a human-readable description of the specified <var>database</var>.
+</p>
+<p>Responses include:
+</p>
+<p><code>6xx (internal error)</code>
+<br>An internal error was encountered while trying to read the list of
+available databases, usually due to lack of permissions or other
+filesystem-related problems, or the list of databases is empty.
+</p>
+<p><code>350 (CODE_INFORMATION)</code>
+<br>The normal response; the supplied text is the database description.
+</p>
+<p><code>417 (CODE_INVALID_DATABASE)</code>
+<br>The specified database name does not have an entry.
+</p>
+</dd>
+<dt> <code>EXPR <var>query expression</var></code></dt>
+<dd><p>Specifies a <var>query expression</var> used to limit which PRs are returned
+from the <code>QUER</code> command.  The expression uses the normal query
+expression syntax, (see section <a href="Query-expressions.html#Query-expressions">Query expressions</a>).
+</p>
+<p>Multiple <code>EXPR</code> commands may be issued; the expressions are boolean
+ANDed together.
+</p>
+<p>Expressions are cleared by the <code>RSET</code> command.
+</p>
+<p>Possible responses include:
+</p>
+<p><code>415 (CODE_INVALID_EXPR)</code>
+<br>The specified expression is invalid, and could not be parsed.
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>The expression has been accepted and will be used to limit the
+results returned from <code>QUER</code>.
+</p>
+</dd>
+<dt> <code>QFMT <var>query format</var></code></dt>
+<dd><p>Use the specified <var>query format</var> to format the output of the
+<code>QUER</code> command.  The query format may be either the name of a query
+format known to the server (see section <a href="Named-query-definitions.html#Named-query-definitions">Named query definitions</a>), or an
+actual query format (see section <a href="Formatting-query_002dpr-output.html#Formatting-query_002dpr-output">Formatting <code>query-pr</code> output</a>).  The possible
+responses are:
+</p>
+<p><code>200 (CODE_OK)</code>
+<br>The normal response, which indicates that the query format is
+acceptable.
+</p>
+<p><code>440 (CODE_CMD_ERROR)</code>
+<br>No query format was supplied.
+</p>
+<p><code>418 (CODE_INVALID_QUERY_FORMAT)</code>
+<br>The specified query format does not exist, or could not be parsed.
+</p>
+</dd>
+<dt> <code>QUER [<var>PR</var>] [<var>PR</var>] [...]</code></dt>
+<dd><p>Searches the contents of the database for PRs that match the
+(optional) specified expressions with the <code>EXPR</code> command. If no
+expressions were specified with <code>EXPR</code>, the entire set of PRs is
+returned.
+</p>
+<p>If one or more PRs are specified on the command line, only those PRs
+will be searched and/or output.
+</p>
+<p>The format of the output from the command is determined by the query
+format selected with the <code>QFMT</code> command.
+</p>
+<p>The possible responses are:
+</p>
+<p><code>418 (CODE_INVALID_QUERY_FORMAT)</code>
+<br>A valid format was not specified with the <code>QFMT</code> command prior to
+invoking <code>QUER</code>.
+</p>
+<p><code>300 (CODE_PR_READY)</code>
+<br>One or more PRs will be output using the requested query format. The
+PR text is quoted using the normal quoting mechanisms for PRs.
+</p>
+<p><code>220 (CODE_NO_PRS_MATCHED)</code>
+<br>No PRs met the specified criteria.
+</p>
+</dd>
+<dt> <code>ADMV <var>field key</var> [<var>subfield</var>]</code></dt>
+<dd><p>Returns an entry from an administrative data file associated with
+<var>field</var>. <var>key</var> is used to look up the entry in the data file. If
+<var>subfield</var> is specified, only the value of that subfield is
+returned; otherwise, all of the fields in the adm data file are
+returned, separated by colons &lsquo;<samp>:</samp>&rsquo;.
+</p>
+<p>The responses are:
+</p>
+<p><code>410 (CODE_INVALID_FIELD_NAME)</code>
+The specified field does not exist.
+</p>
+<p><code>221 (CODE_NO_ADM_ENTRY)</code>
+An adm entry matching the key was not found, or the field does not have
+an adm file associated with it.
+</p>
+<p><code>350 (CODE_INFORMATION)</code>
+The normal response; the supplied text is the requested field(s).
+</p></dd>
+</dl>
+
+<hr size="1">
+<table cellpadding="1" cellspacing="1" border="0">
+<tr><td valign="middle" align="left">[<a href="gnatsd-command-protocol.html#gnatsd-command-protocol" title="Previous section in reading order"> &lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd-environment-variables.html#gnatsd-environment-variables" title="Next section in reading order"> &gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Beginning of this chapter or previous chapter"> &lt;&lt; </a>]</td>
+<td valign="middle" align="left">[<a href="gnatsd.html#gnatsd" title="Up section"> Up </a>]</td>
+<td valign="middle" align="left">[<a href="Access-Control.html#Access-Control" title="Next chapter"> &gt;&gt; </a>]</td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left"> &nbsp; </td>
+<td valign="middle" align="left">[<a href="gnats.html#Top" title="Cover (top) of document">Top</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_toc.html#SEC_Contents" title="Table of contents">Contents</a>]</td>
+<td valign="middle" align="left">[<a href="Index.html#Index" title="Index">Index</a>]</td>
+<td valign="middle" align="left">[<a href="gnats_abt.html#SEC_About" title="About (help)"> ? </a>]</td>
+</tr></table>
+<p>
+ <font size="-1">
+  This document was generated by <em>Chad Walstrom</em> on <em>March 3, 2015</em> using <a href="http://www.nongnu.org/texi2html/"><em>texi2html 1.82</em></a>.
+ </font>
+ <br>
+
+</p>
+</body>
+</html>
